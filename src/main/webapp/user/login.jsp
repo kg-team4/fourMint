@@ -6,7 +6,7 @@
 <jsp:include page="../template/header.jsp"></jsp:include>
 <link href="../css/7.login.css" type="text/css" rel="stylesheet">
         <article id="login-article">
-            <form action="login.do" method="get" id="login-form">
+            <form action="login.user" method="get" id="login-form">
                 <div>
                     <img src="../img/logo_icon.png" alt="logo_icon">
                 </div>

@@ -19,7 +19,7 @@
 <body>
 		<header>
 			<div class="logo">
-				<a href="home.do"><img src="../img/logo.png"></a>
+				<a href="home.user"><img src="../img/mintmarket_logo.png"></a>
 			</div>
 			<div class="search">
 				<form action="../board/used_all_post_list.jsp" method="get" style="border: 1px solid white;">
@@ -31,10 +31,10 @@
 			<div class="sign">
 					<img src="../img/user_icon.png" class="user-icon">
 				<ul>
-					<li><a href="login.do">로그인</a></li>
-					<li><a href="join.do">회원가입</a></li>
-					<!-- <li><a href="logout.do">로그아웃</a></li>
-					<li><a href="info.do?no=1">마이페이지</a></li> -->
+					<li><a href="login.user">로그인</a></li>
+					<li><a href="join.user">회원가입</a></li>
+					<!-- <li><a href="logout.user">로그아웃</a></li>
+					<li><a href="info.user?no=1">마이페이지</a></li> -->
 				</ul>
 			</div>
 		</header>

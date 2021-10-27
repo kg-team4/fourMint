@@ -1,4 +1,4 @@
-package four.mint.web.admin.info;
+package four.mint.web.admin;
 
 import java.util.Locale;
 
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class AdminInfoController {
+public class AdminController {
 
-	@RequestMapping(value = "/home.mdo", method = RequestMethod.GET)
+	@RequestMapping(value = "/home.admin", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		return "/index";

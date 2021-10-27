@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class BoardController {
 
-	@RequestMapping(value = "/mintBoardList.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mintBoardList.user", method = RequestMethod.GET)
 	public String mintBoardList() {
 		
 		return "/board/used_all_post_list";
 	}
 	
-	@RequestMapping(value = "/mintBoard.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mintBoard.user", method = RequestMethod.GET)
 	public String mintBoard() {
 		
 		return "/board/used_post_content";
 	}
 	
-	@RequestMapping(value = "/mintDetailList.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mintDetailList.user", method = RequestMethod.GET)
 	public String mintDetailList() {
 		
 		return "/board/used_post_list";
