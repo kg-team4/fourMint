@@ -2,39 +2,29 @@
 
 footer {
 	position: absolute;
-	margin-top: 100px;
+	margin-top: 200px;
 	width: 100%;
 	min-width: 1000px;
-	height: 320px;
-	background-color: rgba(70, 160, 91, 0.83);
+	background-color: LightCyan;
 	text-align: center;
 	font-size: 18px;
 	z-index: -1;
-	height: 320px;
+	height: 250px;
 }
 
 footer div {
-	margin: 25px 25px 0px 25px;
+	margin: 10px 25px 0px 25px;
 }
 
 footer div a {
 	text-decoration: none;
-	color: rgba(255, 255, 255, 0.76);
+	color: grey;
 	margin-left: 20px;
 }
 
 .footer-bottom {
 	margin-top: 10px;
-	color: rgb(255, 166, 3);
+	color: skyblue;
 	text-shadow: 1px 1px 1px gray;
 }
 
-.footer-icon {
-	margin: 0px;
-}
-
-.footer-icon img {
-	width: 45px;
-	height: auto;
-	margin: 10px;
-}

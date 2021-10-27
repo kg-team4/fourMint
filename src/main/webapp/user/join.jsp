@@ -9,13 +9,13 @@
 <link href="../css/6.join.css" type="text/css" rel="stylesheet">
 
         <article class="join-article">
-            <form action="join.do" method="post" class="join-form">
+            <form action="joinProc.user" method="get" class="join-form">
            		<div>
             		<img src="../img/logo_icon.png" alt="logo_icon" id="logo_icon">
             	</div>
                 <div class="email-form">
                     <input type="text" name="email_id" placeholder="이메일" id="email" required="required">
-                    <span style="color: #7b7b7b;">@</span>
+                    <span style="color: #50b9abd0;">@</span>
                     <span class="a"></span>
                     <select name="email" onchange="changeTextBar();" id="selectEmail" required="required">
                         <option value="">선택</option>
@@ -26,21 +26,21 @@
                 </div>
                 <div id="idInfo"></div>
                 <div>
-                    <input type="password" name="member_pw" placeholder="비밀번호" required="required" maxlength="15" oninput="checkPw();">
+                    <input type="password" name="password" placeholder="비밀번호" required="required" maxlength="15" oninput="checkPw();">
                 </div>
                 <div id="pwInfo"></div>
                 <div>
-                    <input type="text" name="member_nick" placeholder="닉네임" required="required" maxlength="10" oninput="checkNick();">
+                    <input type="text" name="nickname" placeholder="닉네임" required="required" maxlength="10" oninput="checkNick();">
                 </div>
                 <div id="nickInfo"></div>
                 <div id="addr">
-                    <input type="text" name="addr_state" placeholder="시 / 도" id="state" readonly required="required">
-                    <input type="text" name="addr_city" placeholder="구 / 시" id="city" readonly required="required">
-                    <input type="text" name="addr_base" placeholder="동 / 읍 / 면" id="base" readonly required="required">
+                    <input type="text" name="state" placeholder="시 / 도" id="state" readonly required="required">
+                    <input type="text" name="city" placeholder="구 / 시" id="city" readonly required="required">
+                    <input type="text" name="base" placeholder="동 / 읍 / 면" id="base" readonly required="required">
                     <input type="button" onclick="findAddr(); " value="">
                 </div>
                 <div>
-                    <input type="text" name="member_phone" placeholder="휴대전화" required="required" maxlength="11" oninput="checkPhone();">
+                    <input type="text" name="phone" placeholder="휴대전화" required="required" maxlength="11" oninput="checkPhone();">
                 </div>
                 <div id="phoneInfo"></div>
                 <div id="checkList">

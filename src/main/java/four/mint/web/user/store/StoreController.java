@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class StoreController {
 
-	@RequestMapping(value = "/storeBoardList.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/storeBoardList.user", method = RequestMethod.GET)
 	public String storeBoardList() {
 		
 		return "/board/store_all_post_list";
 	}
 	
-	@RequestMapping(value = "/storeBoard.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/storeBoard.user", method = RequestMethod.GET)
 	public String storeBoard() {
 		
 		return "/board/store_post_content";
 	}
 	
-	@RequestMapping(value = "/storeDetailList.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/storeDetailList.user", method = RequestMethod.GET)
 	public String storeList() {
 		
 		return "/board/store_post_list";

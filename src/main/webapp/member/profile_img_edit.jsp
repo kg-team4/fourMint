@@ -41,7 +41,7 @@ input[type=submit] {
 </head>
 <body>
 	<div>
-		<form action="edit_profile.do" method="post"
+		<form action="edit_profile.user" method="post"
 			enctype="multipart/form-data">
 
 			<div id="thumb">
