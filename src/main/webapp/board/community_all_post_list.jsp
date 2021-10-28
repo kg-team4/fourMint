@@ -106,7 +106,7 @@
 					<div class="product_photo">
 						<a class="move"
 							href="promotion_post_content.jsp?board_no=1&promotion_cate_num=1&post_no=1"><img
-							src="showImg2.user?post_img_no=1"></a>
+							src="showImg2.do?post_img_no=1"></a>
 					</div>
 					<div class="product_title">
 						<div class="hideText">

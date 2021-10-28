@@ -40,7 +40,7 @@ input[type=submit] {
 </head>
 <body>
 	<div>
-		<form action="reg_profile.user" method="post"
+		<form action="reg_profile.do" method="post"
 			enctype="multipart/form-data">
 
 			<div id="thumb">

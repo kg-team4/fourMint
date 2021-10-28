@@ -1,23 +1,20 @@
 package four.mint.web.user.impl;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import four.mint.web.common.mapper.UserMapper;
 import four.mint.web.user.UserVO;
-import lombok.Setter;
 
+@Repository
 public class UserDAO {
 
-	@Setter(onMethod_ = @Autowired)
-	private UserMapper mapper;
+	@Autowired
+	private SqlSessionFactory sqlFactory;
 	
-	public void insert() {
-		UserVO user = new UserVO();
-			user.setEmail_id(null);
-			user.setPassword(null);
-			user.setNickname(null);
-			user.setPhone("123");
-		
-		mapper.insert(user);
+	public void insertUser(UserVO vo) {
+//		System.out.println("====> member TABLE INSERT one member");
+//		sqlSessionTemplate.insert("UserDAO.insertUser", vo);
+		System.out.println(sqlFactory);
 	}
 }

@@ -15,7 +15,7 @@
                 <div id="mypage-top">
                     <div id="mypage-top-left">
                         <div id="mypage-top-left-up">
-                       			<img alt="닉네임" src="profile_img_down.user?member_img_no=1">
+                       			<img alt="닉네임" src="profile_img_down.do?member_img_no=1">
                        			<!-- 회원 이미지가 없을 경우 -->
                             	<img alt="user_profile_none" src="../img/user_profile.jpg">
                            	<label id="profile-edit" for="profile-check">
@@ -24,7 +24,7 @@
 	                           			<!-- 마이페이지 회원이 자신일 경우 -->
 	                           				<!-- 회원 이미지가 있을 경우 -->
 	                           				<a href="profile_img_edit.jsp?no=1&member_img_no=1" onclick="window.open(this.href, '_blank', 'width=305px,height=400px,toolbars=no,scrollbars=no'); return false;" id="profile-img">수정</a>
-	                           				<a href="delete_profile.user?member_img_no=1">삭제</a>
+	                           				<a href="delete_profile.do?member_img_no=1">삭제</a>
 	                           				<!-- 회원 이미지가 없을 경우 -->
 	                           				<a href="profile_img_create.jsp?no=1" onclick="window.open(this.href, '_blank', 'width=305px,height=400px,toolbars=no,scrollbars=no'); return false;" id="profile-img">추가</a>
                            		</span>
@@ -44,7 +44,7 @@
                                     닉네임
                                     <ul>
                                         <li>
-                                        	<form action="manner.user" method="post">
+                                        	<form action="manner.do" method="post">
                                         		<input type="hidden" name="this_member_no" value="1"> <!-- 좋아요 누를 회원 -->
                                         		<input type="hidden" name="push_member_no" value="1"> <!-- 좋아요를 누른 회원 -->
                                         		<input type="hidden" name="path" value="<%-- <%=request.getRequestURI() %>?<%=request.getQueryString()%> --%>">
@@ -53,7 +53,7 @@
                                         	</form>
                                         </li>
                                         <li>
-                                        	<form action="manner.user" method="post">
+                                        	<form action="manner.do" method="post">
                                         		<input type="hidden" name="this_member_no" value="1"> <!-- 좋아요 누를 회원 -->
                                         		<input type="hidden" name="push_member_no" value="1"> <!-- 좋아요를 누른 회원 -->
                                         		<input type="hidden" name="path" value="<%-- <%=request.getRequestURI() %>?<%=request.getQueryString()%> --%>">
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                                 <div id="intro-bottom">
-                                    <form action="edit_intro.user" method="post">
+                                    <form action="edit_intro.do" method="post">
                                     	<input type="hidden" name="member_no" value="1">
                                         <textarea maxlength="800" name="intro">멋진 자기소개를 작성해주세요!</textarea>
                                         <input type="submit" value="">
@@ -139,7 +139,7 @@
 	                                    <div class="product">
 	                                        <div class="product-inner">
 	                                        	<div class="photo">
-	                                        		<a href="../board/used_post_content.jsp?board_no=1&used_cate_num=1&post_no=1&board_no=1"><img src="../board/showImg.user?post_img_no=1"></a>
+	                                        		<a href="../board/used_post_content.jsp?board_no=1&used_cate_num=1&post_no=1&board_no=1"><img src="../board/showImg.do?post_img_no=1"></a>
 	                                        	</div>
 	                                        	<div class="product-title">
 	                                        		<a href="../board/used_post_content.jsp?board_no=1&used_cate_num=1&post_no=1&board_no=1">제목...</a>	
@@ -171,7 +171,7 @@
 		                                	</div>
 			                                    <div class="product">
 			                                        <div class="product-inner">
-			                                        	<div class="photo"><a href="../board/promotion_post_content.jsp?board_no=1%>&promotion_cate_num=1&post_no=1"><img src="../board/showImg2.user?post_img_no=1"></a></div>
+			                                        	<div class="photo"><a href="../board/promotion_post_content.jsp?board_no=1%>&promotion_cate_num=1&post_no=1"><img src="../board/showImg2.do?post_img_no=1"></a></div>
 			                                        	<div class="product-title"><a href="../board/promotion_post_content.jsp?board_no=1&promotion_cate_num=1&post_no=1">제목...</a></div>
 			                                        	<div class="map">
 			                                        		<div>
@@ -211,7 +211,7 @@
 			                                    <div class="product">
 			                                        <div class="product-inner">
 			                                        	<div class="photo">
-			                                        		<a href="../board/used_post_content.jsp?board_no=1&used_cate_num=1&post_no=1&board_no=1"><img src="../board/showImg.user?post_img_no=1"></a>
+			                                        		<a href="../board/used_post_content.jsp?board_no=1&used_cate_num=1&post_no=1&board_no=1"><img src="../board/showImg.do?post_img_no=1"></a>
 			                                        	</div>
 			                                        	<div class="product-title">
 			                                        		<a href="../board/used_post_content.jsp?board_no=1&used_cate_num=1&post_no=1&board_no=1">제목...</a>	
@@ -240,7 +240,7 @@
 			                                	</div>
 					                                    <div class="product">
 					                                        <div class="product-inner">
-					                                        	<div class="photo"><a href="../board/promotion_post_content.jsp?board_no=1&promotion_cate_num=1&post_no=1"><img src="../board/showImg2.user?post_img_no=1"></a></div>
+					                                        	<div class="photo"><a href="../board/promotion_post_content.jsp?board_no=1&promotion_cate_num=1&post_no=1"><img src="../board/showImg2.do?post_img_no=1"></a></div>
 					                                        	<div class="product-title"><a href="../board/promotion_post_content.jsp?board_no=1&promotion_cate_num=1&post_no=1">제목...</a></div>
 					                                        	<div class="map">
 					                                        		<div>
@@ -271,7 +271,7 @@
 	                                    <div class="product">
 	                                        <div class="product-inner">
 	                                        	<div class="photo">
-	                                        		<a href="../board/used_post_content.jsp?board_no=1&used_cate_num=1&post_no=1"><img src="../board/showImg.user?post_img_no=1"></a>
+	                                        		<a href="../board/used_post_content.jsp?board_no=1&used_cate_num=1&post_no=1"><img src="../board/showImg.do?post_img_no=1"></a>
 	                                        	</div>
 	                                        	<div class="product-title"><a href="../board/used_post_content.jsp?board_no=1&used_cate_num=1&post_no=1">제목...</a></div>
 	                                        	<div class="map">

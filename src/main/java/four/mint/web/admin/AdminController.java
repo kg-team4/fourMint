@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AdminController {
 
-	@RequestMapping(value = "/home.admin", method = RequestMethod.GET)
+	@RequestMapping(value = "/home.mdo", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		return "/index";

@@ -28,7 +28,7 @@
 	    		    <div class="swiper-wrapper">		
 	    		    	<div class="swiper-slide">
 							<!-- 이미지 미리보기 -->
-								<img class="mainimg" src="showImg.user?post_img_no=1">
+								<img class="mainimg" src="showImg.do?post_img_no=1">
 					</div>
 				</div>
 							        <!-- 이전/다음 버튼(선택) -->
@@ -72,7 +72,7 @@
 					<div>
 					<div class="float-box float-left">
 						<div class="left-item33">
-							<form action="../member/post_like.user" method="post">
+							<form action="../member/post_like.do" method="post">
 								<input type="hidden" name="member_no" value="1">
 								<input type="hidden" name="board_no" value="1">
 								<input type="hidden" name="post_no" value="1">
@@ -86,7 +86,7 @@
 							<a href="used_post_content_edit.jsp?post_no=1"><button class="edit-button cursor">수정</button></a>
 						</div>
 						<div class="left-item33">
-							<a href="../member/check.jsp?go=myweb/board/usedpostdelete.user?post_no=1"><button class="delete-button cursor">삭제</button></a>
+							<a href="../member/check.jsp?go=myweb/board/usedpostdelete.do?post_no=1"><button class="delete-button cursor">삭제</button></a>
 						</div>
 						</div>
 					</div>
@@ -103,7 +103,7 @@
 						<div class=" swiper-slide left-item16" style="height:180px;">
 
 								<div class="inline">
-									<a href="mintBoard.user?board_no=1&used_cate_num=1&post_no=1"> <img class="image" src="showImg.user?post_img_no=1"></a>
+									<a href="mintBoard.do?board_no=1&used_cate_num=1&post_no=1"> <img class="image" src="showImg.do?post_img_no=1"></a>
 									<p class="font17 top-margin5 reco">제목</p>	<!-- 제목출력 -->
 								</div>
 									</div><div class="swiper-slide left-item16">
@@ -127,7 +127,7 @@
 				<hr>
 				<div class="padding-top100">
 					<p class="font27">댓글</p>
-					<form action="write_reply.user" method="post">
+					<form action="write_reply.do" method="post">
 						<input type="hidden" name="no" value="1">
 						<input type="hidden" name="post_no" value="1">
 						<input type="hidden" name="reply_table_name" value="이름">
@@ -157,7 +157,7 @@
 					<div class="float-box float-left reply-margin20">
 						<div class="left-item10">
 						<!-- 프로필 이미지 영역 -->
-								<img class="reply-pic-circle" src="./member/profile_img_down.user?member_img_no=1">
+								<img class="reply-pic-circle" src="./member/profile_img_down.do?member_img_no=1">
 						</div>
 						<div class="right-item90">
 							<!-- 프로필 닉네임 / 댓글 내용 영역 -->
@@ -166,14 +166,14 @@
 									<label id="reply-member-form" for="11"><input type="checkbox" id="11" value="1" onchange="viewReplyMemberInfo(this);">aa</label>
 									<div class="info11 reply-tab-design">
 										<div><a href="../member/info.jsp?no=1">회원 페이지</a></div>
-											<form action="../member/manner.user" method="post">
+											<form action="../member/manner.do" method="post">
                                         		<input type="hidden" name="this_member_no" value="1"> <!-- 좋아요 누를 회원 -->
                                         		<input type="hidden" name="push_member_no" value="이름"> <!-- 좋아요를 누른 회원 -->
                                         		<input type="hidden" name="path" value="asd?asd">
                                         		<input type="hidden" name="good" value="">
                                         		<input type="submit" value="좋아요" class="submit-button">
                                         	</form>	
-											<form action="../member/manner.user" method="post">
+											<form action="../member/manner.do" method="post">
                                         		<input type="hidden" name="this_member_no" value="1"> <!-- 좋아요 누를 회원 -->
                                         		<input type="hidden" name="push_member_no" value="이름"> <!-- 좋아요를 누른 회원 -->
                                         		<input type="hidden" name="path" value="asd?asd">
@@ -188,7 +188,7 @@
 							</div>
 							<div class="font17 padding-top10 reply-content-form">
 								<div class="reply-content">
-										<form action="edit_reply.user" method="post" id="edit-reply-form">
+										<form action="edit_reply.do" method="post" id="edit-reply-form">
 											<input type="hidden" name="reply_no" value="1">
 											<input type="hidden" name="reply_table_name" value="이름">
 											<input type="hidden" name="post_path" value="asd?board_no=1&used_cate_num=1&post_no=1">
@@ -205,7 +205,7 @@
 											</div>
 											<div><a href="asd?asd&1=1">수정</a></div>
 											<div>
-												<form action="delete_reply.user" method="post" id="delete-reply-form">
+												<form action="delete_reply.do" method="post" id="delete-reply-form">
 													<input type="hidden" name="reply_table_name" value="이름">
 													<input type="hidden" name="reply_no" value="1">
 													<input type="hidden" name="post_path" value="asd?asd">
@@ -218,7 +218,7 @@
 					</div>
 					<div class="padding-top20 rereply-off" id="rereply-form1">
 					<p class="font20">대댓글</p>
-					<form action="write_reply.user" method="post">
+					<form action="write_reply.do" method="post">
 						<input type="hidden" name="no" value="1">
 						<input type="hidden" name="reply_no" value="1">
 						<input type="hidden" name="post_no" value="1">
@@ -253,7 +253,7 @@
 				<div class="padding-top30">
 					<div class="float-box float-left">
 						<div class="left-item25  pic-align left-font">
-										<img class="reply-pic-circle" src="./member/profile_img_down.user?member_img_no=1" >
+										<img class="reply-pic-circle" src="./member/profile_img_down.do?member_img_no=1" >
 						</div>
 						<div class="right-item75">
 								<div class="top-margin10 left-font seller">
@@ -262,7 +262,7 @@
 											<label class="font20" for="member-nick"> <input type="checkbox" id="member-nick" onchange="viewMemberInfo(this);">1</label>
 											<div class="info-member-nick">
 												<div><a href="../member/info.jsp?no=1">회원 페이지</a></div>
-												<form action="../member/manner.user" method="post">
+												<form action="../member/manner.do" method="post">
 	                                        		<input type="hidden" name="this_member_no" value="1"> <!-- 좋아요 누를 회원 -->
 	                                        		<input type="hidden" name="push_member_no" value="이름"> <!-- 좋아요를 누른 회원 -->
 	                                        		<input type="hidden" name="path" value="asd?asd">

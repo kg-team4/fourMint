@@ -12,39 +12,44 @@ import four.mint.web.user.impl.UserDAO;
 @Controller
 public class UserController {
 
-	@RequestMapping(value = "/home.user", method = RequestMethod.GET)
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		return "/index/index";
-	}
+	} 
 
-	@RequestMapping(value = "/login.user", method = RequestMethod.GET)
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login() {
 		
 		return "/user/login";
 	}
 	
-	@RequestMapping(value = "/join.user", method = RequestMethod.GET)
+	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
 	public String join() {
 		
 		return "/user/join";
 	}
-	@RequestMapping(value = "/joinProc.user", method = RequestMethod.GET)
+	@RequestMapping(value = "/joinProc.do", method = RequestMethod.GET)
 	public String joinProc() {
-		UserDAO userDao = new UserDAO();
-		userDao.insert();
+		UserDAO userDAO = new UserDAO();
+		UserVO userVO = new UserVO();
+			userVO.setEmail_id("hi");
 		
-		return "/user/index";
+		System.out.println("하이");
+		userDAO.insertUser(userVO);
+		System.out.println("짜증");
+		
+		return "/index/index";
 	}
 	
-	@RequestMapping(value = "/logout.user", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout() {
 //		session.invalidate();
 		
 		return "/index/index";
 	}
 
-	@RequestMapping(value = "/info.user", method = RequestMethod.GET)
+	@RequestMapping(value = "/info.do", method = RequestMethod.GET)
 	public String info() {
 		
 		return "/member/info";

@@ -16,7 +16,7 @@
 <!-- 비밀번호 비교 -->
 
         <article class="join-article">
-            <form action="change_info.user" method="get" class="join-form" id="edit-form" onsubmit="return editSubmit();">
+            <form action="change_info.do" method="get" class="join-form" id="edit-form" onsubmit="return editSubmit();">
             <input type="hidden" name="member_no" value="1">
                 <div>
             		<img src="../img/logo_icon.png" alt="logo_icon" id="logo_icon">

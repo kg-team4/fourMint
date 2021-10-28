@@ -60,7 +60,7 @@
 								<div class="layer">
 									<%-- <div class="hot-product">
 										<div id="img">
-											<a href="<%=path %>/board/used_post_content.jsp?board_no=<%=newpost.getBoard_no()%>&used_cate_num=<%=newpost.getUsed_cate_num()%>&post_no=<%=uidto.getPost_no()%>"><img src="./board/showImg.user?post_img_no=<%=uidto.getPost_img_no()%>"></a>
+											<a href="<%=path %>/board/used_post_content.jsp?board_no=<%=newpost.getBoard_no()%>&used_cate_num=<%=newpost.getUsed_cate_num()%>&post_no=<%=uidto.getPost_no()%>"><img src="./board/showImg.do?post_img_no=<%=uidto.getPost_img_no()%>"></a>
 										</div>
 										<div id="title"><%=newpost.getPost_title()%>
 											
@@ -71,7 +71,7 @@
 								<div class="layer">
 									<div class="hot-product">
 										<div id="img">
-											<a href="mintBoard.user?board_no=1&used_cate_num=1&post_no=1"><img src="board/showImg.user?post_img_no=1"></a>
+											<a href="mintBoard.do?board_no=1&used_cate_num=1&post_no=1"><img src="board/showImg.do?post_img_no=1"></a>
 										</div>
 										<div id="title">제목
 											
@@ -92,7 +92,7 @@
 								<div class="layer">
 									<%-- <div class="hot-product">
 										<div id="img">
-											<a href="<%=path %>/board/promotion_post_content.jsp?board_no=<%=ppdto.getBoard_no()%>&promotion_cate_num=<%=ppdto.getPromotion_cate_num()%>&post_no=<%=pidto.getPost_no()%>"><img src="./board/showImg2.user?post_img_no=<%=pidto.getPost_img_no()%>"></a>
+											<a href="<%=path %>/board/promotion_post_content.jsp?board_no=<%=ppdto.getBoard_no()%>&promotion_cate_num=<%=ppdto.getPromotion_cate_num()%>&post_no=<%=pidto.getPost_no()%>"><img src="./board/showImg2.do?post_img_no=<%=pidto.getPost_img_no()%>"></a>
 										</div>
 										<div id="title"><%=ppdto.getPost_title()%>
 											
@@ -103,7 +103,7 @@
 								<div class="layer">
 									<%-- <div class="hot-product">
 										<div id="img">
-											<a href="<%=path %>/board/promotion_post_content.jsp?board_no=<%=ppdto.getBoard_no()%>&promotion_cate_num=<%=ppdto.getPromotion_cate_num()%>&post_no=<%=pidto.getPost_no()%>"><img src="./board/showImg2.user?post_img_no=<%=pidto.getPost_img_no()%>"></a>
+											<a href="<%=path %>/board/promotion_post_content.jsp?board_no=<%=ppdto.getBoard_no()%>&promotion_cate_num=<%=ppdto.getPromotion_cate_num()%>&post_no=<%=pidto.getPost_no()%>"><img src="./board/showImg2.do?post_img_no=<%=pidto.getPost_img_no()%>"></a>
 										</div>
 										<div id="title"><%=ppdto.getPost_title()%>
 											
