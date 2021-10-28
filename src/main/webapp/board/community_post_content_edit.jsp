@@ -128,7 +128,7 @@
 <link href="../css/12.promotion_write.css" type="text/css" rel="stylesheet">
 
 
-<form action="promopostedit.user" method="post" enctype="multipart/form-data">
+<form action="promopostedit.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="post_no" value="1">
 	<input type="hidden" name="board_no" value="2">
 	

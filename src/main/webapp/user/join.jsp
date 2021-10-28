@@ -9,7 +9,7 @@
 <link href="../css/6.join.css" type="text/css" rel="stylesheet">
 
         <article class="join-article">
-            <form action="joinProc.user" method="get" class="join-form">
+            <form action="joinProc.do" method="get" class="join-form">
            		<div>
             		<img src="../img/logo_icon.png" alt="logo_icon" id="logo_icon">
             	</div>
@@ -79,6 +79,7 @@
                     </div>
                 </div>
             </form>
+            <form action="joinProc.do"><input type="submit" /></form>
         </article>
 
 <jsp:include page="../template/footer.jsp"></jsp:include>

@@ -170,7 +170,14 @@
 		    <groupId>commons-collections</groupId>
 		    <artifactId>commons-collections</artifactId>
 		    <version>3.2.2</version>
-		</dependency>	
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+		<dependency>
+		    <groupId>commons-logging</groupId>
+		    <artifactId>commons-logging</artifactId>
+		    <version>1.2</version>
+		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
@@ -179,7 +186,13 @@
 		    <version>1.18.20</version>
 		    <scope>provided</scope>
 		</dependency>
-				
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-orm</artifactId>
+		    <version>5.3.9</version>
+		</dependency>
 	
 		<!-- Test -->
 		<dependency>

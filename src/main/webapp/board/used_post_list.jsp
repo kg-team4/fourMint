@@ -27,12 +27,12 @@
 				<div class="product">
 						<!-- 이미지 등록 -->
 						<div class="product_photo">
-							<a class="move" href="mintBoard.user?board_no=1&used_cate_num=1&post_no=1"><img src="showImg.user?post_img_no=1"></a>
+							<a class="move" href="mintBoard.do?board_no=1&used_cate_num=1&post_no=1"><img src="showImg.do?post_img_no=1"></a>
 						</div>
 						<!-- 게시글 제목 -->
 						<div class="product_title">
 							<div class="hideText">
-								<a class="move" href="mintBoard.user?board_no=1&used_cate_num=1&post_no=1">제목</a>
+								<a class="move" href="mintBoard.do?board_no=1&used_cate_num=1&post_no=1">제목</a>
 							</div>
 						</div>
 						<!-- 지역 등록 -->
