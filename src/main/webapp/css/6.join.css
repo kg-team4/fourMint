@@ -35,7 +35,8 @@
 .join-form div input[type=text]:hover,
 .join-form div input[type=password]:hover,
 .email-form:hover,
-#addr:hover {
+#addr:hover,
+#checkList .divGender:hover {
     border-bottom: 2px solid #50b9abd0;
 }
 
@@ -43,7 +44,8 @@
 .join-form div input[type=password],
 .join-form div select,
 .email-form,
-#addr {
+#addr,
+#checkList .divGender {
     margin-top: 30px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.41);
 }
@@ -129,7 +131,7 @@ input[name=phone] {
     background-position: 0px 11px
 }
 
-#state {
+#address1 {
     background-image: url(../img/map-marker-2-32.png);
 }
 
@@ -162,6 +164,10 @@ input[name=phone] {
     font-size: 18px;
 }
 
+.divGender {
+	font-size: 18px;
+}
+
 #selectAgree div {
     margin-top: 15px;
     padding-left: 35px;
@@ -171,7 +177,8 @@ input[name=phone] {
     text-align: left;
 }
 
-#checkList input[type=checkbox] {
+#checkList input[type=checkbox],
+.genderRadio {
     width: 15px;
     height: auto;
 }
@@ -197,3 +204,10 @@ input[name=phone] {
     height: 100px;
     resize: none;
 }
+
+.genderRadio {
+	width: 10px !important;
+	height: 12px !important;
+}
+
+

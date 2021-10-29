@@ -1,4 +1,4 @@
-package four.mint.web.user.login;
+package four.mint.web.user;
 
 public class LogoutController {
 	
