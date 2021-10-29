@@ -1,6 +1,6 @@
 package four.mint.web.user.impl;
 
-import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,11 +10,16 @@ import four.mint.web.user.UserVO;
 public class UserDAO {
 
 	@Autowired
-	private SqlSessionFactory sqlFactory;
+	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public void insertUser(UserVO vo) {
-//		System.out.println("====> member TABLE INSERT one member");
-//		sqlSessionTemplate.insert("UserDAO.insertUser", vo);
-		System.out.println(sqlFactory);
+		System.out.println("====> member TABLE INSERT one member");
+		sqlSessionTemplate.insert("UserDAO.insertUser", vo);
+	}
+	
+	public UserVO getUser(UserVO vo) {
+		System.out.println("====> member TABLE SELECT one member");
+		
+		return (UserVO)sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
 	}
 }

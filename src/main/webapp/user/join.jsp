@@ -9,10 +9,12 @@
 <link href="../css/6.join.css" type="text/css" rel="stylesheet">
 
         <article class="join-article">
-            <form action="joinProc.do" method="get" class="join-form">
+            <form action="joinProc.do" method="post" class="join-form">
            		<div>
             		<img src="../img/logo_icon.png" alt="logo_icon" id="logo_icon">
             	</div>
+            	
+            	<!------------ 이메일 아이디 ------------->
                 <div class="email-form">
                     <input type="text" name="email_id" placeholder="이메일" id="email" required="required">
                     <span style="color: #50b9abd0;">@</span>
@@ -25,24 +27,49 @@
                     </select>
                 </div>
                 <div id="idInfo"></div>
+                
+                <!------------ 비밀번호 ------------->
                 <div>
                     <input type="password" name="password" placeholder="비밀번호" required="required" maxlength="15" oninput="checkPw();">
                 </div>
                 <div id="pwInfo"></div>
+                
+                <!------------ 닉네임 ------------->
                 <div>
                     <input type="text" name="nickname" placeholder="닉네임" required="required" maxlength="10" oninput="checkNick();">
                 </div>
                 <div id="nickInfo"></div>
+                
+                <!------------ 주소 ------------->
                 <div id="addr">
-                    <input type="text" name="state" placeholder="시 / 도" id="state" readonly required="required">
-                    <input type="text" name="city" placeholder="구 / 시" id="city" readonly required="required">
-                    <input type="text" name="base" placeholder="동 / 읍 / 면" id="base" readonly required="required">
+                    <input type="text" name="address1" placeholder="시 / 도" id="address1" readonly required="required">
+                    <input type="text" name="address2" placeholder="구 / 시" id="address2" readonly required="required">
+                    <input type="text" name="address3" placeholder="동 / 읍 / 면" id="address3" readonly required="required">
                     <input type="button" onclick="findAddr(); " value="">
                 </div>
+                
+                <!------------ 휴대전화 ------------->
                 <div>
                     <input type="text" name="phone" placeholder="휴대전화" required="required" maxlength="11" oninput="checkPhone();">
                 </div>
                 <div id="phoneInfo"></div>
+                
+                <!------------ 생년월일 ------------->
+                <div>
+                	<input type="text" name="birth" placeholder="ex) 930209" />
+                </div>
+                <div id="birthInfo"></div>
+                
+                <!------------ 성별 ------------->
+                <div id="checkList" style="margin: 10px 0 0 0;">
+                    <div class="divGender">
+                        <input type="radio" class="genderRadio" name="man" id="man" checked style="margin: 0 0 20px 30px;"/>&nbsp;<label for="man">남성</label>&nbsp;&nbsp;
+                        <input type="radio" class="genderRadio" name="woman" id="woman" />&nbsp;<label for="woman">여성</label>
+                    </div>
+                </div>
+                <br>
+                
+                <!------------ 이용약관 ------------->
                 <div id="checkList">
                     <div id="allAgree">
                         <input type="checkbox" id="all" onchange="allCheck();">
@@ -67,7 +94,7 @@
                         </div>
                         <div>
                             <input type="checkbox" id="third" class="selectBox">
-                            <label for="third"><a style="color: gray;">(선택)</a> 이메일 , SMS 광고 수신 동의</label>
+                            <label for="third"><a style="color: gray;">(선택)</a> 이메일, SMS 광고 수신 동의</label>
                             <img src="../img/arrow-204-32.png" onclick="termsSwitch(3);">
                         </div>
                         <div class="terms">
@@ -79,7 +106,6 @@
                     </div>
                 </div>
             </form>
-            <form action="joinProc.do"><input type="submit" /></form>
         </article>
 
 <jsp:include page="../template/footer.jsp"></jsp:include>
