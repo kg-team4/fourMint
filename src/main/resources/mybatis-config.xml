@@ -4,8 +4,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="user" type="four.mint.web.user.UserVO" />
+		<typeAlias alias="communityBoard" type="four.mint.web.user.community.CommunityBoardVO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/UserMapping.xml" />
+		<mapper resource="mappings/CommunityBoardMapping.xml" />
 	</mappers>
 </configuration>

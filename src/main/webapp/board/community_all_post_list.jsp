@@ -2,8 +2,7 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%-- 
 <%
 	PromotionPostDAO ppdao = new PromotionPostDAO();
@@ -87,8 +86,8 @@
 
 <jsp:include page="../template/header.jsp"></jsp:include>
 
-<link href="../css/10.promotion&used_post_list.css"
-	type="text/css" rel="stylesheet">
+<link href="../css/10.promotion&used_post_list.css" type="text/css"
+	rel="stylesheet">
 
 <!-- <article style="padding-top: 200px; margin: 0px 20%">
 	<div align="left">

@@ -27,7 +27,7 @@ public class UserController {
 	}
 	@RequestMapping(value = "/joinProc.do", method = RequestMethod.POST)
 	public String joinProc(UserVO vo) {
-		System.out.println("È¸¿ø°¡ÀÔ ½ÇÇà ¿Ï·á");
+		System.out.println("íšŒì›ê°€ì… ì™„ë£Œ");
 		userService.insertUser(vo);
 		
 		return "/index/index";

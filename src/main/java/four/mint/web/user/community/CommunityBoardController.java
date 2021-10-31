@@ -1,11 +1,18 @@
 package four.mint.web.user.community;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class CommunityController {
+public class CommunityBoardController {
+	
+	@Autowired
+	private CommunityBoardService communityBoardService;
 
 	@RequestMapping(value = "/communityBoardList.do", method = RequestMethod.GET)
 	public String communityBoardList() {
@@ -20,7 +27,9 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/communityDetailList.do", method = RequestMethod.GET)
-	public String communityDetailList() {
+	public String communityDetailList(CommunityBoardVO vo, Model model) {
+		List<CommunityBoardVO> boardList = communityBoardService.getCommunityBoardList(vo);
+		model.addAttribute("boardList", boardList);
 		
 		return "/board/community_post_list";
 	}

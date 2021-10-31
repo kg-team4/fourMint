@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
 .container {
@@ -111,34 +112,33 @@
 
 <jsp:include page="../template/header.jsp"></jsp:include>
 
-<article style="padding-top: 200px; margin:0px 20%">
+<article style="padding-top: 200px; margin: 0px 20%">
 	<div align="left">
 		<h2 style="font-size: 30px; margin: 15px;">
 			<span style="color: orange">우리동네</span> 커뮤니티
 		</h2>
-		
+
 		<hr class="hr_style1">
 
 		<!-- 커뮤니티 글 목록 -->
-		<div class="container">
-			<div class="top">
-				<div class="float-box float-left">
-					<div class="userImg">
-						<img class="userImg2" src="../img/ㅎㅎ.jpg">
+		<c:forEach var="board" items="${boardList }">
+			<div class="container">
+				<div class="top">
+					<div class="float-box float-left">
+						<div class="userImg">
+							<img class="userImg2" src="${board.userImg }">
+						</div>
+						<div class="list">
+							<div class="date">${board.date }</div>
+							<div class="userAddr">${board.userAddress }</div>
+							<div class="userName">${board.userName }</div>
+						</div>
 					</div>
-					<div class="list">
-						<div class="date">5시간전</div>
-						<div class="userAddr">서초구 방배동</div>
-						<div class="userName">닉네임다</div>
-					</div>
-				</div>
-				<div class="content">Q. 서초구 쪽에 옷수선 잘하는 곳 추천해주세yo~~~!</div>
-
+				<div class="content">${board.content }</div>
 			</div>
-
-
-</div>
-		</div>
+			</div>
+		</c:forEach>
+	</div>
 </article>
 
 <jsp:include page="../template/footer.jsp"></jsp:include>
