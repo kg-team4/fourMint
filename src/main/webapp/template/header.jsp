@@ -32,7 +32,7 @@
 				<img src="../img/user_icon.png" class="user-icon">
 			<ul>
 				<c:choose>
-					<c:when test="${session.getAttribute("userEmail_id") == null }">
+					<c:when test="${empty userEmail_id}">
 						<li><a href="login.do">로그인</a></li>
 						<li><a href="join.do">회원가입</a></li>
 					</c:when>

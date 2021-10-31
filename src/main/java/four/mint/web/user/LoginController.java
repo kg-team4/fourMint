@@ -26,13 +26,11 @@ public class LoginController {
 		UserVO user = userService.getUser(vo);
 		if (user != null) {
 			session.setAttribute("userEmail_id", user.getEmail_id());
-			System.out.println("·Î±×ÀÎ ¼º°ø: " + user.getEmail_id());
-			System.out.println(session.getId());
-			System.out.println(session.getAttribute("userEmail_id"));
+			System.out.println("ë¡œê·¸ì¸ ì„±ê³µ: " + user.getEmail_id());
 			
 			return "/index/index";
 		} else {
-			System.out.println("·Î±×ÀÎ ½ÇÆĞ");
+			System.out.println("ë¡œê·¸ì¸ ì‹¤íŒ¨");
 			
 			return "/user/login";
 		}
