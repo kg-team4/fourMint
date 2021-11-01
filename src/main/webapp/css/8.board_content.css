@@ -279,11 +279,11 @@ body[test] main, body[test] header, body[test] nav, body[test] section,
 
 .manner-margin {
 	margin: 10px 0px 0px 20px
-	z-index: 1;
+	/* z-index: 1; */
 }
 
 .like-button {
-	background-color: #CCCCCC;
+	background-color: #26e4ca;
 	color: white;
 	font-size: 17px;
 	border: 2px solid transparent;
@@ -294,7 +294,7 @@ body[test] main, body[test] header, body[test] nav, body[test] section,
 }
 
 .edit-button {
-	background-color: orange;
+	background-color:#fcba03;
 	color: white;
 	font-size: 17px;
 	border: 2px solid transparent;
@@ -305,7 +305,7 @@ body[test] main, body[test] header, body[test] nav, body[test] section,
 }
 
 .delete-button {
-	background-color: #F70000;
+	background-color: #CCCCCC;
 	color: white;
 	font-size: 17px;
 	border: 2px solid transparent;
@@ -534,5 +534,5 @@ textarea {
 }
 .manner-color{
 	text-align:right;
-	color:#084B8A;
+	color:#26e4ca;
 }

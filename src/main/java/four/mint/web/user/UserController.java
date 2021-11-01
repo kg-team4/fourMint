@@ -29,7 +29,7 @@ public class UserController {
 		
 		return "/user/join";
 	}
-	@RequestMapping(value = "/joinProc.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/joinProc.do", method = RequestMethod.GET)	
 	public String joinProc() {
 		UserDAO userDAO = new UserDAO();
 		UserVO userVO = new UserVO();

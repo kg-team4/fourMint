@@ -85,13 +85,69 @@
 	String path = request.getContextPath();
 %> --%>
 
-<jsp:include page="../template/header.jsp"></jsp:include>
+
 
 <link href="../css/10.promotion&used_post_list.css"
 	type="text/css" rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
+<title>민트 커뮤니티</title>
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/mint_store.css">
+<jsp:include page="../template/header.jsp"></jsp:include>
+<article style="padding-top: 200px; margin: 0px 20%">
 
-<!-- <article style="padding-top: 200px; margin: 0px 20%">
-	<div align="left">
+	
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- <div align="left">
 		<h2 style="font-size: 30px; margin: 15px;">
 			<span style="color: orange">동네홍보</span> 상품목록
 		</h2>
@@ -143,8 +199,8 @@
 				<a href="promotion_all_post_list.jsp?page=1">1</a>
 			</div>			
 		</div>
-	</div>
-</article> -->
+	</div> -->
+</article>
 
 
 <jsp:include page="../template/footer.jsp"></jsp:include>

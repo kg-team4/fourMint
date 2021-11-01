@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
+<link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
+<title>민트 스토어</title>
+<link rel="stylesheet" href="../css/reset.css">	
+<link rel="stylesheet" href="../css/mint_store.css">
 <%@include file="../template/header.jsp" %>
 
+
 <!-- css -->
+
 <link href="../css/swiper.min.css" type="text/css" rel="stylesheet">
 <link href="../css/3.promotion.css" type="text/css" rel="stylesheet">
 <link href="../css/4.article.css" type="text/css" rel="stylesheet">
@@ -24,12 +30,12 @@
 			<!-- 필수 영역 -->
 			<div class="swiper-wrapper">
 				<!-- 배치되는 이미지 혹은 화면 (슬라이더) -->
-				<div class="swiper-slide">
+				<!-- <div class="swiper-slide">
 					<img src="../img/banner_1903x300.png">
 				</div>
 				<div class="swiper-slide">
 					<img src="../img/banner_1903x300_2.png">
-				</div>
+				</div> -->
 				<div class="swiper-slide">
 					<img src="../img/banner_1903x300_3.png">
 				</div>
