@@ -39,6 +39,7 @@
 					<c:otherwise>
 						<li><a href="logout.do">로그아웃</a></li>
 						<li><a href="info.do?no=1">마이페이지</a></li>
+						<li><button id="btn_mint_talk">민트 <img src="../img/mint_talk.png" style="vertical-align:middle; height:18px;width:18px;"></button></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

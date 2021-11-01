@@ -63,12 +63,12 @@ nav {
 .nav-menu > ul {
     display: flex;
 }
-
+ 
 .nav-menu > ul > li {
     position: relative;
     display: inline-block;
     list-style: none;
-    font-size: 32px;
+    font-size: 28px;
     flex: 1;
 }
 
@@ -80,7 +80,7 @@ nav {
 
 .nav-menu > ul > li > a:hover {
     padding-bottom: 15px;
-    color: #ff8900;
+    color: #26e4ca;
 }
 
 .nav-menu > ul > li ul {
@@ -99,7 +99,7 @@ nav {
 
 .nav-menu.off > ul > .medium-menu ul > li > a,
 .nav-menu > ul > .medium-menu ul > li > a {
-    font-size: 20px;
+    font-size: 18px;
     text-decoration: none;
     color: #7b7b7b;
 }
@@ -109,9 +109,11 @@ nav {
     text-align: left;
     border-radius: 15px;
     box-shadow: 5px 5px 8px rgba(123, 123, 123, 0.79);
+    margin-top: 10px;
+    padding-bottom: 5px;
 }
 
 .nav-menu > ul > li:hover ul > li > a:hover {
-    color: #ff8900;
-    border-bottom: 3px solid #ff8900;
+    color: #26e4ca;
+    border-bottom: 3px solid #26e4ca;
 }

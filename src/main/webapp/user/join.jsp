@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
+<link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
+<title>민트마켓 회원가입</title>
 
-
+<link rel="stylesheet" href="../css/reset.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
+<link href="../css/6.join.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="./js/join.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<link href="../css/6.join.css" type="text/css" rel="stylesheet">
+	
+	<div style="height: 220px;"></div>
 
         <article class="join-article">
             <form action="joinProc.do" method="post" class="join-form">

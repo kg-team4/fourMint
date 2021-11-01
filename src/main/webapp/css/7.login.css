@@ -26,10 +26,10 @@
 /* Input 타입 기본 폼 */
 #id,
 #pw,
-#submit {
+#login-submit, .btn-naverLogin, .btn-kakaoLogin,.btn-googleLogin {
     width: 500px;
-    height: 55px;
-    margin: 15px;
+    height: 50px;
+    margin: 8px;
 }
 
 
@@ -40,7 +40,7 @@
 
     font-size: 18px;
     border: 1px solid transparent;
-    border-bottom: 3px solid #ff8900;
+    border-bottom: 3px solid #50b9abd0;
 
     background-color: transparent;
     background-repeat: no-repeat;
@@ -70,7 +70,7 @@
 #login-tool > label,
 #login-tool > span > a {
     position: relative;
-    font-size: 12px;
+    font-size: 15px;
     color: #7b7b7b;
 }
 
@@ -109,25 +109,80 @@
 /* 로그인 부가 옵션 hover */
 #login-tool > span > a:hover,
 #login-tool > label:hover {
-    color: #ff8900;
+    color: #26e4ca;
 }
 
 /* Submit(전송버튼) */
-#submit {
-    margin-top: 100px;
-    height: 70px;
+#login-submit {
+    margin-top: 60px;
+    height: 50px;
     cursor: pointer;
-
-    font-size: 28px;
-    color: rgba(255, 137, 0, 0.87);
-    border: 3px solid rgba(255, 137, 0, 0.87);
+    font-size: 20px;
+    color: white;
+    border: 3px solid #26e4ca;
     border-radius: 15px;
-
-    background-color: transparent;
+	background-color: #26e4ca;
+    /* background-color: transparent; */
 }
 
-#submit:hover {
+#login-submit:hover {
     border: 1px solid transparent;
-    background-color: rgba(255, 137, 0, 0.87);
+    background-color: #50b9abd0;
     color: white;
 }
+
+.btn-naverLogin {
+    margin-top: 3px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    border: 3px solid #19ce60;
+    border-radius: 15px;
+	background-color: #19ce60;
+    /*  background-color: transparent; */
+}
+
+.btn-naverLogin:hover {
+    border: 1px solid transparent;
+    background-color: #679178;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+    color: white;
+}
+
+
+.btn-kakaoLogin {
+    margin-top: 3px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    border: 3px solid #fae100;
+    border-radius: 15px;
+	background-color: #fae100;
+   /*  background-color: transparent; */
+}
+.btn-kakaoLogin:hover {
+    border: 1px solid transparent;
+    background-color: #8f8a62;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+    color: white;
+}
+
+.btn-googleLogin {
+    margin-top: 3px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    border: 3px solid #E13F2A;
+    border-radius: 15px;
+	background-color: #E13F2A;
+   /*  background-color: transparent; */
+   	margin-bottom: 25px;
+}
+.btn-googleLogin:hover {
+    border: 1px solid transparent;
+    background-color: #7e514b;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
+    color: white;
+}
+
+
