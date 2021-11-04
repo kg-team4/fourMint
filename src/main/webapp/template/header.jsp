@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>어서오세요! 당근마켓!</title>
+<title>어서오세요! 민트마켓!</title>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <link href="../css/1.header.css" type="text/css" rel="stylesheet">
 <link href="../css/2.nav.css" type="text/css" rel="stylesheet">
@@ -12,8 +12,6 @@
 <link href="../css/4.article.css" type="text/css" rel="stylesheet">
 <link href="../css/5.footer.css" type="text/css" rel="stylesheet">
 
-<style>
-</style>
 </head>
 
 <body>

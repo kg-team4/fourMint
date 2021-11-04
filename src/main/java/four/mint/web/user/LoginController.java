@@ -36,11 +36,4 @@ public class LoginController {
 		}
 		
 	}
-	
-	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
-		session.invalidate();
-		
-		return "/index/index";
-	}
 }

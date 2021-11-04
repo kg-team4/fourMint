@@ -19,9 +19,8 @@
 	height:380px;
 }
 
-.product_photo>a>img {
-	width: 248px;
-	height: 248px;
+img {
+	height: 250px;
 }
 
 .product_title {
