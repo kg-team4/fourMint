@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../css/reset.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
 <link href="../css/6.join.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="./js/join.js"></script>
+<script type="text/javascript" src="../js/join.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
 	<div style="height: 220px;"></div>
@@ -67,8 +67,8 @@
                 <!------------ 성별 ------------->
                 <div id="checkList" style="margin: 10px 0 0 0;">
                     <div class="divGender">
-                        <input type="radio" class="genderRadio" name="man" id="man" checked style="margin: 0 0 20px 30px;"/>&nbsp;<label for="man">남성</label>&nbsp;&nbsp;
-                        <input type="radio" class="genderRadio" name="woman" id="woman" />&nbsp;<label for="woman">여성</label>
+                        <input type="radio" class="genderRadio" name="gender" value="man" id="man" checked style="margin: 0 0 20px 30px;"/>&nbsp;<label for="man">남성</label>&nbsp;&nbsp;
+                        <input type="radio" class="genderRadio" name="gender" value="woman" id="woman" />&nbsp;<label for="woman">여성</label>
                     </div>
                 </div>
                 <br>
@@ -111,5 +111,7 @@
                 </div>
             </form>
         </article>
+        
+        <div style="height: 450px;"></div>
 
 <jsp:include page="../template/footer.jsp"></jsp:include>

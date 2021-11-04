@@ -10,7 +10,7 @@
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@ 등록시간 추가 + 사진 추가하기 @@@@@@@@@ -->
 
 <link rel="stylesheet" href="../css/reset.css">
-<link rel="stylesheet" href="../css/mint_store_content.css">
+<link rel="stylesheet" href="../css/mint_market_content.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
 <script src="https://kit.fontawesome.com/a93dcadf53.js" crossorigin="anonymous"></script>
 <script defer src="../js/mint_store.js"></script>
@@ -22,15 +22,15 @@
 		<div class="best categoroy" style="align-self: flex-start; width: 300px; margin-top: 50px;">
 			<section class="category_list">
 				<h2 class="category_list_title" style="margin-bottom: 10px;">
-					<a href="marketDetailList.do?big_no=1">주방</a>
+					<a href="marketDetailList.do?big_no=1">디지털&nbsp;·&nbsp;가전</a>
 				</h2>
 				
 				<ul class="category_list_middle">
 					<li>
-						<a href="marketDetailList.do?big_no=1&middle_no=1">냄비</a>
+						<a href="marketDetailList.do?big_no=1&middle_no=1">냉장고</a>
 					</li>
 					<li>
-						<a href="marketDetailList.do?big_no=1&middle_no=2">프라이팬</a>
+						<a href="marketDetailList.do?big_no=1&middle_no=2">TV</a>
 					</li>
 				</ul>
 			</section>
@@ -47,17 +47,18 @@
 		<c:if test="${ count > 0 }">
 			<div class="best">
 				<br> <br> <br>
-				<h1>주방</h1>
+				<h1 style="padding: 0 5%;">디지털&nbsp;·&nbsp;가전</h1>
+				<br>
 				<ul class="bestBox">
 					<!-- 마켓 글 목록 -->
-					<c:forEach var="store" items="${storeList }">
+					<c:forEach var="market" items="${marketList }">
 						<li>
-							<a href="storeBoard.do"> <img src="${store.img_url }" alt="추천상품1"></a>
+							<a href="marketBoard.do"> <img src="${market.url }" alt="추천상품1"></a>
 							<p>
-								<span class="red">${store.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(0)"></i></span>
+								<span class="red">${market.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(0)"></i></span>
 							</p>
 							<p>
-								<span>${store.product_name }</span> <span>${store.product_price }원</span>
+								<span>${market.product_name }</span> <span>${market.product_price }원</span>
 							</p>
 						</li>
 					</c:forEach>
@@ -76,13 +77,13 @@
 				<c:set var="endPage" value="${ pageCount }" />
 			</c:if>
 			<c:if test="${ startPage > pageBlock }">
-				<a href="storeDetailList.do?pageNum=${ startPage - pageBlock }">[이전]</a>
+				<a href="marketDetailList.do?pageNum=${ startPage - pageBlock }">[이전]</a>
 			</c:if>
 			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-				<a href="storeDetailList.do?pageNum=${ i }">[${ i }]</a>
+				<a href="marketDetailList.do?pageNum=${ i }">[${ i }]</a>
 			</c:forEach>
 			<c:if test="${ endPage < pageCount }">
-				<a href="storeDetailList.do?pageNum=${ startPage + pageBlock }">[다음]</a>
+				<a href="marketDetailList.do?pageNum=${ startPage + pageBlock }">[다음]</a>
 			</c:if>
 		</c:if>
 </article>

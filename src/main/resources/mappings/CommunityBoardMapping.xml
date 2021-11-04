@@ -3,7 +3,7 @@
 
 <mapper namespace="CommunityBoardDAO">
 
-	<resultMap type="communityBoard" id="boardResult">
+	<resultMap type="communityBoard" id="communityResult">
 		<result property="userImg" column="USERIMG" />
 		<result property="date" column="DATE" />
 		<result property="userName" column="USERNAME" />
@@ -11,8 +11,12 @@
 		<result property="content" column="CONTENT" />
 	</resultMap>
 	
-	<select id="getCommunityBoardList" resultType="communityBoard">
-		SELECT * FROM communityBoard
+	<select id="getCommunityBoardList" resultType="communityBoard" parameterType="int">
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM communityBoard ORDER BY date DESC) AS a) AS b WHERE rnum >= #{startRow} AND rnum <= #{endRow}]]> 
+	</select>
+	
+	<select id="getBoardCount" resultType="int">
+		SELECT count(userName) FROM communityBoard
 	</select>
 	
 </mapper>

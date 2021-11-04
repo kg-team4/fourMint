@@ -21,7 +21,7 @@
         <input type="radio" name="circle" id="slide4">
 		<ul class="slideImg">
 			<li class="jsSlide"><a href=""><img src="../img/market_slide1.png" alt="chickenBreast"></a></li>
-			<li class="jsSlide"><a href=""> <img src="../img/store_slide2.png" alt="dietLunchBox"></a></li>
+			<li class="jsSlide"><a href=""><img src="../img/store_slide2.png" alt="dietLunchBox"></a></li>
 			<li class="jsSlide"><a href=""><img src="../img/store_slide3.png" alt="konjacNoodles"></a></li>
 			<li class="jsSlide"><a href=""><img src="../img/store_slide4.png" alt="freeShipping"></a></li>
 			<!-- <li class="jsSlide"><a href=""><img src="../img/slide5.png" alt="tea"></a></li> -->
