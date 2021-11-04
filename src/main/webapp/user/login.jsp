@@ -13,7 +13,7 @@
         <article id="login-article">
             <form action="login.do" method="post" id="login-form">
                 <div>
-                    <img src="../img/logo_icon.png" alt="logo_icon">
+                    <img src="../img/logo_icon.png" alt="logo_icon" id="logo_icon">
                 </div>
                 <div>
                     <input type="text" name="email_id" placeholder="이메일" id="id" required>

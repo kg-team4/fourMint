@@ -18,7 +18,7 @@ public class UserController {
 	public String home(Locale locale, Model model) {
 		
 		return "/index/index";
-	} 
+	}
 
 	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
 	public String join() {
@@ -38,6 +38,5 @@ public class UserController {
 		
 		return "/member/info";
 	}
-	
-	
+
 }

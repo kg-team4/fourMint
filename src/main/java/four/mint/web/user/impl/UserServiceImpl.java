@@ -24,4 +24,21 @@ public class UserServiceImpl implements UserService {
 		return newVo;
 	}
 
+	@Override
+	public String getAddress1(UserVO vo) {
+		
+		return userDao.getAddress1(vo);
+	}
+
+	@Override
+	public String getAddress2(UserVO vo) {
+
+		return userDao.getAddress2(vo);
+	}
+
+	@Override
+	public String getAddress3(UserVO vo) {
+		
+		return userDao.getAddress3(vo);
+	}
 }

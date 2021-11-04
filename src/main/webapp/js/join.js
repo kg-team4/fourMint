@@ -15,9 +15,8 @@ function findAddr() {
 				addr = data.jibunAddress;
 			}
 			// 우편번호와 주소 정보를 해당 필드에 넣는다.
-			document.getElementById("address1").value = data.sido;
-			document.getElementById("address2").value = data.sigungu;
-			document.getElementById("address3").value = data.bname;
+			document.getElementById("post_addr").value = data.zonecode;
+			document.getElementById("base_addr").value = addr;
 		}
 	}).open();
 }
@@ -34,7 +33,7 @@ function navSwitch() {
 	}
 };
 
-function changeTextBar() {
+/*function changeTextBar() {
 	var selectEmail = document.querySelector("#selectEmail");
 	var a = document.querySelector(".a");
 	var inputEmail = document.querySelector("#inputEmail");
@@ -53,7 +52,7 @@ function changeTextBar() {
 			a.removeChild(a.childNodes[0]);
 		}
 	}
-}
+}*/
 
 function allCheck() {
 	var all = document.querySelector("#all").checked;
