@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import four.mint.web.common.AwsS3;
+import four.mint.web.user.UserService;
+import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.PageVO;
 
 @Controller
@@ -24,6 +26,9 @@ public class MarketController {
 	
 	@Autowired
 	private MarketService marketService;
+	
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/marketBoardList.do", method = RequestMethod.GET)
 	public String marketBoardList() {
@@ -32,7 +37,10 @@ public class MarketController {
 	}
 	
 	@RequestMapping(value = "/marketBoard.do", method = RequestMethod.GET)
-	public String mintBoard() {
+    public String mintBoard(UserVO vo, Model model) {
+		model.addAttribute("result1", userService.getAddress1(vo));
+        model.addAttribute("result2", userService.getAddress2(vo));
+        model.addAttribute("result3", userService.getAddress3(vo));
 		
 		return "/board/market_post_content";
 	}
