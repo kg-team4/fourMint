@@ -4,15 +4,44 @@
 .join-article {
 	width: auto;
 	min-width: 1000px;
-    height: auto;
-    text-align: center;
-    /*            border: 1px solid red;*/
+	height: auto;
+	text-align: center;
+	padding-top: 200px;
+	padding-bottom: 430px;
+	/*            border: 1px solid red;*/
+}
+
+@keyframes move_img{
+    0%{
+    	transform: rotate( 0deg );
+    	transform-origin: center bottom;
+    }
+    25%{
+    	transform: rotate( -12deg );
+    	transform-origin: center bottom;
+    }
+    50%{
+    	transform: rotate( 0deg );
+    	transform-origin: center bottom;
+    }
+    75%{
+    	transform: rotate( 12deg );
+    	transform-origin: center bottom;
+    }
+    100%{
+    	transform: rotate( 0deg );
+    	transform-origin: center bottom;
+    }
+}
+
+#logo_icon {
+	animation: move_img 4s linear infinite;
 }
 
 .join-form {
-    /*            border: 1px solid black;*/
-    width: 100%;
-    height: 100%;
+	/*            border: 1px solid black;*/
+	width: 100%;
+	height: 100%;
 }
 
 /* 로고 이미지 */
@@ -22,146 +51,244 @@
 }
 
 /* input 폼 */
-.join-form div input,
-.join-form div select {
-    width: 500px;
-    height: 55px;
-    background-repeat: no-repeat;
-    border: 1px solid transparent;
-    font-size: 18px;
+.join-form div input, .join-form div select {
+	width: 500px;
+	height: 55px;
+	background-repeat: no-repeat;
+	border: 1px solid transparent;
+	font-size: 18px;
 }
 
-.join-form div input[type=text]:hover,
-.join-form div input[type=password]:hover,
-.email-form:hover,
-#addr:hover,
-#checkList .divGender:hover {
-    border-bottom: 2px solid #50b9abd0;
+.join-form div input[type=text]:hover, .join-form div input[type=password]:hover,
+	.email-form:hover, #addr:hover, #checkList .divGender:hover {
+	border-bottom: 2px solid #50b9abd0;
 }
 
-.join-form div input[type=text],
-.join-form div input[type=password],
-.join-form div select,
-.email-form,
-#addr,
-#checkList .divGender {
-    margin-top: 30px;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.41);
+.join-form div input[type=text], .join-form div input[type=password],
+	.join-form div select, .email-form, #addr, #checkList .divGender {
+	margin-top: 10px;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.41);
 }
 
-
-.join-form div input[type=text],
-.join-form div input[type=password],
-.join-form div select,
-.a > input {
-    margin-bottom: 0px;
-    padding-left: 30px;
-    background-size: 18px;
-    background-position: 0px 1rem;
+.join-form div input[type=text], .join-form div input[type=password],
+	.join-form div select, .a>input {
+	margin-bottom: 0px;
+	padding-left: 30px;
+	background-size: 18px;
+	background-position: 0px 1rem;
 }
 
 /* 이메일 입력 폼 */
 .email-form {
+	width: 498px;
 	margin-top: 0px;
-    display: inline-block;
-    width: auto;
-}
-
-#email,
-#selectEmail,
-#inputEmail {
-    display: inline-block;
-    width: 242px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    border: 1px solid transparent;
-    background-color: transparent;
-    color: #50b9abd0;
+	display: inline-block;
 }
 
 #email {
-    background-image: url(../img/new-post-32.png);
+	display: inline-block;
+	width: 165px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	border: 1px solid transparent;
+	background-color: transparent;
+	color: #000000;
+}
+
+#writeEmail {
+	display: inline-block;
+	width: 150px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	border: 1px solid transparent;
+	background-color: transparent;
+	color: #000000;
+	border-right: 2px solid rgba(0, 0, 0, 0.41);
+	border-radius: 2px;
+	height: 40px;
+	padding-left: 5px;
+}
+
+#selectEmail {
+	display: inline-block;
+	width: 150px;
+	margin-left: -5px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	border: 1px solid transparent;
+	background-color: transparent;
+	color: #000000;
+	padding-left: 0px;
+	color: rgba(0, 0, 0, 0.41);
+}
+
+#email {
+	background-image: url(../img/new-post-32.png);
 }
 
 /* 비밀번호 입력 폼 */
 input[type=password] {
-    background-image: url(../img/key-32.png);
+	background-image: url(../img/key-32.png);
 }
 
 /* 닉네임 입력 폼 */
 input[name=nickname] {
-    background-image: url(../img/rename-32.png);
+	background-image: url(../img/rename-32.png);
 }
 
 /* 휴대전화 입력 폼 */
 input[name=phone] {
-    background-image: url(../img/phone-2-32.png);
+	background-image: url(../img/phone-2-32.png);
+}
+
+#birth {
+	background-image: url(../img/birth.png);
+}
+
+#gender {
+	background-image: url(../img/gender.png);
+	width: 25px;
+	height: 40px;
+	margin: 0px;
+	padding: 0px;
+	margin-bottom: -10px;
+	border-bottom: 0px;
+	padding-top: 10px;
+}
+
+#gender_div {
+	border-bottom: 2px solid rgba(0, 0, 0, 0.41);
+	width: 500px;
+	height: 55px;
+	margin: auto;
+	text-align: left;
+}
+
+/* 여기서부터 진행 */
+#man, #woman {
+	margin-top: 20px;
 }
 
 /* 주소 입력 폼 */
 #addr {
-    padding: 0px;
-    display: inline-block;
-    width: 500px;
+	padding: 0px;
+	display: inline-block;
+	width: 500px;
+	border-bottom: 0px;
+	height: 55px;
 }
 
-#addr > input[type=text] {
-    float: left;
-    width: 150px;
-    margin: 0px;
-    padding: 0px;
-    text-align: center;
-    border: 1px solid transparent;
+#addr>input[type=text] {
+	float: left;
+	width: 95px;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	border: 1px solid transparent;
 }
 
-#addr > input[type=button] {
-    margin: 0px 0px 0px 15px;
-    padding: 0px;
-    width: 35px;
-    height: 50px;
-    cursor: pointer;
-
-    border: 1px solid transparent;
-
-    background-color: transparent;
-    background-image: url(../img/search_icon.png);
-    background-size: 24px;
-    background-position: 0px 11px
+#addr>input[type=button] {
+	margin-left: 370px;
+	width: 35px;
+	height: 50px;
+	cursor: pointer;
+	left: 300px;
+	border: 1px solid transparent;
+	background-color: transparent;
+	background-image: url(../img/search_icon.png);
+	background-size: 24px;
+	background-position: 0px 11px;
+	border: 1px solid transparent;
 }
 
 #address1 {
-    background-image: url(../img/map-marker-2-32.png);
+	height: 55px;
+	background-image: url(../img/map-marker-2-32.png);
+}
+
+#post_addr {
+	width: 100px;
+	margin: 0;
+	padding: 0;
+	height: 40px;
+	border: 0px;
+}
+
+#post_addr:hover {
+	border-bottom: 0px;
+}
+
+#addr:hover {
+	border-bottom: 0px;
+}
+
+#addr_div {
+	border: 2px solid rgba(0, 0, 0, 0.41);
+	width: 500px;
+	margin: auto;
+	border-radius: 5px;
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+
+#base_addr {
+	width: 400px;
+	margin: 0;
+	padding: 0;
+	height: 40px;
+	border-bottom: 0px;
+}
+
+#detail_addr {
+	width: 400px;
+	margin: 0;
+	padding: 0;
+	height: 40px;
+	border-bottom: 0px;
+}
+
+#base_addr:hover, #detail_addr:hover {
+	border-bottom: 0px;
+}
+
+#text_addr {
+	width: 80px;
+	padding: 0 0 0 10;
+	border-bottom: 0px;
+	margin: 0;
+	height: 40px;
 }
 
 /* submit 폼 디자인 */
 #join-submit {
-    margin: 60px 0px 0px 0px;
-    height: 55px;
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
-    /* background-color: transparent; */
-    background-color: #26e4ca;
-    border: 3px solid #26e4ca;
-    border-radius: 15px;
+	margin: 60px 0px 0px 0px;
+	height: 55px;
+	font-size: 28px;
+	color: white;
+	cursor: pointer;
+	/* background-color: transparent; */
+	background-color: #26e4ca;
+	border: 3px solid #26e4ca;
+	border-radius: 15px;
 }
 
 #join-submit:hover {
-    color: white;
-    background-color: #50b9abd0;
-    border: 3px solid transparent;
-    border-radius: 15px;
+	color: white;
+	background-color: #50b9abd0;
+	border: 3px solid transparent;
+	border-radius: 15px;
 }
 
 #checkList {
-    width: 500px; 	
-    margin-top: 30px;
-    display: inline-block;
+	width: 500px;
+	margin-top: 30px;
+	display: inline-block;
 }
 
 #allAgree {
-    font-size: 18px;
+	font-size: 18px;
 }
 
 .divGender {
@@ -169,45 +296,41 @@ input[name=phone] {
 }
 
 #selectAgree div {
-    margin-top: 15px;
-    padding-left: 35px;
+	margin-top: 15px;
+	padding-left: 35px;
 }
 
 #checkList div {
-    text-align: left;
+	text-align: left;
 }
 
-#checkList input[type=checkbox],
-.genderRadio {
-    width: 15px;
-    height: auto;
+#checkList input[type=checkbox], .genderRadio {
+	width: 15px;
+	height: auto;
 }
 
-#selectAgree div > img {
-    float: right;
-    width: 20px;
-    height: 20px;
-    border: 1px solid transparent;
-    margin-top: 10px;
+#selectAgree div>img {
+	float: right;
+	width: 20px;
+	height: 20px;
+	border: 1px solid transparent;
 }
 
 .terms {
-    display: none;
+	display: none;
 }
 
 .terms.active {
-    display: block;
+	display: block;
 }
 
-.terms > textarea {
-    width: 100%;
-    height: 100px;
-    resize: none;
+.terms>textarea {
+	width: 100%;
+	height: 100px;
+	resize: none;
 }
 
 .genderRadio {
 	width: 10px !important;
 	height: 12px !important;
 }
-
-

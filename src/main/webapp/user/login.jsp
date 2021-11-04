@@ -11,15 +11,15 @@
 <link href="../css/7.login.css" type="text/css" rel="stylesheet">
 
         <article id="login-article">
-            <form action="login.do" method="get" id="login-form">
+            <form action="login.do" method="post" id="login-form">
                 <div>
-                    <img src="../img/logo_icon.png" alt="logo_icon">
+                    <img src="../img/logo_icon.png" alt="logo_icon" id="logo_icon">
                 </div>
                 <div>
-                    <input type="text" name="member_id" placeholder="이메일" id="id" required>
+                    <input type="text" name="email_id" placeholder="이메일" id="id" required>
                 </div>
                 <div>
-                    <input type="password" name="member_pw" placeholder="비밀번호" id="pw" required>
+                    <input type="password" name="password" placeholder="비밀번호" id="pw" required>
                 </div>
                 <div>
                     <div id="login-tool">
@@ -49,7 +49,7 @@
 			<img src="../img/logo_icon.png" alt="logo_icon">
 		</div>
 		<div>
-			<input type="text" name="email_id" placeholder="이메일" id="id" }required>
+			<input type="text" name="email_id" placeholder="이메일" id="id" required>
 		</div>
 		<div>
 			<input type="password" name="password" placeholder="비밀번호" id="pw" required>

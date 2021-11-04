@@ -8,6 +8,34 @@
     text-align: center;
 }
 
+/* 로그인 화면 상단 아이콘 움직이기 */
+@keyframes move_img{
+    0%{
+    	transform: rotate( 0deg );
+    	transform-origin: center bottom;
+    }
+    25%{
+    	transform: rotate( -8deg );
+    	transform-origin: center bottom;
+    }
+    50%{
+    	transform: rotate( 0deg );
+    	transform-origin: center bottom;
+    }
+    75%{
+    	transform: rotate( 8deg );
+    	transform-origin: center bottom;
+    }
+    100%{
+    	transform: rotate( 0deg );
+    	transform-origin: center bottom;
+    }
+}
+
+#logo_icon {
+	animation: move_img 8s linear infinite;
+}
+
 /* 로그인 기본 폼 */
 #login-form {
     padding-top: 220px;

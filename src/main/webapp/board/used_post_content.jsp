@@ -4,6 +4,7 @@
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.text.NumberFormat"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
@@ -125,6 +126,58 @@
 					<p class="font18">내용</p>
 				</div>
 				<hr>
+				<div>
+					<p class="font18">판매자 위치</p>
+				</div>
+				<div id="map" style="width: 100%; height: 350px;"></div>
+				<script type="text/javascript"
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
+				<script>
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					mapOption = {
+						center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+						level : 6
+					// 지도의 확대 레벨
+					};
+			
+					// 지도를 생성합니다    
+					var map = new kakao.maps.Map(mapContainer, mapOption);
+			
+					// 주소-좌표 변환 객체를 생성합니다
+					var geocoder = new kakao.maps.services.Geocoder();
+					
+					var address = "${result1}" + " " + "${result2}" + " " + "${result3}";
+						
+					// 주소로 좌표를 검색합니다
+					geocoder.addressSearch(address, function(result, status) {
+			
+						// 정상적으로 검색이 완료됐으면 
+						if (status === kakao.maps.services.Status.OK) {
+			
+							var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			
+							var circle = new kakao.maps.Circle({
+								center : coords, // 원의 중심좌표 입니다 
+								radius : 1000, // 미터 단위의 원의 반지름입니다 
+								strokeWeight : 1, // 선의 두께입니다 
+								strokeColor : '#00a0e9', // 선의 색깔입니다
+								strokeOpacity : 0.1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+								strokeStyle : 'solid', // 선의 스타일 입니다
+								fillColor : '#00a0e9', // 채우기 색깔입니다
+								fillOpacity : 0.2
+								// 채우기 불투명도 입니다
+							});
+			
+							// 지도에 원을 표시합니다 
+							circle.setMap(map);
+			
+							map.setCenter(coords);
+						}
+					});
+				</script>
+				<div>
+					<p class="font18">판매자 위치로부터 반경 1km</p>
+				</div>
 				<div class="padding-top100">
 					<p class="font27">댓글</p>
 					<form action="write_reply.do" method="post">
@@ -279,6 +332,7 @@
 							<p class="manner-color">매너지수</p>
 							<input type="range" value="1" style="width: 100%; position: relative; z-index: -1;">
 					</div>
+			
 				</div>
 			</div>
 		</div>
