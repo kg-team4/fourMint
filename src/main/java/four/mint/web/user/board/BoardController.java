@@ -35,4 +35,9 @@ public class BoardController {
 		return "/board/used_post_list";
 	}
 
+	@RequestMapping(value = "/sell.do", method = RequestMethod.GET)
+	public String sell() {
+		
+		return "/board/market_write";
+	}
 }
