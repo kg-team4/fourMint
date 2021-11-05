@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 	
 
-
 <jsp:include page="../template/header.jsp"></jsp:include>
-<script type="text/javascript" src="./js/join.js"></script>
+<script type="text/javascript" src="../js/join.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link href="../css/6.join.css" type="text/css" rel="stylesheet">
 

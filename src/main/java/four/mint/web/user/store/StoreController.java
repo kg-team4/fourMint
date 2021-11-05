@@ -24,4 +24,18 @@ public class StoreController {
 		
 		return "/board/store_post_list";
 	}
+	
+
+	@RequestMapping(value = "/pay/order.jsp", method = RequestMethod.GET)
+	public String payment() {
+		
+		return "/pay/payment";
+	}
+	
+
+	@RequestMapping(value = "/pay/payment.jsp", method = RequestMethod.GET)
+	public String order() {
+		
+		return "/pay/order";
+	}
 }

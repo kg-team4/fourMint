@@ -4,13 +4,14 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>어서오세요! 당근마켓!</title>
+<title>어서오세요! 민트마켓!</title>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <link href="../css/1.header.css" type="text/css" rel="stylesheet">
 <link href="../css/2.nav.css" type="text/css" rel="stylesheet">
 <link href="../css/3.promotion.css" type="text/css" rel="stylesheet">
 <link href="../css/4.article.css" type="text/css" rel="stylesheet">
 <link href="../css/5.footer.css" type="text/css" rel="stylesheet">
+
 
 <style>
 </style>
@@ -31,16 +32,13 @@
 		<div class="sign">
 				<img src="../img/user_icon.png" class="user-icon">
 			<ul>
-				<c:choose>
-					<c:when test="${session.getAttribute("userEmail_id") == null }">
+				
 						<li><a href="login.do">로그인</a></li>
 						<li><a href="join.do">회원가입</a></li>
-					</c:when>
-					<c:otherwise>
+					
 						<li><a href="logout.do">로그아웃</a></li>
 						<li><a href="info.do?no=1">마이페이지</a></li>
-					</c:otherwise>
-				</c:choose>
+					
 			</ul>
 		</div>
 	</header>
