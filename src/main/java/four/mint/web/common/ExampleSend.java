@@ -14,14 +14,14 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
  */
 public class ExampleSend {
 	public static void main(String[] args) {
-		String api_key = "NCSMEG7NYL08FKOG";
-		String api_secret = "UKHGPXJ79GPNX9NC25JR8TKE4WBHY8RJ";
+		String api_key = "";
+		String api_secret = "";
 		Message coolsms = new Message(api_key, api_secret);
 
 		// 4 params(to, from, type, text) are mandatory. must be filled
 		HashMap<String, String> params = new HashMap<String, String>();
-		params.put("to", "01033176327");
-		params.put("from", "01020884919"); // 무조건 자기번호 (인증)
+		params.put("to", "");
+		params.put("from", ""); // 무조건 자기번호 (인증)
 		params.put("type", "SMS");
 		params.put("text", "하이");
 		params.put("app_version", "test app 1.2"); // application name and version
