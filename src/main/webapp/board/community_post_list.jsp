@@ -147,7 +147,6 @@
 						</div>
 					<div class="content">${board.content }</div>
 				</div>
-				</div>
 			</c:forEach>
 		</c:if>
 		<c:if test="${ count > 0 }">

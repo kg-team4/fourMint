@@ -85,7 +85,7 @@ nav ul li a:hover {
 }
 
 .slideImg {
-    width:500%;
+    width:400%;
 }
 
 .slideImg > li {
@@ -201,11 +201,11 @@ section h1 {
 }
 
 .clickHeart {
-    color:red;
+    color:#26e4ca;
 }
 
 .fas:hover {
-    color:red;
+    color:#26e4ca;
 }
 
 /*modal*/

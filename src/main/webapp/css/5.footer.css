@@ -62,9 +62,11 @@ footer h3 {
 .link{
 	font-weight: 600;
 	text-decoration: none;
+	
 }
 .link > a{
 	text-decoration: none;
+	color: black;
 }
 .copyright{
 	/* padding-top:50%; */
