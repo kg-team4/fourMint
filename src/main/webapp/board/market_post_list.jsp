@@ -6,7 +6,6 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@ 등록시간 추가 + 사진 추가하기 @@@@@@@@@ -->
 
 <link rel="stylesheet" href="../css/reset.css">
@@ -16,25 +15,10 @@
 <script defer src="../js/mint_store.js"></script>
 <link href="../css/10.promotion&used_post_list.css" rel="stylesheet">
 
-
 <article style="padding-top: 200px; margin: 0px 20%">
-	<div style="display: flex; align-items: center; justify-content: space-evenly;">
-		<div class="best categoroy" style="align-self: flex-start; width: 300px; margin-top: 50px;">
-			<section class="category_list">
-				<h2 class="category_list_title" style="margin-bottom: 10px;">
-					<a href="marketDetailList.do?big_no=1">디지털&nbsp;·&nbsp;가전</a>
-				</h2>
-				
-				<ul class="category_list_middle">
-					<li>
-						<a href="marketDetailList.do?big_no=1&middle_no=1">냉장고</a>
-					</li>
-					<li>
-						<a href="marketDetailList.do?big_no=1&middle_no=2">TV</a>
-					</li>
-				</ul>
-			</section>
-		</div>
+	<div style="display: flex; justify-content: space-evenly;">
+		
+		<jsp:include page="../template/category.jsp"></jsp:include>
 		
 		<!-- 멍충멍충 -->
 		<c:if test="${ count == 0 }">
@@ -45,22 +29,54 @@
 			</table>
 		</c:if>
 		<c:if test="${ count > 0 }">
-			<div class="best">
+			<div class="best" style="width: 800px;">
 				<br> <br> <br>
-				<h1 style="padding: 0 5%;">디지털&nbsp;·&nbsp;가전</h1>
+				<c:forEach var="big" items="${ marketCategoryBig }">
+					<c:set var="no" value="${param.big_no}"  />
+					<c:if test="${no eq big.name }">
+						<h1 style="padding: 0 5%;">${big.name }</h1>
+					</c:if>
+				</c:forEach>
 				<br>
 				<ul class="bestBox">
 					<!-- 마켓 글 목록 -->
+					<c:set var="big_no" value="${param.big_no }" />
+					<c:set var="middle_no" value="${param.middle_no }" />
+					<c:set var="count" value="0" />
 					<c:forEach var="market" items="${marketList }">
-						<li>
-							<a href="marketBoard.do"> <img src="${market.url }" alt="추천상품1"></a>
-							<p>
-								<span class="red">${market.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(0)"></i></span>
-							</p>
-							<p>
-								<span>${market.product_name }</span> <span>${market.product_price }원</span>
-							</p>
-						</li>
+						<c:choose>
+							<c:when test="${middle_no ne null }">
+								<c:set var="market_category_big" value="${market.category_big }" />
+								<c:set var="market_category_middle" value="${market.category_middle }" />
+								<c:if test="${ big_no eq market_category_big && middle_no eq market_category_middle }">
+									<li>
+										<a href="marketBoard.do?seq=${market.market_seq }"> <img src="${market.url }" alt="추천상품1"></a>
+										<p>
+											<span class="red">${market.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(${count})"></i></span>
+										</p>
+										<p>
+											<span>${market.product_name }</span> <span>${market.product_price }원</span>
+										</p>
+									</li>
+									<c:set var="count" value="${ count + 1 }" />
+								</c:if>
+							</c:when>
+							<c:otherwise>
+								<c:set var="market_category_big" value="${market.category_big }" />
+								<c:if test="${ big_no eq market_category_big }">
+									<li>
+										<a href="marketBoard.do?seq=${market.market_seq }"> <img src="${market.url }" alt="추천상품1"></a>
+										<p>
+											<span class="red">${market.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(${count})"></i></span>
+										</p>
+										<p>
+											<span>${market.product_name }</span> <span>${market.product_price }원</span>
+										</p>
+									</li>
+									<c:set var="count" value="${ count + 1 }" />
+								</c:if>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
 				</ul>
 			</div>
@@ -88,5 +104,10 @@
 		</c:if>
 </article>
 
+<script>
+	${".fa-heart"}.click(function() {
+		
+	});
+</script>
 
 <jsp:include page="../template/footer.jsp"></jsp:include>

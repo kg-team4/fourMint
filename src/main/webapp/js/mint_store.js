@@ -13,7 +13,6 @@ function dotSlide(n){
     slide.style.transform = `translate3d(-${n*slideWidth}px, 0px, 0px`;
 }
 
-
 //Auto_slide
 window.onload = function autoSlide(){
     let i = 0;
@@ -29,7 +28,6 @@ window.onload = function autoSlide(){
         }
     }, 6000);
 }
-
 
 //Best
 
@@ -47,7 +45,6 @@ function handleModal(n){
         }, 10000)
     }
 }
-
 
 //top
 function handleTop(){

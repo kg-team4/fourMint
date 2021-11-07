@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="../css/reset.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -14,7 +15,7 @@
 		<br> <br>
 		<!--  
           준비 : post_title(글제목), used_cate_num(카테고리 번호), used_price(가격), used_content(내용) 
-      -->
+    	-->
 
 		<form action="marketSell.do" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
 
@@ -53,23 +54,26 @@
 				<!-- 카테고리 선택 -->
 				<div class="used_cate">
 					<div class="used_text">
-						카테고리 <span class="must">*</span> <select class="used_cate_style" name="category_middle">
+						카테고리 <span class="must">*</span> 
+						<select id="cate_sel" class="used_cate_style" name="category_big">
 							<option value="">카테고리 선택</option>
-							<option value="1">디지털/가전</option>
-							<option value="2">가구/인테리어</option>
-							<option value="3">유아동/유아도서</option>
-							<option value="4">생활/가공식품</option>
-							<option value="5">스포츠/레저</option>
-							<option value="6">여성/잡화</option>
-							<option value="7">여성 의류</option>
-							<option value="8">남성패션/잡화</option>
-							<option value="9">게임/취미</option>
-							<option value="10">뷰티/미용</option>
-							<option value="11">반려동물</option>
-							<option value="12">도서/티켓/음반</option>
-							<option value="13">기타</option>
+							<c:forEach var="big" items="${ marketCategoryBig }">
+								<option value="${big.name }">${big.name }</option>
+							</c:forEach>
 						</select>
 					</div>
+					<c:forEach var="big" items="${ marketCategoryBig }">
+						<div id="category_${big.num }" class="used_text cate_all" style="display: none;">
+							<select class="used_cate_style" name="category_middle">
+								<option value="">카테고리 선택</option>
+								<c:forEach var="middle" items="${ big.middle }">
+									<c:if test="${middle.value ne null}">
+										<option value="${middle.value }">${middle.value }</option>
+									</c:if>
+								</c:forEach>
+							</select>
+						</div>
+					</c:forEach>
 				</div>
 				<hr>
 
@@ -146,6 +150,46 @@
 	        $(this).val(content.substring(0, 2000));
 	        $('.letter-count').html(2000);
 	    }
+	});
+	
+	$("#cate_sel").change(function() {
+		if($(this).val() == "디지털 · 가전") {
+			$(".cate_all").hide();
+			$("#category_1").show();
+		} else if($(this).val() == "가구 · 인테리어") {
+			$(".cate_all").hide();
+			$("#category_2").show();
+		} else if($(this).val() == "유아동 · 출산") {
+			$(".cate_all").hide();
+			$("#category_3").show();
+		} else if($(this).val() == "생활 · 가공식품") {
+			$(".cate_all").hide();
+			$("#category_4").show();
+		} else if($(this).val() == "스포츠 · 레저") {
+			$(".cate_all").hide();
+			$("#category_5").show();
+		} else if($(this).val() == "여성의류") {
+			$(".cate_all").hide();
+			$("#category_6").show();
+		} else if($(this).val() == "남성의류") {
+			$(".cate_all").hide();
+			$("#category_7").show();
+		} else if($(this).val() == "패션잡화") {
+			$(".cate_all").hide();
+			$("#category_8").show();
+		} else if($(this).val() == "게임 · 취미") {
+			$(".cate_all").hide();
+			$("#category_9").show();
+		} else if($(this).val() == "뷰티 · 미용") {
+			$(".cate_all").hide();
+			$("#category_10").show();
+		} else if($(this).val() == "반려동물용품") {
+			$(".cate_all").hide();
+			$("#category_11").show();
+		} else if($(this).val() == "도서 · 음반") {
+			$(".cate_all").hide();
+			$("#category_12").show();
+		} 
 	});
 
 </script>

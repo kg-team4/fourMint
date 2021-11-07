@@ -11,6 +11,7 @@
 <link href="../css/3.promotion.css" type="text/css" rel="stylesheet">
 <link href="../css/4.article.css" type="text/css" rel="stylesheet">
 <link href="../css/5.footer.css" type="text/css" rel="stylesheet">
+<script src="../js/jquery-3.6.0.min.js"></script>
 
 <style>
 </style>

@@ -2,6 +2,8 @@ package four.mint.web.user.market;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
@@ -29,7 +32,7 @@ public class MarketController {
 
 	@Autowired
 	private UserService userService;
-
+	
 	@RequestMapping(value = "/marketBoardList.do", method = RequestMethod.GET)
 	public String marketBoardList() {
 
@@ -37,7 +40,11 @@ public class MarketController {
 	}
 
 	@RequestMapping(value = "/marketBoard.do", method = RequestMethod.GET)
-	public String mintBoard(UserVO vo, Model model) {
+    public String mintBoard(HttpServletRequest request, UserVO vo, MarketVO marvo, Model model) {
+		marvo = marketService.getMarketOne(Integer.valueOf(request.getParameter("seq")));
+		
+		model.addAttribute("content", marvo);
+		
 		model.addAttribute("result1", userService.getAddress1(vo));
 		model.addAttribute("result2", userService.getAddress2(vo));
 		model.addAttribute("result3", userService.getAddress3(vo));
@@ -47,7 +54,9 @@ public class MarketController {
 
 	@RequestMapping(value = "/marketDetailList.do", method = RequestMethod.GET)
 	public String mintDetailList(HttpServletRequest request, HttpServletResponse response, Model model) {
-
+		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
+		model.addAttribute("marketCategoryBig", marketCategoryBig);
+		
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum == null)
 			pageNum = "1";
@@ -78,22 +87,33 @@ public class MarketController {
 
 		return "/board/market_post_list";
 	}
-
+	
+	@RequestMapping(value = "/marketSell.do", method = RequestMethod.GET)
+	public String marketSell(Model model) {
+		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
+		model.addAttribute("marketCategoryBig", marketCategoryBig);
+		
+		return "/board/market_write";
+	}
+	
 	@RequestMapping(value = "/marketSell.do", method = RequestMethod.POST)
-	public String marketUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request,
-			HttpServletResponse response, MarketSellVO vo) {
+	public String marketUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response, MarketVO vo) throws NoSuchAlgorithmException, GeneralSecurityException {
 		try {
+			AES256Util.setKey(marketService.getKey().getKey());
+			AES256Util aes = new AES256Util();
+			AwsS3.setAccessKey(aes.decrypt(marketService.getSkey().getAckey()));
+			AwsS3.setSecretKey(aes.decrypt(marketService.getSkey().getSekey()));
 			AwsS3 awsS3 = AwsS3.getInstance();
-			String uploadFolder = "https://mintbuc.s3.ap-northeast-2.amazonaws.com/";
+			String uploadFolder = "https://mintmarket.s3.ap-northeast-2.amazonaws.com/";
 			String key = "market/" + file.getOriginalFilename();
 			InputStream is = file.getInputStream();
 			String contentType = file.getContentType();
 			long contentLength = file.getSize();
 			awsS3.upload(is, key, contentType, contentLength);
 			System.out.println("main 업로드 완료");
-
-			vo.setImg_name(file.getOriginalFilename());
-			vo.setUrl(uploadFolder + key);
+				vo.setImg_name(file.getOriginalFilename());
+				vo.setUrl(uploadFolder + key);
+				vo.setCategory_middle(vo.getCategory_middle().replace(",", ""));
 			marketService.insertMarket(vo);
 		} catch (IOException ex) {
 			ex.printStackTrace();
