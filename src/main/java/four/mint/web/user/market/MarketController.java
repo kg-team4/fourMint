@@ -121,10 +121,4 @@ public class MarketController {
 
 		return "/board/market_all_post_list";
 	}
-
-	@RequestMapping(value = "/marketSell.do", method = RequestMethod.GET)
-	public String marketSell() {
-
-		return "/board/market_write";
-	}
 }
