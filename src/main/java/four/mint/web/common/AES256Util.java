@@ -23,7 +23,7 @@ public class AES256Util {
 	 * @param key 암/복호화를 위한 키값         
 	 * @throws UnsupportedEncodingException 키값의 길이가 16이하일 경우 발생
 	 */
-	private static String key = "kgitbankteammint";
+	private static String key = "";
 
 	public static void setKey(String key) {
 		AES256Util.key = key;
