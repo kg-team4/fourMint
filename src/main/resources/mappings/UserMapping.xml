@@ -12,6 +12,7 @@
 		<result property="address2" column="ADDRESS2" />
 		<result property="address3" column="ADDRESS3" />
 		<result property="birth" column="BIRTH" />
+		<result property="gender" column="GENDER" />
 	</resultMap>
 	
 	<insert id="insertUser" parameterType="user">
@@ -24,15 +25,26 @@
 	</select>
 	
 	<select id="getAddress1" resultType="string">
-		SELECT address1 FROM member WHERE email_id = 'test'
+		SELECT address1 FROM member WHERE email_id = #{email_id}
 	</select>
 	
 	<select id="getAddress2" resultType="string">
-		SELECT address2 FROM member WHERE email_id = 'test'
+		SELECT address2 FROM member WHERE email_id = #{email_id}
 	</select>
 	
 	<select id="getAddress3" resultType="string">
-		SELECT address3 FROM member WHERE email_id = 'test'
+		SELECT address3 FROM member WHERE email_id = #{email_id}
 	</select>
 
+	<select id="idCheck" resultType="int" parameterType="String">
+		SELECT COUNT(email_id) FROM member WHERE email_id = #{email_id}
+	</select>
+
+	<select id="nickCheck" resultType="int" parameterType="String">
+		SELECT COUNT(nickname) FROM member WHERE nickname = #{nickname}
+	</select>
+	
+	<select id="phoneCheck" resultType="int" parameterType="String">
+		SELECT COUNT(phone) FROM member WHERE phone = #{phone}
+	</select>
 </mapper>
