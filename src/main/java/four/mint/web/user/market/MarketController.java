@@ -23,33 +23,33 @@ import four.mint.web.user.board.common.PageVO;
 
 @Controller
 public class MarketController {
-	
+
 	@Autowired
 	private MarketService marketService;
-	
+
 	@Autowired
 	private UserService userService;
 
 	@RequestMapping(value = "/marketBoardList.do", method = RequestMethod.GET)
 	public String marketBoardList() {
-		
+
 		return "/board/market_all_post_list";
 	}
-	
+
 	@RequestMapping(value = "/marketBoard.do", method = RequestMethod.GET)
-    public String mintBoard(UserVO vo, Model model) {
+	public String mintBoard(UserVO vo, Model model) {
 		model.addAttribute("result1", userService.getAddress1(vo));
-        model.addAttribute("result2", userService.getAddress2(vo));
-        model.addAttribute("result3", userService.getAddress3(vo));
-		
+		model.addAttribute("result2", userService.getAddress2(vo));
+		model.addAttribute("result3", userService.getAddress3(vo));
+
 		return "/board/market_post_content";
 	}
-	
+
 	@RequestMapping(value = "/marketDetailList.do", method = RequestMethod.GET)
 	public String mintDetailList(HttpServletRequest request, HttpServletResponse response, Model model) {
-		
+
 		String pageNum = request.getParameter("pageNum");
-		if(pageNum == null)
+		if (pageNum == null)
 			pageNum = "1";
 		int pageSize = 5;
 		int currentPage = Integer.parseInt(pageNum);
@@ -59,29 +59,29 @@ public class MarketController {
 		int number = 0;
 		List<MarketVO> marketList = null;
 		PageVO vo = new PageVO();
-		if(count > 0) { 
+		if (count > 0) {
 			vo.setStartRow(startRow);
 			vo.setEndRow(endRow);
 			marketList = marketService.getMarketList(request, vo);
-		}
-		else
+		} else
 			marketList = Collections.emptyList();
 		number = count - (currentPage - 1) * pageSize;
 		request.setAttribute("currentPage", Integer.valueOf(currentPage));
 		request.setAttribute("startRow", Integer.valueOf(startRow));
 		request.setAttribute("endRow", Integer.valueOf(endRow));
-		request.setAttribute("count",  Integer.valueOf(count));
+		request.setAttribute("count", Integer.valueOf(count));
 		request.setAttribute("pageSize", Integer.valueOf(pageSize));
 		request.setAttribute("number", Integer.valueOf(number));
 		request.setAttribute("marketList", marketList);
-		
+
 		model.addAttribute("marketList", marketList);
-		
+
 		return "/board/market_post_list";
 	}
-	
+
 	@RequestMapping(value = "/marketSell.do", method = RequestMethod.POST)
-	public String marketUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response, MarketSellVO vo) {
+	public String marketUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request,
+			HttpServletResponse response, MarketSellVO vo) {
 		try {
 			AwsS3 awsS3 = AwsS3.getInstance();
 			String uploadFolder = "https://mintbuc.s3.ap-northeast-2.amazonaws.com/";
@@ -91,44 +91,20 @@ public class MarketController {
 			long contentLength = file.getSize();
 			awsS3.upload(is, key, contentType, contentLength);
 			System.out.println("main 업로드 완료");
-			
-				vo.setImg_name(file.getOriginalFilename());
-				vo.setUrl(uploadFolder + key);
+
+			vo.setImg_name(file.getOriginalFilename());
+			vo.setUrl(uploadFolder + key);
 			marketService.insertMarket(vo);
-		} catch(IOException ex) {
+		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		
+
 		return "/board/market_all_post_list";
 	}
-	
+
+	@RequestMapping(value = "/marketSell.do", method = RequestMethod.GET)
+	public String marketSell() {
+
+		return "/board/market_write";
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

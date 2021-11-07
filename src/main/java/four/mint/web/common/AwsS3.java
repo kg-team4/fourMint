@@ -20,8 +20,8 @@ public class AwsS3 {
 
 	// Amazon-s3-sdk
 	private AmazonS3 s3Client;
-	final private String accessKey = "AKIAXMRKMCIJOMYUZTCA";
-	final private String secretKey = "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";
+	final private String accessKey = "";
+	final private String secretKey = "";
 	private Regions clientRegion = Regions.AP_NORTHEAST_2;
 	private String bucket = "mintbuc";
 

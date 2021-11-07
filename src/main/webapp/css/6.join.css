@@ -8,7 +8,25 @@
 	text-align: center;
 	padding-top: 200px;
 	padding-bottom: 430px;
-	/*            border: 1px solid red;*/
+	/* border: 1px solid red;*/
+}
+
+#idCheck, #phoneCheck, #emailCheck, #emailCheck2, #phoneCheck2, #nickCheck {
+	border-radius: 5px;
+	width: 60px;
+	height: 30px;
+	background-color: #50b9abd0;
+	cursor: pointer;
+	outline: none;
+	box-shadow: 2px 2px 0 rgb(0, 0, 0, 0.5);
+	margin-left: 20px;
+}
+
+#idCheck:active, #phoneCheck:active, #emailCheck:active, #emailCheck2:active, #phoneCheck2:active, #nickCheck:active {
+	box-shadow: 2px 2px 0 rgb(0, 0, 0, 0.5);
+	position: relative;
+	top: 2px;
+	left: 2px;
 }
 
 @keyframes move_img{
@@ -65,7 +83,8 @@
 }
 
 .join-form div input[type=text], .join-form div input[type=password],
-	.join-form div select, .email-form, #addr, #checkList .divGender {
+	.join-form div select, .email-form, #addr, #checkList .divGender, .nickname-form, 
+	#idInfo, #pwInfo, #phoneInfo, #birthInfo, #nickInfo, #addrInfo {
 	margin-top: 10px;
 	border-bottom: 2px solid rgba(0, 0, 0, 0.41);
 }
@@ -83,6 +102,37 @@
 	width: 498px;
 	margin-top: 0px;
 	display: inline-block;
+	margin-left: 87px;	/* 버튼 크기에 맞게 조정 */
+}
+
+.nickname-form {
+	width: 498px;
+	margin-top: 0px;
+	display: inline-block;
+	margin-left: 87px;	/* 버튼 크기에 맞게 조정 */
+	border-bottom: 0px;
+}
+
+.certEmail {
+	width: 498px;
+	margin-top: 0px;
+	display: inline-block;
+	margin-left: 87px;	/* 버튼 크기에 맞게 조정 */
+}
+
+.certPhone {
+	width: 498px;
+	margin-top: 0px;
+	display: inline-block;
+	margin-left: 87px;	/* 버튼 크기에 맞게 조정 */
+}
+
+#idInfo, #pwInfo, #phoneInfo, #birthInfo, #nickInfo, #addrInfo, #emailInfo{
+	width: 498px;
+	margin-top: 0px;
+	height: 12px;
+	margin: auto;
+	border-bottom: 0px;
 }
 
 #email {
@@ -159,14 +209,13 @@ input[name=phone] {
 }
 
 #gender_div {
-	border-bottom: 2px solid rgba(0, 0, 0, 0.41);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.41);
 	width: 500px;
 	height: 55px;
 	margin: auto;
 	text-align: left;
 }
 
-/* 여기서부터 진행 */
 #man, #woman {
 	margin-top: 20px;
 }
@@ -229,8 +278,8 @@ input[name=phone] {
 	width: 500px;
 	margin: auto;
 	border-radius: 5px;
-	padding-top: 10px;
-	padding-bottom: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 #base_addr {
@@ -259,6 +308,13 @@ input[name=phone] {
 	border-bottom: 0px;
 	margin: 0;
 	height: 40px;
+}
+
+.phone-form {
+	width: 498px;
+	margin-top: 0px;
+	display: inline-block;
+	margin-left: 87px;	/* 버튼 크기에 맞게 조정 */
 }
 
 /* submit 폼 디자인 */

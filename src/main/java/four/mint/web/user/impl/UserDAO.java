@@ -40,4 +40,22 @@ public class UserDAO {
 		
 		return sqlSessionTemplate.selectOne("UserDAO.getAddress3", vo);
 	}
+		
+	public int idCheck(String id) throws Exception {
+		System.out.println("====> member TABLE SELECT email_id");
+		
+		return sqlSessionTemplate.selectOne("UserDAO.idCheck", id);
+	}
+	
+	public int nickCheck(String nick) throws Exception {
+		System.out.println("====> member TABLE SELECT email_id");
+		
+		return sqlSessionTemplate.selectOne("UserDAO.nickCheck", nick);
+	}
+	
+	public int phoneCheck(String phone) throws Exception {
+		System.out.println("====> member TABLE SELECT phone");
+		
+		return sqlSessionTemplate.selectOne("UserDAO.phoneCheck", phone);
+	}
 }

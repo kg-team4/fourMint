@@ -34,7 +34,7 @@
 			</li>
 			
 			<li class="medium-menu">
-				<a href="sell.do" class="category">판매하기</a>
+				<a href="marketSell.do" class="category">판매하기</a>
 			</li>
 			
 			<li class="medium-menu"><a href="/communityBoardList.do?count=1" class="category">우리동네</a>
