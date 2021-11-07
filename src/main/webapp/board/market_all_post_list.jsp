@@ -24,20 +24,14 @@
 			<li class="jsSlide"><a href=""><img src="../img/store_slide2.png" alt="dietLunchBox"></a></li>
 			<li class="jsSlide"><a href=""><img src="../img/store_slide3.png" alt="konjacNoodles"></a></li>
 			<li class="jsSlide"><a href=""><img src="../img/store_slide4.png" alt="freeShipping"></a></li>
-			<!-- <li class="jsSlide"><a href=""><img src="../img/slide5.png" alt="tea"></a></li> -->
 		</ul>
 		<ul class="circleBtn">
 			<li><span class="circle" onclick="dotSlide(0)"><label for="slide1">&nbsp;</label></span></li>
 			<li><span class="circle" onclick="dotSlide(1)"><label for="slide2">&nbsp;</label></span></li>
 			<li><span class="circle" onclick="dotSlide(2)"><label for="slide3">&nbsp;</label></span></li>
 			<li><span class="circle" onclick="dotSlide(3)"><label for="slide4">&nbsp;</label></span></li>
-			<!-- <li>
-	                    <span class="circle" onclick="dotSlide(4)"></span>
-	                </li> -->
 		</ul>
 	</div>
-
-
 
 	<div class="best">
 		<br>

@@ -4,6 +4,7 @@
 <mapper namespace="MarketDAO">
 
 	<resultMap type="market" id="marketResult">
+		<result property="market_seq" column="MARKET_SEQ" />
 		<result property="img_name" column="IMG_NAME" />
 		<result property="category_big" column="CATEGORY_BIG" />
 		<result property="category_middle" column="CATEGORY_MIDDLE" />
@@ -11,10 +12,15 @@
 		<result property="product_price" column="PRODUCT_PRICE" />
 		<result property="product_content" column="PRODUCT_CONTENT" />
 		<result property="url" column="URL" />
+		<result property="date" column="DATE" />
 	</resultMap>
 	
+	<select id="getMarketOne" resultType="market" parameterType="int">
+		SELECT * FROM marketBoard WHERE market_seq = ${market_seq}
+	</select>
+	
 	<select id="getMarketList" resultType="market" parameterType="int">
-		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM marketboard) AS b WHERE rnum >= #{startRow} AND rnum <= #{endRow}]]> 
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM marketboard ORDER BY market_seq DESC) AS b WHERE rnum >= #{startRow} AND rnum <= #{endRow}]]> 
 	</select>
 	
 	<select id="getMarketCount" resultType="int">
@@ -22,7 +28,17 @@
 	</select>
 	
 	<insert id="insertMarket" parameterType="string">
-		INSERT INTO marketBoard VALUES(#{img_name}, #{category_big} ,#{category_middle}, #{product_name}, #{product_price}, #{product_content}, #{url})
+		INSERT INTO marketBoard VALUES(DEFAULT, #{img_name}, #{category_big} ,#{category_middle}, #{product_name}, #{product_price}, #{product_content}, #{url}, now())
 	</insert>
+	
+	<resultMap type="categoryBig" id="categoryBigResult">
+		<result property="num" column="NUM" />
+		<result property="name" column="NAME" />
+		<result property="middle" column="MIDDLE" />
+	</resultMap>
+	
+	<select resultType="categoryBig" id="getMarketCategoryBig">
+		SELECT * FROM market_category_big ORDER BY num ASC
+	</select>
 	
 </mapper>

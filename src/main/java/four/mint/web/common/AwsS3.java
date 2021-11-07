@@ -2,6 +2,12 @@ package four.mint.web.common;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
@@ -17,13 +23,22 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 public class AwsS3 {
-
+	
 	// Amazon-s3-sdk
 	private AmazonS3 s3Client;
-	final private String accessKey = "AKIAXMRKMCIJOMYUZTCA";
-	final private String secretKey = "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";
+	private static String accessKey = "";
+	private static String secretKey = "";
 	private Regions clientRegion = Regions.AP_NORTHEAST_2;
-	private String bucket = "mintbuc";
+	private String bucket = "mintmarket";
+	
+
+	public static void setAccessKey(String accessKey) {
+		AwsS3.accessKey = accessKey;
+	}
+
+	public static void setSecretKey(String secretKey) {
+		AwsS3.secretKey = secretKey;
+	}
 
 	private AwsS3() {
 		createS3Client();
@@ -32,7 +47,7 @@ public class AwsS3 {
 	// singleton pattern
 	static private AwsS3 instance = null;
 
-	public static AwsS3 getInstance() {
+	public static AwsS3 getInstance() throws UnsupportedEncodingException, NoSuchAlgorithmException, GeneralSecurityException {
 		if (instance == null) {
 			return new AwsS3();
 		} else {
@@ -42,7 +57,6 @@ public class AwsS3 {
 
 	// aws S3 client 생성
 	private void createS3Client() {
-
 		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
 		this.s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
 				.withRegion(clientRegion).build();

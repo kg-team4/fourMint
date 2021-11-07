@@ -122,8 +122,8 @@ article > div.row {
     border:1px solid lightgray;
 }
 .pagination a:hover, .pagination .on {
-    border:1px solid lightgray;
-    color:orange;
+    border:1px solid orange;
+    color: orange;
 }
 
 /* 검색어가 없는 경우 디자인 */
