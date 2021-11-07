@@ -25,7 +25,7 @@ main {
 header {
 	width: 100%;
 	display: flex;
-	position: fixed;
+	position: fixed; 	 	
 	background-color: white;
 	z-index: 100;
 	min-width: 1000px;
@@ -126,7 +126,7 @@ header {
 }
 
 .sign>ul>li {
-	margin: 15px 30px 0px 15px;
+	margin: 15px 15px 0px 15px;
 	font-size: 18px;
 	text-align: center;
 	display: inline-block;
@@ -141,16 +141,28 @@ header {
 	text-decoration: none;
 }
 #btn_mint_talk{
-	width:70px;
-	background-color: #26e4ca;
-	border : 1px solid #26e4ca;
-	padding: 1px 5px;
+	width:30px;
+	height:25px;
+	border : 2px solid white;
+	padding: 1px 1px;
 	border-radius: 5px;
 	font-size:16px;
-	color: #7b7b7b;
+	color: #50b9abd0;
+   	background-color: white;
+   	cursor: pointer;
+  	outline: none;
+  	box-shadow: 0px 0px 0 rgb(0, 0, 0, 0.5);
+	
 }
-#btn_mint_talk:hover{
+#btn_mint_talk:active{
+   box-shadow: 1px 1px 0 rgb(0, 0, 0, 0.5);
+   position: relative;
+   top: 2px;
+   left: 2px;
+}
+
+/* #btn_mint_talk:hover{
 	border: 1px solid transparent;
     background-color: #50b9abd0;
     color: white;
-}
+} */

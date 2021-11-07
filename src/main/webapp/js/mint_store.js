@@ -27,7 +27,7 @@ window.onload = function autoSlide(){
         if(i === 4){
             i = 0;
         }
-    }, 3000);
+    }, 6000);
 }
 
 
@@ -44,7 +44,7 @@ function handleModal(n){
 
         setTimeout(() => {
             modal.style.display = 'none';
-        }, 2000)
+        }, 10000)
     }
 }
 

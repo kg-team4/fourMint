@@ -33,7 +33,8 @@
 				<ul>
 					<li><a href="login.do">로그인</a></li>
 					<li><a href="join.do">회원가입</a></li>
-					<li><button id="btn_mint_talk">민트 <img src="img/mint_talk.png" style="vertical-align:middle; height:18px;width:18px;"></button></li>
+					<li><button id="btn_mint_talk"><img src="../img/shopping-cart.png" style= height:18px;width:20px"></button></li>
+					<li><button id="btn_mint_talk"><img src="../img/message.png" style= height:18px;width:20px"></button></li>
 					<!-- <li><a href="logout.do">로그아웃</a></li>
 					<li><a href="info.do?no=1">마이페이지</a></li> -->
 				</ul>

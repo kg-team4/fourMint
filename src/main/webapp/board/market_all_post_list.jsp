@@ -20,10 +20,10 @@
         <input type="radio" name="circle" id="slide3">
         <input type="radio" name="circle" id="slide4">
 		<ul class="slideImg">
-			<li class="jsSlide"><a href=""><img src="../img/market_slide1.png" alt="chickenBreast"></a></li>
-			<li class="jsSlide"><a href=""> <img src="../img/store_slide2.png" alt="dietLunchBox"></a></li>
-			<li class="jsSlide"><a href=""><img src="../img/store_slide3.png" alt="konjacNoodles"></a></li>
-			<li class="jsSlide"><a href=""><img src="../img/store_slide4.png" alt="freeShipping"></a></li>
+			<li class="jsSlide"><a href=""><img src="../img/market_slide1.png" alt="민트마켓슬라이드1"></a></li>
+			<li class="jsSlide"><a href=""> <img src="../img/market_slide2.png" alt="민트마켓슬라이드2"></a></li>
+			<li class="jsSlide"><a href=""><img src="../img/market_slide3.png" alt="민트마켓슬라이드3"></a></li>
+			<li class="jsSlide"><a href=""><img src="../img/market_slide4.png" alt="민트마켓슬라이드4"></a></li>
 			<!-- <li class="jsSlide"><a href=""><img src="../img/slide5.png" alt="tea"></a></li> -->
 		</ul>
 		<ul class="circleBtn">
@@ -99,7 +99,7 @@
 			</a>
 				<p>
 					<span class="red">[LIVING]</span> <span> <i
-						class="fas fa-heart" onclick="handleModal(0)"></i>
+						class="fas fa-heart" onclick="handleModal(3)"></i>
 					</span>
 				</p>
 				<p>
@@ -110,7 +110,7 @@
 			</a>
 				<p>
 					<span class="red">[KITCHEN]</span> <span> <i
-						class="fas fa-heart" onclick="handleModal(1)"></i>
+						class="fas fa-heart" onclick="handleModal(4)"></i>
 					</span>
 				</p>
 				<p>
@@ -121,7 +121,7 @@
 			</a>
 				<p>
 					<span class="red">[BATH]</span> <span> <i
-						class="fas fa-heart" onclick="handleModal(2)"></i>
+						class="fas fa-heart" onclick="handleModal(5)"></i>
 					</span>
 				</p>
 				<p>
@@ -146,7 +146,7 @@
 			</a>
 				<p>
 					<span class="red">[LIVING]</span> <span> <i
-						class="fas fa-heart" onclick="handleModal(0)"></i>
+						class="fas fa-heart" onclick="handleModal(6)"></i>
 					</span>
 				</p>
 				<p>
@@ -157,7 +157,7 @@
 			</a>
 				<p>
 					<span class="red">[KITCHEN]</span> <span> <i
-						class="fas fa-heart" onclick="handleModal(1)"></i>
+						class="fas fa-heart" onclick="handleModal(7)"></i>
 					</span>
 				</p>
 				<p>
@@ -168,7 +168,7 @@
 			</a>
 				<p>
 					<span class="red">[BATH]</span> <span> <i
-						class="fas fa-heart" onclick="handleModal(2)"></i>
+						class="fas fa-heart" onclick="handleModal(8)"></i>
 					</span>
 				</p>
 				<p>
