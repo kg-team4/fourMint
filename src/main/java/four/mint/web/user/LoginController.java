@@ -26,6 +26,8 @@ public class LoginController {
 		UserVO user = userService.getUser(vo);
 		if (user != null) {
 			session.setAttribute("userEmail_id", user.getEmail_id());
+			session.setAttribute("address2", user.getAddress2());
+			session.setAttribute("nickname", user.getNickname());
 			System.out.println("로그인 성공: " + user.getEmail_id());
 			
 			return "/index/index";

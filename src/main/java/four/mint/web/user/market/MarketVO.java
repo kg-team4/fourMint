@@ -16,4 +16,6 @@ public class MarketVO {
 	private String product_content;
 	private String url;
 	private Timestamp date;
+	private String address2;
+	private String nickname;
 }

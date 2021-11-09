@@ -10,6 +10,7 @@
 		<typeAlias alias="categoryBig" type="four.mint.web.user.market.MarketCategoryBigVO"/>
 		<typeAlias alias="skey" type="four.mint.web.common.SThreeVO" />
 		<typeAlias alias="key" type="four.mint.web.common.AesVO" />
+		<typeAlias alias="storeCategoryBig" type="four.mint.web.user.store.StoreCategoryBigVO" />
 	</typeAliases>
 	<typeHandlers>
 	    <typeHandler javaType="java.util.Map" handler="four.mint.web.common.JsonTypeHandler"/>

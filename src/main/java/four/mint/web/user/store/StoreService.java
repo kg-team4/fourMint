@@ -11,4 +11,9 @@ public interface StoreService {
 	List<StoreVO> getStoreList(HttpServletRequest request, PageVO vo);
 	
 	int getStoreCount();
+	
+	List<StoreCategoryBigVO> getStoreCategoryBig();
+
+	void insertStore(StoreVO vo);
+
 }

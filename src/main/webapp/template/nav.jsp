@@ -7,9 +7,6 @@
 <!-- css -->
 <nav>
 	<div id="nav-area">
-		<!-- <div id="menu-area">
-			<img src="../img/menu.png" id="nav-icon" onclick="navSwitch();">
-		</div> -->
 		<div class="nav-menu">
 			<ul>
 				<li></li>
@@ -38,28 +35,24 @@
 			
 			<li class="medium-menu"><a href="/communityBoardList.do?count=1" class="category">우리동네</a>
 				<ul>
-					<li><a href="communityDetailList.do?board_no=2&promotion_cate_num=1">소식</a></li>
-					<li><a href="communityDetailList.do?board_no=2&promotion_cate_num=2">질문</a></li>
-					<li><a href="communityDetailList.do?board_no=2&promotion_cate_num=3">모임</a></li>
-					<li><a href="communityDetailList.do?board_no=2&promotion_cate_num=4">맛집</a></li>
-					<li><a href="communityDetailList.do?board_no=2&promotion_cate_num=5">분실센터</a></li>
-					<li><a href="communityDetailList.do?board_no=2&promotion_cate_num=6">사진전</a></li>
+					<li><a href="communityDetailList.do?big_no=소식">소식</a></li>
+					<li><a href="communityDetailList.do?big_no=질문">질문</a></li>
+					<li><a href="communityDetailList.do?big_no=모임">모임</a></li>
+					<li><a href="communityDetailList.do?big_no=맛집">맛집</a></li>
+					<li><a href="communityDetailList.do?big_no=분실센터">분실센터</a></li>
+					<li><a href="communityDetailList.do?big_no=사진전">사진전</a></li>
 				</ul>
 			</li>
 
 			<li class="medium-menu"><a href="storeBoardList.do?count=1" class="category">스토어</a>
 				<ul>
-					<li><a href="storeDetailList.do?board_no=3&promotion_cate_num=1">주방</a></li>
-					<li><a href="storeDetailList.do?board_no=3&promotion_cate_num=2">욕실</a></li>
-					<li><a href="storeDetailList.do?board_no=3&promotion_cate_num=3">생활</a></li>
-					<li><a href="storeDetailList.do?board_no=3&promotion_cate_num=4">굿즈</a></li>
+					<li><a href="storeDetailList.do?big_no=주방">주방</a></li>
+					<li><a href="storeDetailList.do?big_no=욕실">욕실</a></li>
+					<li><a href="storeDetailList.do?big_no=생활">생활</a></li>
+					<li><a href="storeDetailList.do?big_no=굿즈">굿즈</a></li>
 				</ul>
 			</li>
 			<li></li>
-			<!-- <li class="medium-menu">
-			<a href="../board/promotion_write.jsp" class="category"> 홍보하기</a></li>
-			-->
-			</ul>
 		</div>
 	</div>
 </nav>

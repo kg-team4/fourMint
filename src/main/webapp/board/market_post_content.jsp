@@ -52,14 +52,14 @@
 				<div class="item font17 gray-font padding25">
 					<span class="lightgray-font">♥</span><span class="font15 padding-right05">&nbsp;1</span> <span class="short-border"><img
 						src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAaCAYAAADMp76xAAAAAXNSR0IArs4c6QAABAdJREFUWAm9mFtIFFEYx9tZ11UW1tLoaoGEPShqq3ahgogyIgnqQXqIgih6qKgEH4JIqCgIIoowIrSn6i0irOxCQdAN7wb2IiSlSUZuGJGyumu/b9lZZo8zs7ObdeBwvvNd/uc/53zznWFcs9Js7e3tczVNWzs1NbUKiErGfJfLNYcxVyCRg8g/GAeZdiC3eTyeN2VlZd/Enm5zpRLY09Pjm5yc3EnMbghUMbpTiYd8BP8X9Dt+v/9uYWHhz1TixdcR4YGBgezh4eFD+J+gz5XAGWijYFzKycm5nArxpIQ5+hqAr9AXzgBJM4ggqXWyvLz8uplR1VkShmgOR3iVo9+jBv2LOWs9pu+H+JAdvilhyC4j6AldxqSNhT7g1Oh2u59mZWV9loDx8fGl4XB4C+IBHrpIdA7ad7C2V1RUvLPynUa4u7s7wIvVQsB8qyCDfgK5jgUaWChs0MdFyLo7OjoOo7hI98QN1sJvsHaB+cDMJYFwV1fXCnblJY5+M2dFN8GOVgcCgWeK3nQKdhXYDzE6IR2GdA2k76lgmq7o7OxcBGAzcydkJazOKVlxjvnWieyguTmZ25y21PiEFt3h/v7+rJGRkddYyhOsFhOe/gMvR6lVGliEzZL0YGPep5DTw16vd2VJScmAjhnd4WAweBaFI7KxwEaVLCQyIHOafB2ULrLo9IVkjMU0GnVJ5PmhUOim0UejIqwGuNaoTCZLNVB9yNFTkUikHqzF0kUWnepnFqv6GOdgbWYDDuo6jaduYOLWFU5Gvgk+qX4A73ei08ue6ms3B/ui3LbiozExLUd2AOxSQnWx850h2+f8/PyQYGksfoRxMhVguRRUf06qyYnOLFaNM87BjdAP0KMbq1Fu2phcMDolk2M3WIIbOGf5JjgD1hfpIosuwYmJWazqo8yvGG++6NH29vZmjo2NPcdxveJsOoXQ/yprXcKpsrLyt04kWtaKi4tDPp9vB0T6dIPdSN4Xxa5bO7dpNomR2GkGEwVchjIyMrYbyYpbwstDGSqkHL0CdJ4Jhqr6l1ezfNhvhGynumj8ahYDOSc7vI7+UeZJmke+DajjR3lAy7IoNvERX/CcfEd8pRBsMCMrfBJ2WCdITi8gpx8xD+g6u1FyGvtff15KSlLjt5aWllpumClhIdfX1+cdHR09D0gtu2TpZ/cgKdqasrOzj/M+/bKLS0qEb4JN5PU1QJbbAaVrY0M+UQKPkY73nWAkJSwgkoe84fsQ6+lLRDcD7Stkz3FV35Aq5RTPEWEdLFavt7HQXnTVPEimbnM4ThDbQtytvLy85oKCgnGHcXG3lAjHoxAogbNJlTWIq6VDQn6k5DLmih+y/EgJMsqPlFaOvZW3/y0v1A+xp9v+ADhPuomDsZuZAAAAAElFTkSuQmCC"
-						width="20" height="13" alt="조회수 아이콘">&nbsp;1</span> <span class="padding-left05">${content.date }</span> <span class="right-float">☎&nbsp;신고하기</span>
+						width="20" height="13" alt="조회수 아이콘">&nbsp;1</span> <span class="padding-left05">${date }</span> <span class="right-float">☎&nbsp;신고하기</span>
 				</div>
 				<div class="item font15 padding15">
 					<div class="padding15">
 						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}&nbsp;>&nbsp;${content.category_middle }</span>
 					</div>
 					<div class="padding15">
-						<span class="gray-font">&middot; 거래지역</span><span class="green-font">&emsp;${result1}&nbsp;${result2}&nbsp;${result3}</span>
+						<span class="gray-font">&middot; 거래지역</span><span class="green-font">&emsp;${content.address2}</span>
 					</div>
 				</div>
 				<div>
@@ -113,7 +113,7 @@
 					// 주소-좌표 변환 객체를 생성합니다
 					var geocoder = new kakao.maps.services.Geocoder();
 					
-					var address = "${result2}";
+					var address = "${content.address2}";
 						
 					// 주소로 좌표를 검색합니다
 					geocoder.addressSearch(address, function(result, status) {
@@ -301,4 +301,30 @@
 		</div>
 	</div>
 </article>
+
+<script>
+	function timeForToday(value) {
+	    const today = new Date();
+	    const timeValue = new Date(value);
+	
+	    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+	    if (betweenTime < 1) return '방금전';
+	    if (betweenTime < 60) {
+	        return `${betweenTime}분전`;
+	    }
+	
+	    const betweenTimeHour = Math.floor(betweenTime / 60);
+	    if (betweenTimeHour < 24) {
+	        return `${betweenTimeHour}시간전`;
+	    }
+	
+	    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+	    if (betweenTimeDay < 365) {
+	        return `${betweenTimeDay}일전`;
+	    }
+	
+	    return `${Math.floor(betweenTimeDay / 365)}년전`;
+	}
+</script>
+
 <jsp:include page="../template/footer.jsp"></jsp:include>
