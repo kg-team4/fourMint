@@ -63,8 +63,11 @@ public class MarketDAO {
 	}
 
 	public int getKindCount(SearchVO svo) {
-		String kind = svo.getKind();
-		return sqlSessionTemplate.selectOne("MarketDAO.getKindCount", kind);
+		return sqlSessionTemplate.selectOne("MarketDAO.getKindCount", svo);
+	}
+	
+	public int getKindTwoCount(SearchVO svo) {
+		return sqlSessionTemplate.selectOne("MarketDAO.getKindCount", svo);
 	}
 
 	public List<MarketVO> getKindList(SearchVO svo) {

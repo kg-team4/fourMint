@@ -12,20 +12,20 @@
 				<li></li>
 				<li class="medium-menu"><a href="/marketBoardList.do?count=1" class="category">동네 중고</a>
 					<ul>
-						<li><a href="marketDetailList.do?kind=디지털 · 가전&pageNum=1">디지털 · 가전</a></li>
-						<li><a href="marketDetailList.do?kind=가구 · 인테리어&pageNum=1">가구 · 인테리어</a></li>
-						<li><a href="marketDetailList.do?kind=유아동 · 출산&pageNum=1">유아동 · 출산</a></li>
-						<li><a href="marketDetailList.do?kind=생활 · 가공식품&pageNum=1">생활 · 가공식품</a></li>
-						<li><a href="marketDetailList.do?kind=스포츠 · 레저&pageNum=1">스포츠 · 레저</a></li>
-						<li><a href="marketDetailList.do?kind=여성의류&pageNum=1">여성의류</a></li>
-						<li><a href="marketDetailList.do?kind=남성의류&pageNum=1">남성의류</a></li>
-						<li><a href="marketDetailList.do?kind=패션잡화&pageNum=1">패션잡화</a></li>
-						<li><a href="marketDetailList.do?kind=게임 · 취미&pageNum=1">게임 · 취미</a></li>
-						<li><a href="marketDetailList.do?kind=뷰티 · 미용&pageNum=1">뷰티 · 미용</a></li>
-						<li><a href="marketDetailList.do?kind=반려동물용품&pageNum=1">반려동물용품</a></li>
-						<li><a href="marketDetailList.do?kind=도서 · 음반&pageNum=1">도서 · 음반</a></li>
-						<li><a href="marketDetailList.do?kind=기타&pageNum=1">기타</a></li>
-						<li><a href="marketDetailList.do?kind=삽니다&pageNum=1">삽니다</a></li>
+						<li><a href="marketDetailList.do?kind=디지털 · 가전">디지털 · 가전</a></li>
+						<li><a href="marketDetailList.do?kind=가구 · 인테리어">가구 · 인테리어</a></li>
+						<li><a href="marketDetailList.do?kind=유아동 · 출산">유아동 · 출산</a></li>
+						<li><a href="marketDetailList.do?kind=생활 · 가공식품">생활 · 가공식품</a></li>
+						<li><a href="marketDetailList.do?kind=스포츠 · 레저">스포츠 · 레저</a></li>
+						<li><a href="marketDetailList.do?kind=여성의류">여성의류</a></li>
+						<li><a href="marketDetailList.do?kind=남성의류">남성의류</a></li>
+						<li><a href="marketDetailList.do?kind=패션잡화">패션잡화</a></li>
+						<li><a href="marketDetailList.do?kind=게임 · 취미">게임 · 취미</a></li>
+						<li><a href="marketDetailList.do?kind=뷰티 · 미용">뷰티 · 미용</a></li>
+						<li><a href="marketDetailList.do?kind=반려동물용품">반려동물용품</a></li>
+						<li><a href="marketDetailList.do?kind=도서 · 음반">도서 · 음반</a></li>
+						<li><a href="marketDetailList.do?kind=기타">기타</a></li>
+						<li><a href="marketDetailList.do?kind=삽니다">삽니다</a></li>
 					</ul>
 				</li>
 			

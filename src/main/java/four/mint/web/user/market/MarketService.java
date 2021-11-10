@@ -27,6 +27,8 @@ public interface MarketService {
 	AesVO getKey();
 	
 	int getKindCount(SearchVO svo);
+	
+	int getKindTwoCount(SearchVO svo);
 
 	List<MarketVO> getKindList(SearchVO svo);
 

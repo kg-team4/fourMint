@@ -74,6 +74,12 @@ public class MarketServiceImpl implements MarketService {
 		int page = marketDao.getKindCount(svo);
 		return page;
 	}
+	
+	@Override
+	public int getKindTwoCount(SearchVO svo) {
+		int page = marketDao.getKindTwoCount(svo);
+		return page;
+	}
 
 	@Override
 	public List<MarketVO> getKindList(SearchVO svo) {

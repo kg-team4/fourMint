@@ -64,26 +64,21 @@ public class MarketController {
 		String kind = request.getParameter("kind");
 		
 		/*페이징 처리 시작*/
-		String currentPage = request.getParameter("pageNum");
-		int page;
-
-		if(currentPage == null) {
-			page = 1; 
-		} else {
-			page = Integer.parseInt(currentPage);
-		}
-		int limit = 6;     
+		int page = 1;
+		int limit = 9;     
 		
 		svo.setKind(kind);
 		svo.setPage(page);
 		
 		int listCount = marketService.getKindCount(svo);
+		svo.setRnum(listCount);
 		int maxPage = (listCount+limit-1)/limit;
-		System.out.println(maxPage);
-		int startPage = ((page-1)/10) * 10 + 1;
-		int endPage = startPage + 10 - 1;
-		if(endPage > maxPage) endPage = maxPage;
-		if(endPage < page) page = endPage;
+		int startPage = ((page-1)/5) * 5 + 1;
+		int endPage = startPage + 5 - 1;
+		if(endPage > maxPage) 
+			endPage = maxPage;
+		if(endPage < page) 
+			page = endPage;
 		/*페이징 처리 끝*/
 		
 		List<MarketVO> mVo;
@@ -96,6 +91,7 @@ public class MarketController {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("listCount", listCount);
 		request.setAttribute("marketList", mVo);
+		request.setAttribute("pageNum", page);
 		
 		return "/board/market_post_list";
 	}
@@ -107,6 +103,7 @@ public class MarketController {
 		
 		String kind = request.getParameter("kind");
 		String kindTwo = request.getParameter("kindTwo");
+		String arrow = request.getParameter("arrow");
 		
 		/*페이징 처리 시작*/
 		String currentPage = request.getParameter("pageNum");
@@ -117,18 +114,42 @@ public class MarketController {
 		} else {
 			page = Integer.parseInt(currentPage);
 		}
-		int limit = 6;   
+		
+		if(arrow != null) {
+			if(arrow.equals("prev")) {
+				page = (page - 1) / 5 + ((page - 1) / 5) * 4;
+				if(page < 1) {
+					page = 1;
+				}
+			} else if(arrow.equals("next")) {
+				page = (page + 6) / 6 + (5 * ((page + 6) / 6)) - ((page - 1) / 5);
+			}
+		}
 		
 		svo.setKind(kind);
 		svo.setKindTwo(kindTwo);
+
+		if(page > Math.round((double)marketService.getKindTwoCount(svo) / 9)) {
+			page = (int)Math.round((double)marketService.getKindTwoCount(svo) / 9) + 1;
+		}
+
+		request.setAttribute("pageNum", page);
+		
+		int limit = 9;   
+		
 		svo.setPage(page);
 		
-		int listCount = marketService.getKindCount(svo);
+		int listCount = marketService.getKindTwoCount(svo);
+		svo.setRnum(listCount);
+		
 		int maxPage = (listCount+limit-1)/limit;
-		int startPage = ((page-1)/10) * 10 + 1;
-		int endPage = startPage + 10 - 1;
-		if(endPage > maxPage) endPage = maxPage;
-		if(endPage < page) page = endPage;
+		int startPage = ((page-1)/5) * 5 + 1;
+		int endPage = startPage + 5 - 1;
+		
+		if(endPage > maxPage) 
+			endPage = maxPage;
+		if(endPage < page) 
+			page = endPage;
 		/*페이징 처리 끝*/
 		
 		List<MarketVO> mVo;

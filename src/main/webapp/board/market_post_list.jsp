@@ -6,8 +6,6 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@ 등록시간 추가 + 사진 추가하기 @@@@@@@@@ -->
-
 <link rel="stylesheet" href="../css/reset.css">
 <link rel="stylesheet" href="../css/mint_market_content.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -121,46 +119,16 @@
 		</c:if>
 	</div>
 	
-	<%-- <div style="text-align: center;">
-		<form action="marketDetailList.do" method="post">
-			<c:if test="${ listCount > 0 }">
-				<c:set var="pageCount" value="${ maxPage }" />
-				<c:set var="pageBlock" value="${ 5 }" />
-				<c:if test="${ startPage > pageBlock }">
-					<input type="submit" value="◀" style="background: white; border: none;">
-				</c:if>
-				<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-					<label class="pageNum">${i}</label>
-				</c:forEach>
-				<c:if test="${ endPage < pageCount }">
-					<input type="submit" value="▶" style="background: white; border: none;">
-				</c:if>
-			</c:if>
-		</form>
-	</div> --%>
-	
-	<%-- <div style="text-align: center;">
-		<c:if test="${ listcount > 0 }">
-			<c:set var="imsi" value="${ listcount % pageSize == 0 ? 0 : 1 }" />
-			<c:set var="pageCount" value="${ listcount / pageSize + imsi }" />
-			<c:set var="pageBlock" value="${ 3 }" />
-			<fmt:parseNumber var="result" value="${ (currentPage - 1) / pageBlock }" integerOnly="true" />
-			<c:set var="startPage" value="${ result * pageBlock + 1 }" />
-			<c:set var="endPage" value="${ startPage + pageBlock - 1 }" />
-			<c:if test="${ endPage > pageCount }">
-				<c:set var="endPage" value="${ pageCount }" />
-			</c:if>
-			<c:if test="${ startPage > pageBlock }">
-				<a href="marketDetailList.do?big_no=${big_no }&pageNum=${ startPage - pageBlock }">[이전]</a>
-			</c:if>
-			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-				<a href="marketDetailList.do?big_no=${big_no }&pageNum=${ i }">[${ i }]</a>
-			</c:forEach>
-			<c:if test="${ endPage < pageCount }">
-				<a href="marketDetailList.do?big_no=${big_no }&pageNum=${ startPage + pageBlock }">[다음]</a>
-			</c:if>
-		</c:if>
-	</div> --%>
+	<div style="text-align: center;">
+		<c:set var="startPage" value="${ startPage }" />
+		<c:set var="endPage" value="${ endPage }" />
+		<c:set var="pageCount" value="${ maxPage }" />
+			<label class="pagingNumPrev">◀</label>
+		<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+			<label class="pagingNum">${i}</label>
+		</c:forEach>
+			<label class="pagingNumNext">▶</label>
+	</div>
 </article>
 
 <script>
@@ -212,10 +180,10 @@
 			})//ajax
 		});//click
 		
-		/* $(".pageNum").on('click',function(){
+		$(".pagingNum").on('click',function(){
 			var pageNum = $(this).text();  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	
-			var kind = ${kind};
-			var kindTwo = ${kindTwo};
+			var kind = "${kind}";
+			var kindTwo = "${kindTwo}";
 			$.ajax({
 				url : 'marketDetailList.do', // 이 주소로 
 				type : "post", // 포스트 방식으로 보내는데
@@ -225,13 +193,60 @@
 				success : function(data){ 
 				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
+				   $(document).scrollTop(0);
 				},
 				error : function(data){
 					alert('error');
 				}//error
 			})//ajax
-		});//click */
+		});//click
+		
+		$(".pagingNumPrev").on('click',function(){
+			var pageNum = "${pageNum}";  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	
+			var kind = "${kind}";
+			var kindTwo = "${kindTwo}";
+			var arrow = "prev";
+			$.ajax({
+				url : 'marketDetailList.do', // 이 주소로 
+				type : "post", // 포스트 방식으로 보내는데
+				cache: false,
+				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum, "arrow" : arrow}, // kind를 kind로 명명하여 보내겠다
+				success : function(data){ 
+				   console.log(data);
+				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
+				   $(document).scrollTop(0);
+				},
+				error : function(data){
+					alert('error');
+				}//error
+			})//ajax
+		});//click
+		
+		$(".pagingNumNext").on('click',function(){
+			var pageNum = "${pageNum}";  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	
+			var kind = "${kind}";
+			var kindTwo = "${kindTwo}";
+			var arrow = "next";
+			$.ajax({
+				url : 'marketDetailList.do', // 이 주소로 
+				type : "post", // 포스트 방식으로 보내는데
+				cache: false,
+				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum, "arrow" : arrow}, // kind를 kind로 명명하여 보내겠다
+				success : function(data){ 
+				   console.log(data);
+				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
+				   $(document).scrollTop(0);
+				},
+				error : function(data){
+					alert('error');
+				}//error
+			})//ajax
+		});//click
 	});//ready
 </script>
+
+<script src="../js/mint_store.js"></script>
 
 <jsp:include page="../template/footer.jsp"></jsp:include>
