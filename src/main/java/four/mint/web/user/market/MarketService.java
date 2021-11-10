@@ -1,12 +1,14 @@
 package four.mint.web.user.market;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import four.mint.web.common.AesVO;
 import four.mint.web.common.SThreeVO;
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.board.common.SearchVO;
 
 public interface MarketService {
 	
@@ -23,4 +25,10 @@ public interface MarketService {
 	SThreeVO getSkey();
 	
 	AesVO getKey();
+	
+	int getKindCount(SearchVO svo);
+
+	List<MarketVO> getKindList(SearchVO svo);
+
+	List<MarketVO> getKindTwoList(SearchVO svo);
 }

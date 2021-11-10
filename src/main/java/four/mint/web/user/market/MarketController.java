@@ -25,6 +25,7 @@ import four.mint.web.common.DateUtil;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.board.common.SearchVO;
 
 @Controller
 public class MarketController {
@@ -56,34 +57,96 @@ public class MarketController {
 	}
 
 	@RequestMapping(value = "/marketDetailList.do", method = RequestMethod.GET)
-	public String mintDetailList(HttpServletRequest request, HttpServletResponse response) {
+	public String mintDetailList(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
 		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
 		request.setAttribute("marketCategoryBig", marketCategoryBig);
 		
-		String pageNum = request.getParameter("pageNum");
-		if (pageNum == null)
-			pageNum = "1";
-		int pageSize = 9;
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = currentPage * pageSize;
-		int count = marketService.getMarketCount();
-		int number = 0;
-		List<MarketVO> marketList = null;
-		PageVO vo = new PageVO();
-		if (count > 0) {
-			vo.setStartRow(startRow);
-			vo.setEndRow(endRow);
-			marketList = marketService.getMarketList(request, vo);
-		} else
-			marketList = Collections.emptyList();
-		number = count - (currentPage - 1) * pageSize;
-		request.setAttribute("currentPage", Integer.valueOf(currentPage));
-		request.setAttribute("count", Integer.valueOf(count));
-		request.setAttribute("pageSize", Integer.valueOf(pageSize));
-		request.setAttribute("number", Integer.valueOf(number));
-		request.setAttribute("marketList", marketList);
+		String kind = request.getParameter("kind");
+		
+		/*페이징 처리 시작*/
+		String currentPage = request.getParameter("pageNum");
+		int page;
 
+		if(currentPage == null) {
+			page = 1; 
+		} else {
+			page = Integer.parseInt(currentPage);
+		}
+		int limit = 6;     
+		
+		svo.setKind(kind);
+		svo.setPage(page);
+		
+		int listCount = marketService.getKindCount(svo);
+		int maxPage = (listCount+limit-1)/limit;
+		System.out.println(maxPage);
+		int startPage = ((page-1)/10) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if(endPage > maxPage) endPage = maxPage;
+		if(endPage < page) page = endPage;
+		/*페이징 처리 끝*/
+		
+		List<MarketVO> mVo;
+		mVo = marketService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
+
+		request.setAttribute("kind", kind);
+		request.setAttribute("page", page);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("listCount", listCount);
+		request.setAttribute("marketList", mVo);
+		
+		return "/board/market_post_list";
+	}
+	
+	@RequestMapping(value = "/marketDetailList.do", method = RequestMethod.POST)
+	public String mintDetailListUpload(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
+		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
+		request.setAttribute("marketCategoryBig", marketCategoryBig);
+		
+		String kind = request.getParameter("kind");
+		String kindTwo = request.getParameter("kindTwo");
+		
+		/*페이징 처리 시작*/
+		String currentPage = request.getParameter("pageNum");
+		int page;
+
+		if(currentPage == null) {
+			page = 1; 
+		} else {
+			page = Integer.parseInt(currentPage);
+		}
+		int limit = 6;   
+		
+		svo.setKind(kind);
+		svo.setKindTwo(kindTwo);
+		svo.setPage(page);
+		
+		int listCount = marketService.getKindCount(svo);
+		int maxPage = (listCount+limit-1)/limit;
+		int startPage = ((page-1)/10) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if(endPage > maxPage) endPage = maxPage;
+		if(endPage < page) page = endPage;
+		/*페이징 처리 끝*/
+		
+		List<MarketVO> mVo;
+		if(kindTwo == null) {
+			mVo = marketService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
+		} else {
+			mVo = marketService.getKindTwoList(svo);
+		}
+
+		request.setAttribute("kind", kind);
+		request.setAttribute("kindTwo", kindTwo);
+		request.setAttribute("page", page);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("listCount", listCount);
+		request.setAttribute("marketList", mVo);
+		
 		return "/board/market_post_list";
 	}
 	

@@ -33,6 +33,18 @@
 		INSERT INTO marketBoard VALUES(DEFAULT, #{img_name}, #{category_big} ,#{category_middle}, #{product_name}, #{product_price}, #{product_content}, #{url}, now() at time zone 'Asia/Seoul', #{address2}, #{nickname})
 	</insert>
 	
+	<select id="getKindCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
+		SELECT count(product_name) FROM marketBoard WHERE category_big = #{kind}
+	</select>
+	
+	<select id="getKindList" resultType="market" parameterType="four.mint.web.user.board.common.SearchVO">
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM marketboard WHERE category_big = #{kind} ORDER BY market_seq DESC) AS b WHERE rnum >= ((#{page}-1) * 10 + 1) AND rnum <= (#{page} * 10 -1)]]> 
+	</select>
+	
+	<select id="getKindTwoList" resultType="market" parameterType="four.mint.web.user.board.common.SearchVO">
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM marketboard WHERE category_big = #{kind} AND category_middle = #{kindTwo} ORDER BY market_seq DESC) AS b WHERE rnum >= ((#{page}-1) * 10 + 1) AND rnum <= (#{page} * 10 - 1)]]> 
+	</select>
+	
 	<resultMap type="categoryBig" id="categoryBigResult">
 		<result property="num" column="NUM" />
 		<result property="name" column="NAME" />

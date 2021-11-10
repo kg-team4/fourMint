@@ -1,6 +1,7 @@
 package four.mint.web.user.market.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import four.mint.web.common.AesVO;
 import four.mint.web.common.SThreeVO;
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketCategoryBigVO;
 import four.mint.web.user.market.MarketVO;
 
@@ -58,5 +60,18 @@ public class MarketDAO {
 		System.out.println("=====> aeskey");
 		
 		return sqlSessionTemplate.selectOne("KeyDAO.getKey");
+	}
+
+	public int getKindCount(SearchVO svo) {
+		String kind = svo.getKind();
+		return sqlSessionTemplate.selectOne("MarketDAO.getKindCount", kind);
+	}
+
+	public List<MarketVO> getKindList(SearchVO svo) {
+		return sqlSessionTemplate.selectList("MarketDAO.getKindList", svo);
+	}
+
+	public List<MarketVO> getKindTwoList(SearchVO svo) {
+		return sqlSessionTemplate.selectList("MarketDAO.getKindTwoList", svo);
 	}
 }

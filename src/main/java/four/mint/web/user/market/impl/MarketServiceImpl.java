@@ -1,6 +1,7 @@
 package four.mint.web.user.market.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import four.mint.web.common.AesVO;
 import four.mint.web.common.SThreeVO;
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketCategoryBigVO;
 import four.mint.web.user.market.MarketService;
 import four.mint.web.user.market.MarketVO;
@@ -44,7 +46,6 @@ public class MarketServiceImpl implements MarketService {
 	@Override
 	public void insertMarket(MarketVO vo) {
 		marketDao.insertMarket(vo);
-		
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class MarketServiceImpl implements MarketService {
 		
 		return newCaVO;
 	}
-	
+
 	@Override
 	public SThreeVO getSkey() {
 		SThreeVO newSVO = marketDao.getSThree();
@@ -68,4 +69,23 @@ public class MarketServiceImpl implements MarketService {
 		return newAesVO;
 	}
 
+	@Override
+	public int getKindCount(SearchVO svo) {
+		int page = marketDao.getKindCount(svo);
+		return page;
+	}
+
+	@Override
+	public List<MarketVO> getKindList(SearchVO svo) {
+		List<MarketVO> newVo = marketDao.getKindList(svo);
+	
+		return newVo;
+	}
+	
+	@Override
+	public List<MarketVO> getKindTwoList(SearchVO svo) {
+		List<MarketVO> newVo = marketDao.getKindTwoList(svo);
+		
+		return newVo;
+	}
 }
