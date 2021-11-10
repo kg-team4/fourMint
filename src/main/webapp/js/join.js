@@ -242,6 +242,28 @@ function checkNick() {
 	}
 }
 
+/* 이름 검증 */
+function checkName() {
+	var name = document.querySelector("input[name=name]").value;
+
+	var regex = /^[가-힣]{2, 20}$/;
+
+	var nameInfo = document.querySelector("#nameInfo");
+	var nameInfoText = document.querySelector("#nameInfoText");
+
+	if (name.match(regex) == null && nameInfoText == null) {
+		var nameInfoText = document.createElement("div");
+		nameInfoText.textContent = "한글만 입력하세요.";
+		nameInfoText.setAttribute("id", "nameInfoText");
+		nameInfoText.setAttribute("style", "color: red; font-size: 12px;");
+		nameInfo.appendChild(nameInfoText);
+		document.getElementById("nameCheck").disabled = true;
+	} else if (name.match(regex) != null && nameInfoText != null) {
+		nameInfo.removeChild(nameInfo.childNodes[0]);
+		document.getElementById("nameCheck").disabled = false;
+	}
+}
+
 /* 상세주소 제외 입력 */
 function findAddr() {
 	new daum.Postcode({
@@ -331,7 +353,7 @@ function phoneBtnState() {
 function checkBirth() {
 	var birth = document.querySelector("input[name=birth]").value;
 
-	var regex = /([0-9]{2}(0[1,3-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/;
+	var regex = /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/;
 
 	var birthInfo = document.querySelector("#birthInfo");
 	var birthInfoText = document.querySelector("#birthInfoText");

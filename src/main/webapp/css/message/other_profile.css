@@ -1,0 +1,492 @@
+@charset "UTF-8";
+
+
+/* 글씨체 적용 */
+h4,h5, p, li, .nick-div{
+	font-family: 'Nanum Pen Script', cursive;
+}
+
+.nick-div b {
+	font-size: 30px;
+}
+
+.nick-div {
+    text-align: center;
+}
+
+h4{
+	font-size: 35px;
+}
+
+p{
+	font-size: 25px;
+}
+
+li {
+	font-size: 20px;
+}
+
+strong {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.links {
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 20px;
+}
+
+.col-2 {
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 20px;
+}
+
+.profile-follow{
+	position:absolute; 
+}
+
+h5 {
+	font-family: 'Nanum Pen Script', cursive;
+}
+#m_writer {
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 20px;
+}
+
+#m_heart_reply_hit {
+	font-family: 'Nanum Pen Script', cursive;
+}
+
+/* 프로필 사진을 비율변화 없이 둥글게 */
+.box {
+    width: 100%;
+    /*height: auto;*/ 
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.messagesend-btn{
+	margin-top: 15px;
+}
+
+.message-box{
+	width: 40px;
+    height: 40px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.img-profile, #messageProfileImage, #profileImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* 프로필 사진을 비율변화 없이 둥글게 끝 */
+
+/* 카드를 일정한 크기로 */
+.card-inner{
+	padding: 0 3px !important;
+	width: 25%;
+}
+.video-box{
+	width: 100%;
+	height: 220px;
+	overflow: hidden;
+	margin-top: 8px;
+}
+
+
+.video-box video,img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+/* 카드를 일정한 크기로 끝 */ 
+
+/* 마우스 후버시 효과 */
+.thumb {
+	display: inline-blick;
+	position: relative;
+}
+
+.thumb .card-img:hover:before {
+	content: "";
+	background: rgba(0, 0, 0, 0.3);
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	
+}
+
+.thumb:hover .links {
+	opacity: 1;
+}
+.links { 
+	opacity: 0; 
+	position: absolute;
+	text-align: center;
+	top: 50%; 
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	 -ms-transform: translate(-50%, -50%);
+	transition: .5s ease;
+	z-index: 1; 
+	color: white;
+	font-weight: 500;
+}
+/* 카드 관련 끝 */
+
+
+
+/* 모달창 */
+.modal-profile-box{
+	width: 50px;
+	height: 50px;
+	border-radius: 70%;
+	overflow: hidden;
+}
+#m_writer_profile img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+/* 모달창 끝*/
+
+h4{
+	padding: 20px 10px 20px 0;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.msg_send_btn_profile {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #97df93;
+  border-radius: 15px;
+  color: #97df93;
+  cursor: pointer;
+  font-size: 17px;
+  height: 35px;
+  /*position: absolute;*/
+  right: 0;
+  top: 11px;
+  width: 100%;
+}
+.msg_send_btn_profile:hover{
+	background: #97df93 none repeat scroll 0 0;
+	color: #fff;
+}
+
+.msg_send_btn {
+  background: #97df93 none repeat scroll 0 0;
+  border: medium none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  height: 33px;
+  position: absolute;
+  right: 0;
+  top: 11px;
+  width: 33px;
+}
+
+.msg_send_btn:hover{
+	background: #5fcd58 none repeat scroll 0 0;
+}
+
+/* 메세지 내용 가져오기 css다.message_list.css에서 가져옴 */
+.msg-container{max-width:1170px; margin:auto;}
+img{ max-width:100%;}
+.inbox_people {
+  background: #f8f8f8 none repeat scroll 0 0;
+  float: left;
+  overflow: hidden;
+  width: 40%; border-right:1px solid #f7f7f7;
+}
+.inbox_msg {
+  border: 1px solid #f7f7f7;
+  border-radius: 15px;
+  clear: both;
+  overflow: hidden;
+}
+.top_spac{ margin: 20px 0 0;}
+
+
+.recent_heading {float: left; width:40%;}
+.srch_bar {
+  display: inline-block;
+  text-align: right;
+  width: 60%; padding: 0px;
+}
+
+.headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #f7f7f7;}
+
+.recent_heading h4 {
+  color: #5fcf80;
+  font-size: 21px;
+  margin: auto;
+}
+.srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none;}
+.srch_bar .input-group-addon button {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  padding: 0;
+  color: #707070;
+  font-size: 18px;
+}
+.srch_bar .input-group-addon { margin: 0 0 0 -27px;}
+
+.chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0;}
+.chat_ib h5 span{ font-size:13px; float:right;}
+.chat_ib p{ font-size:14px; color:#989898; margin:auto}
+.chat_img {
+  float: left;
+  width: 11%;
+}
+.chat_ib {
+  float: left;
+  padding: 0 0 0 15px;
+  width: 88%;
+}
+
+.chat_people{ overflow:hidden; clear:both;}
+.chat_list {
+  border-bottom: 1px solid #f7f7f7;
+  margin: 0;
+  padding: 18px 16px 10px;
+}
+
+
+.chat_list_box :hover{
+	background-color: #d6ead0;
+}
+
+.inbox_chat { height: 550px; overflow-y: scroll;}
+
+.active_chat{ background:#ebebeb;}
+
+/* 쪽지보냈을 때의 다른 사람 프로필 사진 */
+.incoming_msg_img {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+}
+.img_circle {
+	width: 100%;
+	height: 100%; 
+	border-radius: 50%;
+	object-fit: cover;
+}
+.received_msg {
+  display: inline-block;
+  padding: 0 0 0 10px;
+  vertical-align: top;
+  width: 92%;
+ }
+ .received_withd_msg p {
+  background: #f4f4f4 none repeat scroll 0 0;
+  border-radius: 7px;
+  color: #646464;
+  font-size: 14px;
+  margin: 0;
+  padding: 10px 10px 10px 12px;
+  width: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.time_date {
+  color: #747474;
+  display: block;
+  font-size: 12px;
+  margin: 5px 0 8px;
+}
+.received_withd_msg { width: 57%;}
+.mesgs {
+  float: left!important;
+  padding: 15px 15px 0 15px;
+  width: 100%;
+}
+
+ .sent_msg p {
+  background: #97df93 none repeat scroll 0 0;
+  border-radius: 7px;
+  font-size: 14px;
+  margin: 0; color:#fff;
+  padding: 10px 10px 10px 12px;
+  width:100%;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.sent_msg {
+  float: right;
+  width: 46%;
+}
+.input_msg_write input {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: #4c4c4c;
+  font-size: 15px;
+  min-height: 48px;
+  width: 100%;
+}
+
+.type_msg {border-top: 1px solid #dfdfdf;position: relative;}
+
+.messaging { padding: 0 0 50px 0;}
+.msg_history {
+  height: 516px;
+  overflow-y: auto;
+}
+
+.back-drop{
+      /* 일단 숨겨 놓는다. */
+   display:none;
+
+   /* 화면 전체를 투명도가 있는 회색으로 덮기 위한  css*/
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background-color: #cecece;
+   padding-top: 300px;
+   z-index: 10000;
+   opacity: 0.5;
+   text-align: center;
+}
+   
+.back-drop img{
+   width: 100px;
+   /* rotateAnimation 이라는 키프레임을 2초 동한 일정한 비율로  무한 반복하기 */
+   animation: rotateAnimation 2s ease-out infinite;
+}
+   
+/* 회전하는 rotateAnimation 이라는 이름의 키프레임 정의하기 */
+@keyframes rotateAnimation{
+   0%{
+      transform: rotate(0deg);
+   }
+   100%{
+      transform: rotate(360deg);
+   }
+}
+
+.heart-click, .heart-notlogin {
+   color: red;
+}
+
+a.heart-click, a.heart-notlogin :hover {
+   color: red;
+}
+
+
+.open_reply_list{
+   color: black;
+}
+a.open_reply_list:hover{
+   color: black;
+}
+
+.modal-size{
+   height:80%; 
+   width: auto;
+}
+
+#m_writer {
+   font-size: 1.2rem;
+}
+
+.modal-section {
+   padding: 10px 10px;
+}
+
+.modal-section-media {
+   padding:  0;
+}
+
+.reply-list{
+   padding: 0px 20px 30px 20px;
+}
+
+#m_media {
+   padding: 10px 10px;
+}
+
+/*글쓴이의 프로필 사진을 둥글게*/
+#profileImage {
+   width: 40px;
+   height: 40px;
+   border: 0px;
+   /*border: 1px solid #cecece;*/
+   border-radius: 50%;
+}
+
+/*사용자의 댓글 입력란 프로필 사진을 둥글게*/
+
+#write_reply_profileImage {
+	width: 40px;
+	height: 40px;
+	border: 0px;
+	/*border: 1px solid #cecece;*/
+	border-radius: 50%;
+}
+
+.reply_list_profileImage {
+	width: 40px;
+	height: 40px;
+	border: 0px;
+	/*border: 1px solid #cecece;*/
+	border-radius: 50%;
+}
+
+.replyrow, .rereply_write {
+	padding: 10px 0;
+}
+
+.reply-list {
+	padding: 20px 0;
+}
+
+.reply-right {
+	text-align: right;
+}
+
+/*--------------------------------------------------------------
+# General
+
+
+
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+   padding: 30px 0;
+}
+
+.section-bg {
+   background-color: #f1f1f1;
+}
+
+.section-title {
+   text-align: center;
+   padding-bottom: 20px;
+}
+
+.section-title h2 {
+   font-size: 32px;
+   font-weight: bold;
+   text-transform: uppercase;
+   margin-bottom: 20px;
+   padding-bottom: 0;
+   color: #008000;
+}
+
+.section-title p {
+   margin-bottom: 0;
+}
+
+
+

@@ -6,6 +6,7 @@
 	<resultMap type="user" id="userResult">
 		<result property="email_id" column="EMAIL_ID" />
 		<result property="password" column="PASSWORD" />
+		<result property="name" column="NAME" />
 		<result property="nickname" column="NICKNAME" />
 		<result property="phone" column="PHONE" />
 		<result property="address1" column="ADDRESS1" />
@@ -16,8 +17,8 @@
 	</resultMap>
 	
 	<insert id="insertUser" parameterType="user">
-		INSERT INTO member (email_id, password, nickname, address1, address2, address3, phone, birth, gender) 
-		VALUES (#{email_id}, #{password}, #{nickname}, #{address1}, #{address2}, #{address3}, #{phone}, #{birth}, #{gender})
+		INSERT INTO member (email_id, password, name, nickname, address1, address2, address3, phone, birth, gender) 
+		VALUES (#{email_id}, #{password}, #{name}, #{nickname}, #{address1}, #{address2}, #{address3}, #{phone}, #{birth}, #{gender})
 	</insert>
 	
 	<select id="getUser" resultType="user">

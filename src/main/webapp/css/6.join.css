@@ -7,7 +7,7 @@
 	height: auto;
 	text-align: center;
 	padding-top: 200px;
-	padding-bottom: 430px;
+	padding-bottom: 800px;
 	/* border: 1px solid red;*/
 }
 
@@ -83,7 +83,7 @@
 }
 
 .join-form div input[type=text], .join-form div input[type=password],
-	.join-form div select, .email-form, #addr, #checkList .divGender, .nickname-form, 
+	.join-form div select, .email-form, #addr, #checkList, .nickname-form, 
 	#idInfo, #pwInfo, #phoneInfo, #birthInfo, #nickInfo, #addrInfo {
 	margin-top: 10px;
 	border-bottom: 2px solid rgba(0, 0, 0, 0.41);
@@ -127,7 +127,7 @@
 	margin-left: 87px;	/* 버튼 크기에 맞게 조정 */
 }
 
-#idInfo, #pwInfo, #phoneInfo, #birthInfo, #nickInfo, #addrInfo, #emailInfo{
+#idInfo, #pwInfo, #phoneInfo, #birthInfo, #nickInfo, #addrInfo, #emailInfo, #nameInfo{
 	width: 498px;
 	margin-top: 0px;
 	height: 12px;
@@ -178,21 +178,37 @@
 	background-image: url(../img/new-post-32.png);
 }
 
-/* 비밀번호 입력 폼 */
+/* 비밀번호 입력 이미지 */
 input[type=password] {
-	background-image: url(../img/key-32.png);
+	background-image: url(../img/password.png);
 }
 
-/* 닉네임 입력 폼 */
+/* 비밀번호 확인 이미지 */
+input[id=passwordCheck] {
+	background-image: url(../img/passwordCheck.png);
+}
+
+/* 인증번호 확인 이미지 */
+input[id=email2], input[id=phone2] {
+	background-image: url(../img/passwordCheck.png);
+}
+
+/* 이름 입력 이미지 */
+input[name=name] {
+	background-image: url(../img/name.png);
+}
+
+/* 닉네임 입력 이미지 */
 input[name=nickname] {
 	background-image: url(../img/rename-32.png);
 }
 
-/* 휴대전화 입력 폼 */
+/* 휴대전화 입력 이미지 */
 input[name=phone] {
 	background-image: url(../img/phone-2-32.png);
 }
 
+/* 생년월일 이미지 */
 #birth {
 	background-image: url(../img/birth.png);
 }
@@ -209,11 +225,15 @@ input[name=phone] {
 }
 
 #gender_div {
-	border-bottom: 1px solid rgba(0, 0, 0, 0.41);
+	border-bottom: 2px solid rgba(0, 0, 0, 0.41);
 	width: 500px;
 	height: 55px;
 	margin: auto;
 	text-align: left;
+}
+
+#gender_div:hover {
+	border-bottom: 2px solid #50b9abd0;
 }
 
 #man, #woman {
