@@ -21,7 +21,7 @@
 		base-package="four.mint.web"></context:component-scan>
 
 	<mvc:annotation-driven />
-
+	<context:annotation-config/>
 	<context:property-placeholder
 		location="classpath:config/database.properties" />
 
@@ -69,5 +69,37 @@
 				<prop key="mail.smtp.starttls.enable">true</prop>
 			</props>
 		</property>
+	</bean>
+	
+	<!--  OAuth2 login  -->
+	<bean id="naverClientID" class="java.lang.String">
+		<constructor-arg value="L1KoaKl8P4eiKiZycEl7"/>
+	</bean>
+	<bean id="naverClientSecret" class="java.lang.String">
+		<constructor-arg value="AEACaBm1CV"/>
+	</bean>
+	<bean id="naverRedirectUrl" class="java.lang.String">
+		<constructor-arg value="http://localhost:8080/navercallback.do"/>
+	</bean>
+	<bean id="naverSns" class="four.mint.web.user.SnsValue">
+		<constructor-arg value="naver"/>
+		<constructor-arg ref="naverClientID"/>
+		<constructor-arg ref="naverClientSecret"/>
+		<constructor-arg ref="naverRedirectUrl"/>	
+	</bean>
+	<bean id="kakaoClientID" class="java.lang.String">
+		<constructor-arg value="bf00d4ac24d24e1ade5e64db4b28629a"/>
+	</bean>
+	<bean id="kakaoClientSceret" class="java.lang.String">
+		<constructor-arg value="0Gt9Ucuj49Zpj1PNZeUSBbL4uqSFm8Jw"/>
+	</bean>
+	<bean id="kakaoRedirectUrl" class="java.lang.String">
+		<constructor-arg value="http://localhost:8080/kakaocallback.do"/>
+	</bean>
+	<bean id="kakaoSns" class="four.mint.web.user.SnsValue">
+		<constructor-arg value="kakao"/>
+		<constructor-arg ref="kakaoClientID"/>
+		<constructor-arg ref="kakaoClientSceret"/>
+		<constructor-arg ref="kakaoRedirectUrl"/>
 	</bean>
 </beans>
