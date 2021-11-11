@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="user" type="four.mint.web.user.UserVO" />
+		<typeAlias alias="communityBoard" type="four.mint.web.user.community.CommunityBoardVO" />
+		<typeAlias alias="market" type="four.mint.web.user.market.MarketVO" />
+		<typeAlias alias="store" type="four.mint.web.user.store.StoreVO" />
+		<typeAlias alias="categoryBig" type="four.mint.web.user.market.MarketCategoryBigVO"/>
+		<typeAlias alias="skey" type="four.mint.web.common.SThreeVO" />
+		<typeAlias alias="key" type="four.mint.web.common.AesVO" />
+		<typeAlias alias="admin" type="four.mint.web.admin.login.AdminVO" />
+		<typeAlias alias="message" type="four.mint.web.message.MessageVO" />
+		<typeAlias alias="storeCategoryBig" type="four.mint.web.user.store.StoreCategoryBigVO" />
+	</typeAliases>
+	<typeHandlers>
+	    <typeHandler javaType="java.util.Map" handler="four.mint.web.common.JsonTypeHandler"/>
+	</typeHandlers>
+	<mappers>
+		<mapper resource="mappings/UserMapping.xml" />
+		<mapper resource="mappings/CommunityBoardMapping.xml" />
+		<mapper resource="mappings/MarketMapping.xml" />
+		<mapper resource="mappings/StoreMapping.xml" />
+		<mapper resource="mappings/KeyMapping.xml" />
+		<mapper resource="mappings/AdminMapping.xml"/>
+		<mapper resource="mappings/MessageMapping.xml" />
+	</mappers>
+</configuration>
