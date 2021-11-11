@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <title>민트 마켓</title>
 <link rel="shortcut icon" type="image/x-icon"
@@ -21,19 +20,15 @@
         <input type="radio" name="circle" id="slide4">
       <ul class="slideImg">
          <li class="jsSlide"><a href=""><img src="../img/market_slide1.png" alt="민트마켓슬라이드1"></a></li>
-         <li class="jsSlide"><a href=""> <img src="../img/market_slide2.png" alt="민트마켓슬라이드2"></a></li>
+         <li class="jsSlide"><a href=""><img src="../img/market_slide2.png" alt="민트마켓슬라이드2"></a></li>
          <li class="jsSlide"><a href=""><img src="../img/market_slide3.png" alt="민트마켓슬라이드3"></a></li>
          <li class="jsSlide"><a href=""><img src="../img/market_slide4.png" alt="민트마켓슬라이드4"></a></li>
-         <!-- <li class="jsSlide"><a href=""><img src="../img/slide5.png" alt="tea"></a></li> -->
       </ul>
       <ul class="circleBtn">
          <li><span class="circle" onclick="dotSlide(0)"><label for="slide1">&nbsp;</label></span></li>
          <li><span class="circle" onclick="dotSlide(1)"><label for="slide2">&nbsp;</label></span></li>
          <li><span class="circle" onclick="dotSlide(2)"><label for="slide3">&nbsp;</label></span></li>
          <li><span class="circle" onclick="dotSlide(3)"><label for="slide4">&nbsp;</label></span></li>
-         <!-- <li>
-                       <span class="circle" onclick="dotSlide(4)"></span>
-                   </li> -->
       </ul>
    </div>
 

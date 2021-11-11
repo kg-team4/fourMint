@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +21,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
+import four.mint.web.common.DateUtil;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.board.common.SearchVO;
 
 @Controller
 public class MarketController {
@@ -44,6 +47,7 @@ public class MarketController {
 		marvo = marketService.getMarketOne(Integer.valueOf(request.getParameter("seq")));
 		
 		model.addAttribute("content", marvo);
+		model.addAttribute("date", DateUtil.txtDate(marvo.getDate()));
 		
 		model.addAttribute("result1", userService.getAddress1(vo));
 		model.addAttribute("result2", userService.getAddress2(vo));
@@ -53,43 +57,125 @@ public class MarketController {
 	}
 
 	@RequestMapping(value = "/marketDetailList.do", method = RequestMethod.GET)
-	public String mintDetailList(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String mintDetailList(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
 		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
-		model.addAttribute("marketCategoryBig", marketCategoryBig);
+		request.setAttribute("marketCategoryBig", marketCategoryBig);
 		
-		String pageNum = request.getParameter("pageNum");
-		if (pageNum == null)
-			pageNum = "1";
-		int pageSize = 9;
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = currentPage * pageSize;
-		int count = marketService.getMarketCount();
-		int number = 0;
-		List<MarketVO> marketList = null;
-		PageVO vo = new PageVO();
-		if (count > 0) {
-			vo.setStartRow(startRow);
-			vo.setEndRow(endRow);
-			marketList = marketService.getMarketList(request, vo);
-		} else
-			marketList = Collections.emptyList();
-		number = count - (currentPage - 1) * pageSize;
-		request.setAttribute("currentPage", Integer.valueOf(currentPage));
-		request.setAttribute("startRow", Integer.valueOf(startRow));
-		request.setAttribute("endRow", Integer.valueOf(endRow));
-		request.setAttribute("count", Integer.valueOf(count));
-		request.setAttribute("pageSize", Integer.valueOf(pageSize));
-		request.setAttribute("number", Integer.valueOf(number));
-		request.setAttribute("marketList", marketList);
+		String kind = request.getParameter("kind");
+		
+		/*페이징 처리 시작*/
+		int page = 1;
+		int limit = 9;     
+		
+		svo.setKind(kind);
+		svo.setPage(page);
+		
+		int listCount = marketService.getKindCount(svo);
+		svo.setRnum(listCount);
+		int maxPage = (listCount+limit-1)/limit;
+		int startPage = ((page-1)/5) * 5 + 1;
+		int endPage = startPage + 5 - 1;
+		if(endPage > maxPage) 
+			endPage = maxPage;
+		if(endPage < page) 
+			page = endPage;
+		/*페이징 처리 끝*/
+		
+		List<MarketVO> mVo;
+		mVo = marketService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
 
-		model.addAttribute("marketList", marketList);
+		request.setAttribute("kind", kind);
+		request.setAttribute("page", page);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("listCount", listCount);
+		request.setAttribute("marketList", mVo);
+		request.setAttribute("pageNum", page);
+		
+		return "/board/market_post_list";
+	}
+	
+	@RequestMapping(value = "/marketDetailList.do", method = RequestMethod.POST)
+	public String mintDetailListUpload(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
+		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
+		request.setAttribute("marketCategoryBig", marketCategoryBig);
+		
+		String kind = request.getParameter("kind");
+		String kindTwo = request.getParameter("kindTwo");
+		String arrow = request.getParameter("arrow");
+		
+		/*페이징 처리 시작*/
+		String currentPage = request.getParameter("pageNum");
+		int page;
 
+		if(currentPage == null) {
+			page = 1; 
+		} else {
+			page = Integer.parseInt(currentPage);
+		}
+		
+		if(arrow != null) {
+			if(arrow.equals("prev")) {
+				page = (page - 1) / 5 + ((page - 1) / 5) * 4;
+				if(page < 1) {
+					page = 1;
+				}
+			} else if(arrow.equals("next")) {
+				page = (page + 6) / 6 + (5 * ((page + 6) / 6)) - ((page - 1) / 5);
+			}
+		}
+		
+		svo.setKind(kind);
+		svo.setKindTwo(kindTwo);
+
+		if(page > Math.round((double)marketService.getKindTwoCount(svo) / 9)) {
+			page = (int)Math.round((double)marketService.getKindTwoCount(svo) / 9) + 1;
+		}
+
+		request.setAttribute("pageNum", page);
+		
+		int limit = 9;   
+		
+		svo.setPage(page);
+		
+		int listCount = marketService.getKindTwoCount(svo);
+		svo.setRnum(listCount);
+		
+		int maxPage = (listCount+limit-1)/limit;
+		int startPage = ((page-1)/5) * 5 + 1;
+		int endPage = startPage + 5 - 1;
+		
+		if(endPage > maxPage) 
+			endPage = maxPage;
+		if(endPage < page) 
+			page = endPage;
+		/*페이징 처리 끝*/
+		
+		List<MarketVO> mVo;
+		if(kindTwo == null) {
+			mVo = marketService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
+		} else {
+			mVo = marketService.getKindTwoList(svo);
+		}
+
+		request.setAttribute("kind", kind);
+		request.setAttribute("kindTwo", kindTwo);
+		request.setAttribute("page", page);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("listCount", listCount);
+		request.setAttribute("marketList", mVo);
+		
 		return "/board/market_post_list";
 	}
 	
 	@RequestMapping(value = "/marketSell.do", method = RequestMethod.GET)
-	public String marketSell(Model model) {
+	public String marketSell(Model model, HttpSession session) {
+		if(session.getAttribute("userEmail_id") == null) {
+			return "/user/login";
+		}
 		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
 		model.addAttribute("marketCategoryBig", marketCategoryBig);
 		
@@ -97,7 +183,7 @@ public class MarketController {
 	}
 	
 	@RequestMapping(value = "/marketSell.do", method = RequestMethod.POST)
-	public String marketUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response, MarketVO vo) throws NoSuchAlgorithmException, GeneralSecurityException {
+	public String marketUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response, MarketVO vo, HttpSession session) throws NoSuchAlgorithmException, GeneralSecurityException {
 		try {
 			AES256Util.setKey(marketService.getKey().getKey());
 			AES256Util aes = new AES256Util();
@@ -114,6 +200,8 @@ public class MarketController {
 				vo.setImg_name(file.getOriginalFilename());
 				vo.setUrl(uploadFolder + key);
 				vo.setCategory_middle(vo.getCategory_middle().replace(",", ""));
+				vo.setAddress2(String.valueOf(session.getAttribute("address2")));
+				vo.setNickname(String.valueOf(session.getAttribute("nickname")));
 			marketService.insertMarket(vo);
 		} catch (IOException ex) {
 			ex.printStackTrace();

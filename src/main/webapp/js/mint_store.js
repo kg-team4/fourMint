@@ -30,7 +30,6 @@ window.onload = function autoSlide(){
 }
 
 //Best
-
 function handleModal(n){
     //clickColor
     let boolean = heart[n].classList.toggle('clickHeart');

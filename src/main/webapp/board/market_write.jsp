@@ -20,8 +20,6 @@
 		<form action="marketSell.do" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
 
 			<!-- board_no 값 hidden으로 넘겨주기  -->
-			<input type="hidden" name="board_no" value="1">
-
 			<div class="used_container">
 
 				<!--  이미지 등록 -->
@@ -114,11 +112,15 @@
 
 			</div>
 			<!--  등록 버튼 -->
+			<input type="hidden" value="${address2 }" />
+			<input type="hidden" value="${nickname }" />
 			<div align="right" class="form-input">
 				<input class="form-btn" type="submit" value="등록하기">
 			</div>
 
 		</form>
+		
+		<a href="storeSell.do">스토어 판매</a> 
 	</div>
 </article>
 
@@ -190,7 +192,9 @@
 		} else if($(this).val() == "도서 · 음반") {
 			$(".cate_all").hide();
 			$("#category_12").show();
-		} 
+		} else if($(this).val() == "기타") {
+			$(".cate_all").hide();
+		}
 	});
 
 </script>

@@ -77,7 +77,7 @@
 						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}&nbsp;>&nbsp;${content.category_middle }</span>
 					</div>
 					<div class="padding15">
-						<span class="gray-font">&middot; 거래지역</span><span class="green-font">&emsp;${result1}&nbsp;${result2}&nbsp;${result3}</span>
+						<span class="gray-font">&middot; 거래지역</span><span class="green-font">&emsp;${content.address2}</span>
 					</div>
 				</div>
 				<div>
@@ -131,7 +131,7 @@
 					// 주소-좌표 변환 객체를 생성합니다
 					var geocoder = new kakao.maps.services.Geocoder();
 					
-					var address = "${result2}";
+					var address = "${content.address2}";
 						
 					// 주소로 좌표를 검색합니다
 					geocoder.addressSearch(address, function(result, status) {
@@ -268,4 +268,30 @@
 		</div>
 	</div>
 </article>
+
+<script>
+	function timeForToday(value) {
+	    const today = new Date();
+	    const timeValue = new Date(value);
+	
+	    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+	    if (betweenTime < 1) return '방금전';
+	    if (betweenTime < 60) {
+	        return `${betweenTime}분전`;
+	    }
+	
+	    const betweenTimeHour = Math.floor(betweenTime / 60);
+	    if (betweenTimeHour < 24) {
+	        return `${betweenTimeHour}시간전`;
+	    }
+	
+	    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+	    if (betweenTimeDay < 365) {
+	        return `${betweenTimeDay}일전`;
+	    }
+	
+	    return `${Math.floor(betweenTimeDay / 365)}년전`;
+	}
+</script>
+
 <jsp:include page="../template/footer.jsp"></jsp:include>

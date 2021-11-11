@@ -12,6 +12,7 @@
 		<typeAlias alias="key" type="four.mint.web.common.AesVO" />
 		<typeAlias alias="admin" type="four.mint.web.admin.login.AdminVO" />
 		<typeAlias alias="message" type="four.mint.web.message.MessageVO" />
+		<typeAlias alias="storeCategoryBig" type="four.mint.web.user.store.StoreCategoryBigVO" />
 	</typeAliases>
 	<typeHandlers>
 	    <typeHandler javaType="java.util.Map" handler="four.mint.web.common.JsonTypeHandler"/>

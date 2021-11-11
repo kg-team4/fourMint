@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.store.StoreCategoryBigVO;
 import four.mint.web.user.store.StoreVO;
 
 @Repository
@@ -26,5 +27,17 @@ public class StoreDAO {
 	public int getStoreCount() {
 		
 		return sqlSessionTemplate.selectOne("StoreDAO.getStoreCount");
+	}
+
+	public List<StoreCategoryBigVO> getStoreCategoryBig() {
+		System.out.println("======> categoryBig get");
+		
+		return sqlSessionTemplate.selectList("StoreDAO.getStoreCategoryBig");
+	}
+	
+	public void insertStore(StoreVO vo) {
+		sqlSessionTemplate.insert("StoreDAO.insertStore", vo);
+		
+		System.out.println("======> store INSERT");
 	}
 }

@@ -9,14 +9,19 @@
 			<div class="best">
 				<h1 style="padding: 0 5%;"></h1>
 				<c:forEach var="big" items="${ marketCategoryBig }">
-				<div class="bestBox" style="display: block;">
+					<div class="bestBox" style="display: block;">
 					<c:set var="no" value="${param.big_no }" />
 					<c:set var="name" value="${big.name }" />
+					<c:set var="etc" value="기타" />
+					<c:set var="buy" value="삽니다" />
 					<!-- 마켓 글 목록 -->
 					<c:choose>
 						<c:when test="${no eq name}">
 							<h2 class="category_list_title" style="margin: 0 5px 3px 0;">
-								<a href="marketDetailList.do?big_no=${big.name }">${big.name }</a>&nbsp;<input type="button" class="slider" value="▲" style="background: none; border: 0px;">
+								<a href="marketDetailList.do?big_no=${big.name }">${big.name }</a>&nbsp;
+								<c:if test="${big.name ne etc && big.name ne buy}">
+									<input type="button" class="slider" value="▲" style="background: none; border: 0px;">
+								</c:if>
 							</h2>
 							<ul class="category_list_middle" style="margin: 0 5px 8px 0;">
 								<c:forEach var="middle" items="${ big.middle }">
@@ -26,7 +31,10 @@
 						</c:when>
 						<c:otherwise>
 							<h2 class="category_list_title" style="margin: 0 5px 3px 0;">
-								<a href="marketDetailList.do?big_no=${big.name }">${big.name }</a>&nbsp;<input type="button" class="slider" value="▼" style="background: none; border: 0px;">
+								<a href="marketDetailList.do?big_no=${big.name }">${big.name }</a>&nbsp;
+								<c:if test="${big.name ne etc && big.name ne buy}">
+									<input type="button" class="slider" value="▼" style="background: none; border: 0px;">
+								</c:if>
 							</h2>
 							<ul class="category_list_middle" style="margin: 0 5px 8px 0; display: none;">
 								<c:forEach var="middle" items="${ big.middle }">

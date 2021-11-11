@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.store.StoreCategoryBigVO;
 import four.mint.web.user.store.StoreService;
 import four.mint.web.user.store.StoreVO;
 
@@ -30,5 +31,20 @@ public class StoreServiceImpl implements StoreService {
 		
 		return page;
 	}
+	
+	@Override
+	public List<StoreCategoryBigVO> getStoreCategoryBig() {
+		List<StoreCategoryBigVO> newCaVO = storeDao.getStoreCategoryBig();
+		
+		return newCaVO;
+	}
+	
+	@Override
+	public void insertStore(StoreVO vo) {
+		storeDao.insertStore(vo);
+		
+	}
+
+	
 
 }
