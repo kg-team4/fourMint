@@ -191,7 +191,9 @@
 		} else if($(this).val() == "도서 · 음반") {
 			$(".cate_all").hide();
 			$("#category_12").show();
-		} 
+		} else if($(this).val() == "기타") {
+			$(".cate_all").hide();
+		}
 	});
 
 </script>
