@@ -55,14 +55,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
-		String api_key = "NCSR8NPIYDTCOD0B";
-		String api_secret = "2BKKC7W8XEC03WU1YLY0FIRZVPLAC6U3";
+		String api_key = "";
+		String api_secret = "";
 		Message coolsms = new Message(api_key, api_secret);
 
 		// 4 params(to, from, type, text) are mandatory. must be filled
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", userPhoneNumber); // 수신전화번호
-		params.put("from", "01022895274"); // 발신전화번호.
+		params.put("from", "01000000000"); // 발신전화번호.
 		params.put("type", "SMS");
 		params.put("text", "인증번호는" + "[" + randomNumber + "]" + "입니다."); // 문자 내용 입력
 		params.put("app_version", "test app 1.2"); // application name and version
