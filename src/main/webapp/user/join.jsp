@@ -57,6 +57,13 @@
 				 id="passwordCheck" maxlength="15" oninput="pwCheck()" required="required">
 		</div>
 		<div id="pwCheckInfo"></div>
+		
+		<!------------ 이름 ------------->
+		<div class="name-form">
+			<input type="text" name="name" placeholder="이름" id="name"
+				 maxlength="10" oninput="checkName()" required="required">
+		</div>
+		<div id="nameInfo"></div>
 
 		<!------------ 닉네임 ------------->
 		<div class="nickname-form">
@@ -114,9 +121,9 @@
 		<!------------ 성별 ------------->
 		<div align="center" id="gender_div">
 			<input type="text" id="gender" readonly>
-			<input type="radio" class="genderRadio" name="group_gender" onclick="getGender(event)" id="man" value="man" checked>&nbsp;
-			<label for="man">남성</label>&nbsp;&nbsp;
-			<input type="radio" class="genderRadio" name="group_gender" onclick="getGender(event)" id="woman" value="woman">&nbsp;
+			<input type="radio" class="genderRadio" name="group_gender" onclick="getGender(event)" id="man" value="man" checked>
+			<label for="man">남성</label>&nbsp;&nbsp;&nbsp;
+			<input type="radio" class="genderRadio" name="group_gender" onclick="getGender(event)" id="woman" value="woman">
 			<label for="woman">여성</label>
 		</div>
 		<input type="hidden" name="gender" id="genderValue">
