@@ -25,7 +25,7 @@
 			<div class="search">
 				<form action="../board/used_all_post_list.jsp" method="get" style="border: 1px solid white;">
 					<input type="hidden" name="type" value="post_title">
-					<input type="text" class="search-bar" name="keyword" placeholder="검색어를 입력해주세요!"> 
+					<input type="text" class="search-bar" name="keyword" placeholder="${session.result}"> 
 					<input type="submit" class="search-icon" value="">
 				</form>
 			</div>

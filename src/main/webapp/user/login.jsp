@@ -3,6 +3,9 @@
     
 <link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
 <title>민트마켓 로그인</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 
 <!-- template head-->
 <link rel="stylesheet" href="../css/reset.css">
@@ -16,10 +19,10 @@
                     <img src="../img/logo_icon.png" alt="logo_icon" id="logo_icon">
                 </div>
                 <div>
-                    <input type="text" name="email_id" placeholder="이메일" id="id" required>
+                    <input type="text" name="email_id" placeholder="이메일" id="id">
                 </div>
                 <div>
-                    <input type="password" name="password" placeholder="비밀번호" id="pw" required>
+                    <input type="password" name="password" placeholder="비밀번호" id="pw">
                 </div>
                 <div>
                     <div id="login-tool">
@@ -33,7 +36,8 @@
                 <div>
                 	
                     <input type="submit" value="민트마켓 아이디로 로그인" id="login-submit" /><br>            
-                    <button class="btn-naverLogin"><img src="img/naver_logo.PNG" style="height:18px;width:18px;">&nbsp;&nbsp; 네이버 아이디로 로그인</button><br>
+                    
+                    <button class="btn-naverLogin"><img src="img/naver_logo.PNG" style="height:18px;width:18px;">&nbsp;&nbsp; 네이버 아이디로 로그인</button><br> 
         			<button class="btn-kakaoLogin"><img src="img/kakao_logo.PNG" style="height:23px;width:24px;">&nbsp;&nbsp; 카카오 아이디로 로그인</button><br>
 					<button class="btn-googleLogin"><img src="img/google_logo.PNG" style="height:23px;width:23px;">&nbsp;&nbsp; 구글 아이디로 로그인</button><br>
 					
@@ -41,5 +45,24 @@
             </form>
         </article>	
 
+<script>
+	$(function(){
+		$(".btn-kakaoLogin").click(function(){
+			$.ajax({
+				url: '/kakaologin.do',
+				type: 'get'
+			});
+		});
+	})
+	
+	$(function(){
+		$(".btn-naverLogin").click(function(){
+			$.ajax({
+				url: 'naverlogin.do',
+				type: 'get'
+			})
+		})
+	})
+</script>
 <!-- template footer-->
 <jsp:include page="../template/footer.jsp"></jsp:include>
