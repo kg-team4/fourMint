@@ -470,7 +470,7 @@ $('.sel_family_group').find('.sel_option').on({
 	}
 });
 
-var _gaUaKey = "UA-92021806-1";
+
 var _wlDomain = "www.oliveyoung.co.kr";
 
 // [3533553] (GA) GA/GTM 기본 셋팅 및 데이터레이어 태깅

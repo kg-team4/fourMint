@@ -94,7 +94,7 @@ try {
 	<!-- #Contents -->
 	<div id="Contents" style="padding-top: 143px;">		
 		<script type="text/javascript">;
-			var kakaoApiKey = "24077b12ac18b11a96696382ccaa7138";
+			var kakaoApiKey = "";
 			
 			var jsDum = "?dumm=202110280001";
 			$(document).ready(function(){

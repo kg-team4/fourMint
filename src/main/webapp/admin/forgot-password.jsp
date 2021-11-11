@@ -1,19 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Forgot Password</title>
+    <title>비밀번호 찾기</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -40,7 +38,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
+                                        <h1 class="h4 text-gray-900 mb-2">비밀번호 찾기</h1>
                                         <p class="mb-4">We get it, stuff happens. Just enter your email address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
@@ -48,25 +46,24 @@
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="아이디를 입력하세요..">
                                         </div>
-                                        <a href="login.jsp" class="btn btn-primary btn-user btn-block">
-                                            Reset Password
+                                        <a href="login.mdo" class="btn btn-primary btn-user btn-block">
+                                            새로운 비밀번호
                                         </a>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="register.jsp">Create an Account!</a>
+                                        <a class="small" href="register.mdo">계정을 등록하세요</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="login.jsp">Already have an account? Login!</a>
+                                        <a class="small" href="login.mdo">이미 계정이 있으십니까? 로그인!</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </div>
