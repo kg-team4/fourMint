@@ -3,38 +3,39 @@
 <%-- <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> --%>
 <%-- <%
 if (request.getAttribute("result") != null) {
-	int result = (Integer) request.getAttribute("result");
-	if (result == 1) {
-		int flag = (Integer) request.getAttribute("flag");
+   int result = (Integer) request.getAttribute("result");
+   if (result == 1) {
+      int flag = (Integer) request.getAttribute("flag");
 
-		out.println("<script type='text/javascript'>");
-		if (flag == 0) {
-	out.println("alert('수정 성공!');");
-	out.println("location.href='./profile.do';");
-		} else {
-	out.println("alert('수정에 실패했습니다.');");
-	out.println("history.back();");
-		}
-		out.println("</script>");
-	}
+      out.println("<script type='text/javascript'>");
+      if (flag == 0) {
+   out.println("alert('수정 성공!');");
+   out.println("location.href='./profile.do';");
+      } else {
+   out.println("alert('수정에 실패했습니다.');");
+   out.println("history.back();");
+      }
+      out.println("</script>");
+   }
 
-	if (result == 2) {
-		int flag = (Integer) request.getAttribute("flag");
+   if (result == 2) {
+      int flag = (Integer) request.getAttribute("flag");
 
-		out.println("<script type='text/javascript'>");
-		if (flag == 0) {
-	out.println("alert('삭제 성공!');");
-	out.println("location.href='./profile.do';");
-		} else {
-	out.println("alert('삭제에 실패했습니다.');");
-	out.println("history.back();");
-		}
-		out.println("</script>");
-	}
+      out.println("<script type='text/javascript'>");
+      if (flag == 0) {
+   out.println("alert('삭제 성공!');");
+   out.println("location.href='./profile.do';");
+      } else {
+   out.println("alert('삭제에 실패했습니다.');");
+   out.println("history.back();");
+      }
+      out.println("</script>");
+   }
 }
 %> --%>
 <title>마이페이지</title>
-<link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="../img/logo_icon.png" />
 <link rel="stylesheet" href="../css/reset.css">
 <jsp:include page="./index.jsp"></jsp:include>
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -47,26 +48,18 @@ if (request.getAttribute("result") != null) {
 	<%-- <jsp:include page="./navbar.jsp">
       <jsp:param value="profile" name="thisPage" />
    </jsp:include> --%>
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
+	<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
 	<br />
 
-	<div class="container bootstrap snippet" style="padding-left:100px"	>
+	<div class="container bootstrap snippet" style="padding-left: 100px">
 		<div class="row">
 
 			<div class="col-sm-3">
 				<!--left col-->
 				<div class="nick-div">
 					<h5>
-						<b><span style="color: #26e4ca;">우쭈쭈동동<%-- ${uto.nick } --%>&nbsp;</span>님의
-							프로필</b>
+						<b><span style="color: #26e4ca;">우쭈쭈동동<%-- ${uto.nick } --%>&nbsp;
+						</span>님의 프로필</b>
 					</h5>
 				</div>
 				<div class="text-center row">
@@ -76,11 +69,13 @@ if (request.getAttribute("result") != null) {
 								src="<%-- ./upload/profile/${uto.profile } --%>../img/character_sample.png"
 								class="avatar img-circle img-profile" alt="avatar">
 						</div>
-					</div>	
-					<span class="col-0 profile_d_m" style="text-align: right; padding: 0px; width: 100px;">
-						<button type="button" style= "font-size:10px; margin-left:240px; margin-top:-30px" class="btn btn--blue-2 btn--radius-2" data-bs-toggle="modal" data-bs-target="#edit_img">
-							edit
-						</button>
+					</div>
+					<span class="col-0 profile_d_m"
+						style="text-align: right; padding: 0px; width: 100px;">
+						<button type="button"
+							style="font-size: 10px; margin-left: 240px; margin-top: -30px"
+							class="btn btn--blue-2 btn--radius-2" data-bs-toggle="modal"
+							data-bs-target="#edit_img">edit</button>
 					</span>
 				</div>
 				<br>
@@ -97,9 +92,9 @@ if (request.getAttribute("result") != null) {
 						77<%-- ${uto.greet } --%></li>
 				</ul>
 				<div class="col-6 offset-2 div_modify_profile">
-					<button type="button" style= "width:135%; font-size:15px" class="btn btn--blue-2 btn--radius-2 btn_modify_profile" onclick="location.href='./edit_profile.do'">
-						내 정보 수정하기
-					</button>
+					<button type="button" style="width: 135%; font-size: 15px"
+						class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
+						onclick="location.href='./edit_profile.do'">내 정보 수정하기</button>
 				</div>
 
 			</div>
@@ -115,7 +110,7 @@ if (request.getAttribute("result") != null) {
 						<button class="nav-link" id="pic" data-bs-toggle="tab"
 							data-bs-target="#Picture" type="button" role="tab"
 							aria-controls="profile" aria-selected="false">나의 중고거래</button>
-					</li>					
+					</li>
 					<li class="nav-item" role="presentation">
 						<button class="nav-link" id="acc" data-bs-toggle="tab"
 							data-bs-target="#accom" type="button" role="tab"
@@ -138,152 +133,127 @@ if (request.getAttribute("result") != null) {
 					<div class="tab-pane fade show active" id="lantrip" role="tabpanel"
 						aria-labelledby="home-tab">
 						<div class="store_review_all">
-							<br>
-							<br>
+							<br> <br>
 							<p>
-								<span><strong>상점후기 &nbsp;&nbsp;</strong></span> 
-								<span style="color: #26e4ca">17</span>
+								<span><strong>상점후기 &nbsp;&nbsp;</strong></span> <span
+									style="color: #26e4ca">17</span>
 							</p>
-																												
+
 							<div class="store_review_grid">
-								<div class="store_review">							
+								<div class="store_review">
 									<table width="100%" height="140">
 										<tr>
 											<td width="20%" rowspan="2">
-													<div id="img_box">														
-														<a id="store_review_img_area" href="#"  >
-															<img id="store_review_img" src="../img/character_sample2.jpg" width="100" height="100" alt="상점이미지">
-														</a>
-													</div>
-											</td>	 								
-											<td style="font-size:20px" width="10%"  height="40px" >
-												<a href="#" style="color: #26e4ca" >닉네임</a>
+												<div id="img_box">
+													<a id="store_review_img_area" href="#"> <img
+														id="store_review_img" src="../img/character_sample2.jpg"
+														width="100" height="100" alt="상점이미지">
+													</a>
+												</div>
 											</td>
-											<td width="30%" >
-												
-													<div class="">
-														<a class="" href="#">
-															<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-															<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-															<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-															<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-															<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-														</a>
-													</div>
-												
+											<td style="font-size: 20px" width="10%" height="40px"><a
+												href="#" style="color: #26e4ca">닉네임</a></td>
+											<td width="30%">
+
+												<div class="">
+													<a class="" href="#"> <img src="../img/star_rank.png"
+														width="15" height="14" alt="별점이미지"> <img
+														src="../img/star_rank.png" width="15" height="14"
+														alt="별점이미지"> <img src="../img/star_rank.png"
+														width="15" height="14" alt="별점이미지"> <img
+														src="../img/star_rank.png" width="15" height="14"
+														alt="별점이미지"> <img src="../img/star_rank.png"
+														width="15" height="14" alt="별점이미지">
+													</a>
+												</div>
+
 											</td>
 											<td></td>
-											<td style="font-size:15px" width="10%" >
+											<td style="font-size: 15px" width="10%">
 												<div id="date">1달 전</div>
 											</td>
 										</tr>
 										<tr>
-											<td align="left" colspan="4" style="font-size:15px" >
+											<td align="left" colspan="4" style="font-size: 15px">
 												<button id="btn_sold_product_name">
-													&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
+													&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png"
+														width="6" height="10" alt="화살표 아이콘">&nbsp;
 												</button>
-												
-												<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
+
+												<div id="sold_product_review">빠른 쿨거래 해주셔서 너무
+													좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
 											</td>
-										</tr>										
+										</tr>
 									</table>
-									<br><hr>
+									<br>
+									<hr>
 								</div>
-								
-								<br><br><br> 
-								<div class="store_review">							
+
+								<br> <br> <br>
+								<div class="store_review">
 									<table width="100%" height="120">
 										<tr height="30">
-											<td width="20%" rowspan="2">
-												<a id="store_review_img_area" href="#"  >
+											<td width="20%" rowspan="2"><a
+												id="store_review_img_area" href="#">
 													<div id="img_box">
-														<img id="store_review_img" src="../img/character_sample1.jpg" alt="상점이미지">
+														<img id="store_review_img"
+															src="../img/character_sample1.jpg" alt="상점이미지">
 													</div>
-												</a> 								
-											</td>
-											<td style="font-size:20px" width="10%">
-												<a href="#" style="color: #26e4ca" >닉네임</a>
-											</td>
-											<td width="30%">
-												<a class="" href="#">
+											</a></td>
+											<td style="font-size: 20px" width="10%"><a href="#"
+												style="color: #26e4ca">닉네임</a></td>
+											<td width="30%"><a class="" href="#">
 													<div class="">
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+														<img src="../img/star_rank.png" width="15" height="14"
+															alt="별점이미지"> <img src="../img/star_rank.png"
+															width="15" height="14" alt="별점이미지"> <img
+															src="../img/star_rank.png" width="15" height="14"
+															alt="별점이미지"> <img src="../img/star_rank.png"
+															width="15" height="14" alt="별점이미지"> <img
+															src="../img/star_rank.png" width="15" height="14"
+															alt="별점이미지">
 													</div>
-												</a>
-											</td>
+											</a></td>
 											<td></td>
-											<td style="font-size:15px" width="10%">
+											<td style="font-size: 15px" width="10%">
 												<div id="date">1달 전</div>
 											</td>
 										</tr>
 										<tr>
-											<td align="left" colspan="4" style="font-size:15px" >
+											<td align="left" colspan="4" style="font-size: 15px">
 												<button id="btn_sold_product_name">
-													&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
+													&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png"
+														width="6" height="10" alt="화살표 아이콘">&nbsp;
 												</button>
-												
-												<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
+
+												<div id="sold_product_review">빠른 쿨거래 해주셔서 너무
+													좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
 											</td>
-										</tr>										
+										</tr>
 									</table>
-									<br><hr>
+									<br>
+									<hr>
 								</div>
-										
-							</div>																				
-				
+
+							</div>
+
 							<br> <br> <br>
 
 
 							<div class="following_all">
-								<hr><br><br>
+								<hr>
+								<br> <br>
 								<p>
-									<span><strong>팔로잉 &nbsp;&nbsp;</strong></span> 
-									<span style="color: #26e4ca">88</span>
+									<span><strong>팔로잉 &nbsp;&nbsp;</strong></span> <span
+										style="color: #26e4ca">88</span>
 								</p>
-								<div class="following_all_grid" >
-								
+								<div class="following_all_grid">
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/character_sample2.jpg" alt="상점이미지">
-											</div>											
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-											</div>
-										</a>
-									
-										<a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>							
-									</div>
-									
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
-											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img" src="../img/character_sample2.jpg"
+													alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -291,34 +261,35 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													 style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
 										</a>
-							
 									</div>
-									
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -326,33 +297,36 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
+
 									</div>
-									
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -360,33 +334,35 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
 									</div>
-									
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -394,33 +370,35 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
 									</div>
-									
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -428,33 +406,35 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
 									</div>
-									
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -462,33 +442,35 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
 									</div>
-									
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -496,44 +478,84 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
+											</div>
+										</a> <a class="" href="#">
+											<button id="btn_sold_product_name">
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
+											</button>
+										</a>
+									</div>
+
+									<div class="following">
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
+											<div id="following_img_box">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
-									
+										<div class="store_review_text_area">
+											<div class="">
+												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
+											</div>
+											<div>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
+											</div>
+										</div>
 										<a class="" href="#">
+											<div class="">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
+											</div>
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
 									</div>
-									
+
 								</div>
 							</div>
-							<br> <br><br>
+							<br> <br> <br>
 
 							<div class="follower_all">
-								<hr><br><br>
+								<hr>
+								<br> <br>
 								<p>
-									<span><strong>팔로워 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">44</span>
+									<span><strong>팔로워 &nbsp;&nbsp;</strong></span> <span
+										style="color: #26e4ca">44</span>
 								</p>
-								<div class="following_all_grid" >
-								
+								<div class="following_all_grid">
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -541,33 +563,35 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
 									</div>
-									
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -575,33 +599,35 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
 									</div>
-									
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -609,33 +635,35 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
 									</div>
-									
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -643,33 +671,35 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
 									</div>
-									
+
 									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 --> 
+										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 											<div id="following_img_box">
-												<img id="following_img" src="../img/store_recommand_product03.png" alt="상점이미지">
+												<img id="following_img"
+													src="../img/store_recommand_product03.png" alt="상점이미지">
 											</div>
 										</a>
 										<div class="store_review_text_area">
@@ -677,683 +707,683 @@ if (request.getAttribute("result") != null) {
 												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
 											</div>
 											<div>
-												<span class="">상품</span>
-												<span><a class="" href=#" style="color: #26e4ca">20</a> | </span>
-												<span class="">팔로워</span>
-												<span><a class="" href=#" style="color: #26e4ca">10</a></span>
+												<span class="">상품</span> <span><a class="" href=#
+													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
 										<a class="" href="#">
 											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<img src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지"> <img src="../img/star_rank.png"
+													width="15" height="14" alt="별점이미지"> <img
+													src="../img/star_rank.png" width="15" height="14"
+													alt="별점이미지">
 											</div>
-										</a>
-									
-										<a class="" href="#">
+										</a> <a class="" href="#">
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+													height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
-										</a>							
+										</a>
 									</div>
 								</div>
 
 
 							</div>
 						</div>
-					</div> 
-<!--나의 중고거래  -->
-						<div class="tab-pane fade" id="Picture" role="tabpanel"
-							aria-labelledby="profile-tab">
-							<br>
-							
-							<div class="sell_list_all">
+					</div>
+					<!--나의 중고거래  -->
+					<div class="tab-pane fade" id="Picture" role="tabpanel"
+						aria-labelledby="profile-tab">
+						<br>
+
+						<div class="sell_list_all">
 							<br>
 							<p>
-								<span><strong>판매내역 &nbsp;&nbsp;</strong></span> 
-								<span style="color: #26e4ca">8</span>
+								<span><strong>판매내역 &nbsp;&nbsp;</strong></span> <span
+									style="color: #26e4ca">8</span>
 							</p>
 							<div class="sell_list_grid">
-								<div class="sell_list">							
+								<div class="sell_list">
 									<table width="100%" height="120">
-									    <tr height="30">
-									      <td align="left" style="font-size:15px">
-									      	&nbsp; 2021.11.04
-									      </td>
-									      <td width="70%"></td>
-									    </tr>
-									    <tr>
-									      <td rowspan="3" >
-										      	<a id="store_review_img_area" href="#"  >
-														<div id="product_img_box">
-															<img id="sell_product_img" src="../img/store_recommand_product03.png" alt="판매상품이미지">
-														</div>
-												</a> 		
-									      </td>
-									      <td style="font-size:18px">
-									      	<a href="#" style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a>
-									      </td>
-									    </tr>
-									    <tr>     
-									      <td style="font-size:15px">
-									      	17,000 &nbsp;원
-									      </td>
-									    </tr>
-									    <tr>  
-									      <td >
-									      	<button id="btn_sell_product_state">
-													판매중 
-											</button>
-									      </td>
-									    </tr>
-									      
-									  </table>
-									<br><hr>
+										<tr height="30">
+											<td align="left" style="font-size: 15px">&nbsp;
+												2021.11.04</td>
+											<td width="70%"></td>
+										</tr>
+										<tr>
+											<td rowspan="3"><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="sell_product_img"
+															src="../img/store_recommand_product03.png" alt="판매상품이미지">
+													</div>
+											</a></td>
+											<td style="font-size: 18px"><a href="#"
+												style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a></td>
+										</tr>
+										<tr>
+											<td style="font-size: 15px">17,000 &nbsp;원</td>
+										</tr>
+										<tr>
+											<td>
+												<button id="btn_sell_product_state">판매중</button>
+											</td>
+										</tr>
+
+									</table>
+									<br>
+									<hr>
 								</div>
-								
-								<div class="sold_list">							
+
+								<div class="sold_list">
 									<table width="100%" height="120">
-									    <tr height="30">
-									      <td align="left" style="font-size:15px">
-									      	&nbsp; 2021.10.24
-									      </td>
-									      <td width="70%"></td>
-									    </tr>
-									    <tr>
-									      <td rowspan="3" >
-										      	<a id="store_review_img_area" href="#"  >
-														<div id="product_img_box">
-															<img id="sold_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">								
-														</div>
-												</a> 		
-									      </td>
-									      <td style="font-size:18px">
-									      	<a href="#" style="color: gray">고무장갑 팔목라인</a>
-									      </td>
-									    </tr>
-									    <tr>     
-									      <td style="font-size:15px; color: gray">
-									      	2,000 &nbsp;원
-									      </td>
-									    </tr>
-									    <tr>  
-									      <td >
-									      	<button id="btn_sold_product_state">
-													판매완료
-											</button>
-									      </td>
-									    </tr>
-									      
-									  </table>
-									<br><hr>
+										<tr height="30">
+											<td align="left" style="font-size: 15px">&nbsp;
+												2021.10.24</td>
+											<td width="70%"></td>
+										</tr>
+										<tr>
+											<td rowspan="3"><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="sold_product_img"
+															src="../img/store_recommand_product02.png"
+															alt="판매완료상품이미지">
+													</div>
+											</a></td>
+											<td style="font-size: 18px"><a href="#"
+												style="color: gray">고무장갑 팔목라인</a></td>
+										</tr>
+										<tr>
+											<td style="font-size: 15px; color: gray">2,000 &nbsp;원</td>
+										</tr>
+										<tr>
+											<td>
+												<button id="btn_sold_product_state">판매완료</button>
+											</td>
+										</tr>
+
+									</table>
+									<br>
+									<hr>
 								</div>
-								
-								<br>									
-							</div>																				
+
+								<br>
+							</div>
+
+						</div>
+
+
+						<br> <br> <br>
+						<div class="sold_list_all">
+							<hr>
+							<br> <br>
+							<p>
+								<span><strong>구매내역 &nbsp;&nbsp;</strong></span> <span
+									style="color: #26e4ca">28</span>
+							</p>
+							<div class="sell_list_grid">
+								<div class="sell_list">
+									<table width="100%" height="120">
+										<tr height="30">
+											<td align="left" style="font-size: 15px">&nbsp;
+												2021.11.04</td>
+											<td width="70%"></td>
+										</tr>
+										<tr>
+											<td rowspan="3"><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="sell_product_img"
+															src="../img/store_recommand_product03.png" alt="판매상품이미지">
+													</div>
+											</a></td>
+											<td style="font-size: 18px"><a href="#"
+												style="color: gray">올인원 비건 샴푸볼 - 어성초 그린</a></td>
+										</tr>
+										<tr>
+											<td style="font-size: 15px; color: gray">17,000 &nbsp;원
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<button id="btn_see_review" button type="button"
+													onclick="location.href='#' ">작성후기보기</button>
+											</td>
+										</tr>
+
+									</table>
+									<br>
+									<hr>
+								</div>
+
+								<div class="sold_list">
+									<table width="100%" height="120">
+										<tr height="30">
+											<td align="left" style="font-size: 15px">&nbsp;
+												2021.10.24</td>
+											<td width="70%"></td>
+										</tr>
+										<tr>
+											<td rowspan="3"><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="sell_product_img"
+															src="../img/store_recommand_product02.png"
+															alt="판매완료상품이미지">
+													</div>
+											</a></td>
+											<td style="font-size: 18px"><a href="#"
+												style="color: gray">고무장갑 팔목라인</a></td>
+										</tr>
+										<tr>
+											<td style="font-size: 15px; color: gray">2,000 &nbsp;원</td>
+										</tr>
+										<tr>
+											<td>
+												<button id="btn_see_review" button type="button"
+													onclick="location.href='#' ">작성후기보기</button>
+											</td>
+										</tr>
+
+									</table>
+									<br>
+									<hr>
+								</div>
+
+								<br>
+							</div>
+
+						</div>
+
+
 
 					</div>
-					
-					
-					<br><br><br>
-					<div class="sold_list_all">
-							<hr><br><br>
+
+
+					<!-- 나의커뮤니티 -->
+					<div class="tab-pane fade" id="shop" role="tabpanel"
+						aria-labelledby="contact-tab">
+						<div class="community_list_all">
+							<br> <br>
 							<p>
-								<span><strong>구매내역 &nbsp;&nbsp;</strong></span> 
-								<span style="color: #26e4ca">28</span>
-							</p>
-							<div class="sell_list_grid">
-								<div class="sell_list">							
-									<table width="100%" height="120">
-									    <tr height="30">
-									      <td align="left" style="font-size:15px">
-									      	&nbsp; 2021.11.04
-									      </td>
-									      <td width="70%"></td>
-									    </tr>
-									    <tr>
-									      <td rowspan="3" >
-										      	<a id="store_review_img_area" href="#"  >
-														<div id="product_img_box">
-															<img id="sell_product_img" src="../img/store_recommand_product03.png" alt="판매상품이미지">
-														</div>
-												</a> 		
-									      </td>
-									      <td style="font-size:18px">
-									      	<a href="#" style="color: gray">올인원 비건 샴푸볼 - 어성초 그린</a>
-									      </td>
-									    </tr>
-									    <tr>     
-									      <td style="font-size:15px; color: gray">
-									      	17,000 &nbsp;원
-									      </td>
-									    </tr>
-									    <tr>  
-									      <td >
-									      	<button id="btn_see_review" button type="button" onclick="location.href='#' ">
-													작성후기보기
-											</button>
-									      </td>
-									    </tr>
-									      
-									  </table>
-									<br><hr>
-								</div>
-								
-								<div class="sold_list">							
-									<table width="100%" height="120">
-									    <tr height="30">
-									      <td align="left" style="font-size:15px">
-									      	&nbsp; 2021.10.24
-									      </td>
-									      <td width="70%"></td>
-									    </tr>
-									    <tr>
-									      <td rowspan="3" >
-										      	<a id="store_review_img_area" href="#"  >
-														<div id="product_img_box">
-															<img id="sell_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">								
-														</div>
-												</a> 		
-									      </td>
-									      <td style="font-size:18px">
-									      	<a href="#" style="color: gray">고무장갑 팔목라인</a>
-									      </td>
-									    </tr>
-									    <tr>     
-									      <td style="font-size:15px; color: gray">
-									      	2,000 &nbsp;원
-									      </td>
-									    </tr>
-									    <tr>  
-									      <td >
-									      	<button id="btn_see_review" button type="button" onclick="location.href='#' ">
-													작성후기보기
-											</button>
-									      </td>
-									    </tr>
-									      
-									  </table>
-									<br><hr>
-								</div>
-								
-								<br>									
-							</div>																					
-				
-					</div>
-					
-					
-					
-				</div>
-						
-						
-<!-- 나의커뮤니티 -->						
-						<div class="tab-pane fade" id="shop" role="tabpanel"
-							aria-labelledby="contact-tab">
-							<div class="community_list_all">
-							<br><br>
-							<p>
-								<span><strong>내가 쓴 커뮤니티글 &nbsp;&nbsp;</strong></span> 
-								<span style="color: #26e4ca">8</span>
+								<span><strong>내가 쓴 커뮤니티글 &nbsp;&nbsp;</strong></span> <span
+									style="color: #26e4ca">8</span>
 							</p>
 							<div class="community_list_grid">
-								<div class="community_list">							
-									<table width="100%" height="120">
-									    <tr height="30">
-									      <td align="left" style="font-size:15px">
-									        2020.09.18
-									      </td>
-									      <td width="60%"align="center" style="font-size:18px">
-									        <div>[동네질문] </div>
-									        <div>XX동 근처 잘하는 병원이 어디인가요?</div>
-									      </td>
-									      <td align="left" style="font-size:15px">
-									        <div>궁금해요 12</div>
-									        <div>조회수 33</div>
-									        <div>답변 5</div>
-									      </td>
-									      <td width="15%" align="center">
-									        <button id="btn_community_update">글 수정</button>
-									        <button id="btn_community_delete">글 삭제</button>
-									      </td>
-									    </tr>									      
-									  </table>
-									<br><hr>
-								</div>
-								
 								<div class="community_list">
-								<br><br>							
 									<table width="100%" height="120">
-									    <tr height="30">
-									      <td align="left" style="font-size:15px">
-									        2020.09.18
-									      </td>
-									      <td width="60%"align="center" style="font-size:18px">
-									        <div>[동네질문] </div>
-									        <div>XX동 근처 잘하는 병원이 어디인가요?</div>
-									      </td>
-									      <td align="left" style="font-size:15px">
-									        <div>궁금해요 12</div>
-									        <div>조회수 33</div>
-									        <div>답변 5</div>
-									      </td>
-									      <td width="15%" align="center">
-									        <button id="btn_community_update">글 수정</button>
-									        <button id="btn_community_delete">글 삭제</button>
-									      </td>
-									    </tr>									      
-									  </table>
-									<br><hr><br>
+										<tr height="30">
+											<td align="left" style="font-size: 15px">2020.09.18</td>
+											<td width="60%" align="center" style="font-size: 18px">
+												<div>[동네질문]</div>
+												<div>XX동 근처 잘하는 병원이 어디인가요?</div>
+											</td>
+											<td align="left" style="font-size: 15px">
+												<div>궁금해요 12</div>
+												<div>조회수 33</div>
+												<div>답변 5</div>
+											</td>
+											<td width="15%" align="center">
+												<button id="btn_community_update">글 수정</button>
+												<button id="btn_community_delete">글 삭제</button>
+											</td>
+										</tr>
+									</table>
+									<br>
+									<hr>
 								</div>
-								
-								<br><br>								
-							</div>																				
+
+								<div class="community_list">
+									<br> <br>
+									<table width="100%" height="120">
+										<tr height="30">
+											<td align="left" style="font-size: 15px">2020.09.18</td>
+											<td width="60%" align="center" style="font-size: 18px">
+												<div>[동네질문]</div>
+												<div>XX동 근처 잘하는 병원이 어디인가요?</div>
+											</td>
+											<td align="left" style="font-size: 15px">
+												<div>궁금해요 12</div>
+												<div>조회수 33</div>
+												<div>답변 5</div>
+											</td>
+											<td width="15%" align="center">
+												<button id="btn_community_update">글 수정</button>
+												<button id="btn_community_delete">글 삭제</button>
+											</td>
+										</tr>
+									</table>
+									<br>
+									<hr>
+									<br>
+								</div>
+
+								<br> <br>
+							</div>
 
 						</div>
-						
-						<br><br><br>
+
+						<br> <br> <br>
 						<div class="community_comment_list_all">
-								<hr><br><br>
-								<p>
-									<span><strong>내가 쓴 커뮤니티 댓글 &nbsp;&nbsp;</strong></span> 
-									<span style="color: #26e4ca">28</span>
-								</p>
-								<div class="community_comment_list_grid">
-								<div class="community_comment_list">							
+							<hr>
+							<br> <br>
+							<p>
+								<span><strong>내가 쓴 커뮤니티 댓글 &nbsp;&nbsp;</strong></span> <span
+									style="color: #26e4ca">28</span>
+							</p>
+							<div class="community_comment_list_grid">
+								<div class="community_comment_list">
 									<table width="100%" height="120">
-									    <tr height="30">
-									      <td align="left" style="font-size:15px">
-									        2020.09.18
-									      </td>
-									      <td width="70%"align="center" style="font-size:18px ">
-									        <div style=color:gray;>[원글] XX동 근처 잘하는 병원이 어디인가요?</div>
-									        <div>&nbsp;&nbsp;<img src="../img/right-arrow.png" style="width:9px; height:9px"> [내가 쓴 댓글] 점심시간에 사람 많나요?</div>	
-									      </td>
-									      <td width="20%" align="center">
-									        <button id="btn_community_comment_update">댓글 수정</button>
-									        <button id="btn_community_comment_delete">댓글 삭제</button>
-									      </td>
-									    </tr>									      
-									  </table>
-									<br><hr>
+										<tr height="30">
+											<td align="left" style="font-size: 15px">2020.09.18</td>
+											<td width="70%" align="center" style="font-size: 18px">
+												<div style="color: gray;">[원글] XX동 근처 잘하는 병원이 어디인가요?</div>
+												<div>
+													&nbsp;&nbsp;<img src="../img/right-arrow.png"
+														style="width: 9px; height: 9px"> [내가 쓴 댓글] 점심시간에 사람
+													많나요?
+												</div>
+											</td>
+											<td width="20%" align="center">
+												<button id="btn_community_comment_update">댓글 수정</button>
+												<button id="btn_community_comment_delete">댓글 삭제</button>
+											</td>
+										</tr>
+									</table>
+									<br>
+									<hr>
 								</div>
-								
-								<div class="community_comment_list">							
+
+								<div class="community_comment_list">
 									<table width="100%" height="120">
-									    <tr height="30">
-									      <td align="left" style="font-size:15px">
-									        2020.09.18
-									      </td>
-									      <td width="70%"align="center" style="font-size:18px ">
-									        <div style=color:gray;>[원글] XX동 근처 잘하는 병원이 어디인가요?</div>
-									        <div>&nbsp;&nbsp;<img src="../img/right-arrow.png" style="width:9px; height:9px"> [내가 쓴 댓글] 점심시간에 사람 많나요?</div>	
-									      </td>
-									      <td width="20%" align="center">
-									        <button id="btn_community_comment_update">댓글 수정</button>
-									        <button id="btn_community_comment_delete">댓글 삭제</button>
-									      </td>
-									    </tr>									      
-									  </table>
-									<br><hr>
+										<tr height="30">
+											<td align="left" style="font-size: 15px">2020.09.18</td>
+											<td width="70%" align="center" style="font-size: 18px">
+												<div style="color: gray;">[원글] XX동 근처 잘하는 병원이 어디인가요?</div>
+												<div>
+													&nbsp;&nbsp;<img src="../img/right-arrow.png"
+														style="width: 9px; height: 9px"> [내가 쓴 댓글] 점심시간에 사람
+													많나요?
+												</div>
+											</td>
+											<td width="20%" align="center">
+												<button id="btn_community_comment_update">댓글 수정</button>
+												<button id="btn_community_comment_delete">댓글 삭제</button>
+											</td>
+										</tr>
+									</table>
+									<br>
+									<hr>
 								</div>
-								
-								<br>									
-							</div>																						
-					
+
+								<br>
+							</div>
+
 						</div>
 					</div>
-					
-					
-<!-- 나의 스토어거래 -->					
-						<div class="tab-pane fade" id="accom" role="tabpanel"
-							aria-labelledby="contact-tab">
-							<div class="store_bought_list_all">
-							<br><br>
+
+
+					<!-- 나의 스토어거래 -->
+					<div class="tab-pane fade" id="accom" role="tabpanel"
+						aria-labelledby="contact-tab">
+						<div class="store_bought_list_all">
+							<br> <br>
 							<p>
-								<span><strong>스토어 상품 구매 내역 &nbsp;&nbsp;</strong></span> 
-								<span style="color: #26e4ca">3</span>
+								<span><strong>스토어 상품 구매 내역 &nbsp;&nbsp;</strong></span> <span
+									style="color: #26e4ca">3</span>
 							</p>
 							<div class="store_bought_list_grid">
-								<div class="store_bought_list">							
-									<table width="100%" height="120">
-									    <tr>
-									      <td align="left" style="font-size:20px">
-									        결제완료
-									      </td>
-									      <td>
-									        
-									      </td>
-									      <td>
-									        
-									      </td>
-									    </tr>
-									    <tr>
-									      <td>
-									        <a id="store_review_img_area" href="#"  >
-												<div id="product_img_box">
-															<img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">								
-												</div>
-											</a> 
-									      </td>
-									      <td align="left" style="font-size:15px">
-									        <div style="font-size:15px">06.22 결제</div>
-									        <div style="font-size:18px">Cambro 캠트레이 - 3가지 색상</div>
-									        <div><span style="font-size:18px">18,000</span>&nbsp;원</div>
-									        <div style="font-size:15px; "><a style="color: #26e4ca" href="#">주문상세 ></a></div>
-									      </td>
-									      <td align="center">
-									        <div><button id="btn_store_bought_product">취소 요청</button></div>
-									        <div><button id="btn_store_bought_product">배송지 변경</button></div>
-									        <div><button id="btn_store_bought_product">영수증 조회</button></div>
-									        <div><button id="btn_store_bought_product">판매자 문의</button></div>
-									      </td>
-									    </tr>
-									  </table>
-									<br><hr>
-								</div>
-								
 								<div class="store_bought_list">
-									<br>						
 									<table width="100%" height="120">
-									    <tr>
-									      <td align="left" style="font-size:20px">
-									        상품 준비 중
-									      </td>
-									      <td>
-									        
-									      </td>
-									      <td>
-									        
-									      </td>
-									    </tr>
-									    <tr>
-									      <td>
-									        <a id="store_review_img_area" href="#"  >
-												<div id="product_img_box">
-															<img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">								
+										<tr>
+											<td align="left" style="font-size: 20px">결제완료</td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="bought_product_img"
+															src="../img/store_recommand_product02.png"
+															alt="판매완료상품이미지">
+													</div>
+											</a></td>
+											<td align="left" style="font-size: 15px">
+												<div style="font-size: 15px">06.22 결제</div>
+												<div style="font-size: 18px">Cambro 캠트레이 - 3가지 색상</div>
+												<div>
+													<span style="font-size: 18px">18,000</span>&nbsp;원
 												</div>
-											</a> 
-									      </td>
-									      <td align="left" style="font-size:15px">
-									        <div style="font-size:15px">06.22 결제</div>
-									        <div style="font-size:18px">Cambro 캠트레이 - 3가지 색상</div>
-									        <div><span style="font-size:18px">18,000</span>&nbsp;원</div>
-									        <div style="font-size:15px;"><a style="color: #26e4ca" href="#">주문상세 ></a></div>
-									      </td>
-									      <td align="center">
-									        <div><button id="btn_store_bought_product">취소 요청</button></div>
-									        <div><button id="btn_store_bought_product">영수증 조회</button></div>
-									        <div><button id="btn_store_bought_product">판매자 문의</button></div>
-									      </td>
-									    </tr>
-									  </table>
-									<br><hr><br>	
+												<div style="font-size: 15px;">
+													<a style="color: #26e4ca" href="#">주문상세 ></a>
+												</div>
+											</td>
+											<td align="center">
+												<div>
+													<button id="btn_store_bought_product">취소 요청</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">배송지 변경</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">영수증 조회</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">판매자 문의</button>
+												</div>
+											</td>
+										</tr>
+									</table>
+									<br>
+									<hr>
 								</div>
-								
-								<div class="store_bought_list">		
-									<br><br>				
-									<table width="100%" height="120">
-									    <tr>
-									      <td align="left" style="font-size:20px">
-									        상품 배송 중
-									      </td>
-									      <td>
-									        
-									      </td>
-									      <td>
-									        
-									      </td>
-									    </tr>							    
-									    <tr>
-									      <td>								        
-												<div id="product_img_box">
-													<a id="store_review_img_area" href="#"  >
-															<img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">								
-													</a> 
-												</div>
-											
-									      </td>
-									      <td align="left" style="font-size:15px">
-									      	<br><br><br>
-									        <div style="font-size:15px">06.22 결제</div>
-									        <div style="font-size:18px">Cambro 캠트레이 - 3가지 색상</div>
-									        <div><span style="font-size:18px">18,000</span>&nbsp;원</div>
-									        <div style="font-size:15px; "><a style="color: #26e4ca" href="#">주문상세 ></a></div>
 
-									      </td>
-									      <td align="center">
-									        <div><button id="btn_store_bought_product">취소 요청</button></div>
-									        <div><button id="btn_store_bought_product">배송 조회</button></div>
-									        <div><button id="btn_store_bought_product">영수증 조회</button></div>
-									        <div><button id="btn_store_bought_product">판매자 문의</button></div>
-									      </td>
-									    </tr>
-									  </table>
-									<br><hr>
-								</div>
-								
-								<div class="store_bought_list">		
-									<br><br><br>				
+								<div class="store_bought_list">
+									<br>
 									<table width="100%" height="120">
-									    <tr>
-									      <td align="left" style="font-size:20px">
-									        상품 배송 완료
-									      </td>
-									      <td>
-									        
-									      </td>
-									      <td>
-									        
-									      </td>
-									    </tr>
-									    <tr>
-									      <td>
-									        <a id="store_review_img_area" href="#"  >
-												<div id="product_img_box">
-															<img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">								
+										<tr>
+											<td align="left" style="font-size: 20px">상품 준비 중</td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="bought_product_img"
+															src="../img/store_recommand_product02.png"
+															alt="판매완료상품이미지">
+													</div>
+											</a></td>
+											<td align="left" style="font-size: 15px">
+												<div style="font-size: 15px">06.22 결제</div>
+												<div style="font-size: 18px">Cambro 캠트레이 - 3가지 색상</div>
+												<div>
+													<span style="font-size: 18px">18,000</span>&nbsp;원
 												</div>
-											</a> 
-									      </td>
-									      <td align="left" style="font-size:15px">
-									        <div style="font-size:15px">06.22 결제</div>
-									        <div style="font-size:18px">Cambro 캠트레이 - 3가지 색상</div>
-									        <div><span style="font-size:18px">18,000</span>&nbsp;원</div>
-									        <div style="font-size:15px; "><a style="color: #26e4ca" href="#">주문상세 ></a></div>
-									      </td>
-									      <td align="center">
-									        <div><button id="btn_store_bought_product">반품 요청</button></div>
-									        <div><button id="btn_store_bought_product">교환 요청</button></div>
-									        <div><button id="btn_store_bought_product">영수증 조회</button></div>
-									        <div><button id="btn_store_bought_product">상품 리뷰 쓰기</button></div>
-									        <div><button id="btn_store_bought_product">판매자 문의</button></div>
-									      </td>
-									    </tr>
-									  </table>
-									<br><hr>
+												<div style="font-size: 15px;">
+													<a style="color: #26e4ca" href="#">주문상세 ></a>
+												</div>
+											</td>
+											<td align="center">
+												<div>
+													<button id="btn_store_bought_product">취소 요청</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">영수증 조회</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">판매자 문의</button>
+												</div>
+											</td>
+										</tr>
+									</table>
+									<br>
+									<hr>
+									<br>
 								</div>
-								
-								<br>									
-							</div>																				
+
+								<div class="store_bought_list">
+									<br> <br>
+									<table width="100%" height="120">
+										<tr>
+											<td align="left" style="font-size: 20px">상품 배송 중</td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>
+												<div id="product_img_box">
+													<a id="store_review_img_area" href="#"> <img
+														id="bought_product_img"
+														src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
+													</a>
+												</div>
+
+											</td>
+											<td align="left" style="font-size: 15px"><br> <br>
+												<br>
+												<div style="font-size: 15px">06.22 결제</div>
+												<div style="font-size: 18px">Cambro 캠트레이 - 3가지 색상</div>
+												<div>
+													<span style="font-size: 18px">18,000</span>&nbsp;원
+												</div>
+												<div style="font-size: 15px;">
+													<a style="color: #26e4ca" href="#">주문상세 ></a>
+												</div></td>
+											<td align="center">
+												<div>
+													<button id="btn_store_bought_product">취소 요청</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">배송 조회</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">영수증 조회</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">판매자 문의</button>
+												</div>
+											</td>
+										</tr>
+									</table>
+									<br>
+									<hr>
+								</div>
+
+								<div class="store_bought_list">
+									<br> <br> <br>
+									<table width="100%" height="120">
+										<tr>
+											<td align="left" style="font-size: 20px">상품 배송 완료</td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="bought_product_img"
+															src="../img/store_recommand_product02.png"
+															alt="판매완료상품이미지">
+													</div>
+											</a></td>
+											<td align="left" style="font-size: 15px">
+												<div style="font-size: 15px">06.22 결제</div>
+												<div style="font-size: 18px">Cambro 캠트레이 - 3가지 색상</div>
+												<div>
+													<span style="font-size: 18px">18,000</span>&nbsp;원
+												</div>
+												<div style="font-size: 15px;">
+													<a style="color: #26e4ca" href="#">주문상세 ></a>
+												</div>
+											</td>
+											<td align="center">
+												<div>
+													<button id="btn_store_bought_product">반품 요청</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">교환 요청</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">영수증 조회</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">상품 리뷰 쓰기</button>
+												</div>
+												<div>
+													<button id="btn_store_bought_product">판매자 문의</button>
+												</div>
+											</td>
+										</tr>
+									</table>
+									<br>
+									<hr>
+								</div>
+
+								<br>
+							</div>
+
+						</div>
 
 					</div>
-							
-						</div>
-						
-						
-						<div class="tab-pane fade" id="heart_product" role="tabpanel"
-							aria-labelledby="contact-tab">
-							<br><br>
-							<div class="heart_list_all">
-									<p>
-										<span><strong>중고거래 관심상품 &nbsp;&nbsp;</strong></span> 
-										<span style="color: #26e4ca">28</span>
-									</p>
-									<div class="sell_list_grid">
-										<div class="sell_list">							
-											<table width="100%" height="120">
-											    <tr height="30">
-											      <td align="left" style="font-size:15px">
-											      	&nbsp; 2021.11.04
-											      </td>
-											      <td width="70%"></td>
-											    </tr>
-											    <tr>
-											      <td rowspan="3" >
-												      	<a id="store_review_img_area" href="#"  >
-																<div id="product_img_box">
-																	<img id="sell_product_img" src="../img/wallet.jpg" alt="판매상품이미지">
-																</div>
-														</a> 		
-											      </td>
-											      <td style="font-size:18px">
-											      	<a href="#" style="color: #26e4ca">구찌 지갑</a>
-											      </td>
-											    </tr>
-											    <tr>     
-											      <td style="font-size:15px">
-											      	170,000 &nbsp;원
-											      </td>
-											    </tr>
-											    <tr>  
-											      <td >
-											      	<button id="btn_heart_product" type="button" onclick="location.href='#' ">
-															관심상품
-													</button>
-											      </td>
-											    </tr>
-											      
-											  </table>
-											<br><hr>
-										</div>
-										
-										<div class="sold_list">							
-											<table width="100%" height="120">
-											    <tr height="30">
-											      <td align="left" style="font-size:15px">
-											      	&nbsp; 2021.10.24
-											      </td>
-											      <td width="70%"></td>
-											    </tr>
-											    <tr>
-											      <td rowspan="3" >
-												      	<a id="store_review_img_area" href="#"  >
-																<div id="product_img_box">
-																	<img id="sell_product_img" src="../img/hair_purfum.jpg" alt="판매완료상품이미지">								
-																</div>
-														</a> 		
-											      </td>
-											      <td style="font-size:18px">
-											      	<a href="#" style="color: #26e4ca">디올 헤어 미스트</a>
-											      </td>
-											    </tr>
-											    <tr>     
-											      <td style="font-size:15px">
-											      	30,000 &nbsp;원
-											      </td>
-											    </tr>
-											    <tr>  
-											      <td >
-											      	<button id="btn_heart_product" type="button" onclick="location.href='#' ">
-															관심상품
-													</button>
-											      </td>
-											    </tr>
-											      
-											  </table>
-											<br><hr>
-										</div>
-										
-										<br>									
-									</div>																					
-						
-									<br> <br> <br>
+
+
+					<div class="tab-pane fade" id="heart_product" role="tabpanel"
+						aria-labelledby="contact-tab">
+						<br> <br>
+						<div class="heart_list_all">
+							<p>
+								<span><strong>중고거래 관심상품 &nbsp;&nbsp;</strong></span> <span
+									style="color: #26e4ca">28</span>
+							</p>
+							<div class="sell_list_grid">
+								<div class="sell_list">
+									<table width="100%" height="120">
+										<tr height="30">
+											<td align="left" style="font-size: 15px">&nbsp;
+												2021.11.04</td>
+											<td width="70%"></td>
+										</tr>
+										<tr>
+											<td rowspan="3"><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="sell_product_img" src="../img/wallet.jpg"
+															alt="판매상품이미지">
+													</div>
+											</a></td>
+											<td style="font-size: 18px"><a href="#"
+												style="color: #26e4ca">구찌 지갑</a></td>
+										</tr>
+										<tr>
+											<td style="font-size: 15px">170,000 &nbsp;원</td>
+										</tr>
+										<tr>
+											<td>
+												<button id="btn_heart_product" type="button"
+													onclick="location.href='#' ">관심상품</button>
+											</td>
+										</tr>
+
+									</table>
+									<br>
+									<hr>
+								</div>
+
+								<div class="sold_list">
+									<table width="100%" height="120">
+										<tr height="30">
+											<td align="left" style="font-size: 15px">&nbsp;
+												2021.10.24</td>
+											<td width="70%"></td>
+										</tr>
+										<tr>
+											<td rowspan="3"><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="sell_product_img" src="../img/hair_purfum.jpg"
+															alt="판매완료상품이미지">
+													</div>
+											</a></td>
+											<td style="font-size: 18px"><a href="#"
+												style="color: #26e4ca">디올 헤어 미스트</a></td>
+										</tr>
+										<tr>
+											<td style="font-size: 15px">30,000 &nbsp;원</td>
+										</tr>
+										<tr>
+											<td>
+												<button id="btn_heart_product" type="button"
+													onclick="location.href='#' ">관심상품</button>
+											</td>
+										</tr>
+
+									</table>
+									<br>
+									<hr>
+								</div>
+
+								<br>
 							</div>
-							<hr><br><br>
-							<div class="heart_list_all">
-									<p>
-										<span><strong>민트스토어 관심상품 &nbsp;&nbsp;</strong></span> 
-										<span style="color: #26e4ca">18</span>
-									</p>
-									<div class="sell_list_grid">
-										<div class="sell_list">							
-											<table width="100%" height="120">
-											    
-											    <tr>
-											      <td rowspan="3" >
-												      	<a id="store_review_img_area" href="#"  >
-																<div id="product_img_box">
-																	<img id="sell_product_img" src="../img/store_recommand_product03.png" alt="판매상품이미지">
-																</div>
-														</a> 		
-											      </td>
-											      <td style="font-size:18px">
-											      	<a href="#" style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a>
-											      </td>
-											    </tr>
-											    <tr>     
-											      <td style="font-size:15px">
-											      	19,000 &nbsp;원
-											      </td>
-											    </tr>
-											    <tr>  
-											      <td >
-											      	<button id="btn_heart_product" type="button" onclick="location.href='#' ">
-															관심상품
-													</button>
-											      </td>
-											    </tr>
-											      
-											  </table>
-											<br><hr>
-										</div>
-										
-										<div class="sell_list">							
-											<table width="100%" height="120">
-											    
-											    <tr>
-											      <td rowspan="3" >
-												      	<a id="store_review_img_area" href="#"  >
-																<div id="product_img_box">
-																	<img id="sell_product_img" src="../img/store_recommand_product03.png" alt="판매상품이미지">
-																</div>
-														</a> 		
-											      </td>
-											      <td style="font-size:18px">
-											      	<a href="#" style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a>
-											      </td>
-											    </tr>
-											    <tr>     
-											      <td style="font-size:15px">
-											      	19,000 &nbsp;원
-											      </td>
-											    </tr>
-											    <tr>  
-											      <td >
-											      	<button id="btn_heart_product" type="button" onclick="location.href='#' ">
-															관심상품
-													</button>
-											      </td>
-											    </tr>
-											      
-											  </table>
-											<br><hr>
-										</div>																					
-						
-									<br> <br> <br>
+
+							<br> <br> <br>
+						</div>
+						<hr>
+						<br> <br>
+						<div class="heart_list_all">
+							<p>
+								<span><strong>민트스토어 관심상품 &nbsp;&nbsp;</strong></span> <span
+									style="color: #26e4ca">18</span>
+							</p>
+							<div class="sell_list_grid">
+								<div class="sell_list">
+									<table width="100%" height="120">
+
+										<tr>
+											<td rowspan="3"><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="sell_product_img"
+															src="../img/store_recommand_product03.png" alt="판매상품이미지">
+													</div>
+											</a></td>
+											<td style="font-size: 18px"><a href="#"
+												style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a></td>
+										</tr>
+										<tr>
+											<td style="font-size: 15px">19,000 &nbsp;원</td>
+										</tr>
+										<tr>
+											<td>
+												<button id="btn_heart_product" type="button"
+													onclick="location.href='#' ">관심상품</button>
+											</td>
+										</tr>
+
+									</table>
+									<br>
+									<hr>
+								</div>
+
+								<div class="sell_list">
+									<table width="100%" height="120">
+
+										<tr>
+											<td rowspan="3"><a id="store_review_img_area" href="#">
+													<div id="product_img_box">
+														<img id="sell_product_img"
+															src="../img/store_recommand_product03.png" alt="판매상품이미지">
+													</div>
+											</a></td>
+											<td style="font-size: 18px"><a href="#"
+												style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a></td>
+										</tr>
+										<tr>
+											<td style="font-size: 15px">19,000 &nbsp;원</td>
+										</tr>
+										<tr>
+											<td>
+												<button id="btn_heart_product" type="button"
+													onclick="location.href='#' ">관심상품</button>
+											</td>
+										</tr>
+
+									</table>
+									<br>
+									<hr>
+								</div>
+
+								<br> <br> <br>
 							</div>
 						</div>
 
-				<!--/col-9-->
+						<!--/col-9-->
+					</div>
+					<!--/row-->
+
+				</div>
 			</div>
-			<!--/row-->
-
-		</div>
-	</div>
 
 
-		<%-- <section id="profile" class="container">
+			<%-- <section id="profile" class="container">
       <div class="row">
          <div class="col-6">
             <h1><b><span style="color:#5fcf80;">${uto.nick }</span>님의 프로필</b></h1>
@@ -1423,65 +1453,65 @@ if (request.getAttribute("result") != null) {
       </div>
        --%>
 
-		<form action="edit_img_ok.do" name="efrm" method="post"
-			enctype="multipart/form-data">
-			<input type="hidden" name="ex-profile" value="${uto.profile }">
-			<div class="modal fade" id="edit_img" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<br />
-						<div class="modal-title">
-							<b>&nbsp;프로필 사진 수정</b>
-						</div>
-						<hr />
-						<div class="modal-body row" style="padding: 0px 0px 0px 5px;">
-							<div class="col-7">&nbsp;수정할 파일을 선택하세요.</div>
-							<div class="col-5"></div>
-						</div>
-						<div class="modal-body form-row"
-							style="padding: 20px 0px 20px 0px;">
-							<div class="js-input-file input-group value"
-								style="padding: 0px 0px 0px 20px; width: 100%;">
-								<input class="input-file" type="file" name="img" id="file"
-									value="1<%-- ${uto.profile } --%>"> <label
-									class="label--file" for="file">파일 선택</label> <span
-									class="input-file__info"
-									style="text-align: left; padding-top: 2px; margin-top: 2px;">
-									1<%--  ${uto.profile } --%>
-								</span>
+			<form action="edit_img_ok.do" name="efrm" method="post"
+				enctype="multipart/form-data">
+				<input type="hidden" name="ex-profile" value="${uto.profile }">
+				<div class="modal fade" id="edit_img" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<br />
+							<div class="modal-title">
+								<b>&nbsp;프로필 사진 수정</b>
+							</div>
+							<hr />
+							<div class="modal-body row" style="padding: 0px 0px 0px 5px;">
+								<div class="col-7">&nbsp;수정할 파일을 선택하세요.</div>
+								<div class="col-5"></div>
+							</div>
+							<div class="modal-body form-row"
+								style="padding: 20px 0px 20px 0px;">
+								<div class="js-input-file input-group value"
+									style="padding: 0px 0px 0px 20px; width: 100%;">
+									<input class="input-file" type="file" name="img" id="file"
+										value="1<%-- ${uto.profile } --%>"> <label
+										class="label--file" for="file">파일 선택</label> <span
+										class="input-file__info"
+										style="text-align: left; padding-top: 2px; margin-top: 2px;">
+										1<%--  ${uto.profile } --%>
+									</span>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn--blue-2 btn--radius-2"
+									data-bs-dismiss="modal">취소</button>
+								<button type="button" class="btn btn--blue-1 btn--radius-2"
+									id="btn_edit_img">확인</button>
 							</div>
 						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn--blue-2 btn--radius-2"
-								data-bs-dismiss="modal">취소</button>
-							<button type="button" class="btn btn--blue-1 btn--radius-2"
-								id="btn_edit_img">확인</button>
-						</div>
 					</div>
 				</div>
-			</div>
 
-		</form>
-		<form action="delete_img_ok.do" name="dfrm" method="post">
-			<div class="modal fade bs-delete-modal-sm" id="delete_img"
-				aria-hidden="true">
-				<div class="modal-dialog modal-sm">
-					<div class="modal-content">
-						<br />
-						<div style="height: 60px;">&nbsp;&nbsp;정말 삭제하시겠습니까?</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn--blue-2 btn--radius-2"
-								data-bs-dismiss="modal">취소</button>
-							<button type="submit" class="btn btn--blue-1 btn--radius-2"
-								id="btn_delete_img">삭제</button>
+			</form>
+			<form action="delete_img_ok.do" name="dfrm" method="post">
+				<div class="modal fade bs-delete-modal-sm" id="delete_img"
+					aria-hidden="true">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<br />
+							<div style="height: 60px;">&nbsp;&nbsp;정말 삭제하시겠습니까?</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn--blue-2 btn--radius-2"
+									data-bs-dismiss="modal">취소</button>
+								<button type="submit" class="btn btn--blue-1 btn--radius-2"
+									id="btn_delete_img">삭제</button>
+							</div>
 						</div>
+
 					</div>
-
 				</div>
-			</div>
-		</form>
+			</form>
 
-		<%--
+			<%--
    </section>
    
    
@@ -1535,7 +1565,7 @@ if (request.getAttribute("result") != null) {
    </section>
    <!-- 내 피드 섹션 끝 -->   
    --%>
-		<!-- 내 피드 관련 자바스크립트 -->
+			<!-- 내 피드 관련 자바스크립트 -->
 		</div>
 		<script>
 
@@ -1617,7 +1647,7 @@ if (request.getAttribute("result") != null) {
          data:"pageNum="+currentPage,
          //ajax_page.jsp의 내용이 jspPage로 들어온다.
          success:function( jspPage ){
-        	 
+            
             //응답된 문자열은 jsp 형식이다.(profile/게시판명_ajax_page.jsp에 응답내용이 있다.)
             //해당 문자열을 특정div 태그에 붙여준다.
             if( divName == 'lantrip' ) {
@@ -1683,8 +1713,8 @@ if (request.getAttribute("result") != null) {
                         let heart = to.heart;
                         
                         // 페이지, 모달창에 하트수 갱신
-                        $('#m_heart'+no).text(heart);
-                        $( '.span_heart'+no ).text(heart);
+                        $('#m_heart'+no).text;
+                        $( '.span_heart'+no ).text;
                         
                         alert("하트추가 성공");
                      },
@@ -1714,8 +1744,8 @@ if (request.getAttribute("result") != null) {
                         
                         let heart = to.heart;
                         // 페이지, 모달창에 하트수 갱신
-                        $('#m_heart'+no).text(heart);
-                        $( '.span_heart'+no ).text(heart);
+                        $('#m_heart'+no).text;
+                        $( '.span_heart'+no ).text;
                         
                         alert("하트삭제 성공");
                      },
@@ -1736,7 +1766,7 @@ if (request.getAttribute("result") != null) {
             // (로그인한 상태인 하트의 <a></a> class명: heart-notlogin)
             $(".heart-notlogin").unbind('click');
             $(".heart-notlogin ").click(function() {
-               alert('로그인 하셔야 하트를 누를수 있습니다!');
+            	 alert('로그인 하셔야 하트를 누를수 있습니다!');
             });
             
             
@@ -1989,11 +2019,11 @@ if (request.getAttribute("result") != null) {
    
    
 // 창 크기가 변할 때마다 가로세로 길이를 맞춰준다.
-	$(window).resize(function(){
-		$('.box').each(function(){
-			$(this).height($(this).width());
-		});
-	}).resize();
+   $(window).resize(function(){
+      $('.box').each(function(){
+         $(this).height($(this).width());
+      });
+   }).resize();
    
    
    //============= 무한스크롤 함수 =============
@@ -2088,9 +2118,11 @@ if (request.getAttribute("result") != null) {
 
 
 </script>
-
 </article>
-		<br /> <br /> <br /> <br />
+<br />
+<br />
+<br />
+<br />
 </body>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 </html>

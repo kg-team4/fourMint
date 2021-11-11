@@ -1,67 +1,67 @@
 @charset "UTF-8";
 
 body {
-	font-family: 'Do Hyeon', sans-serif;
+   font-family: 'Do Hyeon', sans-serif;
 
-	font-size: 12pt;
+   font-size: 12pt;
 
 }
 a{
-	text-decoration: none;
+   text-decoration: none;
 }
 .nav-item {
-	font-size: 20px;
+   font-size: 20px;
 }
 
 .nick-div b {
-	font-size: 30px;
+   font-size: 30px;
 }
 
 
 #m_writer {
-	font-size: 20px;
+   font-size: 20px;
 }
 
 .list-group-item {
-	font-size: 20px;
+   font-size: 20px;
 }
 
 strong {
-	font-family: 'Do Hyeon', sans-serif;
-	font-size: 20px;
+   font-family: 'Do Hyeon', sans-serif;
+   font-size: 20px;
 }
 
 .pull-left {
-	font-size: 25px;
+   font-size: 25px;
 }
 
 btn {
-	font-size: 20px!important;
+   font-size: 20px!important;
 }
 
 .nick-div {
-	text-align: center;
+   text-align: center;
 }
 
 #profile {
-	/* background-color:black; */
-	width: 100%;
-	margin-top: 6%;
+   /* background-color:black; */
+   width: 100%;
+   margin-top: 6%;
 }
 
 
 #my-feed {
-	/* background-color:black; */
-	width: 100%;
-	margin-top: 6%;
+   /* background-color:black; */
+   width: 100%;
+   margin-top: 6%;
 }
 
 #my-feed h1 {
-	font-size: 45px;
+   font-size: 45px;
 }
 
 #profile-img {
-	height: 250px;
+   height: 250px;
 }
 .col-6 offset-2 div_modify_profile{
 margin-left: 30.6666666667%;
@@ -69,44 +69,44 @@ margin-left: 30.6666666667%;
 
 /* 회원정보 관련 */
 .div_modify_profile {
-	text-align: right;
+   text-align: right;
 }
 
 .btn_modify_profile {
-	margin-top: 30px;
+   margin-top: 30px;
 }
 
 .box {
-	width: 100%;
+   width: 100%;
     /*height: auto;*/ 
     border-radius: 70%;
     overflow: hidden;
 }
 
 .img-circle {
-	width: 90%;
+   width: 90%;
     height: 90%; 
     border-radius: 70%;
     object-fit: cover;
 }
 
 #profileImage {
-	width: 40px;
-	height: 40px;
-	border: 0px;
-	/*border: 1px solid #cecece;*/
-	border-radius: 50%;
+   width: 40px;
+   height: 40px;
+   border: 0px;
+   /*border: 1px solid #cecece;*/
+   border-radius: 50%;
 }
 
 #write_reply_profileImage { /*사용자의 댓글 입력란 프로필 사진을 둥글게*/
-	width: 40px;
-	height: 40px;
-	border: 0px;
-	/*border: 1px solid #cecece;*/
-	border-radius: 50%;
+   width: 40px;
+   height: 40px;
+   border: 0px;
+   /*border: 1px solid #cecece;*/
+   border-radius: 50%;
 }
 .profile_d_m {
-	margin-top: 20px;
+   margin-top: 20px;
 }
 
 
@@ -115,187 +115,196 @@ margin-left: 30.6666666667%;
 
 /* 카드 관련 */
 .video-box {
-	height: 20rem;
+   height: 20rem;
 }
 
 .img-box {
-	width: 100%;
-	height: 220px;
-	overflow: hidden;
-	margin-top:8px;
+   width: 100%;
+   height: 220px;
+   overflow: hidden;
+   margin-top:8px;
 }
 
 .card-img-top {
-	height: 100%;
-	object-fit: cover;
+   height: 100%;
+   object-fit: cover;
 }
 
 .card-inner {
-	float: left;
-	padding: 20px;
-	width: 33%;
+   float: left;
+   padding: 20px;
+   width: 33%;
 }
 /* 마우스 후버시 효과 */
 /*.video-box:hover video {
-	
+   
 }*/
 
 .thumb {
-	display: inline-blick;
-	position: relative;
+   display: inline-blick;
+   position: relative;
 }
 
 .thumb .card-img:hover:before {
-	content: "";
-	background: rgba(0, 0, 0, 0.3);
-	position: absolute;
-	bottom: 0;
-	top: 0;
-	left: 0;
-	right: 0;
+   content: "";
+   background: rgba(0, 0, 0, 0.3);
+   position: absolute;
+   bottom: 0;
+   top: 0;
+   left: 0;
+   right: 0;
 }
 
 .thumb:hover .links {
-	opacity: 1;
+   opacity: 1;
 }
 
 .links:hover .links {
-	opacity: 1;
+   opacity: 1;
 }
 
 .links {
-	opacity: 0;
-	position: absolute;
-	text-align: center;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	transition: .5s ease;
-	z-index: 1;
-	color: white;
-	font-weight: 800;
+   opacity: 0;
+   position: absolute;
+   text-align: center;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   -ms-transform: translate(-50%, -50%);
+   transition: .5s ease;
+   z-index: 1;
+   color: white;
+   font-weight: 800;
 }
 /* 카드 관련 끝 */
 
 /* 모달 관련 */
 .heart-click, .heart-notlogin {
-	color: red;
+   color: red;
 }
 
 a.heart-click, a.heart-notlogin :hover {
-	color: red;
+   color: red;
 }
 /* 댓글 프로필사진 */
 .reply_list_profileImage {
-	width: 40px;
-	height: 40px;
-	border: 0px;
-	/*border: 1px solid #cecece;*/
-	border-radius: 50%;
+   width: 40px;
+   height: 40px;
+   border: 0px;
+   /*border: 1px solid #cecece;*/
+   border-radius: 50%;
 }
 
 .reply-right {
-	text-align: right;
+   text-align: right;
 }
 
 .replyrow, .rereply_write {
-	padding: 10px 0;
+   padding: 10px 0;
 }
 /* 모달 관련 끝 */
 h1 {
-	line-height: 1.5;
+   line-height: 1.5;
 }
 
 table {
-	font-size: 20pt;
+   font-size: 20pt;
 }
 
 
 #btns{
-	text-align:center;
+   text-align:center;
 }
 
 #btn-modify {
-	text-align: right;
-	margin-top: 10px;
+   text-align: right;
+   margin-top: 10px;
 }
 
 .btn {
-	display: inline-block;
-	line-height: 20px; /* 수정 */
-	padding: 0 20px; /* 수정 */
-	-webkit-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-	cursor: pointer;
-	font-size: 20px;
-	text-transform: capitalize;
-	font-weight: 700;
-	/* color: #fff; */
-	font-family: inherit;
+   display: inline-block;
+   padding: 0 20px; /* 수정 */
+   -webkit-transition: all 0.4s ease;
+   -o-transition: all 0.4s ease;
+   -moz-transition: all 0.4s ease;
+   transition: all 0.4s ease;
+   cursor: pointer;
+   font-size: 20px;
+   text-transform: capitalize;
+   font-weight: 700;
+   /* color: #fff; */
+   font-family: inherit;
 }
 
 .btn--radius {
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   border-radius: 3px;
 }
 
 .btn--radius-2 {
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;	
-	text-align:center;
-	padding-top:0px;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   border-radius: 3px;   
+   text-align:center;
+   padding-top:0px;
 }
 
+.btn--blue-3 {
+   /* background: #5fcf80; */
+   background: #26e4ca;
+   color: #ffffff;   
+   text-align:center;
+}
+
+
 .btn--blue-2 {
-	/* background: #5fcf80; */
-	background: white;
-	border: solid #26e4ca 1px;	
-	text-align:center;
+   /* background: #5fcf80; */
+   background: #26e4ca;
+   border: solid #26e4ca 1px;   
+   text-align:center;
+   color: black;  
 }
 
 .btn--blue-2:hover {
-	background: #26e4ca;
-	color: #ffffff;
+   background:#ffffff ;
+   border: solid #26e4ca 1px;
+   color:black;
 }
 
 .btn--blue-1 {
-	/* background: #26e4ca;
-	color: white; */
-	background: white;
-	border: solid #26e4ca 1px;
+   /* background: #26e4ca;
+   color: white; */
+   background: white;
+   border: solid #26e4ca 1px;
 }
 
 .btn--blue-1:hover {
-	background: #26e4ca;
-	color: #ffffff;
+   background: #26e4ca;
+   color: #ffffff;
 }
 .btn--silver{
-	background: silver;
+   background: silver;
 }
 
 
 .btn--silver:hover{
-	background: #808080;
+   background: #808080;
 }
 .modal-content{
-	background-color:white;
+   background-color:white;
 }
 
 /* 인사말 관련 */
 #greeting {
-	border: solid 1px;
-	border-color: #26e4ca;
-	height: 140px;
+   border: solid 1px;
+   border-color: #26e4ca;
+   height: 140px;
 }
 
 #greet {
-	font-size: 20px;
-	margin-top: 5px;
+   font-size: 20px;
+   margin-top: 5px;
 }
 
 /* 인사말 관련 끝 */
@@ -303,473 +312,480 @@ table {
 
 /* 프로필사진 수정 관련 */
 .form-row {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-flex-wrap: wrap;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	-webkit-box-align: start;
-	-webkit-align-items: flex-start;
-	-moz-box-align: start;
-	-ms-flex-align: start;
-	align-items: flex-start;
-	padding: 24px 50px;
+   display: -webkit-box;
+   display: -webkit-flex;
+   display: -moz-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-flex-wrap: wrap;
+   -ms-flex-wrap: wrap;
+   flex-wrap: wrap;
+   -webkit-box-align: start;
+   -webkit-align-items: flex-start;
+   -moz-box-align: start;
+   -ms-flex-align: start;
+   align-items: flex-start;
+   padding: 24px 50px;
 }
 
 .form-row .name {
-	width: 188px;
-	color: #333;
-	font-size: 15px;
-	font-weight: 700;
-	margin-top: 11px;
+   width: 188px;
+   color: #333;
+   font-size: 15px;
+   font-weight: 700;
+   margin-top: 11px;
 }
 
 .form-row .value {
-	width: -webkit-calc(100% - 188px);
-	width: -moz-calc(100% - 188px);
-	width: calc(100% - 188px);
+   width: -webkit-calc(100% - 188px);
+   width: -moz-calc(100% - 188px);
+   width: calc(100% - 188px);
 }
 
 @media ( max-width : 767px) {
-	.form-row {
-		display: block;
-		padding: 24px 30px;
-	}
-	.form-row .name, .form-row .value {
-		display: block;
-		width: 100%;
-	}
-	.form-row .name {
-		margin-top: 0;
-		margin-bottom: 12px;
-	}
+   .form-row {
+      display: block;
+      padding: 24px 30px;
+   }
+   .form-row .name, .form-row .value {
+      display: block;
+      width: 100%;
+   }
+   .form-row .name {
+      margin-top: 0;
+      margin-bottom: 12px;
+   }
 }
 
 .label--desc {
-	font-size: 13px;
-	color: #999;
-	margin-top: 10px;
+   font-size: 13px;
+   color: #999;
+   margin-top: 10px;
 }
 
 @media ( max-width : 767px) {
-	.label--desc {
-		margin-top: 14px;
-	}
+   .label--desc {
+      margin-top: 14px;
+   }
 }
 
 .input-file {
-	display: none;
+   display: none;
 }
 
 .input-file+label {
-	font-size: 15px;
-	line-height: 35px;
-	background-color: white;
-	border : solid #26e4ca 1px;
-	padding: 0 20px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px !important;
-	display: inline-block;
-	margin-right: 15px;
-	-webkit-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-	cursor: pointer;
-	
-	
+   font-size: 15px;
+   line-height: 35px;
+   background-color: white;
+   border : solid #26e4ca 1px;
+   padding: 0 20px;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   border-radius: 3px !important;
+   display: inline-block;
+   margin-right: 15px;
+   -webkit-transition: all 0.4s ease;
+   -o-transition: all 0.4s ease;
+   -moz-transition: all 0.4s ease;
+   transition: all 0.4s ease;
+   cursor: pointer;
+   
+   
 }
 
 .input-file:focus+label, .input-file+label:hover {
-	background: #26e4ca;
-	color:white;
+   background: #26e4ca;
+   color:white;
 }
 
 .input-file__info {
-	font-size: 15px;
-	color: #666;
+   font-size: 15px;
+   color: #666;
 }
 
 @media ( max-width : 767px) {
-	.input-file__info {
-		display: block;
-		margin-top: 6px;
-	}
+   .input-file__info {
+      display: block;
+      margin-top: 6px;
+   }
 }
 /* 나의활동 (상점후기, 팔로잉, 팔로워) */
 .store_review_grid{
-	width: auto;
-	height: 300px;
-	border: 1px solid lightgray;
-	border-radius:5px;
-	padding: 20px;
-	padding-left: 50px;
-	padding-right: 50px;
-	overflow:scroll;
-	overflow-x:hidden;
+   width: auto;
+   height: 300px;
+   border: 1px solid lightgray;
+   border-radius:5px;
+   padding: 20px;
+   padding-left: 50px;
+   padding-right: 50px;
+   overflow:scroll;
+   overflow-x:hidden;
 }
 .store_review{
-	width:auto;
-	height: 60%;
-	padding: 20px;
-	display: block;
+   width:auto;
+   height: 60%;
+   padding: 20px;
+   display: block;
 }
 #img_box{
-	background: #BDBDBD;
-	border-radius: 70%;
+   background: #BDBDBD;
+   border-radius: 70%;
     overflow: hidden;
     width : 100px;
     height :100px;
-}	
+}   
 #store_review_img{
-	width: 100%;
+   width: 100%;
     height: 100%;
-    object-fit: cover;	
+    object-fit: cover;   
 }
 #following_img_box{
-	background: #BDBDBD;
-	border-radius: 70%;
+   background: #BDBDBD;
+   border-radius: 70%;
     overflow: hidden;
     width : 90px;
     height :90px;
     margin : 20px 30px;
-}	
+}   
 #following_img{
-	width: 100%;
+   width: 100%;
     height: 100%;
-    object-fit: cover;	
+    object-fit: cover;   
 }
 
 #btn_sold_product_name{
-	border-radius: 5px;
-	background: white;
-	border: solid lightgray 1px;
-	font-size: 13px;
-	margin: 3px;
+   border-radius: 5px;
+   background: white;
+   border: solid lightgray 1px;
+   font-size: 13px;
+   margin: 3px;
+   cursor: pointer;
 }
 #sold_product_review {
-	margin: 3px;
+   margin: 3px;
 }
 .more_area{
-	padding-top: 8px;
+   padding-top: 8px;
 }
 .btn_more{
-	border-radius:5px;
-	background: white;
-	border: solid lightgray 2px;
+   border-radius:5px;
+   background: white;
+   border: solid lightgray 2px;
+   cursor: pointer;
 }
 
 
 
 .following_all_grid{
-	width:auto;  /* 758px */
-	height:350px;
-	border: 1px solid lightgray;
-	border-radius:5px;
-	overflow:scroll;
-	overflow-x:hidden;
-	
+   width:auto;  /* 758px */
+   height:350px;
+   border: 1px solid lightgray;
+   border-radius:5px;
+   overflow:scroll;
+   overflow-x:hidden;
+   
 }
-.following{	
-	width:32.79999%;
-	height: 60%;
-	display: inline-block;
-	/* position: relative; */
-	padding: 20px;
-	padding-left: 50px;
-	padding-right: 50px;
-	margin-bottom:40px;
-	float: left;
-	text-align: center;
+.following{   
+   width:32.79999%;
+   height: 60%;
+   display: inline-block;
+   /* position: relative; */
+   padding: 20px;
+   padding-left: 50px;
+   padding-right: 50px;
+   margin-bottom:40px;
+   float: left;
+   text-align: center;
 }
 #btn_mintmarket_bought{
-	border-radius: 5px;
-	width:80px;
-	background: #26e4ca;
-	border-color: #26e4ca;
-	color:white;
+   border-radius: 5px;
+   width:80px;
+   background: #26e4ca;
+   border-color: #26e4ca;
+   color:white;
+   cursor: pointer;
 }
 #btn_mintstore_bought{
-	border-radius: 5px;
-	width:80px;
-	background: #26e4ca;
-	color:white;
-	border-color: #26e4ca;
-	
+   border-radius: 5px;
+   width:80px;
+   background: #26e4ca;
+   color:white;
+   border-color: #26e4ca;
+   cursor: pointer;
 }
 
 /*  */
 /*  */
 /* 나의 중고거래 */
 .sell_list_grid{
-	width: auto;
-	height: 450px;
-	border: 1px solid lightgray;
-	border-radius:5px;
-	padding: 20px;
-	padding-left: 50px;
-	padding-right: 50px;
-	overflow:scroll;
-	overflow-x:hidden;
+   width: auto;
+   height: 450px;
+   border: 1px solid lightgray;
+   border-radius:5px;
+   padding: 20px;
+   padding-left: 50px;
+   padding-right: 50px;
+   overflow:scroll;
+   overflow-x:hidden;
 }
 .sell_list{
-	width:auto;
-	height: 60%;
-	padding: 20px;
-	display: block;
+   width:auto;
+   height: 60%;
+   padding: 20px;
+   display: block;
 }
 .sold_list{
-	width:auto;
-	height: 60%;
-	padding: 20px;
-	display: block;
+   width:auto;
+   height: 60%;
+   padding: 20px;
+   display: block;
 }
 
 #product_img_box{
-	background: #BDBDBD;
-	border-radius: 10%;
+   background: #BDBDBD;
+   border-radius: 10%;
     overflow: hidden;
     width : 140px;
     height :140px;
-}	
+}   
 
 #sell_product_img{
-	width: 100%;
+   width: 100%;
     height: 100%;
-    object-fit: cover;	
+    object-fit: cover;   
 }
 #sold_product_img{
-	width: 100%;
+   width: 100%;
     height: 100%;
-    object-fit: cover;	
+    object-fit: cover;   
     filter: brightness(40%); 
 }
 
 #btn_sell_product_state{
-	border-radius: 5px;
-	background: white;
-	border: solid lightgray 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:80px;
+   border-radius: 5px;
+   background: white;
+   border: solid lightgray 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:80px;
+   cursor: pointer;
 }
 #btn_sold_product_state{
-	border-radius: 5px;
-	background: lightgray;
-	border: solid lightgray 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:80px;
+   border-radius: 5px;
+   background: lightgray;
+   border: solid lightgray 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:80px;
+   cursor: pointer;
 }
 #sold_product_review {
-	margin: 3px;
+   margin: 3px;
 }
 #btn_see_review{
-	border-radius: 5px;
-	background: lightgray;
-	border: solid lightgray 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:80px;
+   border-radius: 5px;
+   background: lightgray;
+   border: solid lightgray 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:80px;
+   cursor: pointer;
 }
 #btn_heart_product{
-	border-radius: 5px;
-	background: #26e4ca;
-	border: solid #26e4ca 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:80px;
+   border-radius: 5px;
+   background: #26e4ca;
+   border: solid #26e4ca 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:80px;
+   cursor: pointer;
 }
 .more_area{
-	padding-top: 8px;
+   padding-top: 8px;
 }
 .btn_more{
-	border-radius:5px;
-	background: white;
-	border: solid lightgray 2px;
+   border-radius:5px;
+   background: white;
+   border: solid lightgray 2px;
+   cursor: pointer;
 }
 
 
 #btn_mintmarket_bought{
-	border-radius: 5px;
-	width:80px;
-	background: #26e4ca;
-	border-color: #26e4ca;
-	color:white;
+   border-radius: 5px;
+   width:80px;
+   background: #26e4ca;
+   border-color: #26e4ca;
+   color:white;
+   cursor: pointer;
 }
 #btn_mintstore_bought{
-	border-radius: 5px;
-	width:80px;
-	background: #26e4ca;
-	color:white;
-	border-color: #26e4ca;
-	
+   border-radius: 5px;
+   width:80px;
+   background: #26e4ca;
+   color:white;
+   border-color: #26e4ca;
+   cursor: pointer;
 }
 
 /*나의 스토어거래*/
 .store_bought_list_grid{
-	width: auto;
-	height: 450px;
-	border: 1px solid lightgray;
-	border-radius:5px;
-	padding: 20px;
-	padding-left: 50px;
-	padding-right: 50px;
-	overflow:scroll;
-	overflow-x:hidden;
+   width: auto;
+   height: 450px;
+   border: 1px solid lightgray;
+   border-radius:5px;
+   padding: 20px;
+   padding-left: 50px;
+   padding-right: 50px;
+   overflow:scroll;
+   overflow-x:hidden;
 }
 .store_bought_list{
-	width:auto;
-	height: 60%;
-	padding: 20px;
-	display: block;
+   width:auto;
+   height: 60%;
+   padding: 20px;
+   display: block;
 }
 
 
 #bought_product_img{
-	width: 100%;
+   width: 100%;
     height: 100%;
-    object-fit: cover;	
+    object-fit: cover;   
     
 }
 
 
 #btn_store_bought_product{
-	border-radius: 5px;
-	background: white;
-	border: solid lightgray 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:80px;
-	height:25px;
-	
+   border-radius: 5px;
+   background: white;
+   border: solid lightgray 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:80px;
+   height:25px;
+   cursor: pointer;
 }
 
 
 
 /* 나의 커뮤니티 */
 .community_list_grid{
-	width: auto;
-	height: 450px;
-	border: 1px solid lightgray;
-	border-radius:5px;
-	padding: 20px;
-	padding-left: 50px;
-	padding-right: 50px;
-	overflow:scroll;
-	overflow-x:hidden;
+   width: auto;
+   height: 450px;
+   border: 1px solid lightgray;
+   border-radius:5px;
+   padding: 20px;
+   padding-left: 50px;
+   padding-right: 50px;
+   overflow:scroll;
+   overflow-x:hidden;
 }
 .community_list{
-	width:auto;
-	height: 40%;
-	padding: 20px;
-	display: block;
+   width:auto;
+   height: 40%;
+   padding: 20px;
+   display: block;
 }
 
 #btn_community_update{
-	border-radius: 5px;
-	background: white;
-	border: solid lightgray 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:50px;
+   border-radius: 5px;
+   background: white;
+   border: solid lightgray 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:50px;
+   cursor: pointer;
 }
 #btn_community_delete{
-	border-radius: 5px;
-	background: lightgray;
-	border: solid lightgray 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:50px;
+   border-radius: 5px;
+   background: lightgray;
+   border: solid lightgray 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:50px;
+   cursor: pointer;
 }
 
 .community_comment_list_grid{
-	width: auto;
-	height: 450px;
-	border: 1px solid lightgray;
-	border-radius:5px;
-	padding: 20px;
-	padding-left: 50px;
-	padding-right: 50px;
-	overflow:scroll;
-	overflow-x:hidden;
+   width: auto;
+   height: 450px;
+   border: 1px solid lightgray;
+   border-radius:5px;
+   padding: 20px;
+   padding-left: 50px;
+   padding-right: 50px;
+   overflow:scroll;
+   overflow-x:hidden;
 }
 .community_comment_list{
-	width:auto;
-	height: 50%;
-	padding: 20px;
-	display: block;
+   width:auto;
+   height: 50%;
+   padding: 20px;
+   display: block;
 }
 
 #btn_community_comment_update{
-	border-radius: 5px;
-	background: white;
-	border: solid lightgray 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:50px;
+   border-radius: 5px;
+   background: white;
+   border: solid lightgray 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:50px;
+   cursor: pointer;
 }
 #btn_community_comment_delete{
-	border-radius: 5px;
-	background: lightgray;
-	border: solid lightgray 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:50px;
+   border-radius: 5px;
+   background: lightgray;
+   border: solid lightgray 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:50px;
+   cursor: pointer;
 }
 
 
 
 
 #sold_product_review {
-	margin: 3px;
+   margin: 3px;
 }
 #btn_see_review{
-	border-radius: 5px;
-	background: lightgray;
-	border: solid lightgray 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:80px;
+   border-radius: 5px;
+   background: lightgray;
+   border: solid lightgray 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:80px;
+   cursor: pointer;
 }
 #btn_heart_product{
-	border-radius: 5px;
-	background: #26e4ca;
-	border: solid #26e4ca 1px;
-	font-size: 13px;
-	margin: 3px;
-	width:80px;
+   border-radius: 5px;
+   background: #26e4ca;
+   border: solid #26e4ca 1px;
+   font-size: 13px;
+   margin: 3px;
+   width:80px;
+   cursor: pointer;
 }
 .more_area{
-	padding-top: 8px;
+   padding-top: 8px;
 }
-.btn_more{
-	border-radius:5px;
-	background: white;
-	border: solid lightgray 2px;
-}
-
 
 #btn_mintmarket_bought{
-	border-radius: 5px;
-	width:80px;
-	background: #26e4ca;
-	border-color: #26e4ca;
-	color:white;
+   border-radius: 5px;
+   width:80px;
+   background: #26e4ca;
+   border-color: #26e4ca;
+   color:white;
+   cursor: pointer;
 }
 #btn_mintstore_bought{
-	border-radius: 5px;
-	width:80px;
-	background: #26e4ca;
-	color:white;
-	border-color: #26e4ca;
-	
+   border-radius: 5px;
+   width:80px;
+   background: #26e4ca;
+   color:white;
+   border-color: #26e4ca;
+   cursor: pointer;
 }
-
-
-
 

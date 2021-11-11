@@ -43,8 +43,11 @@ a {
 }
 
 .best img, .review img {
-    width:100%;
+    width: 200px;
+    height: 150px;
+    object-fit: contain;
     transition:transform 1s;
+    background:#f7f7f7;
 }
 
 .best img:hover {

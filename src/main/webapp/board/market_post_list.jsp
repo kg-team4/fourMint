@@ -8,6 +8,9 @@
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@ 등록시간 추가 + 사진 추가하기 @@@@@@@@@ -->
 
+<link rel="shortcut icon" type="image/x-icon"
+	href="../img/logo_icon.png" />
+<title>민트마켓 카테고리별 중고거래상품</title>
 <link rel="stylesheet" href="../css/reset.css">
 <link rel="stylesheet" href="../css/mint_market_content.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -42,7 +45,7 @@
 					<!-- 마켓 글 목록 -->
 					<c:set var="big_no" value="${param.big_no }" />
 					<c:set var="middle_no" value="${param.middle_no }" />
-					<c:set var="count" value="0" />
+					<c:set var="heart_count" value="0" />
 					<c:forEach var="market" items="${marketList }">
 						<c:choose>
 							<c:when test="${middle_no ne null }">
@@ -50,15 +53,17 @@
 								<c:set var="market_category_middle" value="${market.category_middle }" />
 								<c:if test="${ big_no eq market_category_big && middle_no eq market_category_middle }">
 									<li>
-										<a href="marketBoard.do?seq=${market.market_seq }"> <img src="${market.url }" alt="추천상품1"></a>
+										<a href="marketBoard.do?seq=${market.market_seq }"> 
+											<img src="${market.url }" alt="중고상품사진">
+										</a>
 										<p>
-											<span class="red">${market.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(${count})"></i></span>
+											<span class="red">${market.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(${heart_count})"></i></span>
 										</p>
 										<p>
 											<span>${market.product_name }</span> <span>${market.product_price }원</span>
 										</p>
 									</li>
-									<c:set var="count" value="${ count + 1 }" />
+									<c:set var="heart_count" value="${ heart_count + 1 }" />
 								</c:if>
 							</c:when>
 							<c:otherwise>
@@ -67,13 +72,13 @@
 									<li>
 										<a href="marketBoard.do?seq=${market.market_seq }"> <img src="${market.url }" alt="추천상품1"></a>
 										<p>
-											<span class="red">${market.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(${count})"></i></span>
+											<span class="red">${market.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(${heart_count})"></i></span>
 										</p>
 										<p>
 											<span>${market.product_name }</span> <span>${market.product_price }원</span>
 										</p>
 									</li>
-									<c:set var="count" value="${ count + 1 }" />
+									<c:set var="heart_count" value="${ heart_count + 1 }" />
 								</c:if>
 							</c:otherwise>
 						</c:choose>
@@ -93,21 +98,19 @@
 				<c:set var="endPage" value="${ pageCount }" />
 			</c:if>
 			<c:if test="${ startPage > pageBlock }">
-				<a href="marketDetailList.do?pageNum=${ startPage - pageBlock }">[이전]</a>
+				<a href="marketDetailList.do?big_no=${big_no}&pageNum=${ startPage - pageBlock }">[이전]</a>
 			</c:if>
 			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-				<a href="marketDetailList.do?pageNum=${ i }">[${ i }]</a>
+				<a href="marketDetailList.do?big_no=${big_no}&pageNum=${ i }">[${ i }]</a>
 			</c:forEach>
 			<c:if test="${ endPage < pageCount }">
-				<a href="marketDetailList.do?pageNum=${ startPage + pageBlock }">[다음]</a>
+				<a href="marketDetailList.do?big_no=${big_no}&pageNum=${ startPage + pageBlock }">[다음]</a>
 			</c:if>
 		</c:if>
 </article>
 
 <script>
-	${".fa-heart"}.click(function() {
-		
-	});
+	
 </script>
 
 <jsp:include page="../template/footer.jsp"></jsp:include>
