@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import four.mint.web.user.NaverVO;
 import four.mint.web.user.UserVO;
 
 @Repository
@@ -11,6 +12,7 @@ public class UserDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
+
 	
 	public void insertUser(UserVO vo) {
 		System.out.println("====> member TABLE INSERT one member");
@@ -57,5 +59,16 @@ public class UserDAO {
 		System.out.println("====> member TABLE SELECT phone");
 		
 		return sqlSessionTemplate.selectOne("UserDAO.phoneCheck", phone);
+	}
+
+	public void insertNaver(NaverVO nvo) {
+		System.out.println("===> member TABLE INSERT naver member");
+		sqlSessionTemplate.insert("UserDAO.insertNaver", nvo);
+	}
+	
+	public String getByNaver(String nid) {
+		System.out.println("===> member TABLE SELET naverid");
+		
+		return sqlSessionTemplate.selectOne("UserDAO.getByNaver", nid);
 	}
 }

@@ -16,10 +16,11 @@
                     <img src="../img/logo_icon.png" alt="logo_icon" id="logo_icon">
                 </div>
                 <div>
-                    <input type="text" name="email_id" placeholder="이메일" id="id" required>
+                    <input type="text" name="email_id" placeholder="이메일" id="id">
                 </div>
                 <div>
-                    <input type="password" name="password" placeholder="비밀번호" id="pw" required>
+                    <input
+                     type="password" name="password" placeholder="비밀번호" id="pw">
                 </div>
                 <div>
                     <div id="login-tool">
@@ -33,9 +34,8 @@
                 <div>
                 	
                     <input type="submit" value="민트마켓 아이디로 로그인" id="login-submit" /><br>            
-                    <button class="btn-naverLogin"><img src="img/naver_logo.PNG" style="height:18px;width:18px;">&nbsp;&nbsp; 네이버 아이디로 로그인</button><br>
-        			<button class="btn-kakaoLogin"><img src="img/kakao_logo.PNG" style="height:23px;width:24px;">&nbsp;&nbsp; 카카오 아이디로 로그인</button><br>
-					<button class="btn-googleLogin"><img src="img/google_logo.PNG" style="height:23px;width:23px;">&nbsp;&nbsp; 구글 아이디로 로그인</button><br>
+                   <a href="${naver_url }"><img src="img/naver_logo.PNG" style="height:18px;width:18px;">&nbsp;&nbsp; 네이버 아이디로 로그인</a><br>
+        			<a href="${kakao_url }"><img src="img/kakao_logo.PNG" style="height:23px;width:24px;">&nbsp;&nbsp; 카카오 아이디로 로그인</a><br>
 					
                 </div>
             </form>

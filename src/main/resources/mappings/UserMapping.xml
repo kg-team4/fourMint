@@ -21,6 +21,10 @@
 		VALUES (#{email_id}, #{password}, #{name}, #{nickname}, #{address1}, #{address2}, #{address3}, #{phone}, #{birth}, #{gender})
 	</insert>
 	
+	<insert id="insertNaver" parameterType="user">
+		INSERT INTO member (email_id, phone, birth, gender, social_login, snsid) VALUES (#{email_id}, #{phone}, #{birth}, #{gender}, #{social_login}, #{naverid})
+	</insert>
+	
 	<select id="getUser" resultType="user">
 		SELECT * FROM member WHERE email_id = #{email_id} AND password = #{password}
 	</select>
@@ -47,5 +51,10 @@
 	
 	<select id="phoneCheck" resultType="int" parameterType="String">
 		SELECT COUNT(phone) FROM member WHERE phone = #{phone}
+	</select>
+	
+	
+	<select id="getByNaver" resultType="String" parameterType="String">
+		SELECT snsid FROM member WHERE snsid = #{naverid}
 	</select>
 </mapper>
