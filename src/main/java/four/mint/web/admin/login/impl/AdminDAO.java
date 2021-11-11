@@ -1,13 +1,28 @@
 package four.mint.web.admin.login.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import four.mint.web.admin.login.AdminVO;
+import four.mint.web.admin.login.AdminService;
+
+
+@Repository
 public class AdminDAO {
-	private Connection conn = null;
-	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
 	
-	// 추가
+	@Autowired
+	private SqlSessionTemplate sqlSessionTemplate;
+	
+	public void insertAdmin(AdminVO vo) {
+		System.out.println("====> admin TABLE INSERT one admin");
+		sqlSessionTemplate.insert("AdminDAO.insertAdmin", vo);
+	}
+	
+	public AdminVO getAdmin(AdminVO vo) {
+		System.out.println("====> member TABLE SELECT one admin");
+		
+		return (AdminVO)sqlSessionTemplate.selectOne("AdminDAO.getAdmin", vo);
+	}		
 }

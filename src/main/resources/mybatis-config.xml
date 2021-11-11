@@ -7,11 +7,13 @@
 		<typeAlias alias="communityBoard" type="four.mint.web.user.community.CommunityBoardVO" />
 		<typeAlias alias="market" type="four.mint.web.user.market.MarketVO" />
 		<typeAlias alias="store" type="four.mint.web.user.store.StoreVO" />
+		<typeAlias alias="admin" type="four.mint.web.admin.login.AdminVO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/UserMapping.xml" />
 		<mapper resource="mappings/CommunityBoardMapping.xml" />
 		<mapper resource="mappings/MarketMapping.xml" />
 		<mapper resource="mappings/StoreMapping.xml" />
+		<mapper resource="mappings/AdminMapping.xml"/>
 	</mappers>
 </configuration>

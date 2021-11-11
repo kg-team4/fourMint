@@ -68,14 +68,14 @@ public class StoreController {
 	}
 	
 
-	@RequestMapping(value = "/pay/order.jsp", method = RequestMethod.GET)
+	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
 	public String payment() {
 		
 		return "/pay/payment";
 	}
 	
 
-	@RequestMapping(value = "/pay/payment.jsp", method = RequestMethod.GET)
+	@RequestMapping(value = "/order.do", method = RequestMethod.GET)
 	public String order() {
 		
 		return "/pay/order";
