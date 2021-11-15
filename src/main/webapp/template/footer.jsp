@@ -46,7 +46,7 @@
 function kakaoLogin() {
     Kakao.Auth.login({
       success: function (response) {
-    	console.log('1',response)
+    	
         Kakao.API.request({
           url: '/v2/user/me',
           success: function (response) {
@@ -78,23 +78,7 @@ function kakaoLogin() {
     })
   } 
   
-/* id: 1989267508
-kakao_account:
-birthday: "0827"
-birthday_needs_agreement: false
-birthday_type: "SOLAR"
-email: "gudwns0827@gmail.com"
-email_needs_agreement: false
-gender: "male"
-gender_needs_agreement: false
-has_birthday: true
-has_email: true
-has_gender: true
-is_email_valid: true
-is_email_verified: true
-profile:
-nickname: "장형준" */
-//카카오로그아웃
+
 function kakaoLogout() {
 	
 	console.log("!!!!!!!")
@@ -117,7 +101,7 @@ function kakaoLogout() {
 					
 					location.replace(url);
             	},
-            	/* location.href = "http:localhost:8080/home.do", */
+            	
             	
             	fail: function(error){
             		console.log(error.message)

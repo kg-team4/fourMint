@@ -96,8 +96,8 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
-	public MarketVO updateViews(int views) {
+	public void updateViews(int market_seq) {
+		marketDao.updateViews(market_seq);
 		
-		return null;
 	}
 }

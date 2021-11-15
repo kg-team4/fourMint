@@ -15,6 +15,7 @@
 		<result property="date" column="DATE" />
 		<result property="address2" column="ADDRESS2" />
 		<result property="nickname" column="NICKNAME" />
+		<result property="views" column="VIEWS" />
 	</resultMap>
 	
 	<select id="getMarketOne" resultType="market" parameterType="int">
@@ -57,6 +58,10 @@
 	
 	<select resultType="categoryBig" id="getMarketCategoryBig">
 		SELECT * FROM market_category_big ORDER BY num ASC
+	</select>
+	
+	<select id="updateViews" resultType="int" parameterType="int">
+		UPDATE marketBoard SET views = views +1 where market_seq = ${market_seq}
 	</select>
 	
 </mapper>
