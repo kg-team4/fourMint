@@ -12,6 +12,7 @@
 						<img src="./upload/profile/${tmp.profile}" alt="sunil" >
 					</a>
 				</div>
+				
 				<div class="chat_ib">
 					<h5>${tmp.other_nick }<span class="chat_date">${tmp.send_time }</span>
 					</h5>

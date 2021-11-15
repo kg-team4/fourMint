@@ -13,6 +13,7 @@
 					<img src="./upload/profile/${tmp.profile }" class='img_circle'>
 					</a>
 				</div>
+				
 				<div class="received_msg" style="display: flex">
 					<div class="received_withd_msg" style="max-width: fit-content;">
 						<p id="received_content" style="max-width: 200px">${tmp.content }</p>

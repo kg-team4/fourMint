@@ -59,6 +59,7 @@
 
 				$('.inbox_chat').html(data);
 
+				
 				// 메세지 리스트중 하나를 클릭했을 때
 				$('.chat_list').on('click', function() {
 					//alert('room : '+ $(this).attr('room'));

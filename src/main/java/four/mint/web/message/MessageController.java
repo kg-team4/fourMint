@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.annotation.ModelAndViewResolver;
 public class MessageController {
 
 	@Autowired
-	private MessageService messageService;
+	private MessageService messageService; //
 
 	// 메세지 목록
 	@RequestMapping(value = "/message_list.do", method = RequestMethod.GET)

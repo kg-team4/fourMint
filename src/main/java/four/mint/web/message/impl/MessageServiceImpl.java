@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import four.mint.web.message.MessageService;
 import four.mint.web.message.MessageVO;
 
-@Service("messageService")
+@Service("messageService")	//
 public class MessageServiceImpl implements MessageService {
 
 	@Autowired

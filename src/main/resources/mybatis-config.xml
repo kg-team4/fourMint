@@ -14,9 +14,11 @@
 		<typeAlias alias="message" type="four.mint.web.message.MessageVO" />
 		<typeAlias alias="storeCategoryBig" type="four.mint.web.user.store.StoreCategoryBigVO" />
 	</typeAliases>
+	
 	<typeHandlers>
 	    <typeHandler javaType="java.util.Map" handler="four.mint.web.common.JsonTypeHandler"/>
 	</typeHandlers>
+	
 	<mappers>
 		<mapper resource="mappings/UserMapping.xml" />
 		<mapper resource="mappings/CommunityBoardMapping.xml" />
