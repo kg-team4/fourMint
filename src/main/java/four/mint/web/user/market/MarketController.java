@@ -44,8 +44,13 @@ public class MarketController {
 
 	@RequestMapping(value = "/marketBoard.do", method = RequestMethod.GET)
     public String mintBoard(HttpServletRequest request, UserVO vo, MarketVO marvo, Model model) {
+		marketService.updateViews(Integer.valueOf(request.getParameter("seq")));
 		
 		marvo = marketService.getMarketOne(Integer.valueOf(request.getParameter("seq")));
+		
+		
+		
+		System.out.println(marvo.getViews());
 		
 		model.addAttribute("content", marvo);
 		model.addAttribute("date", DateUtil.txtDate(marvo.getDate()));
