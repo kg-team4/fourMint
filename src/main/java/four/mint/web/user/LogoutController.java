@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -26,5 +27,13 @@ public class LogoutController {
 //		}
 		
 		return "/index/index";
+	}
+	
+	@RequestMapping("/kakaoLogout.do")
+	public String kakaoLogout(HttpSession session) {
+		session.invalidate();
+		System.out.println("111111");
+		
+		return "redirect:home.do";
 	}
 }

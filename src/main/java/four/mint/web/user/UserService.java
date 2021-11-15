@@ -12,8 +12,9 @@ public interface UserService {
 	int phoneCheck(String phone) throws Exception;
 	void certifiedPhoneNumber(String userPhoneNumber, int randomNumber);
 	
-	//naverLogin
-	void insertUser(NaverVO svo);
-	String getByNaver(String nid);
+	//snsLogin
+	void naverlogin(NaverVO nvo);
+	void kakaologin(KakaoVO kvo);
+	String getBySns(String snsid);
 	
 }

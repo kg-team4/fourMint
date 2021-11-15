@@ -43,6 +43,17 @@ if (request.getAttribute("result") != null) {
 <link href="../css/profile.css" rel="stylesheet">
 <link href="../css/navbar.css" rel="stylesheet">
 <article>
+<script type="text/javascript">
+
+var sns = '<%=(String)session.getAttribute("sns") %>'
+window.onload=function(){
+	console.log(sns);
+	if(sns != null ){
+		alert('개인정보를 추가해주세요!');
+	}
+}
+
+</script>
 	<!-- 메뉴바 
        현재페이지 뭔지 param.thisPage에 넣어서 navbar.jsp에  던짐 -->
 	<%-- <jsp:include page="./navbar.jsp">

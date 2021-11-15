@@ -14,6 +14,8 @@
 		<result property="address3" column="ADDRESS3" />
 		<result property="birth" column="BIRTH" />
 		<result property="gender" column="GENDER" />
+		<result property="social_login" column="SOCIAL_LOGIN"/>
+		<result property="snsid" column="SNSID"/>
 	</resultMap>
 	
 	<insert id="insertUser" parameterType="user">
@@ -22,7 +24,11 @@
 	</insert>
 	
 	<insert id="insertNaver" parameterType="user">
-		INSERT INTO member (email_id, phone, birth, gender, social_login, snsid) VALUES (#{email_id}, #{phone}, #{birth}, #{gender}, #{social_login}, #{naverid})
+		INSERT INTO member (email_id, phone, birth, gender, social_login, snsid) VALUES (#{email}, #{phone}, #{birth}, #{gender}, #{social_login}, #{naverid})
+	</insert>
+	
+	<insert id="insertKakao" parameterType="user">
+		INSERT INTO member (email_id, birth, nickname, gender, social_login, snsid) VALUES (#{email}, #{birth}, #{nickname}, #{gender}, #{social_login}, #{kakaoid} )  
 	</insert>
 	
 	<select id="getUser" resultType="user">
@@ -54,7 +60,7 @@
 	</select>
 	
 	
-	<select id="getByNaver" resultType="String" parameterType="String">
-		SELECT snsid FROM member WHERE snsid = #{naverid}
+	<select id="getBySns" resultType="String" parameterType="String">
+		SELECT social_login FROM member WHERE email_id = #{email}
 	</select>
 </mapper>

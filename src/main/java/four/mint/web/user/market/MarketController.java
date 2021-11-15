@@ -44,6 +44,7 @@ public class MarketController {
 
 	@RequestMapping(value = "/marketBoard.do", method = RequestMethod.GET)
     public String mintBoard(HttpServletRequest request, UserVO vo, MarketVO marvo, Model model) {
+		
 		marvo = marketService.getMarketOne(Integer.valueOf(request.getParameter("seq")));
 		
 		model.addAttribute("content", marvo);
@@ -52,7 +53,8 @@ public class MarketController {
 		model.addAttribute("result1", userService.getAddress1(vo));
 		model.addAttribute("result2", userService.getAddress2(vo));
 		model.addAttribute("result3", userService.getAddress3(vo));
-
+		
+		
 		return "/board/market_post_content";
 	}
 
@@ -174,7 +176,9 @@ public class MarketController {
 	@RequestMapping(value = "/marketSell.do", method = RequestMethod.GET)
 	public String marketSell(Model model, HttpSession session) {
 		if(session.getAttribute("userEmail_id") == null) {
-			return "/user/login";
+			return "redirect:/login.do";
+		}else if(session.getAttribute("sns") != null) {
+			return "redirect:/profile.do";
 		}
 		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
 		model.addAttribute("marketCategoryBig", marketCategoryBig);
