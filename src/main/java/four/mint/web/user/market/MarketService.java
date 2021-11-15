@@ -35,6 +35,5 @@ public interface MarketService {
 
 	List<MarketVO> getKindTwoList(SearchVO svo);
 
-
-	MarketVO updateViews(int views);
+	void updateViews(int market_seq);
 }
