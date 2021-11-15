@@ -13,6 +13,11 @@
 		<typeAlias alias="admin" type="four.mint.web.admin.login.AdminVO" />
 		<typeAlias alias="message" type="four.mint.web.message.MessageVO" />
 		<typeAlias alias="storeCategoryBig" type="four.mint.web.user.store.StoreCategoryBigVO" />
+		<typeAlias alias="adminPage" type="four.mint.web.admin.page.AdminPageVO" />
+		<typeAlias alias="adminTable" type="four.mint.web.admin.table.member.AdminTableVO" />
+		<typeAlias alias="adminUsed" type="four.mint.web.admin.table.used.AdminUsedVO" />
+		<typeAlias alias="adminGoods" type="four.mint.web.admin.table.goods.AdminGoodsVO" />
+		<typeAlias alias="adminFaq" type="four.mint.web.admin.used.faq.AdminFaqVO" />
 	</typeAliases>
 	<typeHandlers>
 	    <typeHandler javaType="java.util.Map" handler="four.mint.web.common.JsonTypeHandler"/>
@@ -25,5 +30,10 @@
 		<mapper resource="mappings/KeyMapping.xml" />
 		<mapper resource="mappings/AdminMapping.xml"/>
 		<mapper resource="mappings/MessageMapping.xml" />
+		<mapper resource="mappings/AdminPageMapping.xml" />
+		<mapper resource="mappings/AdminTableMapping.xml" />
+		<mapper resource="mappings/AdminUsedMapping.xml" />
+		<mapper resource="mappings/AdminGoodsMapping.xml" />
+		<mapper resource="mappings/AdminFaqMapping.xml" />
 	</mappers>
 </configuration>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -58,51 +59,34 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>이메일아이디</th>
                                             <th>이름</th>
-                                            <th>아이디</th>
-                                            <th>닉네임</th>
+                                            <th>별명</th>
+                                            <th>주소1</th>
+                                            <th>주소2</th>
+                                            <th>주소3</th>
+                                            <th>휴대폰 번호</th>
+                                            <th>생년월일</th>
+                                            <th>성별</th>
                                             <th>가입날짜</th>
-                                            
                                         </tr>
                                     </thead>
                                    
                                     <tbody>
-                                        <tr>
-                                            <td>박동녘</td>
-                                            <td>dongdong</td>
-                                            <td>시아동동</td>
-                                            <td>2021/11/09</td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>장형준</td>
-                                            <td>jangjang</td>
-                                            <td>믹키형준</td>
-                                            <td>2021/11/09</td>                                                                                     
-                                        </tr>
-                                        <tr>
-                                            <td>백미라</td>
-                                            <td>mira</td>
-                                            <td>유노미라</td>
-                                            <td>2021/11/09</td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <td>김주호</td>
-                                            <td>jumen</td>
-                                            <td>영웅주호</td>
-                                            <td>2021/11/09</td>                                           
-                                        </tr>
-                                        <tr>
-                                            <td>이정빈</td>
-                                            <td>jblee</td>
-                                            <td>최강정빈</td>
-                                            <td>2021/11/09</td>
-                                        
-                                        </tr>
-                                        
-                                       
-                                                                                                                                                                                                                                                                                 
+                                    	<c:forEach var="member" items="${list }">
+	                                        <tr>
+	                                            <td>${member.email_id }</td>
+	                                            <td>${member.name }</td>
+	                                            <td>${member.nickname }</td>	                                            
+	                                            <td>${member.address1 }</td>
+	                                            <td>${member.address2 }</td>
+	                                            <td>${member.address3 }</td>
+	                                            <td>${member.phone}</td>
+	                                            <td>${member.birth }</td>
+	                                            <td>${member.gender}</td>
+	                                            <td>${member.date }</td>
+                                        	</tr>
+                                        </c:forEach>                                                                                                                                                                                                                                                                                                                 
                                     </tbody>
                                 </table>
                             </div>

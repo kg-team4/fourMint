@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>증고거래 관련 공지 글 관리</title>
+    <title>공지사항</title>
 
     <!-- Custom fonts for this template-->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -42,27 +42,29 @@
                 <div class="container-fluid">
 
                   <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">증고거래 관련 공지 글 관리</h1>
+                    <h1 class="h3 mb-2 text-gray-800">공지사항</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 중고거래 공지 글</a>.</p>
+                            href="https://datatables.net">민트마켓 공지사항</a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">중고거래 공지 글 </h6>
+                            <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                 <input type="submit" class="btn btn-primary btn-user btn-block" value="제출하기">
+                                     
+                                    </div>
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>카테고리 대분류</th>
-                                            <th>카테고리 중분류</th>
-                                            <th>카테고리 소분류</th>
-                                            <th>가격</th>
-                                            
+                                            <th>제목</th>
+                                            <th>작성자</th>
+                                            <th>작성일</th>
+                                                                                       
                                         </tr>
                                     </thead>
                                    

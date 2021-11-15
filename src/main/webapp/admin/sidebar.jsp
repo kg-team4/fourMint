@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
++<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!------------------------------------- 사이드바 -------------------------------------->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 	<!-- 사이드바 - 로고(브랜드) -->
@@ -32,10 +32,10 @@
 		<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">글 관리:</h6>
-				<a class="collapse-item" href="utilities-board.mdo">등록된 글 관리</a>
-				<a class="collapse-item" href="utilities-annoucement.mdo">중고거래 관련 공지 글 관리</a> 
-				<a class="collapse-item" href="utilities-boardmanage.mdo">자체 상품 글 관리</a> 
-				<a class="collapse-item" href="utilities-usedfaq.mdo">중고거래FAQ</a>
+				<a class="collapse-item" href="utilities-board.mdo">중고거래 글 관리</a>
+				<a class="collapse-item" href="utilities-annoucement.mdo">공지사항</a> 
+				<a class="collapse-item" href="utilities-boardmanage.mdo">스토어 상품 글 관리</a> 
+				<a class="collapse-item" href="utilities-usedfaq.mdo">FAQ</a>
 			</div>
 		</div></li>
 	<!-- 구분선 -->
@@ -47,13 +47,16 @@
 		<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">카테고리 페이지:</h6>
-				<a class="collapse-item" href="login.mdo">회원 관리 페이지</a> 
-				<a class="collapse-item" href="register.mdo">상품관리 페이지</a> 
-				<a class="collapse-item" href="forgot-password.mdo">고객센터 페이지</a>
+				<a class="collapse-item" href="memberpage.mdo">회원 관리 페이지</a> 
+				<a class="collapse-item" href="merchandise.mdo">상품관리 페이지</a> 
+				<a class="collapse-item" href="customercenter.mdo">고객센터 페이지(Q&A)</a>
 				<div class="collapse-divider"></div>
-				<h6 class="collapse-header">거래 페이지:</h6>
-				<a class="collapse-item" href="404.mdo">거래 현횡 조회 페이지</a> 
-				<a class="collapse-item" href="blank.mdo">거래 분포도 페이지</a>
+				<h6 class="collapse-header">중고거래 페이지:</h6>
+				<a class="collapse-item" href="usedstatus.mdo">중고거래 현황 조회 페이지</a> 
+				<a class="collapse-item" href="useddistribution.mdo">중고거래 분포도 페이지</a>
+				<h6 class="collapse-header">스토어 거래 페이지:</h6>
+				<a class="collapse-item" href="storestatus.mdo">거래 현황 조회 페이지</a> 
+				<a class="collapse-item" href="storedistribution.mdo">거래 분포도 페이지</a>
 			</div>
 		</div></li>
 	<!-- 메뉴 - 차트 -->
