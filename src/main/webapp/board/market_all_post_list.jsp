@@ -14,10 +14,6 @@
 
 <article>
    <div class="slide">
-      <input type="radio" name="circle" id="slide1">
-        <input type="radio" name="circle" id="slide2">
-        <input type="radio" name="circle" id="slide3">
-        <input type="radio" name="circle" id="slide4">
       <ul class="slideImg">
          <li class="jsSlide"><a href=""><img src="../img/market_slide1.png" alt="민트마켓슬라이드1"></a></li>
          <li class="jsSlide"><a href=""><img src="../img/market_slide2.png" alt="민트마켓슬라이드2"></a></li>
@@ -47,9 +43,7 @@
                src="../img/store_recommand_product01.png" alt="추천상품1">
          </a>
             <p>
-               <span class="red">[카테고리]</span> <span> <i
-                  class="fas fa-heart" onclick="handleModal(0)"></i>
-               </span>
+               <span class="red">[카테고리]</span> 
             </p>
             <p>
                <span>유칼리 스킨케어 원형패드</span> <span>9,900원</span>
@@ -58,9 +52,7 @@
                src="../img/store_recommand_product02.png" alt="추천상품2">
          </a>
             <p>
-               <span class="red">[카테고리]</span> <span> <i
-                  class="fas fa-heart" onclick="handleModal(1)"></i>
-               </span>
+               <span class="red">[카테고리]</span> 
             </p>
             <p>
                <span>고무장갑 팔목라인</span> <span>2,500원</span>
@@ -69,9 +61,7 @@
                src="../img/store_recommand_product03.png" alt="추천상품3">
          </a>
             <p>
-               <span class="red">[카테고리]</span> <span> <i
-                  class="fas fa-heart" onclick="handleModal(2)"></i>
-               </span>
+               <span class="red">[카테고리]</span> 
             </p>
             <p>
                <span>올인원 비건 샴푸볼 - 어성초 그린</span> <span>19,000원</span>
@@ -93,9 +83,7 @@
                src="../img/store_recommand_product01.png" alt="추천상품1">
          </a>
             <p>
-               <span class="red">[LIVING]</span> <span> <i
-                  class="fas fa-heart" onclick="handleModal(3)"></i>
-               </span>
+               <span class="red">[LIVING]</span> 
             </p>
             <p>
                <span>유칼리 스킨케어 원형패드</span> <span>9,900원</span>
@@ -104,9 +92,7 @@
                src="../img/store_recommand_product02.png" alt="추천상품2">
          </a>
             <p>
-               <span class="red">[KITCHEN]</span> <span> <i
-                  class="fas fa-heart" onclick="handleModal(4)"></i>
-               </span>
+               <span class="red">[KITCHEN]</span> 
             </p>
             <p>
                <span>고무장갑 팔목라인</span> <span>2,500원</span>
@@ -115,9 +101,7 @@
                src="../img/store_recommand_product03.png" alt="추천상품3">
          </a>
             <p>
-               <span class="red">[BATH]</span> <span> <i
-                  class="fas fa-heart" onclick="handleModal(5)"></i>
-               </span>
+               <span class="red">[BATH]</span>
             </p>
             <p>
                <span>올인원 비건 샴푸볼 - 어성초 그린</span> <span>19,000원</span>
@@ -140,9 +124,7 @@
                src="../img/store_recommand_product01.png" alt="추천상품1">
          </a>
             <p>
-               <span class="red">[LIVING]</span> <span> <i
-                  class="fas fa-heart" onclick="handleModal(6)"></i>
-               </span>
+               <span class="red">[LIVING]</span>
             </p>
             <p>
                <span>유칼리 스킨케어 원형패드</span> <span>9,900원</span>
@@ -151,9 +133,7 @@
                src="../img/store_recommand_product02.png" alt="추천상품2">
          </a>
             <p>
-               <span class="red">[KITCHEN]</span> <span> <i
-                  class="fas fa-heart" onclick="handleModal(7)"></i>
-               </span>
+               <span class="red">[KITCHEN]</span>
             </p>
             <p>
                <span>고무장갑 팔목라인</span> <span>2,500원</span>
@@ -162,9 +142,7 @@
                src="../img/store_recommand_product03.png" alt="추천상품3">
          </a>
             <p>
-               <span class="red">[BATH]</span> <span> <i
-                  class="fas fa-heart" onclick="handleModal(8)"></i>
-               </span>
+               <span class="red">[BATH]</span> 
             </p>
             <p>
                <span>올인원 비건 샴푸볼 - 어성초 그린</span> <span>19,000원</span>

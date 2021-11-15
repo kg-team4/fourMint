@@ -140,7 +140,7 @@
 							<!-- 프로필 닉네임 / 댓글 내용 영역 -->
 							<div class="reply-nick-font">
 								<span style="margin-left:50px">탈퇴한 회원</span> <label id="reply-member-form" for="11">
-								<input type="checkbox" id="11" value="1" onchange="viewReplyMemberInfo(this);">aa</label>
+								<input type="checkbox" id="11" value="1" onchange="">우쭈쭈동동</label>
 								<span>
 								&emsp;
 								<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
@@ -237,7 +237,7 @@
 							<div class="reply-nick-font">
 								<span style="margin-left:50px">탈퇴한 회원</span> 
 								<span id="reply-member-form" for="11">
-								<input type="checkbox" id="11" value="1" onchange="viewReplyMemberInfo(this);">aa</span>
+								<input type="checkbox" id="11" value="1" onchange="">우쭈쭈동동</span>
 								
 								<!-- <div class="info11 reply-tab-design">
 									<div>
@@ -292,7 +292,12 @@
 					<div class="padding-top20 rereply-off padding-bottom30" id="rereply-form1">
 						<p class="font20">답글</p>
 						<form action="write_reply.do" method="post">
-							<input type="hidden" name="no" value="1"> <input type="hidden" name="reply_no" value="1"> <input type="hidden" name="post_no" value="1"> <input type="hidden" name="reply_table_name" value="이름"> <input type="hidden" name="reply_seq_name" value="이름"> <input
+							<input type="hidden" name="no" value="1"> 
+							<input type="hidden" name="reply_no" value="1"> 
+							<input type="hidden" name="post_no" value="1"> 
+							<input type="hidden" name="reply_table_name" value="이름"> 
+							<input type="hidden" name="reply_seq_name" value="이름"> 
+							<input
 								type="hidden" name="post_path" value="asd?asd">
 							<div class="reply-div-padding">
 								<div class="reply-border">

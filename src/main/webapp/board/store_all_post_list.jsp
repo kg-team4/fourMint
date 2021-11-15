@@ -51,9 +51,6 @@
                     </a>
                     <p>
                         <span class="red">[LIVING]</span>
-                        <span>
-                            <i class="fas fa-heart" onclick="handleModal(0)"></i>
-                        </span>
                     </p>
                     <p>
                         <span>유칼리 스킨케어 원형패드</span>
@@ -66,9 +63,6 @@
                     </a>
                     <p>
                         <span class="red">[KITCHEN]</span>
-                        <span>
-                            <i class="fas fa-heart" onclick="handleModal(1)"></i>
-                        </span>
                     </p>
                     <p>
                         <span>고무장갑 팔목라인</span>
@@ -81,9 +75,6 @@
                     </a>
                     <p>
                         <span class="red">[BATH]</span>
-                        <span>
-                            <i class="fas fa-heart" onclick="handleModal(2)"></i>
-                        </span>
                     </p>
                     <p>
                         <span>올인원 비건 샴푸볼 - 어성초 그린</span>
@@ -96,9 +87,6 @@
                     </a>
                         <p>
                         <span class="red">[BATH]</span>
-                        <span>
-                            <i class="fas fa-heart" onclick="handleModal(3)"></i>
-                        </span>
                     </p>
                     <p>
                         <span>대나무칫솔</span>
@@ -111,9 +99,6 @@
                     </a>
                     <p>
                         <span class="red">[LIVING]</span>
-                        <span>
-                            <i class="fas fa-heart" onclick="handleModal(4)"></i>
-                        </span>
                     </p>
                     <p>
                         <span>유칼리 스킨케어 원형패드</span>
@@ -126,9 +111,6 @@
                     </a>
                     <p>
                         <span class="red">[LIVING]</span>
-                        <span>
-                            <i class="fas fa-heart" onclick="handleModal(5)"></i>
-                        </span>
                     </p>
                     <p>
                         <span>유칼리 스킨케어 원형패드</span>

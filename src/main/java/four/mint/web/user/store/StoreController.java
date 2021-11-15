@@ -45,8 +45,7 @@ public class StoreController {
 	public String storeBoard() {
 		
 		return "/board/store_post_content";
-	}
-	
+	}	
 	@RequestMapping(value = "/storeDetailList.do", method = RequestMethod.GET)
 	public String storeList(HttpServletRequest request, HttpServletResponse response) {
 		List<StoreCategoryBigVO> storeCategoryBig = storeService.getStoreCategoryBig();

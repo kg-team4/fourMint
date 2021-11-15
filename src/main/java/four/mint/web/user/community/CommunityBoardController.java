@@ -20,6 +20,12 @@ public class CommunityBoardController {
 	@Autowired
 	private CommunityBoardService communityBoardService;
 
+	@RequestMapping(value = "/communityBoardWrite.do", method = RequestMethod.GET)
+	public String communityBoardWrite() {
+		
+		return "/board/community_write";
+	}
+	
 	@RequestMapping(value = "/communityBoardList.do", method = RequestMethod.GET)
 	public String communityBoardList() {
 		
