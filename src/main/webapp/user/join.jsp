@@ -11,6 +11,7 @@
 <script type="text/javascript" src="../js/join.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+
 <article class="join-article">
 	<form action="joinProc.do" method="post" class="join-form" id="frm">
 		<div>
@@ -171,6 +172,7 @@
 </article>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+	
 	// 이메일 주소 값 변경시 이벤트
 	$('#selectEmail').change(function() {
 		$("#selectEmail option:selected").each(function() {
@@ -185,7 +187,7 @@
 				$("#writeEmail").val($(this).text());
 				//선택값 입력 
 				$("#writeEmail").attr("disabled", true);
-				//비활성화 
+				//비활성화
 			}
 		});
 	});

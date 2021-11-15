@@ -13,7 +13,7 @@
 		<result property="read_check" column="READ_CHECK" />
 	</resultMap>
 	
-	<!-- 메세지 리스트 가져오기 : 상대방 프로필에서 클릭 했을 때 -->
+	<!-- 메세지 리스트 가져오기 : 상대방 프로필에서 클릭 했을 때   -->
 	<select id="getMessageList" parameterType="four.mint.web.message.MessageVO" resultType="four.mint.web.message.MessageVO">
 		select no, room, send_nick, recv_nick, send_time, read_time, content, read_check
 		from message
@@ -58,7 +58,7 @@
 	
 	<!-- 메세지 읽음 처리 : 상대방 메세지 클릭해서 대화방 들어갔을 때 -->
 	<update id="getMessageReadCheck" parameterType="four.mint.web.message.MessageVO">
-		update message set read_check=1, read_time = now()
+		update message set read_check=1, read_time = now() at time zone 'Asia/Seoul'
 		<choose>
 			<when test="room != 0">
 				where room=#{room} and read_check=0 and recv_nick=#{nickname}
@@ -74,10 +74,10 @@
 	<insert id="getMessageSendInlist" parameterType="four.mint.web.message.MessageVO">
 		<choose>
 			<when test="room != 0">
-				insert into message (no, room, send_nick, recv_nick, send_time, content, read_check) values(default, #{room}, #{send_nick}, #{recv_nick}, now(), #{content}, 0);
+				insert into message (no, room, send_nick, recv_nick, send_time, content, read_check) values(default, #{room}, #{send_nick}, #{recv_nick}, now() at time zone 'Asia/Seoul', #{content}, 0);
 			</when>
 			<otherwise>
-				insert into message (no, room, send_nick, recv_nick, send_time, content, read_check) values(default, #{room}, #{send_nick}, #{recv_nick}, now(), #{content}, 0);
+				insert into message (no, room, send_nick, recv_nick, send_time, content, read_check) values(default, #{room}, #{send_nick}, #{recv_nick}, now() at time zone 'Asia/Seoul', #{content}, 0);
 			</otherwise>
 		</choose>
 	</insert>

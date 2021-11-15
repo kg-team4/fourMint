@@ -15,9 +15,11 @@
 		<typeAlias alias="storeCategoryBig" type="four.mint.web.user.store.StoreCategoryBigVO" />
 		<typeAlias alias="cart" type="four.mint.web.user.store.CartVO" />
 	</typeAliases>
+	
 	<typeHandlers>
 	    <typeHandler javaType="java.util.Map" handler="four.mint.web.common.JsonTypeHandler"/>
 	</typeHandlers>
+	
 	<mappers>
 		<mapper resource="mappings/UserMapping.xml" />
 		<mapper resource="mappings/CommunityBoardMapping.xml" />

@@ -12,7 +12,7 @@ import four.mint.web.message.MessageVO;
 public class MessageDAO {
 	
 	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
+	private SqlSessionTemplate sqlSessionTemplate; //
 	
 	// 메세지 리스트에 나타낼 것들 가져오기 - 가장 최근 메세지, 보낸사람 profile 사진, 보낸사람 nick
 	public ArrayList<MessageVO> getMessageList(MessageVO messageVO) {
@@ -36,8 +36,8 @@ public class MessageDAO {
 	}
 
 	// 해당 방의 메세지들 중 받는 사람이 현재사용자의 nick인 메세지를 모두 읽음 처리한다.
-	public int getMessageReadChk(MessageVO messageVO) {
-		return sqlSessionTemplate.update("MessageDAO.getMessageReadChk", messageVO);
+	public void getMessageReadCheck(MessageVO messageVO) {
+		sqlSessionTemplate.update("MessageDAO.getMessageReadCheck", messageVO);
 	}
 	
 	// 프로필에서 보낸거다
