@@ -14,9 +14,9 @@
 
 <article style="padding-top: 200px; margin: 0px 20%">
 	<div style="display: flex; justify-content: space-evenly;">
+		<!-- 카테고리 -->
 		<div class="best categoroy" style="align-self: flex-start; widdth: 100px; margin-top: 50px;">
 			<section class="category_list" style="width: 135px;">
-				<!-- 카테고리 -->
 				<div class="best">
 					<h1 style="padding: 0 5%;"></h1>
 					<c:forEach var="big" items="${ marketCategoryBig }"> <!-- 카테고리 대분류 리스트 -->
@@ -78,7 +78,6 @@
 					<!-- 마켓 글 목록 -->
 					<c:set var="big_no" value="${kind }" />
 					<c:set var="middle_no" value="${kindTwo }" />
-					<c:set var="count2" value="0" />
 					<c:forEach var="market" items="${marketList }">
 						<c:choose>
 							<c:when test="${middle_no ne null }">
@@ -88,13 +87,12 @@
 									<li>
 										<a href="marketBoard.do?seq=${market.market_seq }"><img src="${market.url }"></a>
 										<p>
-											<span class="red">${market.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(${count2})"></i></span>
+											<span class="red">${market.category_middle }</span> 
 										</p>
 										<p>
 											<span>${market.product_name }</span> <span>${market.product_price }원</span>
 										</p>
 									</li>
-									<c:set var="count2" value="${ count2 + 1 }" />
 								</c:if>
 							</c:when>
 							<c:otherwise>
@@ -103,13 +101,12 @@
 									<li>
 										<a href="marketBoard.do?seq=${market.market_seq }"> <img src="${market.url }"></a>
 										<p>
-											<span class="red">${market.category_middle }</span> <span> <i class="fas fa-heart" onclick="handleModal(${count2})"></i></span>
+											<span class="red">${market.category_middle }</span> 
 										</p>
 										<p>
 											<span>${market.product_name }</span> <span>${market.product_price }원</span>
 										</p>
 									</li>
-									<c:set var="count2" value="${ count2 + 1 }" />
 								</c:if>
 							</c:otherwise>
 						</c:choose>

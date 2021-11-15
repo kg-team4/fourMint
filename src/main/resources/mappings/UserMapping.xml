@@ -29,6 +29,10 @@
 		SELECT * FROM member WHERE email_id = #{email_id} AND password = #{password}
 	</select>
 	
+	<select id="getUserNickname" resultType="user" parameterType="string">
+		SELECT * FROM member WHERE nickname = #{nickname}
+	</select>
+	
 	<select id="getAddress1" resultType="string">
 		SELECT address1 FROM member WHERE email_id = #{email_id}
 	</select>
@@ -52,7 +56,6 @@
 	<select id="phoneCheck" resultType="int" parameterType="String">
 		SELECT COUNT(phone) FROM member WHERE phone = #{phone}
 	</select>
-	
 	
 	<select id="getByNaver" resultType="String" parameterType="String">
 		SELECT snsid FROM member WHERE snsid = #{naverid}

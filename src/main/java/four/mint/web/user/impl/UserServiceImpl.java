@@ -100,5 +100,12 @@ public class UserServiceImpl implements UserService {
 		
 		return userDao.getByNaver(nid);
 	}
+
+	@Override
+	public UserVO getUserNickname(String nickname) {
+		return userDao.getUserNickname(nickname);
+	}
+	
+	
 	
 }

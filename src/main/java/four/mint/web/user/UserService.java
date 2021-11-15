@@ -11,6 +11,7 @@ public interface UserService {
 	int nickCheck(String nick) throws Exception;
 	int phoneCheck(String phone) throws Exception;
 	void certifiedPhoneNumber(String userPhoneNumber, int randomNumber);
+	UserVO getUserNickname(String nickname);
 	
 	//naverLogin
 	void insertUser(NaverVO svo);

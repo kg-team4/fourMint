@@ -46,10 +46,10 @@
 	
 				<li class="medium-menu"><a href="storeBoardList.do?count=1" class="category">스토어</a>
 					<ul>
-						<li><a href="storeDetailList.do?big_no=주방">주방</a></li>
-						<li><a href="storeDetailList.do?big_no=욕실">욕실</a></li>
-						<li><a href="storeDetailList.do?big_no=생활">생활</a></li>
-						<li><a href="storeDetailList.do?big_no=굿즈">굿즈</a></li>
+						<li><a href="storeDetailList.do?kind=주방">주방</a></li>
+						<li><a href="storeDetailList.do?kind=욕실">욕실</a></li>
+						<li><a href="storeDetailList.do?kind=생활">생활</a></li>
+						<li><a href="storeDetailList.do?kind=굿즈">굿즈</a></li>
 					</ul>
 				</li>
 				<li></li>

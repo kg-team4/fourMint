@@ -4,6 +4,7 @@
 <mapper namespace="StoreDAO">
 
 	<resultMap type="store" id="storeResult">
+		<result property="store_seq" column="STORE_SEQ" />
 		<result property="img_name" column="IMG_NAME" />
 		<result property="category_big" column="CATEGORY_BIG" />
 		<result property="product_name" column="PRODUCT_NAME" />
@@ -34,5 +35,39 @@
 	<insert id="insertStore" parameterType="string">
 		INSERT INTO storeBoard VALUES(DEFAULT, #{img_name}, #{category_big}, #{product_name}, #{product_price}, #{product_content}, #{product_stock}, #{url}, now() at time zone 'Asia/Seoul')
 	</insert>
+	
+	<select id="getKindCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
+		SELECT count(product_name) FROM storeBoard WHERE category_big = #{kind}
+	</select>
+	
+	<select id="getKindList" resultType="store" parameterType="four.mint.web.user.board.common.SearchVO">
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM storeboard WHERE category_big = #{kind} ORDER BY store_seq DESC) AS b WHERE rnum >= (#{rnum}-((#{page}-1)*9+8)) AND rnum <= (#{rnum}-((#{page}-1)*9))]]> 
+	</select>
+	
+	<select id="getStoreOne" resultType="store" parameterType="int">
+		SELECT * FROM storeBoard WHERE store_seq = #{seq}
+	</select>
+	
+	<resultMap type="cart" id="cartResult">
+		<result property="cart_id" column="CART_ID" />
+		<result property="nickname" column="NICKNAME" />
+		<result property="store_seq" column="STORE_SEQ" />
+		<result property="product_price" column="PRODUCT_PRICE" />
+		<result property="amount" column="AMOUNT" />
+		<result property="url" column="URL" />
+		<result property="product_name" column="PRODUCT_NAME" />
+	</resultMap>
+	
+	<insert id="insertCart" parameterType="four.mint.web.user.store.CartVO">
+		INSERT INTO store_cart VALUES(DEFAULT, #{nickname}, #{store_seq}, #{product_price}, #{amount}, #{url}, #{product_name})
+	</insert>
+	
+	<select id="getCartList" resultType="cart" parameterType="string">
+		SELECT * FROM store_cart WHERE nickname = #{nickname} ORDER BY cart_id ASC
+	</select>
+	
+	<update id="updateCart" parameterType="int">
+		UPDATE store_cart SET amount = #{amount} WHERE cart_id = #{id}
+	</update>
 	
 </mapper>

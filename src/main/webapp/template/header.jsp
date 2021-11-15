@@ -12,7 +12,6 @@
 <link href="../css/4.article.css" type="text/css" rel="stylesheet">
 <link href="../css/5.footer.css" type="text/css" rel="stylesheet">
 <script src="../js/jquery-3.6.0.min.js"></script>
-
 </head>
 
 <body>
@@ -37,8 +36,8 @@
                <c:otherwise>
                   <li><a href="logout.do">로그아웃</a></li>
                   <li><a href="profile.do">마이페이지</a></li>
-                  <li><button id="btn_mint_talk"><img src="../img/shopping-cart.png" style= "height:18px;width:20px"></button></li>
-                  <li><button id="btn_mint_talk"><img src="../img/message.png" style= "height:18px;width:20px"></button></li>
+                  <li><button id="btn_mint_talk" onclick="location.href='payment.do'"><img src="../img/shopping-cart.png" style= "height:18px;width:20px"></button></li>
+                  <li><button id="btn_mint_talk" onclick="location.href='./message_list.do'"><img src="../img/message.png" style= "height:18px;width:20px"></button></li>
                </c:otherwise>
             </c:choose>
          </ul>
