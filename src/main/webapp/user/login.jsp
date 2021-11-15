@@ -32,13 +32,10 @@
                     </div>
                 </div>
                 <div>
-                	
                     <br><br><br>
-                    <button id="login-submit"><img src="img/logo_icon.png" style="height:30px;width:30px;">&nbsp;&nbsp;민트 로그인</button><br>
-                    <button class="btn-naverLogin" onclick="location.href='${naver_url }'"><img src="img/naver_login.png" style="height:48px;width:200px;"></button><br>
-        			<button class="btn-kakaoLogin" onclick="location.href='kakaoLogin()'"><img src="img/kakao_login.png" style="height:48px;width:190px;"></button><br>
-
-					
+					<button id="login-submit"><img src="img/logo_icon.png" style="height:30px;width:30px;">&nbsp;&nbsp;민트 로그인</button><br>
+					<a href="${naver_url }"><img src="img/naver.png" style="height:18px;width:18px;">&nbsp;&nbsp; 네이버 아이디로 로그인</a><br>
+					<ul><li  onclick="kakaoLogin()"><a href="javascript:void(0)"><span>카카오 로그인</span> </a></li></ul>
                 </div>
             </form>
         </article>	
