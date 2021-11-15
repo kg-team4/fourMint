@@ -94,4 +94,10 @@ public class MarketServiceImpl implements MarketService {
 		
 		return newVo;
 	}
+
+	@Override
+	public MarketVO updateViews(int views) {
+		
+		return null;
+	}
 }

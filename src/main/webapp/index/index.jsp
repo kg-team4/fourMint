@@ -17,6 +17,7 @@
 <script src="../js/swiper.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fda16046fdbb798b0eb5ce18ac2adeb0&libraries=services"></script>
 <script type="text/javascript" src="../js/index.js"></script>
+<script src="../js/jquery-3.6.0.min.js"></script>
 
 <!-- 회원 주소 데이터 자바스크립트로 보내기 -->
 <input type="hidden" value="주소" id="member_address">

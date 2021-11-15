@@ -18,4 +18,5 @@ public class MarketVO {
 	private Timestamp date;
 	private String address2;
 	private String nickname;
+	private int views;
 }

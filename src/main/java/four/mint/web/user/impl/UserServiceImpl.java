@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import four.mint.web.user.KakaoVO;
 import four.mint.web.user.NaverVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
@@ -90,15 +91,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void insertUser(NaverVO nvo) {
+	public void naverlogin(NaverVO nvo) {
 		
 		userDao.insertNaver(nvo);
 	}
 
 	@Override
-	public String getByNaver(String nid) {
+	public void kakaologin(KakaoVO kvo) {
 		
-		return userDao.getByNaver(nid);
+		
+		userDao.insertKakao(kvo);
+		
 	}
 
 	@Override
@@ -107,5 +110,12 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	
+	
+	@Override
+	public String getBySns(String snsid) {
+		
+		return userDao.getBySns(snsid);
+	}
+
 	
 }

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class NaverVO {
-	private String email_id;
+	private String email;
 	private String phone;
 	private String birth;
 	private String gender;

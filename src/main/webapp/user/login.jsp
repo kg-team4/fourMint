@@ -34,12 +34,13 @@
                 <div>
                 	
                     <input type="submit" value="민트마켓 아이디로 로그인" id="login-submit" /><br>            
-                   <a href="${naver_url }"><img src="img/naver_logo.PNG" style="height:18px;width:18px;">&nbsp;&nbsp; 네이버 아이디로 로그인</a><br>
-        			<a href="${kakao_url }"><img src="img/kakao_logo.PNG" style="height:23px;width:24px;">&nbsp;&nbsp; 카카오 아이디로 로그인</a><br>
+                   <a href="${naver_url }"><img src="img/naver.png" style="height:18px;width:18px;">&nbsp;&nbsp; 네이버 아이디로 로그인</a><br>
+					  <ul><li  onclick="kakaoLogin()"><a href="javascript:void(0)"><span>카카오 로그인</span> </a></li></ul>
 					
                 </div>
             </form>
         </article>	
+
 
 <!-- template footer-->
 <jsp:include page="../template/footer.jsp"></jsp:include>

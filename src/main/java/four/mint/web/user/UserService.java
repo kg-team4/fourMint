@@ -13,8 +13,9 @@ public interface UserService {
 	void certifiedPhoneNumber(String userPhoneNumber, int randomNumber);
 	UserVO getUserNickname(String nickname);
 	
-	//naverLogin
-	void insertUser(NaverVO svo);
-	String getByNaver(String nid);
+	//snsLogin
+	void naverlogin(NaverVO nvo);
+	void kakaologin(KakaoVO kvo);
+	String getBySns(String snsid);
 	
 }
