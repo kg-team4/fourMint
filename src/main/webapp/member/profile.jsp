@@ -39,6 +39,7 @@ if (request.getAttribute("result") != null) {
 <link rel="stylesheet" href="../css/reset.css">
 <jsp:include page="./index.jsp"></jsp:include>
 <jsp:include page="../template/header.jsp"></jsp:include>
+<script defer src="../js/profile.js"></script>
 <!-- CSS File -->
 <link href="../css/profile.css" rel="stylesheet">
 <link href="../css/navbar.css" rel="stylesheet">
@@ -103,11 +104,67 @@ window.onload=function(){
 						77<%-- ${uto.greet } --%></li>
 				</ul>
 				<div class="col-6 offset-2 div_modify_profile">
+
+					<div id="my_modal">
+						<div>
+
+							<div id="my_info_edit_title">나의 정보수정</div>
+							<hr>
+							<div>
+								<table id="my_info_edit_area">
+									<tr>
+										<td width="200px" height="30px">이름</td>
+										<td width="350px">박동녘</td>
+
+									</tr>
+									<tr>
+										<td height="30px">닉네임</td>
+										<td colspan="2"><input type="text" style="width: 90px"
+											placeholder="우쭈쭈동동">
+											<button class="nick_double_check_btn">중복확인</button></td>
+									</tr>
+									<tr>
+										<td height="30px">아이디</td>
+										<td>east345@naver.com</td>
+									</tr>
+									<tr>
+										<td height="30px">현재 비밀번호</td>
+										<td><input type="text"></td>
+									</tr>
+									<tr>
+										<td height="30px">새 비밀번호</td>
+										<td><input type="text"></td>
+									</tr>
+									<tr>
+										<td height="30px">비밀번호 확인</td>
+										<td><input type="text"></td>
+									</tr>
+									<tr>
+										<td rowspan="3" height="90px">주소</td>
+										<td><input type="text" style="width: 90px;">
+											<button class="address_find_btn">주소검색</button></td>
+									</tr>
+									<tr>
+										<td height="30px"><input type="text"></td>
+									</tr>
+									<tr>
+										<td height="30px"><input type="text"></td>
+									</tr>
+								</table>
+								<br>
+								<div style="text-align: center; margin-top: 10px">
+									<button class="modal_info_edit_btn" style="width: 90px; font-size: 15px">정보수정</button>
+									<button class="modal_quit_btn"style="width: 90px; font-size: 15px">탈퇴</button>
+									<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+								</div>
+							</div>
+						</div>
+						<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
+					</div>
 					<button type="button" style="width: 135%; font-size: 15px"
 						class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
-						onclick="location.href='./edit_profile.do'">내 정보 수정하기</button>
+						id="popup_open_btn">내 정보 수정하기</button>
 				</div>
-
 			</div>
 			<!--/col-3-->
 			<div class="col-sm-9" style="padding-left: 150px">
@@ -273,7 +330,7 @@ window.onload=function(){
 											</div>
 											<div>
 												<span class="">상품</span> <span><a class="" href=#
-													 style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+													style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
 												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
 											</div>
 										</div>
@@ -782,6 +839,7 @@ window.onload=function(){
 										<tr>
 											<td>
 												<button id="btn_sell_product_state">판매중</button>
+												<button class="btn_sell_product_edit">글 수정</button>
 											</td>
 										</tr>
 
@@ -855,8 +913,7 @@ window.onload=function(){
 												style="color: gray">올인원 비건 샴푸볼 - 어성초 그린</a></td>
 										</tr>
 										<tr>
-											<td style="font-size: 15px; color: gray">17,000 &nbsp;원
-											</td>
+											<td style="font-size: 15px; color: gray">17,000 &nbsp;원</td>
 										</tr>
 										<tr>
 											<td>
@@ -1392,9 +1449,9 @@ window.onload=function(){
 
 				</div>
 			</div>
+		</div>
 
-
-			<%-- <section id="profile" class="container">
+		<%-- <section id="profile" class="container">
       <div class="row">
          <div class="col-6">
             <h1><b><span style="color:#5fcf80;">${uto.nick }</span>님의 프로필</b></h1>
@@ -1464,65 +1521,58 @@ window.onload=function(){
       </div>
        --%>
 
-			<form action="edit_img_ok.do" name="efrm" method="post"
-				enctype="multipart/form-data">
-				<input type="hidden" name="ex-profile" value="${uto.profile }">
-				<div class="modal fade" id="edit_img" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<br />
-							<div class="modal-title">
-								<b>&nbsp;프로필 사진 수정</b>
+		<form action="edit_img_ok.do" name="efrm" method="post"
+			enctype="multipart/form-data">
+			<input type="hidden" name="ex-profile" value="${uto.profile }">
+			<div class="modal fade" id="edit_img" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<br />
+						<div class="modal-title">
+							<b>&nbsp;프로필 사진 수정</b>
+						</div>
+						<hr />
+						<div class="modal-body row" style="padding: 0px 0px 0px 5px;">
+							<div class="used_photo_img" style="text-align: center;">
+								<input class="form-input" type="file" name="promotion_post_img" multiple accept=".jpg, .png, .gif" onchange="preview();"/>
+								<br> 
+								<img class="preview-wrap" src="../img/user_circle.png"
+									alt="등록할 프로필 사진을 넣어주세요."/>
+								<br>							
 							</div>
-							<hr />
-							<div class="modal-body row" style="padding: 0px 0px 0px 5px;">
-								<div class="col-7">&nbsp;수정할 파일을 선택하세요.</div>
-								<div class="col-5"></div>
-							</div>
-							<div class="modal-body form-row"
-								style="padding: 20px 0px 20px 0px;">
-								<div class="js-input-file input-group value"
-									style="padding: 0px 0px 0px 20px; width: 100%;">
-									<input class="input-file" type="file" name="img" id="file"
-										value="1<%-- ${uto.profile } --%>"> <label
-										class="label--file" for="file">파일 선택</label> <span
-										class="input-file__info"
-										style="text-align: left; padding-top: 2px; margin-top: 2px;">
-										1<%--  ${uto.profile } --%>
-									</span>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn--blue-2 btn--radius-2"
-									data-bs-dismiss="modal">취소</button>
-								<button type="button" class="btn btn--blue-1 btn--radius-2"
-									id="btn_edit_img">확인</button>
-							</div>
+						</div>
+						
+						<div class="modal-footer">
+							<button type="button" class="btn btn--blue-2 btn--radius-2"
+								id="btn_edit_img">확인</button>
+							<button type="button" class="btn btn--blue-1 btn--radius-2"
+								data-bs-dismiss="modal">취소</button>							
 						</div>
 					</div>
 				</div>
+			</div>
 
-			</form>
-			<form action="delete_img_ok.do" name="dfrm" method="post">
-				<div class="modal fade bs-delete-modal-sm" id="delete_img"
-					aria-hidden="true">
-					<div class="modal-dialog modal-sm">
-						<div class="modal-content">
-							<br />
-							<div style="height: 60px;">&nbsp;&nbsp;정말 삭제하시겠습니까?</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn--blue-2 btn--radius-2"
-									data-bs-dismiss="modal">취소</button>
-								<button type="submit" class="btn btn--blue-1 btn--radius-2"
-									id="btn_delete_img">삭제</button>
-							</div>
+		</form>
+		<form action="delete_img_ok.do" name="dfrm" method="post">
+			<div class="modal fade bs-delete-modal-sm" id="delete_img"
+				aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<br />
+						<div style="height: 60px;">&nbsp;&nbsp;정말 삭제하시겠습니까?</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn--blue-2 btn--radius-2"
+								data-bs-dismiss="modal">취소</button>
+							<button type="submit" class="btn btn--blue-1 btn--radius-2"
+								id="btn_delete_img">삭제</button>
 						</div>
-
 					</div>
-				</div>
-			</form>
 
-			<%--
+				</div>
+			</div>
+		</form>
+
+		<%--
    </section>
    
    
@@ -1576,11 +1626,11 @@ window.onload=function(){
    </section>
    <!-- 내 피드 섹션 끝 -->   
    --%>
-			<!-- 내 피드 관련 자바스크립트 -->
-		</div>
-		<script>
+		<!-- 내 피드 관련 자바스크립트 -->
+	</div>
+	<script>
 
-   // 프로필 사진 수정
+/*    // 프로필 사진 수정
    document.getElementById('btn_edit_img').onclick = function() {
       
       if(document.efrm.img.value.trim()!=""){
@@ -1625,7 +1675,7 @@ window.onload=function(){
 
       });
    }
-   
+    */
    
    //============= 글리스트 가져오기 함수 =============
    //페이지가 처음 로딩될 때 1page를 보여주기 때문에 초기값을 1로 지정한다.
@@ -2126,7 +2176,7 @@ window.onload=function(){
       
       
    });
-
+   
 
 </script>
 </article>

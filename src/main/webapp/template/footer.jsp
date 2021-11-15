@@ -6,18 +6,17 @@
 	
 	<div class="footer-right">
 
-		<h3>CALL CENTER</h3>
+		<a href="storeServiceCenter.do" style="font-size:20px"><strong>고객센터</strong></a>
 		<p>
-			1588-8282<br> AM 09:00 ~ 18:00<br> SAT 10:00 ~ 13:00
+			1588-8282<br> 09:00 ~ 18:00<br> SAT 10:00 ~ 13:00
 		</p>
 	</div>
 	<div class="footer-center">
 
 		<p class="link">
-			<a href="">이용약관</a>&nbsp; | &nbsp;
-			<a href="">개인정보처리방침</a>&nbsp; | &nbsp;
-			<a href="">위치기반서비스</a>&nbsp; | &nbsp;
-			<a href="">회사 소개</a>
+			<a href="useAgreement.do">이용약관</a>&nbsp; | &nbsp;
+			<a href="privacyPolicy.do">개인정보처리방침</a>&nbsp; | &nbsp;
+			<a href="locationPolicy.do">위치기반서비스</a>
 		</p>
 		<p>
 			서울 종로구 돈화문로 26 단성사 4층

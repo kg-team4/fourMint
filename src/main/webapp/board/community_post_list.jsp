@@ -7,12 +7,11 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="../img/logo_icon.png" />
 <link rel="stylesheet" href="../css/reset.css">
-<link rel="stylesheet" href="../css/reset.css">
 <link rel="stylesheet" href="../css/community_post_list.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
 
 <article>
-	<!-- 카테코리 -->
+	<!-- 카테RH리 -->
 	<div class="contents_all">
 		<div class="category_list">
 			<div>
@@ -42,7 +41,7 @@
 						<td id="news_title">
 							<div id="news_title_content">
 								<img src="../img/megaphone.png" width=25px; height=25px> <a
-									id="news_title_detail" href="#">통이 혼잡묘동 공사 시작해서 교통이 혼잡</a>
+									id="news_title_detail" href="/communityBoard.do">통이 혼잡묘동 공사 시작해서 교통이 혼잡</a>
 							</div>
 						</td>
 						<td id="news_useful">
@@ -242,7 +241,7 @@
 						<option value="writer">작성자</option>
 					</select> <input type="text" name="" value="" placeholder="검색어를 입력하세요.">
 					<input id="btn_search" type="submit" value="검색"> <input
-						id="btn_write" type="button" value="글쓰기">
+						id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
 				</div>
 
 			</div>
@@ -260,7 +259,7 @@
 						<td id="news_title">
 							<div id="news_title_content">
 								<img src="../img/question_mark.png" width=20px; height=20px;>
-								<a id="news_title_detail" href="#">묘동에서 잘하는데어디에염????</a>
+								<a id="news_title_detail" href="/communityBoard.do">묘동에서 잘하는데어디에염????</a>
 							</div>
 						</td>
 						<td id="news_useful">
@@ -291,7 +290,7 @@
 						<option value="writer">작성자</option>
 					</select> <input type="text" name="" value="" placeholder="검색어를 입력하세요.">
 					<input id="btn_search" type="submit" value="검색"> <input
-						id="btn_write" type="button" value="글쓰기">
+						id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
 				</div>
 			</div>
 			<!-- end 질문 -->
@@ -306,7 +305,7 @@
 				<div id="border_grid">
 					<div style="margin-left: 14px">
 						<div class="group_all">
-							<a id="group_img_area" href="#">
+							<a id="group_img_area" href="/communityBoard.do">
 								<div id="group_img_box">
 									<img id="group_img" src="../img/biking_group.jpg" alt="모임이미지">
 								</div>
@@ -392,7 +391,7 @@
 						</select> 
 						<input type="text" name="" value="" placeholder="검색어를 입력하세요.">
 						<input id="btn_grid_below_search" type="submit" value="검색"> <input
-							id="btn_grid_below_write" type="button" value="글쓰기">
+							id="btn_grid_below_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
 					</div>
 			</div>
 			
@@ -405,7 +404,7 @@
 				<div id="border_grid">
 					<div style="margin-left: 14px">
 						<div class="group_all">
-							<a id="group_img_area" href="#">
+							<a id="group_img_area" href="/communityBoard.do">
 								<div id="group_img_box">
 									<img id="group_img" src="../img/must_go_restaurant02.jpg" alt="모임이미지">
 								</div>
@@ -462,7 +461,7 @@
 						</select> 
 						<input type="text" name="" value="" placeholder="검색어를 입력하세요.">
 						<input id="btn_grid_below_search" type="submit" value="검색"> <input
-							id="btn_grid_below_write" type="button" value="글쓰기">
+							id="btn_grid_below_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
 					</div>
 			</div>
 			
@@ -477,7 +476,7 @@
 						<td id="news_title">
 							<div id="news_title_content">
 								<img src="../img/find.png" width=20px; height=20px;>
-								<a id="news_title_detail" href="#">묘동 스타벅스 사거리에서 에어팟 잃어버렸어요ㅠㅠㅠ</a>
+								<a id="news_title_detail" href="/communityBoard.do">묘동 스타벅스 사거리에서 에어팟 잃어버렸어요ㅠㅠㅠ</a>
 							</div>
 						</td>
 						<td id="news_useful">
@@ -508,7 +507,7 @@
 						<option value="writer">작성자</option>
 					</select> <input type="text" name="" value="" placeholder="검색어를 입력하세요.">
 					<input id="btn_search" type="submit" value="검색"> <input
-						id="btn_write" type="button" value="글쓰기">
+						id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
 				</div>
 			</div>
 			<!-- end 분실센터 -->
@@ -522,7 +521,7 @@
 				<div id="border_grid">
 					<div style="margin-left: 14px">
 						<div class="group_all">
-							<a id="group_img_area" href="#">
+							<a id="group_img_area" href="/communityBoard.do">
 								<div id="group_img_box">
 									<img id="group_img" src="../img/picture01.jpg" alt="모임이미지">
 								</div>
@@ -579,7 +578,7 @@
 						</select> 
 						<input type="text" name="" value="" placeholder="검색어를 입력하세요.">
 						<input id="btn_grid_below_search" type="submit" value="검색"> <input
-							id="btn_grid_below_write" type="button" value="글쓰기">
+							id="btn_grid_below_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
 					</div>
 			</div>
 			

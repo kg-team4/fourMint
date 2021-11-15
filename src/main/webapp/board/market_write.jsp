@@ -1,6 +1,9 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<title>민트마켓 상품 글 쓰기</title>
+<link rel="shortcut icon" type="image/x-icon"
+	href="../img/logo_icon.png" />
 <link rel="stylesheet" href="../css/reset.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
 <link href="../css/11.used_write.css" rel="stylesheet">
@@ -69,7 +72,7 @@
 										<option value="${middle.value }">${middle.value }</option>
 									</c:if>
 								</c:forEach>
-							</select>
+							</select>	
 						</div>
 					</c:forEach>
 				</div>
@@ -79,10 +82,6 @@
 				<div class="used_price">
 					<div class="used_text">
 						가격 <span class="must">*</span> <input class="form-price" type="text" name="product_price" placeholder="숫자만 입력해주세요" oninput="checkPrice();">&nbsp;원
-					</div>
-					<div class="used_text">
-						<label for="freesShipping" id="free"> <input type="checkbox"> 무료배송 </label> 
-						<label for="priceSuggest" id="suggest"> <input type="checkbox"> 가격협의가능 </label>
 					</div>
 					<div id="priceInfo"></div>
 					<div class="titleHeight"></div>
@@ -117,7 +116,7 @@
 			<div align="right" class="form-input">
 				<input class="form-btn" type="submit" value="등록하기">
 			</div>
-
+		 <br><br>
 		</form>
 		
 		<a href="storeSell.do">스토어 판매</a> 

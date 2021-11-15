@@ -98,7 +98,6 @@
 
 <article style="padding-top: 200px; margin: 0px 20%">
 
-
 <!-- 소식 -->
 	<div class="community_news_all">
 		<br> <br>
@@ -109,7 +108,7 @@
 
 			<div class="community_news">
 				<div align="right" id="more_link">
-					<a href="communityDetailList.do?board_no=2&promotion_cate_num=1">더보기 ></a>
+					<a href="/communityDetailList.do?board_no=2&promotion_cate_num=1">더보기 ></a>
 				</div>
 				<table>
 					<tr>

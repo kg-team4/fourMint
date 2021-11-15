@@ -1,0 +1,167 @@
+@charset "UTF-8";
+
+ul, li {
+	list-style: none;
+}
+
+.contents_all {
+	display: inline-block;
+	margin-bottom:30px;
+}
+#contents{
+	width:700px;
+}
+pre{
+	white-space:pre-wrap;
+	line-height: 150%;
+}
+.category_list {
+	display: block;
+	padding-top:215px;
+	position: fixed;
+	margin-left:200px;
+}
+.category_title {
+	text-decoration: none;
+	color: #7b7b7b;
+	font-size: 20px;
+	line-height: 160%;
+}
+.category_title:hover {
+	color: #26e4ca;
+}
+
+
+/*tab css*/
+.tab {
+	display:block;
+	padding-top:215px;
+	margin-bottom:20px;
+	width: 850px;
+	height: auto;
+	margin-left:410px;
+}
+
+.tabnav {
+	font-size: 0;
+	width: 850px;
+	border: 1px solid #ddd;
+}
+
+.tabnav li {
+	display: inline-block;
+	height: 46px;
+	text-align: center;
+	border-right: 1px solid #ddd;
+}
+
+.tabnav li a:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0px;
+	width: 100%;
+	height: 3px;
+}
+
+.tabnav li a.active:before {
+	background: #26e4ca;
+}
+
+.tabnav li a.active {
+	border-bottom: 1px solid #fff;
+}
+
+.tabnav li a {
+	position: relative;
+	display: block;
+	background: #f8f8f8;
+	color: #000;
+	padding: 0 30px;
+	line-height: 46px;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+.tabnav li a:hover, .tabnav li a.active {
+	background: #fff;
+	color: #26e4ca;
+}
+
+.tabcontent {
+	padding: 20px;
+	height: auto;
+	border: 1px solid #ddd;
+	border-top: none;
+}
+
+
+table {
+	text-align: left;
+}
+#news_num{
+	width: 60px;
+	text-align:center;
+}
+#down_arrow{
+	width: 60px;
+}
+#news_title {
+	width: 680px;
+	height: auto;
+	word-break: break-all;
+	text-align: left;
+}
+
+#news_title_content {
+	font-size: 18px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: normal;
+	width: 388px;
+	overflow: hidden;
+}
+
+#news_title_detail {
+	text-decoration: none;
+	color: black;
+}
+/* #news_title_detail:visited{
+	color:gray;
+} */
+#news_useful {
+	width: 90px;
+}
+
+#new_views {
+	width: 90px;
+}
+
+#news_comment {
+	width: 90px;
+}
+
+#writer {
+	width: 130px;
+}
+
+
+table {
+	height: auto;
+	border-top: 1px solid lightgray;
+	border-collapse: collapse;
+}
+
+td {
+	border-bottom: 1px solid lightgray;
+	padding: 12px;
+}
+
+th:first-child, td:first-child {
+	border-left: none;
+}
+
+thead tr {
+	background-color: #0d47a1;
+	color: #ffffff;
+}

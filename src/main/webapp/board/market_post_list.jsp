@@ -6,6 +6,8 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
+<title>민트마켓 카테고리별 상품</title>
 <link rel="stylesheet" href="../css/reset.css">
 <link rel="stylesheet" href="../css/mint_market_content.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -90,7 +92,7 @@
 											<span class="red">${market.category_middle }</span> 
 										</p>
 										<p>
-											<span>${market.product_name }</span> <span>${market.product_price }원</span>
+											<span id="product_name">${market.product_name }</span> <span>${market.product_price }원</span>
 										</p>
 									</li>
 								</c:if>

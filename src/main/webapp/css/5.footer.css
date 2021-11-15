@@ -64,6 +64,10 @@ footer h3 {
 	text-decoration: none;
 	
 }
+a{
+	text-decoration: none;
+	color: black;
+}
 .link > a{
 	text-decoration: none;
 	color: black;

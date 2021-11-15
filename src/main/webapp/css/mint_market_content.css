@@ -209,6 +209,15 @@ section h1 {
     background:#26e4ca;
     color:#fff;
 }
+#product_name{
+	width:40px;
+	text-align: left;
+	word-wrap: break-word;
+	white-space: normal;
+	text-overflow: ellipsis;
+	display: inline-block;
+	overflow: hidden;
+}
 
 /*768px*/
 
