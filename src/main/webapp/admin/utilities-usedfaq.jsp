@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>중고거래FAQ</title>
+    <title>FAQ</title>
 
     <!-- Custom fonts for this template-->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -42,15 +42,26 @@
                 <div class="container-fluid">
 
                  <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">중고거래FAQ</h1>
+                    <h1 class="h3 mb-2 text-gray-800">FAQ</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 중고거래FAQ</a>.</p>
+                            href="https://datatables.net">민트마켓 FAQ</a>.</p>
+                     <div class="dropdown">
+                     	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     	분류
+                     	</button>
+                     	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     		<a class="dropdown-item" href="#">기타</a>
+                     		<a class="dropdown-item" href="#">반품/교환</a>
+                     		<a class="dropdown-item" href="#">취소/환불</a>
+                     		<a class="dropdown-item" href="#">배송</a>
+                     	</div>
+                     </div>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">중고거래FAQ </h6>
+                            <h6 class="m-0 font-weight-bold text-primary">FAQ </h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -58,86 +69,32 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>카테고리 대분류</th>
-                                            <th>카테고리 중분류</th>
-                                            <th>카테고리 소분류</th>
-                                            <th>가격</th>
-                                            
+                                            <th>분류</th>
+                                            <th>제목</th>                                              
+                                            <th>내용</th>
+                                            <th scope="col">Actions</th>                                                                                                                             
                                         </tr>
-                                    </thead>
-                                   
+                                    </thead>                                  
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                           
-                                        <tr>
-                                            <td>2</td>
-                                            <td>leejb</td>
-                                            <td>jb</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                           
-                                        </tr>
-                                        <tr>
-                                           <td>3</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>leejb</td>
-                                            <td>jb</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                           <td>6</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                           <td>9</td>
-                                            <td>chaechae</td>
-                                            <td>rin</td>
-                                            <td>2021/11/09</td>
-                                            <td>웃는죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>sm</td>
-                                            <td>sm</td>
-                                            <td>2021/11/09</td>
-                                            <td>할 수 없는 죄</td>
-                                        </tr>                                                                                                                                                                                                                               
+                                    <c:forEach var="faq" items="${list }">
+	                                        <tr>	                                        		                                        		                                        		
+	                                            <td>${faq.number }</td>
+	                                            <td>${faq.category }</td>
+	                                            <td>${faq.title}</td>	
+	                                            <td>                                          
+		                                            <div class="dropdown">
+		                 							<btn type="button" class="btn btn-secondary dropdown-toggle" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                         										                                            	 
+	                                            	</btn>
+	                                            	<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">${faq.text}	
+	                                            	</ul>
+	                                            	</div>
+	                                            </td> 
+	                                            <td>
+		                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+		                                        	<button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
+		                                        </td>                                         
+                                        	</tr>
+                                      </c:forEach>                                                                                                                                                                                                                                                                                              
                                     </tbody>
                                 </table>
                             </div>

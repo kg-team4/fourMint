@@ -58,13 +58,7 @@ public class AdminController {
 		return "/utilities-board";
 	}
 	
-	@RequestMapping(value = "/utilities-usedfaq.mdo", method = RequestMethod.GET)
-	public String Uilities_oth(Locale locale, Model model) {
-		
-		return "/utilities-usedfaq";
-	}
-	
-	
+
 	@RequestMapping(value = "/register.mdo", method = RequestMethod.GET)
 	public String register(Locale locale, Model model) {
 		
@@ -90,11 +84,6 @@ public class AdminController {
 		return "/404";
 	}
 	
-	@RequestMapping(value = "/blank.mdo", method = RequestMethod.GET)
-	public String blank(Locale locale, Model model) {
-		
-		return "/blank";
-	}
 
 	@RequestMapping(value ="/charts.mdo" , method = RequestMethod.GET)
 	public String charts(Locale locale, Model model) {
@@ -102,36 +91,61 @@ public class AdminController {
 		return "/charts";
 	}
 	
+	@RequestMapping(value ="/profile.mdo" , method = RequestMethod.GET)
+	public String profile(Locale locale, Model model) {
+		
+		return "/profile";
+	}
+	
+	
 	@RequestMapping(value ="/tables-blacklist.mdo" , method = RequestMethod.GET)
 	public String tables_blacklist(Locale locale, Model model) {
 		
 		return "/tables-blacklist";
 	}
-	@RequestMapping(value ="/tables-member.mdo" , method = RequestMethod.GET)
-	public String tables_member(Locale locale, Model model) {
-		
-		return "/tables-member";
-	}
+	
 	@RequestMapping(value ="/tables-purchasehistory.mdo" , method = RequestMethod.GET)
 	public String tables_purchasehistory(Locale locale, Model model) {
 		
 		return "/tables-purchasehistory";
 	}
-	@RequestMapping(value ="/tables-storegoods.mdo" , method = RequestMethod.GET)
-	public String tables_storegoods(Locale locale, Model model) {
-		
-		return "/tables-storegoods";
-	}
-	@RequestMapping(value ="/tables-used.mdo" , method = RequestMethod.GET)
+	
+	@RequestMapping(value ="/merchandise.mdo" , method = RequestMethod.GET)
 	public String tables_used(Locale locale, Model model) {
 		
-		return "/tables-used";
+		return "/merchandise";
 	}
 	@RequestMapping(value ="/ConvertToPdf.mdo" , method = RequestMethod.GET)
 	public String convert(Locale locale, Model model, HttpServletRequest request) throws DocumentException, IOException {
 		ConvertToPdf.createPdf("Admin2", "<h1>안녕하세요</h1>", request);
 		
 		return "/index";
+	}	
+	@RequestMapping(value ="/customercenter.mdo" , method = RequestMethod.GET)
+	public String customercenter(Locale locale, Model model) {
+		
+		return "/customercenter";
+	}
+	@RequestMapping(value ="/usedstatus.mdo" , method = RequestMethod.GET)
+	public String usedstatus(Locale locale, Model model) {
+		
+		return "/usedstatus";
+	}
+	@RequestMapping(value ="/useddistribution.mdo" , method = RequestMethod.GET)
+	public String useddistribution(Locale locale, Model model) {
+		
+		return "/useddistribution";
+	}
+	@RequestMapping(value ="/storestatus.mdo" , method = RequestMethod.GET)
+	public String storestatus(Locale locale, Model model) {
+		
+		return "/storestatus";
+	}
+	@RequestMapping(value ="/store"
+			+ "distribution.mdo" , method = RequestMethod.GET)
+	public String storedistribution(Locale locale, Model model) {
+		
+		return "/storedistribution";
 	}
 	
 }

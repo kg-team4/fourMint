@@ -246,6 +246,5 @@
 	});//ready
 </script>
 
-<script src="../js/mint_store.js"></script>
 
 <jsp:include page="../template/footer.jsp"></jsp:include>
