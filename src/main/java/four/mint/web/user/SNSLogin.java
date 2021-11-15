@@ -1,29 +1,13 @@
 package four.mint.web.user;
 
-
-
-
-
-import java.net.URI;
-
-import org.apache.commons.collections.map.MultiValueMap;
-import org.json.simple.JSONObject;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.RestTemplate;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.scribejava.core.builder.ServiceBuilder;
-import com.github.scribejava.core.httpclient.HttpClient;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
-import com.google.gson.JsonObject;
 
 public class SNSLogin {
 	
@@ -33,9 +17,7 @@ public class SNSLogin {
 	
 	
 	public SNSLogin(SnsValue sns) {
-		System.out.println(sns.getService()+"======="+sns.getClientId()+"========"+sns.getClientSecret()+"======"+sns.getRedirectUrl());
 		if(sns.getService().equals("naver")) {
-		System.out.println(sns.getService()+"@@@@@@@@@");
 		this.oauthService = new ServiceBuilder(sns.getClientId())
 					.apiSecret(sns.getClientSecret())
 					.callback(sns.getRedirectUrl())
