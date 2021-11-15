@@ -4,7 +4,7 @@
 
 <c:forEach var="tmp" items="${list }">
 	<div class="chat_list_box${tmp.room } chat_list_box">
-		<div type="button" class="chat_list" room="${tmp.room }" other-nick="${tmp.other_nick }">
+		<div type="button" class="chat_list" room="${tmp.room }" other_nick="${tmp.other_nick }">
 			<!-- active-chat -->
 			<div class="chat_people">
 				<div class="chat_img" >
@@ -16,7 +16,7 @@
 					<h5>${tmp.other_nick }<span class="chat_date">${tmp.send_time }</span>
 					</h5>
 					<div class="row">
-						<div class="col-10">
+						<div class="col-10" style="text-align: left">
 							<p>${tmp.content }</p>
 						</div>
 						<%-- 만약 현재사용자가 안읽은 메세지 갯수가 0보다 클때만 badge를 표시한다. --%>

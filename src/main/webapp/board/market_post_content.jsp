@@ -12,17 +12,20 @@
 <title>민트마켓 중거거래상품 상세</title>
 <link href="../css/reset.css" rel="stylesheet">
 <jsp:include page="../template/header.jsp"></jsp:include>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
 <script type="text/javascript" src="../js/reply.js"></script>
 <link href="../css/8.board_content.css" rel="stylesheet">
 <link href="../css/swiper.min.css" rel="stylesheet">
 <script src="../js/swiper.min.js"></script>
 <script type="text/javascript" src="./js/post_content.js"></script>
-
+<!-- 메세지 전송 아이콘(종이비행기) 때문에 필요 -->
 
 <article style="padding-top:220px; padding-bottom:100px" id="post-content-form">
 	<input type="hidden" value="회원" id="login-member"> <input type="hidden" value="1" id="post-member">
-	<div class="padding50">
-		<div class="float-box float-left">
+	<div class="container bootstrap snippet padding50">
+		<div class="float-box float-left row">
 
 			<div class="left-item40" style="height: fit-content;">
 				<!-- 이미지 슬라이더 영역 -->
@@ -40,7 +43,7 @@
 				</div>
 			</div>
 
-			<div class="right-item60 left-font padding-left35">
+			<div class="right-item60 left-font padding-left35 col-sm-3">
 				<!-- 글 제목 -->
 				<%-- <div class="font30 padding25">
 					<span>${content.product_name }</span>
@@ -80,21 +83,87 @@
 						<span class="gray-font">&middot; 거래지역</span><span class="green-font">&emsp;${content.address2}</span>
 					</div>
 				</div>
-				<div>
-					<div class="float-box float-left">
-						<div class="left-item33">
-							<form action="../member/post_like.do" method="post">
-								<input type="hidden" name="member_no" value="1"> <input type="hidden" name="board_no" value="1"> <input type="hidden" name="post_no" value="1"> <input type="hidden" name="post_table" value="테이블"> <input type="hidden" name="post_path" value="asd?asd"> <input
-									type="submit" class="like-button cursor" value="♥ 찜 좋아요">
-							</form>
-						</div>
-						<!-- 수정 삭제 버튼은 "내글" 또는 "관리자"인 경우만 표시 -->
-						<div class="left-item33">
-							<a href="used_post_content_edit.jsp?post_no=1"><button class="edit-button cursor">민트채팅</button></a>
-						</div>
-						<div class="left-item33">
-							<a href="../member/check.jsp?go=myweb/board/usedpostdelete.do?post_no=1"><button class="delete-button cursor">삭제</button></a>
-						</div>
+				<div class="text-center center row">
+					<div class="float-box float-left col-10">
+						<c:choose>
+							<c:when test="${nickname eq content.nickname }">
+								<div class="left-item33">
+									<a href="../member/check.jsp?go=myweb/bo1ard/usedpostdelete.do?post_no=1"><button
+											class="delete-button cursor">삭제</button></a>
+								</div>
+							</c:when>
+							<c:when test="${nickname ne content.nickname and nickname ne null}">
+								<div class="left-item33">
+									<form action="../member/post_like.do" method="post">
+										<input type="hidden" name="member_no" value="1"> <input
+											type="hidden" name="board_no" value="1"> <input
+											type="hidden" name="post_no" value="1"> <input
+											type="hidden" name="post_table" value="테이블"> <input
+											type="hidden" name="post_path" value="asd?asd"> <input
+											type="submit" class="like-button cursor" value="♥ 찜 좋아요">
+									</form>
+								</div>
+								<!-- 수정 삭제 버튼은 "내글" 또는 "관리자"인 경우만 표시 -->
+								<div class="left-item33 messagesend-btn">
+									<!-- 민트채팅 버튼 -->
+									<button type="button"
+										class="edit-button cursor msg_send_btn_profile"
+										data-bs-toggle="modal" data-bs-target="#exampleModal"
+										onclick="javascript:MessageContentList('${content.nickname}')">
+										민트채팅</button>
+								</div>
+								<!-- 메세지 보내기 모달창 -->
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal" tabindex="-1"
+									aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-scrollable">
+										<div class="modal-content" style="max-height: 650px">
+											<div class="modal-header">
+												<span id="m_writer_profile">
+													<div class="message-box">
+														<!-- 프로필 이미지 -->
+														<%-- <img id="messageProfileImage"
+													src='./upload/profile/${to.profile }' /> --%>
+													</div>
+												</span>
+												<h5 class="modal-title" id="exampleModalLabel">${content.nickname}</h5>
+												<button type="button" class="btn-close"
+													data-bs-dismiss="modal" aria-label="Close"
+													style="box-shadow: none;"></button>
+											</div>
+											<div class="modal-body" style="overflow-y: hidden;">
+												<!-- 메세지 내용 영역 -->
+												<div class="mesgs">
+													<!-- 메세지 내용 목록 -->
+													<div class="msg_history" name="contentList">
+														<!-- 메세지 내용이 올 자리 -->
+													</div>
+													<div class="send_message"></div>
+													<!-- 메세지 입력란이 올자리 -->
+													<div class='type_msg' style="height: 45px">
+														<div class='input_msg_write row'>
+															<div class='col-11'>
+																<textarea class='write_msg form-control'
+																	placeholder='메세지를 입력...'
+																	style="width: 95%; margin-top: 5px; height: 40px; box-shadow: none;"></textarea>
+															</div>
+															<div class='col-1'>
+																<button class='msg_send_btn' type='button'
+																	onclick="javascript:SendMessage('${content.nickname}')">
+																	<i class='fa fa-paper-plane-o' aria-hidden='true'></i>
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
@@ -270,6 +339,78 @@
 </article>
 
 <script>
+	//메세지 내역을 가져온다.
+	const MessageContentList = function(other_nick) {
+		
+		$.ajax({
+			url : "message_content_list_inprofile.do",
+			method : "GET",
+			data : {
+ 				other_nick : other_nick
+			},
+			success : function(data) {
+				// 메세지 내용을 html에 넣는다
+				$(".msg_history").html(data);
+				
+				// 이 함수로 메세지 내용을 가져올때마다 스크롤를 맨아래로 가게 한다.
+				$(".msg_history").scrollTop($(".msg_history")[0].scrollHeight);
+	
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		})
+	};
+	
+	$(".form-control").keyup(function(e) {
+		e.preventDefault();
+		var code = e.keyCode ? e.keyCode : e.which;
+	
+		if (code == 13) {	// EnterKey 
+			if (e.shiftKey === true) { 
+				
+			} else { 
+				SendMessage('${content.nickname}');
+			}
+			return false;
+		}
+	});
+	
+	// 메세지를 전송하는 함수
+	const SendMessage = function(other_nick) {
+		console.log(other_nick);
+		let content = $('.write_msg').val();
+		console.log(content);
+	
+		content = content.trim();
+	
+		if (content == "") {
+			alert("메세지를 입력하세요!");
+		} else {
+			$.ajax({
+				url : "message_send_inlist_inprofile.do",
+				method : "GET",
+				data : {
+					other_nick : other_nick,
+	                content : content,	              
+				},
+				success : function(data) {
+					console.log("메세지 전송 성공");
+	
+					// 메세지 입력칸 비우기
+	                $('.write_msg').val("");
+	
+	                // 메세지 내용  리로드
+	                MessageContentList(other_nick);
+	
+				},
+				error : function() {
+					alert('서버 에러');
+				}
+			});
+		}
+	};
+	
 	function timeForToday(value) {
 	    const today = new Date();
 	    const timeValue = new Date(value);

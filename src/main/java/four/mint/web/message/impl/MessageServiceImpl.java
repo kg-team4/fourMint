@@ -54,12 +54,12 @@ public class MessageServiceImpl implements MessageService {
 		System.out.println("recv_nick : " + messageVO.getRecv_nick());
 		System.out.println("nick : " + messageVO.getNickname());
 		// 메세지 내역을 가져온다
-		ArrayList<MessageVO> list = messageDAO.getRoomContentList(messageVO);
+		ArrayList<MessageVO> clist = messageDAO.getRoomContentList(messageVO);
 
 		// 해당 방의 메세지들 중 받는 사람이 현재사용자의 nick인 메세지를 모두 읽음 처리한다
-		messageDAO.getMessageReadChk(messageVO);
+		messageDAO.getMessageReadCheck(messageVO);
 
-		return list;
+		return clist;
 	}
 		
 	// 메세지 list에서 메세지를 보낸다.

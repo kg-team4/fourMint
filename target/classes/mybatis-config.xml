@@ -10,6 +10,7 @@
 		<typeAlias alias="categoryBig" type="four.mint.web.user.market.MarketCategoryBigVO"/>
 		<typeAlias alias="skey" type="four.mint.web.common.SThreeVO" />
 		<typeAlias alias="key" type="four.mint.web.common.AesVO" />
+		<typeAlias alias="admin" type="four.mint.web.admin.login.AdminVO" />
 		<typeAlias alias="message" type="four.mint.web.message.MessageVO" />
 		<typeAlias alias="storeCategoryBig" type="four.mint.web.user.store.StoreCategoryBigVO" />
 	</typeAliases>
@@ -22,6 +23,7 @@
 		<mapper resource="mappings/MarketMapping.xml" />
 		<mapper resource="mappings/StoreMapping.xml" />
 		<mapper resource="mappings/KeyMapping.xml" />
+		<mapper resource="mappings/AdminMapping.xml"/>
 		<mapper resource="mappings/MessageMapping.xml" />
 	</mappers>
 </configuration>

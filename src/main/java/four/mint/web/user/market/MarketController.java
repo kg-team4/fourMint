@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
 import four.mint.web.common.DateUtil;
+import four.mint.web.message.MessageService;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.PageVO;

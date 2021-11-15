@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.annotation.ModelAndViewResolver;
 
 @Controller
 public class MessageController {
@@ -40,7 +41,7 @@ public class MessageController {
 	public String MessageAjaxList(HttpServletRequest request, HttpSession session) {
 		// System.out.println("현대 사용자 nick : " + session.getAttribute("nick"));
 
-		String nickname = (String) session.getAttribute("nick");
+		String nickname = (String) session.getAttribute("nickname");
 
 		MessageVO messageVO = new MessageVO();
 		messageVO.setNickname(nickname);
@@ -51,6 +52,7 @@ public class MessageController {
 		request.setAttribute("list", list);
 
 		return "message/message_ajax_list";
+		
 	}
 
 	@RequestMapping(value = "/message_content_list.do", method = RequestMethod.GET)
@@ -79,7 +81,9 @@ public class MessageController {
 		MessageVO messageVO = new MessageVO();
 		messageVO.setRoom(room);
 		messageVO.setSend_nick((String) session.getAttribute("nickname"));
+		messageVO.setNickname((String) session.getAttribute("nickname"));
 		messageVO.setRecv_nick(other_nick);
+		messageVO.setOther_nick(other_nick);
 		messageVO.setContent(content);
 
 		int flag = messageService.getMessageSendInlist(messageVO);
@@ -121,7 +125,9 @@ public class MessageController {
 
 		MessageVO messageVO = new MessageVO();
 		messageVO.setSend_nick(String.valueOf(session.getAttribute("nickname")));
+		messageVO.setNickname(String.valueOf(session.getAttribute("nickname")));
 		messageVO.setRecv_nick(other_nick);
+		messageVO.setOther_nick(other_nick);
 		messageVO.setContent(content);
 
 		int flag = messageService.getMessageSendInlist(messageVO);
