@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,17 +13,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
-import four.mint.web.user.board.common.PageVO;
-import four.mint.web.user.market.MarketCategoryBigVO;
+import four.mint.web.user.UserService;
+import four.mint.web.user.UserVO;
+import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketService;
-import four.mint.web.user.market.MarketVO;
 
 @Controller
 public class StoreController {
@@ -34,7 +35,10 @@ public class StoreController {
 	
 	@Autowired
 	private MarketService marketService;
-
+	
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value = "/storeBoardList.do", method = RequestMethod.GET)
 	public String storeBoardList() {
 		
@@ -42,53 +46,146 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/storeBoard.do", method = RequestMethod.GET)
-	public String storeBoard() {
+	public String storeBoard(HttpServletRequest request, StoreVO svo, Model model) {
+		svo = storeService.getStoreOne(Integer.valueOf(request.getParameter("seq")));
+		
+		model.addAttribute("content", svo);
 		
 		return "/board/store_post_content";
 	}
 	
 	@RequestMapping(value = "/storeDetailList.do", method = RequestMethod.GET)
-	public String storeList(HttpServletRequest request, HttpServletResponse response) {
+	public String storeList(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
 		List<StoreCategoryBigVO> storeCategoryBig = storeService.getStoreCategoryBig();
 		request.setAttribute("storeCategoryBig", storeCategoryBig);
 		
-		String pageNum = request.getParameter("pageNum");
-		if(pageNum == null)
-			pageNum = "1";
-		int pageSize = 10;
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = currentPage * pageSize;
-		int count = storeService.getStoreCount();
-		int number = 0;
-		List<StoreVO> storeList = null;
-		PageVO vo = new PageVO();
-		if(count > 0) { 
-			vo.setStartRow(startRow);
-			vo.setEndRow(endRow);
-			storeList = storeService.getStoreList(request, vo);
+		String kind = request.getParameter("kind");
+		
+		/* 페이징 처리 */
+		int page = 1;
+		int limit = 9;     
+		
+		svo.setKind(kind);
+		svo.setPage(page);
+		
+		int listCount = storeService.getKindCount(svo);
+		svo.setRnum(listCount);
+		int maxPage = (listCount+limit-1)/limit;
+		int startPage = ((page-1)/5) * 5 + 1;
+		int endPage = startPage + 5 - 1;
+		if(endPage > maxPage) 
+			endPage = maxPage;
+		if(endPage < page) 
+			page = endPage;
+		/*페이징 처리 끝*/
+		
+		List<StoreVO> sVo;
+		sVo = storeService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
+
+		request.setAttribute("kind", kind);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("listCount", listCount);
+		request.setAttribute("storeList", sVo);
+		request.setAttribute("pageNum", page);
+		
+		return "/board/store_post_list";
+	}
+	
+	@RequestMapping(value = "/storeDetailList.do", method = RequestMethod.POST)
+	public String storeListKind(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
+		List<StoreCategoryBigVO> storeCategoryBig = storeService.getStoreCategoryBig();
+		request.setAttribute("storeCategoryBig", storeCategoryBig);
+		
+		String kind = request.getParameter("kind");
+		String arrow = request.getParameter("arrow");
+		/*페이징 처리 시작*/
+		String currentPage = request.getParameter("pageNum");
+		int page;
+
+		if(currentPage == null) {
+			page = 1; 
+		} else {
+			page = Integer.parseInt(currentPage);
 		}
-		else
-			storeList = Collections.emptyList();
-		number = count - (currentPage - 1) * pageSize;
-		request.setAttribute("currentPage", Integer.valueOf(currentPage));
-		request.setAttribute("count",  Integer.valueOf(count));
-		request.setAttribute("pageSize", Integer.valueOf(pageSize));
-		request.setAttribute("number", Integer.valueOf(number));
-		request.setAttribute("storeList", storeList);
+		
+		if(arrow != null) {
+			if(arrow.equals("prev")) {
+				page = (page - 1) / 5 + ((page - 1) / 5) * 4;
+				if(page < 1) {
+					page = 1;
+				}
+			} else if(arrow.equals("next")) {
+				page = (page + 6) / 6 + (5 * ((page + 6) / 6)) - ((page - 1) / 5);
+			}
+		}
+		
+		svo.setKind(kind);
+
+		if(page > Math.round((double)storeService.getKindCount(svo) / 9)) {
+			page = (int)Math.round((double)storeService.getKindCount(svo) / 9) + 1;
+		}
+
+		request.setAttribute("pageNum", page);
+		
+		int limit = 9;   
+		
+		svo.setPage(page);
+		int listCount = storeService.getKindCount(svo);
+		svo.setRnum(listCount);
+		int maxPage = (listCount+limit-1)/limit;
+		int startPage = ((page-1)/5) * 5 + 1;
+		int endPage = startPage + 5 - 1;
+		if(endPage > maxPage) 
+			endPage = maxPage;
+		if(endPage < page) 
+			page = endPage;
+		/*페이징 처리 끝*/	
+		
+		List<StoreVO> sVo;
+		sVo = storeService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
+
+		request.setAttribute("kind", kind);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("listCount", listCount);
+		request.setAttribute("storeList", sVo);
 		
 		return "/board/store_post_list";
 	}
 	
 	@RequestMapping(value = "/order.do", method = RequestMethod.GET)
-	public String payment() {
+	public String payment(HttpServletRequest request, UserVO vo, HttpSession session) {
+		request.setAttribute("price", request.getParameter("price"));
+		request.setAttribute("amount", request.getParameter("amount"));
+		
+		String nickname = String.valueOf(session.getAttribute("nickname"));
+		vo = userService.getUserNickname(nickname);
+		
+		String phone1 = vo.getPhone().substring(0,3);
+		String phone2 = vo.getPhone().substring(3,7);
+		String phone3 = vo.getPhone().substring(7);
+
+		request.setAttribute("user", vo);
+		request.setAttribute("phone1", phone1);
+		request.setAttribute("phone2", phone2);
+		request.setAttribute("phone3", phone3);
+		
+		request.setAttribute("priceAll", request.getParameter("priceAll"));
+		request.setAttribute("delivery", request.getParameter("delivery"));
 		
 		return "/pay/order";
 	}
 	
 
 	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
-	public String order() {
+	public String order(HttpServletRequest request, HttpSession session) {
+		String nickname = String.valueOf(session.getAttribute("nickname"));
+		List<CartVO> cart = storeService.getCartList(nickname);
+		
+		request.setAttribute("cart", cart);
 		
 		return "/pay/payment";
 	}
@@ -128,4 +225,83 @@ public class StoreController {
 
 		return "/board/market_all_post_list";
 	}
+	
+	@RequestMapping(value = "/cartGo.do", method = RequestMethod.POST)
+	public void cartGo(HttpServletRequest request, HttpServletResponse response, CartVO vo) {
+		int id = Integer.valueOf(request.getParameter("seq"));
+		int amount = Integer.valueOf(request.getParameter("amount"));
+		String nickname = request.getParameter("nickname");
+		
+		StoreVO tempVO = storeService.getStoreOne(id);
+		String price = tempVO.getProduct_price();
+		String url = tempVO.getUrl();
+		String name = tempVO.getProduct_name();
+		
+		vo.setAmount(amount);
+		vo.setNickname(nickname);
+		vo.setProduct_price(price);
+		vo.setStore_seq(id);
+		vo.setUrl(url);
+		vo.setProduct_name(name);
+		
+		storeService.insertCart(vo);
+	}
+	
+	@RequestMapping(value = "/countUp.do", method = RequestMethod.POST)
+	public String countUp(@RequestParam(value="checkboxValues[]") List<String> arrayParams, HttpServletRequest request, UpVO vo) {
+		int id = Integer.valueOf(request.getParameter("id"));
+		int amount = Integer.valueOf(request.getParameter("amount"));
+		
+		if(amount < 99)
+			amount += 1;
+		
+		vo.setAmount(amount);
+		vo.setId(id);
+		
+		storeService.updateCart(vo);
+		
+		request.setAttribute("chk", arrayParams);
+		
+		return "/pay/pass";
+	}
+	
+	@RequestMapping(value = "/countDown.do", method = RequestMethod.POST)
+	public String countDown(@RequestParam(value="checkboxValues[]") List<String> arrayParams, HttpServletRequest request, UpVO vo) {
+		int id = Integer.valueOf(request.getParameter("id"));
+		int amount = Integer.valueOf(request.getParameter("amount"));
+		
+		if(amount > 1)
+			amount -= 1;
+		
+		vo.setAmount(amount);
+		vo.setId(id);
+		
+		storeService.updateCart(vo);
+		
+		request.setAttribute("chk", arrayParams);
+		
+		return "/pay/pass";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

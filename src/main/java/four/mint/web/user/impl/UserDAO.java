@@ -71,4 +71,8 @@ public class UserDAO {
 		
 		return sqlSessionTemplate.selectOne("UserDAO.getByNaver", nid);
 	}
+	
+	public UserVO getUserNickname(String nickname) {
+		return sqlSessionTemplate.selectOne("UserDAO.getUserNickname", nickname);
+	}
 }

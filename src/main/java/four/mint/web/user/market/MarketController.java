@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import four.mint.web.common.AES256Util;
@@ -24,7 +24,6 @@ import four.mint.web.common.AwsS3;
 import four.mint.web.common.DateUtil;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
-import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 
 @Controller
@@ -85,7 +84,6 @@ public class MarketController {
 		mVo = marketService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
 
 		request.setAttribute("kind", kind);
-		request.setAttribute("page", page);
 		request.setAttribute("maxPage", maxPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
@@ -97,7 +95,7 @@ public class MarketController {
 	}
 	
 	@RequestMapping(value = "/marketDetailList.do", method = RequestMethod.POST)
-	public String mintDetailListUpload(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
+	public String mintDetailListKind(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
 		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
 		request.setAttribute("marketCategoryBig", marketCategoryBig);
 		
@@ -141,7 +139,6 @@ public class MarketController {
 		
 		int listCount = marketService.getKindTwoCount(svo);
 		svo.setRnum(listCount);
-		
 		int maxPage = (listCount+limit-1)/limit;
 		int startPage = ((page-1)/5) * 5 + 1;
 		int endPage = startPage + 5 - 1;
@@ -161,7 +158,6 @@ public class MarketController {
 
 		request.setAttribute("kind", kind);
 		request.setAttribute("kindTwo", kindTwo);
-		request.setAttribute("page", page);
 		request.setAttribute("maxPage", maxPage);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);

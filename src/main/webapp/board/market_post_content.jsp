@@ -16,7 +16,7 @@
 <link href="../css/8.board_content.css" rel="stylesheet">
 <link href="../css/swiper.min.css" rel="stylesheet">
 <script src="../js/swiper.min.js"></script>
-<script type="text/javascript" src="./js/post_content.js"></script>
+<script src="../js/post_content.js"></script>
 
 
 <article style="padding-top:220px; padding-bottom:100px" id="post-content-form">
@@ -68,7 +68,7 @@
 					<span class="padding-left05">
 						<img src="../img/time.png"
 						width="15" height="13" alt="시간 아이콘">
-						&nbsp;${content.date }
+						&nbsp;${date }
 					</span> 
 					<span class="right-float"><a href="#"><img src="../img/police.png" width="20" height="20">&nbsp;신고하기</a></span>
 				</div>
@@ -93,7 +93,7 @@
 							<a href="used_post_content_edit.jsp?post_no=1"><button class="edit-button cursor">민트채팅</button></a>
 						</div>
 						<div class="left-item33">
-							<a href="../member/check.jsp?go=myweb/board/usedpostdelete.do?post_no=1"><button class="delete-button cursor">삭제</button></a>
+							<a href="../member/check.jsp?go=myweb/board/usedpostdelete.do?post_no=1"><button class="delete-button cursor">수정</button></a>
 						</div>
 					</div>
 				</div>

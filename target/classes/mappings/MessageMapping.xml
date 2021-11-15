@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MessageDAO">
+
+	<resultMap type="message" id="messageResult">
+		<result property="no" column="NO" />
+		<result property="room" column="ROOM" />
+		<result property="send_nick" column="SEND_NICK" />
+		<result property="recv_nick" column="RECV_NICK" />
+		<result property="send_time" column="SEND_TIME" />
+		<result property="read_time" column="READ_TIME" />
+		<result property="content" column="CONTENT" />
+		<result property="read_check" column="READ_CHECK" />
+	</resultMap>
+	
+	<!-- 메세지 리스트 가져오기 : 상대방 프로필에서 클릭 했을 때 -->
+	<select id="getMessageList" parameterType="four.mint.web.message.MessageVO" resultType="four.mint.web.message.MessageVO">
+		select no, room, send_nick, recv_nick, send_time, read_time, content, read_check
+		from message
+		where no in (select max(no) from message group by room) and (send_nick = #{nickname} or recv_nick=#{nickname})
+		order by no desc;
+	</select>
+	
+	<!-- 메세지 list에서 상대방 profile 가져오기 : 오른쪽 위에 메세지 보내기 버튼 클릭 시 -->
+	<select id="getOtherProfile" parameterType="four.mint.web.message.MessageVO" resultType="String">
+		select profile from member
+		<choose>
+			<when test="send_nick == nickname">
+				where nickname = #{recv_nick}
+			</when>
+			<otherwise>
+				where nickname = #{send_nick}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 안읽은 메세지 갯수 가져오기 : 오른쪽 위에 메세지 보내기 버튼 클릭 시  -->
+	<select id="getCountUnread" parameterType="four.mint.web.message.MessageVO" resultType="Int">
+		select count(no) from message 
+		where recv_nick=#{nickname} and read_check=0 and room=#{room}
+	</select>
+	
+	<!-- 메세지 내용 가져오기 / 상대 프로필에 들어가서 메세지 보내기 클릭 시 -->
+	<select id="getRoomContentList" parameterType="four.mint.web.message.MessageVO" resultType="four.mint.web.message.MessageVO">
+		select m.no, m.room, m.send_nick, m.recv_nick, m.send_time, m.read_time, m.content, m.read_check, b.profile
+		from message m left outer join member b
+		on m.send_nick = b.nickname
+		<choose>
+			<when test="room != 0">
+				where room=#{room}
+			</when>
+			<otherwise>
+				where (recv_nick = #{recv_nick} and send_nick = #{nickname}) or (send_nick = #{recv_nick} and recv_nick = #{nickname})
+			</otherwise>
+		</choose>
+		
+	</select>
+	
+	<!-- 메세지 읽음 처리 : 상대방 메세지 클릭해서 대화방 들어갔을 때 -->
+	<update id="getMessageReadCheck" parameterType="four.mint.web.message.MessageVO">
+		update message set read_check=1, read_time = now()
+		<choose>
+			<when test="room != 0">
+				where room=#{room} and read_check=0 and recv_nick=#{nickname}
+			</when>
+			<otherwise>
+				where send_nick=#{recv_nick} and read_check=0 and recv_nick=#{nickname}
+			</otherwise>
+		</choose>
+		
+	</update>
+	
+	<!-- 메세지리스트에서 메세지 보내기 : 상대방 메세지 클릭해서 대화방 들어가서 메세지 보낼 때 -->
+	<insert id="getMessageSendInlist" parameterType="four.mint.web.message.MessageVO">
+		<choose>
+			<when test="room != 0">
+				insert into message (no, room, send_nick, recv_nick, send_time, content, read_check) values(default, #{room}, #{send_nick}, #{recv_nick}, now(), #{content}, 0);
+			</when>
+			<otherwise>
+				insert into message (no, room, send_nick, recv_nick, send_time, content, read_check) values(default, #{room}, #{send_nick}, #{recv_nick}, now(), #{content}, 0);
+			</otherwise>
+		</choose>
+	</insert>
+	
+	<!-- room 번호 최댓값 구하기 -->
+	<select id="getMaxRoom"  parameterType="four.mint.web.message.MessageVO" resultType="int">
+		select count(room) from message
+	</select>
+	
+	<!-- 메세지 이력이 있는지 검색 -->
+	<select id="getExistChat" parameterType="four.mint.web.message.MessageVO" resultType="int">
+		select count(no) from message 
+		where (recv_nick = #{recv_nick} and send_nick=#{send_nick}) or (send_nick = #{recv_nick} and recv_nick=#{send_nick})
+	</select>
+	
+	<!-- 기존 메세지 내역의 room 번호를 가져옴 -->
+	<select id="getSelectRoom"  parameterType="four.mint.web.message.MessageVO" resultType="int">
+		select room from message
+		where (recv_nick = #{recv_nick} and send_nick=#{send_nick}) or (send_nick = #{recv_nick} and recv_nick=#{send_nick})
+		limit 1 offset 0
+	</select>
+</mapper>

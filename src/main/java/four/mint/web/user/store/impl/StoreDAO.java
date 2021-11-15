@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.board.common.SearchVO;
+import four.mint.web.user.store.CartVO;
 import four.mint.web.user.store.StoreCategoryBigVO;
 import four.mint.web.user.store.StoreVO;
+import four.mint.web.user.store.UpVO;
 
 @Repository
 public class StoreDAO {
@@ -39,5 +42,29 @@ public class StoreDAO {
 		sqlSessionTemplate.insert("StoreDAO.insertStore", vo);
 		
 		System.out.println("======> store INSERT");
+	}
+
+	public int getKindCount(SearchVO svo) {
+		return sqlSessionTemplate.selectOne("StoreDAO.getKindCount", svo);
+	}
+
+	public List<StoreVO> getKindList(SearchVO svo) {
+		return sqlSessionTemplate.selectList("StoreDAO.getKindList", svo);
+	}
+
+	public StoreVO getStoreOne(int seq) {
+		return sqlSessionTemplate.selectOne("StoreDAO.getStoreOne", seq);
+	}
+
+	public void insertCart(CartVO vo) {
+		sqlSessionTemplate.insert("StoreDAO.insertCart", vo);
+	}
+	
+	public List<CartVO> getCartList(String nickname) {
+		return sqlSessionTemplate.selectList("StoreDAO.getCartList", nickname);
+	}
+
+	public void updateCart(UpVO vo) {
+		sqlSessionTemplate.update("StoreDAO.updateCart", vo);
 	}
 }

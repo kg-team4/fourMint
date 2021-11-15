@@ -7,20 +7,34 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<link rel="shortcut icon" type="image/x-icon"
-	href="../img/logo_icon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
 <title>민트 스토어 상품 상세</title>
 <link href="../css/reset.css" rel="stylesheet">
 <jsp:include page="../template/header.jsp"></jsp:include>
-<script type="text/javascript" src="../js/reply.js"></script>
+<script src="../js/reply.js"></script>
 <link href="../css/8.board_content.css" rel="stylesheet">
 <link href="../css/swiper.min.css" rel="stylesheet">
 <script src="../js/swiper.min.js"></script>
-<script type="text/javascript" src="./js/post_content.js"></script>
+<script src="../js/post_content.js"></script>
 
+<style>
+	#my_modal {
+	    display: none;
+	    width: 300px;
+	    padding: 20px 60px;
+	    background-color: #fefefe;
+	    border: 1px solid #888;
+	    border-radius: 3px;
+	}
+	
+	#my_modal .modal_close_btn {
+	    position: absolute;
+	    top: 10px;
+	    right: 10px;
+	}
+</style>
 
 <article style="padding-top: 220px" id="post-content-form">
-	<input type="hidden" value="회원" id="login-member"> <input type="hidden" value="1" id="post-member">
 	<div class="padding50">
 		<div class="float-box float-left">
 
@@ -61,12 +75,10 @@
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAaCAYAAADMp76xAAAAAXNSR0IArs4c6QAABAdJREFUWAm9mFtIFFEYx9tZ11UW1tLoaoGEPShqq3ahgogyIgnqQXqIgih6qKgEH4JIqCgIIoowIrSn6i0irOxCQdAN7wb2IiSlSUZuGJGyumu/b9lZZo8zs7ObdeBwvvNd/uc/53zznWFcs9Js7e3tczVNWzs1NbUKiErGfJfLNYcxVyCRg8g/GAeZdiC3eTyeN2VlZd/Enm5zpRLY09Pjm5yc3EnMbghUMbpTiYd8BP8X9Dt+v/9uYWHhz1TixdcR4YGBgezh4eFD+J+gz5XAGWijYFzKycm5nArxpIQ5+hqAr9AXzgBJM4ggqXWyvLz8uplR1VkShmgOR3iVo9+jBv2LOWs9pu+H+JAdvilhyC4j6AldxqSNhT7g1Oh2u59mZWV9loDx8fGl4XB4C+IBHrpIdA7ad7C2V1RUvLPynUa4u7s7wIvVQsB8qyCDfgK5jgUaWChs0MdFyLo7OjoOo7hI98QN1sJvsHaB+cDMJYFwV1fXCnblJY5+M2dFN8GOVgcCgWeK3nQKdhXYDzE6IR2GdA2k76lgmq7o7OxcBGAzcydkJazOKVlxjvnWieyguTmZ25y21PiEFt3h/v7+rJGRkddYyhOsFhOe/gMvR6lVGliEzZL0YGPep5DTw16vd2VJScmAjhnd4WAweBaFI7KxwEaVLCQyIHOafB2ULrLo9IVkjMU0GnVJ5PmhUOim0UejIqwGuNaoTCZLNVB9yNFTkUikHqzF0kUWnepnFqv6GOdgbWYDDuo6jaduYOLWFU5Gvgk+qX4A73ei08ue6ms3B/ui3LbiozExLUd2AOxSQnWx850h2+f8/PyQYGksfoRxMhVguRRUf06qyYnOLFaNM87BjdAP0KMbq1Fu2phcMDolk2M3WIIbOGf5JjgD1hfpIosuwYmJWazqo8yvGG++6NH29vZmjo2NPcdxveJsOoXQ/yprXcKpsrLyt04kWtaKi4tDPp9vB0T6dIPdSN4Xxa5bO7dpNomR2GkGEwVchjIyMrYbyYpbwstDGSqkHL0CdJ4Jhqr6l1ezfNhvhGynumj8ahYDOSc7vI7+UeZJmke+DajjR3lAy7IoNvERX/CcfEd8pRBsMCMrfBJ2WCdITi8gpx8xD+g6u1FyGvtff15KSlLjt5aWllpumClhIdfX1+cdHR09D0gtu2TpZ/cgKdqasrOzj/M+/bKLS0qEb4JN5PU1QJbbAaVrY0M+UQKPkY73nWAkJSwgkoe84fsQ6+lLRDcD7Stkz3FV35Aq5RTPEWEdLFavt7HQXnTVPEimbnM4ThDbQtytvLy85oKCgnGHcXG3lAjHoxAogbNJlTWIq6VDQn6k5DLmih+y/EgJMsqPlFaOvZW3/y0v1A+xp9v+ADhPuomDsZuZAAAAAElFTkSuQmCC"
 					width="20" height="13" alt="조회수 아이콘">&nbsp;1
 					</span> 
-					<span class="padding-left05"><img src="../img/time.png" width="15" height="13" alt="시간 아이콘">${content.date }</span> 
-								
 				</div>
 				<div class="item font15 padding15">
 					<div class="padding15">
-						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}&nbsp;>&nbsp;${content.category_middle }</span>
+						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}</span>
 					</div>
 					<div class="padding15">
 						<span class="gray-font">&middot; 배송비</span><span class="green-font">&emsp;2,500원&nbsp;(30,000원 이상 무료배송)</span>
@@ -74,18 +86,7 @@
 					<div class="padding15">
 						<span class="gray-font">&middot; 수량 &emsp;</span>
 						<span class="green-font">
-							<select name="amount" style="text-align:center; min-width: 60px; vertical-align: middle" >
-								<option value="one" selected>1</option>
-								<option value="one">2</option>
-								<option value="one">3</option>
-								<option value="one">4</option>
-								<option value="one">5</option>
-								<option value="one">6</option>
-								<option value="one">7</option>
-								<option value="one">8</option>
-								<option value="one">9</option>
-								<option value="one">10</option>
-							</select>
+							<input form="form1" class="amount" name="amount" type="number" value="1" autocomplete="off" maxlength="2" style="width: 50px; text-align: right;" min="1" max="10"/>
 						</span>
 					</div>
 				</div>
@@ -93,23 +94,37 @@
 					<div class="float-box float-left">
 						<div class="left-item33">
 							<form action="../member/post_like.do" method="post">
-								<input type="hidden" name="member_no" value="1"> <input type="hidden" name="board_no" value="1"> <input type="hidden" name="post_no" value="1"> <input type="hidden" name="post_table" value="테이블"> <input type="hidden" name="post_path" value="asd?asd"> <input
-									type="submit" class="like-button cursor" value="♥ 찜 좋아요">
+								<input type="submit" class="like-button cursor" value="♥ 찜 좋아요">
 							</form>
 						</div>
 						<!-- 수정 삭제 버튼은 "내글" 또는 "관리자"인 경우만 표시 -->
+						
+						<!-- 장바구니 모달 -->
+						<div id="my_modal">
+							<h3>장바구니에 담겼습니다.</h3>
+							<br>
+							<a href="payment.do" style="color: blue;">장바구니로 이동</a>
+							&emsp;<a class="modal_close_btn">나가기</a>
+						</div>
+						<!-- 장바구니 모달 끝 -->
 						<div class="left-item33">
-							<a href="used_post_content_edit.jsp?post_no=1"><button class="edit-button cursor">장바구니</button></a>
+							<button class="edit-button cursor" id="popup_open_btn">장바구니</button>
 						</div>
 						<div class="left-item33">
-							<a href="../member/check.jsp?go=myweb/board/usedpostdelete.do?post_no=1"><button class="delete-button cursor">바로구매</button></a>
+							<form id="form1" action="order.do">
+								<input type="hidden" name="priceAll" value="${content.product_price }" />
+								<c:if test="${content.product_price < 50000 }">
+									<input type="hidden" name="delivery" value="1" />
+								</c:if>
+								<input type="submit" class="delete-button cursor" value="바로구매" />
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	<div class="padding-top30">
 		<div class="float-box float-left">
 			<div class="left-item100 left-font ">
@@ -198,8 +213,6 @@
 							</div>
 						</div>
 					</div>
-				
-				
 				
 				<div class="padding-top70">
 					<p class="font27">상품문의</p>					
@@ -314,9 +327,75 @@
 					</div><br>
 				</div>
 			</div>
-
 			
 		</div>
 	</div>
+<script>
+	function modal(id) {
+	    var zIndex = 9999;
+	    var modal = document.getElementById(id);
+	
+	    // 모달 div 뒤에 희끄무레한 레이어
+	    var bg = document.createElement('div');
+	    bg.setStyle({
+	        position: 'fixed',
+	        zIndex: zIndex,
+	        left: '0px',
+	        top: '0px',
+	        width: '100%',
+	        height: '100%',
+	        overflow: 'auto',
+	        // 레이어 색갈은 여기서 바꾸면 됨
+	        backgroundColor: 'rgba(0,0,0,0.4)'
+	    });
+	    document.body.append(bg);
+	
+	    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+	    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+	        bg.remove();
+	        modal.style.display = 'none';
+	    });
+	
+	    modal.setStyle({
+	        position: 'fixed',
+	        display: 'block',
+	        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+	
+	        // 시꺼먼 레이어 보다 한칸 위에 보이기
+	        zIndex: zIndex + 1,
+	
+	        // div center 정렬
+	        top: '50%',
+	        left: '50%',
+	        transform: 'translate(-50%, -50%)',
+	        msTransform: 'translate(-50%, -50%)',
+	        webkitTransform: 'translate(-50%, -50%)'
+	    });
+	}
+	
+	// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+	Element.prototype.setStyle = function(styles) {
+	    for (var k in styles) this.style[k] = styles[k];
+	    return this;
+	};
+	
+	document.getElementById('popup_open_btn').addEventListener('click', function() {
+		var seq = "${content.store_seq}";  
+		var amount = $(".amount").val();
+		var nickname = "${nickname}";
+		$.ajax({
+			url : 'cartGo.do', // 이 주소로 
+			type : "post", // 포스트 방식으로 보내는데
+			cache: false,
+			headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+			data : {"seq" : seq, "amount" : amount, "nickname" : nickname} // kind를 kind로 명명하여 보내겠다
+		})//ajax
+		
+		// 모달창 띄우기
+	    modal('my_modal');
+	    
+	});
+</script>
+
 </article>
 <jsp:include page="../template/footer.jsp"></jsp:include>
