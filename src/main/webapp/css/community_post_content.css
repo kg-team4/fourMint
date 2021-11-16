@@ -1,0 +1,254 @@
+@charset "UTF-8";
+
+article {
+	padding-top: 220px;
+	margin-bottom: 90px;
+	padding-left: 14%;
+}
+pre{
+	white-space:pre-wrap;
+	line-height: 150%;	
+	text-align:left;
+}
+textarea {
+	width: 100%;
+	resize: none;
+	border: none;
+}
+.contents_all {
+	display: flex;
+}
+.commenter_infomation_all{
+	display: flex;
+}
+
+.category_list {
+	display: block;
+	position: fixed;
+}
+
+.category_title {
+	font-size: 20px;
+	line-height: 160%;
+	text-decoration: none;
+	color: #7b7b7b;
+}
+.category_title:hover {
+	color: #26e4ca;
+}
+#border_grid {
+	width: 819px;
+	height: auto;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	padding-left: 30px;
+	float: left;
+	margin-left: 200px;
+}
+.category_and_title{
+	display:flex;
+	margin-top:20px;
+	margin-bottom:10px;
+}
+.category_detail{
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	background: lightgray;
+	padding:2px;
+	width:70px;
+	text-align: center;
+}
+.title{
+	padding:2px;
+	margin-left:12px;
+	font-size:20;
+}
+.writer_content_all{
+	display:flex;
+	margin-bottom:15px;
+}
+.img_box {
+	background: #BDBDBD;
+	border-radius: 50%;
+	overflow: hidden;
+	width: 80px;
+	height: 80px;
+}
+
+.writer_img, .commenter_img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.writer_infomation, .commenter_infomation{
+	margin-top:15px;
+	margin-left:15px;
+}
+.write_content, .comment_content{
+	margin-right:15px;
+}
+.img_contents{
+	display:flex;
+}
+.content_img1, .content_img2, .content_img3 {
+	overflow: hidden;
+	width: 240px;
+	height: 240px;
+	margin-right:15px;
+	margin-bottom:30px;
+}
+.comments_section{
+	display:flex;
+	margin-top:10px;
+}
+.good_comments_police{
+	text-align: right;
+	display:flex;
+	margin-left:530px;
+	margin-bottom:10px;
+}
+.img_good, .img_comment {
+	width:20px;
+	height:20px;
+	margin-right:5px;
+}
+.img_police{
+	width:20px;
+	height:20px;
+}
+.btn_good, .btn_police, .btn_reply{
+	border:0;
+	outline:0;	
+	cursor:pointer;
+	background-color: white;
+}
+.write_comment_area, .write_reply_area{
+	margin-top:20px;
+	margin-bottom: 20px;
+}
+.reply-button {
+	background-color: white;
+	color: #999999;
+	font-size: 15px;
+	border: 1px solid #999999;
+	outline: none;
+	width: 50px;
+	cursor: pointer;
+	margin-left:709px;
+}
+.reply-border {
+	border: 1px solid lightgray;
+	width:760px;
+}
+.reply-num-border {
+	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	width:760px;
+}
+.comment_content{
+	margin-left: 93px;
+	margin-top : 5px;
+}
+.reply_arrow_img{
+	width:30px;
+	height:30px;
+}
+.reply_police1 {
+	text-align: right;
+	display:flex;
+}
+.reply_police2{
+	text-align: right;
+	display:flex;
+}
+#re_reply_click_style{
+	font-size:14px;
+	color:gray;
+}
+#re_reply_click_style:hover{
+	cursor: pointer;
+	color:#26e4ca;
+}
+#comment_click_style{
+	font-size:18px;
+	color:gray;
+}
+#comment_click_style:hover{
+	cursor: pointer;
+	color:#26e4ca;
+}
+.post_writer{
+	border:1px solid lightgray;
+	background: lightgray;
+}
+.reply-content-form {
+	display: flex;
+	width: 100%;
+}
+
+.reply-content {
+	width: 80%;
+	display: inline-block;
+	flex: 13;
+}
+
+.reply-control {
+	width: 20%;
+	display: flex;
+	flex: 2;
+	text-align: right;
+	margin-left:657px;
+	margin-top:3px;
+}
+
+.reply-control>div {
+	display: inline-block;
+	flex: 1;
+}
+
+.reply-control>div>a, .reply-control>div>label, #delete-reply-form>input[type=submit]
+	{
+	background-color: transparent;
+	border: none;
+	text-decoration: none;
+	color: gray;
+	cursor: pointer;
+}
+
+.reply-control>div>a:hover, #delete-reply-form>input[type=submit]:hover
+	{
+	color: #26e4ca;
+}
+
+.reply-control>div>label:hover {
+	color: #ff8900;
+}
+
+.seller {
+	margin-top: 17px;
+}
+
+.rereply-off {
+	display: none;
+}
+
+.rereply-on {
+	display: block;
+}
+
+#edit-reply-form {
+	display: flex;
+}
+
+#edit-reply-form>textarea {
+	flex: 14;
+	width: 90%;
+}
+
+#edit-reply-form>input[type=submit] {
+	flex: 1;
+	width: 50px;
+	height: 21px;
+}

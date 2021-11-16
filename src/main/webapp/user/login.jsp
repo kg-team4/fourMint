@@ -32,11 +32,10 @@
                     </div>
                 </div>
                 <div>
-                	
-                    <input type="submit" value="민트마켓 아이디로 로그인" id="login-submit" /><br>            
-                   <a href="${naver_url }"><img src="img/naver.png" style="height:18px;width:18px;">&nbsp;&nbsp; 네이버 아이디로 로그인</a><br>
-					  <ul><li  onclick="kakaoLogin()"><a href="javascript:void(0)"><span>카카오 로그인</span> </a></li></ul>
-					
+                    <br><br><br>
+					<button id="login-submit"><img src="img/logo_icon.png" style="height:30px;width:30px;">&nbsp;&nbsp;민트 로그인</button><br>
+					<a href="${naver_url }"><img src="img/naver.png" style="height:18px;width:18px;">&nbsp;&nbsp; 네이버 아이디로 로그인</a><br>
+					<ul><li  onclick="kakaoLogin()"><a href="javascript:void(0)"><span>카카오 로그인</span> </a></li></ul>
                 </div>
             </form>
         </article>	

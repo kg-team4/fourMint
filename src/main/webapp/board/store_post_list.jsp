@@ -55,9 +55,6 @@
 							<li>
 								<a href="storeBoard.do?seq=${store.store_seq }"> <img src="${store.url }"></a>
 								<p>
-									<span class="red">${store.category_big }</span> 
-								</p>
-								<p>
 									<span>${store.product_name }</span> <span>${store.product_price }원</span>
 								</p>
 							</li>

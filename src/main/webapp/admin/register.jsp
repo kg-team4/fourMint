@@ -58,11 +58,9 @@
                                             id="exampleRepeatPassword" placeholder="비밀번호">
                                     </div> -->
                                 </div>
-                                <input type="submit" class="btn btn-primary btn-user btn-block">계정등록</a>
+                                <input type="submit" class="btn btn-primary btn-user btn-block" value="계정등록">
                                 <hr>
-                                <!-- <a href="index.jsp" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> 구글로 회원가입
-                                </a>    -->                          
+                                                     
                             </form>
                             <hr>
                             <div class="text-center">

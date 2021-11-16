@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>자체상품 글 관리</title>
+    <title>스토어 상품 글 관리</title>
 
     <!-- Custom fonts for this template-->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,15 +40,15 @@
                 <div class="container-fluid">
 
                   <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">자체상품 글 관리</h1>
+                    <h1 class="h3 mb-2 text-gray-800">스토어 상품 글 관리</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 자체상품 글 목록</a>.</p>
+                            href="https://datatables.net">민트마켓 스토어 상품 글 목록</a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">자체상품 글 </h6>
+                            <h6 class="m-0 font-weight-bold text-primary">스토어 상품 글 </h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -57,9 +57,9 @@
                                         <tr>
                                             <th>No</th>
                                             <th>카테고리 대분류</th>
-                                            <th>카테고리 중분류</th>
-                                            <th>카테고리 소분류</th>
+                                            <th>상품명</th>                                           
                                             <th>가격</th>
+                                            <th>재고</th>
                                             
                                         </tr>
                                     </thead>

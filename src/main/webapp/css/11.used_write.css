@@ -38,7 +38,7 @@
    border: 1px solid lightgray;
    font-size: 19px;
    margin-left: 70px;
-   outline:1px solid orange;
+   outline:1px solid #26e4ca;
 }
 
 .used_cate_style {
@@ -58,7 +58,7 @@
    margin-top: 40px;
    margin-bottom: 40px;
    margin-left: 40px;
-      outline:1px solid orange;
+      outline:1px solid #26e4ca;
 }
 
 .form-price {
@@ -78,7 +78,7 @@
    border: 1px solid lightgray;
    font-size: 19px;
    margin-left: 70px;
-   outline:1px solid orange;
+   outline:1px solid #26e4ca;
 }
 
 .form-phone {
@@ -98,7 +98,7 @@
    border: 1px solid lightgray;
    font-size: 19px;
    margin-left: 40px;
-   outline:1px solid orange;
+   outline:1px solid #26e4ca;
 }
 
 
@@ -107,7 +107,7 @@
 }
 
 #free:checked {
-   color: orange;
+   color: #26e4ca;
 }
 
 #suggest {
@@ -128,7 +128,7 @@
    font-size: 20px;
    font-weight: normal;
    margin-left: 70px;
-   outline:1px solid orange;
+   outline:1px solid #26e4ca;
 }
 .menu {
    width: 300px;
@@ -154,17 +154,17 @@
 }
 
 .form-btn {
-   background-color: orange;
+   background-color: #26e4ca;
    color: white;
    cursor: pointer;
    padding: 1rem;
    outline: none; /* 선택 시 자동 부여되는 테두리 제거 */
-   border: 1px solid orange;
-   width: 180px;
+   border: 1px solid #26e4ca;
+   border-radius:5px;
+   width: 130px;  
    font-size: 27px;
    margin-top: 70px;
 }
-
 .must {
    font-size: 20px;
    font-weight: normal;
@@ -198,7 +198,7 @@
 .hr_style2 {
    border: 0;
    height: 3px;
-   background:orange;
+   background:#26e4ca;
 }
 
 .preview-wrap{

@@ -33,6 +33,8 @@ header {
 
 .logo {
 	flex: 3;
+	margin: 5px 0px 0px 0px;
+	padding-bottom: 15px;
 }
 
 .logo>a>img {
@@ -45,14 +47,14 @@ header {
 
 .search {
 	flex: 3;
+	margin: 10px 0px 0px 0px;
+	padding-bottom: 15px;
 }
 
 .sign {
 	flex: 3;
-}
-
-.logo, .search, .sign {
-	margin: 20px 0px 0px 0px;
+	margin: 10px 0px 0px 0px;
+	padding-bottom: 15px;
 }
 
 .search {

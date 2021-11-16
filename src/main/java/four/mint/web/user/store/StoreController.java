@@ -52,8 +52,7 @@ public class StoreController {
 		model.addAttribute("content", svo);
 		
 		return "/board/store_post_content";
-	}
-	
+	}	
 	@RequestMapping(value = "/storeDetailList.do", method = RequestMethod.GET)
 	public String storeList(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
 		List<StoreCategoryBigVO> storeCategoryBig = storeService.getStoreCategoryBig();

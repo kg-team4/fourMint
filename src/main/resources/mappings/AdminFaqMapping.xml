@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminFaqDAO">
+	
+	<resultMap  type="adminFaq" id="adminResult">
+		<result property="number" column="NUMBER" />
+		<result property="category" column="CATEGORY" />
+		<result property="title" column="TITLE" />	
+		<result property="text" column="TEXT" />			
+	</resultMap>
+	
+	<insert id="insertAdmin" parameterType="string">
+		INSERT INTO faq (number, category, title, text) 
+		VALUES (#{number}, #{category}, #{title}, #{text})
+	</insert>
+	
+	<select id="getAdminFaqList" resultType="adminFaq" parameterType="string">
+		SELECT * FROM faq
+	</select>		
+</mapper>

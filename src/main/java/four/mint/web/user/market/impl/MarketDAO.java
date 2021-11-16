@@ -77,4 +77,9 @@ public class MarketDAO {
 	public List<MarketVO> getKindTwoList(SearchVO svo) {
 		return sqlSessionTemplate.selectList("MarketDAO.getKindTwoList", svo);
 	}
+
+	public int updateViews(int market_seq) {
+		System.out.println("=====> update views");
+		return sqlSessionTemplate.update("MarketDAO.updateViews", market_seq);
+	}
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminTableDAO">
+	
+	<resultMap  type="adminTable" id="adminResult">
+		<result property="email_id" column="EMAIL_ID" />
+		<result property="name" column="NAME" />
+		<result property="nickname" column="NICKNAME" />	
+		<result property="phone" column="PHONE" />	
+		<result property="address1" column="ADDRESS1" />
+		<result property="address2" column="ADDRESS2" />
+		<result property="address3" column="ADDRESS3" />
+		<result property="birth" column="BIRTH" />
+		<result property="gender" column="GENDER" />
+		<result property="date" column="DATE" />
+	</resultMap>
+	
+	<insert id="insertAdmin" parameterType="four.mint.web.admin.page.AdminPageVO">
+		INSERT INTO member (email_id, name, nickname, phone, address1, address2, address3, birth, gender, date ) 
+		VALUES (#{email_id}, #{password}, #{name}, #{nickname}, #{phone}, #{address1}, #{address2}, #{address3}, #{birth}, #{gender}, #{date} )
+	</insert>
+	
+	<select id="getAdminTableList" resultType="adminTable" parameterType="four.mint.web.admin.table.member.AdminTableVO">
+		SELECT * FROM member
+	</select>	
+</mapper>

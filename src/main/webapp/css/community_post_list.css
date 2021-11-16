@@ -36,14 +36,14 @@ article {
 	border-radius: 5px;
 	padding-left: 50px;
 	float: left;
-	margin-left: 24%;
+	margin-left: 200px;
 }
 
 .store_review {
 	width: 865px;
 	height: auto;
 	display: block;
-	margin-left: 25%;
+	margin-left: 200px;
 }
 
 #img_box {
@@ -165,7 +165,7 @@ tbody tr:nth-child(2n) {
 }
 
 #grid_below_search_write_area{
-	margin-left:258px;
+	margin-left:200px;
 	margin-top: 10px;
 	
 }

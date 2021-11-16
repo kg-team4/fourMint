@@ -66,6 +66,7 @@
 	<select id="getByNaver" resultType="String" parameterType="String">
 		SELECT snsid FROM member WHERE snsid = #{naverid}
 	</select>
+ 
 	<select id="getBySns" resultType="String" parameterType="String">
 		SELECT social_login FROM member WHERE email_id = #{email}
 	</select>
