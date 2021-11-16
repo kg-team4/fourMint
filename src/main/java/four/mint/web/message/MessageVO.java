@@ -13,6 +13,7 @@ public class MessageVO {
 	private Timestamp send_time;
 	private Timestamp read_time;
 	private String content;
+	private String image;
 	private int read_check;
 
 	// 현재 사용자의 메세지 상대 nick을 담는다.
