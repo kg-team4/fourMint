@@ -77,7 +77,7 @@ public class MarketDAO {
 	public List<MarketVO> getKindTwoList(SearchVO svo) {
 		return sqlSessionTemplate.selectList("MarketDAO.getKindTwoList", svo);
 	}
-
+  
 	public int getUserBoardCount(String nickname) {
 		return sqlSessionTemplate.selectOne("MarketDAO.getUserBoardCount", nickname);
 	}
