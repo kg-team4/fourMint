@@ -16,6 +16,7 @@
 		<result property="address2" column="ADDRESS2" />
 		<result property="nickname" column="NICKNAME" />
 		<result property="views" column="VIEWS" />
+		<result property="status" column="STATUS" />
 	</resultMap>
 	
 	<select id="getMarketOne" resultType="market" parameterType="int">
@@ -28,6 +29,10 @@
 	
 	<select id="getMarketCount" resultType="int">
 		SELECT count(product_name) FROM marketBoard
+	</select>
+	
+	<select id="getMarketNickname" resultType="market" parameterType="string">
+		SELECT * FROM marketBoard WHERE nickname = #{nickname}
 	</select>
 	
 	<insert id="insertMarket" parameterType="string">
@@ -60,8 +65,8 @@
 		SELECT * FROM market_category_big ORDER BY num ASC
 	</select>
 	
-	<select id="updateViews" resultType="int" parameterType="int">
-		UPDATE marketBoard SET views = views +1 where market_seq = ${market_seq}
+	<select id="getUserBoardCount" resultType="int" parameterType="string">
+		SELECT count(*) FROM marketBoard WHERE nickname = #{nickname}
 	</select>
 	
 </mapper>

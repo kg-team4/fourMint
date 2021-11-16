@@ -28,4 +28,6 @@ public interface StoreService {
 	List<CartVO> getCartList(String nickname);
 
 	void updateCart(UpVO vo);
+
+	void deleteCart(int id);
 }

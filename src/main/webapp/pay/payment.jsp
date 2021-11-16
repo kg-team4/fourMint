@@ -54,15 +54,32 @@
 				<tbody>
 					<c:set var="delivery" value="0" />	
 					<c:set var="priceAll" value="0" />
-					<c:set var="i" value="0" />
+					<c:set var="iu" value="0" />
 					<c:forEach var="cart" items="${ cart }">
 						<c:set var="price" value="${cart.product_price * cart.amount}" />
+						<c:set var="bool" value="0" />
 						<tr>
 							<td colspan="7">
 								<div class="tbl_cont_area">
 									<div class="tbl_cell w40" style="width: 100px;">
-										<input type="checkbox" checked name="checkBox" value="${i }" class="chkSmall" />
-										<c:set var="i" value="${i + 1 }" />
+										<c:set var="doo" value="first"/>
+										<c:choose>
+											<c:when test="${first eq doo}">
+												<input type="checkbox" checked name="checkBox" value="${iu}" class="chkSmall" />
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="check" items="${chk}">
+													<c:if test="${iu eq check}">
+														<input type="checkbox" checked name="checkBox" value="${iu}" class="chkSmall" />
+														<c:set var="bool" value="1" />
+													</c:if>
+												</c:forEach>
+												<c:if test="${bool eq 0 }">
+													<input type="checkbox" name="checkBox" value="${iu}" class="chkSmall" />
+												</c:if>
+											</c:otherwise>
+										</c:choose>
+										<c:set var="iu" value="${iu + 1 }" />
 									</div>
 									<div class="tbl_cell w390" style="width: 300px;">
 										<div class="prd_info " style="width: 300px; padding: 0 10px 0 10px; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
@@ -107,6 +124,7 @@
 											<button type="button" class="btnSmall wGray delete" name="btnDelete" data-attr="장바구니^장바구니상품삭제^삭제">
 												<span data-attr="장바구니^장바구니상품삭제^삭제">삭제</span>
 											</button>
+											<input type="hidden" value="${cart.cart_id }" />
 										</div>
 									</div>
 								</div>
@@ -153,6 +171,29 @@
 	</button>
 </div>
 <script>
+	$(".delete").on('click', function() {
+		var id = $(this).next().val();
+		$.ajax({
+			url : 'delete.do',
+			type : "post",
+			cache : false,
+			headers : {
+				"cache-control" : "no-cache",
+				"pragma" : "no-cache"
+			},
+			data : {
+				"id" : id,
+			},
+			success : function(data) {
+				console.log(data);
+				$('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
+			},
+			error : function(data) {
+				alert('error');
+			}//error
+		})//ajax
+	});//click
+
 	var fnBtnAction = {
 		init : function() {
 			var scroll_pos = $(window).scrollTop();
@@ -183,7 +224,7 @@
 		var amount = $(this).prev().val();
 		var id = $(this).prev().prev().val();
 		
-		var checkboxValues = [];
+		var checkboxValues = new Array();
 		$("input[name='checkBox']:checked").each(function() {
 	        checkboxValues.push($(this).val());
 	    });
@@ -242,5 +283,7 @@
 			}//error
 		})//ajax
 	});//click
+	
+	
 </script>
 <%@include file="../template/footer.jsp"%>

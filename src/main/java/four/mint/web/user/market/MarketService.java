@@ -14,7 +14,6 @@ public interface MarketService {
 	
 	MarketVO getMarketOne(int market_seq);
 
-
 	List<MarketVO> getMarketList(HttpServletRequest request, PageVO vo);
 	
 	int getMarketCount();
@@ -35,5 +34,7 @@ public interface MarketService {
 
 	List<MarketVO> getKindTwoList(SearchVO svo);
 
-	void updateViews(int market_seq);
+	int getUserBoardCount(String nickname);
+	
+	List<MarketVO> getMarketNickname(String nickname);
 }

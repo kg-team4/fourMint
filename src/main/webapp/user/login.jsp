@@ -26,7 +26,7 @@
                     <div id="login-tool">
                         <input type="checkbox" id="remember-member"><label for="remember-member">자동 로그인</label>
                         <span>
-                            <a href="../user/find_id_pw.jsp">이메일 / 비밀번호 찾기</a>
+                            <a href="find.do">이메일 / 비밀번호 찾기</a>
                             <a href="join.do">회원가입</a>
                         </span>
                     </div>

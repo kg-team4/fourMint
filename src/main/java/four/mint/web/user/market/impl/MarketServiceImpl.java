@@ -96,8 +96,14 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
-	public void updateViews(int market_seq) {
-		marketDao.updateViews(market_seq);
-		
+	public int getUserBoardCount(String nickname) {
+		return marketDao.getUserBoardCount(nickname);
 	}
+
+	@Override
+	public List<MarketVO> getMarketNickname(String nickname) {
+		return marketDao.getMarketNickname(nickname);
+	}
+	
+	
 }

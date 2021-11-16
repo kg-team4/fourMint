@@ -77,7 +77,11 @@
 				</div>
 				<div class="item font15 padding15">
 					<div class="padding15">
-						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}&nbsp;>&nbsp;${content.category_middle }</span>
+						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}&nbsp;
+						<c:if test="${!empty content.category_middle}">
+						>
+						</c:if>
+						&nbsp;${content.category_middle }</span>
 					</div>
 					<div class="padding15">
 						<span class="gray-font">&middot; 거래지역</span><span class="green-font">&emsp;${content.address2}</span>
@@ -263,14 +267,14 @@
 					<div class="float-box float-left" >
 						<div class="left-item25  pic-align left-font">
 							<a href="#">
-								<img class="reply-pic-circle" src="../img/baking.png">									
+								<img class="reply-pic-circle" src="${user.profile }">									
 							</a>					
 						</div>
 						<div class="right-item75">
 							<div class="top-margin10 left-font seller">
 								<!-- 작성자 -->
 								<div id="member-form">
-									<div><a id="seller_nick" href="#">우쭈쭈동동</a></div>
+									<div><a id="seller_nick" href="#">${user.nickname }</a></div>
 									<div class="seller_grade">
                                              <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> 
                                              <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> 
@@ -279,10 +283,12 @@
                                              <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> 
                                       </div>
                                       <div id="proudct_num_follower">
-                                      	상품 &nbsp;<span>23</span> &emsp; 
-                                      	팔로워 &nbsp;<span>88</span>
+                                      	상품 &nbsp;<span>${boardCount }</span> &emsp; 
+                                      	팔로워 &nbsp;<span>${follow.follower }</span>
                                       </div>
-                                      <button id="btn_follow" style="width:100px"><img height="13px" width="13px" src="../img/following_icon.png">&nbsp;팔로우</button>				
+                                      <c:if test="${user.nickname ne nickname }">
+										<button id="btn_follow" style="width:100px"><img height="13px" width="13px" src="../img/following_icon.png">&nbsp;팔로우</button>				
+                                      </c:if>
 								</div>
 							</div>
 						</div>
