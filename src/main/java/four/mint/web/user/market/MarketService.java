@@ -37,4 +37,6 @@ public interface MarketService {
 	int getUserBoardCount(String nickname);
 	
 	List<MarketVO> getMarketNickname(String nickname);
+
+	void updateViews(int market_seq);
 }

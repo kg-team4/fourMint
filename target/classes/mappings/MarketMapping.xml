@@ -55,6 +55,10 @@
 		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM marketboard WHERE category_big = #{kind} AND category_middle = #{kindTwo} ORDER BY market_seq DESC) AS b WHERE rnum >= (#{rnum}-((#{page}-1)*9+8)) AND rnum <= (#{rnum}-((#{page}-1)*9))]]> 
 	</select>
 	
+	<select id="updateViews" parameterType="int">
+		UPDATE marketBoard SET views = views +1 where market_seq = ${market_seq}
+	</select>
+	
 	<resultMap type="categoryBig" id="categoryBigResult">
 		<result property="num" column="NUM" />
 		<result property="name" column="NAME" />
