@@ -19,6 +19,9 @@
 		<typeAlias alias="adminUsed" type="four.mint.web.admin.table.used.AdminUsedVO" />
 		<typeAlias alias="adminGoods" type="four.mint.web.admin.table.goods.AdminGoodsVO" />
 		<typeAlias alias="adminFaq" type="four.mint.web.admin.used.faq.AdminFaqVO" />
+		<typeAlias alias="followCount" type="four.mint.web.user.FollowCountVO" />
+		<typeAlias alias="followers" type="four.mint.web.user.FollowerVO" />
+		<typeAlias alias="followings" type="four.mint.web.user.FollowingVO"/>
 	</typeAliases>
 	
 	<typeHandlers>
@@ -38,5 +41,6 @@
 		<mapper resource="mappings/AdminUsedMapping.xml" />
 		<mapper resource="mappings/AdminGoodsMapping.xml" />
 		<mapper resource="mappings/AdminFaqMapping.xml" />
+		<mapper resource="mappings/FollowMapping.xml" />
 	</mappers>
 </configuration>

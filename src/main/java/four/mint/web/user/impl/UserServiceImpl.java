@@ -1,11 +1,14 @@
 package four.mint.web.user.impl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import four.mint.web.user.FollowerVO;
+import four.mint.web.user.FollowingVO;
 import four.mint.web.user.KakaoVO;
 import four.mint.web.user.NaverVO;
 import four.mint.web.user.UserService;
@@ -33,25 +36,21 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String getAddress1(UserVO vo) {
-
 		return userDao.getAddress1(vo);
 	}
 
 	@Override
 	public String getAddress2(UserVO vo) {
-
 		return userDao.getAddress2(vo);
 	}
 
 	@Override
 	public String getAddress3(UserVO vo) {
-
 		return userDao.getAddress3(vo);
 	}
 
 	@Override
 	public int idCheck(String id) throws Exception {
-
 		return userDao.idCheck(id);
 	}
 
@@ -80,41 +79,48 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int nickCheck(String nick) throws Exception {
-		
 		return userDao.nickCheck(nick);
 	}
 
 	@Override
 	public int phoneCheck(String phone) throws Exception {
-		
 		return userDao.phoneCheck(phone);
 	}
 
 	@Override
 	public void naverlogin(NaverVO nvo) {
-		
 		userDao.insertNaver(nvo);
 	}
 
 	@Override
 	public void kakaologin(KakaoVO kvo) {
-		
-		
 		userDao.insertKakao(kvo);
-		
 	}
 
 	@Override
-	public UserVO getUserNickname(String nickname) {
-		return userDao.getUserNickname(nickname);
+	public UserVO getUserFromNickname(String nickname) {
+		return userDao.getUserFromNickname(nickname);
 	}
-	
 	
 	
 	@Override
 	public String getBySns(String snsid) {
-		
 		return userDao.getBySns(snsid);
+	}
+
+	@Override
+	public void updateProfile(UserVO uVO) {
+		userDao.updateProfile(uVO);
+	}
+
+	@Override
+	public List<FollowerVO> getFollowers(String nickname) {
+		return userDao.getFollowers(nickname);
+	}
+
+	@Override
+	public List<FollowingVO> getFollowings(String nickname) {
+		return userDao.getFollowings(nickname);
 	}
 
 	

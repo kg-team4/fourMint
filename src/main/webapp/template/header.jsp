@@ -53,7 +53,7 @@
 								<li><a href="logout.do">로그아웃</a></li>
 								<li><a href="profile.do">마이페이지</a></li>
 								<li>
-									<button id="btn_mint_talk" onclick="location.href='payment.do'">
+									<button id="btn_mint_talk" onclick="location.href='payment.do?chk=first'">
 										<img src="../img/shopping-cart.png" style="height: 18px; width: 20px">
 									</button>
 								</li>

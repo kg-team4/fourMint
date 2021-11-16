@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%-- <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%-- <%
 if (request.getAttribute("result") != null) {
    int result = (Integer) request.getAttribute("result");
@@ -44,11 +43,10 @@ if (request.getAttribute("result") != null) {
 <link href="../css/profile.css" rel="stylesheet">
 <link href="../css/navbar.css" rel="stylesheet">
 <article>
-<script type="text/javascript">
+<script>
 
-var sns = '<%=(String)session.getAttribute("sns") %>'
+var sns = ${sns};
 window.onload=function(){
-	console.log(sns);
 	if(sns != null ){
 		alert('개인정보를 추가해주세요!');
 	}
@@ -70,7 +68,7 @@ window.onload=function(){
 				<!--left col-->
 				<div class="nick-div">
 					<h5>
-						<b><span style="color: #26e4ca;">우쭈쭈동동<%-- ${uto.nick } --%>&nbsp;
+						<b><span style="color: #26e4ca;">${user.nickname}<%-- ${uto.nick } --%>&nbsp;
 						</span>님의 프로필</b>
 					</h5>
 				</div>
@@ -78,7 +76,7 @@ window.onload=function(){
 					<div class="box col-1">
 						<div>
 							<img
-								src="<%-- ./upload/profile/${uto.profile } --%>../img/character_sample.png"
+								src="${user.profile }"
 								class="avatar img-circle img-profile" alt="avatar">
 						</div>
 					</div>
@@ -93,15 +91,15 @@ window.onload=function(){
 				<br>
 
 				<ul class="list-group">
-					<li class="list-group-item text-muted">우쭈쭈동동&nbsp;&nbsp;</li>
+					<li class="list-group-item text-muted">${user.nickname }&nbsp;&nbsp;</li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span>
-						열매<%-- ${uto.id } --%></li>
+						열매</li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>팔로잉&nbsp;&nbsp;</strong></span>
-						88<%-- ${uto.mail } --%></li>
+						${follow.following }</li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>팔로워&nbsp;&nbsp;</strong></span>
-						44 <%-- ${uto.birth } --%></li>
+						${follow.follower }</li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>상품판매횟수&nbsp;&nbsp;</strong></span>
-						77<%-- ${uto.greet } --%></li>
+						${boardCount}</li>
 				</ul>
 				<div class="col-6 offset-2 div_modify_profile">
 
@@ -313,299 +311,45 @@ window.onload=function(){
 								<br> <br>
 								<p>
 									<span><strong>팔로잉 &nbsp;&nbsp;</strong></span> <span
-										style="color: #26e4ca">88</span>
+										style="color: #26e4ca">${follow.following }</span>
 								</p>
 								<div class="following_all_grid">
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img" src="../img/character_sample2.jpg"
-													alt="상점이미지">
+									<c:forEach var="followings" items="${following }">
+										<div class="following">
+											<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
+												<div id="following_img_box">
+													<img id="following_img" src="${followings.profile }" alt="상점이미지">
+												</div>
+											</a>
+											<div class="store_review_text_area">
+												<div class="">
+													<a class="" href="#" style="color: #26e4ca">${followings.nickname }</a>
+												</div>
+												<div>
+													<span class="">상품</span> <span><a class="" href=#
+														style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
+													<span><a class="" href="#" style="color: #26e4ca">${followings.following }</a></span>
+												</div>
 											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
+											<a class="" href="#">
+												<div class="">
+													<img src="../img/star_rank.png" width="15" height="14"
+														alt="별점이미지"> <img src="../img/star_rank.png"
+														width="15" height="14" alt="별점이미지"> <img
+														src="../img/star_rank.png" width="15" height="14"
+														alt="별점이미지"> <img src="../img/star_rank.png"
+														width="15" height="14" alt="별점이미지"> <img
+														src="../img/star_rank.png" width="15" height="14"
+														alt="별점이미지">
+												</div>
+											</a> <a class="" href="#">
+												<button id="btn_sold_product_name">
+													&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
+														height="10" alt="팔로잉아이콘">&nbsp;
+												</button>
+											</a>
 										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
+									</c:forEach>
 								</div>
 							</div>
 							<br> <br> <br>
@@ -615,192 +359,46 @@ window.onload=function(){
 								<br> <br>
 								<p>
 									<span><strong>팔로워 &nbsp;&nbsp;</strong></span> <span
-										style="color: #26e4ca">44</span>
+										style="color: #26e4ca">${follow.follower }</span>
 								</p>
 								<div class="following_all_grid">
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
+									<c:forEach var="followers" items="${follwer }">
+										<div class="following">
+											<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
+												<div id="following_img_box">
+													<img id="following_img"	src="${followers.profile }" alt="상점이미지">
+												</div>
+											</a>
+											<div class="store_review_text_area">
+												<div class="">
+													<a class="" href="#" style="color: #26e4ca">${followers.nickname }</a>
+												</div>
+												<div>
+													<span class="">상품</span> <span><a class="" href="#" style="color: #26e4ca">20</a>
+													&nbsp;|&nbsp; 
+													</span> <span class="">팔로워</span>
+													<span><a class="" href="#" style="color: #26e4ca">${followers.follower }</a></span>
+												</div>
 											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
+											<a class="" href="#">
+												<div class="">
+													<img src="../img/star_rank.png" width="15" height="14"
+														alt="별점이미지"> <img src="../img/star_rank.png"
+														width="15" height="14" alt="별점이미지"> <img
+														src="../img/star_rank.png" width="15" height="14"
+														alt="별점이미지"> <img src="../img/star_rank.png"
+														width="15" height="14" alt="별점이미지"> <img
+														src="../img/star_rank.png" width="15" height="14"
+														alt="별점이미지">
+												</div>
+											</a> <a class="" href="#">
+												<button id="btn_sold_product_name">
+													&nbsp;팔로우 <img src="../img/following_icon.png" width="15"	height="10" alt="팔로잉아이콘">&nbsp;
+												</button>
+											</a>
 										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
-
-									<div class="following">
-										<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
-											<div id="following_img_box">
-												<img id="following_img"
-													src="../img/store_recommand_product03.png" alt="상점이미지">
-											</div>
-										</a>
-										<div class="store_review_text_area">
-											<div class="">
-												<a class="" href="#" style="color: #26e4ca">뀨뀨뀨</a>
-											</div>
-											<div>
-												<span class="">상품</span> <span><a class="" href=#
-													" style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-												<span><a class="" href=# " style="color: #26e4ca">10</a></span>
-											</div>
-										</div>
-										<a class="" href="#">
-											<div class="">
-												<img src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지"> <img src="../img/star_rank.png"
-													width="15" height="14" alt="별점이미지"> <img
-													src="../img/star_rank.png" width="15" height="14"
-													alt="별점이미지">
-											</div>
-										</a> <a class="" href="#">
-											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-													height="10" alt="팔로잉아이콘">&nbsp;
-											</button>
-										</a>
-									</div>
+									</c:forEach>
 								</div>
-
-
 							</div>
 						</div>
 					</div>
@@ -813,73 +411,49 @@ window.onload=function(){
 							<br>
 							<p>
 								<span><strong>판매내역 &nbsp;&nbsp;</strong></span> <span
-									style="color: #26e4ca">8</span>
+									style="color: #26e4ca">${boardCount }</span>
 							</p>
 							<div class="sell_list_grid">
-								<div class="sell_list">
-									<table width="100%" height="120">
-										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp;
-												2021.11.04</td>
-											<td width="70%"></td>
-										</tr>
-										<tr>
-											<td rowspan="3"><a id="store_review_img_area" href="#">
-													<div id="product_img_box">
-														<img id="sell_product_img"
-															src="../img/store_recommand_product03.png" alt="판매상품이미지">
-													</div>
-											</a></td>
-											<td style="font-size: 18px"><a href="#"
-												style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a></td>
-										</tr>
-										<tr>
-											<td style="font-size: 15px">17,000 &nbsp;원</td>
-										</tr>
-										<tr>
-											<td>
-												<button id="btn_sell_product_state">판매중</button>
-												<button class="btn_sell_product_edit">글 수정</button>
-											</td>
-										</tr>
-
-									</table>
-									<br>
-									<hr>
-								</div>
-
-								<div class="sold_list">
-									<table width="100%" height="120">
-										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp;
-												2021.10.24</td>
-											<td width="70%"></td>
-										</tr>
-										<tr>
-											<td rowspan="3"><a id="store_review_img_area" href="#">
-													<div id="product_img_box">
-														<img id="sold_product_img"
-															src="../img/store_recommand_product02.png"
-															alt="판매완료상품이미지">
-													</div>
-											</a></td>
-											<td style="font-size: 18px"><a href="#"
-												style="color: gray">고무장갑 팔목라인</a></td>
-										</tr>
-										<tr>
-											<td style="font-size: 15px; color: gray">2,000 &nbsp;원</td>
-										</tr>
-										<tr>
-											<td>
-												<button id="btn_sold_product_state">판매완료</button>
-											</td>
-										</tr>
-
-									</table>
-									<br>
-									<hr>
-								</div>
-
+								<c:forEach var="market" items="${market }">
+									<div class="sell_list">
+										<table width="100%" height="120">
+											<tr height="30">
+												<td align="left" style="font-size: 15px">&nbsp;
+													${market.date }</td>
+												<td width="70%"></td>
+											</tr>
+											<tr>
+												<td rowspan="3"><a id="store_review_img_area" href="#">
+														<div id="product_img_box">
+															<img id="sell_product_img"
+																src="${market.url }" alt="판매상품이미지">
+														</div>
+												</a></td>
+												<td style="font-size: 18px"><a href="#"
+													style="color: #26e4ca">${market.product_name }</a></td>
+											</tr>
+											<tr>
+												<td style="font-size: 15px">${market.product_price } &nbsp;원</td>
+											</tr>
+											<tr>
+												<td>
+													<c:choose>
+														<c:when test="${market.status eq 1}">
+															<button id="btn_sell_product_state">판매중</button>
+														</c:when>
+														<c:otherwise>
+															<button id="btn_sold_product_state">판매완료</button>
+														</c:otherwise>
+													</c:choose>
+													<button class="btn_sell_product_edit">글 수정</button>
+												</td>
+											</tr>
+	
+										</table>
+										<br>
+										<hr>
+									</div>
+								</c:forEach>
 								<br>
 							</div>
 
@@ -1451,79 +1025,7 @@ window.onload=function(){
 			</div>
 		</div>
 
-		<%-- <section id="profile" class="container">
-      <div class="row">
-         <div class="col-6">
-            <h1><b><span style="color:#5fcf80;">${uto.nick }</span>님의 프로필</b></h1>
-         </div>
-         <div class="col-6 div_modify_profile">
-            <button type="button" class="btn btn--blue-2 btn--radius-2 btn_modify_profile" onclick="location.href='./edit_profile.do'">내 프로필 수정</button>
-         </div>
-      </div>
-      
-      <hr /><br />
-      
-      <div class="row">
-         <div class="col-1" style="padding:0px;"></div>
-         <div id="profile-img" class="section-title col-3" style="text-align:left; padding:0px;">
-            <img src="./upload/profile/${ uto.profile }" class="img-circle">
-            <br />
-         </div> <!-- profile-img 닫음 -->
-         <div class="col-1"></div>
-         <div id="profile-info" class="col-7">
-            <table>
-               <tr>
-                  <th>이름</th>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>${ uto.name }</td>
-               </tr>
-               <tr>
-                  <th>닉네임</th>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>${ uto.nick }</td>
-               </tr>
-               <tr>
-                  <th>메일</th>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>${ uto.mail }</td>
-               </tr>
-               <tr>
-                  <th>가입일</th>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                  <td>${ uto.rdate }</td>
-               </tr>
-               <tr>
-                  <th>인사말</th>      
-               </tr>
-            </table>
-            <br />
-            <div id="greeting">
-               <p id="greet">&nbsp;${ uto.greet }</p>
-            </div>
-         </div>   <!-- profile info 닫음 -->
-      </div>   <!-- row 닫음 -->
-      <div class="row">
-         <div class="col-1" style="padding:0px;"></div>
-         <div class="col-3" style="text-align:center; padding:0px; width:350px;">
-            <button type="button" class="btn btn--blue-2 btn--radius-2" data-bs-toggle="modal" data-bs-target="#edit_img">수정</button>
-            <button type="button" class="btn btn--blue-2 btn--radius-2" data-bs-toggle="modal" data-bs-target="#delete_img">삭제</button>
-         </div>
-         <div class="col-1"></div>
-         <div class="col-7"></div>
-      </div>
-       --%>
-
-		<form action="edit_img_ok.do" name="efrm" method="post"
-			enctype="multipart/form-data">
-			<input type="hidden" name="ex-profile" value="${uto.profile }">
+		<form action="profileImage.do" name="efrm" method="post" enctype="multipart/form-data">
 			<div class="modal fade" id="edit_img" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -1534,25 +1036,22 @@ window.onload=function(){
 						<hr />
 						<div class="modal-body row" style="padding: 0px 0px 0px 5px;">
 							<div class="used_photo_img" style="text-align: center;">
-								<input class="form-input" type="file" name="promotion_post_img" multiple accept=".jpg, .png, .gif" onchange="preview();"/>
+								<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="preview();"/>
 								<br> 
-								<img class="preview-wrap" src="../img/user_circle.png"
-									alt="등록할 프로필 사진을 넣어주세요."/>
+								<img class="preview-wrap" src="${user.profile }" alt="등록할 프로필 사진을 넣어주세요."/>
 								<br>							
 							</div>
 						</div>
-						
 						<div class="modal-footer">
-							<button type="button" class="btn btn--blue-2 btn--radius-2"
-								id="btn_edit_img">확인</button>
-							<button type="button" class="btn btn--blue-1 btn--radius-2"
-								data-bs-dismiss="modal">취소</button>							
+							<input type="hidden" name="nickname" value="${nickname }" />
+							<input type="submit" class="btn btn--blue-2 btn--radius-2"	id="btn_edit_img" value="확인">
+							<button type="button" class="btn btn--blue-1 btn--radius-2"	data-bs-dismiss="modal">취소</button>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</form>
+		
 		<form action="delete_img_ok.do" name="dfrm" method="post">
 			<div class="modal fade bs-delete-modal-sm" id="delete_img"
 				aria-hidden="true">

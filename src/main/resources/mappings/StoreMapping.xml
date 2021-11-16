@@ -70,4 +70,8 @@
 		UPDATE store_cart SET amount = #{amount} WHERE cart_id = #{id}
 	</update>
 	
+	<delete id="deleteCart" parameterType="int">
+		DELETE FROM store_cart WHERE cart_id = #{id}
+	</delete>
+	
 </mapper>

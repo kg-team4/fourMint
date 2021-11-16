@@ -16,13 +16,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
 import four.mint.web.common.DateUtil;
-import four.mint.web.message.MessageService;
+import four.mint.web.user.FollowService;
+import four.mint.web.user.FollowCountVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.SearchVO;
@@ -36,6 +36,9 @@ public class MarketController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private FollowService followService;
+	
 	@RequestMapping(value = "/marketBoardList.do", method = RequestMethod.GET)
 	public String marketBoardList() {
 
@@ -43,17 +46,24 @@ public class MarketController {
 	}
 
 	@RequestMapping(value = "/marketBoard.do", method = RequestMethod.GET)
-    public String mintBoard(HttpServletRequest request, UserVO vo, MarketVO marvo, Model model) {
+    public String mintBoard(HttpServletRequest request, UserVO user, MarketVO marVO, FollowCountVO fVO) {
+		/* 조회수 증가 */
+		marVO = marketService.getMarketOne(Integer.valueOf(request.getParameter("seq")));
+		/* 게시글 정보 및 시간 정보 출력 */
+		request.setAttribute("content", marVO);
+		request.setAttribute("date", DateUtil.txtDate(marVO.getDate()));
 		
-		marvo = marketService.getMarketOne(Integer.valueOf(request.getParameter("seq")));
+		/* 접속자 정보 확인 */
+		user = userService.getUserFromNickname(marVO.getNickname());
+		request.setAttribute("user", user);
 		
-		model.addAttribute("content", marvo);
-		model.addAttribute("date", DateUtil.txtDate(marvo.getDate()));
+		/* 팔로우 정보 확인 */
+		fVO = followService.getFollowCount(user.getNickname());
+		request.setAttribute("follow", fVO);
 		
-		model.addAttribute("result1", userService.getAddress1(vo));
-		model.addAttribute("result2", userService.getAddress2(vo));
-		model.addAttribute("result3", userService.getAddress3(vo));
-		
+		/* 게시글 개수 확인 */
+		int boardCount = marketService.getUserBoardCount(user.getNickname());
+		request.setAttribute("boardCount", boardCount);
 		
 		return "/board/market_post_content";
 	}

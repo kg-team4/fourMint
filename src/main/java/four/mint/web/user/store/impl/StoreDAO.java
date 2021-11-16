@@ -67,4 +67,8 @@ public class StoreDAO {
 	public void updateCart(UpVO vo) {
 		sqlSessionTemplate.update("StoreDAO.updateCart", vo);
 	}
+
+	public void deleteCart(int id) {
+		sqlSessionTemplate.delete("StoreDAO.deleteCart", id);
+	}
 }
