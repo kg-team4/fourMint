@@ -48,6 +48,8 @@ public class MarketController {
 	@RequestMapping(value = "/marketBoard.do", method = RequestMethod.GET)
     public String mintBoard(HttpServletRequest request, UserVO user, MarketVO marVO, FollowCountVO fVO) {
 		/* 조회수 증가 */
+		marketService.updateViews(Integer.valueOf(request.getParameter("seq")));
+		
 		marVO = marketService.getMarketOne(Integer.valueOf(request.getParameter("seq")));
 		/* 게시글 정보 및 시간 정보 출력 */
 		request.setAttribute("content", marVO);

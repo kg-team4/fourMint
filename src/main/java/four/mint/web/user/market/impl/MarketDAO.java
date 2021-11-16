@@ -85,4 +85,8 @@ public class MarketDAO {
 	public List<MarketVO> getMarketNickname(String nickname) {
 		return sqlSessionTemplate.selectList("MarketDAO.getMarketNickname", nickname);
 	}
+
+	public void updateViews(int market_seq) {
+		sqlSessionTemplate.update("MarketDAO.updateViews", market_seq);
+	}
 }
