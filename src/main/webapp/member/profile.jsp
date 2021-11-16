@@ -51,7 +51,6 @@ window.onload=function(){
 		alert('개인정보를 추가해주세요!');
 	}
 }
-
 </script>
 	<!-- 메뉴바 
        현재페이지 뭔지 param.thisPage에 넣어서 navbar.jsp에  던짐 -->

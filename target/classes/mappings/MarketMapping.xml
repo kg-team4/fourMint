@@ -15,7 +15,7 @@
 		<result property="date" column="DATE" />
 		<result property="address2" column="ADDRESS2" />
 		<result property="nickname" column="NICKNAME" />
-		<result property="views" column="views" />
+		<result property="views" column="VIEWS" />
 		<result property="status" column="STATUS" />
 	</resultMap>
 	
