@@ -71,11 +71,30 @@ public class MessageController {
 
 		return "message/message_content_list";
 	}
-
+	
 	// 메세지 리스트에서 메세지 보내기
 	@ResponseBody
 	@RequestMapping(value = "/message_send_inlist.do", method = RequestMethod.GET)
 	public int MessageSendInlist(@RequestParam int room, @RequestParam String other_nick, @RequestParam String content,
+			HttpSession session) {
+		
+		MessageVO messageVO = new MessageVO();
+		messageVO.setRoom(room);
+		messageVO.setSend_nick((String) session.getAttribute("nickname"));
+		messageVO.setNickname((String) session.getAttribute("nickname"));
+		messageVO.setRecv_nick(other_nick);
+		messageVO.setOther_nick(other_nick);
+		messageVO.setContent(content);
+		
+		int flag = messageService.getMessageSendInlist(messageVO);
+		
+		return flag;
+	}
+
+	// 메세지 리스트에서 이모티콘 보내기
+	@ResponseBody
+	@RequestMapping(value = "/message_send_image.do", method = RequestMethod.GET)
+	public int ImageSendInlist(@RequestParam int room, @RequestParam String other_nick, @RequestParam String image,
 			HttpSession session) {
 
 		MessageVO messageVO = new MessageVO();
@@ -84,7 +103,7 @@ public class MessageController {
 		messageVO.setNickname((String) session.getAttribute("nickname"));
 		messageVO.setRecv_nick(other_nick);
 		messageVO.setOther_nick(other_nick);
-		messageVO.setContent(content);
+		messageVO.setImage(image);
 
 		int flag = messageService.getMessageSendInlist(messageVO);
 
@@ -113,8 +132,8 @@ public class MessageController {
 
 		return "message/message_content_list";
 	}
-
-	// 메세지 리스트에서 메세지 보내기
+	
+	// 중고 마켓에서 메세지 보내기
 	@ResponseBody
 	@RequestMapping(value = "/message_send_inlist_inprofile.do", method = RequestMethod.GET)
 	public int message_send_inlist_inprofile(@RequestParam String other_nick, @RequestParam String content,
@@ -134,4 +153,25 @@ public class MessageController {
 
 		return flag;
 	}
+	
+	// 중고 마켓에서 이미지 보내기
+		@ResponseBody
+		@RequestMapping(value = "/message_send_inlist_image.do", method = RequestMethod.GET)
+		public int message_send_inlist_image(@RequestParam String other_nick, @RequestParam String image,
+				HttpSession session) {
+			System.out.println("컨트롤러 들어옴");
+			System.out.println("other_nick: " + other_nick);
+			System.out.println("image: " + image);
+
+			MessageVO messageVO = new MessageVO();
+			messageVO.setSend_nick(String.valueOf(session.getAttribute("nickname")));
+			messageVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+			messageVO.setRecv_nick(other_nick);
+			messageVO.setOther_nick(other_nick);
+			messageVO.setImage(image);
+
+			int flag = messageService.getMessageSendInlist(messageVO);
+
+			return flag;
+		}
 }
