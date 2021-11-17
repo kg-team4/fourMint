@@ -54,7 +54,7 @@
 /* Input 타입 기본 폼 */
 #id,
 #pw,
-#login-submit, .btn-naverLogin, .btn-kakaoLogin,.btn-googleLogin {
+.btn-naverLogin, .btn-kakaoLogin,.btn-googleLogin {
     width: 500px;
     height: 50px;
     margin: 8px;
@@ -142,40 +142,30 @@
 
 /* Submit(전송버튼) */
 #login-submit {
-    margin-top: 60px;
-    height: 50px;
+	width:153px;
+    height: 44px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     border: 3px solid #26e4ca;
-    border-radius: 15px;
+    border-radius: 3px;
 	background-color: #26e4ca;
     /* background-color: transparent; */
 }
 
-#login-submit:hover {
-    border: 1px solid transparent;
-    background-color: #50b9abd0;
-    color: white;
-}
-
-.btn-naverLogin {
-    margin-top: 3px;
-    height: 50px;
+/* .btn-naverLogin {
+    margin-top: 30px;
     cursor: pointer;
     font-size: 20px;
     color: white;
     border: 3px solid #19ce60;
-    border-radius: 15px;
+    border-radius: 5px;
 	background-color: #19ce60;
-    /*  background-color: transparent; */
+	vertical-align: center;
+	margin-left:509px;
+     background-color: transparent;
 }
 
-.btn-naverLogin:hover {
-    border: 1px solid transparent;
-    background-color: #679178;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
-    color: white;
-}
 
 
 .btn-kakaoLogin {
@@ -185,32 +175,16 @@
     font-size: 20px;
     color: white;
     border: 3px solid #fae100;
-    border-radius: 15px;
+    border-radius: 5px;
 	background-color: #fae100;
-   /*  background-color: transparent; */
+    background-color: transparent;
 }
 .btn-kakaoLogin:hover {
     border: 1px solid transparent;
     background-color: #8f8a62;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
     color: white;
-}
+} */
 
-.btn-googleLogin {
-    margin-top: 3px;
-    height: 50px;
-    cursor: pointer;
-    font-size: 20px;
-    color: white;
-    border: 3px solid #E13F2A;
-    border-radius: 15px;
-	background-color: #E13F2A;
-   /*  background-color: transparent; */
-   	margin-bottom: 25px;
-}
-.btn-googleLogin:hover {
-    border: 1px solid transparent;
-    background-color: #7e514b;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
-    color: white;
-}
+
 
 

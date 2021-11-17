@@ -31,11 +31,13 @@
                         </span>
                     </div>
                 </div>
-                <div>
-                    <br><br><br>
-					<button id="login-submit"><img src="img/logo_icon.png" style="height:30px;width:30px;">&nbsp;&nbsp;민트 로그인</button><br>
-					<a href="${naver_url }"><img src="img/naver.png" style="height:18px;width:18px;">&nbsp;&nbsp; 네이버 아이디로 로그인</a><br>
-					<ul><li  onclick="kakaoLogin()"><a href="javascript:void(0)"><span>카카오 로그인</span> </a></li></ul>
+                <div>			
+					<ul style="margin-top:50px; margin-left:511px;">
+						<li style="float:left"><span><button id="login-submit" style="margin-right:20px"><img src="img/logo_icon.png" style="height:30px;width:30px;">&nbsp;민트 로그인</button></span></li>
+						<li style="float:left; margin-right:20px;" id="kakaoLogin"  onclick="kakaoLogin()"><a href="javascript:void(0)"><span><img src="../img/kakao_login.png" style="width:153px;height:44px"></span> </a></li>
+						<li style="float:left"><span ><a id="naverLogin"href="${naver_url }"><img src="../img/naver_login.png" style="width:153px;height:44px"></a></span></li>
+					</ul>
+					<br><br><br>
                 </div>
             </form>
         </article>	

@@ -14,13 +14,13 @@
 <script src="https://kit.fontawesome.com/a93dcadf53.js" crossorigin="anonymous"></script>
 <link href="../css/10.promotion&used_post_list.css" rel="stylesheet">
 
-<article style="padding-top: 200px; margin: 0px 20%">
-	<div style="display: flex; justify-content: space-evenly;">
+<article style="padding-top: 200px;">
+	<div style="display: flex;">
 		<!-- 카테고리 -->
-		<div class="best categoroy" style="align-self: flex-start; widdth: 100px; margin-top: 50px;">
+		<div class="best categoroy" style="align-self: flex-start; widdth: 100px; margin-left:200px; margin-top: 50px;">
 			<section class="category_list" style="width: 135px;">
-				<div class="best">
-					<h1 style="padding: 0 5%;"></h1>
+				<div class="best" style="width:160px; margin-top: 60px;">
+					<h3 style="padding: 0 5%; margin-top: -20px;"></h3>
 					<c:forEach var="big" items="${ marketCategoryBig }"> <!-- 카테고리 대분류 리스트 -->
 						<div class="bestBox" style="display: block;">
 							<c:set var="no" value="${kind }" />
@@ -30,28 +30,28 @@
 							<!-- 카테고리 목록 -->
 							<c:choose>
 								<c:when test="${no eq name}">
-									<h2 class="category_list_title" style="margin: 0 5px 3px 0;">
-										<label class="category_big_name">${big.name}</label>
+									<div class="category_list_title" style="color:#7b7b7b; font-size:20px; margin: 0 10px 6px 0;">
+										<label class="category_big_name" style="color:#7b7b7b;">${big.name}</label>
 										<c:if test="${big.name ne etc && big.name ne buy}">
-											<input type="button" class="slider" value="▲" style="background: none; border: 0px;">
+											<input type="button" class="slider" value="▲" style="background: none; border: 0px; color:#26e4ca;">
 										</c:if>
-									</h2>
-									<ul class="category_list_middle" style="margin: 0 5px 8px 0;">
+									</div>
+									<ul class="category_list_middle" style="color:#7b7b7b; font-size:18px; margin: 0 10px 8px 0;">
 										<c:forEach var="middle" items="${ big.middle }">
-											<li><label class="category_middle_name">${ middle.value}</label></li>
+											<li style="margin-bottom:3px"><label class="category_middle_name">${ middle.value}</label></li>
 										</c:forEach>
 									</ul>
 								</c:when>
 								<c:otherwise>
-									<h2 class="category_list_title" style="margin: 0 5px 3px 0;">
-										<label class="category_big_name">${big.name}</label>
+									<div class="category_list_title" style="color:#7b7b7b; font-size:20px; margin: 0 10px 6px 0;">
+										<label class="category_big_name" style="color:#7b7b7b;">${big.name}</label>
 										<c:if test="${big.name ne etc && big.name ne buy}">
-											<input type="button" class="slider" value="▼" style="background: none; border: 0px;">
+											<input type="button" class="slider" value="▼" style="background: none; border: 0px;color:#26e4ca;">
 										</c:if>
-									</h2>
-									<ul class="category_list_middle" style="margin: 0 5px 8px 0; display: none;">
+									</div>
+									<ul class="category_list_middle" style="color:#7b7b7b; font-size:18px; margin: 0 10px 8px 0; display: none;">
 										<c:forEach var="middle" items="${ big.middle }">
-											<li><label class="category_middle_name">${ middle.value}</label></li>
+											<li style="margin-bottom:3px"><label class="category_middle_name">${ middle.value}</label></li>
 										</c:forEach>
 									</ul>
 								</c:otherwise>
@@ -72,11 +72,11 @@
 			</table>
 		</c:if>
 		<c:if test="${ listCount > 0 }">
-			<div class="best" style="width: 800px;">
+			<div class="best" style="width: 1000px;">
 				<br> <br> <br>
 				<h1 style="padding: 0 5%;">${kind }</h1>
 				<br>
-				<ul class="bestBox">
+				<ul class="bestBox" style="margin-left: 100px;">
 					<!-- 마켓 글 목록 -->
 					<c:set var="big_no" value="${kind }" />
 					<c:set var="middle_no" value="${kindTwo }" />
@@ -118,7 +118,7 @@
 		</c:if>
 	</div>
 	
-	<div style="text-align: center;">
+	<div style="text-align: center; padding-left: 30px; margin-left:218px; margin-bottom:30px">
 		<c:set var="startPage" value="${ startPage }" />
 		<c:set var="endPage" value="${ endPage }" />
 		<c:set var="pageCount" value="${ maxPage }" />

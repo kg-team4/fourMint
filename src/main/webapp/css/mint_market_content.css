@@ -43,8 +43,8 @@ a {
 }
 
 .best img, .review img {
-    width: 200px;
-    height: 150px;
+    width: 253px;
+    height: 160px;
     object-fit: contain;
     transition:transform 1s;
     background:#f7f7f7;
@@ -88,9 +88,11 @@ section h1 {
 .bestBox > li {
     width:28%;
     overflow: hidden;
-    padding-bottom:80px;
+    padding-bottom:55px;
     cursor: pointer;
     margin: 0 18px 0 18px;
+    
+	
 }
 
 .bestBox p {

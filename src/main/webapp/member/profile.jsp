@@ -490,15 +490,172 @@ window.onload=function(){
 										</tr>
 										<tr>
 											<td>
-												<button id="btn_see_review" button type="button"
+												<button id="btn_write_review" type="button"
+													>거래후기쓰기</button>
+												<button id="btn_see_review" type="button"
 													onclick="location.href='#' ">작성후기보기</button>
 											</td>
 										</tr>
 
 									</table>
 									<br>
-									<hr>
+									<hr>		
 								</div>
+								
+								
+								
+								<div id="police_modal">
+						<div>
+
+							<div style="font-size:20px">✍&nbsp;거래후기 작성하기&nbsp;✍</div>
+							<hr>
+							
+							
+							<div>
+							<div class="police_category">
+								<div><span style="color: #26e4ca">거래(판매자)</span> 님과의 거래에 평점 남기기</div>
+								
+								<div class="rating">
+									<div class="startRadio">
+										<label class="startRadio__box">
+									    <input type="radio" name="star" id="" checked>
+									    <span class="startRadio__img"><span class="blind">별 0.5개</span></span>
+									  </label>
+									  <label class="startRadio__box">									  
+									    <input type="radio" name="star" id="" checked>
+									    <span class="startRadio__img"><span class="blind">별 1개</span></span>
+									  </label>
+									  <label class="startRadio__box">
+									    <input type="radio" name="star" id="" checked>
+									    <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
+									  </label>
+									  <label class="startRadio__box">
+									    <input type="radio" name="star" id="" checked>
+									    <span class="startRadio__img"><span class="blind">별 2개</span></span>
+									  </label>
+									  <label class="startRadio__box">
+									    <input type="radio" name="star" id="" checked>
+									    <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
+									  </label>
+									  <label class="startRadio__box">
+									    <input type="radio" name="star" id="" checked>
+									    <span class="startRadio__img"><span class="blind">별 3개</span></span>
+									  </label>
+									  <label class="startRadio__box">
+									    <input type="radio" name="star" id="" checked>
+									    <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
+									  </label>
+									  <label class="startRadio__box">
+									    <input type="radio" name="star" id="" checked>
+									    <span class="startRadio__img"><span class="blind">별 4개</span></span>
+									  </label>
+									  <label class="startRadio__box">
+									    <input type="radio" name="star" id="" checked>
+									    <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
+									  </label>
+									  <label class="startRadio__box">
+									    <input type="radio" name="star" id="" checked>
+									    <span class="startRadio__img"><span class="blind">별 5개</span></span>
+									  </label>
+									  
+									</div>								
+								
+								
+								</div>
+							</div>
+							<hr>
+							<br>
+							<div class="write_police_reason">
+								<textarea style="border:1px solid lightgray" rows="5" cols="63"></textarea>
+							</div>
+															
+							<br>
+								<div style="text-align: center">
+									<button disabled id="modal_police_btn" style="width: 90px; font-size: 15px">후기 작성</button>
+									<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+								</div>
+							</div>
+							
+							
+						</div>
+						<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
+					</div>
+					
+					
+				<script type="text/javascript">
+					
+			 // 모달 만들기
+				function modal(id) {
+				    var zIndex = 9999;
+				    var modal = document.getElementById(id);
+
+				    // 모달 div 뒤에 희끄무레한 레이어
+				    var bg = document.createElement('div');
+				    bg.setStyle({
+				        position: 'fixed',
+				        zIndex: zIndex,
+				        left: '0px',
+				        top: '0px',
+				        width: '100%',
+				        height: '100%',
+				        overflow: 'auto',
+				        // 레이어 색갈은 여기서 바꾸면 됨
+				        backgroundColor: 'rgba(0,0,0,0.4)'
+				    });
+				    document.body.append(bg);
+
+				    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+				    modal.querySelector('.modal_cancle_btn').addEventListener('click', function() {
+				        bg.remove();
+				        modal.style.display = 'none';
+				    });
+				    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+				        bg.remove();
+				        modal.style.display = 'none';
+				    });
+				    
+					
+
+				    modal.setStyle({
+				        position: 'fixed',
+				        display: 'block',
+				        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+				        // 시꺼먼 레이어 보다 한칸 위에 보이기
+				        zIndex: zIndex + 1,
+
+				        // div center 정렬
+				        top: '50%',
+				        left: '50%',
+				        transform: 'translate(-50%, -50%)',
+				        msTransform: 'translate(-50%, -50%)',
+				        webkitTransform: 'translate(-50%, -50%)'
+				    });
+				}
+				// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+				Element.prototype.setStyle = function(styles) {
+				    for (var k in styles) this.style[k] = styles[k];
+				    return this;
+				};
+				
+				document.querySelector('#btn_write_review').addEventListener('click', function() {
+				    // 모달창 띄우기
+				    modal('police_modal');
+				});
+				//평가점수버튼을 줘서 점수를 줬으면 버튼 활성화
+				 	$(".rating").change(function(){
+							$("#modal_police_btn").attr("disabled",false);
+				
+					});
+
+				
+				</script>
+								
+								
+								
+								
+								
+								
 
 								<div class="sold_list">
 									<table width="100%" height="120">
