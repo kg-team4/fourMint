@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import four.mint.web.common.AES256Util;
@@ -161,7 +161,7 @@ public class StoreController {
 		request.setAttribute("amount", request.getParameter("amount"));
 		
 		String nickname = String.valueOf(session.getAttribute("nickname"));
-		vo = userService.getUserNickname(nickname);
+		vo = userService.getUserFromNickname(nickname);
 		
 		String phone1 = vo.getPhone().substring(0,3);
 		String phone2 = vo.getPhone().substring(3,7);
@@ -178,13 +178,28 @@ public class StoreController {
 		return "/pay/order";
 	}
 	
-
 	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
-	public String order(HttpServletRequest request, HttpSession session) {
+	public String order(@RequestParam(value="chk") String chk, HttpServletRequest request, HttpSession session) {
 		String nickname = String.valueOf(session.getAttribute("nickname"));
 		List<CartVO> cart = storeService.getCartList(nickname);
 		
 		request.setAttribute("cart", cart);
+		
+		if(!chk.equals("first")) {
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			
+			if(!chk.equals("0")) {
+				int size = (chk.length()-1) / 3 + 1;
+				int j = 0;
+				for(int i=1; i<=size; i++) {
+					list.add(Integer.valueOf(chk.charAt(1+j))-48);
+					j += 3;
+				}
+			}
+			request.setAttribute("chk", list);
+		} else {
+			request.setAttribute("first", "first");
+		}
 		
 		return "/pay/payment";
 	}
@@ -251,13 +266,12 @@ public class StoreController {
 		int id = Integer.valueOf(request.getParameter("id"));
 		int amount = Integer.valueOf(request.getParameter("amount"));
 		
-		if(amount < 99)
+		if(amount < 99) {
 			amount += 1;
-		
-		vo.setAmount(amount);
-		vo.setId(id);
-		
-		storeService.updateCart(vo);
+			vo.setAmount(amount);
+			vo.setId(id);
+			storeService.updateCart(vo);
+		}
 		
 		request.setAttribute("chk", arrayParams);
 		
@@ -269,17 +283,25 @@ public class StoreController {
 		int id = Integer.valueOf(request.getParameter("id"));
 		int amount = Integer.valueOf(request.getParameter("amount"));
 		
-		if(amount > 1)
+		if(amount > 1) {
 			amount -= 1;
-		
-		vo.setAmount(amount);
-		vo.setId(id);
-		
-		storeService.updateCart(vo);
-		
+			vo.setAmount(amount);
+			vo.setId(id);
+			storeService.updateCart(vo);
+		}
+			
 		request.setAttribute("chk", arrayParams);
 		
 		return "/pay/pass";
+	}
+	
+	@PostMapping("/delete.do")
+	public String cartDel(HttpServletRequest request) {
+		int id = Integer.valueOf(request.getParameter("id"));
+		
+		storeService.deleteCart(id);
+		
+		return "/pay/deleteProc";
 	}
 }
 

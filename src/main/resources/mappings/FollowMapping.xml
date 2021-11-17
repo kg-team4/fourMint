@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FollowDAO">
+
+	<resultMap type="followCount" id="userResult">
+		<result property="following" column="FOLLOWING" />
+		<result property="follower" column="FOLLOWER" />
+	</resultMap>
+	
+	<select id="getFollowCount" resultType="followCount" parameterType="string">
+		SELECT (SELECT count(*) FROM follow WHERE standard = #{nickname}) as following, (SELECT count(*) FROM follow WHERE target = #{nickname}) as follower 
+	</select>
+	
+	<resultMap type="followers" id="followersResult">
+		<result property="nickname" column="NICKNAME"/>
+		<result property="rating" column="RATING"/>
+		<result property="follower" column="FOLLOWER"/>
+		<result property="profile" column="PROFILE"/>
+	</resultMap>
+	
+	<select id="getFollowers" resultType="followers" parameterType="string">
+		SELECT q.nickname, q.rating, p.follower, q.profile FROM (
+		(SELECT DISTINCT nickname, rating, profile FROM member as m JOIN follow as f ON m.nickname = f.target) as q 
+		JOIN 
+		(SELECT follower, nickname FROM ((SELECT count(target) as follower, target as nickname FROM follow GROUP BY target) as a 
+		JOIN (SELECT standard FROM follow WHERE target = #{nickname}) as b ON a.nickname = b.standard) AS c) as p ON q.nickname = p.nickname);
+	</select>
+	
+	<resultMap type="followings" id="followingsResult">
+		<result property="nickname" column="NICKNAME"/>
+		<result property="rating" column="RATING"/>
+		<result property="following" column="FOLLOWING"/>
+		<result property="profile" column="PROFILE"/>
+	</resultMap>
+	
+	<select id="getFollowings" resultType="followings" parameterType="string">
+		SELECT q.nickname, q.rating, p.follower as following, q.profile FROM (
+		(SELECT DISTINCT nickname, rating, profile FROM member as m JOIN follow as f ON m.nickname = f.target) as q 
+		JOIN 
+		(SELECT follower, nickname FROM ((SELECT count(target) as follower, target as nickname FROM follow GROUP BY target) as a 
+		JOIN (SELECT target FROM follow WHERE standard = #{nickname}) as b ON a.nickname = b.target) AS c) as p ON q.nickname = p.nickname);
+	</select>
+</mapper>

@@ -22,9 +22,9 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
 	crossorigin="anonymous"></script>
-
 <script type="text/javascript" src="../js/reply.js"></script>
 <link href="../css/8.board_content.css" rel="stylesheet">
+<link href="../css/message/message.css" rel="stylesheet">
 <link href="../css/swiper.min.css" rel="stylesheet">
 <script src="../js/swiper.min.js"></script>
 <script src="../js/post_content.js"></script>
@@ -198,7 +198,11 @@
 				
 				<div class="item font15 padding15">
 					<div class="padding15">
-						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}&nbsp;>&nbsp;${content.category_middle }</span>
+						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}&nbsp;
+						<c:if test="${!empty content.category_middle}">
+						>
+						</c:if>
+						&nbsp;${content.category_middle }</span>
 					</div>
 					<div class="padding15">
 						<span class="gray-font">&middot; 거래지역</span><span
@@ -264,15 +268,34 @@
 													</div>
 													<div class="send_message"></div>
 													<!-- 메세지 입력란이 올자리 -->
-													<div class='type_msg' style="height: 45px">
+													<div id="emo_div">
+														<!-- 이모티콘 자리 -->
+														<button type="button" onclick="javascript:SendImo('${content.nickname}')">
+															<img id="message_image" src="https://mintmarket.s3.ap-northeast-2.amazonaws.com/img/like.png" alt="emoticon">
+														</button>
+														<button type="button" onclick="javascript:SendImo('${content.nickname}')">
+															<img id="message_image" src="https://mintmarket.s3.ap-northeast-2.amazonaws.com/img/like.png" alt="emoticon">
+														</button>
+														<button type="button" onclick="javascript:SendImo('${content.nickname}')">
+															<img id="message_image" src="https://mintmarket.s3.ap-northeast-2.amazonaws.com/img/like.png" alt="emoticon">
+														</button>
+														<button type="button" onclick="javascript:SendImo('${content.nickname}')">
+															<img id="message_image" src="https://mintmarket.s3.ap-northeast-2.amazonaws.com/img/like.png" alt="emoticon">
+														</button>
+														<button type="button" onclick="javascript:SendImo('${content.nickname}')">
+															<img id="message_image" src="https://mintmarket.s3.ap-northeast-2.amazonaws.com/img/like.png" alt="emoticon">
+														</button>
+													</div>
+													<div class="type_msg" style="height: 45px">
 														<div class='input_msg_write row'>
 															<div class='col-11'>
-																<textarea class='write_msg form-control'
-																	placeholder='메세지를 입력...'
+																<textarea class="write_msg form-control"
+																	placeholder="메세지를 입력..."
 																	style="width: 95%; margin-top: 5px; height: 40px; box-shadow: none;"></textarea>
 															</div>
 															<div class='col-1'>
-																<button class='msg_send_btn' type='button'
+																<input type="button" class="msg_send_imo" value="이모티콘" onclick="emo()">
+																<button class="msg_send_btn" type="button"
 																	onclick="javascript:SendMessage('${content.nickname}')">
 																	<i class='fa fa-paper-plane-o' aria-hidden='true'></i>
 																</button>
@@ -623,9 +646,9 @@
 				<div class="padding-top30">
 					<div class="float-box float-left">
 						<div class="left-item25  pic-align left-font">
-							<a href="#"> <img class="reply-pic-circle"
-								src="../img/baking.png">
-							</a>
+							<a href="#">
+								<img class="reply-pic-circle" src="${user.profile }">									
+							</a>				
 						</div>
 						<div class="right-item75">
 							<div class="top-margin10 left-font seller">
@@ -642,14 +665,14 @@
 										<img src="../img/star_rank.png" width="13" height="12"
 											alt="별점이미지"> <img src="../img/star_rank.png" width="13"
 											height="12" alt="별점이미지">
-									</div>
-									<div id="proudct_num_follower">
-										상품 &nbsp;<span>23</span> &emsp; 팔로워 &nbsp;<span>88</span>
-									</div>
-									<button id="btn_follow" style="width: 100px">
-										<img height="13px" width="13px"
-											src="../img/following_icon.png">&nbsp;팔로우
-									</button>
+                                      </div>
+                                      <div id="proudct_num_follower">
+                                      	상품 &nbsp;<span>${boardCount }</span> &emsp; 
+                                      	팔로워 &nbsp;<span>${follow.follower }</span>
+                                      </div>
+                                      <c:if test="${user.nickname ne nickname }">
+										<button id="btn_follow" style="width:100px"><img height="13px" width="13px" src="../img/following_icon.png">&nbsp;팔로우</button>				
+                                      </c:if>
 								</div>
 							</div>
 						</div>
@@ -738,7 +761,7 @@
 <script>
 	//메세지 내역을 가져온다.
 	const MessageContentList = function(other_nick) {
-		
+		console.log(other_nick);
 		$.ajax({
 			url : "message_content_list_inprofile.do",
 			method : "GET",
@@ -777,7 +800,6 @@
 	const SendMessage = function(other_nick) {
 		console.log(other_nick);
 		let content = $('.write_msg').val();
-		console.log(content);
 	
 		content = content.trim();
 	
@@ -808,6 +830,33 @@
 		}
 	};
 	
+	// 이미지 보내기
+	const SendImo = function(other_nick) {
+		let image = $('#message_image').attr("src");
+		console.log(image);
+		$.ajax({
+			url : "message_send_inlist_image.do",
+			method : "GET",
+			data : {
+				other_nick : other_nick,
+                image : image,	              
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 입력칸 비우기
+                $('.write_msg').val("");
+
+                // 메세지 내용  리로드
+                MessageContentList(other_nick);
+
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+	
 	function timeForToday(value) {
 	    const today = new Date();
 	    const timeValue = new Date(value);
@@ -827,10 +876,10 @@
 	    if (betweenTimeDay < 365) {
 	        return `${betweenTimeDay}일전`;
 	    }
-	
+	    
 	    return `${Math.floor(betweenTimeDay / 365)}년전`;
 	}
-	
+
 	// 모달1 (프로필 보기)만들기
 	function modal(id) {
 	    var zIndex = 9999;
@@ -906,6 +955,14 @@
 	
 	
 	//모달창2(신고하기)
+
+ 	function emo() {
+		if($("#emo_div").is(":visible")) {
+			$("#emo_div").hide();
+		} else {
+			$("#emo_div").show();
+		}
+	};
 	
 </script>
 

@@ -103,7 +103,7 @@
 						<div id="my_modal">
 							<h3>장바구니에 담겼습니다.</h3>
 							<br>
-							<a href="payment.do" style="color: blue;">장바구니로 이동</a>
+							<a href="payment.do?chk=first" style="color: blue;">장바구니로 이동</a>
 							&emsp;<a class="modal_close_btn">나가기</a>
 						</div>
 						<!-- 장바구니 모달 끝 -->

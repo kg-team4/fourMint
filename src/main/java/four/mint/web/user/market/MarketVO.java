@@ -19,4 +19,5 @@ public class MarketVO {
 	private String address2;
 	private String nickname;
 	private int views;
+	private int status;
 }

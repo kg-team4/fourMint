@@ -1,5 +1,7 @@
 package four.mint.web.user;
 
+import java.util.List;
+
 public interface UserService {
 
 	void insertUser(UserVO vo);
@@ -11,11 +13,16 @@ public interface UserService {
 	int nickCheck(String nick) throws Exception;
 	int phoneCheck(String phone) throws Exception;
 	void certifiedPhoneNumber(String userPhoneNumber, int randomNumber);
-	UserVO getUserNickname(String nickname);
+	UserVO getUserFromNickname(String nickname);
 	
 	//snsLogin
 	void naverlogin(NaverVO nvo);
 	void kakaologin(KakaoVO kvo);
 	String getBySns(String snsid);
+	void updateProfile(UserVO uVO);
+	
+	//follow
+	List<FollowerVO> getFollowers(String nickname);
+	List<FollowingVO> getFollowings(String nickname);
 	
 }

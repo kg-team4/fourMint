@@ -10,6 +10,7 @@
 		<result property="send_time" column="SEND_TIME" />
 		<result property="read_time" column="READ_TIME" />
 		<result property="content" column="CONTENT" />
+		<result property="image" column="IMAGE" />
 		<result property="read_check" column="READ_CHECK" />
 	</resultMap>
 	
@@ -42,7 +43,7 @@
 	
 	<!-- 메세지 내용 가져오기 / 상대 프로필에 들어가서 메세지 보내기 클릭 시 -->
 	<select id="getRoomContentList" parameterType="four.mint.web.message.MessageVO" resultType="four.mint.web.message.MessageVO">
-		select m.no, m.room, m.send_nick, m.recv_nick, m.send_time, m.read_time, m.content, m.read_check, b.profile
+		select m.no, m.room, m.send_nick, m.recv_nick, m.send_time, m.read_time, m.content, m.image, m.read_check, b.profile
 		from message m left outer join member b
 		on m.send_nick = b.nickname
 		<choose>
@@ -74,10 +75,10 @@
 	<insert id="getMessageSendInlist" parameterType="four.mint.web.message.MessageVO">
 		<choose>
 			<when test="room != 0">
-				insert into message (no, room, send_nick, recv_nick, send_time, content, read_check) values(default, #{room}, #{send_nick}, #{recv_nick}, now() at time zone 'Asia/Seoul', #{content}, 0);
+				insert into message (no, room, send_nick, recv_nick, send_time, content, image, read_check) values(default, #{room}, #{send_nick}, #{recv_nick}, now() at time zone 'Asia/Seoul', #{content}, #{image}, 0);
 			</when>
 			<otherwise>
-				insert into message (no, room, send_nick, recv_nick, send_time, content, read_check) values(default, #{room}, #{send_nick}, #{recv_nick}, now() at time zone 'Asia/Seoul', #{content}, 0);
+				insert into message (no, room, send_nick, recv_nick, send_time, content, image, read_check) values(default, #{room}, #{send_nick}, #{recv_nick}, now() at time zone 'Asia/Seoul', #{content}, #{image}, 0);
 			</otherwise>
 		</choose>
 	</insert>

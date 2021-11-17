@@ -37,7 +37,7 @@
 			<!-- 메세지 내용 영역 -->
 			<div class="mesgs" style="width:50%; margin-left: 10%">
 				<!-- 메세지 내용 목록 -->
-				<div class="msg_history" name="contentList" style="height:570px;">
+				<div class="msg_history" name="contentList" style="height:370px;">
 					<!-- 메세지 내용이 올 자리 -->
 				</div>
 				<div class="send_message"></div>
@@ -58,7 +58,6 @@
 				console.log("메세지 리스트 리로드 성공");
 
 				$('.inbox_chat').html(data);
-
 				
 				// 메세지 리스트중 하나를 클릭했을 때
 				$('.chat_list').on('click', function() {
@@ -74,11 +73,17 @@
 					let send_msg = "";
 					send_msg += "<div class='type_msg'>";
 					send_msg += "	<div class='input_msg_write row'>";
+					send_msg += "		<div class='emo_div' style='width: auto; height: 80px; background: yellow; display:none;'>";
+					// -------------------------------- 동녘아 여기다가 이모티콘 넣어 --------------------------------
+					send_msg += "			<button id='click_emo_img' type='button' onclick='javascript:SendImo('${content.nickname}')'>";
+					send_msg += "				<img id='message_image' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/img/like.png'>";
+					send_msg += "			</button>";
+					// -------------------------------- 여기까지야 화이팅 ^^ 하핫 ----------------------------------
+					send_msg += "		</div>";
 					send_msg += "		<div class='col-11' style='text-align: left;'>";
 					send_msg += "			<textarea class='write_msg form-control' placeholder='메세지를 입력...' style='max-width: 520px; height: 60px; resize: none;'></textarea>";
-					send_msg += "		</div>";
-					send_msg += "		<div class='col-1'>";
-					send_msg += "			<button class='msg_send_btn' type='button'>전송버튼</button>";
+					send_msg += "			<button class='button_emo' type='button'>이모티콘</button>";
+					send_msg += "			<button class='msg_send_btn' type='button' style='position: inherit;'>전송버튼</button>";
 					send_msg += "		</div>";
 					send_msg += "	</div>";
 					send_msg += "</div>";
@@ -98,6 +103,10 @@
 						//$('.chat_list_box:first').addClass('active_chat');
 					});
 					
+					$('#click_emo_img').on('click', function() {
+						SendImage(room, other_nick);
+					});
+					
 					$(".write_msg").keyup(function(e) {
 						e.preventDefault();
 						var code = e.keyCode ? e.keyCode : e.which;
@@ -112,6 +121,14 @@
 						}
 					});
 
+					$('.button_emo').on('click', function() {
+						if($(".emo_div").is(":hidden")) {
+							$(".emo_div").show();
+						} else {
+							$(".emo_div").hide();
+						}
+					});
+					
 					// 메세지 내용을 불러오는 함수 호출
 					MessageContentList(room);
 				});
@@ -145,11 +162,17 @@
 					let send_msg = "";
 					send_msg += "<div class='type_msg'>";
 					send_msg += "	<div class='input_msg_write row'>";
+					send_msg += "		<div class='emo_div' style='width: auto; height: 80px; background: yellow; display:none;'>";
+					// -------------------------------- 동녘아 여기다가 이모티콘 넣어 --------------------------------
+					send_msg += "			<button id='click_emo_img' type='button' onclick='javascript:SendImo('${content.nickname}')'>";
+					send_msg += "				<img id='message_image' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/img/like.png'>";
+					send_msg += "			</button>";
+					// -------------------------------- 여기까지야 화이팅 ^^ 하핫 ----------------------------------
+					send_msg += "		</div>";
 					send_msg += "		<div class='col-11'>";
 					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력...' />";
-					send_msg += "		</div>";
-					send_msg += "		<div class='col-1'>";
-					send_msg += "			<button class='msg_send_btn' type='button'>전송버튼</button>";
+					send_msg += "			<button class='button_emo' type='button'>이모티콘</button>";
+					send_msg += "			<button class='msg_send_btn' type='button' style='position: inherit;'>전송버튼</button>";
 					send_msg += "		</div>";
 					send_msg += "	</div>";
 					send_msg += "</div>";
@@ -167,7 +190,19 @@
 						// 이걸 해결하기 위해 메세지 전송버튼을 누르고 메세지 리스트가 리로드되면 메세지 리스트의 첫번째 메세지(현재 열린 메세지)가 선택됨 표시 되도록 한다.
 						//$('.chat_list_box:first').addClass('active_chat');
 					});
-
+					
+					$('#click_emo_img').on('click', function() {
+						SendImage(room, other_nick);
+					});
+					
+					$('.button_emo').on('click', function() {
+						if($(".emo_div").is(":hidden")) {
+							$(".emo_div").show();
+						} else {
+							$(".emo_div").hide();
+						}
+					});
+					
 					// 메세지 내용을 불러오는 함수 호출
 					MessageContentList(room);
 
@@ -202,7 +237,7 @@
 			error : function() {
 				alert('서버 에러');
 			}
-		})
+		});
 
 		$('.unread' + room).empty();
 
@@ -240,14 +275,44 @@
 
 					// 메세지 리스트 리로드
 					MessageList();
-
 				},
 				error : function() {
 					alert('서버 에러');
 				}
 			});
 		}
+	};
 
+	// 이미지를 전송하는 함수
+	const SendImage = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 입력칸 비우기
+				$('.write_msg').val("");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
 	};
 
 	$(document).ready(function() {
