@@ -1,3 +1,8 @@
+<%@	page import="java.text.SimpleDateFormat"%>
+<%@	page import="java.util.Calendar"%>
+<%@	page import="java.text.NumberFormat"%>
+<%@	page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -32,62 +37,48 @@
 		<div class="store_review_all">
 			<div class="store_review">
 				<table>
+					<c:forEach var="staticNotice" items="${staticNoticeList }">
 					<tr>
-						<td id="news_num">
-							<img src="../img/megaphone.png" width=23px; height=23px>
-						</td>
-						<td id="news_title">
-							<div id="news_title_content">
-								 <a id="news_title_detail" href="#">민트스토어 택배없는 날 관련 배송 지연 안내</a>
-							</div>
-						</td>
-						<td id="down_arrow" style="color:gray">
-							<input type="button" class="slider" value="▼" style="background: none; border:0px; color:gray; cursor:pointer;">
-						</td>
+						
+							<td id="news_num">
+								<img src="../img/megaphone.png" width=23px; height=23px>
+							</td>
+							<td id="news_title">
+								<div id="news_title_content">
+									 <a id="news_title_detail" >${staticNotice.notice_title }</a>
+								</div>
+							</td>
+							<td id="down_arrow" style="color:gray">
+								<input type="button" class="slider" value="▼" style="background: none; border:0px; color:gray; cursor:pointer;">
+							</td>
+						
 					</tr>
 									
-					
-					
-					
+	
 					<tr  id="contents_all" style=" display: none">
 						<td></td>
 						
 						<td>
 							<div style="text-align: right">
-								2020-08-14
+								<fmt:formatDate pattern="yyyy-MM-dd" value="${staticNotice.date }" />
 							</div>
 							
-							<pre><br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-							<br></pre>
+							<pre><br>${staticNotice.notice_content }<br></pre>
 						</td>
 						
 						<td></td>
 					</tr>
+					</c:forEach>
 					
 					
+					<c:forEach var="normalNotice" items="${normalNoticeList }">
 					<tr>
 						<td id="news_num">
-							2
+							${normalNotice.notice_seq}
 						</td>
 						<td id="news_title">
 							<div id="news_title_content">
-								 <a id="news_title_detail" href="#">채용공고</a>
+								 <a id="news_title_detail">${normalNotice.notice_title}</a>
 							</div>
 						</td>
 						<td style="color:gray">					
@@ -95,20 +86,20 @@
 						</td>
 					</tr>										
 										
-					<tr>
-						<td id="news_num">
-							1
-						</td>
-						<td id="news_title">
-							<div id="news_title_content">
-								 <a id="news_title_detail" href="#">홈페이지 오픈 기념 할인 이벤트</a>
+					<tr  id="contents_all" style=" display: none">
+						<td></td>
+						
+						<td>
+							<div style="text-align: right">
+								<fmt:formatDate pattern="yyyy-MM-dd" value="${normalNotice.date}" />								
 							</div>
+							
+							<pre><br>${normalNotice.notice_content}<br></pre>
 						</td>
-						<td style="color:gray">
-							<input type="button" class="slider" value="▼" style="background: none; border:0px; color:gray; cursor:pointer">
-						</td>
+						
+						<td></td>
 					</tr>
-					
+					</c:forEach>
 				</table>
 			</div>	
 				

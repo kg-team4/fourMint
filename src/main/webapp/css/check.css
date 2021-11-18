@@ -43,7 +43,7 @@
 	background-repeat: no-repeat;
 	background-position:left;
 	padding-left: 45px;
-    font-size: 30px;
+    font-size: 28px;
     border: 1px solid transparent;
     border-bottom: 2px solid #50b9abd0;
     background-color: transparent;
@@ -51,15 +51,54 @@
     background-size: 30px;
     background-position: 0.5rem;
 }
-#pw{
-	
+
+
+
+
+
+
+@keyframes move_img{
+    0%{
+    	transform: rotate( 0deg );
+    	transform-origin: center center;
+    }
+    25%{
+    	transform: rotate( -5deg );
+    	transform-origin: center center;
+    }
+    50%{
+    	transform: rotate( 0deg );
+    	transform-origin: center center;
+    }
+    75%{
+    	transform: rotate( 5deg );
+    	transform-origin: center center;
+    }
+    100%{
+    	transform: rotate( 0deg );
+    	transform-origin: center center;
+    }
 }
 
+#logo_icon {
+	animation: move_img 0.02s linear infinite;
+}
+
+
+
+
+
+
+
+
+
+
+
 .submit {
-	width: 300px;
-	height: 55px;
+	width: 280px;
+	height: 50px;
 	cursor: pointer;
-	margin: 60px 0px 0px 0px;
+	margin: 30px 0px 0px 0px;
 	font-size: 28px;
 	color: #26e4ca;
 	border: 3px solid #26e4ca;

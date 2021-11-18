@@ -12,19 +12,19 @@
 <script src="https://kit.fontawesome.com/a93dcadf53.js" crossorigin="anonymous"></script>
 <link href="../css/10.promotion&used_post_list.css" rel="stylesheet">
 
-<article style="padding-top: 200px; margin: 0px 20%">
-	<div style="display: flex; align-items: center; justify-content: space-evenly;">
+<article style="padding-top: 200px;">
+	<div style="display: flex;">
 		<!-- 카테고리 -->
-		<div class="best categoroy" style="align-self: flex-start; widdth: 100px; margin-top: 50px;">
+		<div class="best categoroy" style="align-self: flex-start; width: 100px; margin-left:200px; margin-top: 50px;">
 			<section class="category_list" style="width: 135px;">
-				<div class="best">
-					<h1 style="padding: 0 5%;"></h1>
+				<div class="best" style="width:160px; margin-top: 60px;">
+					<h3 style="padding: 0 45%; margin-top: -20px; font-size:15px;"></h3>
 					<c:forEach var="big" items="${ storeCategoryBig }">
 					<div class="bestBox" style="display: block;">
 						<c:set var="name" value="${big.name }" />
 						<!-- 카테고리 목록 -->
-						<h2 class="category_list_title" style="margin: 0 5px 3px 0;">
-							<label class="category_big_name">${ name }</label>
+						<h2 class="category_list_title" style="color:#7b7b7b; font-size:20px; margin: 0 10px 6px 0; font-weight:400;">
+							<label class="category_big_name" style="color:#7b7b7b;  cursor:pointer">${ name }</label>
 						</h2>
 					</div>
 					<br>
@@ -43,20 +43,23 @@
 		</c:if>
 		<!-- 게시글이 존재할 때 -->
 		<c:if test="${ listCount > 0 }"> 
-			<div class="best" style="width: 800px;">
+			<div class="best" style="width: 1000px;">
 				<br> <br> <br>
-				<h1 style="padding: 0 5%;">${kind }</h1>
+				<h2 style="padding: 0 48%; font-size:18px;">${kind }</h2>
 				<br>
-				<ul class="bestBox">
+				<ul class="bestBox" style="margin-left: 100px;">
 					<!-- 스토어 글 목록 -->
 					<c:set var="big_no" value="${kind }" />
 					<c:forEach var="store" items="${storeList }">
 						<c:if test="${ big_no eq store.category_big}">
 							<li>
 								<a href="storeBoard.do?seq=${store.store_seq }"> <img src="${store.url }"></a>
-								<p>
-									<span>${store.product_name }</span> <span>${store.product_price }원</span>
-								</p>
+								<div style="display:flex; padding-top:20px;">
+									<div id="product_name"
+										style="width: 180px; text-align: left; word-wrap: break-word; white-space: nowrap; text-overflow: ellipsis; display: inline-block; overflow: hidden;">${store.product_name }</div>
+									<div id="product_price"
+										style="width: 100px; text-align: right; word-wrap: break-word; white-space: nowrap; display: inline-block; overflow: hidden; text-overflow: ellipsis; margin-left: 10px; font-size: 15px; color: #50b9abd0; ">${store.product_price }원</div>
+								</div>
 							</li>
 						</c:if>
 					</c:forEach>
@@ -64,7 +67,7 @@
 			</div>
 		</c:if>
 	</div>
-	<div style="text-align: center;">
+	<div style="text-align: center; padding-left: 30px; margin-left:218px; margin-bottom:30px">
 	<c:set var="startPage" value="${ startPage }" />
 	<c:set var="endPage" value="${ endPage }" />
 	<c:set var="pageCount" value="${ maxPage }" />

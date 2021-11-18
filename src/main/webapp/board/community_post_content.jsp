@@ -104,6 +104,45 @@
 					</div>
 				</div>
 			</div>
+			
+			<div id="police_modal">
+				<div>
+
+					<div style="font-size:20px">🚨&nbsp;신고하기&nbsp;🚨</div>
+					<hr>
+					
+					
+					<div>
+					<div class="police_category">
+						<span style="padding-right:10px">신고사유</span> 
+						<select id="police_reason" name="police_reason">
+							<option value="" >신고 사유 선택</option>
+							<option value="채팅앱유도">다른 채팅앱으로 유도하는 글</option>
+							<option value="광고">광고/홍보 글</option>
+							<option value="중고거래">중거거래 관련 글</option>
+							<option value="반려동물">반려동물 분양/교배 글</option>
+							<option value="부적절">부적절한 글(개인정보 포함·분쟁댓글·금전 요구·음란성 등)</option>
+							<option value="비방">이웃 배제 및 비방 글</option>
+							<option value="중복">중복/도배성 글</option>
+							<option value="신고항목개선">신고항목 개선 제안 글</option>
+							<option value="etc">기타(사유)</option>
+						</select>
+					</div>
+					<div class="write_police_reason">
+						<textarea style="border:1px solid lightgray" rows="10" cols="15"></textarea>
+					</div>
+					<br>
+						<div style="text-align: center">
+							<button disabled id="modal_police_btn" style="width: 90px; font-size: 15px">신고</button>
+							<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+						</div>
+					</div>
+					
+					
+				</div>
+				<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
+			</div>
+			
 			<hr style="margin-right: 20px">
 			<br>
 
@@ -125,11 +164,11 @@
 									<div>
 										<div class="reply_police1">
 											<div style="margin-left: 10px">
-												<span id="re_reply_click_style"> <label
-													for="re-reply1"> <input type="checkbox"
-														id="re-reply1" style="display: none" value="1"
-														onchange="reReply(this);"> 답글
-												</label>
+												<span id="re_reply_click_style"> 
+													<label style="cursor: pointer; margin-left:15px; margin-right:5px" for="re-reply1"> 
+														<input type="checkbox" id="re-reply1" style="display: none; " value="1" onchange="reReply(this);"> 답글												
+													</label>
+													<span><input type="button" class="btn_delete_comment" value="삭제"/></span>
 												</span>&nbsp;
 											</div>
 
@@ -140,7 +179,7 @@
 									<div class="reply_police2">
 
 										<div style="margin-left: 10px">
-											<button type="button" class="btn_police">
+											<button type="button" class="btn_police_comment">
 												<img class="img_police" src="../img/police.png" alt="신고버튼">
 											</button>
 										</div>
@@ -192,12 +231,11 @@
 									<div class="reply_police2">
 
 										<div style="margin-left: 10px">
-											<button type="button" class="btn_police">
+											<button type="button" class="btn_police_comment">
 												<img class="img_police" src="../img/police.png" alt="신고버튼">
 											</button>
 										</div>
 									</div>
-
 								</td>
 
 							</tr>
@@ -211,6 +249,9 @@
 				</div>
 
 			</div>
+			
+			
+	
 
 			<!-- 답글달기 글쓰기창 -->
 			<div class="write_reply_area rereply-off " id="rereply-form1">
@@ -284,5 +325,87 @@
 	</div>
 	<!-- end contents_all -->
 </article>
+
+<script>					
+ // 신고모달 만들기
+	function modal(id) {
+	    var zIndex = 9999;
+	    var modal = document.getElementById(id);
+
+	    // 모달 div 뒤에 희끄무레한 레이어
+	    var bg = document.createElement('div');
+	    bg.setStyle({
+	        position: 'fixed',
+	        zIndex: zIndex,
+	        left: '0px',
+	        top: '0px',
+	        width: '100%',
+	        height: '100%',
+	        overflow: 'auto',
+	        // 레이어 색갈은 여기서 바꾸면 됨
+	        backgroundColor: 'rgba(0,0,0,0.4)'
+	    });
+	    document.body.append(bg);
+
+	    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+	    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+	        bg.remove();
+	        modal.style.display = 'none';
+	        
+	        return;
+	    });
+	    modal.querySelector('.modal_cancle_btn').addEventListener('click', function() {
+	        bg.remove();
+	        modal.style.display = 'none';
+	        
+	        return false;
+	    });
+		
+
+	    modal.setStyle({
+	        position: 'fixed',
+	        display: 'block',
+	        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+	        // 시꺼먼 레이어 보다 한칸 위에 보이기
+	        zIndex: zIndex + 1,
+
+	        // div center 정렬
+	        top: '50%',
+	        left: '50%',
+	        transform: 'translate(-50%, -50%)',
+	        msTransform: 'translate(-50%, -50%)',
+	        webkitTransform: 'translate(-50%, -50%)'
+	    });
+	    
+	    return;
+	}
+ 
+	// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+	Element.prototype.setStyle = function(styles) {
+	    for (var k in styles) this.style[k] = styles[k];
+	    return this;
+	};
+	
+	document.querySelector('.btn_police').addEventListener('click', function() {
+	    // 모달창 띄우기
+	    modal('police_modal');
+	});
+	document.querySelector('.btn_police_comment').addEventListener('click', function() {
+	    // 모달창 띄우기
+	    modal('police_modal');
+	});
+	//신고하기 select box 선택 사유가 없을 경우 버튼 비활성화
+	 	$("#police_reason").change(function(){
+			if($("#police_reason").val() == ''){
+				$("#modal_police_btn").attr("disabled",true);
+							
+			}else{
+				$("#modal_police_btn").attr("disabled",false);
+			}
+		});
+
+	
+	</script>
 
 <jsp:include page="../template/footer.jsp"></jsp:include>

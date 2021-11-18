@@ -142,15 +142,18 @@
 				    document.body.append(bg);
 
 				    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-				    modal.querySelector('.modal_cancle_btn').addEventListener('click', function() {
-				        bg.remove();
-				        modal.style.display = 'none';
-				    });
 				    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
 				        bg.remove();
 				        modal.style.display = 'none';
+				        
+				        return;
 				    });
-				    
+				    modal.querySelector('.modal_cancle_btn').addEventListener('click', function() {
+				        bg.remove();
+				        modal.style.display = 'none';
+				        
+				        return false;
+				    });
 					
 
 				    modal.setStyle({
@@ -168,7 +171,10 @@
 				        msTransform: 'translate(-50%, -50%)',
 				        webkitTransform: 'translate(-50%, -50%)'
 				    });
+				    
+				    return;
 				}
+			 
 				// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
 				Element.prototype.setStyle = function(styles) {
 				    for (var k in styles) this.style[k] = styles[k];
@@ -905,7 +911,8 @@
 	        bg.remove();
 	        modal.style.display = 'none';
 	    });
-		
+	    
+	    
 
 	    modal.setStyle({
 	        position: 'fixed',
@@ -954,7 +961,6 @@
 		  });
 	
 	
-	//모달창2(신고하기)
 
  	function emo() {
 		if($("#emo_div").is(":visible")) {

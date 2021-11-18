@@ -103,6 +103,10 @@ table {
 	width: 60px;
 	text-align:center;
 }
+#faq_category{
+	
+	text-align:left;
+}
 #down_arrow{
 	width: 60px;
 }

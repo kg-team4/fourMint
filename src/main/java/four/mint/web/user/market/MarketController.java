@@ -222,4 +222,10 @@ public class MarketController {
 
 		return "/board/market_all_post_list";
 	}
+	/*
+	 * @RequestMapping(value = "/marketDelete.do", method = RequestMethod.GET)
+	 * public String marketDelete() {
+	 * 
+	 * return "/member/check"; }
+	 */
 }

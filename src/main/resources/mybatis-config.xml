@@ -22,6 +22,7 @@
 		<typeAlias alias="followCount" type="four.mint.web.user.FollowCountVO" />
 		<typeAlias alias="followers" type="four.mint.web.user.FollowerVO" />
 		<typeAlias alias="followings" type="four.mint.web.user.FollowingVO"/>
+		<typeAlias alias="serviceCenter" type="four.mint.web.user.servicecenter.ServiceCenterVO"/>
 	</typeAliases>
 	
 	<typeHandlers>
@@ -42,5 +43,6 @@
 		<mapper resource="mappings/AdminGoodsMapping.xml" />
 		<mapper resource="mappings/AdminFaqMapping.xml" />
 		<mapper resource="mappings/FollowMapping.xml" />
+		<mapper resource="mappings/ServiceCenterMapping.xml" />
 	</mappers>
 </configuration>

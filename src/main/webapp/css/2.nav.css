@@ -113,9 +113,33 @@ nav {
     box-shadow: 5px 5px 8px rgba(123, 123, 123, 0.79);
     margin-top: 10px;
     padding-bottom: 5px;
+    cursor:pointer;
 }
 
 .nav-menu > ul > li:hover ul > li > a:hover {
     color: #26e4ca;
     border-bottom: 3px solid #26e4ca;
+    cursor:pointer;
+}
+/* .medium-menu.on{
+    color: #26e4ca;
+} */
+
+/* .nav-menu > ul > li > a:link{
+	color:#26e4ca;
+}
+.nav-menu > ul > li > a:visited{
+	color:#26e4ca;
+}
+.nav-menu > ul > li > a:hover{
+	color:#26e4ca;
+}
+.nav-menu > ul > li > a:active{
+	color:#26e4ca;
+} */
+#mintmarket .active .item a {
+	color:#26e4ca !important;
+}
+.selected{
+	color:#26e4ca;
 }
