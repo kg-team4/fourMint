@@ -122,7 +122,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updatePw(UserVO vo) {
 		userDao.updatePw(vo);
+	}
 		
+	@Override
 	public void updateProfile(UserVO uVO) {
 		userDao.updateProfile(uVO);
 	}

@@ -103,6 +103,7 @@ public class UserDAO {
 		System.out.println("===> member UPDATE pw");
 		
 		sqlSessionTemplate.update("UserDAO.updatePw", vo);
+	}
 		
 	public void updateProfile(UserVO uVO) {
 		sqlSessionTemplate.update("UserDAO.updateProfile", uVO);

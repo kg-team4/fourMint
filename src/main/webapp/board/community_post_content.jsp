@@ -186,7 +186,7 @@
 						<pre>${comment.content }</pre>
 					</div>
 				</div>
-				
+			</c:forEach>
 				<%-- <c:forEach var="recomment" items=${recomment }>
 					<!-- 답글내용 -->
 					<div class="commenter_contents_all">
