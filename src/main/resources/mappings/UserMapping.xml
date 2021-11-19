@@ -16,6 +16,7 @@
 		<result property="gender" column="GENDER" />
 		<result property="social_login" column="SOCIAL_LOGIN"/>
 		<result property="snsid" column="SNSID"/>
+		<result property="profile" column="PROFILE" />
 	</resultMap>
 	
 	<insert id="insertUser" parameterType="user">
@@ -24,18 +25,20 @@
 	</insert>
 	
 	<insert id="insertNaver" parameterType="user">
-		INSERT INTO member (email_id, phone, birth, gender, social_login, snsid) VALUES (#{email}, #{phone}, #{birth}, #{gender}, #{social_login}, #{naverid})
+		INSERT INTO member (email_id, phone, birth, gender, social_login, snsid) 
+		VALUES (#{email}, #{phone}, #{birth}, #{gender}, #{social_login}, #{naverid})
 	</insert>
 	
 	<insert id="insertKakao" parameterType="user">
-		INSERT INTO member (email_id, birth, nickname, gender, social_login, snsid) VALUES (#{email}, #{birth}, #{nickname}, #{gender}, #{social_login}, #{kakaoid} )  
+		INSERT INTO member (email_id, birth, nickname, gender, social_login, snsid) 
+		VALUES (#{email}, #{birth}, #{nickname}, #{gender}, #{social_login}, #{kakaoid})  
 	</insert>
 	
 	<select id="getUser" resultType="user">
 		SELECT * FROM member WHERE email_id = #{email_id} AND password = #{password}
 	</select>
 	
-	<select id="getUserNickname" resultType="user" parameterType="string">
+	<select id="getUserFromNickname" resultType="user" parameterType="string">
 		SELECT * FROM member WHERE nickname = #{nickname}
 	</select>
 	
@@ -66,7 +69,7 @@
 	<select id="getByNaver" resultType="String" parameterType="String">
 		SELECT snsid FROM member WHERE snsid = #{naverid}
 	</select>
-	
+
 	<select id="getBySns" resultType="String" parameterType="String">
 		SELECT social_login FROM member WHERE email_id = #{email}
 	</select>
@@ -82,4 +85,8 @@
 	<select id="updatePw" parameterType="String">
 		UPDATE member SET password = #{password} WHERE email_id = #{email_id} 
 	</select>
+
+	<update id="updateProfile" parameterType="user">
+		UPDATE member SET profile = #{profile} WHERE nickname = #{nickname}
+	</update>
 </mapper>

@@ -229,7 +229,6 @@
 
 .outgoing_msg {
 	overflow: hidden;
-	margin: 26px 0 26px;
 }
 
 .sent_msg {
@@ -250,6 +249,7 @@
 .type_msg {
 	border-top: 1px solid #dfdfdf;
 	position: relative;
+	
 }
 
 .msg_send_btn {
@@ -275,7 +275,7 @@
 }
 
 .msg_history {
-	height: 500px;
+	height: 400px;
 	overflow-y: auto;
 }
 
@@ -310,4 +310,20 @@
 
 .chat-search-icon:hover {
 	cursor: pointer;
+}
+
+#emo_div {
+	width: auto;
+	height: 80px;
+	background: yellow;
+	display: none;
+}
+
+.col-11 {
+	width: 300px;
+}
+
+#message_image {
+	width: 30px;
+	height: 30px;
 }

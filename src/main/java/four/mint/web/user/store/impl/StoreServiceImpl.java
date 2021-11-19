@@ -83,6 +83,11 @@ public class StoreServiceImpl implements StoreService {
 		storeDao.updateCart(vo);
 	}
 
+	@Override
+	public void deleteCart(int id) {
+		storeDao.deleteCart(id);
+	}
+
 	
 
 }

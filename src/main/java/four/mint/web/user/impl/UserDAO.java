@@ -1,9 +1,13 @@
 package four.mint.web.user.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import four.mint.web.user.FollowerVO;
+import four.mint.web.user.FollowingVO;
 import four.mint.web.user.KakaoVO;
 import four.mint.web.user.NaverVO;
 import four.mint.web.user.UserVO;
@@ -73,8 +77,8 @@ public class UserDAO {
 		sqlSessionTemplate.insert("UserDAO.insertKakao", kvo);
 	}
 	
-	public UserVO getUserNickname(String nickname) {
-		return sqlSessionTemplate.selectOne("UserDAO.getUserNickname", nickname);
+	public UserVO getUserFromNickname(String nickname) {
+		return sqlSessionTemplate.selectOne("UserDAO.getUserFromNickname", nickname);
 	}
 	
 	public String getBySns(String snsid) {
@@ -99,6 +103,16 @@ public class UserDAO {
 		
 		sqlSessionTemplate.update("UserDAO.updatePw", vo);
 		
+	public void updateProfile(UserVO uVO) {
+		sqlSessionTemplate.update("UserDAO.updateProfile", uVO);
+	}
+
+	public List<FollowerVO> getFollowers(String nickname) {
+		return sqlSessionTemplate.selectList("FollowDAO.getFollowers", nickname);
+	}
+
+	public List<FollowingVO> getFollowings(String nickname) {
+		return sqlSessionTemplate.selectList("FollowDAO.getFollowings", nickname);
 	}
 
 
