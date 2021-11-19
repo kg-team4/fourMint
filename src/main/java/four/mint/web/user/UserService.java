@@ -17,8 +17,14 @@ public interface UserService {
 	void naverlogin(NaverVO nvo);
 	void kakaologin(KakaoVO kvo);
 	String getBySns(String snsid);
+	
+	
 	void updateAddress(UserVO vo);
 	String getPw(UserVO vo);
 	void updatePw(UserVO vo);
+	void updateDate(String id);
+	void insertDel(String id);
+	void dropMem(String id);
+	void updateSns(UserVO vo);
 	
 }

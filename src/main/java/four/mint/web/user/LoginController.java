@@ -37,8 +37,8 @@ public class LoginController {
 	
 	@RequestMapping(value = "/kakaoLogin.do", method = RequestMethod.POST)
 	public String kakaoLogin(@RequestBody  KakaoVO vo, HttpSession session) throws Exception{
-		
-		if(vo.getGender().equals(null)) {
+		System.out.println("!!!!"+vo.getGender());
+		if(vo.getGender() == null) {
 			vo.setGender(null);
 		}
 		else if(vo.getGender().equals("male")) {
@@ -67,7 +67,19 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(UserVO vo, HttpSession session) {
+		String id = vo.getEmail_id();
+		String pw = vo.getPassword();
+		
+		
 		UserVO user = userService.getUser(vo);
+		
+		if(id.equals(user.getEmail_id())) {
+			if(pw.equals(user.getPassword())) {
+				
+			}
+		}
+		
+		
 		if (user != null) {
 			session.setAttribute("userEmail_id", user.getEmail_id());
 			session.setAttribute("name", user.getName());

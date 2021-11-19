@@ -101,6 +101,28 @@ public class UserDAO {
 		
 	}
 
+	public void updateDate(String id) {
+		System.out.println("===> member UPDATE delete_date");
+		
+		sqlSessionTemplate.update("UserDAO.updateDate", id);
+		
+	}
+	public void insertDel(String id) {
+		System.out.println("===> INSERT deletemeber");
+		
+		sqlSessionTemplate.insert("UserDAO.insertDel", id);
+	}
+	public void dropMem(String id) {
+		System.out.println("===> member DROP");
+		
+		sqlSessionTemplate.delete("UserDAO.dropMem", id);
+	}
+
+	public void updateSns(UserVO vo) {
+		System.out.println("===> INSERT member snsuser");
+		
+		sqlSessionTemplate.update("UserDAO.updateSns", vo);
+	}	
 
 
 }

@@ -50,6 +50,18 @@ public class UserController {
       return "/index/index";
    }
    
+   @RequestMapping(value = "/snsUpdate.do", method = RequestMethod.POST)
+   public String snsUpdate(UserVO vo, HttpSession session) {
+	   System.out.println("sns유저 수정");
+	   session.setAttribute("address2", vo.getAddress2());
+	   session.setAttribute("name", vo.getName());
+	   session.setAttribute("nickname", vo.getNickname());
+	   vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+	   userService.updateSns(vo);
+	   
+	   return "redirect:/profile.do";
+   }
+   
    @RequestMapping(value = "/profile.do", method = RequestMethod.GET)
    public String info() {
       
@@ -155,15 +167,15 @@ public class UserController {
   @ResponseBody
   public int pwCheck(HttpServletRequest request, HttpSession session, UserVO vo) {
 	  String pw = request.getParameter("pw");
-	  System.out.println(pw);
+	  System.out.println("111"+pw);
 	  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
 	  vo.setPassword(userService.getPw(vo));
 	  String realPw = vo.getPassword();
-	  System.out.println(realPw);
+	  System.out.println("222"+realPw);
 	  
 	  
 	  /*
-	   * flag 1 = 비밀번호 일치 2 = 불일
+	   * flag 1 = 비밀번호 일치 2 = 불일치
 	   */
 	  int flag = 0;
 	  if(pw.equals(realPw)) {
@@ -180,17 +192,26 @@ public class UserController {
   @RequestMapping(value = "/updatePw.do")
   public String updatePw(UserVO vo, HttpSession session) {
 	  System.out.println("updatePw");
-	  System.out.println(vo.getPassword());
 	  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
 	 
-	  
-	  System.out.println("!!!!!"+vo.getPassword());
-	  
-	  if(vo.getPassword() != null) {
+	  if(vo.getPassword() != null) 
 		  userService.updatePw(vo);
-	  }
-	  
 	  
 	  return "redirect:profile.do";
+  }
+  
+  @RequestMapping(value = "/secession.do")
+  public String secession(HttpSession session) {
+	  System.out.println("secession");
+	  String id = session.getAttribute("userEmail_id").toString();
+	  
+	  System.out.println(id);
+	  
+	  userService.updateDate(id);
+	  userService.insertDel(id);
+	  userService.dropMem(id);
+	  
+	  session.invalidate();
+	  return "redirect:home.do";
   }
 }

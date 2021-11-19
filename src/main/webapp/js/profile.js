@@ -57,8 +57,6 @@ document.getElementById('popup_open_info').addEventListener('click', function() 
     modal('my_modal');
 });
 
-
-
 //프로필 사진 수정하기
 $(function() {
 		$(".form-input").on('change', function() {
@@ -252,7 +250,6 @@ function updatePw(){
 			return;
 		}
 	}
-	alert('!!!!!!');
 }
 	
 function openNewPw(){
@@ -262,3 +259,171 @@ function openNewPw(){
 	myModal.show();
 }
 
+function pwCheck(){
+	var pw = $("#pw").val();
+	console.log(pw);
+	
+	var mymodal = new bootstrap.Modal(document.getElementById('pwCheck'));
+	$.ajax({
+		type: "POST",
+		url: "/pwCheck.do",
+		data: {pw: pw},
+		success:function(res){
+			console.log(res);
+			if(res == 1){
+				alert("성공");
+				openNewPw();
+				mymodal.hide();
+			}else{
+				alert("비밀번호가 틀렸습니다.");
+			}
+		},
+		error:function(){
+			console.error();
+		}
+	});
+}
+
+function secession(){
+	var pw = $("#cpw").val();
+	console.log(pw);
+	$.ajax({
+		type: "POST",
+		url: "/pwCheck.do",
+		data: {pw: pw},
+		success:function(res){
+			console.log(res);
+			if(res == 1){
+				alert("탈퇴 성공");
+				location.href = "/secession.do";
+			}else{
+				alert("비밀번호가 틀렸습니다.");
+			}
+		},
+		error:function(){
+			console.error();
+		}
+	});
+
+}
+
+function doubleCheck(){
+	var nick = $("#nick").val();
+	var nickCheck = 0;
+	console.log(nick);
+	$.ajax({
+				async : true,
+				data : nick,
+				type : "POST",
+				url : "nickCheck.do",
+				dataType : "JSON",
+				contentType : "application/json; charset=UTF-8",
+				success : function(data) {
+					if (data.nickCheck > 0) {
+						alert("이미 사용중인 닉네임 입니다.");
+					} else if (data.nickCheck == 0) {
+						alert("사용 가능한 닉네임 입니다.");
+						nickCheck = 1;
+					}
+				},
+				error : function(error) {
+					alert("조건에 맞게 닉네임을 입력하세요");
+				}
+	});
+}
+var code = "";
+
+function phoneCheck(){
+		var phone = $("#phone").val();
+		console.log(phone);
+		$.ajax({
+				async : true,
+				data : phone,
+				type : "POST",
+				url : "phoneCheck.do",
+				dataType : "JSON",
+				contentType : "application/json; charset=UTF-8",
+				success : function(data) {
+					if (data.phoneCheck > 0) {
+						alert("이미 등록된 번호 입니다.");
+					} else if (data.phoneCheck == 0) {
+						alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
+						var phone = $("#phone").val();
+						$.ajax({
+							type : "GET",
+							url : "phoneCheck.do?phone=" + phone,
+							cache : false,
+							success : function(data) {
+								if (data == "error") {
+									alert("휴대폰 번호가 올바르지 않습니다.")
+								} else {
+									$("#phone2").attr("disabled", false);
+									$("#phoneCheck2").css("display", "inline-block");
+									$("#phone").attr("readonly", true);
+									code = data;
+									console.log(code);
+								}
+							}
+						});
+					}
+				},
+				error : function(error) {
+					alert("핸드폰 번호를 입력하세요.");
+				}
+			});
+}
+	function numcheck(){
+			
+			if($("#phone2").val() == code){
+				alert("인증번호가 일치합니다.");
+				$("#phone2").attr("disabled",true);
+			}else{
+				alert("인증번호가 일치하지 않습니다.");
+				$("#phoneDoubleCheck").val("false");
+			}
+	}
+	
+function checkBirth() {
+	var birth = $('#birth').val();
+	console.log(birth);
+	var regex = /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/;
+
+	if (birth.match(regex) == null) {
+		alert("생년월일을 정확히 입력해주세요");
+	} else if (birth.match(regex) != null) {
+		alert("성공");
+		$("#birth").attr("disabled", false);
+		$("#birthCheck").css("display", "inline-block");
+		$("#birth").attr("readonly", true);
+	}
+}
+function sns_secession(){
+	
+	  if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+            $.ajax({
+            	url: 'secession.do',
+            	success: function(res){
+					let url = 'home.do';
+					location.replace(url);
+            	},
+            	
+            	fail: function(error){
+            		console.log(error.message)
+            	}
+            })
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }else{
+		window.location="/secession.do";
+	}
+}
+function updateSns(){
+
+}
