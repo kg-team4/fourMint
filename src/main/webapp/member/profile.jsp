@@ -85,7 +85,7 @@ window.onload=function(){
 					<span class="col-0 profile_d_m"
 						style="text-align: right; padding: 0px; width: 100px;">
 						<button type="button"
-							style="font-size: 10px; margin-left: 240px; margin-top: -30px"
+							style="font-size: 10px; margin-left: 240px; margin-top: -30px; box-shadow:none;"
 							class="btn btn--blue-2 btn--radius-2" data-bs-toggle="modal"
 							data-bs-target="#edit_img">edit</button>
 					</span>
@@ -1249,7 +1249,7 @@ window.onload=function(){
 					<div class="modal-content">
 						<br />
 						<div class="modal-title">
-							<b>&nbsp;프로필 사진 수정</b>
+							<b>&nbsp;     &nbsp; 프로필 사진 수정&nbsp;  &nbsp;</b>
 						</div>
 						<hr />
 						<div class="modal-body row" style="padding: 0px 0px 0px 5px;">

@@ -1,5 +1,11 @@
 package four.mint.web.user.servicecenter;
 
-public class ServiceCenterService {
+import java.util.List;
 
+public interface ServiceCenterService {
+
+	List<ServiceCenterVO> getServiceCenterStaticNoticeList();
+	
+	List<ServiceCenterVO> getServiceCenterNormalNoticeList();
+	
 }

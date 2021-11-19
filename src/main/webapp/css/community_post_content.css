@@ -117,12 +117,13 @@ textarea {
 	width:20px;
 	height:20px;
 }
-.btn_good, .btn_police, .btn_reply{
+.btn_good, .btn_police, .btn_reply, .btn_police_comment{
 	border:0;
 	outline:0;	
 	cursor:pointer;
 	background-color: white;
 }
+
 .write_comment_area, .write_reply_area{
 	margin-top:20px;
 	margin-bottom: 20px;
@@ -169,7 +170,6 @@ textarea {
 }
 #re_reply_click_style:hover{
 	cursor: pointer;
-	color:#26e4ca;
 }
 #comment_click_style{
 	font-size:18px;
@@ -177,7 +177,6 @@ textarea {
 }
 #comment_click_style:hover{
 	cursor: pointer;
-	color:#26e4ca;
 }
 .post_writer{
 	border:1px solid lightgray;
@@ -216,15 +215,22 @@ textarea {
 	color: gray;
 	cursor: pointer;
 }
+.btn_delete_comment{
+	background-color:white;
+	border:none;
+	text-decoration: none;
+	color: gray;
+	cursor: pointer;
+	font-size:13.8px;
+	margin-left:8px;
+	margin-top:1.5px;
+	cursor:pointer;
+}
 
-.reply-control>div>a:hover, #delete-reply-form>input[type=submit]:hover
+/* .reply-control>div>a:hover, #delete-reply-form>input[type=submit]:hover
 	{
-	color: #26e4ca;
-}
-
-.reply-control>div>label:hover {
-	color: #ff8900;
-}
+	cursor:pointer;
+} */
 
 .seller {
 	margin-top: 17px;
@@ -251,4 +257,37 @@ textarea {
 	flex: 1;
 	width: 50px;
 	height: 21px;
+}
+/*신고하기 모달*/
+#police_modal {
+	display: none;
+	width: 600px;
+	padding: 20px 60px;
+	background-color: #fefefe;
+	border: 1px solid #888;
+	border-radius: 3px;
+	text-align: left;
+	height:auto;
+}
+#police_modal .modal_close_btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.police_category{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+#modal_police_btn{
+	border-radius: 5px;
+	border:1px solid #26e4ca;
+	background:#26e4ca;
+}
+.modal_cancle_btn{
+	border-radius: 5px;
+	border:1px solid lightgray;
+	background:lightgray;
+}
+.police_click{
+	cursor:pointer;
 }

@@ -20,7 +20,7 @@
 		<div class="best categoroy" style="align-self: flex-start; widdth: 100px; margin-left:200px; margin-top: 50px;">
 			<section class="category_list" style="width: 135px;">
 				<div class="best" style="width:160px; margin-top: 60px;">
-					<h3 style="padding: 0 5%; margin-top: -20px;"></h3>
+					<h3 style="padding: 0 49%; margin-top: -20px;"></h3>
 					<c:forEach var="big" items="${ marketCategoryBig }"> <!-- 카테고리 대분류 리스트 -->
 						<div class="bestBox" style="display: block;">
 							<c:set var="no" value="${kind }" />
@@ -31,27 +31,31 @@
 							<c:choose>
 								<c:when test="${no eq name}">
 									<div class="category_list_title" style="color:#7b7b7b; font-size:20px; margin: 0 10px 6px 0;">
-										<label class="category_big_name" style="color:#7b7b7b;">${big.name}</label>
+											<label class="category_big_name" style="color:#7b7b7b; hover:color:#26e4ca">${big.name}</label>									
 										<c:if test="${big.name ne etc && big.name ne buy}">
 											<input type="button" class="slider" value="▲" style="background: none; border: 0px; color:#26e4ca;">
 										</c:if>
 									</div>
 									<ul class="category_list_middle" style="color:#7b7b7b; font-size:18px; margin: 0 10px 8px 0;">
 										<c:forEach var="middle" items="${ big.middle }">
-											<li style="margin-bottom:3px"><label class="category_middle_name">${ middle.value}</label></li>
+											<li style="margin-bottom:3px">
+												<label class="category_middle_name">${ middle.value}</label>
+											</li>
 										</c:forEach>
 									</ul>
 								</c:when>
 								<c:otherwise>
 									<div class="category_list_title" style="color:#7b7b7b; font-size:20px; margin: 0 10px 6px 0;">
-										<label class="category_big_name" style="color:#7b7b7b;">${big.name}</label>
+										<label class="category_big_name" style="color:#7b7b7b; hover:color:#26e4ca;">${big.name}</label>
 										<c:if test="${big.name ne etc && big.name ne buy}">
 											<input type="button" class="slider" value="▼" style="background: none; border: 0px;color:#26e4ca;">
 										</c:if>
 									</div>
 									<ul class="category_list_middle" style="color:#7b7b7b; font-size:18px; margin: 0 10px 8px 0; display: none;">
 										<c:forEach var="middle" items="${ big.middle }">
-											<li style="margin-bottom:3px"><label class="category_middle_name">${ middle.value}</label></li>
+											<li style="margin-bottom:3px">
+												<label class="category_middle_name">${ middle.value}</label>
+											</li>
 										</c:forEach>
 									</ul>
 								</c:otherwise>
@@ -74,7 +78,7 @@
 		<c:if test="${ listCount > 0 }">
 			<div class="best" style="width: 1000px;">
 				<br> <br> <br>
-				<h1 style="padding: 0 5%;">${kind }</h1>
+				<h2 style="padding: 0 49%;">${kind }</h2>
 				<br>
 				<ul class="bestBox" style="margin-left: 100px;">
 					<!-- 마켓 글 목록 -->
@@ -91,9 +95,10 @@
 										<p>
 											<span class="red">${market.category_middle }</span> 
 										</p>
-										<p>
-											<span id="product_name">${market.product_name }</span> <span>${market.product_price }원</span>
-										</p>
+										<div style="display:flex;">
+											<div id="product_name">${market.product_name }</div>
+											<div id="product_price">${market.product_price }원</div>
+										</div>
 									</li>
 								</c:if>
 							</c:when>
@@ -105,9 +110,10 @@
 										<p>
 											<span class="red">${market.category_middle }</span> 
 										</p>
-										<p>
-											<span>${market.product_name }</span> <span>${market.product_price }원</span>
-										</p>
+										<div style="display:flex;">
+											<div id="product_name">${market.product_name }</div>
+											<div id="product_price">${market.product_price }원</div>
+										</div>
 									</li>
 								</c:if>
 							</c:otherwise>
@@ -244,6 +250,31 @@
 			})//ajax
 		});//click
 	});//ready
+	
+	// 카테고리(label) 클릭 시 색상 변화 
+	/* $(function(){
+		$(".category_middle_name").click(function(){
+			$(this).css("color","#26e4ca");
+		});
+	}); */
+	
+	
+	
+/* 	const cateWrap = document.querySelector('.category_list_middle');
+	
+	function select(ulEl, liEl){
+		Array.from(ulEl.children).forEach(
+			v => v.classList.remove('selected')		
+		)
+		if(liEl) liEl.classList.add('selected');
+	}
+	cateWrap.addEventListener('click',e => {
+		const selected = e.target;
+		select(cateWrap, selected);
+	})
+	 */
+	//https://ddorang-d.tistory.com/122 참고
+	
 </script>
 
 

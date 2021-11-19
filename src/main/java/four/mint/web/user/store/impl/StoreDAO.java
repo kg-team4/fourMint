@@ -22,7 +22,7 @@ public class StoreDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public List<StoreVO> getStoreList(HttpServletRequest request, PageVO vo) {
-		System.out.println("====> marketList SELETE");
+		System.out.println("====> marketList SELECT");
 
 		return sqlSessionTemplate.selectList("StoreDAO.getStoreList", vo);
 	}

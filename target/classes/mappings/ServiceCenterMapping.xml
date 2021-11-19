@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ServiceCenterDAO">
+	
+	<resultMap type="serviceCenter" id="serviceCenterResult">
+		<result property="notice_seq" column="NOTICE_SEQ"/>
+		<result property="status" column="STATUS"/>
+		<result property="notice_title" column="NOTICE_TITLE"/>
+		<result property="notice_content" column="NOTICE_CONTENT"/>
+		<result property="date" column="DATE"/>
+	</resultMap>
+	
+	<select id="getServiceCenterStaticNoticeList" resultType="serviceCenter">
+		SELECT * FROM notice WHERE status = 1 ORDER BY date DESC
+	</select>
+	
+	<select id="getServiceCenterNormalNoticeList" resultType="serviceCenter">
+		SELECT * FROM notice WHERE status = 0 ORDER BY notice_seq DESC
+	</select>
+</mapper>

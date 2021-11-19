@@ -20,7 +20,7 @@
           준비 : post_title(글제목), used_cate_num(카테고리 번호), used_price(가격), used_content(내용) 
     	-->
 
-		<form action="marketSell.do" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
+		<form id="frm" action="marketSell.do" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
 
 			<!-- board_no 값 hidden으로 넘겨주기  -->
 			<div class="used_container">
@@ -31,7 +31,7 @@
 						상품이미지 <span class="must">*</span>
 					</div>
 					<div class="used_photo_img">
-						<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" oninput="preview();"> 
+						<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" oninput="preview();" required="required"; autofocus="" > 
 						<br> 
 						<img class="preview-wrap" src="#" alt="등록할 상품 사진을 넣어주세요." onerror="this.style.display='none'"/> 
 						<br>
@@ -45,7 +45,7 @@
 				<!-- 제목 입력 -->
 				<div class="used_title">
 					<div class="used_text">
-						제목 <span class="must">*</span> <input class="form-title" type="text" name="product_name" placeholder="상품 제목을 입력해주세요." oninput="checkTitle();">
+						제목 <span class="must">*</span> <input class="form-title" type="text" name="product_name" placeholder="상품명을 입력해주세요." oninput="checkTitle();" required="required">
 						<div id="titleInfo"></div>
 						<div class="titleHeight"></div>
 					</div>
@@ -56,7 +56,7 @@
 				<div class="used_cate">
 					<div class="used_text">
 						카테고리 <span class="must">*</span> 
-						<select id="cate_sel" class="used_cate_style" name="category_big">
+						<select id="cate_sel" class="used_cate_style" name="category_big" required="required">
 							<option value="">카테고리 선택</option>
 							<c:forEach var="big" items="${ marketCategoryBig }">
 								<option value="${big.name }">${big.name }</option>
@@ -81,7 +81,7 @@
 				<!-- 가격 입력 -->
 				<div class="used_price">
 					<div class="used_text">
-						가격 <span class="must">*</span> <input class="form-price" type="text" name="product_price" placeholder="숫자만 입력해주세요" oninput="checkPrice();">&nbsp;원
+						가격 <span class="must">*</span> <input class="form-price" type="text" name="product_price" placeholder="숫자만 입력해주세요" oninput="checkPrice();" required="required">&nbsp;원
 					</div>
 					<div id="priceInfo"></div>
 					<div class="titleHeight"></div>
@@ -97,7 +97,7 @@
 						</div>
 						<div class="content">
 							<div>
-								<textarea class="first" name="product_content"></textarea>
+								<textarea class="first" name="product_content" required="required"></textarea>
 								<div align="right" class="countNum">
 									<span class="letter-count">0</span>/2000
 								</div>
@@ -114,7 +114,7 @@
 			<input type="hidden" value="${address2 }" />
 			<input type="hidden" value="${nickname }" />
 			<div align="right" class="form-input">
-				<input class="form-btn" type="submit" value="등록하기">
+				<input class="form-btn" type="submit" onclick="blank_check()" value="등록하기">
 			</div>
 		 <br><br>
 		</form>
@@ -195,6 +195,33 @@
 			$(".cate_all").hide();
 		}
 	});
+	
+	//상품 등록글 작성 시 빈 칸 확인
+	/* var blank_check = function(){
+		
+           if($(".form-input").val()==""){
+        	   alert("등록할 상품 사진 파일을 선택해주세요.");
+        	   return false;
+           }else if($(".form-title").val()==null){
+        	   alert("등록할 상품명을 작성해주세요.");
+        	   return false;
+           }else if($(".form-title").val()==""){
+        	   alert("등록할 상품명을 작성해주세요.");
+        	   return false;
+           }else if($("#cate_sel").val()=="카테고리 선택"){
+        	   alert("등록할 상품의 카테고리를 선택해주세요.");
+        	   return false;
+           }else if($(".form-price").val()== ""){
+        	   alert("등록할 상품의 가격을 선택해주세요.");
+        	   return false;
+           }else if($(".first").val()== ""){
+        	   alert("등록할 상품에 대한 내용을 작성해주세요.");
+        	   return false;
+           } 	
+		
+	} */
+	
+	
 
 </script>
 
