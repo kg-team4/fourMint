@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="../css/payment.css" />
+
 <jsp:include page="../template/header.jsp"></jsp:include>
 <style>
 .title_box {
@@ -93,7 +94,7 @@
 									<div class="tbl_cell w200" style="width: 100px;">
 										<div class="prd_cnt" style="display: flex;">
 											<input type="hidden" value="${cart.cart_id }" /> 
-											<input type="text" style="width: 30px; height: 28px" value="${cart.amount }"> 
+											<input class="amount" name="amount" type="text" style="width: 30px; height: 28px" value="${cart.amount }"> 
 											<input type="button" class="plus" style="padding: 0; width: 13px; height: 13px" value="+" /> 
 											<input type="button" class="minus" style="padding: 0; width: 13px; height: 13px" value="-" />
 										</div>
@@ -118,13 +119,16 @@
 									</div>
 									<div class="tbl_cell w150">
 										<div class="btn_group">
-											<button type="button" class="btnSmall wGreen" name="btn_buy" data-attr="장바구니^장바구니바로구매^바로구매">
-												<span data-attr="장바구니^장바구니바로구매^바로구매">바로구매</span>
+											<button type="button" class="btnSmall wGreen buyBtn" name="btnBuy">
+												<span>바로구매</span>
 											</button>
-											<button type="button" class="btnSmall wGray delete" name="btnDelete" data-attr="장바구니^장바구니상품삭제^삭제">
-												<span data-attr="장바구니^장바구니상품삭제^삭제">삭제</span>
+											<input type="hidden" name="cart_id" value="${cart.cart_id }" />
+											<input type="hidden" name="priceAll" value="${price }" />
+											<input type="hidden" name="delivery" value="1" />
+											<button type="button" class="btnSmall wGray delete" name="btnDelete">
+												<span>삭제</span>
 											</button>
-											<input type="hidden" value="${cart.cart_id }" />
+											<input type="hidden" name="cart_id" value="${cart.cart_id }" />
 										</div>
 									</div>
 								</div>
@@ -156,8 +160,8 @@
 	</form>
 </div>
 <div class="order_btn_area order_cart">
-	<button type="button" class="btnOrangeW" name="partOrderBtn" onclick="location.href='order.do'" data-attr="장바구니^주문유형^선택주문">선택주문</button>
-	<a href="order.do?priceAll=${priceAll}&delivery=${delivery}" ><button type="button" class="btnOrange" name="allOrderBtn" data-attr="장바구니^주문유형^전체주문">전체주문</button></a>
+	<button type="button" class="btnOrangeW" name="partOrderBtn" onclick="location.href='order.do'">선택주문</button>
+	<a href="order.do?priceAll=${priceAll}&delivery=${delivery}" ><button type="button" class="btnOrange" name="allOrderBtn">전체주문</button></a>
 </div>
 <!-- 2017-02-23 수정 : TOP 바로가기 버튼 추가 -->
 <div id="directTop">
@@ -170,7 +174,17 @@
 		<span></span>
 	</button>
 </div>
+
 <script>
+	$(".buyBtn").on('click', function() {
+		var id = $(this).next().val();
+		var priceAll = $(this).next().next().val();
+		var delivery = $(this).next().next().next().val();
+		var amount = $(this).parent().parent().prev().prev().prev().find(".amount").val(); 
+		
+		location.href="order.do?id="+id+"&priceAll="+priceAll+"&delivery="+delivery+"&amount="+amount;
+	});
+
 	$(".delete").on('click', function() {
 		var id = $(this).next().val();
 		$.ajax({
@@ -223,11 +237,11 @@
 	$(".plus").on('click', function() {
 		var amount = $(this).prev().val();
 		var id = $(this).prev().prev().val();
-		
+
 		var checkboxValues = new Array();
 		$("input[name='checkBox']:checked").each(function() {
-	        checkboxValues.push($(this).val());
-	    });
+			checkboxValues.push($(this).val());
+		});
 
 		$.ajax({
 			url : 'countUp.do',
@@ -251,16 +265,16 @@
 			}//error
 		})//ajax
 	});//click
-	
+
 	$(".minus").on('click', function() {
 		var amount = $(this).prev().prev().val();
 		var id = $(this).prev().prev().prev().val();
-		
+
 		var checkboxValues = [];
 		$("input[name='checkBox']:checked").each(function() {
-	        checkboxValues.push($(this).val());
-	    });
-		
+			checkboxValues.push($(this).val());
+		});
+
 		$.ajax({
 			url : 'countDown.do',
 			type : "post",
@@ -283,7 +297,5 @@
 			}//error
 		})//ajax
 	});//click
-	
-	
 </script>
 <%@include file="../template/footer.jsp"%>

@@ -738,8 +738,8 @@ table {
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	padding: 20px;
-	padding-left: 50px;
-	padding-right: 50px;
+	padding-left: 20px;
+	padding-right: 20px;
 	overflow: scroll;
 	overflow-x: hidden;
 }

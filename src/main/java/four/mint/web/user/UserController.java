@@ -25,15 +25,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
+import four.mint.web.user.community.CommunityBoardService;
+import four.mint.web.user.community.CommunityBoardVO;
 import four.mint.web.user.market.MarketService;
 import four.mint.web.user.market.MarketVO;
-
-import four.mint.web.user.impl.UserDAO;
 
 @Controller
 public class UserController {
 
-  @Autowired
+	@Autowired
 	private JavaMailSenderImpl mailSender;
 
 	@Autowired
@@ -44,6 +44,9 @@ public class UserController {
 	
 	@Autowired
 	private FollowService followService;
+	
+	@Autowired
+	private CommunityBoardService communityBoardService;
 
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -96,6 +99,13 @@ public class UserController {
 		/* 판매 등록한 게시글 리스트 */
 		List<MarketVO> marketList = marketService.getMarketNickname(uVO.getNickname());
 		request.setAttribute("market", marketList);
+		
+		/* 등록한 커뮤니티 게시글 리스트 */
+		List<CommunityBoardVO> communityList = communityBoardService.getCommunityListMe(uVO.getNickname());
+		request.setAttribute("community", communityList);
+		
+		/* 등록한 커뮤니티 댓글 리스트 */
+		
 		
 		return "/member/profile";
 	}
@@ -204,8 +214,8 @@ public class UserController {
 		}
 		return num;
 	}
-  
-  
+
+	
    @RequestMapping(value = "/updateAddr.do", method = RequestMethod.POST)
    @ResponseBody
    public String updateAddr(HttpServletRequest request, HttpSession session ,UserVO vo ) {

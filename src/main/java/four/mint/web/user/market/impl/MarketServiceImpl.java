@@ -109,6 +109,11 @@ public class MarketServiceImpl implements MarketService {
 	public void updateViews(int market_seq) {
 		marketDao.updateViews(market_seq);
 	}
+
+	@Override
+	public void deleteMarket(int seq) {
+		marketDao.deleteMarket(seq);
+	}
 	
 	
 }

@@ -116,6 +116,7 @@
 								<c:if test="${content.product_price < 50000 }">
 									<input type="hidden" name="delivery" value="1" />
 								</c:if>
+								<input type="hidden" name="seq" value="${content.store_seq }" />
 								<input type="submit" class="delete-button cursor" value="바로구매" />
 							</form>
 						</div>
@@ -252,25 +253,6 @@
 								<span id="reply-member-form" for="11">
 								<input type="checkbox" id="11" value="1" onchange="">우쭈쭈동동</span>
 								
-								<!-- <div class="info11 reply-tab-design">
-									<div>
-										<a href="../member/info.jsp?no=1">회원 페이지</a>
-									</div>
-									<form action="../member/manner.do" method="post">
-										<input type="hidden" name="this_member_no" value="1">
-										좋아요 누를 회원
-										<input type="hidden" name="push_member_no" value="이름">
-										좋아요를 누른 회원
-										<input type="hidden" name="path" value="asd?asd"> <input type="hidden" name="good" value=""> <input type="submit" value="좋아요" class="submit-button">
-									</form>
-									<form action="../member/manner.do" method="post">
-										<input type="hidden" name="this_member_no" value="1">
-										좋아요 누를 회원
-										<input type="hidden" name="push_member_no" value="이름">
-										좋아요를 누른 회원
-										<input type="hidden" name="path" value="asd?asd"> <input type="hidden" name="bad" value=""> <input type="submit" value="싫어요" class="submit-button">
-									</form>
-								</div> -->
 								<span class="right-float font15 gray-font"> 2021.11.09 </span>
 							</div>
 							<div class="font15 reply-content-form">

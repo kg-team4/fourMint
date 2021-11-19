@@ -48,16 +48,20 @@
 	</select>
 	
 	<select id="getKindList" resultType="market" parameterType="four.mint.web.user.board.common.SearchVO">
-		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM marketboard WHERE category_big = #{kind} ORDER BY market_seq DESC) AS b WHERE rnum >= (#{rnum}-((#{page}-1)*9+8)) AND rnum <= (#{rnum}-((#{page}-1)*9))]]> 
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM marketboard WHERE category_big = #{kind} ORDER BY market_seq DESC) AS c) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9);]]> 
 	</select>
 	
 	<select id="getKindTwoList" resultType="market" parameterType="four.mint.web.user.board.common.SearchVO">
-		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM marketboard WHERE category_big = #{kind} AND category_middle = #{kindTwo} ORDER BY market_seq DESC) AS b WHERE rnum >= (#{rnum}-((#{page}-1)*9+8)) AND rnum <= (#{rnum}-((#{page}-1)*9))]]> 
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM marketboard WHERE category_big = #{kind} AND category_middle = #{kindTwo} ORDER BY market_seq DESC) AS c ) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9)]]> 
 	</select>
 	
 	<select id="updateViews" parameterType="int">
 		UPDATE marketBoard SET views = views +1 where market_seq = ${market_seq}
 	</select>
+	
+	<delete id="deleteMarket" parameterType="int">
+		DELETE FROM marketboard WHERE market_seq = #{seq}
+	</delete>
 	
 	<resultMap type="categoryBig" id="categoryBigResult">
 		<result property="num" column="NUM" />

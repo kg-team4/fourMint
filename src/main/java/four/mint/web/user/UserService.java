@@ -2,6 +2,8 @@ package four.mint.web.user;
 
 import java.util.List;
 
+import four.mint.web.user.board.common.ReportVO;
+
 public interface UserService {
 
 	void insertUser(UserVO vo);
@@ -27,5 +29,8 @@ public interface UserService {
 	//follow
 	List<FollowerVO> getFollowers(String nickname);
 	List<FollowingVO> getFollowings(String nickname);
+	void insertReport(ReportVO rVO);
+	void updateReport(String reported);
+	String getPassword(String email_id);
 	
 }

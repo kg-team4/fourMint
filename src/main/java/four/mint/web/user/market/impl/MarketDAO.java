@@ -89,4 +89,8 @@ public class MarketDAO {
 	public void updateViews(int market_seq) {
 		sqlSessionTemplate.update("MarketDAO.updateViews", market_seq);
 	}
+
+	public void deleteMarket(int seq) {
+		sqlSessionTemplate.delete("MarketDAO.deleteMarket", seq);
+	}
 }

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- <%
 if (request.getAttribute("result") != null) {
    int result = (Integer) request.getAttribute("result");
@@ -33,8 +34,7 @@ if (request.getAttribute("result") != null) {
 }
 %> --%>
 <title>마이페이지</title>
-<link rel="shortcut icon" type="image/x-icon"
-	href="../img/logo_icon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
 <link rel="stylesheet" href="../css/reset.css">
 <jsp:include page="./index.jsp"></jsp:include>
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -44,7 +44,7 @@ if (request.getAttribute("result") != null) {
 <link href="../css/profile.css" rel="stylesheet">
 
 <article>
-<script>
+	<script>
 
 var sns = ${sns};
 window.onload=function(){
@@ -60,51 +60,36 @@ window.onload=function(){
 	<%-- <jsp:include page="./navbar.jsp">
       <jsp:param value="profile" name="thisPage" />
    </jsp:include> --%>
-	<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-	<br />
-
+	<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 	<div class="container bootstrap snippet" style="padding-left: 100px">
 		<div class="row">
-
 			<div class="col-sm-3">
 				<!--left col-->
 				<div class="nick-div">
 					<h5>
-						<b><span style="color: #26e4ca;">${user.nickname}<%-- ${uto.nick } --%>&nbsp;
+						<b><span style="color: #26e4ca;">${user.nickname}&nbsp;
 						</span>님의 프로필</b>
 					</h5>
 				</div>
 				<div class="text-center row">
 					<div class="box col-1">
 						<div>
-							<img
-								src="${user.profile }"
-								class="avatar img-circle img-profile" alt="avatar">
+							<img src="${user.profile }" class="avatar img-circle img-profile" alt="avatar">
 						</div>
 					</div>
-					<span class="col-0 profile_d_m"
-						style="text-align: right; padding: 0px; width: 100px;">
-						<button type="button"
-							style="font-size: 10px; margin-left: 240px; margin-top: -30px; box-shadow:none;"
-							class="btn btn--blue-2 btn--radius-2" data-bs-toggle="modal"
-							data-bs-target="#edit_img">edit</button>
+					<span class="col-0 profile_d_m" style="text-align: right; padding: 0px; width: 100px;">
+						<button type="button" style="font-size: 10px; margin-left: 240px; margin-top: -30px" class="btn btn--blue-2 btn--radius-2" data-bs-toggle="modal" data-bs-target="#edit_img">edit</button>
 					</span>
 				</div>
 				<br>
-
 				<ul class="list-group">
 					<li class="list-group-item text-muted">${user.nickname }&nbsp;&nbsp;</li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span>
-						열매</li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>팔로잉&nbsp;&nbsp;</strong></span>
-						${follow.following }</li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>팔로워&nbsp;&nbsp;</strong></span>
-						${follow.follower }</li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>상품판매횟수&nbsp;&nbsp;</strong></span>
-						${boardCount}</li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span> 열매</li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>팔로잉&nbsp;&nbsp;</strong></span> ${follow.following }</li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>팔로워&nbsp;&nbsp;</strong></span> ${follow.follower }</li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>상품판매횟수&nbsp;&nbsp;</strong></span> ${boardCount}</li>
 				</ul>
 				<div class="col-6 offset-2 div_modify_profile">
-
 					<div id="my_modal">
 						<div>
 							<div id="my_info_edit_title">나의 정보수정</div>
@@ -228,72 +213,45 @@ window.onload=function(){
 			<div class="col-sm-9" style="padding-left: 150px">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item" role="presentation">
-						<button class="nav-link active" id="lan" data-bs-toggle="tab"
-							data-bs-target="#lantrip" type="button" role="tab"
-							aria-controls="home" aria-selected="true">나의 중고상점</button>
+						<button class="nav-link active" id="lan" data-bs-toggle="tab" data-bs-target="#lantrip" type="button" role="tab" aria-controls="home" aria-selected="true">나의 중고상점</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pic" data-bs-toggle="tab"
-							data-bs-target="#Picture" type="button" role="tab"
-							aria-controls="profile" aria-selected="false">나의 중고거래</button>
+						<button class="nav-link" id="pic" data-bs-toggle="tab" data-bs-target="#Picture" type="button" role="tab" aria-controls="profile" aria-selected="false">나의 중고거래</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="acc" data-bs-toggle="tab"
-							data-bs-target="#accom" type="button" role="tab"
-							aria-controls="contact" aria-selected="false">나의 스토어거래</button>
+						<button class="nav-link" id="acc" data-bs-toggle="tab" data-bs-target="#accom" type="button" role="tab" aria-controls="contact" aria-selected="false">나의 스토어거래</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="sho" data-bs-toggle="tab"
-							data-bs-target="#shop" type="button" role="tab"
-							aria-controls="contact" aria-selected="false">나의 커뮤니티</button>
+						<button class="nav-link" id="sho" data-bs-toggle="tab" data-bs-target="#shop" type="button" role="tab" aria-controls="contact" aria-selected="false">나의 커뮤니티</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="hii" data-bs-toggle="tab"
-							data-bs-target="#heart_product" type="button" role="tab"
-							aria-controls="contact" aria-selected="false">나의 관심상품</button>
+						<button class="nav-link" id="hii" data-bs-toggle="tab" data-bs-target="#heart_product" type="button" role="tab" aria-controls="contact" aria-selected="false">나의 관심상품</button>
 					</li>
 				</ul>
-
-
 				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade 
-					show active" id="lantrip" role="tabpanel"
-						aria-labelledby="home-tab">
+					<div class="tab-pane fade show active" id="lantrip" role="tabpanel" aria-labelledby="home-tab">
 						<div class="store_review_all">
 							<br> <br>
 							<p>
-								<span><strong>상점후기 &nbsp;&nbsp;</strong></span> <span
-									style="color: #26e4ca">17</span>
+								<span><strong>상점후기 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">17</span>
 							</p>
-
 							<div class="store_review_grid">
 								<div class="store_review">
 									<table width="100%" height="140">
 										<tr>
 											<td width="20%" rowspan="2">
 												<div id="img_box">
-													<a id="store_review_img_area" href="#"> <img
-														id="store_review_img" src="../img/character_sample2.jpg"
-														width="100" height="100" alt="상점이미지">
+													<a id="store_review_img_area" href="#"> <img id="store_review_img" src="../img/character_sample2.jpg" width="100" height="100" alt="상점이미지">
 													</a>
 												</div>
 											</td>
-											<td style="font-size: 20px" width="10%" height="40px"><a
-												href="#" style="color: #26e4ca">닉네임</a></td>
+											<td style="font-size: 20px" width="10%" height="40px"><a href="#" style="color: #26e4ca">닉네임</a></td>
 											<td width="30%">
-
 												<div class="">
-													<a class="" href="#"> <img src="../img/star_rank.png"
-														width="15" height="14" alt="별점이미지"> <img
-														src="../img/star_rank.png" width="15" height="14"
-														alt="별점이미지"> <img src="../img/star_rank.png"
-														width="15" height="14" alt="별점이미지"> <img
-														src="../img/star_rank.png" width="15" height="14"
-														alt="별점이미지"> <img src="../img/star_rank.png"
-														width="15" height="14" alt="별점이미지">
+													<a class="" href="#"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png"
+														width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
 													</a>
 												</div>
-
 											</td>
 											<td></td>
 											<td style="font-size: 15px" width="10%">
@@ -303,42 +261,29 @@ window.onload=function(){
 										<tr>
 											<td align="left" colspan="4" style="font-size: 15px">
 												<button id="btn_sold_product_name">
-													&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png"
-														width="6" height="10" alt="화살표 아이콘">&nbsp;
+													&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
 												</button>
-
-												<div id="sold_product_review">빠른 쿨거래 해주셔서 너무
-													좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
+												<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
 											</td>
 										</tr>
 									</table>
 									<br>
 									<hr>
 								</div>
-
 								<br> <br> <br>
 								<div class="store_review">
 									<table width="100%" height="120">
 										<tr height="30">
-											<td width="20%" rowspan="2"><a
-												id="store_review_img_area" href="#">
+											<td width="20%" rowspan="2"><a id="store_review_img_area" href="#">
 													<div id="img_box">
-														<img id="store_review_img"
-															src="../img/character_sample1.jpg" alt="상점이미지">
+														<img id="store_review_img" src="../img/character_sample1.jpg" alt="상점이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 20px" width="10%"><a href="#"
-												style="color: #26e4ca">닉네임</a></td>
+											<td style="font-size: 20px" width="10%"><a href="#" style="color: #26e4ca">닉네임</a></td>
 											<td width="30%"><a class="" href="#">
 													<div class="">
-														<img src="../img/star_rank.png" width="15" height="14"
-															alt="별점이미지"> <img src="../img/star_rank.png"
-															width="15" height="14" alt="별점이미지"> <img
-															src="../img/star_rank.png" width="15" height="14"
-															alt="별점이미지"> <img src="../img/star_rank.png"
-															width="15" height="14" alt="별점이미지"> <img
-															src="../img/star_rank.png" width="15" height="14"
-															alt="별점이미지">
+														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14"
+															alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
 													</div>
 											</a></td>
 											<td></td>
@@ -349,30 +294,22 @@ window.onload=function(){
 										<tr>
 											<td align="left" colspan="4" style="font-size: 15px">
 												<button id="btn_sold_product_name">
-													&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png"
-														width="6" height="10" alt="화살표 아이콘">&nbsp;
+													&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
 												</button>
-
-												<div id="sold_product_review">빠른 쿨거래 해주셔서 너무
-													좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
+												<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
 											</td>
 										</tr>
 									</table>
 									<br>
 									<hr>
 								</div>
-
 							</div>
-
 							<br> <br> <br>
-
-
 							<div class="following_all">
 								<hr>
 								<br> <br>
 								<p>
-									<span><strong>팔로잉 &nbsp;&nbsp;</strong></span> <span
-										style="color: #26e4ca">${follow.following }</span>
+									<span><strong>팔로잉 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${follow.following }</span>
 								</p>
 								<div class="following_all_grid">
 									<c:forEach var="followings" items="${following }">
@@ -387,26 +324,17 @@ window.onload=function(){
 													<a class="" href="#" style="color: #26e4ca">${followings.nickname }</a>
 												</div>
 												<div>
-													<span class="">상품</span> <span><a class="" href=#
-														style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span>
-													<span><a class="" href="#" style="color: #26e4ca">${followings.following }</a></span>
+													<span class="">상품</span> <span><a class="" href=# style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span> <span><a class="" href="#" style="color: #26e4ca">${followings.following }</a></span>
 												</div>
 											</div>
 											<a class="" href="#">
 												<div class="">
-													<img src="../img/star_rank.png" width="15" height="14"
-														alt="별점이미지"> <img src="../img/star_rank.png"
-														width="15" height="14" alt="별점이미지"> <img
-														src="../img/star_rank.png" width="15" height="14"
-														alt="별점이미지"> <img src="../img/star_rank.png"
-														width="15" height="14" alt="별점이미지"> <img
-														src="../img/star_rank.png" width="15" height="14"
-														alt="별점이미지">
+													<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14"
+														alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
 												</div>
 											</a> <a class="" href="#">
 												<button id="btn_sold_product_name">
-													&nbsp;팔로우 <img src="../img/following_icon.png" width="15"
-														height="10" alt="팔로잉아이콘">&nbsp;
+													&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
 												</button>
 											</a>
 										</div>
@@ -414,20 +342,18 @@ window.onload=function(){
 								</div>
 							</div>
 							<br> <br> <br>
-
 							<div class="follower_all">
 								<hr>
 								<br> <br>
 								<p>
-									<span><strong>팔로워 &nbsp;&nbsp;</strong></span> <span
-										style="color: #26e4ca">${follow.follower }</span>
+									<span><strong>팔로워 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${follow.follower }</span>
 								</p>
 								<div class="following_all_grid">
 									<c:forEach var="followers" items="${follwer }">
 										<div class="following">
 											<a class="following_img_area" href="#"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 												<div id="following_img_box">
-													<img id="following_img"	src="${followers.profile }" alt="상점이미지">
+													<img id="following_img" src="${followers.profile }" alt="상점이미지">
 												</div>
 											</a>
 											<div class="store_review_text_area">
@@ -435,26 +361,17 @@ window.onload=function(){
 													<a class="" href="#" style="color: #26e4ca">${followers.nickname }</a>
 												</div>
 												<div>
-													<span class="">상품</span> <span><a class="" href="#" style="color: #26e4ca">20</a>
-													&nbsp;|&nbsp; 
-													</span> <span class="">팔로워</span>
-													<span><a class="" href="#" style="color: #26e4ca">${followers.follower }</a></span>
+													<span class="">상품</span> <span><a class="" href="#" style="color: #26e4ca">20</a> &nbsp;|&nbsp; </span> <span class="">팔로워</span> <span><a class="" href="#" style="color: #26e4ca">${followers.follower }</a></span>
 												</div>
 											</div>
 											<a class="" href="#">
 												<div class="">
-													<img src="../img/star_rank.png" width="15" height="14"
-														alt="별점이미지"> <img src="../img/star_rank.png"
-														width="15" height="14" alt="별점이미지"> <img
-														src="../img/star_rank.png" width="15" height="14"
-														alt="별점이미지"> <img src="../img/star_rank.png"
-														width="15" height="14" alt="별점이미지"> <img
-														src="../img/star_rank.png" width="15" height="14"
-														alt="별점이미지">
+													<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14"
+														alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
 												</div>
 											</a> <a class="" href="#">
 												<button id="btn_sold_product_name">
-													&nbsp;팔로우 <img src="../img/following_icon.png" width="15"	height="10" alt="팔로잉아이콘">&nbsp;
+													&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
 												</button>
 											</a>
 										</div>
@@ -464,41 +381,34 @@ window.onload=function(){
 						</div>
 					</div>
 					<!--나의 중고거래  -->
-					<div class="tab-pane fade" id="Picture" role="tabpanel"
-						aria-labelledby="profile-tab">
+					<div class="tab-pane fade" id="Picture" role="tabpanel" aria-labelledby="profile-tab">
 						<br>
-
 						<div class="sell_list_all">
 							<br>
 							<p>
-								<span><strong>판매내역 &nbsp;&nbsp;</strong></span> <span
-									style="color: #26e4ca">${boardCount }</span>
+								<span><strong>판매내역 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${boardCount }</span>
 							</p>
 							<div class="sell_list_grid">
 								<c:forEach var="market" items="${market }">
 									<div class="sell_list">
 										<table width="100%" height="120">
 											<tr height="30">
-												<td align="left" style="font-size: 15px">&nbsp;
-													${market.date }</td>
+												<td align="left" style="font-size: 15px">&nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${market.date }" /></td>
 												<td width="70%"></td>
 											</tr>
 											<tr>
 												<td rowspan="3"><a id="store_review_img_area" href="#">
 														<div id="product_img_box">
-															<img id="sell_product_img"
-																src="${market.url }" alt="판매상품이미지">
+															<img id="sell_product_img" src="${market.url }" alt="판매상품이미지">
 														</div>
 												</a></td>
-												<td style="font-size: 18px"><a href="#"
-													style="color: #26e4ca">${market.product_name }</a></td>
+												<td style="font-size: 18px"><a href="#" style="color: #26e4ca">${market.product_name }</a></td>
 											</tr>
 											<tr>
-												<td style="font-size: 15px">${market.product_price } &nbsp;원</td>
+												<td style="font-size: 15px">${market.product_price }&nbsp;원</td>
 											</tr>
 											<tr>
-												<td>
-													<c:choose>
+												<td><c:choose>
 														<c:when test="${market.status eq 1}">
 															<button id="btn_sell_product_state">판매중</button>
 														</c:when>
@@ -506,10 +416,8 @@ window.onload=function(){
 															<button id="btn_sold_product_state">판매완료</button>
 														</c:otherwise>
 													</c:choose>
-													<button class="btn_sell_product_edit">글 수정</button>
-												</td>
+													<button class="btn_sell_product_edit">글 수정</button></td>
 											</tr>
-	
 										</table>
 										<br>
 										<hr>
@@ -517,134 +425,82 @@ window.onload=function(){
 								</c:forEach>
 								<br>
 							</div>
-
 						</div>
-
-
 						<br> <br> <br>
 						<div class="sold_list_all">
 							<hr>
 							<br> <br>
 							<p>
-								<span><strong>구매내역 &nbsp;&nbsp;</strong></span> <span
-									style="color: #26e4ca">28</span>
+								<span><strong>구매내역 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">28</span>
 							</p>
 							<div class="sell_list_grid">
 								<div class="sell_list">
 									<table width="100%" height="120">
 										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp;
-												2021.11.04</td>
+											<td align="left" style="font-size: 15px">&nbsp; 2021.11.04</td>
 											<td width="70%"></td>
 										</tr>
 										<tr>
 											<td rowspan="3"><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="sell_product_img"
-															src="../img/store_recommand_product03.png" alt="판매상품이미지">
+														<img id="sell_product_img" src="../img/store_recommand_product03.png" alt="판매상품이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 18px"><a href="#"
-												style="color: gray">올인원 비건 샴푸볼 - 어성초 그린</a></td>
+											<td style="font-size: 18px"><a href="#" style="color: gray">올인원 비건 샴푸볼 - 어성초 그린</a></td>
 										</tr>
 										<tr>
 											<td style="font-size: 15px; color: gray">17,000 &nbsp;원</td>
 										</tr>
 										<tr>
 											<td>
-												<button id="btn_write_review" type="button"
-													>거래후기쓰기</button>
-												<button id="btn_see_review" type="button"
-													onclick="location.href='#' ">작성후기보기</button>
+												<button id="btn_write_review" type="button">거래후기쓰기</button>
+												<button id="btn_see_review" type="button" onclick="location.href='#' ">작성후기보기</button>
 											</td>
 										</tr>
-
 									</table>
 									<br>
-									<hr>		
+									<hr>
 								</div>
-								
-								
-								
 								<div id="police_modal">
-						<div>
-
-							<div style="font-size:20px">✍&nbsp;거래후기 작성하기&nbsp;✍</div>
-							<hr>
-							
-							
-							<div>
-							<div class="police_category">
-								<div><span style="color: #26e4ca">거래(판매자)</span> 님과의 거래에 평점 남기기</div>
-								
-								<div class="rating">
-									<div class="startRadio">
-										<label class="startRadio__box">
-									    <input type="radio" name="star" id="" checked>
-									    <span class="startRadio__img"><span class="blind">별 0.5개</span></span>
-									  </label>
-									  <label class="startRadio__box">									  
-									    <input type="radio" name="star" id="" checked>
-									    <span class="startRadio__img"><span class="blind">별 1개</span></span>
-									  </label>
-									  <label class="startRadio__box">
-									    <input type="radio" name="star" id="" checked>
-									    <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
-									  </label>
-									  <label class="startRadio__box">
-									    <input type="radio" name="star" id="" checked>
-									    <span class="startRadio__img"><span class="blind">별 2개</span></span>
-									  </label>
-									  <label class="startRadio__box">
-									    <input type="radio" name="star" id="" checked>
-									    <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
-									  </label>
-									  <label class="startRadio__box">
-									    <input type="radio" name="star" id="" checked>
-									    <span class="startRadio__img"><span class="blind">별 3개</span></span>
-									  </label>
-									  <label class="startRadio__box">
-									    <input type="radio" name="star" id="" checked>
-									    <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
-									  </label>
-									  <label class="startRadio__box">
-									    <input type="radio" name="star" id="" checked>
-									    <span class="startRadio__img"><span class="blind">별 4개</span></span>
-									  </label>
-									  <label class="startRadio__box">
-									    <input type="radio" name="star" id="" checked>
-									    <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
-									  </label>
-									  <label class="startRadio__box">
-									    <input type="radio" name="star" id="" checked>
-									    <span class="startRadio__img"><span class="blind">별 5개</span></span>
-									  </label>
-									  
-									</div>								
-								
-								
+									<div>
+										<div style="font-size: 20px">✍&nbsp;거래후기 작성하기&nbsp;✍</div>
+										<hr>
+										<div>
+											<div class="police_category">
+												<div>
+													<span style="color: #26e4ca">거래(판매자)</span> 님과의 거래에 평점 남기기
+												</div>
+												<div class="rating">
+													<div class="startRadio">
+														<label class="startRadio__box"> <input type="radio" name="star" id="" checked> <span class="startRadio__img"><span class="blind">별 0.5개</span></span>
+														</label> <label class="startRadio__box"> <input type="radio" name="star" id="" checked> <span class="startRadio__img"><span class="blind">별 1개</span></span>
+														</label> <label class="startRadio__box"> <input type="radio" name="star" id="" checked> <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
+														</label> <label class="startRadio__box"> <input type="radio" name="star" id="" checked> <span class="startRadio__img"><span class="blind">별 2개</span></span>
+														</label> <label class="startRadio__box"> <input type="radio" name="star" id="" checked> <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
+														</label> <label class="startRadio__box"> <input type="radio" name="star" id="" checked> <span class="startRadio__img"><span class="blind">별 3개</span></span>
+														</label> <label class="startRadio__box"> <input type="radio" name="star" id="" checked> <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
+														</label> <label class="startRadio__box"> <input type="radio" name="star" id="" checked> <span class="startRadio__img"><span class="blind">별 4개</span></span>
+														</label> <label class="startRadio__box"> <input type="radio" name="star" id="" checked> <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
+														</label> <label class="startRadio__box"> <input type="radio" name="star" id="" checked> <span class="startRadio__img"><span class="blind">별 5개</span></span>
+														</label>
+													</div>
+												</div>
+											</div>
+											<hr>
+											<br>
+											<div class="write_police_reason">
+												<textarea style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
+											</div>
+											<br>
+											<div style="text-align: center">
+												<button disabled id="modal_police_btn" style="width: 90px; font-size: 15px">후기 작성</button>
+												<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+											</div>
+										</div>
+									</div>
+									<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
 								</div>
-							</div>
-							<hr>
-							<br>
-							<div class="write_police_reason">
-								<textarea style="border:1px solid lightgray" rows="5" cols="63"></textarea>
-							</div>
-															
-							<br>
-								<div style="text-align: center">
-									<button disabled id="modal_police_btn" style="width: 90px; font-size: 15px">후기 작성</button>
-									<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
-								</div>
-							</div>
-							
-							
-						</div>
-						<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
-					</div>
-					
-					
-				<script type="text/javascript">
+								<script type="text/javascript">
 					
 			 // 모달 만들기
 				function modal(id) {
@@ -712,126 +568,94 @@ window.onload=function(){
 
 				
 				</script>
-								
-								
-								
-								
-								
-								
-
 								<div class="sold_list">
 									<table width="100%" height="120">
 										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp;
-												2021.10.24</td>
+											<td align="left" style="font-size: 15px">&nbsp; 2021.10.24</td>
 											<td width="70%"></td>
 										</tr>
 										<tr>
 											<td rowspan="3"><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="sell_product_img"
-															src="../img/store_recommand_product02.png"
-															alt="판매완료상품이미지">
+														<img id="sell_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 18px"><a href="#"
-												style="color: gray">고무장갑 팔목라인</a></td>
+											<td style="font-size: 18px"><a href="#" style="color: gray">고무장갑 팔목라인</a></td>
 										</tr>
 										<tr>
 											<td style="font-size: 15px; color: gray">2,000 &nbsp;원</td>
 										</tr>
 										<tr>
 											<td>
-												<button id="btn_see_review" button type="button"
-													onclick="location.href='#' ">작성후기보기</button>
+												<button id="btn_see_review" button type="button" onclick="location.href='#' ">작성후기보기</button>
 											</td>
 										</tr>
-
 									</table>
 									<br>
 									<hr>
 								</div>
-
 								<br>
 							</div>
-
 						</div>
-
-
-
 					</div>
-
-
 					<!-- 나의커뮤니티 -->
-					<div class="tab-pane fade" id="shop" role="tabpanel"
-						aria-labelledby="contact-tab">
+					<div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="contact-tab">
 						<div class="community_list_all">
 							<br> <br>
 							<p>
-								<span><strong>내가 쓴 커뮤니티글 &nbsp;&nbsp;</strong></span> <span
-									style="color: #26e4ca">8</span>
+								<span><strong>내가 쓴 커뮤니티글 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">8</span>
 							</p>
 							<div class="community_list_grid">
-								<div class="community_list">
-									<table width="100%" height="120">
-										<tr height="30">
-											<td align="left" style="font-size: 15px">2020.09.18</td>
-											<td width="60%" align="center" style="font-size: 18px">
-												<div>[동네질문]</div>
-												<div>XX동 근처 잘하는 병원이 어디인가요?</div>
-											</td>
-											<td align="left" style="font-size: 15px">
-												<div>궁금해요 12</div>
-												<div>조회수 33</div>
-												<div>답변 5</div>
-											</td>
-											<td width="15%" align="center">
-												<button id="btn_community_update">글 수정</button>
-												<button id="btn_community_delete">글 삭제</button>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
-
-								<div class="community_list">
-									<br> <br>
-									<table width="100%" height="120">
-										<tr height="30">
-											<td align="left" style="font-size: 15px">2020.09.18</td>
-											<td width="60%" align="center" style="font-size: 18px">
-												<div>[동네질문]</div>
-												<div>XX동 근처 잘하는 병원이 어디인가요?</div>
-											</td>
-											<td align="left" style="font-size: 15px">
-												<div>궁금해요 12</div>
-												<div>조회수 33</div>
-												<div>답변 5</div>
-											</td>
-											<td width="15%" align="center">
-												<button id="btn_community_update">글 수정</button>
-												<button id="btn_community_delete">글 삭제</button>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-									<br>
-								</div>
-
+								<c:forEach var="community" items="${community }">
+									<div class="community_list">
+										<table width="100%" height="120">
+											<tr height="30">
+												<td align="left" style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${community.date }"/></td>
+												<td width="60%" align="center" style="font-size: 18px">
+													<div>${community.category }</div>
+													<div>${community.title }</div>
+												</td>
+												<td align="left" style="font-size: 15px"><c:choose>
+														<c:when test="${community.category eq '소식' }">
+															<div>유용해요 ${community.likes }</div>
+														</c:when>
+														<c:when test="${community.category eq '질문' }">
+															<div>궁금해요 ${community.likes }</div>
+														</c:when>
+														<c:when test="${community.category eq '모임' }">
+															<div>함께해요 ${community.likes }</div>
+														</c:when>
+														<c:when test="${community.category eq '맛집' }">
+															<div>맛있어요 ${community.likes }</div>
+														</c:when>
+														<c:when test="${community.category eq '분실센터' }">
+															<div>슬퍼요 ${community.likes }</div>
+														</c:when>
+														<c:otherwise>
+															<div>멋져요 ${community.likes }</div>
+														</c:otherwise>
+													</c:choose>
+													<div>조회수 ${community.views }</div>
+													<div>답변 ${community.comments }</div></td>
+												<td width="15%" align="center">
+													<button id="btn_community_update">글 수정</button>
+													<button id="btn_community_delete">글 삭제</button>
+												</td>
+											</tr>
+										</table>
+										<br>
+										<hr>
+									</div>
+								</c:forEach>
 								<br> <br>
 							</div>
-
 						</div>
-
 						<br> <br> <br>
 						<div class="community_comment_list_all">
 							<hr>
 							<br> <br>
 							<p>
-								<span><strong>내가 쓴 커뮤니티 댓글 &nbsp;&nbsp;</strong></span> <span
-									style="color: #26e4ca">28</span>
+								<span><strong>내가 쓴 커뮤니티 댓글 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">28</span>
 							</p>
 							<div class="community_comment_list_grid">
 								<div class="community_comment_list">
@@ -841,9 +665,7 @@ window.onload=function(){
 											<td width="70%" align="center" style="font-size: 18px">
 												<div style="color: gray;">[원글] XX동 근처 잘하는 병원이 어디인가요?</div>
 												<div>
-													&nbsp;&nbsp;<img src="../img/right-arrow.png"
-														style="width: 9px; height: 9px"> [내가 쓴 댓글] 점심시간에 사람
-													많나요?
+													&nbsp;&nbsp;<img src="../img/right-arrow.png" style="width: 9px; height: 9px"> [내가 쓴 댓글] 점심시간에 사람 많나요?
 												</div>
 											</td>
 											<td width="20%" align="center">
@@ -855,7 +677,6 @@ window.onload=function(){
 									<br>
 									<hr>
 								</div>
-
 								<div class="community_comment_list">
 									<table width="100%" height="120">
 										<tr height="30">
@@ -863,9 +684,7 @@ window.onload=function(){
 											<td width="70%" align="center" style="font-size: 18px">
 												<div style="color: gray;">[원글] XX동 근처 잘하는 병원이 어디인가요?</div>
 												<div>
-													&nbsp;&nbsp;<img src="../img/right-arrow.png"
-														style="width: 9px; height: 9px"> [내가 쓴 댓글] 점심시간에 사람
-													많나요?
+													&nbsp;&nbsp;<img src="../img/right-arrow.png" style="width: 9px; height: 9px"> [내가 쓴 댓글] 점심시간에 사람 많나요?
 												</div>
 											</td>
 											<td width="20%" align="center">
@@ -877,22 +696,16 @@ window.onload=function(){
 									<br>
 									<hr>
 								</div>
-
 								<br>
 							</div>
-
 						</div>
 					</div>
-
-
 					<!-- 나의 스토어거래 -->
-					<div class="tab-pane fade" id="accom" role="tabpanel"
-						aria-labelledby="contact-tab">
+					<div class="tab-pane fade" id="accom" role="tabpanel" aria-labelledby="contact-tab">
 						<div class="store_bought_list_all">
 							<br> <br>
 							<p>
-								<span><strong>스토어 상품 구매 내역 &nbsp;&nbsp;</strong></span> <span
-									style="color: #26e4ca">3</span>
+								<span><strong>스토어 상품 구매 내역 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">3</span>
 							</p>
 							<div class="store_bought_list_grid">
 								<div class="store_bought_list">
@@ -905,9 +718,7 @@ window.onload=function(){
 										<tr>
 											<td><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="bought_product_img"
-															src="../img/store_recommand_product02.png"
-															alt="판매완료상품이미지">
+														<img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
 													</div>
 											</a></td>
 											<td align="left" style="font-size: 15px">
@@ -939,7 +750,6 @@ window.onload=function(){
 									<br>
 									<hr>
 								</div>
-
 								<div class="store_bought_list">
 									<br>
 									<table width="100%" height="120">
@@ -951,9 +761,7 @@ window.onload=function(){
 										<tr>
 											<td><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="bought_product_img"
-															src="../img/store_recommand_product02.png"
-															alt="판매완료상품이미지">
+														<img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
 													</div>
 											</a></td>
 											<td align="left" style="font-size: 15px">
@@ -983,7 +791,6 @@ window.onload=function(){
 									<hr>
 									<br>
 								</div>
-
 								<div class="store_bought_list">
 									<br> <br>
 									<table width="100%" height="120">
@@ -995,15 +802,11 @@ window.onload=function(){
 										<tr>
 											<td>
 												<div id="product_img_box">
-													<a id="store_review_img_area" href="#"> <img
-														id="bought_product_img"
-														src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
+													<a id="store_review_img_area" href="#"> <img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
 													</a>
 												</div>
-
 											</td>
-											<td align="left" style="font-size: 15px"><br> <br>
-												<br>
+											<td align="left" style="font-size: 15px"><br> <br> <br>
 												<div style="font-size: 15px">06.22 결제</div>
 												<div style="font-size: 18px">Cambro 캠트레이 - 3가지 색상</div>
 												<div>
@@ -1031,7 +834,6 @@ window.onload=function(){
 									<br>
 									<hr>
 								</div>
-
 								<div class="store_bought_list">
 									<br> <br> <br>
 									<table width="100%" height="120">
@@ -1043,9 +845,7 @@ window.onload=function(){
 										<tr>
 											<td><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="bought_product_img"
-															src="../img/store_recommand_product02.png"
-															alt="판매완료상품이미지">
+														<img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
 													</div>
 											</a></td>
 											<td align="left" style="font-size: 15px">
@@ -1080,169 +880,133 @@ window.onload=function(){
 									<br>
 									<hr>
 								</div>
-
 								<br>
 							</div>
-
 						</div>
-
 					</div>
-
-
-					<div class="tab-pane fade" id="heart_product" role="tabpanel"
-						aria-labelledby="contact-tab">
+					<div class="tab-pane fade" id="heart_product" role="tabpanel" aria-labelledby="contact-tab">
 						<br> <br>
 						<div class="heart_list_all">
 							<p>
-								<span><strong>중고거래 관심상품 &nbsp;&nbsp;</strong></span> <span
-									style="color: #26e4ca">28</span>
+								<span><strong>중고거래 관심상품 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">28</span>
 							</p>
 							<div class="sell_list_grid">
 								<div class="sell_list">
 									<table width="100%" height="120">
 										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp;
-												2021.11.04</td>
+											<td align="left" style="font-size: 15px">&nbsp; 2021.11.04</td>
 											<td width="70%"></td>
 										</tr>
 										<tr>
 											<td rowspan="3"><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="sell_product_img" src="../img/wallet.jpg"
-															alt="판매상품이미지">
+														<img id="sell_product_img" src="../img/wallet.jpg" alt="판매상품이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 18px"><a href="#"
-												style="color: #26e4ca">구찌 지갑</a></td>
+											<td style="font-size: 18px"><a href="#" style="color: #26e4ca">구찌 지갑</a></td>
 										</tr>
 										<tr>
 											<td style="font-size: 15px">170,000 &nbsp;원</td>
 										</tr>
 										<tr>
 											<td>
-												<button id="btn_heart_product" type="button"
-													onclick="location.href='#' ">관심상품</button>
+												<button id="btn_heart_product" type="button" onclick="location.href='#' ">관심상품</button>
 											</td>
 										</tr>
-
 									</table>
 									<br>
 									<hr>
 								</div>
-
 								<div class="sold_list">
 									<table width="100%" height="120">
 										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp;
-												2021.10.24</td>
+											<td align="left" style="font-size: 15px">&nbsp; 2021.10.24</td>
 											<td width="70%"></td>
 										</tr>
 										<tr>
 											<td rowspan="3"><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="sell_product_img" src="../img/hair_purfum.jpg"
-															alt="판매완료상품이미지">
+														<img id="sell_product_img" src="../img/hair_purfum.jpg" alt="판매완료상품이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 18px"><a href="#"
-												style="color: #26e4ca">디올 헤어 미스트</a></td>
+											<td style="font-size: 18px"><a href="#" style="color: #26e4ca">디올 헤어 미스트</a></td>
 										</tr>
 										<tr>
 											<td style="font-size: 15px">30,000 &nbsp;원</td>
 										</tr>
 										<tr>
 											<td>
-												<button id="btn_heart_product" type="button"
-													onclick="location.href='#' ">관심상품</button>
+												<button id="btn_heart_product" type="button" onclick="location.href='#' ">관심상품</button>
 											</td>
 										</tr>
-
 									</table>
 									<br>
 									<hr>
 								</div>
-
 								<br>
 							</div>
-
 							<br> <br> <br>
 						</div>
 						<hr>
 						<br> <br>
 						<div class="heart_list_all">
 							<p>
-								<span><strong>민트스토어 관심상품 &nbsp;&nbsp;</strong></span> <span
-									style="color: #26e4ca">18</span>
+								<span><strong>민트스토어 관심상품 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">18</span>
 							</p>
 							<div class="sell_list_grid">
 								<div class="sell_list">
 									<table width="100%" height="120">
-
 										<tr>
 											<td rowspan="3"><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="sell_product_img"
-															src="../img/store_recommand_product03.png" alt="판매상품이미지">
+														<img id="sell_product_img" src="../img/store_recommand_product03.png" alt="판매상품이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 18px"><a href="#"
-												style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a></td>
+											<td style="font-size: 18px"><a href="#" style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a></td>
 										</tr>
 										<tr>
 											<td style="font-size: 15px">19,000 &nbsp;원</td>
 										</tr>
 										<tr>
 											<td>
-												<button id="btn_heart_product" type="button"
-													onclick="location.href='#' ">관심상품</button>
+												<button id="btn_heart_product" type="button" onclick="location.href='#' ">관심상품</button>
 											</td>
 										</tr>
-
 									</table>
 									<br>
 									<hr>
 								</div>
-
 								<div class="sell_list">
 									<table width="100%" height="120">
-
 										<tr>
 											<td rowspan="3"><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="sell_product_img"
-															src="../img/store_recommand_product03.png" alt="판매상품이미지">
+														<img id="sell_product_img" src="../img/store_recommand_product03.png" alt="판매상품이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 18px"><a href="#"
-												style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a></td>
+											<td style="font-size: 18px"><a href="#" style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a></td>
 										</tr>
 										<tr>
 											<td style="font-size: 15px">19,000 &nbsp;원</td>
 										</tr>
 										<tr>
 											<td>
-												<button id="btn_heart_product" type="button"
-													onclick="location.href='#' ">관심상품</button>
+												<button id="btn_heart_product" type="button" onclick="location.href='#' ">관심상품</button>
 											</td>
 										</tr>
-
 									</table>
 									<br>
 									<hr>
 								</div>
-
 								<br> <br> <br>
 							</div>
 						</div>
-
 						<!--/col-9-->
 					</div>
 					<!--/row-->
-
 				</div>
 			</div>
 		</div>
-
 		<form action="profileImage.do" name="efrm" method="post" enctype="multipart/form-data">
 			<div class="modal fade" id="edit_img" aria-hidden="true">
 				<div class="modal-dialog">
@@ -1254,41 +1018,31 @@ window.onload=function(){
 						<hr />
 						<div class="modal-body row" style="padding: 0px 0px 0px 5px;">
 							<div class="used_photo_img" style="text-align: center;">
-								<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="preview();"/>
-								<br> 
-								<img class="preview-wrap" src="${user.profile }" alt="등록할 프로필 사진을 넣어주세요."/>
-								<br>							
+								<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="preview();" /> <br> <img class="preview-wrap" src="${user.profile }" alt="등록할 프로필 사진을 넣어주세요." /> <br>
 							</div>
 						</div>
 						<div class="modal-footer">
-							<input type="hidden" name="nickname" value="${nickname }" />
-							<input type="submit" class="btn btn--blue-2 btn--radius-2"	id="btn_edit_img" value="확인">
-							<button type="button" class="btn btn--blue-1 btn--radius-2"	data-bs-dismiss="modal">취소</button>
+							<input type="hidden" name="nickname" value="${nickname }" /> <input type="submit" class="btn btn--blue-2 btn--radius-2" id="btn_edit_img" value="확인">
+							<button type="button" class="btn btn--blue-1 btn--radius-2" data-bs-dismiss="modal">취소</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</form>
-		
 		<form action="delete_img_ok.do" name="dfrm" method="post">
-			<div class="modal fade bs-delete-modal-sm" id="delete_img"
-				aria-hidden="true">
+			<div class="modal fade bs-delete-modal-sm" id="delete_img" aria-hidden="true">
 				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
 						<br />
 						<div style="height: 60px;">&nbsp;&nbsp;정말 삭제하시겠습니까?</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn--blue-2 btn--radius-2"
-								data-bs-dismiss="modal">취소</button>
-							<button type="submit" class="btn btn--blue-1 btn--radius-2"
-								id="btn_delete_img">삭제</button>
+							<button type="button" class="btn btn--blue-2 btn--radius-2" data-bs-dismiss="modal">취소</button>
+							<button type="submit" class="btn btn--blue-1 btn--radius-2" id="btn_delete_img">삭제</button>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</form>
-
 		<%--
    </section>
    

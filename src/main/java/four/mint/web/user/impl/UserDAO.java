@@ -11,6 +11,7 @@ import four.mint.web.user.FollowingVO;
 import four.mint.web.user.KakaoVO;
 import four.mint.web.user.NaverVO;
 import four.mint.web.user.UserVO;
+import four.mint.web.user.board.common.ReportVO;
 
 @Repository
 public class UserDAO {
@@ -115,6 +116,16 @@ public class UserDAO {
 		return sqlSessionTemplate.selectList("FollowDAO.getFollowings", nickname);
 	}
 
+	public void insertReport(ReportVO rVO) {
+		sqlSessionTemplate.insert("UserDAO.insertReport", rVO);
+	}
 
+	public void updateReport(String reported) {
+		sqlSessionTemplate.update("UserDAO.updateReport", reported);
+	}
+
+	public String getPassword(String email_id) {
+		return sqlSessionTemplate.selectOne("UserDAO.getPassword", email_id);
+	}
 
 }
