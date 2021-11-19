@@ -92,8 +92,6 @@ public class LoginController {
 		
 		NaverVO snsUser = snsLogin.getNaverProfile(code);
 		
-		
-		
 		String doubleCheck = userService.getBySns(snsUser.getEmail());
 		
 		
