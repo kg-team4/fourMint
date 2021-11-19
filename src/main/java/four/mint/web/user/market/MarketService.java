@@ -39,4 +39,6 @@ public interface MarketService {
 	List<MarketVO> getMarketNickname(String nickname);
 
 	void updateViews(int market_seq);
+
+	void deleteMarket(int seq);
 }

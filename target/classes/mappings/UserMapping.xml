@@ -69,7 +69,7 @@
 	<select id="getByNaver" resultType="String" parameterType="String">
 		SELECT snsid FROM member WHERE snsid = #{naverid}
 	</select>
- 
+
 	<select id="getBySns" resultType="String" parameterType="String">
 		SELECT social_login FROM member WHERE email_id = #{email}
 	</select>
@@ -77,4 +77,28 @@
 	<update id="updateProfile" parameterType="user">
 		UPDATE member SET profile = #{profile} WHERE nickname = #{nickname}
 	</update>
+	
+	<select id="getPassword" resultType="string" parameterType="string">
+		SELECT password FROM member WHERE email_id = #{email_id}
+	</select>
+	
+	<resultMap type="report" id="reportResult">
+		<result property="report_seq" column="REPORT_SEQ"/>
+		<result property="reason" column="REASON" />
+		<result property="content" column="CONTENT" />
+		<result property="market_seq" column="MARKET_SEQ" />
+		<result property="reporter" column="REPORTER" />
+		<result property="reported" column="REPORTED" />
+		<result property="date" column="DATE"/>
+	</resultMap>
+	
+	<insert id="insertReport" parameterType="four.mint.web.user.board.common.ReportVO">
+		INSERT INTO report VALUES(DEFAULT, #{reason}, #{content}, #{market_seq}, #{reporter}, #{reported})
+	</insert>
+	
+	<update id="updateReport" parameterType="string">
+		UPDATE member SET reports = reports + 1 WHERE nickname = #{reported}
+	</update>
+	
+	
 </mapper>

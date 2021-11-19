@@ -348,7 +348,7 @@ try {
 				</tbody>
 			</table>
 			<!--// 배송지 정보 --> <!-- 배송 요청사항 -->
-			<div id="pickupHide5">
+			<div id="pickupHide5" style="margin-bottom: 250px;">
 				<div class="title_wrap">
 					<h2 class="sub-title2">배송 요청사항</h2>
 				</div>
@@ -378,8 +378,10 @@ try {
 			</div>
 			
 			<!--// 배송 요청사항 -->
+			
+			
 			 <!-- 현금영수증 신청 -->
-			<div class="" id="cashReceipt">
+			<div class="" id="cashReceipt" style="display: none;">
 				<h2 class="sub-title2">현금영수증 신청</h2>
 				<table class="tbl_inp_form type2" id="receipt_table">
 					<colgroup>
@@ -473,104 +475,104 @@ try {
 			</div>
 		</form>
 	</div>
-	<div class="order_payment_box fixArea">
-		<div class="left_area">
-			<!-- 현금영수증 신청 -->
-			<div class id="cashReceipt" style="display: none;">
-				<h2 class="sub-title2">햔금영수증 신청</h2>
-				<table class="tbl_inp_form type2" id="recepty_table">
-					<caption>현금영수증 신청 입력 폼</caption>
-					<colgroup>
-						<col style="width: 170px">
-						<col style="width: *">
-					</colgroup>
-					<tbody>
-						<tr>
-							<th scope="row">현금영수증</th>
-							<td>
-								<div>
-									<select id="crIssuCd" name="crIssuCd" class="selH28" title="현금영수증 신청여부를 선택해주세요." style="width: 200px" data-attr="현금영수증신청^5_현금영수증">
-										<option value="">신청안함</option>
-										<option value="10">개인소득공제용</option>
-										<option value="20">사업자지출증빙용</option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<!-- 개인소득공제용신청 시 -->
-						<tr crIssuCd="10">
-							<th scope="row">발급방법</th>
-							<td>
-								<div>
-									<input type="radio" id="crIssuMeanSctCd_3" name="crIssuMeanSctCd" value="3" checked="checked" data-attr="현금영수증신청^5_발급방법" /> 
-									<label for="crIssuMeanSctCd_3">휴대폰</label> 
-									<input type="radio" id="crIssuMeanSctCd_5" name="crIssuMeanSctCd" value="5" data-attr="현금영수증신청^5_발급방법" /> 
-									<label for="crIssuMeanSctCd_5">현금영수증카드</label>
-								</div>
-							</td>
-						</tr>
-						<!-- 개인소득공제용 [휴대폰] 선택 시 -->
-						<tr crIssuCd="10" crIssuMeanSctCd="3">
-							<th scope="row">휴대폰</th>
-							<td>
-								<div>
-									<select id="dispCashReceiptInfo11" class="selH28" title="현금영수증 휴대폰 앞자리를 선택해주세요." style="width: 90px" data-attr="현금영수증신청^5_휴대폰">
-										<option value="010" selected='selected'>010</option>
-										<option value="02">02</option>
-										<option value="031">031</option>
-										<option value="032">032</option>
-										<option value="033">033</option>
-										<option value="041">041</option>
-										<option value="042">042</option>
-										<option value="043">043</option>
-										<option value="044">044</option>
-										<option value="051">051</option>
-										<option value="052">052</option>
-										<option value="053">053</option>
-										<option value="054">054</option>
-										<option value="055">055</option>
-										<option value="061">061</option>
-										<option value="062">062</option>
-										<option value="063">063</option>
-										<option value="064">064</option>
-										<option value="070">070</option>
-										<option value="080">080</option>
-									</select>
-									 - 
-									<input type="text" id="dispCashReceiptInfo12" value="" class="inpH28" title="현금영수증 휴대폰 가운데 자리를 입력해주세요." this="현금영수증 휴대폰 가운데 자리는" style="width: 90px" data-attr="현금영수증신청^5_휴대폰" />
-									 - 
-									<input type="text" id="dispCashReceiptInfo13" value="" class="inpH28" title="현금영수증 휴대폰 마지막 4자리수를 입력해주세요." this="현금영수증 휴대폰 마지막 자리는" style="width: 90px" data-attr="현금영수증신청^5_휴대폰" /> <input type="hidden" id="crPhoneNumber" name="crIssuMeanNo" value="">
-								</div>
-							</td>
-						</tr>
-						<!--//개인소득공제용 [휴대폰] 선택 시 -->
-						<!-- 개인소득공제용 [현금영수증카드] 선택 시 -->
-						<tr crIssuCd="10" crIssuMeanSctCd="5">
-							<th scope="row">현금영수증 카드번호</th>
-							<td>
-								<div>
-									<input type="text" id="CashReceipts" name="crIssuMeanNo" class="inpH28" title="현금영수증 카드번호를 입력해주세요." this="현금영수증 카드번호는" style="width: 300px" />
-								</div>
-							</td>
-						</tr>
-						<!--// 개인소득공제용 [현금영수증카드] 선택 시 -->
-						<!--// 개인소득공제용신청 시 -->
+	<div class="order_payment_box fixArea" >
+<!-- 		<div class="left_area"> -->
+<!-- 			<!-- 현금영수증 신청 -->  
+<!-- 			<div class id="cashReceipt" style="display: none;"> -->
+<!-- 				<h2 class="sub-title2">햔금영수증 신청</h2> -->
+<!-- 				<table class="tbl_inp_form type2" id="recepty_table"> -->
+<!-- 					<caption>현금영수증 신청 입력 폼</caption> -->
+<!-- 					<colgroup> -->
+<!-- 						<col style="width: 170px"> -->
+<!-- 						<col style="width: *"> -->
+<!-- 					</colgroup> -->
+<!-- 					<tbody> -->
+<!-- 						<tr> -->
+<!-- 							<th scope="row">현금영수증</th> -->
+<!-- 							<td> -->
+<!-- 								<div> -->
+<!-- 									<select id="crIssuCd" name="crIssuCd" class="selH28" title="현금영수증 신청여부를 선택해주세요." style="width: 200px" data-attr="현금영수증신청^5_현금영수증"> -->
+<!-- 										<option value="">신청안함</option> -->
+<!-- 										<option value="10">개인소득공제용</option> -->
+<!-- 										<option value="20">사업자지출증빙용</option> -->
+<!-- 									</select> -->
+<!-- 								</div> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 						개인소득공제용신청 시 -->
+<!-- 						<tr crIssuCd="10"> -->
+<!-- 							<th scope="row">발급방법</th> -->
+<!-- 							<td> -->
+<!-- 								<div> -->
+<!-- 									<input type="radio" id="crIssuMeanSctCd_3" name="crIssuMeanSctCd" value="3" checked="checked" data-attr="현금영수증신청^5_발급방법" />  -->
+<!-- 									<label for="crIssuMeanSctCd_3">휴대폰</label>  -->
+<!-- 									<input type="radio" id="crIssuMeanSctCd_5" name="crIssuMeanSctCd" value="5" data-attr="현금영수증신청^5_발급방법" />  -->
+<!-- 									<label for="crIssuMeanSctCd_5">현금영수증카드</label> -->
+<!-- 								</div> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 						개인소득공제용 [휴대폰] 선택 시 -->
+<!-- 						<tr crIssuCd="10" crIssuMeanSctCd="3"> -->
+<!-- 							<th scope="row">휴대폰</th> -->
+<!-- 							<td> -->
+<!-- 								<div> -->
+<!-- 									<select id="dispCashReceiptInfo11" class="selH28" title="현금영수증 휴대폰 앞자리를 선택해주세요." style="width: 90px" data-attr="현금영수증신청^5_휴대폰"> -->
+<!-- 										<option value="010" selected='selected'>010</option> -->
+<!-- 										<option value="02">02</option> -->
+<!-- 										<option value="031">031</option> -->
+<!-- 										<option value="032">032</option> -->
+<!-- 										<option value="033">033</option> -->
+<!-- 										<option value="041">041</option> -->
+<!-- 										<option value="042">042</option> -->
+<!-- 										<option value="043">043</option> -->
+<!-- 										<option value="044">044</option> -->
+<!-- 										<option value="051">051</option> -->
+<!-- 										<option value="052">052</option> -->
+<!-- 										<option value="053">053</option> -->
+<!-- 										<option value="054">054</option> -->
+<!-- 										<option value="055">055</option> -->
+<!-- 										<option value="061">061</option> -->
+<!-- 										<option value="062">062</option> -->
+<!-- 										<option value="063">063</option> -->
+<!-- 										<option value="064">064</option> -->
+<!-- 										<option value="070">070</option> -->
+<!-- 										<option value="080">080</option> -->
+<!-- 									</select> -->
+<!-- 									 -  -->
+<!-- 									<input type="text" id="dispCashReceiptInfo12" value="" class="inpH28" title="현금영수증 휴대폰 가운데 자리를 입력해주세요." this="현금영수증 휴대폰 가운데 자리는" style="width: 90px" data-attr="현금영수증신청^5_휴대폰" /> -->
+<!-- 									 -  -->
+<!-- 									<input type="text" id="dispCashReceiptInfo13" value="" class="inpH28" title="현금영수증 휴대폰 마지막 4자리수를 입력해주세요." this="현금영수증 휴대폰 마지막 자리는" style="width: 90px" data-attr="현금영수증신청^5_휴대폰" /> <input type="hidden" id="crPhoneNumber" name="crIssuMeanNo" value=""> -->
+<!-- 								</div> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 						//개인소득공제용 [휴대폰] 선택 시 -->
+<!-- 						개인소득공제용 [현금영수증카드] 선택 시 -->
+<!-- 						<tr crIssuCd="10" crIssuMeanSctCd="5"> -->
+<!-- 							<th scope="row">현금영수증 카드번호</th> -->
+<!-- 							<td> -->
+<!-- 								<div> -->
+<!-- 									<input type="text" id="CashReceipts" name="crIssuMeanNo" class="inpH28" title="현금영수증 카드번호를 입력해주세요." this="현금영수증 카드번호는" style="width: 300px" /> -->
+<!-- 								</div> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 						// 개인소득공제용 [현금영수증카드] 선택 시 -->
+<!-- 						// 개인소득공제용신청 시 -->
 
-						<!-- 사업자지출증빙용 시 -->
-						<tr crIssuCd="20">
-							<th scope="row">사업자등록번호</th>
-							<td>
-								<div>
-									<input type="hidden" name="crIssuMeanSctCd" value="2"> <input type="text" id="BusinessNumber" name="crIssuMeanNo" class="inpH28" title="현금영수증 사업자 등록번호를 입력해주세요." this="현금영수증 사업자 등록번호는" style="width: 300px" />
-								</div>
-							</td>
-						</tr>
-						<!--// 사업자지출증빙용 시 -->
-					</tbody>
-				</table>
-				<!--// 현금영수증 신청 -->
-			</div>
-		</div>
+<!-- 						사업자지출증빙용 시 -->
+<!-- 						<tr crIssuCd="20"> -->
+<!-- 							<th scope="row">사업자등록번호</th> -->
+<!-- 							<td> -->
+<!-- 								<div> -->
+<!-- 									<input type="hidden" name="crIssuMeanSctCd" value="2"> <input type="text" id="BusinessNumber" name="crIssuMeanNo" class="inpH28" title="현금영수증 사업자 등록번호를 입력해주세요." this="현금영수증 사업자 등록번호는" style="width: 300px" /> -->
+<!-- 								</div> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 						// 사업자지출증빙용 시 -->
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+<!-- 				// 현금영수증 신청 -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<div class="right_area" style="margin-top: 250px; margin-left: 400px;">
 			<!-- 최종 결제정보 -->
 			<h2 class="sub-title2" style="margin-right: 0;">최종 결제정보</h2>
@@ -579,7 +581,7 @@ try {
 				<li style="padding-left: 0;">
 					<span class="tx_tit">총 상품금액</span> 
 					<span class="tx_cont">
-						<span class="tx_num">${priceAll }</span>원
+						<span class="tx_num">${priceAll * amount}</span>원
 					</span> 
 					<input type="hidden" name="goodsAmt" value="0">
 				</li>
@@ -593,7 +595,7 @@ try {
 				<li class="total">
 					<span class="tx_tit">최종 결제금액</span> 
 					<span class="tx_cont"> 
-						<span class="tx_num" id="totPayAmt_sum_span">${priceAll + delivery * 2500 }</span>원
+						<span class="tx_num" id="totPayAmt_sum_span">${priceAll * amount + delivery * 2500 }</span>원
 					</span> 
 					<input type="hidden" name="remainAmt" value="0"> <input type="hidden" name="ordPayAmt" value="0"> <input type="hidden" name="goodsNm" value="" />
 				</li>
@@ -826,6 +828,11 @@ try {
 <!-- 결제창 -->
 <script>
 	$("#btnPay").click(function () {
+		var buyer_name1 = $("#rmitNm_exist").val();
+		var buyer_tel1 = $("#rmitCellSctNo_exist").val() + $("#rmitCellTxnoNo_exist").val() + $("#rmitCellEndNo_exist").val();
+		var buyer_addr1 = $("#roadAddress").val();
+		var buyer_postcode1 = $("#stnmRmitPostNo_exist").val();		
+		
 	   var IMP = window.IMP; // 생략가능
 	   IMP.init('imp56939417');
 	   /*'iamport' 대신 부여받은 "가맹점 식별코드"를 사용*/
@@ -861,13 +868,13 @@ try {
 	   */
 	   name: '민트마켓 결제창',
 	   //결제창에서 보여질 이름
-	   amount: '${priceAll + delivery * 2500}',
+	   amount: '${priceAll * amount + delivery * 2500}',
 	   //가격
-	   buyer_email: 'iamport@siot.do',
-	   buyer_name: '${user.name}',
-	   buyer_tel: '${phone1}-${phone2}-${phone3}',
-	   buyer_addr: '${address2}',
-	   buyer_postcode: '${address1}',
+	   buyer_email: '${userEmail_id}',
+	   buyer_name: buyer_name1,
+	   buyer_tel: buyer_tel1,
+	   buyer_addr: buyer_addr1,
+	   buyer_postcode: buyer_postcode1,
 	   m_redirect_url: 'https://www.yourdomain.com/payments/complete'
 	   /*
 	   모바일 결제시,
@@ -877,11 +884,40 @@ try {
 	   }, function (rsp) {
 		   console.log(rsp);
 		   if (rsp.success) {
-			   var msg = '결제가 완료되었습니다.';
-			   msg += '고유ID : ' + rsp.imp_uid;
-			   msg += '상점 거래ID : ' + rsp.merchant_uid;
+			   var msg = '결제가 완료되었습니다.\n';
 			   msg += '결제 금액 : ' + rsp.paid_amount;
-			   msg += '카드 승인번호 : ' + rsp.apply_num;
+			   msg += '\n민트마켓을 이용해주셔서 감사합니다. 행복한 하루되세요. :)';
+			   location.href="home.do";
+			   
+			   let purchaseVo = {
+					buyer_email: buyer_email,
+					buyer_name: buyer_name,
+					buyer_addr: buyer_addr,
+					buyer_postcode: buyer_postcod,
+					buyer_phone: buyer_phone,
+					msg: msg,
+					shipno: rsp.merchant_uid,
+					paidAmount: rsp.paid_amount,
+					paytype: rsp.pay_method
+					}
+				// 컨트롤러에 데이터를 전달하여 DB에 입력하는 로직
+            	// 결제내역을 사용자에게 보여주기 위해 필요함.
+       			$.ajax({
+					url : "placeorder.do",
+					type : "get",
+					data : purchaseVo,
+					dataType : "text",
+					success : function(result){
+						if(result == "y") {
+							alert(msg);
+							location.href = "orderComplete.do"; 
+						}else{
+							alert("디비입력실패");
+							return false;
+						}
+					},
+					error : function(a,b,c){}
+				});
 		   } else {
 			   var msg = '결제에 실패하였습니다.';
 			   msg += '에러내용 : ' + rsp.error_msg;

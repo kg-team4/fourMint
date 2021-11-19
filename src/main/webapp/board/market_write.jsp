@@ -1,13 +1,13 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <title>민트마켓 상품 글 쓰기</title>
-<link rel="shortcut icon" type="image/x-icon"
-	href="../img/logo_icon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
 <link rel="stylesheet" href="../css/reset.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
 <link href="../css/11.used_write.css" rel="stylesheet">
 <script src="../js/jquery-3.6.0.min.js"></script>
+
 <article style="padding-top: 200px;" id="used-write-form">
 	<div class="container" align="left">
 		<h1 align="left" style="font-size: 30px; font-weight: normal;">
@@ -16,13 +16,9 @@
 		<br> <br>
 		<hr class="hr_style2">
 		<br> <br>
-		<!--  
-          준비 : post_title(글제목), used_cate_num(카테고리 번호), used_price(가격), used_content(내용) 
-    	-->
 
 		<form action="marketSell.do" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
 
-			<!-- board_no 값 hidden으로 넘겨주기  -->
 			<div class="used_container">
 
 				<!--  이미지 등록 -->
@@ -108,8 +104,8 @@
 				<div style="clear: both;"></div>
 				<br>
 				<hr>
-
 			</div>
+			
 			<!--  등록 버튼 -->
 			<input type="hidden" value="${address2 }" />
 			<input type="hidden" value="${nickname }" />

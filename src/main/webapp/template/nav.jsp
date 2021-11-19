@@ -37,12 +37,12 @@
 				
 				<li class="medium-menu"><a href="/communityBoardList.do?count=1" class="category">커뮤니티</a>
 					<ul>
-						<li><a href="communityDetailList.do?big_no=소식">소식</a></li>
-						<li><a href="communityDetailList.do?big_no=질문">질문</a></li>
-						<li><a href="communityDetailList.do?big_no=모임">모임</a></li>
-						<li><a href="communityDetailList.do?big_no=맛집">맛집</a></li>
-						<li><a href="communityDetailList.do?big_no=분실센터">분실센터</a></li>
-						<li><a href="communityDetailList.do?big_no=사진전">사진전</a></li>
+						<li><a href="communityDetailList.do?kind=소식">소식</a></li>
+						<li><a href="communityDetailList.do?kind=질문">질문</a></li>
+						<li><a href="communityDetailList.do?kind=모임">모임</a></li>
+						<li><a href="communityDetailList.do?kind=맛집">맛집</a></li>
+						<li><a href="communityDetailList.do?kind=분실센터">분실센터</a></li>
+						<li><a href="communityDetailList.do?kind=사진전">사진전</a></li>
 					</ul>
 				</li>
 	

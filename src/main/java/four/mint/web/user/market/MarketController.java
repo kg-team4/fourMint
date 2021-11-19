@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,11 +23,13 @@ import org.springframework.web.multipart.MultipartFile;
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
 import four.mint.web.common.DateUtil;
-import four.mint.web.user.FollowService;
 import four.mint.web.user.FollowCountVO;
+import four.mint.web.user.FollowService;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.SearchVO;
+import four.mint.web.user.community.CommunityBoardService;
+import four.mint.web.user.community.CommunityBoardVO;
 
 @Controller
 public class MarketController {
@@ -38,6 +42,9 @@ public class MarketController {
 	
 	@Autowired
 	private FollowService followService;
+	
+	@Autowired
+	private CommunityBoardService communityBoardService;
 	
 	@RequestMapping(value = "/marketBoardList.do", method = RequestMethod.GET)
 	public String marketBoardList() {
@@ -66,6 +73,14 @@ public class MarketController {
 		/* 게시글 개수 확인 */
 		int boardCount = marketService.getUserBoardCount(user.getNickname());
 		request.setAttribute("boardCount", boardCount);
+		
+		/* 모달에 띄울 게시글 목록 */
+		List<MarketVO> marketList = marketService.getMarketNickname(user.getNickname());
+		request.setAttribute("market", marketList);
+		
+		/* 모달에 등록한 커뮤니티 게시글 리스트 */
+		List<CommunityBoardVO> communityList = communityBoardService.getCommunityListMe(user.getNickname());
+		request.setAttribute("community", communityList);
 		
 		return "/board/market_post_content";
 	}
@@ -209,7 +224,6 @@ public class MarketController {
 			String contentType = file.getContentType();
 			long contentLength = file.getSize();
 			awsS3.upload(is, key, contentType, contentLength);
-			System.out.println("main 업로드 완료");
 				vo.setImg_name(file.getOriginalFilename());
 				vo.setUrl(uploadFolder + key);
 				vo.setCategory_middle(vo.getCategory_middle().replace(",", ""));
@@ -221,5 +235,32 @@ public class MarketController {
 		}
 
 		return "/board/market_all_post_list";
+	}
+	
+	@GetMapping("deleteMarket.do")
+	public String goDeleteMarket(HttpServletRequest request, int seq) {
+		request.setAttribute("seq", seq);
+		
+		return "/board/market_delete"; 
+	}
+	
+	@PostMapping("deleteMarket.do")
+	public String deleteMarket(HttpServletRequest request, UserVO vo, int seq) {
+		request.setAttribute("seq", seq);
+		String password = userService.getPassword(vo.getEmail_id());
+		if(password.equals(vo.getPassword())) {
+			marketService.deleteMarket(seq);
+
+			return "/board/market_all_post_list";
+		} else {
+			return "/board/market_delete";
+		}
+	}
+	
+	@GetMapping("updateMarket.do")
+	public String goUpdateMarket(HttpServletRequest request, int seq) {
+		request.setAttribute("seq", seq);
+		
+		return "/board/market_post_content_edit";
 	}
 }

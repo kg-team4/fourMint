@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -158,7 +159,11 @@ public class StoreController {
 	@RequestMapping(value = "/order.do", method = RequestMethod.GET)
 	public String payment(HttpServletRequest request, UserVO vo, HttpSession session) {
 		request.setAttribute("price", request.getParameter("price"));
-		request.setAttribute("amount", request.getParameter("amount"));
+		if(request.getParameter("amount") == null || Integer.valueOf(request.getParameter("amount")) <= 0) {
+			request.setAttribute("amount", 1);
+		} else {
+			request.setAttribute("amount", request.getParameter("amount"));
+		}
 		
 		String nickname = String.valueOf(session.getAttribute("nickname"));
 		vo = userService.getUserFromNickname(nickname);
@@ -179,28 +184,33 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
-	public String order(@RequestParam(value="chk") String chk, HttpServletRequest request, HttpSession session) {
+	public String order(@RequestParam(value="chk", required=false) String chk, HttpServletRequest request, HttpSession session) {
 		String nickname = String.valueOf(session.getAttribute("nickname"));
 		List<CartVO> cart = storeService.getCartList(nickname);
 		
 		request.setAttribute("cart", cart);
-		
 		if(!chk.equals("first")) {
 			ArrayList<Integer> list = new ArrayList<Integer>();
-			
 			if(!chk.equals("0")) {
 				int size = (chk.length()-1) / 3 + 1;
-				int j = 0;
+				int j = 0; 
 				for(int i=1; i<=size; i++) {
-					list.add(Integer.valueOf(chk.charAt(1+j))-48);
+					if(i<11) {
+						list.add(Integer.valueOf(chk.charAt(1+j))-48);
+					} else {
+						String temp = "";
+						for(int z=0; z<2; z++) {
+							temp += (chk.charAt(1+j))-48;
+							j += 1;
+						}
+						list.add(Integer.valueOf(temp));
+					}
 					j += 3;
 				}
 			}
 			request.setAttribute("chk", list);
-		} else {
-			request.setAttribute("first", "first");
-		}
-		
+		} request.setAttribute("first", "first");
+			
 		return "/pay/payment";
 	}
 	
@@ -304,9 +314,6 @@ public class StoreController {
 		return "/pay/deleteProc";
 	}
 }
-
-
-
 
 
 

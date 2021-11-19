@@ -14,22 +14,14 @@
       <hr class="hr_style2">
       <br><br>
  
-      <!--  
-          준비 : post_title(글제목), used_cate_num(카테고리 번호), used_price(가격), used_content(내용) 
-      -->
-
-      <form action="promotion_post_write.do" method="post" enctype="multipart/form-data">
-         <input type="hidden" name="board_no" value="2">
-         
-         <div class="used_container" >
-
+      <form action="communityWrite.do" method="post" enctype="multipart/form-data">
             <!--  이미지 등록 -->
             <div class="used_photo">
                <div class="used_photo_text" >
                   글 이미지 <span class="must">*</span>
                </div>
                <div class="used_photo_img">                 
-                  <input class="form-input" type="file" name="promotion_post_img" multiple accept=".jpg, .png, .gif" onchange="preview();">
+                  <input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="preview();">
                   <br> 
 				  <img class="preview-wrap" src="#" alt="등록할 상품 사진을 넣어주세요." onerror="this.style.display='none'"/> 
 				  <br>
@@ -49,7 +41,7 @@
             <div class="used_title" style="list-style: none;">
                <div class="used_text">
                   <span class="title_announce">제목 <span class="must">*</span></span>
-                  <span><input class="form-title" type="text" name="post_title" placeholder="글 제목을 입력해주세요." oninput="checkTitle();"></span>
+                  <span><input class="form-title" type="text" name="title" placeholder="글 제목을 입력해주세요." oninput="checkTitle();"></span>
                   <div id="titleInfo"></div>
                   <div class="titleHeight"></div>              
             </div>
@@ -60,14 +52,14 @@
             <div class="used_cate" >
                <div class="used_text">
                   카테고리 <span class="must">*</span>
-                  <select class="promotion_cate_style" name="promotion_cate_num">
+                  <select class="promotion_cate_style" name="category">
                      <option value="">카테고리 선택</option>
-                     <option value="1">소식</option>
-                     <option value="2">질문</option>
-                     <option value="3">모임</option>
-                     <option value="4">맛집</option>
-                     <option value="5">분실센터</option>
-                     <option value="6">사진전</option>                 
+                     <option value="소식">소식</option>
+                     <option value="질문">질문</option>
+                     <option value="모임">모임</option>
+                     <option value="맛집">맛집</option>
+                     <option value="분실센터">분실센터</option>
+                     <option value="사진전">사진전</option>                 
                   </select>
                </div>
             </div>
@@ -80,7 +72,7 @@
                   </div>
                   <div class="content">
                      <div>
-                        <textarea class="first" name="post_content" oninput="calculateCount();"></textarea>
+                        <textarea class="first" name="content" oninput="calculateCount();"></textarea>
                         <div align="right" class="countNum">
                            <span class="letter-count">0</span>/2000
                         </div>

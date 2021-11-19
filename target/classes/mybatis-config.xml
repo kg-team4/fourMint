@@ -22,6 +22,8 @@
 		<typeAlias alias="followCount" type="four.mint.web.user.FollowCountVO" />
 		<typeAlias alias="followers" type="four.mint.web.user.FollowerVO" />
 		<typeAlias alias="followings" type="four.mint.web.user.FollowingVO"/>
+		<typeAlias alias="report" type="four.mint.web.user.board.common.ReportVO"/>
+		<typeAlias alias="communityComment" type="four.mint.web.user.community.CommunityCommentVO"/>
 	</typeAliases>
 	
 	<typeHandlers>

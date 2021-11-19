@@ -13,6 +13,7 @@ import four.mint.web.user.KakaoVO;
 import four.mint.web.user.NaverVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
+import four.mint.web.user.board.common.ReportVO;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
@@ -121,6 +122,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<FollowingVO> getFollowings(String nickname) {
 		return userDao.getFollowings(nickname);
+	}
+
+	@Override
+	public void insertReport(ReportVO rVO) {
+		userDao.insertReport(rVO);
+	}
+
+	@Override
+	public void updateReport(String reported) {
+		userDao.updateReport(reported);
+	}
+
+	@Override
+	public String getPassword(String email_id) {
+		return userDao.getPassword(email_id);
 	}
 
 	
