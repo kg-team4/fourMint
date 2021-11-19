@@ -21,17 +21,27 @@ public class LoginController {
 	private SnsValue naverSns;
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET )
-	public String login(Model model) throws Exception {
+	public String login(Model model, HttpSession session) throws Exception {
+		System.out.println(session.getAttribute("userEmail_id"));
+		if(session.getAttribute("userEmail_id") != null) {
+			return "redirect:/home.do";
+		}else {
+			
+		
 		SNSLogin naverLogin = new SNSLogin(naverSns);
 		model.addAttribute("naver_url", naverLogin.getNaverAuthURL());
-		
+		}
 		return "/user/login";
+		
 	}
 	
 	@RequestMapping(value = "/kakaoLogin.do", method = RequestMethod.POST)
 	public String kakaoLogin(@RequestBody  KakaoVO vo, HttpSession session) throws Exception{
-		System.out.println("iiiii");
-		if(vo.getGender().equals("male")) {
+		
+		if(vo.getGender().equals(null)) {
+			vo.setGender(null);
+		}
+		else if(vo.getGender().equals("male")) {
 			vo.setGender("man");
 		}else {
 			vo.setGender("woman");
@@ -48,6 +58,7 @@ public class LoginController {
 			userService.kakaologin(vo);	
 		}else {
 			session.setAttribute("sns", vo.getSocial_login());
+			System.out.println(vo.getSocial_login());
 			session.setAttribute("userEmail_id", vo.getEmail());
 		}
 		return "redirect:home.do";
@@ -59,6 +70,7 @@ public class LoginController {
 		UserVO user = userService.getUser(vo);
 		if (user != null) {
 			session.setAttribute("userEmail_id", user.getEmail_id());
+			session.setAttribute("name", user.getName());
 			session.setAttribute("address2", user.getAddress2());
 			session.setAttribute("nickname", user.getNickname());
 			System.out.println("로그인 성공: " + user.getEmail_id());
@@ -80,20 +92,21 @@ public class LoginController {
 		
 		NaverVO snsUser = snsLogin.getNaverProfile(code);
 		
-		System.out.println(snsUser.getNaverid());
-		System.out.println(snsUser.getPhone());
-		System.out.println(snsUser.getBirth());
+		
 		
 		String doubleCheck = userService.getBySns(snsUser.getEmail());
 		
-		System.out.println(doubleCheck);
+		
 		if(doubleCheck == null) {
 			System.out.println(doubleCheck);
 			session.setAttribute("sns", snsUser.getSocial_login());
 			session.setAttribute("userEmail_id", snsUser.getEmail());
+			
 			userService.naverlogin(snsUser);
 		}else {
 			session.setAttribute("sns", snsUser.getSocial_login());
+			System.out.println(snsUser.getSocial_login());
+			System.out.println(snsUser.getEmail());
 			session.setAttribute("userEmail_id", snsUser.getEmail());
 			return "redirect:home.do";
 		}

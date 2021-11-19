@@ -109,6 +109,19 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void updateAddress(UserVO vo) {
+		userDao.updateAddress(vo);
+	}
+
+	@Override
+	public String getPw(UserVO vo) {
+		return userDao.getPw(vo);
+	}
+
+	@Override
+	public void updatePw(UserVO vo) {
+		userDao.updatePw(vo);
+		
 	public void updateProfile(UserVO uVO) {
 		userDao.updateProfile(uVO);
 	}

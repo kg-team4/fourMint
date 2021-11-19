@@ -39,18 +39,21 @@ if (request.getAttribute("result") != null) {
 <jsp:include page="./index.jsp"></jsp:include>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <script defer src="../js/profile.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- CSS File -->
 <link href="../css/profile.css" rel="stylesheet">
-<link href="../css/navbar.css" rel="stylesheet">
+
 <article>
 <script>
 
 var sns = ${sns};
 window.onload=function(){
-	if(sns != null ){
+	console.log(sns);
+	if(sns == 'naver' || sns == 'kakao' ){
 		alert('개인정보를 추가해주세요!');
 	}
 }
+
 </script>
 	<!-- 메뉴바 
        현재페이지 뭔지 param.thisPage에 넣어서 navbar.jsp에  던짐 -->
@@ -104,65 +107,123 @@ window.onload=function(){
 
 					<div id="my_modal">
 						<div>
-
 							<div id="my_info_edit_title">나의 정보수정</div>
 							<hr>
 							<div>
 								<table id="my_info_edit_area">
 									<tr>
 										<td width="200px" height="30px">이름</td>
-										<td width="350px">박동녘</td>
+										<td width="350px"><%=session.getAttribute("name") %></td>
 
 									</tr>
 									<tr>
 										<td height="30px">닉네임</td>
-										<td colspan="2"><input type="text" style="width: 90px"
-											placeholder="우쭈쭈동동">
-											<button class="nick_double_check_btn">중복확인</button></td>
+										<td colspan="2"><%=session.getAttribute("nickname") %></td>
 									</tr>
 									<tr>
 										<td height="30px">아이디</td>
-										<td>east345@naver.com</td>
-									</tr>
-									<tr>
-										<td height="30px">현재 비밀번호</td>
-										<td><input type="text"></td>
-									</tr>
-									<tr>
-										<td height="30px">새 비밀번호</td>
-										<td><input type="text"></td>
-									</tr>
-									<tr>
-										<td height="30px">비밀번호 확인</td>
-										<td><input type="text"></td>
+										<td><%=session.getAttribute("userEmail_id") %></td>
 									</tr>
 									<tr>
 										<td rowspan="3" height="90px">주소</td>
-										<td><input type="text" style="width: 90px;">
-											<button class="address_find_btn">주소검색</button></td>
+										<td><input type="text" id="post_addr" placeholder="우편번호" style="width: 90px;">
+											<button onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
 									</tr>
 									<tr>
-										<td height="30px"><input type="text"></td>
+										<td  height="30px"><input type="text" id="base_addr" placeholder="기본주소"></td>
 									</tr>
 									<tr>
-										<td height="30px"><input type="text"></td>
+										<td  height="30px"><input type="text" id="detail_addr" placeholder="직접 입력해주세요"></td>
 									</tr>
 								</table>
 								<br>
 								<div style="text-align: center; margin-top: 10px">
-									<button class="modal_info_edit_btn" style="width: 90px; font-size: 15px">정보수정</button>
-									<button class="modal_quit_btn"style="width: 90px; font-size: 15px">탈퇴</button>
+									
+									<button onclick="updateAddr();">정보수정</button>
 									<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 								</div>
 							</div>
 						</div>
 						<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
 					</div>
-					<button type="button" style="width: 135%; font-size: 15px; box-shadow:none;"
-						class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
-						id="popup_open_btn">내 정보 수정하기</button>
+								<!-- Modal -->
+					<div class="modal fade" id="pwCheck" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="staticBackdropLabel">비밀번호 수정</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					       <form onsubmit="return false">
+					        <table>
+					        	<tr>
+					        		<td><input type="password" id="pw" required="required"/></td>
+					        	</tr>
+					        </table>
+					        </form>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+					        <button type="button" id="pwCheck" class="btn btn-primary" onclick="pwCheck();">비밀번호 확인</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					
+					
+					
+					<div class="modal fade" id="newPw" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="staticBackdropLabel">비밀번호 변경</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div>
+					      	<h2>8~15자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</h2>
+					      </div>
+					     <form id="pwForm">
+					      <div class="modal-body">
+					  
+					       	<table>
+					       		<tr>
+					       			<td><input id="fPw" type="password"></td>
+					       		</tr>
+					       		<tr>
+					       			<td><input id="sPw" name = "password" type="password"></td><td><button type="button" onclick='correctPw();'>비밀번호확인</button></td>
+					       		</tr>
+					       	</table>
+					      </div>
+					      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+						        <button onclick="updatePw();" type="button" class="btn btn-primary">변경하기</button>
+					      </div>
+					     </form>
+					    </div>
+					  </div>
+					</div>
+					
+					<c:choose>
+						<c:when test = "${empty sns }">
+						<button type="button" style="width: 135%; font-size: 15px"
+							class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
+							id="popup_open_info">내 정보 수정하기</button>
+							
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pwCheck">
+			 				 비밀번호수정
+						</button>
+						</c:when>
+						<c:otherwise>
+						<button type="button" style="width: 135%; font-size: 15px"
+							class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
+							id="sns_open_btn">내 정보 수정하기</button>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
+			
+
 			<!--/col-3-->
 			<div class="col-sm-9" style="padding-left: 150px">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -195,7 +256,8 @@ window.onload=function(){
 
 
 				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade show active" id="lantrip" role="tabpanel"
+					<div class="tab-pane fade 
+					show active" id="lantrip" role="tabpanel"
 						aria-labelledby="home-tab">
 						<div class="store_review_all">
 							<br> <br>
@@ -1744,7 +1806,7 @@ window.onload=function(){
    
    //============= 무한스크롤 함수 =============
    //웹브라우저의 창을 스크롤 할 때 마다 호출되는 함수 등록
-   $(window).on("scroll",function(){
+/*    $(window).on("scroll",function(){
       //위로 스크롤된 길이
       let scrollTop=$(window).scrollTop();
       //웹브라우저의 창의 높이
@@ -1788,7 +1850,7 @@ window.onload=function(){
          GetList( currentPage, ajaxDoName, divName );
          
       }; 
-   });
+   }); */
 
    
    $('.nav-item').on('click', function() {

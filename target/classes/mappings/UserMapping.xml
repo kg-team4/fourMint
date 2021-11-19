@@ -74,7 +74,20 @@
 		SELECT social_login FROM member WHERE email_id = #{email}
 	</select>
 	
+	<select id="updateAddress" parameterType="String">
+		UPDATE member SET address1 = #{address1}, address2 = #{address2}, address3 = #{address3} where email_id = #{email_id} 
+	</select>
+	
+	<select id="getPw" resultType="String" parameterType="String">
+		SELECT password FROM member WHERE email_id = #{email_id}  
+	</select>
+	
+	<select id="updatePw" parameterType="String">
+		UPDATE member SET password = #{password} WHERE email_id = #{email_id} 
+	</select>
+
 	<update id="updateProfile" parameterType="user">
 		UPDATE member SET profile = #{profile} WHERE nickname = #{nickname}
 	</update>
+
 </mapper>

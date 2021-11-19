@@ -28,10 +28,12 @@ import four.mint.web.common.AwsS3;
 import four.mint.web.user.market.MarketService;
 import four.mint.web.user.market.MarketVO;
 
+import four.mint.web.user.impl.UserDAO;
+
 @Controller
 public class UserController {
 
-	@Autowired
+  @Autowired
 	private JavaMailSenderImpl mailSender;
 
 	@Autowired
@@ -202,4 +204,62 @@ public class UserController {
 		}
 		return num;
 	}
+  
+  
+   @RequestMapping(value = "/updateAddr.do", method = RequestMethod.POST)
+   @ResponseBody
+   public String updateAddr(HttpServletRequest request, HttpSession session ,UserVO vo ) {
+	  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+	  System.out.println(session.getAttribute("userEmail_id").toString());
+	  vo.setAddress1(request.getParameter("addr1"));
+	  vo.setAddress2(request.getParameter("addr2"));
+	  vo.setAddress3(request.getParameter("addr3"));
+	  
+	  userService.updateAddress(vo);
+	  System.out.println(vo.getEmail_id());
+	  System.out.println(vo.getAddress2());
+	  
+	  return "/profile.do";
+   }
+  
+  @RequestMapping(value = "/pwCheck.do", method = RequestMethod.POST)
+  @ResponseBody
+  public int pwCheck(HttpServletRequest request, HttpSession session, UserVO vo) {
+	  String pw = request.getParameter("pw");
+	  System.out.println(pw);
+	  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+	  vo.setPassword(userService.getPw(vo));
+	  String realPw = vo.getPassword();
+	  System.out.println(realPw);
+	  
+	  
+	  /*
+	   * flag 1 = 비밀번호 일치 2 = 불일
+	   */
+	  int flag = 0;
+	  if(pw.equals(realPw)) {
+		  flag = 1;
+		  System.out.println(flag);
+	  }else {
+		  flag = 2;
+	  }
+	  
+	  
+	  return flag;
+  }
+  
+  @RequestMapping(value = "/updatePw.do")
+  public String updatePw(UserVO vo, HttpSession session) {
+	  System.out.println("updatePw");
+	  System.out.println(vo.getPassword());
+	  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+	  
+	  System.out.println("!!!!!"+vo.getPassword());
+	  
+	  if(vo.getPassword() != null) {
+		  userService.updatePw(vo);
+	  }
+	  
+	  return "redirect:profile.do";
+  }
 }
