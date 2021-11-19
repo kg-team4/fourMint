@@ -60,7 +60,9 @@ public class UserServiceImpl implements UserService {
 		String api_key = "";
 		String api_secret = "";
 		Message coolsms = new Message(api_key, api_secret);
-
+		
+	
+		
 		// 4 params(to, from, type, text) are mandatory. must be filled
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", userPhoneNumber); // 수신전화번호
@@ -152,6 +154,30 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String getPassword(String email_id) {
 		return userDao.getPassword(email_id);
+	}
+
+	@Override
+	public void updateDate(String id) {
+		userDao.updateDate(id);
+	}
+
+
+	@Override
+	public void insertDel(String id) {
+		userDao.insertDel(id);
+		
+	}
+
+	@Override
+	public void dropMem(String id) {
+		userDao.dropMem(id);
+		
+	}
+
+	@Override
+	public void updateSns(UserVO vo) {
+		userDao.updateSns(vo);
+		
 	}
 
 	

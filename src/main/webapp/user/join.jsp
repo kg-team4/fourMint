@@ -318,11 +318,11 @@
 			$(".successPhoneCheck").text("인증번호가 일치합니다.");
 			$(".successPhoneCheck").css("color","green");
 			$("#phoneDoubleCheck").val("true");
-			$("#phone2").attr("disabled",true);
+			
 		}else{
 			$(".successPhoneCheck").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
 			$(".successPhoneCheck").css("color","red");
-			$("#phoneDoubleCheck").val("false");
+			
 			$(this).attr("autofocus",true);
 		}
 	});

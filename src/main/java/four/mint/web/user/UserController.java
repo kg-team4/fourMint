@@ -109,6 +109,24 @@ public class UserController {
 		
 		return "/member/profile";
 	}
+
+	@RequestMapping(value = "/snsUpdate.do", method = RequestMethod.POST)
+		public String snsUpdate(UserVO vo, HttpSession session) {
+			System.out.println("sns유저 수정");
+			session.setAttribute("address2", vo.getAddress2());
+			session.setAttribute("name", vo.getName());
+			session.setAttribute("nickname", vo.getNickname());
+			vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+			userService.updateSns(vo);
+			
+			return "redirect:/profile.do";
+		}
+
+		@RequestMapping(value = "/profile.do", method = RequestMethod.GET)
+		public String info() {
+			
+			return "/member/profile";
+		}
 	
 	@PostMapping("/profileImage.do")
 	public String profileImage(@RequestParam("file") MultipartFile file, HttpServletRequest requset, UserVO uVO) {
@@ -258,18 +276,29 @@ public class UserController {
 	  return flag;
   }
   
-  @RequestMapping(value = "/updatePw.do")
-  public String updatePw(UserVO vo, HttpSession session) {
-	  System.out.println("updatePw");
-	  System.out.println(vo.getPassword());
-	  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
-	  
-	  System.out.println("!!!!!"+vo.getPassword());
-	  
-	  if(vo.getPassword() != null) {
-		  userService.updatePw(vo);
-	  }
-	  
-	  return "redirect:profile.do";
-  }
+	@RequestMapping(value = "/updatePw.do")
+	public String updatePw(UserVO vo, HttpSession session) {
+		System.out.println("updatePw");
+		vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+		
+		if(vo.getPassword() != null) 
+			userService.updatePw(vo);
+		
+		return "redirect:profile.do";
+	}
+
+	@RequestMapping(value = "/secession.do")
+	public String secession(HttpSession session) {
+		System.out.println("secession");
+		String id = session.getAttribute("userEmail_id").toString();
+		
+		System.out.println(id);
+		
+		userService.updateDate(id);
+		userService.insertDel(id);
+		userService.dropMem(id);
+		
+		session.invalidate();
+		return "redirect:home.do";
+	}
 }

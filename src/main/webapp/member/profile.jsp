@@ -94,41 +94,133 @@ if (request.getAttribute("result") != null) {
 							<div id="my_info_edit_title">나의 정보수정</div>
 							<hr>
 							<div>
+							<form action="snsUpdate.do" method="post">
 								<table id="my_info_edit_area">
-									<tr>
-										<td width="200px" height="30px">이름</td>
-										<td width="350px">${user.name }</td>
-									</tr>
-									<tr>
-										<td height="30px">닉네임</td>
-										<td colspan="2">${user.nickname }</td>
-									</tr>
-									<tr>
-										<td height="30px">아이디</td>
-										<td>${user.email_id }</td>
-									</tr>
-									<tr>
-										<td rowspan="3" height="90px">주소</td>
-										<td><input type="text" id="post_addr" placeholder="우편번호" style="width: 90px;">
-											<button onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
-									</tr>
-									<tr>
-										<td height="30px"><input type="text" id="base_addr" placeholder="기본주소"></td>
-									</tr>
-									<tr>
-										<td height="30px"><input type="text" id="detail_addr" placeholder="직접 입력해주세요"></td>
-									</tr>
+									
+									<c:choose>
+										<c:when test="${empty sns }">
+											<tr>
+												<td width="200px" height="30px">이름</td>
+												<td width="350px">${user.name}</td>
+		
+											</tr>
+											<tr>
+												<td height="30px">닉네임</td>
+												<td colspan="2">${user.nicnkname}</td>
+											</tr>
+											<tr>
+												<td height="30px">아이디</td>
+												<td>${user.email_id}</td>
+											</tr>
+											<tr>
+												<td rowspan="3" height="90px">주소</td>
+												<td><input type="text" id="post_addr" placeholder="우편번호" style="width: 90px;">
+													<button onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
+											</tr>
+											<tr>
+												<td  height="30px"><input type="text" id="base_addr" placeholder="기본주소"></td>
+											</tr>
+											<tr>
+												<td  height="30px"><input type="text" id="detail_addr" placeholder="직접 입력해주세요"></td>
+											</tr>
+										</c:when>
+										<c:otherwise>
+										
+											<c:choose>
+												<c:when test="${empty name }">
+													<tr>
+														<td width="200px" height="30px">이름</td>
+														<td width="350px"><input type="text" placeholder="이름" id="name" name="name" required="required"></td>
+													</tr>
+												</c:when>
+												<c:otherwise>
+														<td width="200px" height="30px">이름</td>
+														<td width="350px">${user.name}</td>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${empty nickname }">
+													<tr>
+														<td width="200px" height="30px">닉네임</td>
+														<td><input id="nick" type="text" placeholder="닉네임" id="nickname" name="nickname" required="required"></td>
+														<td rowspan="2"><button type="button" onclick="doubleCheck();">중복확인</button>
+													</tr>
+												</c:when>
+												<c:otherwise>
+													<tr>
+														<td height="30px">닉네임</td>
+														<td colspan="2">${user.nickname}</td>
+													</tr>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test='${sns eq "kakao"}'>
+													<tr>
+														<td width="200px" height="30px">핸드폰 번호</td>
+														<td><input type="text" placeholder="핸드폰 번호" id="phone" name="phone" maxlength="11" required="required"></td>
+														<td><button type="button" onclick="phoneCheck();">인증</button></td>
+														<td><input type="text" placeholder="인증번호" id="phone2"></td>
+														<td><button type="button" id="phoneCheck2" onclick="numcheck();">확인</button></td>
+													</tr>
+												</c:when>
+												<c:otherwise>
+													<tr>
+														<td height="30px">핸드폰번호</td>
+														<td colspan="2">${user.phone}</td>
+													</tr>
+												</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${empty brith }">
+													<tr>
+														<td width="200px" height="30px">생년월일</td>
+														<td><input type="text" placeholder="생년월일" id="birth" name="birth" required="required"></td>
+														<td><button type="button" id="birthCheck" onclick="checkBirth();">생년월일검수</button></td>
+													</tr>
+												</c:when>
+												<c:otherwise>
+													<tr>
+														<td height="30px">생년월일</td>
+														<td colspan="2">${user.birth}</td>
+													</tr>
+												</c:otherwise>
+											</c:choose>
+											<tr>
+												<td rowspan="3" height="90px">주소</td>
+												<td><input type="text" id="post_addr" name="address1" placeholder="우편번호" style="width: 90px;">
+													<button type="button" onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
+											</tr>
+											<tr>
+												<td  height="30px"><input type="text" id="base_addr" placeholder="기본주소" name="address2"></td>
+											</tr>
+											<tr>
+												<td  height="30px"><input type="text" id="detail_addr" placeholder="직접 입력해주세요" name="address3"></td>
+											</tr>
+											
+										</c:otherwise>
+									</c:choose>
 								</table>
 								<br>
 								<div style="text-align: center; margin-top: 10px">
-									<button onclick="updateAddr();">정보수정</button>
-									<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+									<c:choose>
+										<c:when test="${empty sns }">
+											<button onclick="updateAddr();">정보수정</button>
+											<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+										</c:when>
+										<c:otherwise>
+											<button onclick="updateSns();">정보수정</button>
+											<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+										</c:otherwise>
+									</c:choose>
 								</div>
+								</form>
 							</div>
 						</div>
 						<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
 					</div>
-					<!-- Modal -->
+					
+					
+					<!-- 비밀번호 일치용 모달 -->
 					<div class="modal fade" id="pwCheck" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -152,6 +244,9 @@ if (request.getAttribute("result") != null) {
 							</div>
 						</div>
 					</div>
+					
+					
+					<!-- 바말번호 수정용 모달 -->
 					<div class="modal fade" id="newPw" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -182,13 +277,73 @@ if (request.getAttribute("result") != null) {
 							</div>
 						</div>
 					</div>
+	
+					<!-- 회원 탈퇴용 모달 -->
+					<div class="modal fade" id="secession" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="staticBackdropLabel">탈퇴하기</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <form id="secessionForm" onsubmit="return false">
+					     	 <div class="modal-body">
+					        	<input id="cpw" type="password">
+					    	  </div>
+					     	 <div class="modal-footer">
+					       		 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+					       		 <button type="button" class="btn btn-primary" onclick="secession();">탈퇴하기</button>
+					      	</div>
+					      </form>
+					    </div>
+					  </div>
+					</div>
+					<!-- sns 탈퇴용 모달 -->
+					<div class="modal fade" id="sns_secession" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="staticBackdropLabel">탈퇴하기</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <form id="secessionForm" onsubmit="return false">
+					     	 <div class="modal-body">
+					        	탈퇴하시겠습니까?
+					    	  </div>
+					     	 <div class="modal-footer">
+					       		 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+					       		 <button type="button" class="btn btn-primary" onclick="sns_secession();">탈퇴하기</button>
+					      	</div>
+					      </form>
+					    </div>
+					  </div>
+					</div>
+					
+					
+
+
+				
+					
+					
 					<c:choose>
-						<c:when test="${empty sns }">
-							<button type="button" style="width: 135%; font-size: 15px" class="btn btn--blue-2 btn--radius-2 btn_modify_profile" id="popup_open_info">내 정보 수정하기</button>
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pwCheck">비밀번호수정</button>
+						<c:when test = "${empty sns }">
+						<button type="button" style="width: 135%; font-size: 15px"
+							class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
+							id="popup_open_info">내 정보 수정하기</button>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pwCheck">
+			 				 비밀번호수정
+						</button>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#secession">
+							 탈퇴하기
+						</button>
 						</c:when>
 						<c:otherwise>
-							<button type="button" style="width: 135%; font-size: 15px" class="btn btn--blue-2 btn--radius-2 btn_modify_profile" id="sns_open_btn">내 정보 수정하기</button>
+						<button type="button" style="width: 135%; font-size: 15px"
+							class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
+							id="popup_open_info">내 정보 수정하기</button>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sns_secession">
+							 탈퇴하기
+						</button>
 						</c:otherwise>
 					</c:choose>
 				</div>

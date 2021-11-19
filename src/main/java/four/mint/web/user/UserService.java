@@ -21,6 +21,8 @@ public interface UserService {
 	void naverlogin(NaverVO nvo);
 	void kakaologin(KakaoVO kvo);
 	String getBySns(String snsid);
+	
+	
 	void updateAddress(UserVO vo);
 	String getPw(UserVO vo);
 	void updatePw(UserVO vo);
@@ -32,5 +34,9 @@ public interface UserService {
 	void insertReport(ReportVO rVO);
 	void updateReport(String reported);
 	String getPassword(String email_id);
+	void updateDate(String id);
+	void insertDel(String id);
+	void dropMem(String id);
+	void updateSns(UserVO vo);
 	
 }
