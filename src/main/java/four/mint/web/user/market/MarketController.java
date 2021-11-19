@@ -57,8 +57,8 @@ public class MarketController {
 		/* 조회수 증가 */
 		marketService.updateViews(Integer.valueOf(request.getParameter("seq")));
 		
-		marVO = marketService.getMarketOne(Integer.valueOf(request.getParameter("seq")));
 		/* 게시글 정보 및 시간 정보 출력 */
+		marVO = marketService.getMarketOne(Integer.valueOf(request.getParameter("seq")));
 		request.setAttribute("content", marVO);
 		request.setAttribute("date", DateUtil.txtDate(marVO.getDate()));
 		

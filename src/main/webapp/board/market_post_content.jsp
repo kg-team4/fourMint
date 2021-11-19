@@ -20,7 +20,6 @@
 <script src="../js/swiper.min.js"></script>
 <script src="../js/post_content.js"></script>
 <article style="padding-top: 220px; padding-bottom: 100px" id="post-content-form">
-	<input type="hidden" value="회원" id="login-member"> <input type="hidden" value="1" id="post-member">
 	<div class="container bootstrap snippet padding50">
 		<div class="float-box float-left row">
 			<div class="left-item40" style="height: fit-content;">
@@ -40,9 +39,6 @@
 			</div>
 			<div class="right-item60 left-font padding-left35 col-sm-3">
 				<!-- 글 제목 -->
-				<%-- <div class="font30 padding25">
-					<span>${content.product_name }</span>
-				</div> --%>
 				<!-- 상품 금액 -->
 				<div class="item padding25">
 					<span class="font30">${content.product_name }</span>
@@ -55,12 +51,18 @@
 					<hr>
 				</div>
 				<div class="item font17 gray-font padding25">
-					<span class="lightgray-font">♥</span> <span class="font15 padding-right05">&nbsp;1</span> <span class="short-border"> <img
-						src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAaCAYAAADMp76xAAAAAXNSR0IArs4c6QAABAdJREFUWAm9mFtIFFEYx9tZ11UW1tLoaoGEPShqq3ahgogyIgnqQXqIgih6qKgEH4JIqCgIIoowIrSn6i0irOxCQdAN7wb2IiSlSUZuGJGyumu/b9lZZo8zs7ObdeBwvvNd/uc/53zznWFcs9Js7e3tczVNWzs1NbUKiErGfJfLNYcxVyCRg8g/GAeZdiC3eTyeN2VlZd/Enm5zpRLY09Pjm5yc3EnMbghUMbpTiYd8BP8X9Dt+v/9uYWHhz1TixdcR4YGBgezh4eFD+J+gz5XAGWijYFzKycm5nArxpIQ5+hqAr9AXzgBJM4ggqXWyvLz8uplR1VkShmgOR3iVo9+jBv2LOWs9pu+H+JAdvilhyC4j6AldxqSNhT7g1Oh2u59mZWV9loDx8fGl4XB4C+IBHrpIdA7ad7C2V1RUvLPynUa4u7s7wIvVQsB8qyCDfgK5jgUaWChs0MdFyLo7OjoOo7hI98QN1sJvsHaB+cDMJYFwV1fXCnblJY5+M2dFN8GOVgcCgWeK3nQKdhXYDzE6IR2GdA2k76lgmq7o7OxcBGAzcydkJazOKVlxjvnWieyguTmZ25y21PiEFt3h/v7+rJGRkddYyhOsFhOe/gMvR6lVGliEzZL0YGPep5DTw16vd2VJScmAjhnd4WAweBaFI7KxwEaVLCQyIHOafB2ULrLo9IVkjMU0GnVJ5PmhUOim0UejIqwGuNaoTCZLNVB9yNFTkUikHqzF0kUWnepnFqv6GOdgbWYDDuo6jaduYOLWFU5Gvgk+qX4A73ei08ue6ms3B/ui3LbiozExLUd2AOxSQnWx850h2+f8/PyQYGksfoRxMhVguRRUf06qyYnOLFaNM87BjdAP0KMbq1Fu2phcMDolk2M3WIIbOGf5JjgD1hfpIosuwYmJWazqo8yvGG++6NH29vZmjo2NPcdxveJsOoXQ/yprXcKpsrLyt04kWtaKi4tDPp9vB0T6dIPdSN4Xxa5bO7dpNomR2GkGEwVchjIyMrYbyYpbwstDGSqkHL0CdJ4Jhqr6l1ezfNhvhGynumj8ahYDOSc7vI7+UeZJmke+DajjR3lAy7IoNvERX/CcfEd8pRBsMCMrfBJ2WCdITi8gpx8xD+g6u1FyGvtff15KSlLjt5aWllpumClhIdfX1+cdHR09D0gtu2TpZ/cgKdqasrOzj/M+/bKLS0qEb4JN5PU1QJbbAaVrY0M+UQKPkY73nWAkJSwgkoe84fsQ6+lLRDcD7Stkz3FV35Aq5RTPEWEdLFavt7HQXnTVPEimbnM4ThDbQtytvLy85oKCgnGHcXG3lAjHoxAogbNJlTWIq6VDQn6k5DLmih+y/EgJMsqPlFaOvZW3/y0v1A+xp9v+ADhPuomDsZuZAAAAAElFTkSuQmCC"
-						width="20" height="13" alt="조회수 아이콘">&nbsp;${content.views }
-					</span> <span class="padding-left05"> <img src="../img/time.png" width="15" height="13" alt="시간 아이콘"> &nbsp;${date }
-					</span> <span style="float: right; cursor: pointer"> <a class="police_click"> <img src="../img/police.png" width="20" height="20">&nbsp;신고하기
-					</a>
+					<span class="lightgray-font">♥</span> 
+					<span class="font15 padding-right05">&nbsp;1</span> 
+					<span class="short-border"> 
+						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAaCAYAAADMp76xAAAAAXNSR0IArs4c6QAABAdJREFUWAm9mFtIFFEYx9tZ11UW1tLoaoGEPShqq3ahgogyIgnqQXqIgih6qKgEH4JIqCgIIoowIrSn6i0irOxCQdAN7wb2IiSlSUZuGJGyumu/b9lZZo8zs7ObdeBwvvNd/uc/53zznWFcs9Js7e3tczVNWzs1NbUKiErGfJfLNYcxVyCRg8g/GAeZdiC3eTyeN2VlZd/Enm5zpRLY09Pjm5yc3EnMbghUMbpTiYd8BP8X9Dt+v/9uYWHhz1TixdcR4YGBgezh4eFD+J+gz5XAGWijYFzKycm5nArxpIQ5+hqAr9AXzgBJM4ggqXWyvLz8uplR1VkShmgOR3iVo9+jBv2LOWs9pu+H+JAdvilhyC4j6AldxqSNhT7g1Oh2u59mZWV9loDx8fGl4XB4C+IBHrpIdA7ad7C2V1RUvLPynUa4u7s7wIvVQsB8qyCDfgK5jgUaWChs0MdFyLo7OjoOo7hI98QN1sJvsHaB+cDMJYFwV1fXCnblJY5+M2dFN8GOVgcCgWeK3nQKdhXYDzE6IR2GdA2k76lgmq7o7OxcBGAzcydkJazOKVlxjvnWieyguTmZ25y21PiEFt3h/v7+rJGRkddYyhOsFhOe/gMvR6lVGliEzZL0YGPep5DTw16vd2VJScmAjhnd4WAweBaFI7KxwEaVLCQyIHOafB2ULrLo9IVkjMU0GnVJ5PmhUOim0UejIqwGuNaoTCZLNVB9yNFTkUikHqzF0kUWnepnFqv6GOdgbWYDDuo6jaduYOLWFU5Gvgk+qX4A73ei08ue6ms3B/ui3LbiozExLUd2AOxSQnWx850h2+f8/PyQYGksfoRxMhVguRRUf06qyYnOLFaNM87BjdAP0KMbq1Fu2phcMDolk2M3WIIbOGf5JjgD1hfpIosuwYmJWazqo8yvGG++6NH29vZmjo2NPcdxveJsOoXQ/yprXcKpsrLyt04kWtaKi4tDPp9vB0T6dIPdSN4Xxa5bO7dpNomR2GkGEwVchjIyMrYbyYpbwstDGSqkHL0CdJ4Jhqr6l1ezfNhvhGynumj8ahYDOSc7vI7+UeZJmke+DajjR3lAy7IoNvERX/CcfEd8pRBsMCMrfBJ2WCdITi8gpx8xD+g6u1FyGvtff15KSlLjt5aWllpumClhIdfX1+cdHR09D0gtu2TpZ/cgKdqasrOzj/M+/bKLS0qEb4JN5PU1QJbbAaVrY0M+UQKPkY73nWAkJSwgkoe84fsQ6+lLRDcD7Stkz3FV35Aq5RTPEWEdLFavt7HQXnTVPEimbnM4ThDbQtytvLy85oKCgnGHcXG3lAjHoxAogbNJlTWIq6VDQn6k5DLmih+y/EgJMsqPlFaOvZW3/y0v1A+xp9v+ADhPuomDsZuZAAAAAElFTkSuQmCC" width="20" height="13" alt="조회수 아이콘">&nbsp;${content.views }
+					</span> 
+					<span class="padding-left05"> 
+						<img src="../img/time.png" width="15" height="13" alt="시간 아이콘"> &nbsp;${date }
+					</span> 
+					<span style="float: right; cursor: pointer"> 
+						<a class="police_click"> 
+							<img src="../img/police.png" width="20" height="20">&nbsp;신고하기
+						</a>
 					</span>
 				</div>
 				<div id="police_modal">
@@ -89,72 +91,12 @@
 									<input type="hidden" name="reporter" value="${nickname }"/>
 									<input type="hidden" name="reported" value="${content.nickname }"/>
 									<button disabled id="modal_police_btn" style="width: 90px; font-size: 15px">신고</button>
-									<button type="button" class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+									<button type="button" class="modal_close_btn" style="background: none; border: none;">X</button>
 								</div>
 							</form>
 						</div>
 					</div>
-				<script type="text/javascript">
-					
-			 // 모달 만들기
-				function modal(id) {
-				    var zIndex = 9999;
-				    var modal = document.getElementById(id);
-
-				    // 모달 div 뒤에 희끄무레한 레이어
-				    var bg = document.createElement('div');
-				    bg.setStyle({
-				        position: 'fixed',
-				        zIndex: zIndex,
-				        left: '0px',
-				        top: '0px',
-				        width: '100%',
-				        height: '100%',
-				        overflow: 'auto',
-				        // 레이어 색갈은 여기서 바꾸면 됨
-				        backgroundColor: 'rgba(0,0,0,0.4)'
-				    });
-				    document.body.append(bg);
-
-				    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-				    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
-				        bg.remove();
-				        modal.style.display = 'none';
-				        
-				        return;
-				    });
-				    modal.querySelector('.modal_cancle_btn').addEventListener('click', function() {
-				        bg.remove();
-				        modal.style.display = 'none';
-				        
-				        return false;
-				    });
-					
-
-				    modal.setStyle({
-				        position: 'fixed',
-				        display: 'block',
-				        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-
-				        // 시꺼먼 레이어 보다 한칸 위에 보이기
-				        zIndex: zIndex + 1,
-
-				        // div center 정렬
-				        top: '50%',
-				        left: '50%',
-				        transform: 'translate(-50%, -50%)',
-				        msTransform: 'translate(-50%, -50%)',
-				        webkitTransform: 'translate(-50%, -50%)'
-				    });
-				    
-				    return;
-				}
-			 
-				// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-				Element.prototype.setStyle = function(styles) {
-				    for (var k in styles) this.style[k] = styles[k];
-				    return this;
-				};
+				</div>
 				
 				<script>
 				 // 모달 만들기
@@ -176,18 +118,6 @@
 					        backgroundColor: 'rgba(0,0,0,0.4)'
 					    });
 					    document.body.append(bg);
-	
-					    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-					    modal.querySelector('.modal_cancle_btn').addEventListener('click', function() {
-					        bg.remove();
-					        modal.style.display = 'none';
-					    });
-					    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
-					        bg.remove();
-					        modal.style.display = 'none';
-					    });
-					    
-						
 	
 					    modal.setStyle({
 					        position: 'fixed',
@@ -215,6 +145,7 @@
 					    // 모달창 띄우기
 					    modal('police_modal');
 					});
+					
 					//신고하기 select box 선택 사유가 없을 경우 버튼 비활성화
 				 	$("#police_reason").change(function(){
 						if($("#police_reason").val() == ''){
@@ -228,8 +159,9 @@
 				
 				<div class="item font15 padding15">
 					<div class="padding15">
-						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}&nbsp; <c:if test="${!empty content.category_middle}">
-						>
+						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}&nbsp; 
+						<c:if test="${!empty content.category_middle}">
+							>
 						</c:if> &nbsp;${content.category_middle }
 						</span>
 					</div>
@@ -251,7 +183,11 @@
 							<c:when test="${nickname ne content.nickname and nickname ne null}">
 								<div class="left-item33">
 									<form action="../member/post_like.do" method="post">
-										<input type="hidden" name="member_no" value="1"> <input type="hidden" name="board_no" value="1"> <input type="hidden" name="post_no" value="1"> <input type="hidden" name="post_table" value="테이블"> <input type="hidden" name="post_path" value="asd?asd">
+										<input type="hidden" name="member_no" value="1"> 
+										<input type="hidden" name="board_no" value="1"> 
+										<input type="hidden" name="post_no" value="1"> 
+										<input type="hidden" name="post_table" value="테이블"> 
+										<input type="hidden" name="post_path" value="asd?asd">
 										<input type="submit" class="like-button cursor" value="♥ 찜 좋아요">
 									</form>
 								</div>
@@ -269,8 +205,7 @@
 												<span id="m_writer_profile">
 													<div class="message-box">
 														<!-- 프로필 이미지 -->
-														<%-- <img id="messageProfileImage"
-													src='./upload/profile/${to.profile }' /> --%>
+														<img id="messageProfileImage" src="${user.profile }" style="width: 35px; height: 35px; margin-right: 10px;" />
 													</div>
 												</span>
 												<h5 class="modal-title" id="exampleModalLabel">${content.nickname}</h5>
@@ -327,7 +262,6 @@
 						</c:choose>
 					</div>
 				</div>
-			</div>
 		</div>
 	</div>
 	<div class="padding-top50">
@@ -662,6 +596,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </article>
 <script>
 	//메세지 내역을 가져온다.
@@ -810,8 +745,6 @@
 	        bg.remove();
 	        modal.style.display = 'none';
 	    });
-	    
-	    
 
 	    modal.setStyle({
 	        position: 'fixed',
