@@ -17,33 +17,19 @@ public class SNSLogin {
 	
 	
 	public SNSLogin(SnsValue sns) {
-		if(sns.getService().equals("naver")) {
 		this.oauthService = new ServiceBuilder(sns.getClientId())
 					.apiSecret(sns.getClientSecret())
 					.callback(sns.getRedirectUrl())
 					.defaultScope("profile")
 					.build(sns.getApi20Instance());
 			this.sns = sns;
-		}else {
-//			System.out.println(sns.getService());
-//			System.out.println(key);
-//			this.oauthService = new ServiceBuilder(sns.getClientId())
-//					.apiSecret(sns.getClientSecret())
-//					.callback(sns.getRedirectUrl())
-//					.defaultScope("profile_nickname,account_email,gender,birthday")
-//					.build(sns.getApi20Instance());
-//			this.sns = sns;
-			
-		}
+		
 	}
 	
 	public String getNaverAuthURL() {
 		return this.oauthService.getAuthorizationUrl();
 	}
-//	public String getKakaoAuthURL() {
-//		return this.oauthService.getAuthorizationUrl();
-//	
-//	}
+
 
 	public NaverVO getNaverProfile(String code) throws Exception {
 		System.out.println("navercode " + code);
@@ -59,37 +45,7 @@ public class SNSLogin {
 		return parseJson(response.getBody());
 	}
 	
-//	public String getKakaoProfile(String code)throws Exception{
-//		System.out.println("kakaocode " + code);
-//		
-//		String accessToken = "";
-//		RestTemplate restTemplate = new RestTemplate();
-//		URI uri = URI.create("https://kauth.kakao.com/oauth/token");
-//		HttpHeaders headers = new HttpHeaders();
-//		
-//		
-//		LinkedMultiValueMap<String, Object> parameters = new LinkedMultiValueMap<String, Object>();
-//		parameters.set("grant_type", "authorization_code");
-//		parameters.set("client_id", sns.getClientId());
-//		parameters.set("redirect_uri", sns.getRedirectUrl());
-//		parameters.set("code", code);
-//		
-//		HttpEntity<LinkedMultiValueMap<String, Object>>restRequest = new HttpEntity<>(parameters, headers);
-//		ResponseEntity<JsonObject> apiResponse = restTemplate.postForEntity(uri, restRequest, JsonObject.class);
-//		JsonObject responseBody = apiResponse.getBody();
-//		
-////		OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
-////		System.out.println("access" +accessToken);
-////		
-////		OAuthRequest request = new OAuthRequest(Verb.GET,  this.sns.getProfileUrl());
-////		System.out.println("request" + request);
-////		oauthService.signRequest(accessToken, request);
-//		
-//		Response response = oauthService.execute(request);
-//				accessToken = responseBody.get("access_token").toString();
-//		
-//		return response.getBody();
-//	}
+
 
 	private NaverVO parseJson(String body)throws Exception {
 		

@@ -16,11 +16,11 @@
                     <img src="../img/logo_icon.png" alt="logo_icon" id="logo_icon">
                 </div>
                 <div>
-                    <input type="text" name="email_id" placeholder="이메일" id="id">
+                    <input type="text" name="email_id" placeholder="이메일" id="id" required="required">
                 </div>
                 <div>
                     <input
-                     type="password" name="password" placeholder="비밀번호" id="pw">
+                     type="password" name="password" placeholder="비밀번호" id="pw" required="required">
                 </div>
                 <div>
                     <div id="login-tool">

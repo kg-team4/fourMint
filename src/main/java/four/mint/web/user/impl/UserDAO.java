@@ -87,6 +87,22 @@ public class UserDAO {
 		return sqlSessionTemplate.selectOne("UserDAO.getBySns", snsid);
 	}
 
+	public void updateAddress(UserVO vo) {
+		System.out.println("===> memeber UPDATE address1,2,3");
+		
+		sqlSessionTemplate.update("UserDAO.updateAddress", vo);
+	}
+
+	public String getPw(UserVO vo) {
+		System.out.println("===> member TABLE SELET pw");
+		return sqlSessionTemplate.selectOne("UserDAO.getPw", vo);
+	}
+
+	public void updatePw(UserVO vo) {
+		System.out.println("===> member UPDATE pw");
+		
+		sqlSessionTemplate.update("UserDAO.updatePw", vo);
+		
 	public void updateProfile(UserVO uVO) {
 		sqlSessionTemplate.update("UserDAO.updateProfile", uVO);
 	}

@@ -38,6 +38,8 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
 
+
+
 	 Kakao.init('3095bed7ad41f197a883fe4fb8b87ee3');
 	 console.log(Kakao.isInitialized());
 
