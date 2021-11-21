@@ -51,10 +51,11 @@
                      	분류
                      	</button>
                      	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                     		<a class="dropdown-item" href="#">기타</a>
-                     		<a class="dropdown-item" href="#">반품/교환</a>
-                     		<a class="dropdown-item" href="#">취소/환불</a>
-                     		<a class="dropdown-item" href="#">배송</a>
+                     		<a class="dropdown-item" href="etc.mdo">기타</a>
+                     		<a class="dropdown-item" href="exchange.mdo">반품/교환</a>
+                     		<a class="dropdown-item" href="cancel.mdo">취소/환불</a>
+                     		<a class="dropdown-item" href="delivery.mdo">배송</a>
+                     		<a class="dropdown-item" href="utilities-usedfaq.mdo">전체</a>
                      	</div>
                      </div>
 
@@ -85,13 +86,13 @@
 		                                            <div class="dropdown">
 		                 							<btn type="button" class="btn btn-secondary dropdown-toggle" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                         										                                            	 
 	                                            	</btn>
-	                                            	<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">${faq.text}	
+	                                            	<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"><pre style=" white-space:pre-wrap;line-height: 150%;text-align:left;">${faq.text}</pre>	
 	                                            	</ul>
 	                                            	</div>
 	                                            </td> 
 	                                            <td>
-		                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-		                                        	<button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
+		                                            <button type="button" onclick="alert('등록되었습니다.')" class="btn btn-success"><i class="fas fa-edit"></i></button>
+		                                        	<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
 		                                        </td>                                         
                                         	</tr>
                                       </c:forEach>                                                                                                                                                                                                                                                                                              

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminReportDAO">
+	
+	<resultMap  type="adminReport" id="adminResult">
+		<result property="report_seq" column="REPORT_SEQ" />
+		<result property="reason" column="REASON" />
+		<result property="content" column="CONTENT" />	
+		<result property="market_seq" column="MARKET_SEQ" />	
+		<result property="reporter" column="REPORTER" />
+		<result property="reported" column="REPORTED" />
+		<result property="date" column="DATE" />		
+	</resultMap>
+	
+	<resultMap  type="adminBlackList" id="getAdminBlackList">
+		<result property="blacklist_seq" column="BLACKLIST_SEQ" />
+		<result property="name" column="NAME" />
+		<result property="email_id" column="EMAIL_ID" />	
+		<result property="nickname" column="NICKNAME" />	
+		<result property="date" column="DATE" />
+		<result property="report_seq" column="REPORT_SEQ" />				
+	</resultMap>
+	
+	<insert id="insertAdmin" parameterType="four.mint.web.admin.report.AdminReportVO">
+		INSERT INTO report (report_seq, reason, content, market_seq, reporter, reported, date) 
+		VALUES (#{report_seq}, #{reason}, #{content}, #{market_seq}, #{reporter}, #{reported},  #{date} )
+	</insert>
+	
+	<select id="getAdminReportList" resultType="adminReport" parameterType="four.mint.web.admin.report.AdminReportVO">
+		SELECT * FROM report
+	</select>	
+	
+		<select id="getAdminBlackList" resultType="adminBlackList" parameterType="four.mint.web.admin.report.AdminBlackListVO">
+		SELECT * FROM blacklist
+	</select>
+	
+	<update id="modify">
+		modify report set report_seq =#{report_seq}, reason=#{reason}, content =#{content}, market_seq =#{market_seq}, reporter=#{reporter}, reported=#{reported}, date=#{date}
+		where report_seq = #{report_seq}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from report where report_seq = #{report_seq}
+	</delete>
+	
+	<delete id="blacklist_delete" parameterType="int">
+		delete from blacklist where blacklist_seq = #{vo}
+	</delete>
+		
+	<insert id="blacklist" parameterType="four.mint.web.admin.report.AdminBlackListVO">
+		INSERT INTO blacklist (blacklist_seq, name, email_id, nickname, report_seq) 
+		VALUES (default, #{name}, #{email_id}, #{nickname},  #{report_seq} )
+	</insert>
+	
+
+</mapper>

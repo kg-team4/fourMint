@@ -8,13 +8,21 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
-<title>관리자 메인</title>
+<title>관리자 페이지</title>
 <!-- 폰트 설정 -->
 <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
 <!-- 템플릿 css -->
 <link href="admin/css/sb-admin-2.css" rel="stylesheet">
+<!-- 달력 -->
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+
 </head>
 <body id="page-top">
 	
@@ -116,7 +124,7 @@
 							<div class="card shadow mb-4">
 								<!-- Card Header - Dropdown -->
 								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">매출</h6>
+									<h6 class="m-0 font-weight-bold text-primary">월매출</h6>
 									<div class="dropdown no-arrow">
 										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 										</a>
@@ -171,11 +179,11 @@
 					<!-- 3열 -->
 					<div class="row">
 						<!-- Content Column -->
-						<div class="col-lg-6 mb-4">
-							<!-- Project Card Example -->
+						<!-- <div class="col-lg-6 mb-4">
+							Project Card Example
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">회원랭킹</h6>
+									<h6 class="m-0 font-weight-bold text-primary">간략하게 보기</h6>
 								</div>
 								<div class="card-body">
 									<h4 class="small font-weight-bold">
@@ -211,25 +219,91 @@
 										</div>
 									</div>													
 								</div>
+							</div> -->
+						<div class='col-lg-6 mb-4'>
+							<div class="card shadow mb-4">
+								<div class="card-header py-3" id="datetimepicker1" data-target-input="nearest">
+									<h6 class="m-0 font-weight-bold text-primary">매출</h6>
+									<input type="text" class="form-control datetimepicker-input"
+										data-target="#datetimepicker1" value="01/11/2020">
+									<div class="input-group-append" data-target="#datetimepicker1"
+										data-toggle="datetimepicker">
+										<div class="input-group-text">
+											<i class="fa fa-calendar"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class='col-lg-6 mb-4'>
+							<div class="card shadow mb-4">
+								<div class="card-header py-3" id="datetimepicker2" data-target-input="nearest">
+									<h6 class="m-0 font-weight-bold text-primary">매출</h6>
+									<input type="text" class="form-control datetimepicker-input"
+										data-target="#datetimepicker2" value="01/15/2020">
+									<div class="input-group-append" data-target="#datetimepicker2"
+										data-toggle="datetimepicker">
+										<div class="input-group-text">
+											<i class="fa fa-calendar"></i>
+										</div>
+									</div>
+									<script type="text/javascript">
+										$(function() {
+											$('#datetimepicker1')
+													.datetimepicker({
+														format : 'L'
+													});
+											$('#datetimepicker2')
+													.datetimepicker({
+														format : 'L',
+														useCurrent : false
+													});
+											$("#datetimepicker1")
+													.on(
+															"change.datetimepicker",
+															function(e) {
+																$(
+																		'#datetimepicker2')
+																		.datetimepicker(
+																				'minDate',
+																				e.date);
+															});
+											$("#datetimepicker2")
+													.on(
+															"change.datetimepicker",
+															function(e) {
+																$(
+																		'#datetimepicker1')
+																		.datetimepicker(
+																				'maxDate',
+																				e.date);
+															});
+										});
+									</script>
+								</div>
 							</div>
 						</div>
 					</div>
+					</div>
 				</div>
 				<!-- /.container-fluid -->
-			</div>
 			<!-- End of Main Content -->
-			
+		
 	 <%@ include file="footer.jsp" %>
 			 
 	<!-- Bootstrap core JavaScript-->
 	<script src="admin/vendor/jquery/jquery.min.js"></script>
 	<script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
 	<!-- Core plugin JavaScript-->
 	<script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+	
 	<!-- Custom scripts for all pages-->
 	<script src="admin/js/sb-admin-2.min.js"></script>
+	
 	<!-- Page level plugins -->
 	<script src="admin/vendor/chart.js/Chart.min.js"></script>
+	
 	<!-- Page level custom scripts -->
 	<script src="admin/js/demo/chart-area-demo.js"></script>
 	<script src="admin/js/demo/chart-pie-demo.js"></script>

@@ -46,11 +46,6 @@ public class AdminController {
 		return "/utilities-boardmanage";
 	}
 	
-	@RequestMapping(value = "/utilities-annoucement.mdo", method = RequestMethod.GET)
-	public String Uilities_bor(Locale locale, Model model) {
-		
-		return "/utilities-annoucement";
-	}
 	
 	@RequestMapping(value = "/utilities-board.mdo", method = RequestMethod.GET)
 	public String Uilities_col(Locale locale, Model model) {
@@ -96,13 +91,7 @@ public class AdminController {
 		
 		return "/profile";
 	}
-	
-	
-	@RequestMapping(value ="/tables-blacklist.mdo" , method = RequestMethod.GET)
-	public String tables_blacklist(Locale locale, Model model) {
 		
-		return "/tables-blacklist";
-	}
 	
 	@RequestMapping(value ="/tables-purchasehistory.mdo" , method = RequestMethod.GET)
 	public String tables_purchasehistory(Locale locale, Model model) {
@@ -141,12 +130,36 @@ public class AdminController {
 		
 		return "/storestatus";
 	}
-	@RequestMapping(value ="/store"
-			+ "distribution.mdo" , method = RequestMethod.GET)
+	@RequestMapping(value ="/store.distribution.mdo" , method = RequestMethod.GET)
 	public String storedistribution(Locale locale, Model model) {
 		
 		return "/storedistribution";
 	}
+	
+	@RequestMapping(value ="/etc.mdo" , method = RequestMethod.GET)
+	public String etc(Locale locale, Model model) {
+		
+		return "/etc";
+	}
+	
+	@RequestMapping(value ="/exchange.mdo" , method = RequestMethod.GET)
+	public String exchange(Locale locale, Model model) {
+		
+		return "/exchange";
+	}
+	
+	@RequestMapping(value ="/cancel.mdo" , method = RequestMethod.GET)
+	public String cancel(Locale locale, Model model) {
+		
+		return "/cancel";
+	}
+	
+	@RequestMapping(value ="/delivery.mdo" , method = RequestMethod.GET)
+	public String delivery(Locale locale, Model model) {
+		
+		return "/delivery";
+	}
+	
 	
 }
 

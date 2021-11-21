@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminAnnounceDAO">
+	
+	<resultMap  type="adminAnnounce" id="adminResult">
+		<result property="notice_seq" column="NOTICE_SEQ" />
+		<result property="notice_title" column="NOTICE_TITLE" />
+		<result property="notice_content" column="NOTICE_CONTENT" />	
+		<result property="date" column="DATE" />			
+	</resultMap>
+	
+	<insert id="insertAdmin" parameterType="four.mint.web.admin.announce.AdminAnnounceVO">
+		INSERT INTO notice (notice_seq, notice_title, notice_content, date) 
+		VALUES (#{notice_seq}, #{notice_title}, #{notice_content}, #{date})
+	</insert>
+	
+	<select id="getAdminAnnounceList" resultType="adminAnnounce" parameterType="four.mint.web.admin.announce.AdminAnnounceVO">
+		SELECT * FROM notice
+	</select>		
+</mapper>

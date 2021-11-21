@@ -59,4 +59,9 @@
 		SELECT * FROM market_category_big ORDER BY num ASC
 	</select>
 	
+	<select id="getAddress2" resultType="string">		
+				SELECT address2 FROM marketboard		
+	</select>
+	
+	
 </mapper>

@@ -1,5 +1,7 @@
 package four.mint.web.user;
 
+import java.util.ArrayList;
+
 public interface UserService {
 
 	void insertUser(UserVO vo);

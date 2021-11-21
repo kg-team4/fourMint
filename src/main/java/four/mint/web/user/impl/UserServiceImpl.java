@@ -1,5 +1,6 @@
 package four.mint.web.user.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.json.simple.JSONObject;
@@ -117,5 +118,4 @@ public class UserServiceImpl implements UserService {
 		return userDao.getBySns(snsid);
 	}
 
-	
 }

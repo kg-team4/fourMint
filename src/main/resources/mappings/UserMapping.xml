@@ -44,7 +44,15 @@
 	</select>
 	
 	<select id="getAddress2" resultType="string">
-		SELECT address2 FROM member WHERE email_id = #{email_id}
+		<choose>
+			<when test="email_id == null">
+				SELECT address2 FROM member WHERE email_id = #{email_id}
+			</when>
+			<otherwise>
+				SELECT address2 FROM member
+			</otherwise>
+		</choose>
+		
 	</select>
 	
 	<select id="getAddress3" resultType="string">
@@ -70,4 +78,14 @@
 	<select id="getBySns" resultType="String" parameterType="String">
 		SELECT social_login FROM member WHERE email_id = #{email}
 	</select>
+	
+	<select id="getAdminBirth" resultType="String" >
+		SELECT birth FROM member WHERE birth is not null	
+	</select>
+	
+	<select id="getAddressList" resultType="String" >
+		SELECT address2 FROM member WHERE address2 is not null	
+	</select>
+	
+	
 </mapper>

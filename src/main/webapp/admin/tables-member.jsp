@@ -48,6 +48,17 @@
                     <p class="mb-4">
                      <a target="_blank"
                             href="https://datatables.net">민트마켓 회원목록</a>.</p>
+                            <div class="dropdown">
+                     	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     	카테고리
+                     	</button>
+                     	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     		<a class="dropdown-item" href="membergender.mdo">성별</a>
+                     		<a class="dropdown-item" href="memberbirth.mdo">년도</a>
+                     		<a class="dropdown-item" href="memberaddress.mdo">주소</a>          
+                     		<a class="dropdown-item" href="tables-member.mdo">회원목록</a>
+                     	</div>
+                     </div>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
@@ -70,8 +81,7 @@
                                             <th>성별</th>
                                             <th>가입날짜</th>
                                         </tr>
-                                    </thead>
-                                   
+                                    </thead>                                  
                                     <tbody>
                                     	<c:forEach var="member" items="${list }">
 	                                        <tr>
@@ -84,7 +94,7 @@
 	                                            <td>${member.phone}</td>
 	                                            <td>${member.birth }</td>
 	                                            <td>${member.gender}</td>
-	                                            <td>${member.date }</td>
+	                                            <td>${member.date }</td>	                       
                                         	</tr>
                                         </c:forEach>                                                                                                                                                                                                                                                                                                                 
                                     </tbody>
@@ -92,14 +102,13 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
 
-       <%@ include file="footer.jsp" %>
+   <%@ include file="footer.jsp" %>
           
     <!-- Bootstrap core JavaScript-->
     <script src="admin/vendor/jquery/jquery.min.js"></script>

@@ -1,5 +1,9 @@
 package four.mint.web.user.impl;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -7,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import four.mint.web.user.KakaoVO;
 import four.mint.web.user.NaverVO;
 import four.mint.web.user.UserVO;
+
 
 @Repository
 public class UserDAO {
@@ -82,7 +87,11 @@ public class UserDAO {
 		
 		return sqlSessionTemplate.selectOne("UserDAO.getBySns", snsid);
 	}
+	
+	public List<UserVO> getUserList(HttpServletRequest request) {
+		System.out.println("====> userList SELETE");
 
-
-
+		return sqlSessionTemplate.selectList("UserDAO.getUserList");
+	}
+	
 }

@@ -21,6 +21,9 @@
 
     <!-- Custom styles for this page -->
     <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    <!-- 제이쿼리 -->
+ 	<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 
 </head>
 
@@ -43,10 +46,18 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">블랙리스트 목록</h1>
+                    <h1 class="h3 mb-2 text-gray-800">신고목록</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 블랙리스트 회원 목록</a>.</p>
+                            href="https://datatables.net">민트마켓 회원 신고목록</a>.</p>
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               신고목록
+               	</button>
+               	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               		<a class="dropdown-item" href="tables-blacklist.mdo">신고목록</a>
+               		<a class="dropdown-item" href="blacklist_report.mdo">블랙리스트 목록</a>              		
+               	</div>
+               </div>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
@@ -58,87 +69,36 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>이름</th>
-                                            <th>아이디</th>
-                                            <th>닉네임</th>
-                                            <th>신고날짜</th>
+                                            <th>번호</th>
                                             <th>이유</th>
-                                            
+                                            <th>글</th>
+                                            <th>게시글 번호</th>
+                                            <th>신고한 사람</th>
+                                            <th>신고 당한 사람</th>
+                                            <th>신고날짜</th>
+                                            <th scope="col">Actions</th>                                                
                                         </tr>
-                                    </thead>
-                                   
-                                    <tbody>
-                                        <tr>
-                                            <td>김주호</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                           
-                                        <tr>
-                                            <td>이정빈</td>
-                                            <td>leejb</td>
-                                            <td>jb</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                           
-                                        </tr>
-                                        <tr>
-                                           <td>김주호</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                        </tr>
-                                        <tr>
-                                            <td>김주호</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                        </tr>
-                                        <tr>
-                                            <td>이정빈</td>
-                                            <td>leejb</td>
-                                            <td>jb</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                           <td>강성진</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>강성진</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>강성진</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                           <td>이채린</td>
-                                            <td>chaechae</td>
-                                            <td>rin</td>
-                                            <td>2021/11/09</td>
-                                            <td>웃는죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>이승민</td>
-                                            <td>sm</td>
-                                            <td>sm</td>
-                                            <td>2021/11/09</td>
-                                            <td>할 수 없는 죄</td>
-                                        </tr>                                                                                                                                                                                                                               
+                                    </thead>                               
+                                    <tbody>                                     
+                                       <c:forEach var="report" items="${list}">
+	                                       <tr>	                                   		                                        		                                        		
+	                                           <td>${report.report_seq }</td>
+	                                           <td>${report.reason }</td>
+	                                           <td>${report.content }</td>
+	                                           <td>${report.market_seq }</td>
+	                                           <td>${report.reporter}</td>
+	                                           <td>${report.reported}</td>	
+	                                           <td>${report.date}</td>		                                                       
+	                                           <td>
+	                                           <form>
+	                                           		<input type="hidden" value="${report.report_seq }" name="report_seq">
+	                                           		<input type="hidden" value="${report.reported }" name="nickname">
+		                                            <button type="button" onclick="alert('블랙리스트 등록되었습니다.')"   class="btn btn-success" id="modify_btn"><i class="fas fa-edit"></i></button>		                                   
+		                                        	<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id= "delete_btn"><i class="far fa-trash-alt"></i></button>	
+	                                        	</form>
+	                                        	</td> 		                 
+	                                        </tr> 
+                                      	</c:forEach> 
                                     </tbody>
                                 </table>
                             </div>
@@ -149,6 +109,23 @@
 
             </div>
             <!-- End of Main Content -->
+           
+       <script>
+       
+       $(".btn-success").click(function(){
+    	   $(this).parent().attr("action", "blacklist_modify.mdo");
+    	   $(this).parent().attr("method","post");
+    	   $(this).parent().submit();
+       });
+       
+       $(".btn-danger").click(function(){
+    	   $(this).parent().attr("action", "blacklist_delete.mdo");
+    	   $(this).parent().attr("method", "post");
+    	   $(this).parent().submit();  
+       });
+      </script>
+                   
+            
  	<%@ include file="footer.jsp" %>
 
     <!-- Bootstrap core JavaScript-->

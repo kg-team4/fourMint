@@ -79,9 +79,9 @@
 		                                            <td>${storeboard.product_name }</td>	                                            
 		                                            <td>${storeboard.product_price }</td>
 		                                            <td>
-		                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-		                                        	<button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
-		                                        </td>                                           	                                            
+		                                            <button type="button" onclick="alert('등록되었습니다.')" class="btn btn-success"><i class="fas fa-edit"></i></button>
+		                                        	<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
+		                                       		</td>                                           	                                            
 	                                        	</tr>
 	                                        </c:forEach>                                          
                                     </tbody>

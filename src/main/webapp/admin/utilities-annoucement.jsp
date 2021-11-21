@@ -55,91 +55,32 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                 <input type="submit" class="btn btn-primary btn-user btn-block" value="제출하기">
+                                <!--  <input type="submit" class="btn btn-primary btn-user btn-block" value="제출하기"> -->
                                      
                                     </div>
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>제목</th>
-                                            <th>작성자</th>
+                                            <th>내용</th>
                                             <th>작성일</th>
-                                                                                       
+                                            <th scope="col">Actions</th>                                             
                                         </tr>
-                                    </thead>
-                                   
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                           
-                                        <tr>
-                                            <td>2</td>
-                                            <td>leejb</td>
-                                            <td>jb</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                           
-                                        </tr>
-                                        <tr>
-                                           <td>3</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>leejb</td>
-                                            <td>jb</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                           <td>6</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                           <td>9</td>
-                                            <td>chaechae</td>
-                                            <td>rin</td>
-                                            <td>2021/11/09</td>
-                                            <td>웃는죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>sm</td>
-                                            <td>sm</td>
-                                            <td>2021/11/09</td>
-                                            <td>할 수 없는 죄</td>
-                                        </tr>                                                                                                                                                                                                                               
+                                    </thead>                                  
+                                    <tbody>                                   		
+                                            <c:forEach var="notice" items="${list }">
+	                                        <tr>	                                        		                                        		                                        		
+	                                            <td>${notice.notice_seq }</td>
+	                                            <td>${notice.notice_title }</td>
+	                                            <td>
+	                                            <pre style=" white-space:pre-wrap;line-height: 150%;text-align:left;">${notice.notice_content}</pre></td>	
+	                                            <td>${notice.date}</td>	                                        
+	                                            <td>
+		                                            <button type="button" onclick="alert('등록되었습니다.')" class="btn btn-success"><i class="fas fa-edit"></i></button>
+		                                        	<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
+		                                        </td>                                         
+                                        	</tr>
+                                      </c:forEach>        		                                                                                                                                                                                                                                                                                                                                                                         
                                     </tbody>
                                 </table>
                             </div>
