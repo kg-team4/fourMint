@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminPageStoreDAO">
+
+	<resultMap type="adminPageStore" id="storeResult">
+		<result property="store_seq" column="STORE_SEQ" />
+		<result property="url" column="URL" />
+		<result property="category_big" column="CATEGORY_BIG" />
+		<result property="product_name" column="PRODUCT_NAME" />
+		<result property="product_price" column="PRODUCT_PRICE" />
+		<result property="product_content" column="PRODUCT_CONTENT" />
+		<result property="date" column="DATE" />
+		<result property="product_like" column="PRODUCT_LIKE" />
+		<result property="product_stock" column="PRODUCT_STOCK" />
+	</resultMap>
+	
+	<!-- 상품 전체 목록 -->
+	<select id="getStoreList" resultType="adminPageStore">
+		<!-- <![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM storeboard) AS b WHERE rnum >= #{startRow} AND rnum <= #{endRow}]]>  -->
+		SELECT * FROM storeboard
+	</select>
+	
+	<!-- 상품 총 개수 -->
+	<select id="getStoreCount" resultType="int">
+		SELECT count(product_name) FROM storeBoard
+	</select>
+	
+	<resultMap type="storeCategoryBig" id="storeCategoryBigResult">
+		<result property="num" column="NUM" />
+		<result property="name" column="NAME" />
+	</resultMap>
+	
+	<!-- 카테고리 목록 -->
+	<select resultType="storeCategoryBig" id="getStoreCategoryBig">
+		SELECT * FROM store_category_big ORDER BY num ASC
+	</select>
+	
+	<!-- 상품 등록 -->
+	<insert id="insertStore" parameterType="adminPageStore">
+		INSERT INTO storeBoard (store_seq, url, category_big, product_name, product_price, product_content, date, product_like, product_stock) VALUES(DEFAULT, #{url}, #{category_big}, #{product_name}, #{product_price}, #{product_content}, now() at time zone 'Asia/Seoul', DEFAULT, #{product_stock})
+	</insert>
+	
+	<!-- 카테고리에 대한 상품 개수 -->
+	<select id="getKindCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
+		SELECT count(product_name) FROM storeBoard WHERE category_big = #{kind}
+	</select>
+	
+	<!-- 카테고리에 대한 상품 목록 -->
+	<select id="getKindList" resultType="store" parameterType="four.mint.web.user.board.common.SearchVO">
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM storeboard WHERE category_big = #{kind} ORDER BY store_seq DESC) AS b WHERE rnum >= (#{rnum}-((#{page}-1)*9+8)) AND rnum <= (#{rnum}-((#{page}-1)*9))]]> 
+	</select>
+	
+	<!-- 상품 상세 -->
+	<select id="getStoreOne" resultType="store" parameterType="int">
+		SELECT * FROM storeBoard WHERE store_seq = #{store_seq}
+	</select>
+	
+	<!-- 상품 변경 -->
+	<update id="updateStore" parameterType="adminPageStore">
+		UPDATE storeboard
+		SET url = #{url}, category_big = #{category_big}, product_name = #{product_name}, 
+			product_price = #{product_price}, product_content = #{product_content}, 
+			date = now() at time zone 'Asia/Seoul', product_stock = #{product_stock} 
+		WHERE store_seq = #{store_seq}
+	</update>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deleteStore" parameterType="int">
+		DELETE FROM storeboard WHERE store_seq = #{store_seq}
+	</delete>
+</mapper>

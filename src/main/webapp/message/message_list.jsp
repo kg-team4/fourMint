@@ -152,8 +152,8 @@
 					//alert('room : '+ $(this).attr('room'));
 
 					let room = $(this).attr('room');
-					let other_nick = $(this).attr('other-nick');
-
+					let other_nick = $(this).attr('other_nick');
+					console.log(other_nick);
 					// 선택한 메세지빼고 나머지는 active 효과 해제하기
 					$('.chat_list_box').not('.chat_list_box.chat_list_box' + room).removeClass('active_chat');
 					// 선택한 메세지만 active 효과 주기
@@ -169,8 +169,8 @@
 					send_msg += "			</button>";
 					// -------------------------------- 여기까지야 화이팅 ^^ 하핫 ----------------------------------
 					send_msg += "		</div>";
-					send_msg += "		<div class='col-11'>";
-					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력...' />";
+					send_msg += "		<div class='col-11' style='text-align: left;'>";
+					send_msg += "			<textarea class='write_msg form-control' placeholder='메세지를 입력...' style='max-width: 520px; height: 60px; resize: none;'></textarea>";
 					send_msg += "			<button class='button_emo' type='button'>이모티콘</button>";
 					send_msg += "			<button class='msg_send_btn' type='button' style='position: inherit;'>전송버튼</button>";
 					send_msg += "		</div>";
@@ -193,6 +193,20 @@
 					
 					$('#click_emo_img').on('click', function() {
 						SendImage(room, other_nick);
+					});
+					
+					$(".write_msg").keyup(function(e) {
+						e.preventDefault();
+						var code = e.keyCode ? e.keyCode : e.which;
+					
+						if (code == 13) {	// EnterKey 
+							if (e.shiftKey === true) { 
+								
+							} else { 
+								SendMessage(room, other_nick);
+							}
+							return false;
+						}
 					});
 					
 					$('.button_emo').on('click', function() {
@@ -226,7 +240,7 @@
 			},
 			success : function(data) {
 				console.log("메세지 내용 가져오기 성공");
-
+				
 				// 메세지 내용을 html에 넣는다
 				$('.msg_history').html(data);
 				
@@ -299,9 +313,6 @@
 			},
 			success : function(data) {
 				console.log("메세지 전송 성공");
-
-				// 메세지 입력칸 비우기
-				$('.write_msg').val("");
 
 				// 메세지 내용  리로드
 				MessageContentList(room);

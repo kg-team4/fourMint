@@ -46,7 +46,7 @@ public class SNSLogin {
 //	}
 
 	public NaverVO getNaverProfile(String code) throws Exception {
-		System.out.println("navercode " + code);
+//		System.out.println("navercode " + code);
 		OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, this.sns.getProfileUrl());

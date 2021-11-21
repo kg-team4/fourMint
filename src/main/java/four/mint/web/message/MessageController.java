@@ -39,7 +39,6 @@ public class MessageController {
 	// 메세지 목록
 	@RequestMapping(value = "/message_ajax_list.do", method = RequestMethod.GET)
 	public String MessageAjaxList(HttpServletRequest request, HttpSession session) {
-		// System.out.println("현대 사용자 nick : " + session.getAttribute("nick"));
 
 		String nickname = (String) session.getAttribute("nickname");
 
@@ -116,7 +115,6 @@ public class MessageController {
 
 		System.out.println("other profile 메세지 리스트 가져오기");
 
-		// int room = Integer.parseInt(request.getParameter("room"));
 		String other_nick = request.getParameter("other_nick");
 
 		MessageVO messageVO = new MessageVO();
@@ -128,7 +126,7 @@ public class MessageController {
 
 		request.setAttribute("list", list);
 
-		System.out.println(list);
+//		System.out.println(list);
 
 		return "message/message_content_list";
 	}
@@ -138,9 +136,9 @@ public class MessageController {
 	@RequestMapping(value = "/message_send_inlist_inprofile.do", method = RequestMethod.GET)
 	public int message_send_inlist_inprofile(@RequestParam String other_nick, @RequestParam String content,
 			HttpSession session) {
-		System.out.println("컨트롤러 들어옴");
-		System.out.println("other_nick: " + other_nick);
-		System.out.println("content: " + content);
+//		System.out.println("컨트롤러 들어옴");
+//		System.out.println("other_nick: " + other_nick);
+//		System.out.println("content: " + content);
 
 		MessageVO messageVO = new MessageVO();
 		messageVO.setSend_nick(String.valueOf(session.getAttribute("nickname")));
@@ -159,9 +157,9 @@ public class MessageController {
 		@RequestMapping(value = "/message_send_inlist_image.do", method = RequestMethod.GET)
 		public int message_send_inlist_image(@RequestParam String other_nick, @RequestParam String image,
 				HttpSession session) {
-			System.out.println("컨트롤러 들어옴");
-			System.out.println("other_nick: " + other_nick);
-			System.out.println("image: " + image);
+//			System.out.println("컨트롤러 들어옴");
+//			System.out.println("other_nick: " + other_nick);
+//			System.out.println("image: " + image);
 
 			MessageVO messageVO = new MessageVO();
 			messageVO.setSend_nick(String.valueOf(session.getAttribute("nickname")));

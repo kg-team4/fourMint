@@ -949,16 +949,6 @@ ul, li {
 	cursor:pointer;
 }
 
-.modal{ 
-   width: 300px; 
-   height: 300px;  
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   background-color: yellow; 
-   position: absolute;
-   
-}
 .modal .modal__closeBtn {
   background-color: #3498db;
 }

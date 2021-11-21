@@ -1,6 +1,7 @@
 package four.mint.web.admin;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itextpdf.text.DocumentException;
 
+import four.mint.web.admin.banner.market.AdminBannerMarketService;
+import four.mint.web.admin.banner.store.AdminBannerStoreService;
 import four.mint.web.admin.login.AdminService;
 import four.mint.web.admin.login.AdminVO;
+import four.mint.web.admin.page.store.AdminPageStoreService;
+import four.mint.web.admin.page.store.AdminPageStoreVO;
+import four.mint.web.user.store.StoreCategoryBigVO;
 
 @Controller
 public class AdminController {
@@ -22,6 +28,15 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private AdminBannerMarketService adminBannerMarketService;
+	
+	@Autowired
+	private AdminBannerStoreService adminBannerStoreService;
+	
+	@Autowired
+	private AdminPageStoreService adminPageStoreService;
+	
 	@RequestMapping(value = "/home.mdo", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
@@ -30,6 +45,26 @@ public class AdminController {
 	
 	@RequestMapping(value = "/buttons.mdo", method = RequestMethod.GET)
 	public String buttons(Locale locale, Model model) {
+		
+		String market_image1 = adminBannerMarketService.getBanner(1);
+		String market_image2 = adminBannerMarketService.getBanner(2);
+		String market_image3 = adminBannerMarketService.getBanner(3);
+		String market_image4 = adminBannerMarketService.getBanner(4);
+		
+		model.addAttribute("market_banner1", market_image1);
+		model.addAttribute("market_banner2", market_image2);
+		model.addAttribute("market_banner3", market_image3);
+		model.addAttribute("market_banner4", market_image4);
+		
+		String store_image1 = adminBannerStoreService.getBanner(1);
+		String store_image2 = adminBannerStoreService.getBanner(2);
+		String store_image3 = adminBannerStoreService.getBanner(3);
+		String store_image4 = adminBannerStoreService.getBanner(4);
+		
+		model.addAttribute("store_banner1", store_image1);
+		model.addAttribute("store_banner2", store_image2);
+		model.addAttribute("store_banner3", store_image3);
+		model.addAttribute("store_banner4", store_image4);
 		
 		return "/buttons";
 	}
@@ -111,7 +146,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value ="/merchandise.mdo" , method = RequestMethod.GET)
-	public String tables_used(Locale locale, Model model) {
+	public String tables_used(HttpServletRequest request, Model model) {
+		List<StoreCategoryBigVO> storeCategoryBig = adminPageStoreService.getStoreCategoryBig();
+		request.setAttribute("storeCategoryBig", storeCategoryBig);
+		
+		List<AdminPageStoreVO> storeList = adminPageStoreService.getStoreList();
+		model.addAttribute("storeList", storeList);
 		
 		return "/merchandise";
 	}
@@ -141,8 +181,7 @@ public class AdminController {
 		
 		return "/storestatus";
 	}
-	@RequestMapping(value ="/store"
-			+ "distribution.mdo" , method = RequestMethod.GET)
+	@RequestMapping(value ="/store" + "distribution.mdo" , method = RequestMethod.GET)
 	public String storedistribution(Locale locale, Model model) {
 		
 		return "/storedistribution";

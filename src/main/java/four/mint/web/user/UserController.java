@@ -3,7 +3,6 @@ package four.mint.web.user;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
@@ -42,10 +41,10 @@ public class UserController {
 	
 	@Autowired
 	private FollowService followService;
-
+	
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-
+	public String home(Model model) {
+		
 		return "/index/index";
 	}
 
@@ -63,7 +62,7 @@ public class UserController {
 
 	@RequestMapping(value = "/joinProc.do", method = RequestMethod.POST)
 	public String joinProc(UserVO vo) {
-		System.out.println("회원가입 완료");
+//		System.out.println("회원가입 완료");
 		userService.insertUser(vo);
 
 		return "/index/index";

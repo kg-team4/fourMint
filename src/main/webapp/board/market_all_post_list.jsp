@@ -9,16 +9,16 @@
 <jsp:include page="../template/header.jsp"></jsp:include>
 <script src="https://kit.fontawesome.com/a93dcadf53.js" crossorigin="anonymous"></script>
 <script defer src="../js/mint_store.js"></script>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- <script type="text/javascript" src="../js/mint_store.js"></script> -->
 
 <article>
    <div class="slide">
       <ul class="slideImg">
-         <li class="jsSlide"><a href=""><img src="../img/market_slide1.png" alt="민트마켓슬라이드1"></a></li>
-         <li class="jsSlide"><a href=""><img src="../img/market_slide2.png" alt="민트마켓슬라이드2"></a></li>
-         <li class="jsSlide"><a href=""><img src="../img/market_slide3.png" alt="민트마켓슬라이드3"></a></li>
-         <li class="jsSlide"><a href=""><img src="../img/market_slide4.png" alt="민트마켓슬라이드4"></a></li>
+         <li class="jsSlide"><a href=""><img src="${market_banner1 }" alt="민트마켓슬라이드1"></a></li>
+         <li class="jsSlide"><a href=""><img src="${market_banner2 }" alt="민트마켓슬라이드2"></a></li>
+         <li class="jsSlide"><a href=""><img src="${market_banner3 }" alt="민트마켓슬라이드3"></a></li>
+         <li class="jsSlide"><a href=""><img src="${market_banner4 }" alt="민트마켓슬라이드4"></a></li>
       </ul>
       <ul class="circleBtn">
          <li><span class="circle" onclick="dotSlide(0)"><label for="slide1">&nbsp;</label></span></li>

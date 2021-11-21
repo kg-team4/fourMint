@@ -172,3 +172,7 @@ article {
 	height: 90%;
 	/* 	border: 1px solid blue; */
 }
+
+#map_article {
+	padding-bottom: 5%;
+}

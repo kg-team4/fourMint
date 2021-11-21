@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import four.mint.web.admin.banner.store.AdminBannerStoreService;
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
 import four.mint.web.user.UserService;
@@ -39,8 +40,21 @@ public class StoreController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private AdminBannerStoreService adminBannerStoreService;
+	
 	@RequestMapping(value = "/storeBoardList.do", method = RequestMethod.GET)
-	public String storeBoardList() {
+	public String storeBoardList(Model model) {
+		
+		String store_image1 = adminBannerStoreService.getBanner(1);
+		String store_image2 = adminBannerStoreService.getBanner(2);
+		String store_image3 = adminBannerStoreService.getBanner(3);
+		String store_image4 = adminBannerStoreService.getBanner(4);
+		
+		model.addAttribute("store_banner1", store_image1);
+		model.addAttribute("store_banner2", store_image2);
+		model.addAttribute("store_banner3", store_image3);
+		model.addAttribute("store_banner4", store_image4);
 		
 		return "/board/store_all_post_list";
 	}

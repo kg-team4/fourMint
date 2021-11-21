@@ -21,7 +21,7 @@ public class LogoutController {
 	@RequestMapping("/kakaoLogout.do")
 	public String kakaoLogout(HttpSession session) {
 		session.invalidate();
-		System.out.println("111111");
+//		System.out.println("111111");
 		
 		return "redirect:home.do";
 	}

@@ -15,7 +15,7 @@
 .map_wrap {
 	position: relative;
 	width: 100%;
-	height: 500px;
+	height: auto;
 }
 
 #menu_wrap {
@@ -250,13 +250,13 @@
 	z-index: 10;
 }
 
-.category, .category * {
+.map_category, .map_category * {
 	margin: 0;
 	padding: 0;
 	color: #000;
 }
 
-.category {
+.map_category {
 	position: absolute;
 	overflow: hidden;
 	right: 5px;
@@ -276,7 +276,7 @@
 	border-radius: 3px;
 }
 
-.category .menu_selected {
+.map_category .menu_selected {
 	background: #FF5F4A;
 	color: #fff;
 	border-left: 1px solid #915B2F;
@@ -284,7 +284,7 @@
 	margin: 0 -1px;
 }
 
-.category li {
+.map_category li {
 	list-style: none;
 	width: 25px;
 	height: 25px;
@@ -296,22 +296,22 @@
 #ruler {
 	width: 24px;
 	height: 20px;
-	padding-left: 3px;
-	padding-top: 3px;
+	margin-left: 3px;
+	padding: 1px;
 }
 
 #marker {
 	width: 22px;
 	height: 20px;
-	padding-left: 4px;
-	padding-top: 5px;
+	margin-top: 11px;
+	margin-left: 4px;
 }
 
 #radius {
 	width: 22px;
 	height: 20px;
-	padding-left: 4px;
-	padding-top: 10px;
+	margin-top: 22px;
+	margin-left: 4px;
 }
 
 /* undo 관련 css */

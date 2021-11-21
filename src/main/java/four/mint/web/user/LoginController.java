@@ -30,7 +30,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/kakaoLogin.do", method = RequestMethod.POST)
 	public String kakaoLogin(@RequestBody  KakaoVO vo, HttpSession session) throws Exception{
-		System.out.println("iiiii");
+//		System.out.println("iiiii");
 		if(vo.getGender().equals("male")) {
 			vo.setGender("man");
 		}else {
@@ -38,10 +38,10 @@ public class LoginController {
 		}
 		
 		vo.setSocial_login("kakao");
-		System.out.println("email" + vo.getEmail());
-		System.out.println("!!!!!!!" + vo.getSocial_login());
+//		System.out.println("email" + vo.getEmail());
+//		System.out.println("!!!!!!!" + vo.getSocial_login());
 		String doubleCheck = userService.getBySns(vo.getEmail());
-		System.out.println(doubleCheck);
+//		System.out.println(doubleCheck);
 		if(doubleCheck == null) {
 			session.setAttribute("sns", vo.getSocial_login());
 			session.setAttribute("userEmail_id", vo.getEmail());
@@ -61,11 +61,11 @@ public class LoginController {
 			session.setAttribute("userEmail_id", user.getEmail_id());
 			session.setAttribute("address2", user.getAddress2());
 			session.setAttribute("nickname", user.getNickname());
-			System.out.println("로그인 성공: " + user.getEmail_id());
+//			System.out.println("로그인 성공: " + user.getEmail_id());
 			
 			return "/index/index";
 		} else {
-			System.out.println("로그인 실패");
+//			System.out.println("로그인 실패");
 			
 			return "/user/login";
 		}
@@ -80,15 +80,15 @@ public class LoginController {
 		
 		NaverVO snsUser = snsLogin.getNaverProfile(code);
 		
-		System.out.println(snsUser.getNaverid());
-		System.out.println(snsUser.getPhone());
-		System.out.println(snsUser.getBirth());
+//		System.out.println(snsUser.getNaverid());
+//		System.out.println(snsUser.getPhone());
+//		System.out.println(snsUser.getBirth());
 		
 		String doubleCheck = userService.getBySns(snsUser.getEmail());
 		
-		System.out.println(doubleCheck);
+//		System.out.println(doubleCheck);
 		if(doubleCheck == null) {
-			System.out.println(doubleCheck);
+//			System.out.println(doubleCheck);
 			session.setAttribute("sns", snsUser.getSocial_login());
 			session.setAttribute("userEmail_id", snsUser.getEmail());
 			userService.naverlogin(snsUser);

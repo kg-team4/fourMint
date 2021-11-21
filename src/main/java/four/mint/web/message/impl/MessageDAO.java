@@ -16,7 +16,6 @@ public class MessageDAO {
 	
 	// 메세지 리스트에 나타낼 것들 가져오기 - 가장 최근 메세지, 보낸사람 profile 사진, 보낸사람 nick
 	public ArrayList<MessageVO> getMessageList(MessageVO messageVO) {
-		System.out.println("====> message list load");
 		return (ArrayList)sqlSessionTemplate.selectList("MessageDAO.getMessageList", messageVO);
 	}
 	

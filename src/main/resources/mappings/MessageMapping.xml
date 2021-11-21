@@ -16,10 +16,10 @@
 	
 	<!-- 메세지 리스트 가져오기 : 상대방 프로필에서 클릭 했을 때   -->
 	<select id="getMessageList" parameterType="four.mint.web.message.MessageVO" resultType="four.mint.web.message.MessageVO">
-		select no, room, send_nick, recv_nick, send_time, read_time, content, read_check
+		select no, room, send_nick, recv_nick, send_time, read_time, content, read_check, image
 		from message
 		where no in (select max(no) from message group by room) and (send_nick = #{nickname} or recv_nick=#{nickname})
-		order by no desc;
+		order by no asc;
 	</select>
 	
 	<!-- 메세지 list에서 상대방 profile 가져오기 : 오른쪽 위에 메세지 보내기 버튼 클릭 시 -->
@@ -51,7 +51,7 @@
 				where room=#{room}
 			</when>
 			<otherwise>
-				where (recv_nick = #{recv_nick} and send_nick = #{nickname}) or (send_nick = #{recv_nick} and recv_nick = #{nickname})
+				where (recv_nick = #{recv_nick} and send_nick = #{nickname}) or (send_nick = #{recv_nick} and recv_nick = #{nickname}) order by no asc;
 			</otherwise>
 		</choose>
 		

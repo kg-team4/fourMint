@@ -1,240 +1,336 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <title>민트마켓 광고/배너관리</title>
+<title>민트마켓 광고/배너관리</title>
+<script defer src="../js/mint_store.js"></script>
+<!-- Custom fonts for this template-->
+<link href="admin/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
 
-    <!-- Custom fonts for this template-->
-    <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="admin/css/sb-admin-2.css" rel="stylesheet">
+<!-- Custom styles for this template-->
+<link href="admin/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+	<!-- Page Wrapper -->
+	<div id="wrapper">
 
-        <%@ include file="sidebar.jsp" %>
+		<%@ include file="sidebar.jsp"%>
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
-            <div id="content">
+			<!-- Main Content -->
+			<div id="content">
 
-             <%@ include file="header.jsp" %>
+				<%@ include file="header.jsp"%>
+				<div class="tab_banner">
+					<ul class="tabnav_banner">
+						<li><a href="#tab01">쇼핑</a></li>
+						<li><a href="#tab02">중고</a></li>
+					</ul>
+					<div class="tabcontent_banner">
+						<div id="tab01">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="card shadow mb-4">
+											<div class="card-header py-3">
+												<h6 class="m-0 font-weight-bold text-primary">쇼핑몰 광고/배너관리</h6>
+											</div>
+											<div class="card-body">
+												<div class="slide">
+													<ul class="slideImg">
+														<li class="jsSlide"><a href=""><img id="slide_img1" src="${store_banner1 }" alt="민트마켓슬라이드1"></a></li>
+														<li class="jsSlide"><a href=""><img id="slide_img2" src="${store_banner2 }" alt="민트마켓슬라이드2"></a></li>
+														<li class="jsSlide"><a href=""><img id="slide_img3" src="${store_banner3 }" alt="민트마켓슬라이드3"></a></li>
+														<li class="jsSlide"><a href=""><img id="slide_img4" src="${store_banner4 }" alt="민트마켓슬라이드4"></a></li>
+													</ul>
+													<ul class="circleBtn">
+														<li><span class="circle" onclick="dotSlide(0)"><label for="slide1">&nbsp;</label></span></li>
+														<li><span class="circle" onclick="dotSlide(1)"><label for="slide2">&nbsp;</label></span></li>
+														<li><span class="circle" onclick="dotSlide(2)"><label for="slide3">&nbsp;</label></span></li>
+														<li><span class="circle" onclick="dotSlide(3)"><label for="slide4">&nbsp;</label></span></li>
+													</ul>
+												</div>
+												<form action="bannerStore.mdo" method="post" enctype="multipart/form-data">
+													<div>
+														<div>
+															<div class="used_photo">
+																<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
+																	<img class="preview-wrap1" alt="등록할 상품 사진을 넣어주세요."
+																	onerror="this.style.display='none'">
+																</div>
+																<div>
+																	<input id="banner_file" class="form-input1" type="file" name="file" multiple accept=".jpg, .png, .gif">
+																	<input type="hidden" value="1" name="no">
+																	<input type="submit" value="저장">
+																</div>
+															</div>
+														</div>
+													</div>
+												</form>
+												<form action="bannerStore.mdo" method="post" enctype="multipart/form-data">
+													<div>
+														<div class="used_photo">
+															<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
+																<img class="preview-wrap2" src="${store_banner2 }" alt="등록할 상품 사진을 넣어주세요."
+																onerror="this.style.display='none'">
+															</div>
+															<div>
+																<input id="banner_file" class="form-input2" type="file" name="file" multiple accept=".jpg, .png, .gif">
+																<input type="hidden" value="2" name="no">
+																<input type="submit" value="저장">
+															</div>
+														</div>
+													</div>
+												</form>
+												<form action="bannerStore.mdo" method="post" enctype="multipart/form-data">
+													<div>
+														<div class="used_photo">
+															<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
+																<img class="preview-wrap3" src="${store_banner3 }" alt="등록할 상품 사진을 넣어주세요."
+																onerror="this.style.display='none'">
+															</div>
+															<div>
+																<input id="banner_file" class="form-input3" type="file" name="file" multiple accept=".jpg, .png, .gif">
+																<input type="hidden" value="3" name="no">
+																<input type="submit" value="저장">
+															</div>
+														</div>
+														
+													</div>
+												</form>
+												<form action="bannerStore.mdo" method="post" enctype="multipart/form-data">
+													<div>
+														<div class="used_photo">
+															<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
+																<img class="preview-wrap4" src="${store_banner4 }" alt="등록할 상품 사진을 넣어주세요."
+																onerror="this.style.display='none'">
+															</div>
+															<div>
+																<input id="banner_file" class="form-input4" type="file" name="file" multiple accept=".jpg, .png, .gif">
+																<input type="hidden" value="4" name="no">
+																<input type="submit" value="저장">
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="tab02">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="card shadow mb-4">
+											<div class="card-header py-3">
+												<h6 class="m-0 font-weight-bold text-primary">중고마켓 광고/배너관리</h6>
+											</div>
+											<div class="card-body">
+												<div class="slide">
+													<ul class="slideImg">
+														<li class="jsSlide"><a href=""><img id="slide_img1" src="${market_banner1 }" alt="민트마켓슬라이드1"></a></li>
+														<li class="jsSlide"><a href=""><img id="slide_img2" src="${market_banner2 }" alt="민트마켓슬라이드2"></a></li>
+														<li class="jsSlide"><a href=""><img id="slide_img3" src="${market_banner3 }" alt="민트마켓슬라이드3"></a></li>
+														<li class="jsSlide"><a href=""><img id="slide_img4" src="${market_banner4 }" alt="민트마켓슬라이드4"></a></li>
+													</ul>
+													<ul class="circleBtn">
+														<li><span class="circle" onclick="dotSlide(0)"><label for="slide1">&nbsp;</label></span></li>
+														<li><span class="circle" onclick="dotSlide(1)"><label for="slide2">&nbsp;</label></span></li>
+														<li><span class="circle" onclick="dotSlide(2)"><label for="slide3">&nbsp;</label></span></li>
+														<li><span class="circle" onclick="dotSlide(3)"><label for="slide4">&nbsp;</label></span></li>
+													</ul>
+												</div>
+												<form action="bannerMarket.mdo" method="post" enctype="multipart/form-data">
+													<div>
+														<div>
+															<div class="used_photo">
+																<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
+																	<img class="preview-wrap1" src="${market_banner1 }" alt="등록할 상품 사진을 넣어주세요."
+																	onerror="this.style.display='none'">
+																</div>
+																<div>
+																	<input id="banner_file" class="form-input1" type="file" name="file" multiple accept=".jpg, .png, .gif">
+																	<input type="hidden" value="1" name="no">
+																	<input type="submit" value="저장">
+																</div>
+															</div>
+														</div>
+													</div>
+												</form>
+												<form action="bannerMarket.mdo" method="post" enctype="multipart/form-data">
+													<div>
+														<div class="used_photo">
+															<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
+																<img class="preview-wrap2" src="${market_banner2 }" alt="등록할 상품 사진을 넣어주세요."
+																onerror="this.style.display='none'">
+															</div>
+															<div>
+																<input id="banner_file" class="form-input2" type="file" name="file" multiple accept=".jpg, .png, .gif">
+																<input type="hidden" value="2" name="no">
+																<input type="submit" value="저장">
+															</div>
+														</div>
+													</div>
+												</form>
+												<form action="bannerMarket.mdo" method="post" enctype="multipart/form-data">
+													<div>
+														<div class="used_photo">
+															<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
+																<img class="preview-wrap3" src="${market_banner3 }" alt="등록할 상품 사진을 넣어주세요."
+																onerror="this.style.display='none'">
+															</div>
+															<div>
+																<input id="banner_file" class="form-input3" type="file" name="file" multiple accept=".jpg, .png, .gif">
+																<input type="hidden" value="3" name="no">
+																<input type="submit" value="저장">
+															</div>
+														</div>
+														
+													</div>
+												</form>
+												<form action="bannerMarket.mdo" method="post" enctype="multipart/form-data">
+													<div>
+														<div class="used_photo">
+															<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
+																<img class="preview-wrap4" src="${market_banner4 }" alt="등록할 상품 사진을 넣어주세요."
+																onerror="this.style.display='none'">
+															</div>
+															<div>
+																<input id="banner_file" class="form-input4" type="file" name="file" multiple accept=".jpg, .png, .gif">
+																<input type="hidden" value="4" name="no">
+																<input type="submit" value="저장">
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</form>
+			</div>
+			<!-- End of Main Content -->
+		</div>
+	</div>
+	<%@ include file="footer.jsp"%>
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+	<!-- Bootstrap core JavaScript-->
+	<script src="admin/vendor/jquery/jquery.min.js"></script>
+	<script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">광고/배너관리</h1>
+	<!-- Core plugin JavaScript-->
+	<script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                    <div class="row">
+	<!-- Custom scripts for all pages-->
+	<script src="admin/js/sb-admin-2.min.js"></script>
+	<script>
+		$(function() {
+			$(".form-input1").on('change', function() {
+				readURL1(this);
+			});
+			
+			$(".form-input2").on('change', function() {
+				readURL2(this);
+			});
+			
+			$(".form-input3").on('change', function() {
+				readURL3(this);
+			});
+			
+			$(".form-input4").on('change', function() {
+				readURL4(this);
+			});
+		});
+		
+		function readURL1(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+		
+				reader.onload = function(e) {
+					$('.preview-wrap1').attr('src', e.target.result);
+					$('#slide_img1').attr('src', e.target.result);
+				}
+		
+				reader.readAsDataURL(input.files[0]);
+			}
+			$('.preview-wrap').show();
+		}
 
-                        <div class="col-lg-6">
+		function readURL2(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+		
+				reader.onload = function(e) {
+					$('.preview-wrap2').attr('src', e.target.result);
+					$('#slide_img2').attr('src', e.target.result);
+				}
+		
+				reader.readAsDataURL(input.files[0]);
+			}
+			$('.preview-wrap').show();
+		}
 
-                            <!-- Circle Buttons -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">쇼핑몰 광고/배너관리</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>Use Font Awesome Icons (included with this theme package) along with the circle
-                                        buttons as shown in the examples below!</p>
-                                    <!-- Circle Buttons (Default) -->
-                                    <div class="mb-2">
-                                        <code>.btn-circle</code>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-circle">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-success btn-circle">
-                                        <i class="fas fa-check"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-info btn-circle">
-                                        <i class="fas fa-info-circle"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-warning btn-circle">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-circle">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                    <!-- Circle Buttons (Small) -->
-                                    <div class="mt-4 mb-2">
-                                        <code>.btn-circle .btn-sm</code>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-circle btn-sm">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-success btn-circle btn-sm">
-                                        <i class="fas fa-check"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-info btn-circle btn-sm">
-                                        <i class="fas fa-info-circle"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-warning btn-circle btn-sm">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-circle btn-sm">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                    <!-- Circle Buttons (Large) -->
-                                    <div class="mt-4 mb-2">
-                                        <code>.btn-circle .btn-lg</code>
-                                    </div>
-                                    <a href="#" class="btn btn-primary btn-circle btn-lg">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-success btn-circle btn-lg">
-                                        <i class="fas fa-check"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-info btn-circle btn-lg">
-                                        <i class="fas fa-info-circle"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-warning btn-circle btn-lg">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-circle btn-lg">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </div>
-                            </div>
+		function readURL3(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+		
+				reader.onload = function(e) {
+					$('.preview-wrap3').attr('src', e.target.result);
+					$('#slide_img3').attr('src', e.target.result);
+				}
+		
+				reader.readAsDataURL(input.files[0]);
+			}
+			$('.preview-wrap').show();
+		}
 
-                            <!-- Brand Buttons -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">중고마켓 광고/배너관리</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>Google and Facebook buttons are available featuring each company's respective
-                                        brand color. They are used on the user login and registration pages.</p>
-                                    <p>You can create more custom buttons by adding a new color variable in the
-                                        <code>_variables.scss</code> file and then using the Bootstrap button variant
-                                        mixin to create a new style, as demonstrated in the <code>_buttons.scss</code>
-                                        file.</p>
-                                    <a href="#" class="btn btn-google btn-block"><i class="fab fa-google fa-fw"></i>
-                                        .btn-google</a>
-                                    <a href="#" class="btn btn-facebook btn-block"><i
-                                            class="fab fa-facebook-f fa-fw"></i> .btn-facebook</a>
+		function readURL4(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+		
+				reader.onload = function(e) {
+					$('.preview-wrap4').attr('src', e.target.result);
+					$('#slide_img4').attr('src', e.target.result);
+				}
+		
+				reader.readAsDataURL(input.files[0]);
+			}
+			$('.preview-wrap').show();
+		}
 
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6">
-
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Split Buttons with Icon</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>Works with any button colors, just use the <code>.btn-icon-split</code> class and
-                                        the markup in the examples below. The examples below also use the
-                                        <code>.text-white-50</code> helper class on the icons for additional styling,
-                                        but it is not required.</p>
-                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">Split Button Primary</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-success btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                        <span class="text">Split Button Success</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-info btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-info-circle"></i>
-                                        </span>
-                                        <span class="text">Split Button Info</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-warning btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                        </span>
-                                        <span class="text">Split Button Warning</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-trash"></i>
-                                        </span>
-                                        <span class="text">Split Button Danger</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-secondary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </span>
-                                        <span class="text">Split Button Secondary</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-light btn-icon-split">
-                                        <span class="icon text-gray-600">
-                                            <i class="fas fa-arrow-right"></i>
-                                        </span>
-                                        <span class="text">Split Button Light</span>
-                                    </a>
-                                    <div class="mb-4"></div>
-                                    <p>Also works with small and large button classes!</p>
-                                    <a href="#" class="btn btn-primary btn-icon-split btn-sm">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">Split Button Small</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-primary btn-icon-split btn-lg">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">Split Button Large</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-       <%@ include file="footer.jsp" %>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="admin/vendor/jquery/jquery.min.js"></script>
-    <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="admin/js/sb-admin-2.min.js"></script>
-
+		$(function() {
+			$('.tabcontent_banner > div').hide();
+			$('.tabnav_banner a').click(function() {
+				$('.tabcontent_banner > div').hide().filter(this.hash).fadeIn();
+				$('.tabnav_banner a').removeClass('active');
+				$(this).addClass('active');
+				return false;
+			}).filter(':eq(0)').click();
+		});	
+	</script>
 </body>
 
 </html>
