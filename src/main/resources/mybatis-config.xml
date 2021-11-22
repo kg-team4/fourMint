@@ -25,6 +25,7 @@
 		<typeAlias alias="serviceCenter" type="four.mint.web.user.servicecenter.ServiceCenterVO"/>
 		<typeAlias alias="report" type="four.mint.web.user.board.common.ReportVO"/>
 		<typeAlias alias="communityComment" type="four.mint.web.user.community.CommunityCommentVO"/>
+		<typeAlias alias="history" type="four.mint.web.user.store.TransactionHistoryVO"/>
 	</typeAliases>
 	
 	<typeHandlers>

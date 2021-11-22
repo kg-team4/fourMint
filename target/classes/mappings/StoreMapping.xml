@@ -71,7 +71,39 @@
 	</update>
 	
 	<delete id="deleteCart" parameterType="int">
-		DELETE FROM store_cart WHERE cart_id = #{id}
+		DELETE FROM store_cart WHERE cart_id = #{cart_id}
 	</delete>
+	
+	<select id="getCart" parameterType="int" resultType="cart">
+		SELECT * FROM store_cart WHERE cart_id = #{cartNum}
+	</select>
+	
+	<update id="updateCartVO" parameterType="cart">
+		UPDATE store_cart SET amount = #{amount} WHERE cart_id = #{cart_id} 
+	</update>
+	
+	<select id="getPrice" parameterType="int" resultType="int">
+		SELECT (product_price * amount) as sum FROM store_cart WHERE cart_id = #{cart_id}
+	</select>
+	
+	<!-- 결제 내역 -->
+	<resultMap type="history" id="historyResult">
+		<result property="transaction_seq" column="TRANSACTION_SEQ" />
+		<result property="email_id" column="EMAIL_ID" />
+		<result property="product_name" column="PRODUCT_NAME" />
+		<result property="product_price" column="PRODUCT_PRICE" />
+		<result property="transaction_price" column="TRANSACTION_PRICE" />
+		<result property="transaction_count" column="TRANSACTION_COUNT" />
+		<result property="date" column="DATE" />
+		<result property="merchant_uid" column="MERCHANT_UID" />
+		<result property="requset" column="REQUEST"/>
+	</resultMap>
+	
+	<insert id="insertHistory" parameterType="history">
+		INSERT INTO transactionHistory (transaction_seq, email_id, product_name, product_price, transaction_price, transaction_count, merchant_uid, request, date)
+		VALUES (DEFAULT, #{email_id}, #{product_name}, #{product_price}, #{transaction_price}, #{transaction_count}, #{merchant_uid}, #{request}, now() at time zone 'Asia/Seoul')
+	</insert>
+	
+	
 	
 </mapper>

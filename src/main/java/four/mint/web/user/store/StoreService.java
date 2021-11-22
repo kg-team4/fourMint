@@ -30,4 +30,14 @@ public interface StoreService {
 	void updateCart(UpVO vo);
 
 	void deleteCart(int id);
+
+	CartVO getCart(int cartNum);
+
+	void updateCart(CartVO cart);
+
+	int getPrice(int cart_id);
+
+	void insertHistory(TransactionHistoryVO thVO);
+
+
 }

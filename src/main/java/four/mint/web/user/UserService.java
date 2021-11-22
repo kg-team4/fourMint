@@ -32,5 +32,7 @@ public interface UserService {
 	void insertReport(ReportVO rVO);
 	void updateReport(String reported);
 	String getPassword(String email_id);
+	UserVO getUserFromPhone(String phone);
+	UserVO getUserFromEmail(String email);
 	
 }

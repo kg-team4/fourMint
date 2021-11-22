@@ -97,13 +97,13 @@
 								<input type="submit" class="like-button cursor" value="♥ 찜 좋아요">
 							</form>
 						</div>
-						<!-- 수정 삭제 버튼은 "내글" 또는 "관리자"인 경우만 표시 -->
+						<!-- 수정 삭제 버튼은 "내글" -->
 						
 						<!-- 장바구니 모달 -->
 						<div id="my_modal">
 							<h3>장바구니에 담겼습니다.</h3>
 							<br>
-							<a href="payment.do?chk=first" style="color: blue;">장바구니로 이동</a>
+							<a href="payment.do" style="color: blue;">장바구니로 이동</a>
 							&emsp;<a class="modal_close_btn">나가기</a>
 						</div>
 						<!-- 장바구니 모달 끝 -->
@@ -111,7 +111,7 @@
 							<button class="edit-button cursor" id="popup_open_btn">장바구니</button>
 						</div>
 						<div class="left-item33">
-							<form id="form1" action="order.do">
+							<form id="form1" action="orderSoon.do">
 								<input type="hidden" name="priceAll" value="${content.product_price }" />
 								<c:if test="${content.product_price < 50000 }">
 									<input type="hidden" name="delivery" value="1" />

@@ -13,6 +13,7 @@ import four.mint.web.user.store.CartVO;
 import four.mint.web.user.store.StoreCategoryBigVO;
 import four.mint.web.user.store.StoreService;
 import four.mint.web.user.store.StoreVO;
+import four.mint.web.user.store.TransactionHistoryVO;
 import four.mint.web.user.store.UpVO;
 
 @Service("storeService")
@@ -88,6 +89,27 @@ public class StoreServiceImpl implements StoreService {
 		storeDao.deleteCart(id);
 	}
 
+	@Override
+	public CartVO getCart(int cartNum) {
+		return storeDao.getCart(cartNum);
+	}
+
+	@Override
+	public void updateCart(CartVO cart) {
+		storeDao.updateCart(cart);
+	}
+
+	@Override
+	public int getPrice(int cart_id) {
+		return storeDao.getPrice(cart_id);
+	}
+
+	@Override
+	public void insertHistory(TransactionHistoryVO thVO) {
+		storeDao.insertHistory(thVO);
+	}
+
+	
 	
 
 }

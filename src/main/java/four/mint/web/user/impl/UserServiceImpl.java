@@ -154,5 +154,15 @@ public class UserServiceImpl implements UserService {
 		return userDao.getPassword(email_id);
 	}
 
+	@Override
+	public UserVO getUserFromPhone(String phone) {
+		return userDao.getUserFromPhone(phone);
+	}
+
+	@Override
+	public UserVO getUserFromEmail(String email) {
+		return userDao.getUserFromEmail(email);
+	}
+
 	
 }
