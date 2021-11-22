@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../template/header.jsp"></jsp:include>
 
 <link rel="stylesheet" href="../css/order.css" />
@@ -56,6 +57,7 @@ try {
 <script src="https://www.oliveyoung.co.kr/pc-static-root/js/gtm/gtm.js?dumm=202110280001" charset="utf-8"></script>
 
 <div id="Container">
+	<input type="hidden" id="all" name="all" value="${all }" />
 	<!-- #Contents -->
 	<div id="Contents" style="padding-top: 143px;">
 		<script>;
@@ -95,7 +97,7 @@ try {
 			</ul>
 		</div>
 		<!--// title_box -->
-
+		
 		<form name="orderForm" id="orderForm">
 			<!-- 배송지 정보 -->
 			<div class="title_wrap">
@@ -347,7 +349,9 @@ try {
 					</tr>
 				</tbody>
 			</table>
-			<!--// 배송지 정보 --> <!-- 배송 요청사항 -->
+			<!--// 배송지 정보 --> 
+			
+			<!-- 배송 요청사항 -->
 			<div id="pickupHide5" style="margin-bottom: 250px;">
 				<div class="title_wrap">
 					<h2 class="sub-title2">배송 요청사항</h2>
@@ -362,15 +366,13 @@ try {
 						<tr>
 							<th scope="row">배송 메시지</th>
 							<td>
-								<select id="mbrMemoCont" class="selH28" title="택배배송 메시지를 선택해주세요." style="width: 350px" data-attr="배송지정보^1_배송메세지">
-									<option value="MH">배송메시지를 선택해주세요.</option>
-									<option value="10">그냥 문 앞에 놓아 주시면 돼요.</option>
-									<option value="40">직접 받을게요.(부재 시 문앞)</option>
-									<option value="30">벨을 누르지 말아주세요.</option>
-									<option value="20">도착 후 전화주시면 직접 받으러 갈게요.</option>
-									<option value="020">직접 입력하기</option>
+								<select id="mbrMemoCont" class="selH28" title="택배배송 메시지를 선택해주세요." style="width: 350px">
+									<option value="none">배송메시지를 선택해주세요.</option>
+									<option value="그냥 문 앞에 놓아 주시면 돼요.">그냥 문 앞에 놓아 주시면 돼요.</option>
+									<option value="직접 받을게요.(부재 시 문 앞)">직접 받을게요.(부재 시 문 앞)</option>
+									<option value="벨을 누르지 말아주세요.">벨을 누르지 말아주세요.</option>
+									<option value="도착 후 전화주시면 직접 받으러 갈게요.">도착 후 전화주시면 직접 받으러 갈게요.</option>
 								</select> 
-								<input id="mbrMemoContSub" type="text" name="mbrMemoCont" value="" class="inpH28 mgT6" title="배송메시지를 입력해주세요." style="width: 350px; display: none;" />
 							</td>
 						</tr>
 					</tbody>
@@ -381,7 +383,7 @@ try {
 			
 			
 			 <!-- 현금영수증 신청 -->
-			<div class="" id="cashReceipt" style="display: none;">
+			<%-- <div class="" id="cashReceipt" style="display: none;">
 				<h2 class="sub-title2">현금영수증 신청</h2>
 				<table class="tbl_inp_form type2" id="receipt_table">
 					<colgroup>
@@ -472,7 +474,7 @@ try {
 					</tbody>
 				</table>
 				<!--// 현금영수증 신청 -->
-			</div>
+			</div> --%>
 		</form>
 	</div>
 	<div class="order_payment_box fixArea" >
@@ -581,21 +583,21 @@ try {
 				<li style="padding-left: 0;">
 					<span class="tx_tit">총 상품금액</span> 
 					<span class="tx_cont">
-						<span class="tx_num">${priceAll * amount}</span>원
+						<span class="tx_num">${price}</span>원
 					</span> 
 					<input type="hidden" name="goodsAmt" value="0">
 				</li>
 				<li style="padding-left: 0;" class="line_top2">
 					<span class="tx_tit">총 배송비</span> 
 					<span class="tx_cont"> 
-						<span class="tx_num" id="dlexPayAmt_span">${delivery * 2500 }</span>원
+						<span class="tx_num" id="dlexPayAmt_span">${delivery }</span>원
 					</span> 
 					<input type="hidden" name="dlexPayAmt" value="0">
 				</li>
 				<li class="total">
 					<span class="tx_tit">최종 결제금액</span> 
 					<span class="tx_cont"> 
-						<span class="tx_num" id="totPayAmt_sum_span">${priceAll * amount + delivery * 2500 }</span>원
+						<span class="tx_num" id="totPayAmt_sum_span">${price + delivery}</span>원
 					</span> 
 					<input type="hidden" name="remainAmt" value="0"> <input type="hidden" name="ordPayAmt" value="0"> <input type="hidden" name="goodsNm" value="" />
 				</li>
@@ -828,10 +830,13 @@ try {
 <!-- 결제창 -->
 <script>
 	$("#btnPay").click(function () {
+		var merchant_uid_origin = 'merchant_' + new Date().getTime();
 		var buyer_name1 = $("#rmitNm_exist").val();
 		var buyer_tel1 = $("#rmitCellSctNo_exist").val() + $("#rmitCellTxnoNo_exist").val() + $("#rmitCellEndNo_exist").val();
 		var buyer_addr1 = $("#roadAddress").val();
 		var buyer_postcode1 = $("#stnmRmitPostNo_exist").val();		
+		var all1 = $("#all").val();
+		var req = $("#mbrMemoCont option:selected").val();
 		
 	   var IMP = window.IMP; // 생략가능
 	   IMP.init('imp56939417');
@@ -858,7 +863,7 @@ try {
 	   'vbank':가상계좌,
 	   'phone':휴대폰소액결제
 	   */
-	   merchant_uid: 'merchant_' + new Date().getTime(),
+	   merchant_uid: merchant_uid_origin,
 	   /*
 	   merchant_uid에 경우
 	   https://docs.iamport.kr/implementation/payment
@@ -868,7 +873,7 @@ try {
 	   */
 	   name: '민트마켓 결제창',
 	   //결제창에서 보여질 이름
-	   amount: '${priceAll * amount + delivery * 2500}',
+	   amount: '${price + delivery}',
 	   //가격
 	   buyer_email: '${userEmail_id}',
 	   buyer_name: buyer_name1,
@@ -878,7 +883,7 @@ try {
 	   m_redirect_url: 'https://www.yourdomain.com/payments/complete'
 	   /*
 	   모바일 결제시,
-	   결제가 끝나고 랜딩되는 URL을 지정
+	   결제가 끝나고 랜딩되는 URL을 지정	
 	   (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
 	   */
 	   }, function (rsp) {
@@ -887,42 +892,27 @@ try {
 			   var msg = '결제가 완료되었습니다.\n';
 			   msg += '결제 금액 : ' + rsp.paid_amount;
 			   msg += '\n민트마켓을 이용해주셔서 감사합니다. 행복한 하루되세요. :)';
-			   location.href="home.do";
 			   
-			   let purchaseVo = {
-					buyer_email: buyer_email,
-					buyer_name: buyer_name,
-					buyer_addr: buyer_addr,
-					buyer_postcode: buyer_postcod,
-					buyer_phone: buyer_phone,
-					msg: msg,
-					shipno: rsp.merchant_uid,
-					paidAmount: rsp.paid_amount,
-					paytype: rsp.pay_method
-					}
-				// 컨트롤러에 데이터를 전달하여 DB에 입력하는 로직
-            	// 결제내역을 사용자에게 보여주기 위해 필요함.
-       			$.ajax({
-					url : "placeorder.do",
-					type : "get",
-					data : purchaseVo,
-					dataType : "text",
-					success : function(result){
-						if(result == "y") {
-							alert(msg);
-							location.href = "orderComplete.do"; 
-						}else{
-							alert("디비입력실패");
-							return false;
-						}
+			   $.ajax({
+					url : "/payHistory.do",
+					type : "post",
+					data : {
+						email : '${userEmail_id}',
+						cart : '${cart}',
+						code : merchant_uid_origin,
+						request : req 
 					},
-					error : function(a,b,c){}
+					success : function() {
+						
+					}
 				});
+				alert(msg);
+				location.href="home.do";		
 		   } else {
 			   var msg = '결제에 실패하였습니다.';
 			   msg += '에러내용 : ' + rsp.error_msg;
+			   alert(msg);
 		   }
-		   alert(msg);
 	   });
 	});  
 </script>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="../css/payment.css" />
 
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -12,7 +13,7 @@
 <!-- #Container -->
 <div id="Container" style="padding-top: 143px;">
 	<!-- #Contents -->
-	<form name="cartForm" id="cartForm">
+	<form name="cartForm" id="cartForm" action="order.do" method="post">
 		<div id="Contents">
 			<!-- title_box -->
 			<div class="title_box" style="display: flex; align-items: center; justify-content: space-between;">
@@ -43,7 +44,48 @@
 				</colgroup>
 				<thead>
 					<tr>
-						<th scope="col"><input type="checkbox" checked id="inp_allRe1" name="" value="" disabled="disabled" title="민트마켓 배송상품 전체 선택" /></th>
+						<th scope="col">
+							<input type="checkbox" checked id="inp_allRe1" name="" value="" title="민트마켓 배송상품 전체 선택" />
+							<script>
+								$("#inp_allRe1").click(function() {
+									var chk = $("#inp_allRe1").prop("checked");
+									if (chk) {
+										$(".chkSmall").prop("checked", true);
+									} else {
+										$(".chkSmall").prop("checked", false);
+									}
+									
+									var allList = new Array();
+									$("input[class='chkSmall']:checked").each(function() {
+										allList.push($(this).attr("data-cartNum"));
+									});
+
+									if (allList.length != 0){
+										$.ajax({
+											url : "/calculate.do",
+											type : "post",
+											data : {
+												chbox : allList
+											},
+											success : function(data) {
+												$("#allPrice").text(data);
+												if(Number($("#allPrice").text()) >= 50000) {
+													$("#allDelivery").text('0원');
+													$("#reallyPrice").text(data);
+												} else {
+													$("#allDelivery").text('2500원');
+													$("#reallyPrice").text(data + 2500);
+												}
+											}
+										});
+									} else if(allList.length == 0) {
+										$("#allPrice").text('0');
+										$("#allDelivery").text('0원');
+										$("#reallyPrice").text('0');
+									}
+								});
+							</script>
+						</th>
 						<th scope="col">상품정보</th>
 						<th scope="col">판매가</th>
 						<th scope="col">수량</th>
@@ -53,34 +95,47 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:set var="delivery" value="0" />	
-					<c:set var="priceAll" value="0" />
-					<c:set var="iu" value="0" />
-					<c:forEach var="cart" items="${ cart }">
-						<c:set var="price" value="${cart.product_price * cart.amount}" />
-						<c:set var="bool" value="0" />
+					<c:set var="sum" value="0" />
+					<c:forEach var="cart" items="${cart }" varStatus="status">
 						<tr>
 							<td colspan="7">
 								<div class="tbl_cont_area">
 									<div class="tbl_cell w40" style="width: 100px;">
-										<c:set var="doo" value="first"/>
-										<c:choose>
-											<c:when test="${first eq doo}">
-												<input type="checkbox" checked name="checkBox" value="${iu}" class="chkSmall" />
-											</c:when>
-											<c:otherwise>
-												<c:forEach var="check" items="${chk}">
-													<c:if test="${iu eq check}">
-														<input type="checkbox" checked name="checkBox" value="${iu}" class="chkSmall" />
-														<c:set var="bool" value="1" />
-													</c:if>
-												</c:forEach>
-												<c:if test="${bool eq 0 }">
-													<input type="checkbox" name="checkBox" value="${iu}" class="chkSmall" />
-												</c:if>
-											</c:otherwise>
-										</c:choose>
-										<c:set var="iu" value="${iu + 1 }" />
+										<input type="checkbox" checked name="checkBox" class="chkSmall" data-cartNum="${cart.cart_id }"/>
+										<script>
+											$(".chkSmall").click(function() {
+												$("#inp_allRe1").prop("checked", false);
+												
+												var list = new Array();
+												$("input[class='chkSmall']:checked").each(function() {
+													list.push($(this).attr("data-cartNum"));
+												});
+													
+												if (list.length != 0){
+													$.ajax({
+														url : "/calculate.do",
+														type : "post",
+														data : {
+															chbox : list
+														},
+														success : function(data) {
+															$("#allPrice").text(data);
+															if(Number($("#allPrice").text()) >= 50000) {
+																$("#allDelivery").text('0원');
+																$("#reallyPrice").text(data);
+															} else {
+																$("#allDelivery").text('2500원');
+																$("#reallyPrice").text(data + 2500);
+															}
+														}
+													});
+												} else if(list.length == 0){
+													$("#allPrice").text('0');
+													$("#allDelivery").text('0원');
+													$("#reallyPrice").text('0');
+												}
+											});
+										</script>
 									</div>
 									<div class="tbl_cell w390" style="width: 300px;">
 										<div class="prd_info " style="width: 300px; padding: 0 10px 0 10px; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
@@ -89,80 +144,114 @@
 										</div>
 									</div>
 									<div class="tbl_cell w110" style="width: 100px;">
-										<span style="color: #26e4ca" class="price tx_num">${cart.product_price }</span>원
+										<span style="color: #26e4ca" class="price">${cart.product_price }</span>원
 									</div>
 									<div class="tbl_cell w200" style="width: 100px;">
 										<div class="prd_cnt" style="display: flex;">
-											<input type="hidden" value="${cart.cart_id }" /> 
-											<input class="amount" name="amount" type="text" style="width: 30px; height: 28px" value="${cart.amount }"> 
+											<input disabled class="amount${status.index }" name="amount" type="text" style="width: 30px; height: 28px" value="${cart.amount }"> 
 											<input type="button" class="plus" style="padding: 0; width: 13px; height: 13px" value="+" /> 
 											<input type="button" class="minus" style="padding: 0; width: 13px; height: 13px" value="-" />
+											<input type="hidden" value="${cart.cart_id }"/>
 										</div>
 									</div>
 									<div class="tbl_cell w110">
-										<span style="color: #26e4ca" class="editPrice tx_num">${price }</span>원
-										<c:set var="priceAll" value="${ priceAll + price }" />
+										<span style="color: #26e4ca" class="aPrice${status.index }">${cart.product_price * cart.amount }</span>원
 									</div>
 									<div class="tbl_cell w120  ">
-										<p class="prd_delivery">
-											<strong class="deliStrongText"> 
+										<p class="prd_delivery s">
+											<strong class="deliStrongText${status.index }"> 
 											<c:choose>
-												<c:when test="${price < 50000 }">
-													2500원
-												</c:when>
-												<c:otherwise>
-													무료배송
-												</c:otherwise> 
+												<c:when test="${(cart.product_price * cart.amount) > 50000 }">무료배송</c:when>
+												<c:otherwise>2,500원</c:otherwise>
 											</c:choose>
-											<span class="ex">도서·산간 제외</span></strong>
+											</strong>
+											<span class="ex">도서·산간 제외</span>
 										</p>
 									</div>
 									<div class="tbl_cell w150">
 										<div class="btn_group">
+											<input type="hidden" value="${cart.cart_id }"/>
 											<button type="button" class="btnSmall wGreen buyBtn" name="btnBuy">
 												<span>바로구매</span>
 											</button>
-											<input type="hidden" name="cart_id" value="${cart.cart_id }" />
-											<input type="hidden" name="priceAll" value="${price }" />
-											<input type="hidden" name="delivery" value="1" />
-											<button type="button" class="btnSmall wGray delete" name="btnDelete">
-												<span>삭제</span>
-											</button>
-											<input type="hidden" name="cart_id" value="${cart.cart_id }" />
 										</div>
 									</div>
 								</div>
 							</td>
 						</tr>
+						<c:set var="sum" value="${sum + (cart.product_price * cart.amount)}" />
 					</c:forEach>
 				</tbody>
 			</table>
+				
 			<!-- 민트마켓 배송상품 결제금액 -->
 			<div class="basket_price_info">
 				<div class="btn_area">
 					<button type="button" class="btnSmall wGray type2" id="partDelBtn1" name="partDelBtn">
 						<span>선택상품 삭제</span>
 					</button>
+					<script>
+						 $("#partDelBtn1").click(function(){
+						  var confirm_val = confirm("정말 삭제하시겠습니까?");
+						  
+						  if(confirm_val) {
+							var checkArr = new Array();
+						   
+						   $("input[class='chkSmall']:checked").each(function(){
+						    	checkArr.push($(this).attr("data-cartNum"));
+						   });
+						    
+						   $.ajax({
+						    url : "/delete.do",
+						    type : "post",
+						    data : { chbox : checkArr },
+						    success : function(){
+					     		location.href = "/payment.do";
+						    }
+						   });
+						  } 
+						 });
+					</script>
 				</div>
-				<div class="sum_price">
+				<div class="sum_price" id="reloadTest">
+					총 판매가 
+					<span class="tx_num" id="allPrice">${sum}</span>원 <span class="tx_sign plus">
+					+
+					</span> 
+					배송비
+					<span class="tx_num" id="allDelivery">
 					<c:choose>
-						<c:when test="${priceAll >= 50000 }">
-							<c:set var="delivery" value="0" />
+						<c:when test="${sum >= 50000 }">
+						0원
 						</c:when>
 						<c:otherwise>
-							<c:set var="delivery" value="1" />
+						2500원
 						</c:otherwise>
 					</c:choose>
-					총 판매가 <span class="tx_num">${priceAll }</span>원 <span class="tx_sign plus">+</span> 배송비 <span class="tx_num">${delivery * 2500 }</span>원 <span class="tx_sign equal">=</span> <span class="tx_total_price">총 결제금액 <span class="tx_price"><span class="tx_num">${priceAll + delivery * 2500}</span>원</span></span>
+					</span> 
+					<span class="tx_sign equal">=</span> 
+					<span class="tx_total_price">총 결제금액 <span class="tx_price"><span id="reallyPrice" class="tx_num">${sum + delivery}</span>원</span></span>
 				</div>
+			</div>
+			<div class="order_btn_area order_cart">
+				<input type="hidden" id="arrayParam" name="arrayParam"/>
+				<button type="button" class="btnOrange" name="allOrderBtn" id="orderBuy">주문하기</button>
+				<script>
+					$("#orderBuy").click(function(){
+						var array = new Array();
+						$("input[class='chkSmall']:checked").each(function(){
+							array.push($(this).attr("data-cartNum"));
+						});
+						$("#arrayParam").val(array);
+						
+						$("#cartForm").submit();
+					})
+				</script>
 			</div>
 		</div>
 	</form>
 </div>
-<div class="order_btn_area order_cart">
-	<button type="button" class="btnOrangeW" name="partOrderBtn" onclick="location.href='order.do'">선택주문</button>
-	<a href="order.do?priceAll=${priceAll}&delivery=${delivery}" ><button type="button" class="btnOrange" name="allOrderBtn">전체주문</button></a>
-</div>
+
 <!-- 2017-02-23 수정 : TOP 바로가기 버튼 추가 -->
 <div id="directTop">
 	<button>
@@ -177,36 +266,10 @@
 
 <script>
 	$(".buyBtn").on('click', function() {
-		var id = $(this).next().val();
-		var priceAll = $(this).next().next().val();
-		var delivery = $(this).next().next().next().val();
-		var amount = $(this).parent().parent().prev().prev().prev().find(".amount").val(); 
+		var id = $(this).prev().val();
 		
-		location.href="order.do?id="+id+"&priceAll="+priceAll+"&delivery="+delivery+"&amount="+amount;
+		location.href="order.do?one="+id;
 	});
-
-	$(".delete").on('click', function() {
-		var id = $(this).next().val();
-		$.ajax({
-			url : 'delete.do',
-			type : "post",
-			cache : false,
-			headers : {
-				"cache-control" : "no-cache",
-				"pragma" : "no-cache"
-			},
-			data : {
-				"id" : id,
-			},
-			success : function(data) {
-				console.log(data);
-				$('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
-			},
-			error : function(data) {
-				alert('error');
-			}//error
-		})//ajax
-	});//click
 
 	var fnBtnAction = {
 		init : function() {
@@ -235,30 +298,58 @@
 	$('#directTop').length && fnBtnAction.init();
 
 	$(".plus").on('click', function() {
+		var name = "." + $(this).prev().attr("class");
 		var amount = $(this).prev().val();
-		var id = $(this).prev().prev().val();
-
-		var checkboxValues = new Array();
-		$("input[name='checkBox']:checked").each(function() {
-			checkboxValues.push($(this).val());
-		});
+		var id = $(this).next().next().val();
+		var aPrice = "." + $(this).parent().parent().next().children().attr("class");
+		var bPrice = $(this).parent().parent().prev().children().text();
+		var delivery = "." + $(this).parent().parent().next().next().children().children().attr("class");
 
 		$.ajax({
 			url : 'countUp.do',
 			type : "post",
 			cache : false,
-			headers : {
-				"cache-control" : "no-cache",
-				"pragma" : "no-cache"
-			},
+			dataType: 'json',
+			headers : {"cache-control" : "no-cache", "pragma" : "no-cache"},
 			data : {
 				"amount" : amount,
-				"id" : id,
-				"checkboxValues" : checkboxValues
+				"id" : id
 			},
 			success : function(data) {
-				console.log(data);
-				$('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
+				if((Number($(name).val())+1) < 11) {
+					$(name).val(Number($(name).val())+1);
+					$(aPrice).text(Number($(name).val()) * Number(bPrice));
+					if(Number($(aPrice).text()) >= 50000) {
+						$(delivery).text("무료배송");
+					} else {
+						$(delivery).text("2,500원");
+					}
+					var list = new Array();
+					$("input[class='chkSmall']:checked").each(function() {
+						list.push($(this).attr("data-cartNum"));
+					});
+					console.log(list);
+
+					$.ajax({
+						url : "/calculate.do",
+						type : "post",
+						data : {
+							chbox : list
+						},
+						success : function(data) {
+							$("#allPrice").text(data);
+							if(Number($("#allPrice").text()) >= 50000) {
+								$("#allDelivery").text('0원');
+								$("#reallyPrice").text(data);
+							} else {
+								$("#allDelivery").text('2500원');
+								$("#reallyPrice").text(data + 2500);
+							}
+						}
+					});
+				} else {
+					return;
+				}
 			},
 			error : function(data) {
 				alert('error');
@@ -267,34 +358,62 @@
 	});//click
 
 	$(".minus").on('click', function() {
+		var name = "." + $(this).prev().prev().attr("class");
 		var amount = $(this).prev().prev().val();
-		var id = $(this).prev().prev().prev().val();
-
-		var checkboxValues = [];
-		$("input[name='checkBox']:checked").each(function() {
-			checkboxValues.push($(this).val());
-		});
+		var id = $(this).next().val();
+		var aPrice = "." + $(this).parent().parent().next().children().attr("class");
+		var bPrice = $(this).parent().parent().prev().children().text();
+		var delivery = "." + $(this).parent().parent().next().next().children().children().attr("class");
 
 		$.ajax({
 			url : 'countDown.do',
 			type : "post",
 			cache : false,
-			headers : {
-				"cache-control" : "no-cache",
-				"pragma" : "no-cache"
-			},
+			dataType: 'json',
+			headers : {"cache-control" : "no-cache", "pragma" : "no-cache"},
 			data : {
 				"amount" : amount,
-				"id" : id,
-				"checkboxValues" : checkboxValues
+				"id" : id
 			},
 			success : function(data) {
-				console.log(data);
-				$('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
+				if((Number($(name).val())-1) > 0) {
+					$(name).val(Number($(name).val())-1);
+					$(aPrice).text(Number($(name).val()) * Number(bPrice));
+					if(Number($(aPrice).text()) >= 50000) {
+						$(delivery).text("무료배송");
+					} else {
+						$(delivery).text("2,500원");
+					}
+					var list = new Array();
+					$("input[class='chkSmall']:checked").each(function() {
+						list.push($(this).attr("data-cartNum"));
+					});
+					console.log(list);
+
+					$.ajax({
+						url : "/calculate.do",
+						type : "post",
+						data : {
+							chbox : list
+						},
+						success : function(data) {
+							$("#allPrice").text(data);
+							if(Number($("#allPrice").text()) >= 50000) {
+								$("#allDelivery").text('0원');
+								$("#reallyPrice").text(data);
+							} else {
+								$("#allDelivery").text('2500원');
+								$("#reallyPrice").text(data + 2500);
+							}
+						}
+					});
+				} else {
+					return;
+				}
 			},
 			error : function(data) {
 				alert('error');
-			}//error
+			}//erro
 		})//ajax
 	});//click
 </script>

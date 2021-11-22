@@ -13,6 +13,7 @@ import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.store.CartVO;
 import four.mint.web.user.store.StoreCategoryBigVO;
 import four.mint.web.user.store.StoreVO;
+import four.mint.web.user.store.TransactionHistoryVO;
 import four.mint.web.user.store.UpVO;
 
 @Repository
@@ -70,5 +71,21 @@ public class StoreDAO {
 
 	public void deleteCart(int id) {
 		sqlSessionTemplate.delete("StoreDAO.deleteCart", id);
+	}
+
+	public CartVO getCart(int cartNum) {
+		return sqlSessionTemplate.selectOne("StoreDAO.getCart", cartNum);
+	}
+
+	public void updateCart(CartVO cart) {
+		sqlSessionTemplate.update("StoreDAO.updateCartVO", cart);
+	}
+
+	public int getPrice(int cart_id) {
+		return sqlSessionTemplate.selectOne("StoreDAO.getPrice", cart_id);
+	}
+
+	public void insertHistory(TransactionHistoryVO thVO) {
+		sqlSessionTemplate.insert("StoreDAO.insertHistory", thVO);
 	}
 }

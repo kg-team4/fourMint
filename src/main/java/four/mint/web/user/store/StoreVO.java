@@ -11,9 +11,9 @@ public class StoreVO {
 	private String img_name;
 	private String category_big;
 	private String product_name;
-	private String product_price;
+	private int product_price;
 	private String product_content;
-	private String product_stock;
+	private int product_stock;
 	private String url;
 	private Timestamp date;
 }

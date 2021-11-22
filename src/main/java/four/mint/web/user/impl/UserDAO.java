@@ -160,4 +160,12 @@ public class UserDAO {
 		return sqlSessionTemplate.selectOne("UserDAO.getPassword", email_id);
 	}
 
+	public UserVO getUserFromPhone(String phone) {
+		return sqlSessionTemplate.selectOne("UserDAO.getUserFromPhone", phone);
+	}
+
+	public UserVO getUserFromEmail(String email) {
+		return sqlSessionTemplate.selectOne("UserDAO.getUserFromEmail", email);
+	}
+
 }

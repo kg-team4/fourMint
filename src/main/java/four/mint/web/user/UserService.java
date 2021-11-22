@@ -39,5 +39,7 @@ public interface UserService {
 	void insertDel(String id);
 	void dropMem(String id);
 	void updateSns(UserVO vo);
+	UserVO getUserFromPhone(String phone);
+	UserVO getUserFromEmail(String email);
 	
 }

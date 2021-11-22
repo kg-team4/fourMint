@@ -12,7 +12,7 @@ public class MarketVO {
 	private String category_big;
 	private String category_middle;
 	private String product_name;
-	private String product_price;
+	private int product_price;
 	private String product_content;
 	private String url;
 	private Timestamp date;

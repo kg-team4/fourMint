@@ -43,6 +43,14 @@
 		SELECT * FROM member WHERE nickname = #{nickname}
 	</select>
 	
+	<select id="getUserFromPhone" resultType="user" parameterType="string">
+		SELECT * FROM member WHERE phone = #{phone}
+	</select>
+	
+	<select id="getUserFromEmail" resultType="user" parameterType="string">
+		SELECT * FROM member WHERE email_id = #{email}
+	</select>
+	
 	<select id="getAddress1" resultType="string">
 		SELECT address1 FROM member WHERE email_id = #{email_id}
 	</select>

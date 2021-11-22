@@ -67,7 +67,7 @@ if (request.getAttribute("result") != null) {
 				<!--left col-->
 				<div class="nick-div">
 					<h5>
-						<b><span style="color: #26e4ca;">${user.nickname}&nbsp; </span>님의 프로필</b>
+						<b><span style="color: #26e4ca;">${user.nickname}&nbsp;</span>님의 프로필</b>
 					</h5>
 				</div>
 				<div class="text-center row">
