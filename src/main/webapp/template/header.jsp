@@ -42,7 +42,7 @@
 						</c:choose>
 						<li><a href="profile.do">마이페이지</a></li>
 						<li>
-							<button id="btn_mint_talk" onclick="location.href='payment.do?chk=first'">
+							<button id="btn_mint_cart" onclick="location.href='payment.do?chk=first'">
 								<img src="../img/shopping-cart.png" style="height: 18px; width: 20px">
 							</button>
 						</li>

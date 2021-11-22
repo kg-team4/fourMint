@@ -78,7 +78,7 @@
 		<c:if test="${ listCount > 0 }">
 			<div class="best" style="width: 1000px;">
 				<br> <br> <br>
-				<h2 style="padding: 0 49%;">${kind }</h2>
+				<h2 style="margin-left: 52%;">${kind }</h2>
 				<br>
 				<ul class="bestBox" style="margin-left: 100px;">
 					<!-- 마켓 글 목록 -->

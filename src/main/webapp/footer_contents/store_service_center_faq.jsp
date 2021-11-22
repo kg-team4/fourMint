@@ -1,5 +1,13 @@
+<%@	page import="java.text.SimpleDateFormat"%>
+<%@	page import="java.util.Calendar"%>
+<%@	page import="java.text.NumberFormat"%>
+<%@	page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +37,12 @@
 			<div class="tab">
 				<ul class="tabnav">
 					<li><a href="#tab01">전체</a></li>
-					<li><a href="#tab02">주문결제</a></li>
+					<li>
+						<a href="#tab02">주문/결제</a>
+						<a href="/storeServiceCenterFAQ.do?kind=주문/결제"></a>
+						
+						
+					</li>
 					<li><a href="#tab03">배송</a></li>
 					<li><a href="#tab04">취소/환불</a></li>
 					<li><a href="#tab05">반품/교환</a></li>
@@ -37,17 +50,19 @@
 					<li><a href="#tab07">민트마켓</a></li>
 				</ul>
 				<div class="tabcontent">
+				<c:forEach var="faqAllLists" items="${faqAllList }"  varStatus="status">
 					<div id="tab01">
 						<div class="store_review_all">
 							<div class="store_review">
 								<table>
 									<tr>
-										<td id="news_num">2</td>
-										<td id="faq_category" style="width: 120px;">주문/결제</td>
+										<td id="news_num">
+											${fn:length(faqAllList) - status.index } 
+										</td>
+										<td id="faq_category" style="width: 120px;">${faqAllLists.faq_category}</td>
 										<td id="news_title">
 											<div id="news_title_content">
-												<a id="news_title_detail" href="#">결제수단에 무엇이 있나요??????!!
-													안내</a>
+												<a id="news_title_detail" href="#">${faqAllLists.faq_title }</a>
 											</div>
 										</td>
 										<td id="down_arrow" style="color: gray"><input
@@ -60,70 +75,7 @@
 									<tr id="contents" style="display: none">
 										<td></td>
 										<td colspan="3">
-												<pre><br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-							<br>
-											</pre>
-										</td>
-
-									</tr>
-
-
-
-									<tr>
-										<td id="news_num">1</td>
-										<td id="faq_category" style="width: 120px;">배송</td>
-										<td id="news_title">
-											<div id="news_title_content">
-												<a id="news_title_detail" href="#">택배 배송 기간은 평균적으로 어느정도인가요??</a>
-											</div>
-										</td>
-										<td style="color: gray"><input type="button"
-											class="slider" value="▼"
-											style="background: none; border: 0px; color: gray; cursor: pointer">
-										</td>
-									</tr>
-
-
-
-									<tr id="contents" style="display: none">
-										<td></td>
-
-										<td colspan="3">
-											<pre>
-												<br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-									<br>
+												<pre><br>${faqAllLists.faq_content }<br>
 											</pre>
 										</td>
 
@@ -135,19 +87,22 @@
 						</div>
 
 					</div> <!-- end tab01 -->
+				</c:forEach>
+				
 					
-					
+				<c:forEach var="faqCategoryList" items="${faqAllList }"  varStatus="status">
+				<c:choose>
+				<c:when test="${faqCategoryList.faq_category eq '주문/결제' }">
 					<div id="tab02">
 					<div class="store_review_all">
 							<div class="store_review">
 								<table>
 									<tr>
-										<td id="news_num">2</td>
-										<td id="faq_category" style="width: 120px;">주문/결제</td>
+										<td id="news_num">${fn:length(faqAllList) - status.index }</td>
+										<td id="faq_category" style="width: 120px;">${faqCategoryList.faq_category }</td>
 										<td id="news_title">
 											<div id="news_title_content">
-												<a id="news_title_detail" href="#">결제수단에 무엇이 있나요??????!!
-													안내</a>
+												<a id="news_title_detail" href="#">${faqCategoryList.faq_title }</a>
 											</div>
 										</td>
 										<td id="down_arrow" style="color: gray"><input
@@ -160,71 +115,7 @@
 									<tr id="contents" style="display: none">
 										<td></td>
 										<td colspan="3">
-												<pre><br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-							<br>
-											</pre>
-										</td>
-
-									</tr>
-
-
-
-									<tr>
-										<td id="news_num">1</td>
-										<td id="faq_category" style="width: 120px;">배송</td>
-										<td id="news_title">
-											<div id="news_title_content">
-												<a id="news_title_detail" href="#">택배 배송 기간은 평균적으로 어느정도인가요??</a>
-											</div>
-										</td>
-										<td style="color: gray"><input type="button"
-											class="slider" value="▼"
-											style="background: none; border: 0px; color: gray; cursor: pointer">
-										</td>
-									</tr>
-
-
-
-									<tr id="contents" style="display: none">
-										<td></td>
-
-										<td colspan="3">
-											<pre>
-												<br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-									<br>
-											</pre>
+										<pre><br>${faqCategoryList.faq_content }<br></pre>
 										</td>
 
 									</tr>
@@ -232,20 +123,26 @@
 								</table>
 							</div>
 
-						</div>
-					
+						</div>				
 					</div><!-- tab02 -->
+					</c:when>
+					</c:choose>
+				</c:forEach>
+				
+					
+				<c:forEach var="faqCategoryList" items="${faqAllList }"  varStatus="status">
+				<c:choose>
+				<c:when test="${faqCategoryList.faq_category eq '배송' }">					
 					<div id="tab03">
 					<div class="store_review_all">
 							<div class="store_review">
 								<table>
 									<tr>
-										<td id="news_num">2</td>
-										<td id="faq_category" style="width: 120px;">주문/결제</td>
+										<td id="news_num">${fn:length(faqAllList) - status.index }</td>
+										<td id="faq_category" style="width: 120px;">${faqCategoryList.faq_category }</td>
 										<td id="news_title">
 											<div id="news_title_content">
-												<a id="news_title_detail" href="#">결제수단에 무엇이 있나요??????!!
-													안내</a>
+												<a id="news_title_detail" href="#">${faqCategoryList.faq_title }</a>
 											</div>
 										</td>
 										<td id="down_arrow" style="color: gray"><input
@@ -259,90 +156,35 @@
 										<td></td>
 										<td colspan="3">
 											<pre>
-												<br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-							<br>
+												<br>${faqCategoryList.faq_content }<br>
 											</pre>
 										</td>
 
-									</tr>
-
-									<tr>
-										<td id="news_num">1</td>
-										<td id="faq_category" style="width: 120px;">배송</td>
-										<td id="news_title">
-											<div id="news_title_content">
-												<a id="news_title_detail" href="#">택배 배송 기간은 평균적으로 어느정도인가요??</a>
-											</div>
-										</td>
-										<td style="color: gray"><input type="button"
-											class="slider" value="▼"
-											style="background: none; border: 0px; color: gray; cursor: pointer">
-										</td>
-									</tr>
-
-
-
-									<tr id="contents" style="display: none">
-										<td></td>
-
-										<td colspan="3">
-											<pre>
-												<br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-									<br>
-											</pre>
-										</td>
-
-									</tr>
-
+									</tr>									
 								</table>
 							</div>
 
 						</div>
 					
 					</div><!-- end tab03 -->
+					</c:when>
+					</c:choose>
+				</c:forEach>
+				
+					
+				<c:forEach var="faqCategoryList" items="${faqAllList }"  varStatus="status">
+				<c:choose>
+				<c:when test="${faqCategoryList.faq_category eq '취소/환불' }">	
 					<div id="tab04">
 					<div class="store_review_all">
 							<div class="store_review">
 								<table>
 									<tr>
-										<td id="news_num">2</td>
-										<td id="faq_category" style="width: 120px;">주문/결제</td>
+										<td id="news_num">${fn:length(faqAllList) - status.index }</td>
+										<td id="faq_category" style="width: 120px;">${faqCategoryList.faq_category }</td>
 										<td id="news_title">
 											<div id="news_title_content">
-												<a id="news_title_detail" href="#">결제수단에 무엇이 있나요??????!!
-													안내</a>
+												<a id="news_title_detail" href="#">${faqCategoryList.faq_title }</a>
 											</div>
 										</td>
 										<td id="down_arrow" style="color: gray"><input
@@ -355,91 +197,32 @@
 									<tr id="contents" style="display: none">
 										<td></td>
 										<td colspan="3">
-<pre>
-												<br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-							<br>
-											</pre>
+										<pre><br>${faqCategoryList.faq_content }<br></pre>
 										</td>
 
 									</tr>
-
-
-
-									<tr>
-										<td id="news_num">1</td>
-										<td id="faq_category" style="width: 120px;">배송</td>
-										<td id="news_title">
-											<div id="news_title_content">
-												<a id="news_title_detail" href="#">택배 배송 기간은 평균적으로 어느정도인가요??</a>
-											</div>
-										</td>
-										<td style="color: gray"><input type="button"
-											class="slider" value="▼"
-											style="background: none; border: 0px; color: gray; cursor: pointer">
-										</td>
-									</tr>
-
-
-
-									<tr id="contents" style="display: none">
-										<td></td>
-
-										<td colspan="3">
-											<pre>
-												<br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-									<br>
-											</pre>
-										</td>
-
-									</tr>
-
 								</table>
 							</div>
 
 						</div>
 					</div><!-- end tab04 -->
+					</c:when>
+					</c:choose>
+				</c:forEach>
+			
+			<c:forEach var="faqCategoryList" items="${faqAllList }"  varStatus="status">
+				<c:choose>
+				<c:when test="${faqCategoryList.faq_category eq '반품/교환' }">		
 					<div id="tab05">
 					<div class="store_review_all">
 							<div class="store_review">
 								<table>
 									<tr>
-										<td id="news_num">2</td>
-										<td id="faq_category" style="width: 120px;">주문/결제</td>
+										<td id="news_num">${fn:length(faqAllList) - status.index }</td>
+										<td id="faq_category" style="width: 120px;">${faqCategoryList.faq_category }</td>
 										<td id="news_title">
 											<div id="news_title_content">
-												<a id="news_title_detail" href="#">결제수단에 무엇이 있나요??????!!</a>
+												<a id="news_title_detail" href="#">${faqCategoryList.faq_title }</a>
 											</div>
 										</td>
 										<td id="down_arrow" style="color: gray"><input
@@ -452,91 +235,32 @@
 									<tr id="contents" style="display: none">
 										<td></td>
 										<td colspan="3">
-												<br><pre>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-							<br>
-											</pre>
+												<br><pre>${faqCategoryList.faq_content }<br></pre>
 										</td>
 
 									</tr>
-
-
-
-									<tr>
-										<td id="news_num">1</td>
-										<td id="faq_category" style="width: 120px;">배송</td>
-										<td id="news_title">
-											<div id="news_title_content">
-												<a id="news_title_detail" href="#">택배 배송 기간은 평균적으로 어느정도인가요??</a>
-											</div>
-										</td>
-										<td style="color: gray"><input type="button"
-											class="slider" value="▼"
-											style="background: none; border: 0px; color: gray; cursor: pointer">
-										</td>
-									</tr>
-
-
-
-									<tr id="contents" style="display: none">
-										<td></td>
-
-										<td colspan="3">
-											<pre>
-												<br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-									<br>
-											</pre>
-										</td>
-
-									</tr>
-
 								</table>
 							</div>
 
 						</div>
-					</div><!-- end tab05 -->
+					</div><!-- end tab05 -->					
+					</c:when>
+					</c:choose>
+				</c:forEach>
+				
+				<c:forEach var="faqCategoryList" items="${faqAllList }"  varStatus="status">
+				<c:choose>
+				<c:when test="${faqCategoryList.faq_category eq '기타' }">	
 					<div id="tab06">
 					<div class="store_review_all">
 							<div class="store_review">
 								<table>
 									<tr>
-										<td id="news_num">2</td>
-										<td id="faq_category" style="width: 120px;">주문/결제</td>
+										<td id="news_num">${fn:length(faqAllList) - status.index }</td>
+										<td id="faq_category" style="width: 120px;">${faqCategoryList.faq_category }</td>
 										<td id="news_title">
 											<div id="news_title_content">
-												<a id="news_title_detail" href="#">결제수단에 무엇이 있나요??????!!
-													안내</a>
+												<a id="news_title_detail" href="#">${faqCategoryList.faq_title }</a>
 											</div>
 										</td>
 										<td id="down_arrow" style="color: gray"><input
@@ -549,71 +273,7 @@
 									<tr id="contents" style="display: none">
 										<td></td>
 										<td colspan="3">
-												<pre><br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-							<br>
-											</pre>
-										</td>
-
-									</tr>
-
-
-
-									<tr>
-										<td id="news_num">1</td>
-										<td id="faq_category" style="width: 120px;">배송</td>
-										<td id="news_title">
-											<div id="news_title_content">
-												<a id="news_title_detail" href="#">택배 배송 기간은 평균적으로 어느정도인가요??</a>
-											</div>
-										</td>
-										<td style="color: gray"><input type="button"
-											class="slider" value="▼"
-											style="background: none; border: 0px; color: gray; cursor: pointer">
-										</td>
-									</tr>
-
-
-
-									<tr id="contents" style="display: none">
-										<td></td>
-
-										<td colspan="3">
-											<pre>
-												<br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-									<br>
-											</pre>
+											<pre><br>${faqCategoryList.faq_content }<br></pre>
 										</td>
 
 									</tr>
@@ -623,18 +283,23 @@
 
 						</div>
 					</div><!-- end tab06 -->
-					
+					</c:when>
+					</c:choose>
+				</c:forEach>
+				
+				<c:forEach var="faqCategoryList" items="${faqCategoryList }"  varStatus="status">
+				<c:choose>
+				<c:when test="${kind eq '민트마켓' }">		
 					<div id="tab07">
 					<div class="store_review_all">
 							<div class="store_review">
 								<table>
 									<tr>
-										<td id="news_num">2</td>
-										<td id="faq_category" style="width: 120px;">주문/결제</td>
+										<td id="news_num">${fn:length(faqAllList) - status.index }</td>
+										<td id="faq_category" style="width: 120px;">${faqCategoryList.faq_category }</td>
 										<td id="news_title">
 											<div id="news_title_content">
-												<a id="news_title_detail" href="#">결제수단에 무엇이 있나요??????!!
-													안내</a>
+												<a id="news_title_detail" href="#">${faqCategoryList.faq_title }</a>
 											</div>
 										</td>
 										<td id="down_arrow" style="color: gray"><input
@@ -647,71 +312,7 @@
 									<tr id="contents" style="display: none">
 										<td></td>
 										<td colspan="3">
-												<pre><br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-							<br>
-											</pre>
-										</td>
-
-									</tr>
-
-
-
-									<tr>
-										<td id="news_num">1</td>
-										<td id="faq_category" style="width: 120px;">배송</td>
-										<td id="news_title">
-											<div id="news_title_content">
-												<a id="news_title_detail" href="#">택배 배송 기간은 평균적으로 어느정도인가요??</a>
-											</div>
-										</td>
-										<td style="color: gray"><input type="button"
-											class="slider" value="▼"
-											style="background: none; border: 0px; color: gray; cursor: pointer">
-										</td>
-									</tr>
-
-
-
-									<tr id="contents" style="display: none">
-										<td></td>
-
-										<td colspan="3">
-											<pre>
-												<br>							
-안녕하세요.
-
-지구샵입니다.
-
-8/14(금)은 코로나 이후 극심한 노동으로 고단함을 느끼고 있는 택배 노동자를 위한 '택배없는 날'입니다.
-
-평소 택배노동자분들의 고단함으로 우리가 얼마나 편한 생활을 하고 있는지 그 소중함을 느낍니다.
-진정한 택배없는 날을 위해 불요불급한 택배 주문을 피하고 주변 상점 및 전통시장을 이용하시거나 차주에 이용하시기를 권장 드립니다 :)
-
-아울러 택배없는 날 전일부터 택배노동자의 휴식을 보장하고자 8/12 오후 3시 이후 주문 건부터는 택배노동자분들의 연휴가 끝난 다음 주 8/17(월)에 출고됩니다.
-이용에 참고 바랍니다.
-
-8/12(수) 오후 3시 이전 주문 건 : 당일 발송
-
-감사합니다.
-					
-									<br>
-											</pre>
+											<pre><br>${faqCategoryList.faq_content }<br></pre>
 										</td>
 
 									</tr>
@@ -721,6 +322,9 @@
 
 						</div>
 					</div><!-- end tab07 -->
+					</c:when>
+					</c:choose>
+				</c:forEach>
 					
 				</div>
 			</div>

@@ -73,17 +73,21 @@
                let send_msg = "";
                send_msg += "<div class='type_msg'>";
                send_msg += "   <div class='input_msg_write row'>";
-               send_msg += "      <div class='emo_div' style='width: auto; height: 80px; background: yellow; display:none;'>";
+               send_msg += "      <div class='emo_div' style='width: auto; height: 80px; background: white; display:none;'>";
                // -------------------------------- 동녘아 여기다가 이모티콘 넣어 --------------------------------
                send_msg += "         <button id='click_emo_img' type='button' onclick='javascript:SendImo('${content.nickname}')'>";
-               send_msg += "            <img id='message_image' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/img/like.png'>";
+               send_msg += "            <img id='message_image' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_bad.png'>";
                send_msg += "         </button>";
+               
+               
                // -------------------------------- 여기까지야 화이팅 ^^ 하핫 ----------------------------------
                send_msg += "      </div>";
                send_msg += "      <div class='col-11' style='text-align: left;'>";
                send_msg += "         <textarea class='write_msg form-control' placeholder='메세지를 입력...' style='max-width: 520px; height: 60px; resize: none;'></textarea>";
-               send_msg += "         <button class='button_emo' type='button'>이모티콘</button>";
-               send_msg += "         <button class='msg_send_btn' type='button' style='position: inherit;'>전송버튼</button>";
+               send_msg += "     	 <div class='button_area' style='text-align: right;'>";
+               send_msg += "         	<button class='button_emo' type='button'>🙂</button>";
+               send_msg += "         	<button class='msg_send_btn' type='button' style='position: inherit;'>전송</button>";
+               send_msg += "      	</div>";
                send_msg += "      </div>";
                send_msg += "   </div>";
                send_msg += "</div>";
@@ -171,8 +175,8 @@
                send_msg += "      </div>";
                send_msg += "      <div class='col-11' style='text-align: left;'>";
                send_msg += "         <textarea class='write_msg form-control' placeholder='메세지를 입력...' style='max-width: 520px; height: 60px; resize: none;'></textarea>";
-               send_msg += "         <button class='button_emo' type='button'>이모티콘</button>";
-               send_msg += "         <button class='msg_send_btn' type='button' style='position: inherit;'>전송버튼</button>";
+               send_msg += "         <button class='button_emo' type='button'>🙂</button>";
+               send_msg += "         <button class='msg_send_btn' type='button' style='position: inherit;'>전송</button>";
                send_msg += "      </div>";
                send_msg += "   </div>";
                send_msg += "</div>";

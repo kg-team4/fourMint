@@ -30,6 +30,20 @@ public class ServiceCenterController {
 		return "/footer_contents/store_service_center";
 	}
 	
+	@RequestMapping(value = "/storeServiceCenterFAQ.do", method = RequestMethod.GET)
+	public String ServiceCenterFAQ(HttpServletRequest request, HttpServletResponse response) {		
+		String kind = request.getParameter("kind");
+		request.setAttribute("kind", kind);
+		
+		List<ServiceCenterFaqVO> faqCategoryList = serviceCenterService.getKindList(kind);
+		request.setAttribute("faqCategoryList", faqCategoryList);
+		
+		List<ServiceCenterFaqVO> faqAllList = serviceCenterService.getServiceCenterFaqAllList(); 
+		request.setAttribute("faqAllList", faqAllList);		
+		
+		return "/footer_contents/store_service_center_faq";
+	}
+	
 	@RequestMapping(value = "/locationPolicy.do", method = RequestMethod.GET)
 	public String locationPolicy() {
 		
@@ -47,11 +61,6 @@ public class ServiceCenterController {
 		
 		return "/footer_contents/use_agreement";
 	}
-	@RequestMapping(value = "/storeServiceCenterFAQ.do", method = RequestMethod.GET)
-	public String ServiceCenterFAQ() {
-		
-		
-		return "/footer_contents/store_service_center_faq";
-	}
+	
 }
 

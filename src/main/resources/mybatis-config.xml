@@ -23,6 +23,7 @@
 		<typeAlias alias="followers" type="four.mint.web.user.FollowerVO" />
 		<typeAlias alias="followings" type="four.mint.web.user.FollowingVO"/>
 		<typeAlias alias="serviceCenter" type="four.mint.web.user.servicecenter.ServiceCenterVO"/>
+		<typeAlias alias="serviceCenterFaq" type="four.mint.web.user.servicecenter.ServiceCenterFaqVO"/>
 		<typeAlias alias="report" type="four.mint.web.user.board.common.ReportVO"/>
 		<typeAlias alias="communityComment" type="four.mint.web.user.community.CommunityCommentVO"/>
 	</typeAliases>

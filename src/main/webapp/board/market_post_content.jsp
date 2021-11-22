@@ -372,7 +372,8 @@
 											<table width="100%" height="120" style="padding-top: 20px">
 												
 													<tr height="30">
-														<td align="left" style="font-size: 15px">&nbsp; ${market.date }</td>
+														
+														<td align="left" style="font-size: 15px">&nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${market.date }" /></td>
 														<td width="70%"></td>
 													</tr>
 													<tr>
@@ -501,10 +502,12 @@
 							</div>
 						</div>
 					</div>
-					<!--tab-->
+					<!--End tab-->
 				</div>
 				<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
 			</div>
+			
+			
 			<div class="right-item34  padding-right30 padding-left30 ">
 				<div class="padding15 left-font">
 					<p class=" font27">상점정보</p>

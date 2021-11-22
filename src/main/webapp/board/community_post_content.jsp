@@ -160,7 +160,7 @@
 											<div style="margin-left: 10px">
 												<span id="re_reply_click_style"> 
 													<label style="cursor: pointer; margin-left:15px; margin-right:5px" for="re-reply1"> 
-														<input type="checkbox" id="re-reply1" style="display: none; " value="1" onchange="reReply(this);"> 답글												
+														<input type="checkbox" id="re-reply1" style="display: none; " value="1" onchange="reReply(this);"> 수정<!--답글 -->											
 													</label>
 													<span><input type="button" class="btn_delete_comment" value="삭제"/></span>
 												</span>&nbsp;

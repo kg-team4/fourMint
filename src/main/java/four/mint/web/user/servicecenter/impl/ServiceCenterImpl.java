@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import four.mint.web.user.servicecenter.ServiceCenterFaqVO;
 import four.mint.web.user.servicecenter.ServiceCenterService;
 import four.mint.web.user.servicecenter.ServiceCenterVO;
 
@@ -24,4 +25,13 @@ public class ServiceCenterImpl implements ServiceCenterService {
 		List<ServiceCenterVO> normalNoticeVo= serviceCenterDao.getServiceCenterNormalNoticeList();
 		return normalNoticeVo;
 	}
+	@Override
+	public List<ServiceCenterFaqVO> getKindList(String kind){
+		return serviceCenterDao.getKindList(kind);
+	}
+	@Override
+	public List<ServiceCenterFaqVO> getServiceCenterFaqAllList(){
+		return serviceCenterDao.getServiceCenterFaqAllList();
+	}
 }
+	
