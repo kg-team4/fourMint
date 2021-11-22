@@ -19,6 +19,9 @@
 		<typeAlias alias="adminUsed" type="four.mint.web.admin.table.used.AdminUsedVO" />
 		<typeAlias alias="adminGoods" type="four.mint.web.admin.table.goods.AdminGoodsVO" />
 		<typeAlias alias="adminFaq" type="four.mint.web.admin.used.faq.AdminFaqVO" />
+		<typeAlias alias="adminBannerMarket" type="four.mint.web.admin.banner.market.AdminBannerMarketVO" />
+		<typeAlias alias="adminBannerStore" type="four.mint.web.admin.banner.store.AdminBannerStoreVO" />
+		<typeAlias alias="adminPageStore" type="four.mint.web.admin.page.store.AdminPageStoreVO" />
 		<typeAlias alias="followCount" type="four.mint.web.user.FollowCountVO" />
 		<typeAlias alias="followers" type="four.mint.web.user.FollowerVO" />
 		<typeAlias alias="followings" type="four.mint.web.user.FollowingVO"/>
@@ -51,5 +54,8 @@
 		<mapper resource="mappings/ServiceCenterMapping.xml" />
 		<mapper resource="mappings/AdminAnnounceMapping.xml" />
 		<mapper resource="mappings/AdminReportMapping.xml" />
+		<mapper resource="mappings/AdminBannerMarketMapping.xml" />
+		<mapper resource="mappings/AdminBannerStoreMapping.xml" />
+		<mapper resource="mappings/AdminPageStoreMapping.xml" />
 	</mappers>
 </configuration>

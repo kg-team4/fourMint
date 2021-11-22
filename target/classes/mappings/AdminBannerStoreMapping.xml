@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminBannerStoreDAO">
+	<resultMap type="adminBannerStore" id="adminResult">
+		<result property="no" column="NO" />
+		<result property="image" column="IMAGE" />
+		<result property="date" column="DATE" />
+	</resultMap>
+	
+	<select id="getBanner" resultType="string" parameterType="int">
+		SELECT image FROM bannerstore where no = #{no}
+	</select>
+	
+	<update id="updateBanner" parameterType="adminBannerStore">
+		UPDATE bannerstore SET image = #{image}, date = now() WHERE no = #{no}
+	</update>
+</mapper>

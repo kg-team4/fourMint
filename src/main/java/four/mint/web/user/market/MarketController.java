@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import four.mint.web.admin.banner.market.AdminBannerMarketService;
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
 import four.mint.web.common.DateUtil;
@@ -45,10 +46,23 @@ public class MarketController {
 	
 	@Autowired
 	private CommunityBoardService communityBoardService;
+
+	@Autowired
+	private AdminBannerMarketService adminBannerMarketService;
 	
 	@RequestMapping(value = "/marketBoardList.do", method = RequestMethod.GET)
-	public String marketBoardList() {
+	public String marketBoardList(Model model) {
 
+		String market_image1 = adminBannerMarketService.getBanner(1);
+		String market_image2 = adminBannerMarketService.getBanner(2);
+		String market_image3 = adminBannerMarketService.getBanner(3);
+		String market_image4 = adminBannerMarketService.getBanner(4);
+		
+		model.addAttribute("market_banner1", market_image1);
+		model.addAttribute("market_banner2", market_image2);
+		model.addAttribute("market_banner3", market_image3);
+		model.addAttribute("market_banner4", market_image4);
+		
 		return "/board/market_all_post_list";
 	}
 

@@ -20,10 +20,10 @@ public class MessageServiceImpl implements MessageService {
 	public ArrayList<MessageVO> getMessageList(MessageVO messageVO) {
 
 		String nickname = messageVO.getNickname();
-		System.out.println("닉네임 : " + nickname);
+//		System.out.println("닉네임 : " + nickname);
 		// 메세지 리스트에 나타낼 것들 가져오기 - 가장 최근 메세지, 보낸사람 profile 사진, 보낸사람 nick
-		ArrayList<MessageVO> list = messageDAO.getMessageList(messageVO);	// 여기서 막혔네
-		System.out.println(list.toString());
+		ArrayList<MessageVO> list = messageDAO.getMessageList(messageVO);
+//		System.out.println(list.toString());
 		for (MessageVO vo : list) {
 			vo.setNickname(nickname);
 			// 현재 사용자가 해당 room에서 안읽은 메세지의 갯수를 가져온다.
@@ -50,9 +50,9 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public ArrayList<MessageVO> getRoomContentList(MessageVO messageVO) {
 
-		System.out.println("room : " + messageVO.getRoom());
-		System.out.println("recv_nick : " + messageVO.getRecv_nick());
-		System.out.println("nick : " + messageVO.getNickname());
+//		System.out.println("room : " + messageVO.getRoom());
+//		System.out.println("recv_nick : " + messageVO.getRecv_nick());
+//		System.out.println("nick : " + messageVO.getNickname());
 		// 메세지 내역을 가져온다
 		ArrayList<MessageVO> clist = messageDAO.getRoomContentList(messageVO);
 

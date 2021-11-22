@@ -16,10 +16,10 @@
 <article>
 	<div class="slide">
             <ul class="slideImg">
-                <li class="jsSlide"><a href=""><img src="../img/store_slide1.png" alt="chickenBreast"></a></li>
-                <li class="jsSlide"><a href=""><img src="../img/store_slide2.png" alt="dietLunchBox"></a></li>
-                <li class="jsSlide"><a href=""><img src="../img/store_slide3.png" alt="konjacNoodles"></a></li>
-                <li class="jsSlide"><a href=""><img src="../img/store_slide4.png" alt="freeShipping"></a></li>
+                <li class="jsSlide"><a href=""><img src="${store_banner1 }" alt="chickenBreast"></a></li>
+                <li class="jsSlide"><a href=""><img src="${store_banner2 }" alt="dietLunchBox"></a></li>
+                <li class="jsSlide"><a href=""><img src="${store_banner3 }" alt="konjacNoodles"></a></li>
+                <li class="jsSlide"><a href=""><img src="${store_banner4 }" alt="freeShipping"></a></li>
                 <!-- <li class="jsSlide"><a href=""><img src="../img/slide5.png" alt="tea"></a></li> -->
             </ul>
             <ul class="circleBtn">

@@ -949,3 +949,10 @@ ul, li {
 	cursor:pointer;
 }
 
+.modal .modal__closeBtn {
+  background-color: #3498db;
+}
+
+.hidden {
+  display: none;
+}

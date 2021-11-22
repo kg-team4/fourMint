@@ -74,10 +74,10 @@ public class UserServiceImpl implements UserService {
 
 		try {
 			JSONObject obj = (JSONObject) coolsms.send(params);
-			System.out.println(obj.toString());
+//			System.out.println(obj.toString());
 		} catch (CoolsmsException e) {
-			System.out.println(e.getMessage());
-			System.out.println(e.getCode());
+//			System.out.println(e.getMessage());
+//			System.out.println(e.getCode());
 		}
 	}
 
