@@ -178,6 +178,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateSns(UserVO vo) {
 		userDao.updateSns(vo);
+	}
 		
 	@Override
 	public UserVO getUserFromPhone(String phone) {
