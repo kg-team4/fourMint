@@ -62,7 +62,8 @@
                                             <th>대분류</th>
                                             <th>중분류</th>
                                             <th>상품명</th>
-                                            <th>상품가격</th>                                          
+                                            <th>상품가격</th> 
+                                            <th scope="col">Actions</th>                                                                        
                                         </tr>
                                     </thead>                                 
                                     <tbody>
@@ -72,7 +73,11 @@
 		                                            <td>${marketboard.category_big }</td>
 		                                            <td>${marketboard.category_middle }</td>	                                            
 		                                            <td>${marketboard.product_name }</td>
-		                                            <td>${marketboard.product_price }</td>		                                            
+		                                            <td>${marketboard.product_price }</td>	
+		                                            <td>
+		                                            <button type="button" onclick="alert('등록되었습니다.')" class="btn btn-success"><i class="fas fa-edit"></i></button>
+		                                        	<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
+		                                       		</td>	                                            
 	                                        	</tr>
 	                                    </c:forEach>                                                                                   
                                     </tbody>
@@ -80,7 +85,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 

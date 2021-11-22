@@ -21,6 +21,22 @@
 	</insert>
 	
 	<select id="getAdminTableList" resultType="adminTable" parameterType="four.mint.web.admin.table.member.AdminTableVO">
-		SELECT * FROM member
+		SELECT * FROM member 
 	</select>	
+	
+	<select id="getAdminTableWoman" resultType="int">
+		SELECT count(*) FROM member where gender = 'woman' 
+	</select>
+	
+	<select id="getAdminTableMan" resultType="int">
+		SELECT count(*) FROM member where gender = 'man' 
+	</select>
+		
+	<select id="getAdminTableAddress" resultType="string">
+		SELECT count(*) FROM member where address = 'address' 
+	</select>
+	
+	<select id="getAdminTableBirth" resultType="string">
+		SELECT count(*) FROM member where birth = 'birth' 
+	</select>
 </mapper>

@@ -77,4 +77,9 @@
 		SELECT count(*) FROM marketBoard WHERE nickname = #{nickname}
 	</select>
 	
+	<select id="getAddress2" resultType="string">		
+				SELECT address2 FROM marketboard		
+	</select>
+	
+	
 </mapper>

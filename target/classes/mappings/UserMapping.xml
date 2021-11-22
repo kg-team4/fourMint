@@ -48,7 +48,15 @@
 	</select>
 	
 	<select id="getAddress2" resultType="string">
-		SELECT address2 FROM member WHERE email_id = #{email_id}
+		<choose>
+			<when test="email_id == null">
+				SELECT address2 FROM member WHERE email_id = #{email_id}
+			</when>
+			<otherwise>
+				SELECT address2 FROM member
+			</otherwise>
+		</choose>
+		
 	</select>
 	
 	<select id="getAddress3" resultType="string">
@@ -112,9 +120,7 @@
 	<update id="updateReport" parameterType="string">
 		UPDATE member SET reports = reports + 1 WHERE nickname = #{reported}
 	</update>
-	
-	
-	
+		
 	<select id="updateDate">
 		UPDATE member SET delete_date = now() WHERE email_id = #{id}
 	</select>
@@ -131,4 +137,13 @@
 		UPDATE member SET (name, nickname, address1, address2, address3, phone, birth) 
 		= (#{name}, #{nickname}, #{address1}, #{address2}, #{address3}, #{phone}, #{birth}) where email_id = #{email_id}
 	</select>
+	<select id="getAdminBirth" resultType="String" >
+		SELECT birth FROM member WHERE birth is not null	
+	</select>
+	
+	<select id="getAddressList" resultType="String" >
+		SELECT address2 FROM member WHERE address2 is not null	
+	</select>
+	
+	
 </mapper>

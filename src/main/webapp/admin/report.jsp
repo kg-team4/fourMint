@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>tables-blacklist</title>
+    <title>블랙리스트 신고 목록</title>
 
     <!-- Custom fonts for this template -->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,54 +46,50 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">신고목록</h1>
+                    <h1 class="h3 mb-2 text-gray-800">블랙리스트 목록</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 회원 신고목록</a>.</p>
+                            href="https://datatables.net">민트마켓 신고 목록</a>.</p>
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               신고목록
+               	신고목록
                	</button>
                	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                		<a class="dropdown-item" href="tables-blacklist.mdo">신고목록</a>
                		<a class="dropdown-item" href="blacklist_report.mdo">블랙리스트 목록</a>              		
                	</div>
-               </div>
+              </div>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">신고가 들어오면 블랙리스트 처리</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">신고목록</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>번호</th>
-                                            <th>이유</th>
-                                            <th>글</th>
-                                            <th>게시글 번호</th>
-                                            <th>신고한 사람</th>
-                                            <th>신고 당한 사람</th>
-                                            <th>신고날짜</th>
+                                            <th>블랙리스트 번호</th>
+                                            <th>이름</th>
+                                            <th>아이디</th>
+                                            <th>닉네임</th>
+                                            <th>블랙리스트 등록 날짜</th>
+                                            <th>신고번호 </th>                                            
                                             <th scope="col">Actions</th>                                                
                                         </tr>
                                     </thead>                               
                                     <tbody>                                     
-                                       <c:forEach var="report" items="${list}">
+                                       <c:forEach var="blacklist" items="${list}">
 	                                       <tr>	                                   		                                        		                                        		
-	                                           <td>${report.report_seq }</td>
-	                                           <td>${report.reason }</td>
-	                                           <td>${report.content }</td>
-	                                           <td>${report.market_seq }</td>
-	                                           <td>${report.reporter}</td>
-	                                           <td>${report.reported}</td>	
-	                                           <td>${report.date}</td>		                                                       
+	                                           <td>${blacklist.blacklist_seq }</td>
+	                                           <td>${blacklist.name }</td>
+	                                           <td>${blacklist.email_id }</td>
+	                                           <td>${blacklist.nickname }</td>
+	                                           <td>${blacklist.date}</td>
+	                                           <td>${blacklist.report_seq}</td>		                                       		                                                       
 	                                           <td>
 	                                           <form>
-	                                           		<input type="hidden" value="${report.report_seq }" name="report_seq">
-	                                           		<input type="hidden" value="${report.reported }" name="nickname">
-		                                            <button type="button" onclick="alert('블랙리스트 등록되었습니다.')"   class="btn btn-success" id="modify_btn"><i class="fas fa-edit"></i></button>		                                   
+	                                           		<input type="hidden" value="${blacklist.blacklist_seq }" name="blacklist_seq">		                                                                           
 		                                        	<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id= "delete_btn"><i class="far fa-trash-alt"></i></button>	
 	                                        	</form>
 	                                        	</td> 		                 
@@ -106,27 +102,21 @@
                     </div>
                 </div>
                 <!-- /.container-fluid -->
-
+</div>
             </div>
             <!-- End of Main Content -->
-           
-       <script>
-       
-       $(".btn-success").click(function(){
-    	   $(this).parent().attr("action", "blacklist_modify.mdo");
-    	   $(this).parent().attr("method","post");
-    	   $(this).parent().submit();
-       });
-       
+          
+       <script>       
+    
        $(".btn-danger").click(function(){
-    	   $(this).parent().attr("action", "blacklist_delete.mdo");
+    	   $(this).parent().attr("action", "report_delete.mdo");
     	   $(this).parent().attr("method", "post");
     	   $(this).parent().submit();  
        });
       </script>
                    
             
- 	<%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp" %>
 
     <!-- Bootstrap core JavaScript-->
     <script src="admin/vendor/jquery/jquery.min.js"></script>

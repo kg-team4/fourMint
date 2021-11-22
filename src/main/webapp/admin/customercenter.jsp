@@ -43,15 +43,15 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">고객센터 페이지</h1>
+                    <h1 class="h3 mb-2 text-gray-800">고객센터(Q&A) 페이지</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 고객센터 관리 </a>.</p>
+                            href="https://datatables.net">민트마켓 고객센터(Q&A) 관리 </a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">고객센터</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">고객센터(Q&A)</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -97,12 +97,8 @@
                                             <td>이정빈</td>
                                             <td>jblee</td>
                                             <td>최강정빈</td>
-                                            <td>2021/11/09</td>
-                                        
-                                        </tr>
-                                        
-                                       
-                                                                                                                                                                                                                                                                                 
+                                            <td>2021/11/09</td>                                      
+                                        </tr>                                                                                                                                                                                                                                                                                                                                                               
                                     </tbody>
                                 </table>
                             </div>

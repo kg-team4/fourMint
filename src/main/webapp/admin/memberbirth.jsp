@@ -1,17 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
+	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+<title>연령대 회원목록</title>
+ <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
 
-    <title>Tables-member</title>
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
 
-    <!-- Custom fonts for this template -->
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['10대', ${List[0]}],
+          ['20대', ${List[1]}],
+          ['30대', ${List[2]}],
+          ['40대', ${List[3]}],
+          ['50대 이상', ${List[4]}]
+        ]);
+
+        // Set chart options
+        var options = {'title':'회원별 연령 목록',
+                       'width':800,
+                       'height':700};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+ <!-- Custom fonts for this template -->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -22,12 +57,9 @@
 
     <!-- Custom styles for this page -->
     <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 </head>
-
 <body id="page-top">
-
-    <!-- Page Wrapper -->
+ <!-- Page Wrapper -->
     <div id="wrapper">
 
         <%@ include file="sidebar.jsp" %>
@@ -44,10 +76,10 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">회원목록</h1>
+                    <h1 class="h3 mb-2 text-gray-800">연령</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 회원목록</a>.</p>
+                            href="https://datatables.net">민트마켓 회원연령</a>.</p>
                             <div class="dropdown">
                      	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      	카테고리
@@ -64,51 +96,18 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">민트마켓 회원</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>이메일아이디</th>
-                                            <th>이름</th>
-                                            <th>별명</th>
-                                            <th>주소1</th>
-                                            <th>주소2</th>
-                                            <th>주소3</th>
-                                            <th>휴대폰 번호</th>
-                                            <th>생년월일</th>
-                                            <th>성별</th>
-                                            <th>가입날짜</th>
-                                        </tr>
-                                    </thead>                                  
-                                    <tbody>
-                                    	<c:forEach var="member" items="${list }">
-	                                        <tr>
-	                                            <td>${member.email_id }</td>
-	                                            <td>${member.name }</td>
-	                                            <td>${member.nickname }</td>	                                            
-	                                            <td>${member.address1 }</td>
-	                                            <td>${member.address2 }</td>
-	                                            <td>${member.address3 }</td>
-	                                            <td>${member.phone}</td>
-	                                            <td>${member.birth }</td>
-	                                            <td>${member.gender}</td>
-	                                            <td>${member.date }</td>	                       
-                                        	</tr>
-                                        </c:forEach>                                                                                                                                                                                                                                                                                                                 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        </div>                       
                     </div>
-                </div>
+                    <!--Div that will hold the pie chart-->
+   			 <div id="chart_div"></div>
+
+                
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
 
-   <%@ include file="footer.jsp" %>
+       <%@ include file="footer.jsp" %>
           
     <!-- Bootstrap core JavaScript-->
     <script src="admin/vendor/jquery/jquery.min.js"></script>

@@ -25,6 +25,9 @@
 		<typeAlias alias="serviceCenter" type="four.mint.web.user.servicecenter.ServiceCenterVO"/>
 		<typeAlias alias="report" type="four.mint.web.user.board.common.ReportVO"/>
 		<typeAlias alias="communityComment" type="four.mint.web.user.community.CommunityCommentVO"/>
+		<typeAlias alias="adminAnnounce" type="four.mint.web.admin.announce.AdminAnnounceVO" />
+		<typeAlias alias="adminReport" type="four.mint.web.admin.report.AdminReportVO" />
+		<typeAlias alias="adminBlackList" type="four.mint.web.admin.report.AdminBlackListVO" />
 	</typeAliases>
 	
 	<typeHandlers>
@@ -46,5 +49,7 @@
 		<mapper resource="mappings/AdminFaqMapping.xml" />
 		<mapper resource="mappings/FollowMapping.xml" />
 		<mapper resource="mappings/ServiceCenterMapping.xml" />
+		<mapper resource="mappings/AdminAnnounceMapping.xml" />
+		<mapper resource="mappings/AdminReportMapping.xml" />
 	</mappers>
 </configuration>

@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>공지사항</title>
+    <title>취소/환불 페이지</title>
 
     <!-- Custom fonts for this template-->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,51 +36,66 @@
             <!-- Main Content -->
             <div id="content">
 
-                <%@include file="header.jsp" %>
+               <%@ include file="header.jsp" %>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                  <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">공지사항</h1>
+                 <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">취소/환불 페이지</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 공지사항</a>.</p>
+                            href="https://datatables.net">취소/환불 페이지</a>.</p>
+                     <div class="dropdown">
+                     	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     	분류
+                     	</button>
+                     	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     		<a class="dropdown-item" href="etc.mdo">기타</a>
+                     		<a class="dropdown-item" href="exchange.mdo">반품/교환</a>
+                     		<a class="dropdown-item" href="cancel.mdo">취소/환불</a>
+                     		<a class="dropdown-item" href="delivery.mdo">배송</a>
+                     		<a class="dropdown-item" href="utilities-usedfaq.mdo">전체</a>
+                     	</div>
+                     </div>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">FAQ </h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <!--  <input type="submit" class="btn btn-primary btn-user btn-block" value="제출하기"> -->
-                                     
-                                    </div>
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>제목</th>
+                                            <th>분류</th>
+                                            <th>제목</th>                                              
                                             <th>내용</th>
-                                            <th>작성일</th>
-                                            <th scope="col">Actions</th>                                             
+                                            <th scope="col">Actions</th>                                                                                                                             
                                         </tr>
                                     </thead>                                  
-                                    <tbody>                                   		
-                                            <c:forEach var="notice" items="${list }">
+                                    <tbody>
+                                    <c:forEach var="faq" items="${list }">
 	                                        <tr>	                                        		                                        		                                        		
-	                                            <td>${notice.notice_seq }</td>
-	                                            <td>${notice.notice_title }</td>
+	                                            <td>${faq.number }</td>
+	                                            <td>${faq.category }</td>
+	                                            <td>${faq.title}</td>	
+	                                            <td>                                          
+		                                            <div class="dropdown">
+		                 							<btn type="button" class="btn btn-secondary dropdown-toggle" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                         										                                            	 
+	                                            	</btn>
+	                                            	<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">${faq.text}	
+	                                            	</ul>
+	                                            	</div>
+	                                            </td> 
 	                                            <td>
-	                                            <pre style=" white-space:pre-wrap;line-height: 150%;text-align:left;">${notice.notice_content}</pre></td>	
-	                                            <td>${notice.date}</td>	                                        
-	                                            <td>
-		                                            <button type="button" onclick="alert('등록되었습니다.')" class="btn btn-success"><i class="fas fa-edit"></i></button>
-		                                        	<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
+		                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+		                                        	<button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
 		                                        </td>                                         
                                         	</tr>
-                                      </c:forEach>        		                                                                                                                                                                                                                                                                                                                                                                         
+                                      </c:forEach>                                                                                                                                                                                                                                                                                              
                                     </tbody>
                                 </table>
                             </div>

@@ -3,6 +3,7 @@ package four.mint.web.user;
 import java.util.List;
 
 import four.mint.web.user.board.common.ReportVO;
+import java.util.ArrayList;
 
 public interface UserService {
 
