@@ -1,9 +1,7 @@
 package four.mint.web.user.market.impl;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import four.mint.web.common.AesVO;
 import four.mint.web.common.SThreeVO;
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketCategoryBigVO;
@@ -28,7 +27,7 @@ public class MarketDAO {
 		return sqlSessionTemplate.selectOne("MarketDAO.getMarketOne", market_seq);
 	}
 	
-	public List<MarketVO> getMarketList(HttpServletRequest request, PageVO vo) {
+	public List<MarketVO> getMarketList(PageVO vo) {
 		System.out.println("====> marketList SELETE");
 
 		return sqlSessionTemplate.selectList("MarketDAO.getMarketList", vo);
@@ -92,5 +91,29 @@ public class MarketDAO {
 
 	public void deleteMarket(int seq) {
 		sqlSessionTemplate.delete("MarketDAO.deleteMarket", seq);
+	}
+
+	public List<MarketVO> getBest() {
+		return sqlSessionTemplate.selectList("MarketDAO.getBest");
+	}
+
+	public List<MarketVO> getRecent() {
+		return sqlSessionTemplate.selectList("MarketDAO.getRecent");
+	}
+
+	public List<MarketVO> getMarketListAddress(HashMap<String, String> searchTemp) {
+		return sqlSessionTemplate.selectList("MarketDAO.getMarketListAddress", searchTemp);
+	}
+
+	public void insertLike(LikeVO lVO) {
+		sqlSessionTemplate.insert("MarketDAO.insertLike", lVO);
+	}
+
+	public LikeVO getLike(LikeVO tempLVO) {
+		return sqlSessionTemplate.selectOne("MarketDAO.getLike", tempLVO);
+	}
+
+	public void deleteLike(LikeVO lVO) {
+		sqlSessionTemplate.delete("MarketDAO.deleteLike", lVO);
 	}
 }

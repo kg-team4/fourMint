@@ -35,7 +35,7 @@
 		SELECT * FROM marketBoard WHERE nickname = #{nickname}
 	</select>
 	
-	<insert id="insertMarket" parameterType="string">
+	<insert id="insertMarket" parameterType="market">
 		INSERT INTO marketBoard VALUES(DEFAULT, #{img_name}, #{category_big} ,#{category_middle}, #{product_name}, #{product_price}, #{product_content}, #{url}, now() at time zone 'Asia/Seoul', #{address2}, #{nickname})
 	</insert>
 	
@@ -63,6 +63,18 @@
 		DELETE FROM marketboard WHERE market_seq = #{seq}
 	</delete>
 	
+	<select id="getBest" resultType="market">
+		SELECT * FROM marketBoard ORDER BY views DESC LIMIT 3;
+	</select>
+	
+	<select id="getRecent" resultType="market">
+		SELECT * FROM marketBoard ORDER BY market_seq DESC LIMIT 3; 
+	</select>
+	
+	<select id="getMarketListAddress" resultType="market" parameterType="HashMap">
+		SELECT * FROM marketBoard WHERE nickname NOT IN(#{nickname}) AND address2 LIKE #{address} ORDER BY market_seq DESC LIMIT 3;
+	</select>
+	
 	<resultMap type="categoryBig" id="categoryBigResult">
 		<result property="num" column="NUM" />
 		<result property="name" column="NAME" />
@@ -78,8 +90,25 @@
 	</select>
 	
 	<select id="getAddress2" resultType="string">		
-				SELECT address2 FROM marketboard		
+		SELECT address2 FROM marketboard		
 	</select>
 	
+	<!-- 좋아요 등록 -->
+	<resultMap type="marketLike" id="marketLikeResult">
+		<result property="seq" column="MARKET_SEQ"/>
+		<result property="nickname" column="NICKNAME"/>
+	</resultMap>
+	
+	<insert id="insertLike" parameterType="marketLike">
+		INSERT INTO marketLike VALUES(#{seq}, #{nickname})
+	</insert>
+	
+	<select id="getLike" parameterType="marketLike" resultType="marketLike">
+		SELECT * FROM marketLike WHERE nickname = #{nickname} AND market_seq = #{seq}
+	</select>
+	
+	<select id="deleteLike" parameterType="marketLike">
+		DELETE FROM marketLike WHERE nickname = #{nickname} AND market_seq = #{seq}
+	</select>
 	
 </mapper>

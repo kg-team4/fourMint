@@ -182,14 +182,50 @@
 							</c:when>
 							<c:when test="${nickname ne content.nickname and nickname ne null}">
 								<div class="left-item33">
-									<form action="../member/post_like.do" method="post">
-										<input type="hidden" name="member_no" value="1"> 
-										<input type="hidden" name="board_no" value="1"> 
-										<input type="hidden" name="post_no" value="1"> 
-										<input type="hidden" name="post_table" value="테이블"> 
-										<input type="hidden" name="post_path" value="asd?asd">
-										<input type="submit" class="like-button cursor" value="♥ 찜 좋아요">
-									</form>
+									<input id="likeVal" type="hidden" value="${content.market_seq }"/>
+									<c:choose>
+										<c:when test="${like eq 0 }">
+											<input type="button" class="like-button cursor" id="likeBtn" value="♥ 찜 좋아요" style="">
+											<input type="hidden" class="like-button cursor" id="hateBtn" value="싫어졌어용" style="">
+										</c:when>
+										<c:otherwise>
+											<input type="hidden" class="like-button cursor" id="likeBtn" value="♥ 찜 좋아요" style="">
+											<input type="button" class="like-button cursor" id="hateBtn" value="싫어졌어용" style="">
+										</c:otherwise>
+									</c:choose>
+									<script>
+									$("#likeBtn").click(function() {
+										var seq = $("#likeVal").val();
+										console.log(seq);
+										$.ajax({
+											url : "/marketLike.do",
+											type : "post",
+											data : {
+												seq : seq
+											},
+											success : function(data) {
+												$("#likeBtn").attr('type', "hidden");
+												$("#hateBtn").attr('type', "button");
+											}
+										});
+									});
+									
+									$("#hateBtn").click(function() {
+										var seq = $("#likeVal").val();
+										console.log(seq);
+										$.ajax({
+											url : "/marketHate.do",
+											type : "post",
+											data : {
+												seq : seq
+											},
+											success : function(data) {
+												$("#hateBtn").attr('type', "hidden");
+												$("#likeBtn").attr('type', "button");
+											}
+										});
+									});
+									</script>
 								</div>
 								<!-- 수정 삭제 버튼은 "내글" 또는 "관리자"인 경우만 표시 -->
 								<div class="left-item33 messagesend-btn">

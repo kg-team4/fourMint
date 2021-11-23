@@ -69,7 +69,6 @@ public class LoginController {
 		String id = vo.getEmail_id();
 		String pw = vo.getPassword();
 		
-		
 		UserVO user = userService.getUser(vo);
 		
 		if(id.equals(user.getEmail_id())) {
@@ -78,21 +77,16 @@ public class LoginController {
 			}
 		}
 		
-		
 		if (user != null) {
 			session.setAttribute("userEmail_id", user.getEmail_id());
 			session.setAttribute("name", user.getName());
 			session.setAttribute("address2", user.getAddress2());
 			session.setAttribute("nickname", user.getNickname());
-//			System.out.println("로그인 성공: " + user.getEmail_id());
-			
+	
 			return "/index/index";
-		} else {
-//			System.out.println("로그인 실패");
-			
-			return "/user/login";
-		}
+		}		
 		
+		return "/user/login";
 	}
 	@RequestMapping(value = "/navercallback.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public String NaverLgoinCallback(@RequestParam String code, HttpSession session)throws Exception {

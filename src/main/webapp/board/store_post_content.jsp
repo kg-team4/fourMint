@@ -112,10 +112,6 @@
 						</div>
 						<div class="left-item33">
 							<form id="form1" action="orderSoon.do">
-								<input type="hidden" name="priceAll" value="${content.product_price }" />
-								<c:if test="${content.product_price < 50000 }">
-									<input type="hidden" name="delivery" value="1" />
-								</c:if>
 								<input type="hidden" name="seq" value="${content.store_seq }" />
 								<input type="submit" class="delete-button cursor" value="바로구매" />
 							</form>

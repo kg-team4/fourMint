@@ -106,7 +106,7 @@ if (request.getAttribute("result") != null) {
 											</tr>
 											<tr>
 												<td height="30px">닉네임</td>
-												<td colspan="2">${user.nicnkname}</td>
+												<td colspan="2">${user.nickname}</td>
 											</tr>
 											<tr>
 												<td height="30px">아이디</td>

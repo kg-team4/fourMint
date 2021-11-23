@@ -39,5 +39,11 @@ public interface StoreService {
 
 	void insertHistory(TransactionHistoryVO thVO);
 
+	List<StoreVO> getStoreListSix();
+
+	void minusStock(TransactionHistoryVO thVO);
+
+	List<StoreVO> getBest();
+
 
 }

@@ -88,4 +88,16 @@ public class StoreDAO {
 	public void insertHistory(TransactionHistoryVO thVO) {
 		sqlSessionTemplate.insert("StoreDAO.insertHistory", thVO);
 	}
+
+	public List<StoreVO> getStoreListSix() {
+		return sqlSessionTemplate.selectList("StoreDAO.getStoreListSix");
+	}
+
+	public void minusStock(TransactionHistoryVO thVO) {
+		sqlSessionTemplate.update("StoreDAO.minusStock", thVO);
+	}
+
+	public List<StoreVO> getBest() {
+		return sqlSessionTemplate.selectList("StoreDAO.getBest");
+	}
 }

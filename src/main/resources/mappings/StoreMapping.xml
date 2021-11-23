@@ -32,7 +32,7 @@
 		SELECT * FROM store_category_big ORDER BY num ASC
 	</select>
 	
-	<insert id="insertStore" parameterType="string">
+	<insert id="insertStore" parameterType="store">
 		INSERT INTO storeBoard VALUES(DEFAULT, #{img_name}, #{category_big}, #{product_name}, #{product_price}, #{product_content}, #{product_stock}, #{url}, now() at time zone 'Asia/Seoul')
 	</insert>
 	
@@ -46,6 +46,16 @@
 	
 	<select id="getStoreOne" resultType="store" parameterType="int">
 		SELECT * FROM storeBoard WHERE store_seq = #{seq}
+	</select>
+	
+	<select id="getStoreListSix" resultType="store">
+		SELECT * FROM storeBoard ORDER BY store_seq DESC LIMIT 6;
+	</select>
+	
+	<select id="getBest" resultType="store">
+		SELECT a.store_seq, a.category_big, a.product_name, a.product_price, a.url FROM (SELECT * FROM storeboard) AS a 
+		JOIN (SELECT count(*), product_name FROM transactionhistory GROUP BY product_name ORDER BY count DESC LIMIT 6) AS b 
+		ON a.product_name = b.product_name ORDER BY count DESC; 
 	</select>
 	
 	<resultMap type="cart" id="cartResult">
@@ -104,6 +114,8 @@
 		VALUES (DEFAULT, #{email_id}, #{product_name}, #{product_price}, #{transaction_price}, #{transaction_count}, #{merchant_uid}, #{request}, now() at time zone 'Asia/Seoul')
 	</insert>
 	
-	
+	<update id="minusStock" parameterType="history">
+		UPDATE storeBoard set product_stock = (product_stock - #{transaction_count}) where product_name = #{product_name};
+	</update>
 	
 </mapper>
