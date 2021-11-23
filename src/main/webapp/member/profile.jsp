@@ -679,11 +679,11 @@
 								<div class="following_all_grid">
 									<c:forEach var="followings" items="${following }">
 										<div class="following">
-											<a class="following_img_area" style="cursor:pointer" > 
-												<div id="following_img_box">
+											<div id="following_img_box">
+												<a class="following_img_area" style="cursor:pointer" > 
 													<img id="following_img" src="${followings.profile }" alt="상점이미지">
-												</div>
-											</a>
+												</a>
+											</div>
 											<div class="store_review_text_area" style="cursor:pointer">
 												<div class="">
 													<a class="following_nick_name"style="color: #26e4ca">${followings.nickname }</a>
