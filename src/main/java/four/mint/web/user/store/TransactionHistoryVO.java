@@ -16,4 +16,9 @@ public class TransactionHistoryVO {
 	private Timestamp date;
 	private String merchant_uid;
 	private String request;
+	private String address2;
+	private String status;
+	private Timestamp cancel_date;
+	private String cancel_status;
+	private String url;
 }

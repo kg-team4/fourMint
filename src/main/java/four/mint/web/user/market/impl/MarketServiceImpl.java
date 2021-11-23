@@ -12,6 +12,7 @@ import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketCategoryBigVO;
+import four.mint.web.user.market.MarketLikeVO;
 import four.mint.web.user.market.MarketService;
 import four.mint.web.user.market.MarketVO;
 
@@ -142,6 +143,11 @@ public class MarketServiceImpl implements MarketService {
 	@Override
 	public void deleteLike(LikeVO lVO) {
 		marketDao.deleteLike(lVO);
+	}
+
+	@Override
+	public List<MarketVO> getMarketLike(String nickname) {
+		return marketDao.getMarketLike(nickname);
 	}
 	
 	

@@ -14,4 +14,5 @@ public class CommunityCommentVO {
 	private String content;
 	private int board_seq;
 	private int re_seq; 
+	private String title;
 }

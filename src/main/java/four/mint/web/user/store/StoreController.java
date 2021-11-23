@@ -25,6 +25,7 @@ import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketService;
 
@@ -65,10 +66,22 @@ public class StoreController {
 	}
 
 	@RequestMapping(value = "/storeBoard.do", method = RequestMethod.GET)
-	public String storeBoard(HttpServletRequest request, StoreVO svo, Model model) {
+	public String storeBoard(HttpServletRequest request, StoreVO svo, HttpSession session) {
 		svo = storeService.getStoreOne(Integer.valueOf(request.getParameter("seq")));
-
-		model.addAttribute("content", svo);
+		request.setAttribute("content", svo);
+		
+		/* 좋아요 눌렀는지 확인 */
+		LikeVO tempLVO = new LikeVO();
+			tempLVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+			tempLVO.setSeq(Integer.valueOf(request.getParameter("seq")));
+		LikeVO lVO = storeService.getLike(tempLVO);
+		if(lVO == null) {
+			int result = 0;
+			request.setAttribute("like", result);
+		} else {
+			int result = 1;
+			request.setAttribute("like", result);
+		}
 
 		return "/board/store_post_content";
 	}
@@ -428,6 +441,7 @@ public class StoreController {
 		String cart = request.getParameter("cart");
 		String code = request.getParameter("code");
 		String req = request.getParameter("request");
+		String address = request.getParameter("address");
 		
 		UserVO uVO = userService.getUserFromEmail(email);
 		
@@ -445,15 +459,36 @@ public class StoreController {
 			thVO.setTransaction_count(cVO.getAmount());
 			thVO.setTransaction_price(cVO.getAmount() * cVO.getProduct_price());
 			thVO.setRequest(req);
+			thVO.setAddress2(address);
 			
 			storeService.insertHistory(thVO);
-			
 			storeService.minusStock(thVO);
-			
 			storeService.deleteCart(Integer.valueOf(cartArr[i]));
 		}
 		
 		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/storeLike.do", method = RequestMethod.POST)
+	public int marketLike(HttpSession session, int seq) throws Exception {
+		LikeVO lVO = new LikeVO();
+		lVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+		lVO.setSeq(seq);
+		storeService.insertLike(lVO);		
+		
+		return 0;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/storeHate.do", method = RequestMethod.POST)
+	public int marketHate(HttpSession session, int seq) throws Exception {
+		LikeVO lVO = new LikeVO();
+		lVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+		lVO.setSeq(seq);
+		storeService.deleteLike(lVO);		
+		
+		return 0;
 	}
 }
 

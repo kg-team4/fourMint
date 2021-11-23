@@ -107,15 +107,48 @@
 		<result property="date" column="DATE" />
 		<result property="merchant_uid" column="MERCHANT_UID" />
 		<result property="requset" column="REQUEST"/>
+		<result property="address2" column="ADDRESS2"/>
+		<result property="status" column="STATUS"/>
+		<result property="cancel_date" column="CANCEL_DATE"/>
+		<result property="cancel_status" column="CANCEL_STATUS"/>
 	</resultMap>
 	
 	<insert id="insertHistory" parameterType="history">
-		INSERT INTO transactionHistory (transaction_seq, email_id, product_name, product_price, transaction_price, transaction_count, merchant_uid, request, date)
-		VALUES (DEFAULT, #{email_id}, #{product_name}, #{product_price}, #{transaction_price}, #{transaction_count}, #{merchant_uid}, #{request}, now() at time zone 'Asia/Seoul')
+		INSERT INTO transactionHistory (transaction_seq, email_id, product_name, product_price, transaction_price, transaction_count, merchant_uid, request, date, address2, status)
+		VALUES (DEFAULT, #{email_id}, #{product_name}, #{product_price}, #{transaction_price}, #{transaction_count}, #{merchant_uid}, #{request}, now() at time zone 'Asia/Seoul', #{address2}, '배송준비중')
 	</insert>
 	
 	<update id="minusStock" parameterType="history">
 		UPDATE storeBoard set product_stock = (product_stock - #{transaction_count}) where product_name = #{product_name};
 	</update>
+	
+	<select id="getTransactionList" resultType="history" parameterType="string">
+		SELECT a.*, b.url FROM 
+		(SELECT * FROM transactionHistory WHERE email_id = #{email_id}) AS a 
+		JOIN 
+		(SELECT url, product_name FROM storeBoard) AS b ON a.product_name = b.product_name ORDER BY array_position(array['상품 준비 중', '상품 배송 중', '상품 배송 완료'], status::TEXT), date DESC
+	</select>
+	
+	<!-- 좋아요 등록 -->
+	<resultMap type="storeLike" id="storeLikeResult">
+		<result property="seq" column="STORE_SEQ"/>
+		<result property="nickname" column="NICKNAME"/>
+	</resultMap>
+	
+	<insert id="insertLike" parameterType="storeLike">
+		INSERT INTO storeLike VALUES(#{seq}, #{nickname})
+	</insert>
+	
+	<select id="getLike" parameterType="storeLike" resultType="storeLike">
+		SELECT * FROM storeLike WHERE nickname = #{nickname} AND store_seq = #{seq}
+	</select>
+	
+	<select id="deleteLike" parameterType="storeLike">
+		DELETE FROM storeLike WHERE nickname = #{nickname} AND store_seq = #{seq}
+	</select>
+	
+	<select id="getStoreLike" parameterType="string" resultType="store">
+		SELECT b.store_seq, b.date, b.url, b.product_name, b.product_price FROM (SELECT * FROM storelike WHERE nickname = #{nickname}) AS a JOIN (SELECT * FROM storeBoard) AS b ON a.store_seq = b.store_seq;
+	</select>
 	
 </mapper>

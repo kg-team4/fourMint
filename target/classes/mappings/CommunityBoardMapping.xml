@@ -56,6 +56,7 @@
 		<result property="content" column="CONTENT"/>
 		<result property="board_seq" column="BOARD_SEQ"/>
 		<result property="re_seq" column="RE_SEQ"/>
+		<result property="title" column="TITLE"/>
 	</resultMap>
 	
 	<insert id="insertComment" parameterType="four.mint.web.user.community.CommunityCommentVO">
@@ -64,6 +65,10 @@
 	
 	<select id="getCommunityComment" resultType="communityComment" parameterType="int">
 		SELECT * FROM (SELECT b.profile, c.* FROM (SELECT profile, nickname FROM member) as b JOIN (SELECT * FROM communitycomment) as c ON b.nickname = c.nickname) as d WHERE board_seq = #{community_seq};
+	</select>
+	
+	<select id="getCommentList" resultType="communityComment" parameterType="string">
+		select a.*, b.title from (select * from communityComment WHERE nickname = #{nickname}) AS a JOIN (select title, community_seq from community) AS b ON a.board_seq = b.community_seq;
 	</select>
 	
 </mapper>

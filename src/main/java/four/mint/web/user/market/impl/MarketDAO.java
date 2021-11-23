@@ -13,6 +13,7 @@ import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketCategoryBigVO;
+import four.mint.web.user.market.MarketLikeVO;
 import four.mint.web.user.market.MarketVO;
 
 @Repository
@@ -115,5 +116,9 @@ public class MarketDAO {
 
 	public void deleteLike(LikeVO lVO) {
 		sqlSessionTemplate.delete("MarketDAO.deleteLike", lVO);
+	}
+
+	public List<MarketVO> getMarketLike(String nickname) {
+		return sqlSessionTemplate.selectList("MarketDAO.getMarketLike", nickname);
 	}
 }

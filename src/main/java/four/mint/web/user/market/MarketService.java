@@ -52,4 +52,6 @@ public interface MarketService {
 	LikeVO getLike(LikeVO tempLVO);
 
 	void deleteLike(LikeVO lVO);
+
+	List<MarketVO> getMarketLike(String nickname);
 }

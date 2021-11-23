@@ -27,8 +27,12 @@ import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
 import four.mint.web.user.community.CommunityBoardService;
 import four.mint.web.user.community.CommunityBoardVO;
+import four.mint.web.user.community.CommunityCommentVO;
 import four.mint.web.user.market.MarketService;
 import four.mint.web.user.market.MarketVO;
+import four.mint.web.user.store.StoreService;
+import four.mint.web.user.store.StoreVO;
+import four.mint.web.user.store.TransactionHistoryVO;
 
 @Controller
 public class UserController {
@@ -47,6 +51,9 @@ public class UserController {
 	
 	@Autowired
 	private CommunityBoardService communityBoardService;
+	
+	@Autowired
+	private StoreService storeService;
 
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -84,13 +91,9 @@ public class UserController {
 		fVO = followService.getFollowCount(uVO.getNickname());
 		request.setAttribute("follow", fVO);
 		
-		/* 게시글 개수 확인 */
-		int boardCount = marketService.getUserBoardCount(uVO.getNickname());
-		request.setAttribute("boardCount", boardCount);
-		
 		/* 팔로워 리스트 */
 		List<FollowerVO> followerList = userService.getFollowers(uVO.getNickname());
-		request.setAttribute("follwer", followerList);
+		request.setAttribute("follower", followerList);
 		
 		/* 팔로잉 리스트 */
 		List<FollowingVO> followingList = userService.getFollowings(uVO.getNickname());
@@ -105,7 +108,20 @@ public class UserController {
 		request.setAttribute("community", communityList);
 		
 		/* 등록한 커뮤니티 댓글 리스트 */
+		List<CommunityCommentVO> commuCommentList = communityBoardService.getCommentList(uVO.getNickname());
+		request.setAttribute("commentList", commuCommentList);
 		
+		/* 중고 상품 찜 */
+		List<MarketVO> marketLikeList = marketService.getMarketLike(uVO.getNickname());
+		request.setAttribute("marketLike", marketLikeList);
+		
+		/* 스토어 상품 찜 */
+		List<StoreVO> storeLikeList = storeService.getStoreLike(uVO.getNickname());
+		request.setAttribute("storeLike", storeLikeList);
+		
+		/* 구매 내역 */
+		List<TransactionHistoryVO> tVO = storeService.getTransactionList(uVO.getEmail_id());
+		request.setAttribute("history", tVO);
 		
 		return "/member/profile";
 	}

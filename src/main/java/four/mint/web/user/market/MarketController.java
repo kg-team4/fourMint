@@ -28,6 +28,7 @@ import four.mint.web.common.AwsS3;
 import four.mint.web.common.DateUtil;
 import four.mint.web.user.FollowCountVO;
 import four.mint.web.user.FollowService;
+import four.mint.web.user.FollowingVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.LikeVO;
@@ -71,7 +72,7 @@ public class MarketController {
 		List<MarketVO> recentVO = marketService.getRecent();
 		request.setAttribute("recent", recentVO);
 		
-		String address = String.valueOf(session.getAttribute("address2"));
+		String address = (String) session.getAttribute("address2");
 		if(address != null) {
 			HashMap<String, String> searchTemp = new HashMap<String, String>();
 			
@@ -94,17 +95,16 @@ public class MarketController {
 	}
 
 	@RequestMapping(value = "/marketBoard.do", method = RequestMethod.GET)
-    public String mintBoard(HttpServletRequest request, UserVO user, MarketVO marVO, FollowCountVO fVO) {
+    public String mintBoard(HttpServletRequest request, MarketVO marVO, FollowCountVO fVO, HttpSession session) {
 		/* 조회수 증가 */
 		marketService.updateViews(Integer.valueOf(request.getParameter("seq")));
 		
 		/* 게시글 정보 및 시간 정보 출력 */
 		marVO = marketService.getMarketOne(Integer.valueOf(request.getParameter("seq")));
 		request.setAttribute("content", marVO);
-		request.setAttribute("date", DateUtil.txtDate(marVO.getDate()));
 		
-		/* 접속자 정보 확인 */
-		user = userService.getUserFromNickname(marVO.getNickname());
+		/* 게시글 작성자 */
+		UserVO user = userService.getUserFromNickname(marVO.getNickname());
 		request.setAttribute("user", user);
 		
 		/* 팔로우 정보 확인 */
@@ -125,14 +125,29 @@ public class MarketController {
 		
 		/* 좋아요 눌렀는지 확인 */
 		LikeVO tempLVO = new LikeVO();
-			tempLVO.setNickname(user.getNickname());
+			tempLVO.setNickname(String.valueOf(session.getAttribute("nickname")));
 			tempLVO.setSeq(Integer.valueOf(request.getParameter("seq")));
 		LikeVO lVO = marketService.getLike(tempLVO);
 		if(lVO == null) {
 			int result = 0;
 			request.setAttribute("like", result);
+		} else {
+			int result = 1;
+			request.setAttribute("like", result);
 		}
-		request.setAttribute("like", lVO);
+		
+		/* 팔로우 확인 */
+		FollowingVO fchVO = new FollowingVO();
+			fchVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+			fchVO.setFollowing(user.getNickname());
+		FollowingVO nfVO = followService.getCheck(fchVO);
+		if(nfVO == null) {
+			int result = 0;
+			request.setAttribute("fol", result);
+		} else {
+			int result = 0;
+			request.setAttribute("fol", result);
+		}
 		
 		return "/board/market_post_content";
 	}
@@ -334,6 +349,28 @@ public class MarketController {
 		lVO.setNickname(String.valueOf(session.getAttribute("nickname")));
 		lVO.setSeq(seq);
 		marketService.deleteLike(lVO);		
+		
+		return 0;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/follow.do", method = RequestMethod.POST)
+	public int following(HttpSession session, String seller) throws Exception {
+		FollowingVO fVO = new FollowingVO();
+			fVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+			fVO.setFollowing(seller);
+		followService.insertFollow(fVO);
+		
+		return 0;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/unfollow.do", method = RequestMethod.POST)
+	public int unfollow(HttpSession session, String seller) throws Exception {
+		FollowingVO fVO = new FollowingVO();
+			fVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+			fVO.setFollowing(seller);
+		followService.deleteFollow(fVO);
 		
 		return 0;
 	}
