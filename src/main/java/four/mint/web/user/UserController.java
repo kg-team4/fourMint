@@ -96,48 +96,48 @@ public class UserController {
 	@RequestMapping(value = "/profile.do", method = RequestMethod.GET)
 	public String info(HttpServletRequest request, HttpSession session, UserVO uVO, FollowCountVO fVO) {
 		
-	if(session.getAttribute("sns") == null || session.getAttribute("nickname") != null ) {
-		
-		
-		/* 유저 정보 불러오기 */
-		uVO = userService.getUserFromNickname(String.valueOf(session.getAttribute("nickname")));
-		request.setAttribute("user", uVO);
-		
-		/* 팔로우 정보 확인 */
-		fVO = followService.getFollowCount(uVO.getNickname());
-		request.setAttribute("follow", fVO);
-		
-		/* 팔로워 리스트 */
-		List<FollowerVO> followerList = userService.getFollowers(uVO.getNickname());
-		request.setAttribute("follower", followerList);
-		
-		/* 팔로잉 리스트 */
-		List<FollowingVO> followingList = userService.getFollowings(uVO.getNickname());
-		request.setAttribute("following", followingList);
-		
-		/* 판매 등록한 게시글 리스트 */
-		List<MarketVO> marketList = marketService.getMarketNickname(uVO.getNickname());
-		request.setAttribute("market", marketList);
-		
-		/* 등록한 커뮤니티 게시글 리스트 */
-		List<CommunityBoardVO> communityList = communityBoardService.getCommunityListMe(uVO.getNickname());
-		request.setAttribute("community", communityList);
-		
-		/* 등록한 커뮤니티 댓글 리스트 */
-		List<CommunityCommentVO> commuCommentList = communityBoardService.getCommentList(uVO.getNickname());
-		request.setAttribute("commentList", commuCommentList);
-		
-		/* 중고 상품 찜 */
-		List<MarketVO> marketLikeList = marketService.getMarketLike(uVO.getNickname());
-		request.setAttribute("marketLike", marketLikeList);
-		
-		/* 스토어 상품 찜 */
-		List<StoreVO> storeLikeList = storeService.getStoreLike(uVO.getNickname());
-		request.setAttribute("storeLike", storeLikeList);
-		
-		/* 구매 내역 */
-		List<TransactionHistoryVO> tVO = storeService.getTransactionList(uVO.getEmail_id());
-		request.setAttribute("history", tVO);
+		if(session.getAttribute("sns") == null || session.getAttribute("nickname") != null ) {
+			
+			/* 유저 정보 불러오기 */
+			uVO = userService.getUserFromNickname(String.valueOf(session.getAttribute("nickname")));
+			request.setAttribute("user", uVO);
+			
+			/* 팔로우 정보 확인 */
+			fVO = followService.getFollowCount(uVO.getNickname());
+			request.setAttribute("follow", fVO);
+			
+			/* 팔로워 리스트 */
+			List<FollowerVO> followerList = userService.getFollowers(uVO.getNickname());
+			request.setAttribute("follower", followerList);
+			
+			/* 팔로잉 리스트 */
+			List<FollowingVO> followingList = userService.getFollowings(uVO.getNickname());
+			request.setAttribute("following", followingList);
+			
+			/* 판매 등록한 게시글 리스트 */
+			List<MarketVO> marketList = marketService.getMarketNickname(uVO.getNickname());
+			request.setAttribute("market", marketList);
+			
+			/* 등록한 커뮤니티 게시글 리스트 */
+			List<CommunityBoardVO> communityList = communityBoardService.getCommunityListMe(uVO.getNickname());
+			request.setAttribute("community", communityList);
+			
+			/* 등록한 커뮤니티 댓글 리스트 */
+			List<CommunityCommentVO> commuCommentList = communityBoardService.getCommentList(uVO.getNickname());
+			request.setAttribute("commentList", commuCommentList);
+			
+			/* 중고 상품 찜 */
+			List<MarketVO> marketLikeList = marketService.getMarketLike(uVO.getNickname());
+			request.setAttribute("marketLike", marketLikeList);
+			
+			/* 스토어 상품 찜 */
+			List<StoreVO> storeLikeList = storeService.getStoreLike(uVO.getNickname());
+			request.setAttribute("storeLike", storeLikeList);
+			
+			/* 구매 내역 */
+			List<TransactionHistoryVO> tVO = storeService.getTransactionList(uVO.getEmail_id());
+			request.setAttribute("history", tVO);
+		}
 		
 		return "/member/profile";
 	}
