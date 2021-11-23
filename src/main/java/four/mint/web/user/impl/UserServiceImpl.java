@@ -11,6 +11,7 @@ import four.mint.web.user.FollowerVO;
 import four.mint.web.user.FollowingVO;
 import four.mint.web.user.KakaoVO;
 import four.mint.web.user.NaverVO;
+import four.mint.web.user.SnsVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.ReportVO;
@@ -91,13 +92,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void naverlogin(NaverVO nvo) {
-		userDao.insertNaver(nvo);
+	public void naverlogin(SnsVO snsvo) {
+		userDao.insertNaver(snsvo);
 	}
 
 	@Override
-	public void kakaologin(KakaoVO kvo) {
-		userDao.insertKakao(kvo);
+	public void kakaologin(SnsVO snsvo) {
+		userDao.insertKakao(snsvo);
 	}
 
 	@Override
@@ -178,6 +179,12 @@ public class UserServiceImpl implements UserService {
 	public void updateSns(UserVO vo) {
 		userDao.updateSns(vo);
 		
+	}
+
+	@Override
+	public List<UserVO> getMem(SnsVO vo) {
+		
+		return userDao.getMem(vo);
 	}
 
 	

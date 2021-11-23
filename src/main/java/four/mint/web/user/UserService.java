@@ -18,8 +18,8 @@ public interface UserService {
 	UserVO getUserFromNickname(String nickname);
 	
 	//snsLogin
-	void naverlogin(NaverVO nvo);
-	void kakaologin(KakaoVO kvo);
+	void naverlogin(SnsVO snsvo);
+	void kakaologin(SnsVO snsvo);
 	String getBySns(String snsid);
 	
 	
@@ -38,5 +38,6 @@ public interface UserService {
 	void insertDel(String id);
 	void dropMem(String id);
 	void updateSns(UserVO vo);
+	List<UserVO> getMem(SnsVO vo);
 	
 }

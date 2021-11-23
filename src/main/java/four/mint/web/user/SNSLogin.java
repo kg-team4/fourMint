@@ -31,7 +31,7 @@ public class SNSLogin {
 	}
 
 
-	public NaverVO getNaverProfile(String code) throws Exception {
+	public SnsVO getNaverProfile(String code) throws Exception {
 		System.out.println("navercode " + code);
 		OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
 		
@@ -47,9 +47,9 @@ public class SNSLogin {
 	
 
 
-	private NaverVO parseJson(String body)throws Exception {
+	private SnsVO parseJson(String body)throws Exception {
 		
-		NaverVO user = new NaverVO();
+		SnsVO user = new SnsVO();
 			
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode rootNode = mapper.readTree(body);

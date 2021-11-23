@@ -201,7 +201,7 @@ public class MarketController {
 	public String marketSell(Model model, HttpSession session) {
 		if(session.getAttribute("userEmail_id") == null) {
 			return "redirect:/login.do";
-		}else if(session.getAttribute("sns") != null) {
+		}else if(session.getAttribute("nickname") == null) {
 			return "redirect:/profile.do";
 		}
 		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();

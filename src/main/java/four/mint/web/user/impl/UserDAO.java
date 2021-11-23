@@ -10,6 +10,7 @@ import four.mint.web.user.FollowerVO;
 import four.mint.web.user.FollowingVO;
 import four.mint.web.user.KakaoVO;
 import four.mint.web.user.NaverVO;
+import four.mint.web.user.SnsVO;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.ReportVO;
 
@@ -67,15 +68,15 @@ public class UserDAO {
 		return sqlSessionTemplate.selectOne("UserDAO.phoneCheck", phone);
 	}
 
-	public void insertNaver(NaverVO nvo) {
+	public void insertNaver(SnsVO snsvo) {
 		System.out.println("===> member TABLE INSERT naver member");
-		sqlSessionTemplate.insert("UserDAO.insertNaver", nvo);
+		sqlSessionTemplate.insert("UserDAO.insertNaver", snsvo);
 	}
 	
-	public void insertKakao(KakaoVO kvo) {
+	public void insertKakao(SnsVO snsvo) {
 		System.out.println("===> member TABLE SELET kakaoid");
 		
-		sqlSessionTemplate.insert("UserDAO.insertKakao", kvo);
+		sqlSessionTemplate.insert("UserDAO.insertKakao", snsvo);
 	}
 	
 	public UserVO getUserFromNickname(String nickname) {
@@ -149,6 +150,11 @@ public class UserDAO {
 
 	public String getPassword(String email_id) {
 		return sqlSessionTemplate.selectOne("UserDAO.getPassword", email_id);
+	}
+
+	public List<UserVO>getMem(SnsVO vo) {
+		
+		return sqlSessionTemplate.selectList("UserDAO.getMem", vo);
 	}
 
 }

@@ -36,7 +36,7 @@
 	</insert>
 	
 	<select id="getUser" resultType="user">
-		SELECT * FROM member WHERE email_id = #{email_id} AND password = #{password}
+		SELECT * FROM member WHERE email_id = #{email_id} 
 	</select>
 	
 	<select id="getUserFromNickname" resultType="user" parameterType="string">
@@ -130,5 +130,9 @@
 	<select id="updateSns" parameterType="user">
 		UPDATE member SET (name, nickname, address1, address2, address3, phone, birth) 
 		= (#{name}, #{nickname}, #{address1}, #{address2}, #{address3}, #{phone}, #{birth}) where email_id = #{email_id}
+	</select>
+	
+	<select id="getMem" parameterType="string" resultType="user">
+		SELECT * FROM member WHERE email_id = #{email}
 	</select>
 </mapper>
