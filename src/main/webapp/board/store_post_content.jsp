@@ -139,8 +139,180 @@
 				</div>
 				<hr>
 				<span>
-					<button class="right-float btn_write_review">상품후기 작성</button>
-				</span>				
+					<button class="right-float" id="btn_write_store_review">상품후기 작성</button>
+				</span>
+				
+				<!-- 상품후기 작성 모달 -->
+
+								<div id="police_modal1">
+									<div>
+										<div style="font-size: 20px">✍&nbsp;상품후기 작성하기&nbsp;✍</div>
+										<br><hr><br>
+										<div>
+											<div class="police_category">
+												<div style="font-size:18px">
+													<span style="color: #26e4ca">구매한 상품명</span>에 대한 평점 남기기
+												</div>
+											</div>
+											<div class="rating">
+													<div class="startRadio">
+														<label class="startRadio__box"> 
+															<input type="radio" name="star" id="" checked> 
+															<span class="startRadio__img">
+																<span class="blind">0.5</span>
+															</span>
+														</label> 
+														
+														<label class="startRadio__box"> 
+															<input type="radio" name="star" id="" checked> 
+															<span class="startRadio__img">
+																<span class="blind">1.0</span>
+															</span>
+														</label> 
+														
+														<label class="startRadio__box"> 
+															<input type="radio" name="star" id="" checked> 
+															<span class="startRadio__img">
+																<span class="blind">1.5</span>
+															</span>
+														</label> 
+														
+														<label class="startRadio__box"> 
+															<input type="radio" name="star" id="" checked> 
+															<span class="startRadio__img">
+																<span class="blind">2.0</span>
+															</span>																											
+														</label> 
+														
+														<label class="startRadio__box"> 
+															<input type="radio" name="star" id="" checked> 
+															<span class="startRadio__img">
+																<span class="blind">2.5</span>
+															</span>
+														</label> 
+														
+														<label class="startRadio__box"> 
+															<input type="radio" name="star" id="" checked> 
+															<span class="startRadio__img">
+																<span class="blind">3.0</span>
+															</span>
+														</label> 
+														
+														<label class="startRadio__box">
+															<input type="radio" name="star" id="" checked> 
+															<span class="startRadio__img">
+																<span class="blind">3.5</span>
+															</span>
+														</label> 
+														
+														
+														<label class="startRadio__box"> 
+															<input type="radio" name="star" id="" checked> 
+															<span class="startRadio__img">
+																<span class="blind">4.0</span>
+															</span>
+														</label> 
+														
+														<label class="startRadio__box"> 
+															<input type="radio" name="star" id="" checked> 
+															<span class="startRadio__img">
+																<span class="blind">4.5</span>
+															</span>
+														</label> 
+														
+														<label class="startRadio__box"> 
+														<input type="radio" name="star" id="" checked> 
+															<span class="startRadio__img">
+																<span class="blind">5.0</span>
+															</span>
+														</label>
+													</div>
+												</div>
+											<br><hr><br>
+											<div class="write_police_reason">
+												<textarea style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
+											</div>
+											<br>
+											<div style="text-align: center">
+												<button id="modal_police_btn" style="width: 90px; font-size: 15px">후기 작성</button>
+											</div>
+										</div>
+									</div>
+									<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
+								</div>
+								<script type="text/javascript">
+									// 모달 만들기
+									function modal(id) {
+										var zIndex = 9999;
+										var modal = document.getElementById(id);
+
+										// 모달 div 뒤에 희끄무레한 레이어
+										var bg = document.createElement('div');
+										bg.setStyle({
+											position : 'fixed',
+											zIndex : zIndex,
+											left : '0px',
+											top : '0px',
+											width : '100%',
+											height : '100%',
+											overflow : 'auto',
+											// 레이어 색갈은 여기서 바꾸면 됨
+											backgroundColor : 'rgba(0,0,0,0.4)'
+										});
+										document.body.append(bg);
+
+										// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+										modal
+												.querySelector(
+														'.modal_close_btn')
+												.addEventListener(
+														'click',
+														function() {
+															bg.remove();
+															modal.style.display = 'none';
+														});
+
+										modal
+												.setStyle({
+													position : 'fixed',
+													display : 'block',
+													boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+													// 시꺼먼 레이어 보다 한칸 위에 보이기
+													zIndex : zIndex + 1,
+
+													// div center 정렬
+													top : '50%',
+													left : '50%',
+													transform : 'translate(-50%, -50%)',
+													msTransform : 'translate(-50%, -50%)',
+													webkitTransform : 'translate(-50%, -50%)'
+												});
+									}
+									// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+									Element.prototype.setStyle = function(
+											styles) {
+										for ( var k in styles)
+											this.style[k] = styles[k];
+										return this;
+									};
+
+									document.querySelector('#btn_write_store_review')
+											.addEventListener('click',
+													function() {
+														// 모달창 띄우기
+														modal('police_modal1');
+													});
+									//평가점수버튼을 줘서 점수를 줬으면 버튼 활성화
+									$(".rating").change(
+											function() {
+												$("#modal_police_btn").attr(
+														"disabled", false);
+
+											});
+								</script>
+				
+								
 				
 				<input type="hidden" value="1" id="review-member1">
 					<div class="float-box float-left reply-margin20 padding-top30">

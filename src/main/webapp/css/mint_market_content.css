@@ -42,9 +42,10 @@ a {
 }
 
 .best img, .review img {
+	align-items:center;
     width: 253px;
-    height: 160px;
-    object-fit: contain;
+    height: 235px;
+/*     object-fit: contain; */
     transition:transform 1s;
     background:#f7f7f7;
 }

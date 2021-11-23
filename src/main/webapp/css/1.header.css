@@ -162,6 +162,26 @@ header {
    top: 2px;
    left: 2px;
 }
+#btn_mint_cart{
+	width:30px;
+	height:25px;
+	border : 2px solid white;
+	padding: 1px 1px;
+	border-radius: 5px;
+	font-size:16px;
+	color: #50b9abd0;
+   	background-color: white;
+   	cursor: pointer;
+  	outline: none;
+  	box-shadow: 0px 0px 0 rgb(0, 0, 0, 0.5);
+	
+}
+#btn_mint_cart:active{
+   box-shadow: 1px 1px 0 rgb(0, 0, 0, 0.5);
+   position: relative;
+   top: 2px;
+   left: 2px;
+}
 
 /* #btn_mint_talk:hover{
 	border: 1px solid transparent;

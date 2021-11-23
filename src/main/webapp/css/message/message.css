@@ -251,24 +251,47 @@
 	position: relative;
 	
 }
+.button_area{
+	width:580px;
+}
 
-.msg_send_btn {
-    background: #26e4ca none repeat scroll 0 0;
+.button_emo{
+	background: white none repeat scroll 0 0;
     border: medium none;
-    border-radius: 50%;
+    border-radius: 5px;
     color: #fff;
     cursor: pointer;
-    font-size: 15px;
-    height: 50px;
+    font-size: 18px;
+    height: 23px;
+    width: 25px;
+    margin-top:15px;
+}
+.msg_send_btn {
+    background: #50b9abd0 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    height: 26px;
     position: absolute;
     right: 5px;
     top: 5px;
-    width: 50px;
+    width: 30px;
 }
 
 .msg_send_btn:hover {
-	background: #26e4ca none repeat scroll 0 0;
+	background: #4e9c91 none repeat scroll 0 0;
+	
 }
+
+.msg_send_btn:active{
+   box-shadow: 1px 1px 0 rgb(0, 0, 0, 0.5);
+   position: relative;
+   top: 2px;
+   left: 2px;
+}
+
 
 .messaging {
 	padding: 200px 0px 100px 0px;
@@ -315,7 +338,7 @@
 #emo_div {
 	width: auto;
 	height: 80px;
-	background: yellow;
+	background: white;
 	display: none;
 }
 
@@ -324,6 +347,13 @@
 }
 
 #message_image {
-	width: 30px;
-	height: 30px;
+	width: 60px;
+	height: 60px;
+}
+#click_emo_img{
+	border:none;
+}
+.image_size{
+	width:90px;
+	height:90px;
 }

@@ -7,6 +7,7 @@
     pageEncoding="EUC-KR"%>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,10 +72,10 @@
 					</c:forEach>
 					
 					
-					<c:forEach var="normalNotice" items="${normalNoticeList }">
+					<c:forEach var="normalNotice" items="${normalNoticeList }" varStatus="status">
 					<tr>
 						<td id="news_num">
-							${normalNotice.notice_seq}
+							${fn:length(normalNoticeList) - status.index }
 						</td>
 						<td id="news_title">
 							<div id="news_title_content">

@@ -10,8 +10,8 @@
 	</resultMap>
 	
 	<insert id="insertAdmin" parameterType="string">
-		INSERT INTO faq (number, category, title, text) 
-		VALUES (#{number}, #{category}, #{title}, #{text})
+		INSERT INTO faq (faq_category, faq_title, faq_content, faq_seq) 
+		VALUES (#{faq_category}, #{faq_title}, #{faq_content}, #{faq_seq})
 	</insert>
 	
 	<select id="getAdminFaqList" resultType="adminFaq" parameterType="string">

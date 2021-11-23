@@ -8,4 +8,8 @@ public interface ServiceCenterService {
 	
 	List<ServiceCenterVO> getServiceCenterNormalNoticeList();
 	
+	List<ServiceCenterFaqVO> getKindList(String kind);
+	
+	List<ServiceCenterFaqVO> getServiceCenterFaqAllList();
+	
 }

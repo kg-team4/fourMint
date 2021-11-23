@@ -9,13 +9,34 @@
 		<result property="notice_title" column="NOTICE_TITLE"/>
 		<result property="notice_content" column="NOTICE_CONTENT"/>
 		<result property="date" column="DATE"/>
+		<result property="notice_rownum" column="NOTICE_ROWNUM"/>
 	</resultMap>
 	
 	<select id="getServiceCenterStaticNoticeList" resultType="serviceCenter">
 		SELECT * FROM notice WHERE status = 1 ORDER BY date DESC
+
 	</select>
 	
 	<select id="getServiceCenterNormalNoticeList" resultType="serviceCenter">
 		SELECT * FROM notice WHERE status = 0 ORDER BY notice_seq DESC
+
 	</select>
+	
+	
+	<resultMap type="serviceCenterFaq" id="serviceCenterFaqResult">
+		<result property="faq_seq" column="FAQ_SEQ"/>
+		<result property="faq_categroy" column="FAQ_CATEGORY"/>
+		<result property="faq_title" column="FAQ_TITLE"/>
+		<result property="faq_content" column="FAQ_CONTENT"/>
+	</resultMap>
+
+	<select id="getKindList" resultType="serviceCenterFaq" parameterType="string">
+		SELECT * FROM faq WHERE faq_category = #{kind} ORDER BY faq_seq DESC
+	</select>
+	
+	<select id="getServiceCenterFaqAllList" resultType="serviceCenterFaq">
+		SELECT * FROM faq ORDER BY faq_seq DESC
+	</select>
+	
+	
 </mapper>
