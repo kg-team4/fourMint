@@ -32,6 +32,7 @@
 		<typeAlias alias="adminReport" type="four.mint.web.admin.report.AdminReportVO" />
 		<typeAlias alias="adminBlackList" type="four.mint.web.admin.report.AdminBlackListVO" />
 		<typeAlias alias="history" type="four.mint.web.user.store.TransactionHistoryVO"/>
+		<typeAlias alias="marketLike" type="four.mint.web.user.board.common.LikeVO"/>
 	</typeAliases>
 	
 	<typeHandlers>

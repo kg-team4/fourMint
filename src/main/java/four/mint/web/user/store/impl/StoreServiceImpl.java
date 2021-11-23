@@ -109,6 +109,21 @@ public class StoreServiceImpl implements StoreService {
 		storeDao.insertHistory(thVO);
 	}
 
+	@Override
+	public List<StoreVO> getStoreListSix() {
+		return storeDao.getStoreListSix();
+	}
+
+	@Override
+	public void minusStock(TransactionHistoryVO thVO) {
+		storeDao.minusStock(thVO);
+	}
+
+	@Override
+	public List<StoreVO> getBest() {
+		return storeDao.getBest();
+	}
+
 	
 	
 

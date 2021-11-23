@@ -44,17 +44,22 @@ public class StoreController {
 	private AdminBannerStoreService adminBannerStoreService;
 	
 	@RequestMapping(value = "/storeBoardList.do", method = RequestMethod.GET)
-	public String storeBoardList(Model model) {
+	public String storeBoardList(HttpServletRequest request) {
 		
 		String store_image1 = adminBannerStoreService.getBanner(1);
 		String store_image2 = adminBannerStoreService.getBanner(2);
 		String store_image3 = adminBannerStoreService.getBanner(3);
 		String store_image4 = adminBannerStoreService.getBanner(4);
+		request.setAttribute("store_banner1", store_image1);
+		request.setAttribute("store_banner2", store_image2);
+		request.setAttribute("store_banner3", store_image3);
+		request.setAttribute("store_banner4", store_image4);
 		
-		model.addAttribute("store_banner1", store_image1);
-		model.addAttribute("store_banner2", store_image2);
-		model.addAttribute("store_banner3", store_image3);
-		model.addAttribute("store_banner4", store_image4);
+		List<StoreVO> lsVO = storeService.getStoreListSix();
+		request.setAttribute("list", lsVO);
+		
+		List<StoreVO> bestVO = storeService.getBest();
+		request.setAttribute("best", bestVO);
 		
 		return "/board/store_all_post_list";
 	}
@@ -185,6 +190,41 @@ public class StoreController {
 		
 		request.setAttribute("price", price);
 		request.setAttribute("delivery", delivery);
+		
+		return "/pay/order";
+	}
+	
+	@RequestMapping(value = "/orderSoon.do", method = RequestMethod.GET)
+	public String orderSoon(HttpServletRequest request, HttpSession session, int seq, int amount) {
+		StoreVO sVO = storeService.getStoreOne(seq);
+		
+		String nickname = String.valueOf(session.getAttribute("nickname"));
+
+		int product_price = sVO.getProduct_price();
+		String url = sVO.getUrl();
+		String name = sVO.getProduct_name();
+
+		CartVO cVO = new CartVO();
+		
+		cVO.setAmount(amount);
+		cVO.setNickname(nickname);
+		cVO.setProduct_price(product_price);
+		cVO.setStore_seq(seq);
+		cVO.setUrl(url);
+		cVO.setProduct_name(name);
+
+		storeService.insertCart(cVO);
+		
+		int price = cVO.getAmount() * cVO.getProduct_price();
+		int delivery = 0;
+		
+		if(price < 50000) {
+			delivery = 2500;
+		}
+		
+		request.setAttribute("price", price);
+		request.setAttribute("delivery", delivery);
+		request.setAttribute("cart", cVO.getCart_id());
 		
 		return "/pay/order";
 	}
@@ -407,6 +447,9 @@ public class StoreController {
 			thVO.setRequest(req);
 			
 			storeService.insertHistory(thVO);
+			
+			storeService.minusStock(thVO);
+			
 			storeService.deleteCart(Integer.valueOf(cartArr[i]));
 		}
 		

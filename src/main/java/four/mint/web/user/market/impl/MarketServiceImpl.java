@@ -1,15 +1,14 @@
 package four.mint.web.user.market.impl;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import four.mint.web.common.AesVO;
 import four.mint.web.common.SThreeVO;
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketCategoryBigVO;
@@ -30,8 +29,8 @@ public class MarketServiceImpl implements MarketService {
 	}
 	
 	@Override
-	public List<MarketVO> getMarketList(HttpServletRequest request, PageVO vo) {
-		List<MarketVO> newVo = marketDao.getMarketList(request, vo);
+	public List<MarketVO> getMarketList(PageVO vo) {
+		List<MarketVO> newVo = marketDao.getMarketList(vo);
 		
 		return newVo;
 	}
@@ -113,6 +112,36 @@ public class MarketServiceImpl implements MarketService {
 	@Override
 	public void deleteMarket(int seq) {
 		marketDao.deleteMarket(seq);
+	}
+
+	@Override
+	public List<MarketVO> getBest() {
+		return marketDao.getBest();
+	}
+
+	@Override
+	public List<MarketVO> getRecent() {
+		return marketDao.getRecent();
+	}
+
+	@Override
+	public List<MarketVO> getMarketListAddress(HashMap<String, String> searchTemp) {
+		return marketDao.getMarketListAddress(searchTemp);
+	}
+
+	@Override
+	public void insertLike(LikeVO lVO) {
+		marketDao.insertLike(lVO);
+	}
+
+	@Override
+	public LikeVO getLike(LikeVO tempLVO) {
+		return marketDao.getLike(tempLVO);
+	}
+
+	@Override
+	public void deleteLike(LikeVO lVO) {
+		marketDao.deleteLike(lVO);
 	}
 	
 	

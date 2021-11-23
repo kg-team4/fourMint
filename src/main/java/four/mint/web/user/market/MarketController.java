@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import four.mint.web.admin.banner.market.AdminBannerMarketService;
@@ -28,6 +30,7 @@ import four.mint.web.user.FollowCountVO;
 import four.mint.web.user.FollowService;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.community.CommunityBoardService;
 import four.mint.web.user.community.CommunityBoardVO;
@@ -51,17 +54,41 @@ public class MarketController {
 	private AdminBannerMarketService adminBannerMarketService;
 	
 	@RequestMapping(value = "/marketBoardList.do", method = RequestMethod.GET)
-	public String marketBoardList(Model model) {
+	public String marketBoardList(HttpServletRequest request, HttpSession session) {
 
 		String market_image1 = adminBannerMarketService.getBanner(1);
 		String market_image2 = adminBannerMarketService.getBanner(2);
 		String market_image3 = adminBannerMarketService.getBanner(3);
 		String market_image4 = adminBannerMarketService.getBanner(4);
+		request.setAttribute("market_banner1", market_image1);
+		request.setAttribute("market_banner2", market_image2);
+		request.setAttribute("market_banner3", market_image3);
+		request.setAttribute("market_banner4", market_image4);
 		
-		model.addAttribute("market_banner1", market_image1);
-		model.addAttribute("market_banner2", market_image2);
-		model.addAttribute("market_banner3", market_image3);
-		model.addAttribute("market_banner4", market_image4);
+		List<MarketVO> bestVO = marketService.getBest();
+		request.setAttribute("best", bestVO);
+		
+		List<MarketVO> recentVO = marketService.getRecent();
+		request.setAttribute("recent", recentVO);
+		
+		String address = String.valueOf(session.getAttribute("address2"));
+		if(address != null) {
+			HashMap<String, String> searchTemp = new HashMap<String, String>();
+			
+			String[] temp = address.split(" ");
+			address = temp[1];
+			if(temp[1].substring(address.length()-1).equals("시")) {
+				address = temp[2];
+			}
+			request.setAttribute("addressSub", address);
+			
+			searchTemp.put("nickname", String.valueOf(session.getAttribute("nickname")));
+			address = "%" + address.substring(0, 2) + "%";
+			searchTemp.put("address", address);
+			
+			List<MarketVO> areaVO = marketService.getMarketListAddress(searchTemp);
+			request.setAttribute("address", areaVO);
+		}
 		
 		return "/board/market_all_post_list";
 	}
@@ -95,6 +122,17 @@ public class MarketController {
 		/* 모달에 등록한 커뮤니티 게시글 리스트 */
 		List<CommunityBoardVO> communityList = communityBoardService.getCommunityListMe(user.getNickname());
 		request.setAttribute("community", communityList);
+		
+		/* 좋아요 눌렀는지 확인 */
+		LikeVO tempLVO = new LikeVO();
+			tempLVO.setNickname(user.getNickname());
+			tempLVO.setSeq(Integer.valueOf(request.getParameter("seq")));
+		LikeVO lVO = marketService.getLike(tempLVO);
+		if(lVO == null) {
+			int result = 0;
+			request.setAttribute("like", result);
+		}
+		request.setAttribute("like", lVO);
 		
 		return "/board/market_post_content";
 	}
@@ -248,7 +286,7 @@ public class MarketController {
 			ex.printStackTrace();
 		}
 
-		return "/board/market_all_post_list";
+		return "redirect:marketBoardList.do";
 	}
 	
 	@GetMapping("deleteMarket.do")
@@ -276,5 +314,27 @@ public class MarketController {
 		request.setAttribute("seq", seq);
 		
 		return "/board/market_post_content_edit";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/marketLike.do", method = RequestMethod.POST)
+	public int marketLike(HttpSession session, int seq) throws Exception {
+		LikeVO lVO = new LikeVO();
+		lVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+		lVO.setSeq(seq);
+		marketService.insertLike(lVO);		
+		
+		return 0;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/marketHate.do", method = RequestMethod.POST)
+	public int marketHate(HttpSession session, int seq) throws Exception {
+		LikeVO lVO = new LikeVO();
+		lVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+		lVO.setSeq(seq);
+		marketService.deleteLike(lVO);		
+		
+		return 0;
 	}
 }
