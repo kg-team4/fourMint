@@ -68,8 +68,20 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/find.do", method = RequestMethod.GET)
-	public String find() {
+	public String find(UserVO vo, Model model) {
+		
+	
+		
+		return "/user/find_id_pw";
+	}
+	@RequestMapping(value = "/find_id.do", method = RequestMethod.GET)
+	public String findId() {
 
+		return "/user/find_id_pw";
+	}
+	@RequestMapping(value = "/find_pw.do", method = RequestMethod.GET)
+	public String findPw() {
+		
 		return "/user/find_id_pw";
 	}
 
@@ -83,6 +95,10 @@ public class UserController {
 
 	@RequestMapping(value = "/profile.do", method = RequestMethod.GET)
 	public String info(HttpServletRequest request, HttpSession session, UserVO uVO, FollowCountVO fVO) {
+		
+	if(session.getAttribute("sns") == null || session.getAttribute("nickname") != null ) {
+		
+		
 		/* 유저 정보 불러오기 */
 		uVO = userService.getUserFromNickname(String.valueOf(session.getAttribute("nickname")));
 		request.setAttribute("user", uVO);
@@ -127,17 +143,60 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/snsUpdate.do", method = RequestMethod.POST)
-		public String snsUpdate(UserVO vo, HttpSession session) {
-			System.out.println("sns유저 수정");
+	@ResponseBody	
+	public String snsUpdate(UserVO vo, HttpSession session, HttpServletRequest request) {
+		System.out.println("sns유저 수정");
+		
+		if(request.getParameter("name") == null) {
+			vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+			vo.setAddress1(request.getParameter("address1"));
+			vo.setAddress2(request.getParameter("address2"));
+			vo.setAddress3(request.getParameter("address3"));
+			session.setAttribute("address2", vo.getAddress2());
+			
+			userService.updateAddress(vo);
+			
+		}else {
+			vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+			vo.setName(request.getParameter("name"));
+			vo.setNickname(request.getParameter("nickname"));
+			vo.setPhone(request.getParameter("phone"));
+			vo.setBirth(request.getParameter("birth"));
+			vo.setAddress1(request.getParameter("address1"));
+			vo.setAddress2(request.getParameter("address2"));
+			vo.setAddress3(request.getParameter("address3"));
+			
 			session.setAttribute("address2", vo.getAddress2());
 			session.setAttribute("name", vo.getName());
 			session.setAttribute("nickname", vo.getNickname());
-			vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+			
 			userService.updateSns(vo);
 			
-			return "redirect:/profile.do";
+			
 		}
+		return "profile.do";
+		
+	}
 
+	
+	   @RequestMapping(value = "/updateAddr.do", method = RequestMethod.POST)
+	   @ResponseBody
+	   public String updateAddr(HttpServletRequest request, HttpSession session ,UserVO vo ) {
+		  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+		  System.out.println(session.getAttribute("userEmail_id").toString());
+		  vo.setAddress1(request.getParameter("addr1"));
+		  vo.setAddress2(request.getParameter("addr2"));
+		  vo.setAddress3(request.getParameter("addr3"));
+		  
+		  userService.updateAddress(vo);
+		  session.setAttribute("address2", vo.getAddress2());
+		  System.out.println(vo.getEmail_id());
+		  System.out.println(vo.getAddress2());
+		  
+		  return "/profile.do";
+	   }
+
+	
 	@PostMapping("/profileImage.do")
 	public String profileImage(@RequestParam("file") MultipartFile file, HttpServletRequest requset, UserVO uVO) {
 		try {
@@ -244,21 +303,7 @@ public class UserController {
 	}
 
 	
-   @RequestMapping(value = "/updateAddr.do", method = RequestMethod.POST)
-   @ResponseBody
-   public String updateAddr(HttpServletRequest request, HttpSession session ,UserVO vo ) {
-	  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
-	  System.out.println(session.getAttribute("userEmail_id").toString());
-	  vo.setAddress1(request.getParameter("addr1"));
-	  vo.setAddress2(request.getParameter("addr2"));
-	  vo.setAddress3(request.getParameter("addr3"));
-	  
-	  userService.updateAddress(vo);
-	  System.out.println(vo.getEmail_id());
-	  System.out.println(vo.getAddress2());
-	  
-	  return "/profile.do";
-   }
+
   
   @RequestMapping(value = "/pwCheck.do", method = RequestMethod.POST)
   @ResponseBody

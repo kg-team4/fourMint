@@ -362,6 +362,7 @@ function phoneCheck(){
 									$("#phone").attr("readonly", true);
 									code = data;
 									console.log(code);
+									pstate = 1;
 								}
 							}
 						});
@@ -377,6 +378,7 @@ function phoneCheck(){
 			if($("#phone2").val() == code){
 				alert("인증번호가 일치합니다.");
 				$("#phone2").attr("disabled",true);
+				pcstate = 1;
 			}else{
 				alert("인증번호가 일치하지 않습니다.");
 				$("#phoneDoubleCheck").val("false");
@@ -395,6 +397,7 @@ function checkBirth() {
 		$("#birth").attr("disabled", false);
 		$("#birthCheck").css("display", "inline-block");
 		$("#birth").attr("readonly", true);
+		bstate = 1;
 	}
 }
 function sns_secession(){
@@ -424,6 +427,56 @@ function sns_secession(){
 		window.location="/secession.do";
 	}
 }
-function updateSns(){
 
+var nstate;
+var pstate;
+var pcstate;
+var bstate;
+function updateSns(){
+	/*
+	if(nstate == 1){
+		alert("닉네임 중복확인을 해주세요.");
+		return;
+	}
+	
+	if(pstate != 1){
+		alert("핸드폰 인증을 해주세요.");
+		return;
+	}
+	if(pcstate != 1){
+		alert("인증번호 확인을 해주세요.");
+		return;
+	}if(bstate != 1){
+		alert("생년월일을 확인 해주세요.");
+		return;
+	}
+	*/
+		
+	
+	var name = $("#name").val();
+	var nickname = $("#nick").val();
+	var phone = $("#phone").val();
+	var birth = $("#birth").val();
+	var address1 = $("#post_addr").val();
+	var address2 = $("#base_addr").val();
+	var address3 = $("#detail_addr").val();
+	console.log(nickname);
+	console.log(name);
+	console.log(phone);
+	console.log(birth);
+	console.log(address1);
+	console.log(address2);
+	$.ajax({
+		type: "POST",
+		url: '/snsUpdate.do',
+		data: {name: name, nickname: nickname, phone: phone, birth: birth, address1: address1, address2: address2, address3: address3},
+		success:function(res){
+			alert('정보수정 성공');
+			location.replace(res);
+		},
+		error :function(error){
+			
+		}
+	});
+	
 }

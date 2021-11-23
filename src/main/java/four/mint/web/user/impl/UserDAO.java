@@ -12,6 +12,7 @@ import four.mint.web.user.FollowerVO;
 import four.mint.web.user.FollowingVO;
 import four.mint.web.user.KakaoVO;
 import four.mint.web.user.NaverVO;
+import four.mint.web.user.SnsVO;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.ReportVO;
 
@@ -70,15 +71,14 @@ public class UserDAO {
 		return sqlSessionTemplate.selectOne("UserDAO.phoneCheck", phone);
 	}
 
-	public void insertNaver(NaverVO nvo) {
-//		System.out.println("===> member TABLE INSERT naver member");
-		sqlSessionTemplate.insert("UserDAO.insertNaver", nvo);
+	public void insertNaver(SnsVO snsvo) {
+		System.out.println("===> member TABLE INSERT naver member");
+		sqlSessionTemplate.insert("UserDAO.insertNaver", snsvo);
 	}
 	
-	public void insertKakao(KakaoVO kvo) {
-//		System.out.println("===> member TABLE SELET kakaoid");
-		
-		sqlSessionTemplate.insert("UserDAO.insertKakao", kvo);
+	public void insertKakao(SnsVO snsvo) {
+		System.out.println("===> member TABLE SELET kakaoid");
+		sqlSessionTemplate.insert("UserDAO.insertKakao", snsvo);
 	}
 	
 	public UserVO getUserFromNickname(String nickname) {
@@ -166,6 +166,10 @@ public class UserDAO {
 
 	public UserVO getUserFromEmail(String email) {
 		return sqlSessionTemplate.selectOne("UserDAO.getUserFromEmail", email);
+	}
+
+	public List<UserVO>getMem(SnsVO vo) {
+		return sqlSessionTemplate.selectList("UserDAO.getMem", vo);
 	}
 
 }

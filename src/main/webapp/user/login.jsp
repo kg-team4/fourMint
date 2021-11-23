@@ -44,7 +44,13 @@
                 </div>
             </form>
         </article>	
-
+<script>
+	if(${flag} == 1){
+		alert("비밀번호가 틀렸습니다.");
+	}else if(${flag} == 2){
+		alert("존재하지 않는 아이디입니다.");
+	}
+</script>
 
 <!-- template footer-->
 <jsp:include page="../template/footer.jsp"></jsp:include>

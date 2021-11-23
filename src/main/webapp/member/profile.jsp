@@ -63,7 +63,7 @@
 							<div id="my_info_edit_title">📝&nbsp;나의 주소수정&nbsp;📝</div>
 							<hr>
 							<div>
-							<form action="snsUpdate.do" method="post">
+							
 								<table id="my_info_edit_area">
 									
 									<c:choose>
@@ -82,9 +82,15 @@
 												<td>${user.email_id}</td>
 											</tr>
 											<tr>
+												<td height="30px">생년월일</td>
+												<td colspan="2">${user.birth}</td>
+											</tr>
+											<c:choose>
+											<c:when test="${user.address1 == null }">
+											<tr>
 												<td rowspan="3" height="90px">주소</td>
-												<td><input type="text" style="width:220px" id="post_addr" placeholder="우편번호" style="width: 90px;">
-													<button onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
+												<td><input type="text" id="post_addr" placeholder="우편주소" style="width: 90px;">
+													<button type="button" onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
 											</tr>
 											<tr>
 												<td  height="30px"><input style="width:280px" type="text" id="base_addr" placeholder="기본주소"></td>
@@ -92,6 +98,23 @@
 											<tr>
 												<td  height="30px"><input style="width:280px" type="text" id="detail_addr" placeholder="직접 입력해주세요"></td>
 											</tr>
+											
+											</c:when>
+											<c:otherwise>
+											<tr>
+												<td rowspan="3" height="90px">주소</td>
+												<td><input type="text" id="post_addr" placeholder="${user.address1 }" style="width: 90px;">
+													<button type="button" onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
+											</tr>
+											<tr>
+												<td  height="30px"><input type="text" id="base_addr" placeholder="${user.address2 }"></td>
+											</tr>
+											<tr>
+												<td  height="30px"><input type="text" id="detail_addr" placeholder="${user.address3 }"></td>
+											</tr>
+											</c:otherwise>
+											
+											</c:choose>
 										</c:when>
 										<c:otherwise>
 										
@@ -111,7 +134,7 @@
 												<c:when test="${empty nickname }">
 													<tr>
 														<td width="200px" height="30px">닉네임</td>
-														<td><input id="nick" type="text" placeholder="닉네임" id="nickname" name="nickname" required="required"></td>
+														<td><input id="nick" type="text" placeholder="닉네임" name="nickname" required="required"></td>
 														<td rowspan="2"><button type="button" onclick="doubleCheck();">중복확인</button>
 													</tr>
 												</c:when>
@@ -123,7 +146,7 @@
 												</c:otherwise>
 											</c:choose>
 											<c:choose>
-												<c:when test='${sns eq "kakao"}'>
+												<c:when test='${sns eq "kakao" && user.phone == null}'>
 													<tr>
 														<td width="200px" height="30px">핸드폰 번호</td>
 														<td><input type="text" placeholder="핸드폰 번호" id="phone" name="phone" maxlength="11" required="required"></td>
@@ -140,7 +163,7 @@
 												</c:otherwise>
 											</c:choose>
 											<c:choose>
-												<c:when test="${empty brith }">
+												<c:when test="${user.birth == null }">
 													<tr>
 														<td width="200px" height="30px">생년월일</td>
 														<td><input type="text" placeholder="생년월일" id="birth" name="birth" required="required"></td>
@@ -154,17 +177,36 @@
 													</tr>
 												</c:otherwise>
 											</c:choose>
+											<c:choose>
+											<c:when test="${user.address1 == null }">
 											<tr>
 												<td rowspan="3" height="90px">주소</td>
-												<td><input type="text" id="post_addr" name="address1" placeholder="우편번호" style="width: 90px;">
+												<td><input type="text" id="post_addr" placeholder="우편주소" style="width: 90px;">
 													<button type="button" onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
 											</tr>
 											<tr>
-												<td  height="30px"><input type="text" id="base_addr" placeholder="기본주소" name="address2"></td>
+												<td  height="30px"><input type="text" id="base_addr" placeholder="기본주소"></td>
 											</tr>
 											<tr>
-												<td  height="30px"><input type="text" id="detail_addr" placeholder="직접 입력해주세요" name="address3"></td>
+												<td  height="30px"><input type="text" id="detail_addr" placeholder="직접 입력해주세요"></td>
 											</tr>
+											
+											</c:when>
+											<c:otherwise>
+											<tr>
+												<td rowspan="3" height="90px">주소</td>
+												<td><input type="text" id="post_addr" placeholder="${user.address1 }" style="width: 90px;">
+													<button type="button" onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
+											</tr>
+											<tr>
+												<td  height="30px"><input type="text" id="base_addr" placeholder="${user.address2 }"></td>
+											</tr>
+											<tr>
+												<td  height="30px"><input type="text" id="detail_addr" placeholder="${user.address3 }"></td>
+											</tr>
+											</c:otherwise>
+											
+											</c:choose>
 											
 										</c:otherwise>
 									</c:choose>
@@ -173,7 +215,7 @@
 								<div style="text-align: center; margin-top: 10px">
 									<c:choose>
 										<c:when test="${empty sns }">
-											<button class="modal_info_edit_btn" onclick="updateAddr();">정보수정</button>
+											<button onclick="updateAddr();">기본정보수정</button>
 											<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 										</c:when>
 										<c:otherwise>
@@ -182,7 +224,7 @@
 										</c:otherwise>
 									</c:choose>
 								</div>
-								</form>
+							
 							</div>
 						</div>
 						<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
