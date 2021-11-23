@@ -111,4 +111,8 @@
 		DELETE FROM marketLike WHERE nickname = #{nickname} AND market_seq = #{seq}
 	</select>
 	
+	<select id="getMarketLike" parameterType="string" resultType="market">
+		SELECT b.market_seq, b.date, b.url, b.product_name, b.product_price FROM (SELECT * FROM marketlike WHERE nickname = #{nickname}) AS a JOIN (SELECT * FROM marketboard) AS b ON a.market_seq = b.market_seq;
+	</select>
+	
 </mapper>

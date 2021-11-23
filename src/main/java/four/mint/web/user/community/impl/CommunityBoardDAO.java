@@ -60,4 +60,8 @@ public class CommunityBoardDAO {
 	public void updateComments(int board_seq) {
 		sqlSessionTemplate.update("CommunityBoardDAO.updateComments", board_seq);
 	}
+
+	public List<CommunityCommentVO> getCommentList(String nickname) {
+		return sqlSessionTemplate.selectList("CommunityBoardDAO.getCommentList", nickname);
+	}
 }

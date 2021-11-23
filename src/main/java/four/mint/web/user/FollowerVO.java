@@ -9,5 +9,6 @@ public class FollowerVO {
 	private float rating;
 	private String follower;
 	private String profile;
+	private int content;
 	
 }

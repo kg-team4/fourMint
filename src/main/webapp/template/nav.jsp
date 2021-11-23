@@ -31,7 +31,6 @@
 						<li><a href="marketDetailList.do?count=1&kind=반려동물용품">반려동물용품</a></li>
 						<li><a href="marketDetailList.do?count=1&kind=도서 · 음반">도서 · 음반</a></li>
 						<li><a href="marketDetailList.do?count=1&kind=기타">기타</a></li>
-						<li><a href="marketDetailList.do?count=1&kind=삽니다">삽니다</a></li>
 					</ul>
 				</li>
 			
@@ -60,7 +59,7 @@
 						<li><a href="storeDetailList.do?count=4&kind=주방">주방</a></li>
 						<li><a href="storeDetailList.do?count=4&kind=욕실">욕실</a></li>
 						<li><a href="storeDetailList.do?count=4&kind=생활">생활</a></li>
-						<li><a href="storeDetailList.do?count=4&kind=굿즈">굿즈</a></li>
+						<li><a href="storeDetailList.do?count=4&kind=화장품">화장품</a></li>
 					</ul>
 				</li>
 				<li></li>

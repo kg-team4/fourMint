@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.store.CartVO;
@@ -122,6 +123,31 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public List<StoreVO> getBest() {
 		return storeDao.getBest();
+	}
+
+	@Override
+	public List<TransactionHistoryVO> getTransactionList(String email_id) {
+		return storeDao.getTransactionList(email_id);
+	}
+
+	@Override
+	public void insertLike(LikeVO lVO) {
+		storeDao.insertLike(lVO);
+	}
+
+	@Override
+	public void deleteLike(LikeVO lVO) {
+		storeDao.deleteLike(lVO);
+	}
+
+	@Override
+	public LikeVO getLike(LikeVO tempLVO) {
+		return storeDao.getLike(tempLVO);
+	}
+
+	@Override
+	public List<StoreVO> getStoreLike(String nickname) {
+		return storeDao.getStoreLike(nickname);
 	}
 
 	

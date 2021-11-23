@@ -93,9 +93,48 @@
 				<div>
 					<div class="float-box float-left">
 						<div class="left-item33">
-							<form action="../member/post_like.do" method="post">
-								<input type="submit" class="like-button cursor" value="♥ 찜 좋아요">
-							</form>
+							<input id="likeVal" type="hidden" value="${content.store_seq }"/>
+							<c:choose>
+								<c:when test="${like eq 0 }">
+									<input type="button" class="like-button cursor" id="likeBtn" value="♥ 찜 좋아요" style="">
+									<input type="hidden" class="like-button cursor" id="hateBtn" value="싫어졌어용" style="">
+								</c:when>
+								<c:otherwise>
+									<input type="hidden" class="like-button cursor" id="likeBtn" value="♥ 찜 좋아요" style="">
+									<input type="button" class="like-button cursor" id="hateBtn" value="싫어졌어용" style="">
+								</c:otherwise>
+							</c:choose>
+							<script>
+							$("#likeBtn").click(function() {
+								var seq = $("#likeVal").val();
+								$.ajax({
+									url : "/storeLike.do",
+									type : "post",
+									data : {
+										seq : seq
+									},
+									success : function(data) {
+										$("#likeBtn").attr('type', "hidden");
+										$("#hateBtn").attr('type', "button");
+									}
+								});
+							});
+							
+							$("#hateBtn").click(function() {
+								var seq = $("#likeVal").val();
+								$.ajax({
+									url : "/storeHate.do",
+									type : "post",
+									data : {
+										seq : seq
+									},
+									success : function(data) {
+										$("#hateBtn").attr('type', "hidden");
+										$("#likeBtn").attr('type', "button");
+									}
+								});
+							});
+							</script>
 						</div>
 						<!-- 수정 삭제 버튼은 "내글" -->
 						

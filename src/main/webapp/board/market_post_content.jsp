@@ -57,7 +57,7 @@
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAaCAYAAADMp76xAAAAAXNSR0IArs4c6QAABAdJREFUWAm9mFtIFFEYx9tZ11UW1tLoaoGEPShqq3ahgogyIgnqQXqIgih6qKgEH4JIqCgIIoowIrSn6i0irOxCQdAN7wb2IiSlSUZuGJGyumu/b9lZZo8zs7ObdeBwvvNd/uc/53zznWFcs9Js7e3tczVNWzs1NbUKiErGfJfLNYcxVyCRg8g/GAeZdiC3eTyeN2VlZd/Enm5zpRLY09Pjm5yc3EnMbghUMbpTiYd8BP8X9Dt+v/9uYWHhz1TixdcR4YGBgezh4eFD+J+gz5XAGWijYFzKycm5nArxpIQ5+hqAr9AXzgBJM4ggqXWyvLz8uplR1VkShmgOR3iVo9+jBv2LOWs9pu+H+JAdvilhyC4j6AldxqSNhT7g1Oh2u59mZWV9loDx8fGl4XB4C+IBHrpIdA7ad7C2V1RUvLPynUa4u7s7wIvVQsB8qyCDfgK5jgUaWChs0MdFyLo7OjoOo7hI98QN1sJvsHaB+cDMJYFwV1fXCnblJY5+M2dFN8GOVgcCgWeK3nQKdhXYDzE6IR2GdA2k76lgmq7o7OxcBGAzcydkJazOKVlxjvnWieyguTmZ25y21PiEFt3h/v7+rJGRkddYyhOsFhOe/gMvR6lVGliEzZL0YGPep5DTw16vd2VJScmAjhnd4WAweBaFI7KxwEaVLCQyIHOafB2ULrLo9IVkjMU0GnVJ5PmhUOim0UejIqwGuNaoTCZLNVB9yNFTkUikHqzF0kUWnepnFqv6GOdgbWYDDuo6jaduYOLWFU5Gvgk+qX4A73ei08ue6ms3B/ui3LbiozExLUd2AOxSQnWx850h2+f8/PyQYGksfoRxMhVguRRUf06qyYnOLFaNM87BjdAP0KMbq1Fu2phcMDolk2M3WIIbOGf5JjgD1hfpIosuwYmJWazqo8yvGG++6NH29vZmjo2NPcdxveJsOoXQ/yprXcKpsrLyt04kWtaKi4tDPp9vB0T6dIPdSN4Xxa5bO7dpNomR2GkGEwVchjIyMrYbyYpbwstDGSqkHL0CdJ4Jhqr6l1ezfNhvhGynumj8ahYDOSc7vI7+UeZJmke+DajjR3lAy7IoNvERX/CcfEd8pRBsMCMrfBJ2WCdITi8gpx8xD+g6u1FyGvtff15KSlLjt5aWllpumClhIdfX1+cdHR09D0gtu2TpZ/cgKdqasrOzj/M+/bKLS0qEb4JN5PU1QJbbAaVrY0M+UQKPkY73nWAkJSwgkoe84fsQ6+lLRDcD7Stkz3FV35Aq5RTPEWEdLFavt7HQXnTVPEimbnM4ThDbQtytvLy85oKCgnGHcXG3lAjHoxAogbNJlTWIq6VDQn6k5DLmih+y/EgJMsqPlFaOvZW3/y0v1A+xp9v+ADhPuomDsZuZAAAAAElFTkSuQmCC" width="20" height="13" alt="조회수 아이콘">&nbsp;${content.views }
 					</span> 
 					<span class="padding-left05"> 
-						<img src="../img/time.png" width="15" height="13" alt="시간 아이콘"> &nbsp;${date }
+						<img src="../img/time.png" width="15" height="13" alt="시간 아이콘"> &nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${content.date }" />
 					</span> 
 					<span style="float: right; cursor: pointer"> 
 						<a class="police_click"> 
@@ -196,7 +196,6 @@
 									<script>
 									$("#likeBtn").click(function() {
 										var seq = $("#likeVal").val();
-										console.log(seq);
 										$.ajax({
 											url : "/marketLike.do",
 											type : "post",
@@ -212,7 +211,6 @@
 									
 									$("#hateBtn").click(function() {
 										var seq = $("#likeVal").val();
-										console.log(seq);
 										$.ajax({
 											url : "/marketHate.do",
 											type : "post",
@@ -570,9 +568,58 @@
 										상품 &nbsp;<span>${boardCount }</span> &emsp; 팔로워 &nbsp;<span>${follow.follower }</span>
 									</div>
 									<c:if test="${user.nickname ne nickname }">
-										<button id="btn_follow" style="width: 100px">
-											<img height="13px" width="13px" src="../img/following_icon.png">&nbsp;팔로우
-										</button>
+										<input type="hidden" id="seller" value="${content.nickname }"/>
+										<c:choose>
+											<c:when test="${fol eq 0 }">
+												<button id="btn_follow" style="width: 100px; display: block">
+													<img height="13px" width="13px" src="../img/following_icon.png">&nbsp;팔로우
+												</button>
+												<button id="btn_unfollow" style="width: 100px; display: none">
+													<img height="13px" width="13px" src="../img/following_icon.png">&nbsp;언팔로우
+												</button>
+											</c:when>
+											<c:otherwise>
+												<button id="btn_follow" style="width: 100px; display: none">
+													<img height="13px" width="13px" src="../img/following_icon.png">&nbsp;팔로우
+												</button>
+												<button id="btn_unfollow" style="width: 100px; display: block">
+													<img height="13px" width="13px" src="../img/following_icon.png">&nbsp;언팔로우
+												</button>
+											</c:otherwise>
+										</c:choose>
+										<script>
+											$("#btn_follow").click(function(){
+												var seller = $("#seller").val();
+												$.ajax({
+													url : "/follow.do",
+													type : "post",
+													data : {
+														seller : seller
+													},
+													success : function(data) {
+														$("#btn_follow").attr('style', "display: none");
+														$("#btn_unfollow").attr('style', "display: block");
+														$("#btn_unfollow").css('width', '100px');
+													}
+												});
+											});
+											
+											$("#btn_unfollow").click(function(){
+												var seller = $("#seller").val();
+												$.ajax({
+													url : "/unfollow.do",
+													type : "post",
+													data : {
+														seller : seller
+													},
+													success : function(data) {
+														$("#btn_unfollow").attr('style', "display: none");
+														$("#btn_follow").attr('style', "display: block");
+														$("#btn_follow").css('width', '100px');
+													}
+												});
+											});
+										</script>
 									</c:if>
 								</div>
 							</div>

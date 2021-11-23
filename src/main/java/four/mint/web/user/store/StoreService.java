@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 
@@ -44,6 +45,16 @@ public interface StoreService {
 	void minusStock(TransactionHistoryVO thVO);
 
 	List<StoreVO> getBest();
+
+	List<TransactionHistoryVO> getTransactionList(String email_id);
+
+	void insertLike(LikeVO lVO);
+
+	void deleteLike(LikeVO lVO);
+
+	LikeVO getLike(LikeVO tempLVO);
+
+	List<StoreVO> getStoreLike(String nickname);
 
 
 }

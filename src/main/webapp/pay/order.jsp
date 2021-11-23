@@ -900,7 +900,8 @@ try {
 						email : '${userEmail_id}',
 						cart : '${cart}',
 						code : merchant_uid_origin,
-						request : req 
+						request : req,
+						address : buyer_addr1
 					},
 					success : function() {
 						

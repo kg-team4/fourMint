@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.store.CartVO;
@@ -99,5 +100,25 @@ public class StoreDAO {
 
 	public List<StoreVO> getBest() {
 		return sqlSessionTemplate.selectList("StoreDAO.getBest");
+	}
+
+	public List<TransactionHistoryVO> getTransactionList(String email_id) {
+		return sqlSessionTemplate.selectList("StoreDAO.getTransactionList", email_id);
+	}
+
+	public void insertLike(LikeVO lVO) {
+		sqlSessionTemplate.insert("StoreDAO.insertLike", lVO);
+	}
+
+	public void deleteLike(LikeVO lVO) {
+		sqlSessionTemplate.delete("StoreDAO.deleteLike", lVO);
+	}
+
+	public LikeVO getLike(LikeVO tempLVO) {
+		return sqlSessionTemplate.selectOne("StoreDAO.getLike", tempLVO);
+	}
+
+	public List<StoreVO> getStoreLike(String nickname) {
+		return sqlSessionTemplate.selectList("StoreDAO.getStoreLike", nickname);
 	}
 }

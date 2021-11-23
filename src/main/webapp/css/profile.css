@@ -1203,7 +1203,7 @@ ul, li {
 	cursor: pointer;
 }
 /*판매 중을 판매완료로 변경 시 필요 모달*/
-#police_modal6 {
+.police_modal6 {
 	display: none;
 	width: 600px;
 	padding: 20px 60px;
@@ -1214,7 +1214,7 @@ ul, li {
 	height: auto;
 }
 
-#police_modal6 .modal_close_btn {
+.police_modal6 .modal_close_btn {
 	position: absolute;
 	top: 10px;
 	right: 10px;
@@ -1224,7 +1224,7 @@ ul, li {
 	margin-bottom: 10px;
 }
 
-#modal_police_btn {
+.modal_police_btn {
 	border-radius: 5px;
 	border: 1px solid #26e4ca;
 	background: #26e4ca;

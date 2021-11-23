@@ -1,38 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- <%
-if (request.getAttribute("result") != null) {
-   int result = (Integer) request.getAttribute("result");
-   if (result == 1) {
-      int flag = (Integer) request.getAttribute("flag");
-
-      out.println("<script type='text/javascript'>");
-      if (flag == 0) {
-   out.println("alert('수정 성공!');");
-   out.println("location.href='./profile.do';");
-      } else {
-   out.println("alert('수정에 실패했습니다.');");
-   out.println("history.back();");
-      }
-      out.println("</script>");
-   }
-
-   if (result == 2) {
-      int flag = (Integer) request.getAttribute("flag");
-
-      out.println("<script type='text/javascript'>");
-      if (flag == 0) {
-   out.println("alert('삭제 성공!');");
-   out.println("location.href='./profile.do';");
-      } else {
-   out.println("alert('삭제에 실패했습니다.');");
-   out.println("history.back();");
-      }
-      out.println("</script>");
-   }
-}
-%> --%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <title>마이페이지</title>
 <link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
 <link rel="stylesheet" href="../css/reset.css">
@@ -662,7 +631,7 @@ if (request.getAttribute("result") != null) {
 								<hr>
 								<br> <br>
 								<p>
-									<span><strong>팔로잉 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${follow.following }</span>
+									<span><strong>팔로잉 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(following)}</span>
 								</p>
 								<div class="following_all_grid">
 									<c:forEach var="followings" items="${following }">
@@ -677,7 +646,7 @@ if (request.getAttribute("result") != null) {
 													<a class="following_nick_name"style="color: #26e4ca">${followings.nickname }</a>
 												</div>
 												<div>
-													<span class="">상품</span> <span><a class="" href=# style="color: #26e4ca">20</a> | </span> <span class="">팔로워</span> <span><a class="" href="#" style="color: #26e4ca">${followings.following }</a></span>
+													<span class="">상품</span> <span><a class="" href=# style="color: #26e4ca">${followings.content }</a> | </span> <span class="">팔로워</span> <span><a class="" href="#" style="color: #26e4ca">${followings.following }</a></span>
 												</div>
 											</div>
 											<a class="" href="#">
@@ -734,10 +703,10 @@ if (request.getAttribute("result") != null) {
 								<hr>
 								<br> <br>
 								<p>
-									<span><strong>팔로워 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${follow.follower }</span>
+									<span><strong>팔로워 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(follower)}</span>
 								</p>
 								<div class="following_all_grid">
-									<c:forEach var="followers" items="${follwer }">
+									<c:forEach var="followers" items="${follower }">
 										<div class="following">
 											<a class="following_img_area" style="cursor:pointer"> <!-- 이미지를 눌렀을 때 해당상점으로 이동 -->
 												<div id="following_img_box">
@@ -749,7 +718,7 @@ if (request.getAttribute("result") != null) {
 													<a class="" style="color: #26e4ca">${followers.nickname }</a>
 												</div>
 												<div>
-													<span class="">상품</span> <span><a class="" href="#" style="color: #26e4ca">20</a> &nbsp;|&nbsp; </span> <span class="">팔로워</span> <span><a class="" href="#" style="color: #26e4ca">${followers.follower }</a></span>
+													<span class="">상품</span> <span><a class="" href="#" style="color: #26e4ca">${followers.content }</a> &nbsp;|&nbsp; </span> <span class="">팔로워</span> <span><a class="" href="#" style="color: #26e4ca">${followers.follower }</a></span>
 												</div>
 											</div>
 											<a class="" href="#">
@@ -813,10 +782,10 @@ if (request.getAttribute("result") != null) {
 						<div class="sell_list_all">
 							<br>
 							<p>
-								<span><strong>판매내역 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${boardCount }</span>
+								<span><strong>판매내역 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(market)}</span>
 							</p>
 							<div class="sell_list_grid">
-								<c:forEach var="market" items="${market }">
+								<c:forEach var="market" items="${market }" varStatus="status">
 									<div class="sell_list">
 										<table width="100%" height="120">
 											<tr height="30">
@@ -839,7 +808,7 @@ if (request.getAttribute("result") != null) {
 														<c:when test="${market.status eq 1}">																											
 															<button class="btn_sell_product_state">판매중</button>
 																<!-- ******************판매 중을 판매완료로 변경 시 필요 모달 (위치 변경 필요) -->
-																<div id="police_modal6">
+																<div class="police_modal6">
 																	<div>
 																		<div style="font-size: 20px">📃&nbsp;판매완료로 변경하기&nbsp;📃</div>
 																		<hr>
@@ -848,25 +817,25 @@ if (request.getAttribute("result") != null) {
 																				<div>
 																					<span style="color: #26e4ca; ">거래한 대상</span>과의 거래 확인
 																					<div>
-																						<input type="text" id="deal_completed_preson" value="" style="width:250px"placeholder="거래한 대상 닉네임 띄워주기" >
-																						<span><input type="button" id="btn_double_check" value="중복확인" ></span>
+																						<input type="text" class="deal_completed_preson" value="" style="width:250px" placeholder="${market.market_seq }" >
+																						<span><input type="button" class="btn_double_check" value="중복확인" ></span>
 																					</div>
 																				</div>
 																															
 																			</div>
 																			<div style="text-align: center">
-																				<button id="modal_police_btn" style="width: 90px; font-size: 15px">판매완료로 변경</button>
+																				<button class="modal_police_btn" style="width: 90px; font-size: 15px">판매완료로 변경</button>
 																				<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 																			</div>
 																		</div>
 																	</div>
 																	<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
 																</div>
-																<script type="text/javascript">
+																<script>
 																	// 모달 만들기
-																	function modal(id) {
+																	function modal(Class) {
 																		var zIndex = 9999;
-																		var modal = document.getElementById(id);
+																		var modal = document.getElementByClassName(Class)[0];
 								
 																		// 모달 div 뒤에 희끄무레한 레이어
 																		var bg = document.createElement('div');
@@ -926,24 +895,6 @@ if (request.getAttribute("result") != null) {
 																						// 모달창 띄우기
 																						modal('police_modal6');
 																					});
-																	/* 
-																	$(".rating").change(
-																			function() {
-																				$("#modal_police_btn").attr(
-																						"disabled", false);
-								
-																			});
-																
-																$("#deal_completed_preson").change(									
-																	function() {
-																		if($("#deal_completed_preson").val().length==0 || $("#deal_completed_preson").val().length==""){	
-																				$("#mbtn_double_check").attr("disabled", true);
-																		}else{
-																			$("#mbtn_double_check").attr("disabled", false);
-																		}
-																); */
-																	
-																	
 																</script>
 														</c:when>
 														<c:otherwise>
@@ -1313,7 +1264,7 @@ if (request.getAttribute("result") != null) {
 						<div class="community_list_all">
 							<br> <br>
 							<p>
-								<span><strong>내가 쓴 커뮤니티글 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">8</span>
+								<span><strong>내가 쓴 커뮤니티글 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(community)}</span>
 							</p>
 							<div class="community_list_grid">
 								<c:forEach var="community" items="${community }">
@@ -1365,182 +1316,183 @@ if (request.getAttribute("result") != null) {
 							<hr>
 							<br> <br>
 							<p>
-								<span><strong>내가 쓴 커뮤니티 댓글 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">28</span>
+								<span><strong>내가 쓴 커뮤니티 댓글 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(commentList)}</span>
 							</p>
 							<div class="community_comment_list_grid">
-								<div class="community_comment_list" style="width:100% ; height:auto">
-									<table width="100%" height="auto">
-										<tr height="30">
-											<td align="left" style="font-size: 15px">2020.09.18</td>
-											<td width="70%" align="center" style="font-size: 18px">
-												<div style="color: gray;">[원글] XX동 근처 잘하는 병원이 어디인가요?</div>
-												<div>
-													&nbsp;&nbsp;<img src="../img/right-arrow.png" style="width: 9px; height: 9px"> [내가 쓴 댓글] 점심시간에 사람 많나요?
-												</div>
-											</td>
-											<td width="20%" align="center">
-												<button id="btn_community_comment_update">댓글 수정</button>
-												<button id="btn_community_comment_delete">댓글 삭제</button>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
-								<div class="community_comment_list">
-									<table width="100%" height="120">
-										<tr height="30">
-											<td align="left" style="font-size: 15px">2020.09.18</td>
-											<td width="70%" align="center" style="font-size: 18px">
-												<div style="color: gray;">[원글] XX동 근처 잘하는 병원이 어디인가요?</div>
-												<div>
-													&nbsp;&nbsp;<img src="../img/right-arrow.png" style="width: 9px; height: 9px"> [내가 쓴 댓글] 점심시간에 사람 많나요?
-												</div>
-											</td>
-											<td width="20%" align="center">
-												<button id="btn_community_comment_update">댓글 수정</button>
-												<button id="btn_community_comment_delete">댓글 삭제</button>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
+								<c:forEach var="comment" items="${commentList }">
+									<div class="community_comment_list" style="width:100% ; height:auto">
+										<table width="100%" height="auto">
+											<tr height="30">
+												<td align="left" style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${comment.date }" /></td>
+												<td width="70%" align="center" style="font-size: 18px">
+													<div style="color: gray;">[원글] ${comment.title }</div>
+													<div>
+														&nbsp;&nbsp;<img src="../img/right-arrow.png" style="width: 9px; height: 9px"> [내가 쓴 댓글] ${comment.content }
+													</div>
+												</td>
+												<td width="20%" align="center">
+													<button id="btn_community_comment_update">댓글 수정</button>
+													<button id="btn_community_comment_delete">댓글 삭제</button>
+												</td>
+											</tr>
+										</table>
+										<br>
+										<hr>
+									</div>
+								</c:forEach>
 								<br>
 							</div>
 						</div>
 					</div>
+					
+					
+					
 					<!-- 나의 스토어거래 -->
 					<div class="tab-pane fade" id="accom" role="tabpanel" aria-labelledby="contact-tab">
 						<div class="store_bought_list_all">
 							<br> <br>
 							<p>
-								<span><strong>스토어 상품 구매 내역 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">3</span>
+								<span><strong>스토어 상품 구매 내역 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(history) }</span>
 							</p>
 							<div class="store_bought_list_grid">
-								<div class="store_bought_list">
-									<table width="100%" height="120">
-										<tr>
-											<td align="left" style="font-size: 20px">결제완료</td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td><a id="store_review_img_area" href="#">
-													<div id="product_img_box">
-														<img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
-													</div>
-											</a></td>
-											<td align="left" style="font-size: 15px">
-												<div style="font-size: 15px">06.22 결제</div>
-												<div style="font-size: 18px">Cambro 캠트레이 - 3가지 색상</div>
-												<div>
-													<span style="font-size: 18px">18,000</span>&nbsp;원
-												</div>
-												<div style="font-size: 15px; margin-top:10px">
-													
-													배송주소 : <span>서울 특별시 묘동 단성사 4층 402호</span>
-												</div>
-											</td>
-											<td align="center">
-												<div>
-													<button id="btn_order_cancle">취소 요청</button>
-												</div>											
-												<div>
-													<button id="btn_seller_ask">판매자 문의</button>
-												</div>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
-
+								<c:forEach var="his" items="${history }">
+									<c:choose>
+										<c:when test="${his.status eq '상품 준비 중' }">
+											<div class="store_bought_list">
+												<br>
+												<table width="100%" height="120">
+													<tr>
+														<td align="left" colspan="3" style="font-size: 20px">${his.status }</td>
+													</tr>
+													<tr>
+														<td>
+															<div id="product_img_box">
+																<a id="store_review_img_area" href="#">
+																	<img id="bought_product_img" src="${his.url }" alt="판매완료상품이미지">
+																</a>
+															</div>
+														</td>
+														<td align="left" style="font-size: 15px">
+															<div style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${his.date }" /> 결제</div>
+															<div style="font-size: 18px">${his.product_name }</div>
+															<div>
+																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
+															</div>
+															<div style="font-size: 15px; margin-top:10px">
+																배송주소 : <span>${his.address2 }</span>
+															</div>
+														</td>
+														<td align="center">
+															<div>
+																<button id="btn_order_prepare_cancle">취소 요청</button>
+															</div>
+															<div>
+																<button id="btn_seller_ask">판매자 문의</button>
+															</div>
+														</td>
+													</tr>
+												</table>
+												<br><hr>
+											</div>
+										</c:when>
+										<c:when test="${his.status eq '상품 배송 중' }">
+											<div class="store_bought_list">
+												<br> 
+												<table width="100%" height="120">
+													<tr>
+														<td align="left" colspan="3" style="font-size: 20px">${his.status }</td>
+													</tr>
+													<tr>
+														<td>
+															<div id="product_img_box">
+																<a id="store_review_img_area" href="#"> 
+																	<img id="bought_product_img" src="${his.url }" alt="판매완료상품이미지">
+																</a>
+															</div>
+														</td>
+														<td align="left" style="font-size: 15px">
+															<div style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${his.date }" /> 결제</div>
+															<div style="font-size: 18px">${his.product_name }</div>
+															<div>
+																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
+															</div>
+															<div style="font-size: 15px; margin-top:10px">
+																배송주소 : <span>${his.address2 }</span>
+															</div></td>
+														<td align="center">
+															<div>
+																<button id="btn_order_shipping_cancle">취소 요청</button>
+															</div>
+															<div>
+																<button id="btn_store_bought_product">배송 조회</button>
+															</div>
+															<div>
+																<button id="btn_seller_ask">판매자 문의</button>
+															</div>
+														</td>
+													</tr>
+												</table>
+												<br><hr>
+											</div>
+										</c:when>
+										<c:when test="${his.status eq '상품 배송 완료' }">
+											<div class="store_bought_list">
+												<br> 
+												<table style="width: 100%; height: 120px;">
+													<tr>
+														<td align="left" style="font-size: 20px">${his.status }</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div id="product_img_box">
+																<a id="store_review_img_area" href="#">
+																	<img id="bought_product_img" src="${his.url }" alt="판매완료상품이미지">
+																</a>
+															</div>
+														</td>
+														<td align="left" style="font-size: 15px">
+															<div style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${his.date }" /> 결제</div>
+															<div style="font-size: 18px">${his.product_name }</div>
+															<div>
+																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
+															</div>
+															<div style="font-size: 15px; margin-top:10px">
+																배송주소 : <span>${his.address2 }</span>
+															</div>
+														</td>
+														<td align="center">
+															<div>
+																<button id="btn_store_bought_return_ask">반품 요청</button>
+															</div>
+															<div>
+																<button id="btn_store_bought_exchange_product">교환 요청</button>
+															</div>
+											
+															<div>
+																<button id="btn_store_bought_product">상품 리뷰 쓰기</button>
+															</div>
+															<div>
+																<button id="btn_seller_ask">판매자 문의</button>
+															</div>
+														</td>
+													</tr>
+												</table>
+												<br><hr>
+											</div>
+										</c:when>
+									</c:choose>
+								</c:forEach>
 								
 								
-								<div class="store_bought_list">
-									<br>
-									<table width="100%" height="120">
-										<tr>
-											<td align="left" style="font-size: 20px">상품 준비 중</td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td><a id="store_review_img_area" href="#">
-													<div id="product_img_box">
-														<img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
-													</div>
-											</a></td>
-											<td align="left" style="font-size: 15px">
-												<div style="font-size: 15px">06.22 결제</div>
-												<div style="font-size: 18px">Cambro 캠트레이 - 3가지 색상</div>
-												<div>
-													<span style="font-size: 18px">18,000</span>&nbsp;원
-												</div>
-												<div style="font-size: 15px; margin-top:10px">
-													배송주소 : <span>서울 특별시 묘동 단성사 4층 402호</span>
-												</div>
-											</td>
-											<td align="center">
-												<div>
-													<button id="btn_order_prepare_cancle">취소 요청</button>
-												</div>
-												<div>
-													<button id="btn_seller_ask">판매자 문의</button>
-												</div>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-									<br>
-								</div>
+								
 								
 												
 				
 							
 								
-								<div class="store_bought_list">
-									<br> <br>
-									<table width="100%" height="120">
-										<tr>
-											<td align="left" style="font-size: 20px">상품 배송 중</td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td>
-												<div id="product_img_box">
-													<a id="store_review_img_area" href="#"> <img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
-													</a>
-												</div>
-											</td>
-											<td align="left" style="font-size: 15px"><br> <br> <br>
-												<div style="font-size: 15px">06.22 결제</div>
-												<div style="font-size: 18px">Cambro 캠트레이 - 3가지 색상</div>
-												<div>
-													<span style="font-size: 18px">18,000</span>&nbsp;원
-												</div>
-												<div style="font-size: 15px; margin-top:10px">
-													배송주소 : <span>서울 특별시 묘동 단성사 4층 402호</span>
-												</div></td>
-											<td align="center">
-												<div>
-													<button id="btn_order_shipping_cancle">취소 요청</button>
-												</div>
-												<div>
-													<button id="btn_store_bought_product">배송 조회</button>
-												</div>
-												<div>
-													<button id="btn_seller_ask">판매자 문의</button>
-												</div>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
+								
 								
 								<!-- 스토어 상품 주문 취소요청 모달 -->				
 								<div id="police_modal3">
@@ -1681,51 +1633,7 @@ if (request.getAttribute("result") != null) {
 								
 								
 								
-								<div class="store_bought_list">
-									<br> <br> <br>
-									<table width="100%" height="120">
-										<tr>
-											<td align="left" style="font-size: 20px">상품 배송 완료</td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td><a id="store_review_img_area" href="#">
-													<div id="product_img_box">
-														<img id="bought_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
-													</div>
-											</a></td>
-											<td align="left" style="font-size: 15px">
-												<div style="font-size: 15px">06.22 결제</div>
-												<div style="font-size: 18px">Cambro 캠트레이 - 3가지 색상</div>
-												<div>
-													<span style="font-size: 18px">18,000</span>&nbsp;원
-												</div>
-												<div style="font-size: 15px; margin-top:10px">
-													배송주소 : <span>서울 특별시 묘동 단성사 4층 402호</span>
-												</div>
-											</td>
-											<td align="center">
-												<div>
-													<button id="btn_store_bought_return_ask">반품 요청</button>
-												</div>
-												<div>
-													<button id="btn_store_bought_exchange_product">교환 요청</button>
-												</div>
 								
-												<div>
-													<button id="btn_store_bought_product">상품 리뷰 쓰기</button>
-												</div>
-												<div>
-													<button id="btn_seller_ask">판매자 문의</button>
-												</div>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
-								<br>
 								
 								<!-- 스토어 상품 반품요청 모달 -->				
 								<div id="police_modal4">
@@ -1991,25 +1899,26 @@ if (request.getAttribute("result") != null) {
 						<br> <br>
 						<div class="heart_list_all">
 							<p>
-								<span><strong>중고거래 관심상품 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">28</span>
+								<span><strong>중고거래 관심상품 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(marketLike)}</span>
 							</p>
 							<div class="sell_list_grid">
+								<c:forEach var="mlike" items="${marketLike }">
 								<div class="sell_list">
 									<table width="100%" height="120">
 										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp; 2021.11.04</td>
+											<td align="left" style="font-size: 15px">&nbsp; <fmt:formatDate pattern="yyyy-MM-dd" value="${mlike.date }" /></td>
 											<td width="70%"></td>
 										</tr>
 										<tr>
 											<td rowspan="3"><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="sell_product_img" src="../img/wallet.jpg" alt="판매상품이미지">
+														<img id="sell_product_img" src="${mlike.url }" alt="판매상품이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 18px"><a href="#" style="color: #26e4ca">구찌 지갑</a></td>
+											<td style="font-size: 18px"><a href="marketBoard.do?seq=${mlike.market_seq }" style="color: #26e4ca">${mlike.product_name }</a></td>
 										</tr>
 										<tr>
-											<td style="font-size: 15px">170,000 &nbsp;원</td>
+											<td style="font-size: 15px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${mlike.product_price}" /> &nbsp;원</td>
 										</tr>
 										<tr>
 											<td>
@@ -2020,32 +1929,7 @@ if (request.getAttribute("result") != null) {
 									<br>
 									<hr>
 								</div>
-								<div class="sold_list">
-									<table width="100%" height="120">
-										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp; 2021.10.24</td>
-											<td width="70%"></td>
-										</tr>
-										<tr>
-											<td rowspan="3"><a id="store_review_img_area" href="#">
-													<div id="product_img_box">
-														<img id="sell_product_img" src="../img/hair_purfum.jpg" alt="판매완료상품이미지">
-													</div>
-											</a></td>
-											<td style="font-size: 18px"><a href="#" style="color: #26e4ca">디올 헤어 미스트</a></td>
-										</tr>
-										<tr>
-											<td style="font-size: 15px">30,000 &nbsp;원</td>
-										</tr>
-										<tr>
-											<td>
-												<button id="btn_heart_product" type="button" onclick="location.href='#' ">관심상품</button>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
+								</c:forEach>
 								<br>
 							</div>
 							<br> <br> <br>
@@ -2054,54 +1938,35 @@ if (request.getAttribute("result") != null) {
 						<br> <br>
 						<div class="heart_list_all">
 							<p>
-								<span><strong>민트스토어 관심상품 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">18</span>
+								<span><strong>민트스토어 관심상품 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(storeLike) }</span>
 							</p>
 							<div class="sell_list_grid">
-								<div class="sell_list">
-									<table width="100%" height="120">
-										<tr>
-											<td rowspan="3"><a id="store_review_img_area" href="#">
+								<c:forEach var="slike" items="${storeLike }">
+									<div class="sell_list">
+										<table width="100%" height="120">
+											<tr>
+												<td rowspan="3">
 													<div id="product_img_box">
-														<img id="sell_product_img" src="../img/store_recommand_product03.png" alt="판매상품이미지">
+														<a id="store_review_img_area" href="#">
+															<img id="sell_product_img" src="${slike.url }" alt="판매상품이미지">
+														</a>
 													</div>
-											</a></td>
-											<td style="font-size: 18px"><a href="#" style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a></td>
-										</tr>
-										<tr>
-											<td style="font-size: 15px">19,000 &nbsp;원</td>
-										</tr>
-										<tr>
-											<td>
-												<button id="btn_heart_product" type="button" onclick="location.href='#' ">관심상품</button>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
-								<div class="sell_list">
-									<table width="100%" height="120">
-										<tr>
-											<td rowspan="3"><a id="store_review_img_area" href="#">
-													<div id="product_img_box">
-														<img id="sell_product_img" src="../img/store_recommand_product03.png" alt="판매상품이미지">
-													</div>
-											</a></td>
-											<td style="font-size: 18px"><a href="#" style="color: #26e4ca">올인원 비건 샴푸볼 - 어성초 그린</a></td>
-										</tr>
-										<tr>
-											<td style="font-size: 15px">19,000 &nbsp;원</td>
-										</tr>
-										<tr>
-											<td>
-												<button id="btn_heart_product" type="button" onclick="location.href='#' ">관심상품</button>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
-								<br> <br> <br>
+												</td>
+												<td style="font-size: 18px"><a href="#" style="color: #26e4ca">${slike.product_name }</a></td>
+											</tr>
+											<tr>
+												<td style="font-size: 15px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${slike.product_price}" /> &nbsp;원</td>
+											</tr>
+											<tr>
+												<td>
+													<button id="btn_heart_product" type="button" onclick="location.href='#' ">관심상품</button>
+												</td>
+											</tr>
+										</table>
+										<br>
+										<hr>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 						<!--/col-9-->
