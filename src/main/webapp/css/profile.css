@@ -83,6 +83,9 @@ btn {
 .btn_modify_password {
 	margin-top: 10px;
 }
+.btn_quit{
+	margin-top: 10px;
+}
 
 .btn-primary {
 	background: #26e4ca;
@@ -696,7 +699,7 @@ table {
 	margin: 3px;
 }
 
-#btn_write_review {
+#btn_write_review, .btn_write_review {
 	border-radius: 5px;
 	border: solid lightgray 1px;
 	background: white;
@@ -706,7 +709,7 @@ table {
 	cursor: pointer;
 }
 
-#btn_see_review {
+#btn_see_review, .btn_see_review{
 	border-radius: 5px;
 	background: lightgray;
 	border: solid lightgray 1px;
@@ -781,7 +784,7 @@ table {
 	object-fit: cover;
 }
 
-#btn_store_bought_product {
+#btn_store_bought_product, .btn_store_bought_product, .btn_store_bought_product {
 	border-radius: 5px;
 	background: white;
 	border: solid lightgray 1px;
@@ -791,7 +794,7 @@ table {
 	height: 25px;
 	cursor: pointer;
 }
-#btn_order_cancle, #btn_order_prepare_cancle, #btn_order_shipping_cancle {
+#btn_order_cancle, .btn_order_cancle, #btn_order_prepare_cancle, #btn_order_shipping_cancle {
 	border-radius: 5px;
 	background: white;
 	border: solid lightgray 1px;
@@ -801,7 +804,7 @@ table {
 	height: 25px;
 	cursor: pointer;
 }
-#btn_seller_ask, #btn_store_bought_return_ask, #btn_store_bought_exchange_product {
+#btn_seller_ask, .btn_seller_ask, .btn_store_bought_return_ask, #btn_store_bought_return_ask, .btn_store_bought_exchange_product, #btn_store_bought_exchange_product {
 	border-radius: 5px;
 	background: white;
 	border: solid lightgray 1px;
@@ -833,7 +836,7 @@ table {
 	display: block;
 }
 
-#btn_community_update {
+#btn_community_update, .btn_community_update {
 	border-radius: 5px;
 	background: white;
 	border: solid lightgray 1px;
@@ -843,7 +846,7 @@ table {
 	cursor: pointer;
 }
 
-#btn_community_delete {
+#btn_community_delete, .btn_community_delete {
 	border-radius: 5px;
 	background: lightgray;
 	border: solid lightgray 1px;
@@ -872,7 +875,7 @@ table {
 	display: block;
 }
 
-#btn_community_comment_update {
+#btn_community_comment_update, .btn_community_comment_update{
 	border-radius: 5px;
 	background: white;
 	border: solid lightgray 1px;
@@ -882,7 +885,7 @@ table {
 	cursor: pointer;
 }
 
-#btn_community_comment_delete {
+#btn_community_comment_delete, .btn_community_comment_delete {
 	border-radius: 5px;
 	background: lightgray;
 	border: solid lightgray 1px;
@@ -946,7 +949,7 @@ table {
 	margin: 10px;
 }
 
-.modal_edit_btn {
+.modal_edit_btn, .modal_info_edit_btn {
 	border-radius: 5px;
 	width: 80px;
 	background: #26e4ca;
@@ -955,7 +958,16 @@ table {
 	cursor: pointer;
 }
 
-.modal_info_edit_btn, .modal_quit_btn, .modal_cancle_btn {
+.modal_quit_btn, .modal_cancle_btn {
+	border-radius: 5px;
+	width: 80px;
+	background: silver;
+	border-color: silver;
+	color: black;
+	cursor: pointer;
+}
+
+.modal_exchange_btn, .modal_refund_btn {
 	border-radius: 5px;
 	width: 80px;
 	background: silver;
@@ -1009,7 +1021,7 @@ margin:auto;
 }
 .close{
   position:absolute;
-  margin-top:10px;
+  margin-top:20px;
   margin-right:8px;
   right: 0;
   cursor:pointer;
@@ -1166,215 +1178,146 @@ ul, li {
 	-webkit-box-orient: vertical;
 }
 /*거래후기작성 모달*/
-#police_modal {
-	display: none;
-	width: 600px;
-	padding: 20px 60px;
-	background-color: #fefefe;
-	border: 1px solid #888;
-	border-radius: 3px;
-	text-align: left;
-	height: auto;
+#popup03{
+    display: none;
 }
-
-#police_modal .modal_close_btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
+#popup03{
+width: 600px;
+height: auto;
+top: 55%;
+left: 50%;
+background-color: #fff;
+z-index: 2;	
+position:fixed;
+transform: translate(-50%, -50%);
+margin:auto;
 }
-
-.police_category {
-	margin-bottom: 10px;
-}
-
-#modal_police_btn {
-	border-radius: 5px;
-	border: 1px solid #26e4ca;
-	background: #26e4ca;
-}
-
-.modal_cancle_btn {
-	border-radius: 5px;
-	border: 1px solid lightgray;
-	background: lightgray;
-}
-
-.police_click {
-	cursor: pointer;
+.close03{
+  position:absolute;
+  margin-top:0px;
+  margin-right:8px;
+  right: 0;
+  cursor:pointer;
+  color:gray;
 }
 /*판매 중을 판매완료로 변경 시 필요 모달*/
-.police_modal6 {
-	display: none;
-	width: 600px;
-	padding: 20px 60px;
-	background-color: #fefefe;
-	border: 1px solid #888;
-	border-radius: 3px;
-	text-align: left;
-	height: auto;
+#popup02{
+    display: none;
 }
-
-.police_modal6 .modal_close_btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
+#popup02{
+width: 600px;
+height: auto;
+top: 55%;
+left: 50%;
+background-color: #fff;
+z-index: 2;	
+position:fixed;
+transform: translate(-50%, -50%);
+margin:auto;
 }
-
-.police_category {
-	margin-bottom: 10px;
-}
-
-.modal_police_btn {
-	border-radius: 5px;
-	border: 1px solid #26e4ca;
-	background: #26e4ca;
-}
-
-.modal_cancle_btn {
-	border-radius: 5px;
-	border: 1px solid lightgray;
-	background: lightgray;
-}
-
-.police_click {
-	cursor: pointer;
+.close02{
+  position:absolute;
+  margin-top:0px;
+  margin-right:8px;
+  right: 0;
+  cursor:pointer;
+  color:gray;
 }
 /*작성후기보기 모달*/
-#police_modal2 {
-	display: none;
-	width: 600px;
-	padding: 20px 60px;
-	background-color: #fefefe;
-	border: 1px solid #888;
-	border-radius: 3px;
-	text-align: left;
-	height: auto;
+#popup04{
+    display: none;
 }
-
-#police_modal2 .modal_close_btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
+#popup04{
+width: 600px;
+height: auto;
+top: 55%;
+left: 50%;
+background-color: #fff;
+z-index: 2;	
+position:fixed;
+transform: translate(-50%, -50%);
+margin:auto;
 }
-
-.police_category {
-	margin-bottom: 10px;
-}
-
-#modal_police_btn {
-	border-radius: 5px;
-	border: 1px solid #26e4ca;
-	background: #26e4ca;
-}
-
-.modal_cancle_btn {
-	border-radius: 5px;
-	border: 1px solid lightgray;
-	background: lightgray;
-}
-
-.police_click {
-	cursor: pointer;
+.close04{
+  position:absolute;
+  margin-top:0px;
+  margin-right:8px;
+  right: 0;
+  cursor:pointer;
+  color:gray;
 }
 
 
 
 /*스토어상품 주문 취소 모달*/
-#police_modal3 {
-	display: none;
-	width: 600px;
-	padding: 20px 60px;
-	background-color: #fefefe;
-	border: 1px solid #888;
-	border-radius: 3px;
-	text-align: left;
-	height:auto;
+#popup05{
+    display: none;
 }
-#police_modal3 .modal_close_btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
+#popup05{
+width: 600px;
+height: auto;
+top: 55%;
+left: 50%;
+background-color: #fff;
+z-index: 2;	
+position:fixed;
+transform: translate(-50%, -50%);
+margin:auto;
 }
-.police_category{
-	margin-bottom:10px;
-}
-#modal_police_btn{
-	border-radius: 5px;
-	border:1px solid #26e4ca;
-	background:#26e4ca;
-}
-.modal_cancle_btn{
-	border-radius: 5px;
-	border:1px solid lightgray;
-	background:lightgray;
-}
-.police_click{
-	cursor:pointer;
+.close05{
+  position:absolute;
+  margin-top:0px;
+  margin-right:8px;
+  right: 0;
+  cursor:pointer;
+  color:gray;
 }
 
 /*스토어상품 반품 요청 모달*/
-#police_modal4 {
-	display: none;
-	width: 600px;
-	padding: 20px 60px;
-	background-color: #fefefe;
-	border: 1px solid #888;
-	border-radius: 3px;
-	text-align: left;
-	height:auto;
+#popup06{
+    display: none;
 }
-#police_modal4 .modal_close_btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
+#popup06{
+width: 600px;
+height: auto;
+top: 55%;
+left: 50%;
+background-color: #fff;
+z-index: 2;	
+position:fixed;
+transform: translate(-50%, -50%);
+margin:auto;
 }
-.police_category{
-	margin-bottom:10px;
-}
-#modal_police_btn{
-	border-radius: 5px;
-	border:1px solid #26e4ca;
-	background:#26e4ca;
-}
-.modal_cancle_btn{
-	border-radius: 5px;
-	border:1px solid lightgray;
-	background:lightgray;
-}
-.police_click{
-	cursor:pointer;
+.close06{
+  position:absolute;
+  margin-top:0px;
+  margin-right:8px;
+  right: 0;
+  cursor:pointer;
+  color:gray;
 }
 /*스토어상품 교환 요청 모달*/
-#police_modal5 {
-	display: none;
-	width: 600px;
-	padding: 20px 60px;
-	background-color: #fefefe;
-	border: 1px solid #888;
-	border-radius: 3px;
-	text-align: left;
-	height:auto;
+#popup07{
+    display: none;
 }
-#police_modal5 .modal_close_btn {
-	position: absolute;
-	top: 10px;
-	right: 10px;
+#popup07{
+width: 600px;
+height: auto;
+top: 55%;
+left: 50%;
+background-color: #fff;
+z-index: 2;	
+position:fixed;
+transform: translate(-50%, -50%);
+margin:auto;
 }
-.police_category{
-	margin-bottom:10px;
-}
-#modal_police_btn{
-	border-radius: 5px;
-	border:1px solid #26e4ca;
-	background:#26e4ca;
-}
-.modal_cancle_btn{
-	border-radius: 5px;
-	border:1px solid lightgray;
-	background:lightgray;
-}
-.police_click{
-	cursor:pointer;
+.close07{
+  position:absolute;
+  margin-top:0px;
+  margin-right:8px;
+  right: 0;
+  cursor:pointer;
+  color:gray;
 }
 
 
