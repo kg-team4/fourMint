@@ -81,9 +81,9 @@ if (request.getAttribute("result") != null) {
 					</span>
 				</div>
 				<br>
-				<ul class="list-group">
-					<li class="list-group-item text-muted">${user.nickname }&nbsp;&nbsp;</li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span> 열매</li>
+				<ul class="list-group" style="text-align:center">
+					<li class="list-group-item text-muted" style="font-size:23px">${user.nickname }&nbsp;&nbsp;</li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span> 민트 3단계</li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>팔로잉&nbsp;&nbsp;</strong></span> ${follow.following }</li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>팔로워&nbsp;&nbsp;</strong></span> ${follow.follower }</li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>상품판매횟수&nbsp;&nbsp;</strong></span> ${boardCount}</li>
@@ -114,14 +114,14 @@ if (request.getAttribute("result") != null) {
 											</tr>
 											<tr>
 												<td rowspan="3" height="90px">주소</td>
-												<td><input type="text" id="post_addr" placeholder="우편번호" style="width: 90px;">
+												<td><input type="text" style="width:220px" id="post_addr" placeholder="우편번호" style="width: 90px;">
 													<button onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
 											</tr>
 											<tr>
-												<td  height="30px"><input type="text" id="base_addr" placeholder="기본주소"></td>
+												<td  height="30px"><input style="width:280px" type="text" id="base_addr" placeholder="기본주소"></td>
 											</tr>
 											<tr>
-												<td  height="30px"><input type="text" id="detail_addr" placeholder="직접 입력해주세요"></td>
+												<td  height="30px"><input style="width:280px" type="text" id="detail_addr" placeholder="직접 입력해주세요"></td>
 											</tr>
 										</c:when>
 										<c:otherwise>
@@ -204,7 +204,7 @@ if (request.getAttribute("result") != null) {
 								<div style="text-align: center; margin-top: 10px">
 									<c:choose>
 										<c:when test="${empty sns }">
-											<button onclick="updateAddr();">정보수정</button>
+											<button class="modal_info_edit_btn" onclick="updateAddr();">정보수정</button>
 											<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 										</c:when>
 										<c:otherwise>
@@ -283,16 +283,17 @@ if (request.getAttribute("result") != null) {
 					  <div class="modal-dialog">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="staticBackdropLabel">탈퇴하기</h5>
+					        <div class="modal-title" id="staticBackdropLabel" style="font-size: 23px">❌&nbsp;탈퇴하기&nbsp;❌</div>
 					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					      </div>
 					      <form id="secessionForm" onsubmit="return false">
-					     	 <div class="modal-body">
-					        	<input id="cpw" type="password">
+					     	 <div class="modal-body" style="text-align:left">
+					     	 	<span style="margin-left:15px">비밀번호 입력 &emsp;</span>
+					        	<span><input style="width:230px" id="cpw" type="password"></span>
 					    	  </div>
 					     	 <div class="modal-footer">
-					       		 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-					       		 <button type="button" class="btn btn-primary" onclick="secession();">탈퇴하기</button>
+					       		 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="font-size:15px" >닫기</button>
+					       		 <button type="button" class="btn btn-primary" onclick="secession();" style="font-size:15px">탈퇴하기</button>
 					      	</div>
 					      </form>
 					    </div>
@@ -303,7 +304,7 @@ if (request.getAttribute("result") != null) {
 					  <div class="modal-dialog">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="staticBackdropLabel">탈퇴하기</h5>
+					        <div class="modal-title" id="staticBackdropLabel" style="font-size: 23px">❌&nbsp;탈퇴하기&nbsp;❌</div>
 					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					      </div>
 					      <form id="secessionForm" onsubmit="return false">
@@ -311,8 +312,8 @@ if (request.getAttribute("result") != null) {
 					        	탈퇴하시겠습니까?
 					    	  </div>
 					     	 <div class="modal-footer">
-					       		 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-					       		 <button type="button" class="btn btn-primary" onclick="sns_secession();">탈퇴하기</button>
+					       		 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="font-size:15px">닫기</button>
+					       		 <button type="button" class="btn btn-primary" onclick="sns_secession();" style="font-size:15px">탈퇴하기</button>
 					      	</div>
 					      </form>
 					    </div>
@@ -327,21 +328,21 @@ if (request.getAttribute("result") != null) {
 					
 					<c:choose>
 						<c:when test = "${empty sns }">
-						<button type="button" style="width: 135%; font-size: 15px"
+						<button type="button" style="width: 135%; font-size: 15px; box-shadow: none"
 							class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
-							id="popup_open_info">내 정보 수정하기</button>
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pwCheck">
-			 				 비밀번호수정
+							id="popup_open_info">주소 수정하기</button>
+						<button type="button" style="width: 135%; font-size: 15px; box-shadow: none" class="btn btn--blue-2 btn--radius-2 btn_modify_password" data-bs-toggle="modal" data-bs-target="#pwCheck">
+			 				 비밀번호 수정하기
 						</button>
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#secession">
+						<button type="button" style="width: 135%; font-size: 15px; box-shadow: none" class="btn btn--blue-2 btn--radius-2 btn_quit" data-bs-toggle="modal" data-bs-target="#secession">
 							 탈퇴하기
 						</button>
 						</c:when>
 						<c:otherwise>
-						<button type="button" style="width: 135%; font-size: 15px"
+						<button type="button" style="width: 135%; font-size: 15px; box-shadow: none"
 							class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
-							id="popup_open_info">내 정보 수정하기</button>
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sns_secession">
+							id="popup_open_info">주소 수정하기</button>
+						<button type="button" style="box-shadow: none" class="btn btn-primary btn--blue-2 btn--radius-2 btn_quit" data-bs-toggle="modal" data-bs-target="#sns_secession">
 							 탈퇴하기
 						</button>
 						</c:otherwise>
@@ -388,7 +389,7 @@ if (request.getAttribute("result") != null) {
 													</a>
 												</div>
 											</td>
-											<td style="font-size: 20px" width="10%" height="40px"><button id="reviewer_nick" style="color: #26e4ca; border:none; background:none;">닉네임</button></td>
+											<td style="font-size: 20px" width="10%" height="40px"><button class="reviewer_nick" style="color: #26e4ca; border:none; background:none;">닉네임</button></td>
 											<td width="30%">
 												<div class="">
 													<a class="" href="#"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png"
@@ -526,7 +527,7 @@ if (request.getAttribute("result") != null) {
 																				</a>
 																			</div>
 																		</td>
-																		<td style="font-size: 20px" width="10%" height="40px"><a href="#" style="color: #26e4ca">닉네임</a></td>
+																		<td style="font-size: 20px" width="10%" height="40px"><div  style="color: #26e4ca;">닉네임</div></td>
 																		<td width="30%">
 																			<div class="">
 																				<a class="" href="#"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png"
@@ -593,7 +594,7 @@ if (request.getAttribute("result") != null) {
 								<script>
 								/*상품 후기 작성자 및 팔로우 팔로워 프로필 모달*/
 								  $(document).ready(function( $ ){     
-								    $("#reviewer_nick").on("click", function(event) {  //팝업오픈 버튼 누르면
+								    $(".reviewer_nick").on("click", function(event) {  //팝업오픈 버튼 누르면
 								    $("#popup01").show();   //팝업 오픈
 								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
 								    });
@@ -630,7 +631,7 @@ if (request.getAttribute("result") != null) {
 														<img id="store_review_img" src="../img/character_sample1.jpg" alt="상점이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 20px" width="10%"><a href="#" style="color: #26e4ca">닉네임</a></td>
+											<td style="font-size: 20px" width="10%"><button class="reviewer_nick" style="color: #26e4ca; border:none; background:none;">닉네임</button></td>
 											<td width="30%"><a class="" href="#">
 													<div class="">
 														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14"
@@ -838,13 +839,12 @@ if (request.getAttribute("result") != null) {
 												<td><c:choose>
 														<c:when test="${market.status eq 1}">																											
 															<button class="btn_sell_product_state">판매중</button>
-																<!-- ******************판매 중을 판매완료로 변경 시 필요 모달 (위치 변경 필요) -->
-																<div id="police_modal6">
+																<div id="popup02">
 																	<div>
-																		<div style="font-size: 20px">📃&nbsp;판매완료로 변경하기&nbsp;📃</div>
+																		<div style="font-size: 20px; margin-left:30px; margin-top:20px">📃&nbsp;판매완료로 변경하기&nbsp;📃</div>
 																		<hr>
 																		<div>
-																			<div class="police_category" style="font-size:16px">
+																			<div class="police_category" style="font-size:16px; margin-left:30px">
 																				<div>
 																					<span style="color: #26e4ca; ">거래한 대상</span>과의 거래 확인
 																					<div>
@@ -855,96 +855,52 @@ if (request.getAttribute("result") != null) {
 																															
 																			</div>
 																			<div style="text-align: center">
-																				<button id="modal_police_btn" style="width: 90px; font-size: 15px">판매완료로 변경</button>
+																				<button class="modal_police_btn" style="width: 90px; font-size: 15px">판매완료로 변경</button>
 																				<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 																			</div>
+																			<br>
 																		</div>
 																	</div>
-																	<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
+																	<a style="cursor: pointer; color: gray" class="close02">X</a>
 																</div>
-																<script type="text/javascript">
-																	// 모달 만들기
-																	function modal(id) {
-																		var zIndex = 9999;
-																		var modal = document.getElementById(id);
+																<script>
+								/*판매중을 거래완료로 변경하는 모달 */
+								  $(document).ready(function( $ ){     
+								    $(".btn_sell_product_state").on("click", function(event) {  //팝업오픈 버튼 누르면
+								    $("#popup02").show();   //팝업 오픈
+								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+								    });
+								    
+								    $("body").on("click", function(event) { 
+								        if(event.target.className == 'close02' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_cancle_btn' ){
+								            $("#popup02").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+								              $(".backon").hide();
+								        }
+								      });
+								 
+								  });
+								 	
+								  
+								  /* 
+									$(".rating").change(
+											function() {
+												$("#modal_police_btn").attr(
+														"disabled", false);
+
+											});
 								
-																		// 모달 div 뒤에 희끄무레한 레이어
-																		var bg = document.createElement('div');
-																		bg.setStyle({
-																			position : 'fixed',
-																			zIndex : zIndex,
-																			left : '0px',
-																			top : '0px',
-																			width : '100%',
-																			height : '100%',
-																			overflow : 'auto',
-																			// 레이어 색갈은 여기서 바꾸면 됨
-																			backgroundColor : 'rgba(0,0,0,0.4)'
-																		});
-																		document.body.append(bg);
-								
-																		// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-																		
-																		modal
-																				.querySelector(
-																						'.modal_close_btn')
-																				.addEventListener(
-																						'click',
-																						function() {
-																							bg.remove();
-																							modal.style.display = 'none';
-																						});
-								
-																		modal
-																				.setStyle({
-																					position : 'fixed',
-																					display : 'block',
-																					boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-								
-																					// 시꺼먼 레이어 보다 한칸 위에 보이기
-																					zIndex : zIndex + 1,
-								
-																					// div center 정렬
-																					top : '50%',
-																					left : '50%',
-																					transform : 'translate(-50%, -50%)',
-																					msTransform : 'translate(-50%, -50%)',
-																					webkitTransform : 'translate(-50%, -50%)'
-																				});
-																	}
-																	// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-																	Element.prototype.setStyle = function(
-																			styles) {
-																		for ( var k in styles)
-																			this.style[k] = styles[k];
-																		return this;
-																	};
-								
-																	document.querySelector('.btn_sell_product_state')
-																			.addEventListener('click',
-																					function() {
-																						// 모달창 띄우기
-																						modal('police_modal6');
-																					});
-																	/* 
-																	$(".rating").change(
-																			function() {
-																				$("#modal_police_btn").attr(
-																						"disabled", false);
-								
-																			});
-																
-																$("#deal_completed_preson").change(									
-																	function() {
-																		if($("#deal_completed_preson").val().length==0 || $("#deal_completed_preson").val().length==""){	
-																				$("#mbtn_double_check").attr("disabled", true);
-																		}else{
-																			$("#mbtn_double_check").attr("disabled", false);
-																		}
-																); */
+								$("#deal_completed_preson").change(									
+									function() {
+										if($("#deal_completed_preson").val().length==0 || $("#deal_completed_preson").val().length==""){	
+												$("#mbtn_double_check").attr("disabled", true);
+										}else{
+											$("#mbtn_double_check").attr("disabled", false);
+										}
+								); */
+								 
+								</script>
 																	
 																	
-																</script>
 														</c:when>
 														<c:otherwise>
 															<button id="btn_sold_product_state">판매완료</button>
@@ -991,8 +947,8 @@ if (request.getAttribute("result") != null) {
 										</tr>
 										<tr>
 											<td>
-												<button id="btn_write_review" type="button">거래후기쓰기</button>
-												<button id="btn_see_review" type="button">작성후기보기</button>
+												<button class="btn_write_review" type="button">거래후기쓰기</button>
+												<button class="btn_see_review" type="button">작성후기보기</button>
 											</td>
 										</tr>
 									</table>
@@ -1003,16 +959,16 @@ if (request.getAttribute("result") != null) {
 								
 							
 								<!-- 거래후기 작성 모달 -->
-								<div id="police_modal">
+								<div id="popup03">
 									<div>
-										<div style="font-size: 20px">✍&nbsp;거래후기 작성하기&nbsp;✍</div>
+										<div style="font-size: 20px; margin-left:30px; margin-top:20px">✍&nbsp;거래후기 작성하기&nbsp;✍</div>
 										<hr>
 										<div>
 											<div class="police_category">
-												<div>
-													<span style="color: #26e4ca">거래(판매자)</span> 님과의 거래에 평점 남기기
+												<div style="margin-left:30px">
+													<span style="color: #26e4ca; ">거래(판매자)</span> 님과의 거래에 평점 남기기
 												</div>
-												<div class="rating">
+												<div class="rating" style="margin-left:30px">
 													<div class="startRadio">
 														<label class="startRadio__box"> 
 															<input type="radio" name="star" id="" checked> 
@@ -1089,90 +1045,35 @@ if (request.getAttribute("result") != null) {
 											</div>
 											<hr>
 											<br>
-											<div class="write_police_reason">
+											<div class="write_police_reason" style="margin-left:30px">
 												<textarea style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
 											</div>
 											<br>
-											<div style="text-align: center">
-												<button  id="modal_police_btn" style="width: 90px; font-size: 15px">후기 작성</button>
+											<div style="text-align: center; margin-bottom:20px">
+												<button  class="modal_police_btn" style="width: 90px; font-size: 15px">후기 작성</button>
 												<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 											</div>
 										</div>
 									</div>
-									<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
+									<a style="cursor: pointer; color: gray" class="close03">X</a>
 								</div>
 								<script type="text/javascript">
-									// 모달 만들기
-									function modal(id) {
-										var zIndex = 9999;
-										var modal = document.getElementById(id);
-
-										// 모달 div 뒤에 희끄무레한 레이어
-										var bg = document.createElement('div');
-										bg.setStyle({
-											position : 'fixed',
-											zIndex : zIndex,
-											left : '0px',
-											top : '0px',
-											width : '100%',
-											height : '100%',
-											overflow : 'auto',
-											// 레이어 색갈은 여기서 바꾸면 됨
-											backgroundColor : 'rgba(0,0,0,0.4)'
-										});
-										document.body.append(bg);
-
-										// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-										modal
-												.querySelector(
-														'.modal_cancle_btn')
-												.addEventListener(
-														'click',
-														function() {
-															bg.remove();
-															modal.style.display = 'none';
-														});
-										modal
-												.querySelector(
-														'.modal_close_btn')
-												.addEventListener(
-														'click',
-														function() {
-															bg.remove();
-															modal.style.display = 'none';
-														});
-
-										modal
-												.setStyle({
-													position : 'fixed',
-													display : 'block',
-													boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-
-													// 시꺼먼 레이어 보다 한칸 위에 보이기
-													zIndex : zIndex + 1,
-
-													// div center 정렬
-													top : '50%',
-													left : '50%',
-													transform : 'translate(-50%, -50%)',
-													msTransform : 'translate(-50%, -50%)',
-													webkitTransform : 'translate(-50%, -50%)'
-												});
-									}
-									// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-									Element.prototype.setStyle = function(
-											styles) {
-										for ( var k in styles)
-											this.style[k] = styles[k];
-										return this;
-									};
-
-									document.querySelector('#btn_write_review')
-											.addEventListener('click',
-													function() {
-														// 모달창 띄우기
-														modal('police_modal');
-													});
+								/*거래후기 작성 모달*/
+								  $(document).ready(function( $ ){     
+								    $(".btn_write_review").on("click", function(event) {  //팝업오픈 버튼 누르면
+								    $("#popup03").show();   //팝업 오픈
+								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+								    });
+								    
+								    $("body").on("click", function(event) { 
+								        if(event.target.className == 'close03' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_cancle_btn' ){
+								            $("#popup03").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+								              $(".backon").hide();
+								        }
+								      });
+								 
+								  });
+								
 									//평가점수버튼을 줘서 점수를 줬으면 버튼 활성화
 									$(".rating").change(
 											function() {
@@ -1182,102 +1083,7 @@ if (request.getAttribute("result") != null) {
 											});
 								</script>
 
-								
-
-								<!-- 작성한 거래 후기 보기 -->
-								<div id="police_modal2">
-									<div>
-										<div style="font-size: 20px">📃&nbsp;작성한 후기 보기&nbsp;📃</div>
-										<hr>
-										<div>
-											<div class="police_category">
-												<div>
-													<span style="color: #26e4ca">거래한 상품명</span>에 작성한 후기
-												</div>												
-											</div>
-
-											<div class="write_police_reason" style="border:1px solid lightgray; padding:2px">
-												<pre>
-와 정말 친절한 거래 감사드려요!!! 다음에 기회가 된다면 꼭 다시 거래하고 싶어요!! 와 정말 친절한 거래 감사드려요!!! 다음에 기회가 된다면 꼭 다시 거래하고 싶어요!! 와 정말 친절한 거래 감사드려요!!! 
-										다음에 기회가 된다면 꼭 다시 거래하고 싶어요!!와 정말 친절한 거래 감사드려요!!! 다음에 기회가 된다면 꼭 다시 거래하고 싶어요!												
-												</pre>
-											</div>
-											<br>
-											<div style="text-align: center">
-												<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">확인</button>
-											</div>
-										</div>
-									</div>
-									<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
-								</div>
-								<script type="text/javascript">
-									// 모달 만들기
-									function modal(id) {
-										var zIndex = 9999;
-										var modal = document.getElementById(id);
-
-										// 모달 div 뒤에 희끄무레한 레이어
-										var bg = document.createElement('div');
-										bg.setStyle({
-											position : 'fixed',
-											zIndex : zIndex,
-											left : '0px',
-											top : '0px',
-											width : '100%',
-											height : '100%',
-											overflow : 'auto',
-											// 레이어 색갈은 여기서 바꾸면 됨
-											backgroundColor : 'rgba(0,0,0,0.4)'
-										});
-										document.body.append(bg);
-
-										// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-										
-										modal
-												.querySelector(
-														'.modal_close_btn')
-												.addEventListener(
-														'click',
-														function() {
-															bg.remove();
-															modal.style.display = 'none';
-														});
-
-										modal
-												.setStyle({
-													position : 'fixed',
-													display : 'block',
-													boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-
-													// 시꺼먼 레이어 보다 한칸 위에 보이기
-													zIndex : zIndex + 1,
-
-													// div center 정렬
-													top : '50%',
-													left : '50%',
-													transform : 'translate(-50%, -50%)',
-													msTransform : 'translate(-50%, -50%)',
-													webkitTransform : 'translate(-50%, -50%)'
-												});
-									}
-									// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-									Element.prototype.setStyle = function(
-											styles) {
-										for ( var k in styles)
-											this.style[k] = styles[k];
-										return this;
-									};
-
-									document.querySelector('#btn_see_review')
-											.addEventListener('click',
-													function() {
-														// 모달창 띄우기
-														modal('police_modal2');
-													});
-									
-								</script>
-								
-														
+																					
 								<div class="sold_list">
 									<table width="100%" height="120">
 										<tr height="30">
@@ -1297,7 +1103,7 @@ if (request.getAttribute("result") != null) {
 										</tr>
 										<tr>
 											<td>
-												<button id="btn_see_review" button type="button" onclick="location.href='#' ">작성후기보기</button>
+												<button class="btn_see_review" type="button">작성후기보기</button>
 											</td>
 										</tr>
 									</table>
@@ -1306,6 +1112,52 @@ if (request.getAttribute("result") != null) {
 								</div>
 								<br>
 							</div>
+							<!-- 작성한 거래 후기 보기 -->
+								<div id="popup04">
+									<div>
+										<div style="font-size: 20px; margin-left:30px; margin-top:20px">📃&nbsp;작성한 후기 보기&nbsp;📃</div>
+										<hr>
+										<div>
+											<div class="police_category">
+												<div style="margin-left:30px">
+													<span style="color: #26e4ca">거래한 상품명</span>에 작성한 후기
+												</div>												
+											</div>
+
+											<div class="write_police_reason" style="border:1px solid lightgray; margin-left:30px; padding:2px">
+												<pre>
+와 정말 친절한 거래 감사드려요!!! 다음에 기회가 된다면 꼭 다시 거래하고 싶어요!! 와 정말 친절한 거래 감사드려요!!! 다음에 기회가 된다면 꼭 다시 거래하고 싶어요!! 와 정말 친절한 거래 감사드려요!!! 
+										다음에 기회가 된다면 꼭 다시 거래하고 싶어요!!와 정말 친절한 거래 감사드려요!!! 다음에 기회가 된다면 꼭 다시 거래하고 싶어요!												
+												</pre>
+											</div>
+											<br>
+											<div style="text-align: center; margin-bottom:20px">
+												<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">확인</button>
+												<button class="modal_police_btn" style="width: 90px; font-size: 15px">취소</button>
+											</div>
+										</div>
+									</div>
+									<a style="cursor: pointer; color: gray" class="close04">X</a>
+								</div>
+							
+							<script type="text/javascript">
+								/* 작성한 거래후기 보기 모달*/
+								  $(document).ready(function( $ ){     
+								    $(".btn_see_review").on("click", function(event) {  //팝업오픈 버튼 누르면
+								    $("#popup04").show();   //팝업 오픈
+								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+								    });
+								    
+								    $("body").on("click", function(event) { 
+								        if(event.target.className == 'close04' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_cancle_btn' ){
+								            $("#popup04").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+								              $(".backon").hide();
+								        }
+								      });
+								 
+								  });
+								
+							</script>
 						</div>
 					</div>
 					<!-- 나의커뮤니티 -->
@@ -1348,8 +1200,8 @@ if (request.getAttribute("result") != null) {
 													<div>조회수 ${community.views }</div>
 													<div>답변 ${community.comments }</div></td>
 												<td width="15%" align="center">
-													<button id="btn_community_update">글 수정</button>
-													<button id="btn_community_delete">글 삭제</button>
+													<button class="btn_community_update">글 수정</button>
+													<button class="btn_community_delete">글 삭제</button>
 												</td>
 											</tr>
 										</table>
@@ -1379,8 +1231,8 @@ if (request.getAttribute("result") != null) {
 												</div>
 											</td>
 											<td width="20%" align="center">
-												<button id="btn_community_comment_update">댓글 수정</button>
-												<button id="btn_community_comment_delete">댓글 삭제</button>
+												<button class="btn_community_comment_update">댓글 수정</button>
+												<button class="btn_community_comment_delete">댓글 삭제</button>
 											</td>
 										</tr>
 									</table>
@@ -1398,8 +1250,8 @@ if (request.getAttribute("result") != null) {
 												</div>
 											</td>
 											<td width="20%" align="center">
-												<button id="btn_community_comment_update">댓글 수정</button>
-												<button id="btn_community_comment_delete">댓글 삭제</button>
+												<button class="btn_community_comment_update">댓글 수정</button>
+												<button class="btn_community_comment_delete">댓글 삭제</button>
 											</td>
 										</tr>
 									</table>
@@ -1439,15 +1291,15 @@ if (request.getAttribute("result") != null) {
 												</div>
 												<div style="font-size: 15px; margin-top:10px">
 													
-													배송주소 : <span>서울 특별시 묘동 단성사 4층 402호</span>
+													 🚛&nbsp;<span>서울 특별시 묘동 단성사 4층 402호</span>&nbsp;🚛
 												</div>
 											</td>
 											<td align="center">
 												<div>
-													<button id="btn_order_cancle">취소 요청</button>
+													<button class="btn_order_cancle">취소 요청</button>
 												</div>											
 												<div>
-													<button id="btn_seller_ask">판매자 문의</button>
+													<button class="btn_seller_ask">판매자 문의</button>
 												</div>
 											</td>
 										</tr>
@@ -1479,15 +1331,15 @@ if (request.getAttribute("result") != null) {
 													<span style="font-size: 18px">18,000</span>&nbsp;원
 												</div>
 												<div style="font-size: 15px; margin-top:10px">
-													배송주소 : <span>서울 특별시 묘동 단성사 4층 402호</span>
+													 🚛&nbsp;<span>서울 특별시 묘동 단성사 4층 402호</span>&nbsp;🚛
 												</div>
 											</td>
 											<td align="center">
 												<div>
-													<button id="btn_order_prepare_cancle">취소 요청</button>
+													<button class="btn_order_cancle">취소 요청</button>
 												</div>
 												<div>
-													<button id="btn_seller_ask">판매자 문의</button>
+													<button class="btn_seller_ask">판매자 문의</button>
 												</div>
 											</td>
 										</tr>
@@ -1523,17 +1375,17 @@ if (request.getAttribute("result") != null) {
 													<span style="font-size: 18px">18,000</span>&nbsp;원
 												</div>
 												<div style="font-size: 15px; margin-top:10px">
-													배송주소 : <span>서울 특별시 묘동 단성사 4층 402호</span>
+													 🚛&nbsp;<span>서울 특별시 묘동 단성사 4층 402호</span>&nbsp;🚛
 												</div></td>
 											<td align="center">
 												<div>
-													<button id="btn_order_shipping_cancle">취소 요청</button>
+													<button class="btn_order_cancle">취소 요청</button>
 												</div>
 												<div>
-													<button id="btn_store_bought_product">배송 조회</button>
+													<button class="btn_store_bought_product">배송 조회</button>
 												</div>
 												<div>
-													<button id="btn_seller_ask">판매자 문의</button>
+													<button class="btn_seller_ask">판매자 문의</button>
 												</div>
 											</td>
 										</tr>
@@ -1543,18 +1395,18 @@ if (request.getAttribute("result") != null) {
 								</div>
 								
 								<!-- 스토어 상품 주문 취소요청 모달 -->				
-								<div id="police_modal3">
+								<div id="popup05">
 									<div>
-										<div style="font-size: 20px"> ❌&nbsp;상품 주문 취소하기&nbsp;❌ </div>
+										<div style="font-size: 20px; margin-left:30px; margin-top:20px"> ❌&nbsp;상품 주문 취소하기&nbsp;❌ </div>
 										<hr>
 										<div>
-											<div class="police_category">
+											<div class="police_category" style="margin-left:30px">
 												<div style="font-size:18px">
 													<span style="color: #26e4ca;">주문한 상품명</span> 상품 취소
 												</div>
 												<div class="police_category">
 													<span style="padding-right: 10px">취소사유</span>
-													<select id="order_cancle_reason" name="cancle_reason">
+													<select class="order_cancle_reason" name="cancle_reason">
 														<option value="">취소 사유 선택</option>
 														<option value="품절">상품 품절 </option>
 														<option value="배송지연">배송 지연</option>
@@ -1567,109 +1419,40 @@ if (request.getAttribute("result") != null) {
 											</div>
 											<hr>
 											<br>
-											<div class="write_police_reason">
+											<div class="write_police_reason" style="margin-left:30px">
 												<textarea style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
 											</div>
 											
-											<div style="font-size:14px; color:gray">※ 취소 완료 시 결제했던 수단으로 환불됩니다.</div>
+											<div style="font-size:14px; color:gray; margin-left:30px">※ 취소 완료 시 결제했던 수단으로 환불됩니다.</div>
 											<br>
 											<div style="text-align: center">								
 												<button class="modal_cancle_btn" disabled style="width: 90px; font-size: 15px">취소신청</button>
 											</div>
-										
+											<br>
 										</div>
 									</div>
-									<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
+									<a style="cursor: pointer; color: gray" class="close05">X</a>
 								</div>
 								<script type="text/javascript">
-									// 모달 만들기
-									function modal(id) {
-										var zIndex = 9999;
-										var modal = document.getElementById(id);
-
-										// 모달 div 뒤에 희끄무레한 레이어
-										var bg = document.createElement('div');
-										bg.setStyle({
-											position : 'fixed',
-											zIndex : zIndex,
-											left : '0px',
-											top : '0px',
-											width : '100%',
-											height : '100%',
-											overflow : 'auto',
-											// 레이어 색갈은 여기서 바꾸면 됨
-											backgroundColor : 'rgba(0,0,0,0.4)'
-										});
-										document.body.append(bg);
-
-										// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-										modal
-												.querySelector(
-														'.modal_cancle_btn')
-												.addEventListener(
-														'click',
-														function() {
-															bg.remove();
-															modal.style.display = 'none';
-														});
-										modal
-												.querySelector(
-														'.modal_close_btn')
-												.addEventListener(
-														'click',
-														function() {
-															bg.remove();
-															modal.style.display = 'none';
-														});
-
-										modal
-												.setStyle({
-													position : 'fixed',
-													display : 'block',
-													boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-
-													// 시꺼먼 레이어 보다 한칸 위에 보이기
-													zIndex : zIndex + 1,
-
-													// div center 정렬
-													top : '50%',
-													left : '50%',
-													transform : 'translate(-50%, -50%)',
-													msTransform : 'translate(-50%, -50%)',
-													webkitTransform : 'translate(-50%, -50%)'
-												});
-									}
-									// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-									Element.prototype.setStyle = function(
-											styles) {
-										for ( var k in styles)
-											this.style[k] = styles[k];
-										return this;
-									};
-
-									document.querySelector('#btn_order_cancle')
-											.addEventListener('click',
-													function() {
-														// 모달창 띄우기
-														modal('police_modal3');
-													});
-									
+								/* 스토어 상품 주문 취소 모달*/
+								  $(document).ready(function( $ ){     
+								    $(".btn_order_cancle").on("click", function(event) {  //팝업오픈 버튼 누르면
+								    $("#popup05").show();   //팝업 오픈
+								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+								    });
+								    
+								    $("body").on("click", function(event) { 
+								        if(event.target.className == 'close05' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_cancle_btn' ){
+								            $("#popup05").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+								              $(".backon").hide();
+								        }
+								      });
+								 
+								  });
 								
-									document.querySelector('#btn_order_prepare_cancle')
-									.addEventListener('click',
-											function() {
-												// 모달창 띄우기
-												modal('police_modal3');
-											});
-									document.querySelector('#btn_order_shipping_cancle')
-									.addEventListener('click',
-											function() {
-												// 모달창 띄우기
-												modal('police_modal3');
-											});
-									//신고하기 select box 선택 사유가 없을 경우 버튼 비활성화
-								 	$("#order_cancle_reason").change(function(){
-										if($("#order_cancle_reason").val() == ''){
+									//취소사유 select box 선택 사유가 없을 경우 버튼 비활성화
+								 	$(".order_cancle_reason").change(function(){
+										if($(".order_cancle_reason").val() == ''){
 											$(".modal_cancle_btn").attr("disabled",true);
 														
 										}else{
@@ -1702,23 +1485,24 @@ if (request.getAttribute("result") != null) {
 													<span style="font-size: 18px">18,000</span>&nbsp;원
 												</div>
 												<div style="font-size: 15px; margin-top:10px">
-													배송주소 : <span>서울 특별시 묘동 단성사 4층 402호</span>
+													 🚛&nbsp;<span>서울 특별시 묘동 단성사 4층 402호</span>&nbsp;🚛
 												</div>
 											</td>
 											<td align="center">
 												<div>
-													<button id="btn_store_bought_return_ask">반품 요청</button>
+													<button class="btn_store_bought_return_ask">반품 요청</button>
 												</div>
 												<div>
-													<button id="btn_store_bought_exchange_product">교환 요청</button>
+													<button class="btn_store_bought_exchange_product">교환 요청</button>
 												</div>
 								
 												<div>
-													<button id="btn_store_bought_product">상품 리뷰 쓰기</button>
+													<button class="btn_store_bought_product">상품 리뷰 쓰기</button>
 												</div>
 												<div>
-													<button id="btn_seller_ask">판매자 문의</button>
+													<button class="btn_seller_ask">판매자 문의</button>
 												</div>
+
 											</td>
 										</tr>
 									</table>
@@ -1728,18 +1512,18 @@ if (request.getAttribute("result") != null) {
 								<br>
 								
 								<!-- 스토어 상품 반품요청 모달 -->				
-								<div id="police_modal4">
+								<div id="popup06">
 									<div>
-										<div style="font-size: 20px">   🔀&nbsp;주문한 상품 반품하기&nbsp;🔀 </div>
+										<div style="font-size: 20px; margin-left:30px; margin-top:20px">   🔀&nbsp;주문한 상품 반품하기&nbsp;🔀 </div>
 										<hr>
 										<div>
-											<div class="police_category">
-												<div style="font-size:18px">
+											<div class="police_category" style="margin-left:30px">
+												<div style="font-size:18px; ">
 													<span style="color: #26e4ca;">주문한 상품명</span> 상품 반품
 												</div>
 												<div class="police_category">
 													<span style="padding-right: 10px">반품사유</span>
-													<select id="order_cancle_reason" name="cancle_reason">
+													<select class="order_refund_reason" name="cancle_reason">
 														<option value="">반품 사유 선택</option>
 														<option value="배송누락">배송 누락</option>
 														<option value="배송지연">배송 지연</option>
@@ -1755,119 +1539,62 @@ if (request.getAttribute("result") != null) {
 											</div>
 											<hr>
 											<br>
-											<div class="write_police_reason">
+											<div class="write_police_reason" style="margin-left:30px">
 												<textarea style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
 											</div>
 											
-											<div style="font-size:14px; color:gray">※ 반품 요청 시 등록한 주소로 담당 택배사 직원이 3~4일 이내로 수거 예정입니다.</div>
-											<div style="font-size:14px; color:gray">※ 단순변심으로 인한 교환/반품의 경우 왕복 배송비 5,000원은 고객측 부담입니다.</div>
+											<div style="font-size:14px; color:gray; margin-left:30px">※ 반품 요청 시 등록한 주소로 담당 택배사 직원이 3~4일 이내로 수거 예정입니다.</div>
+											<div style="font-size:14px; color:gray; margin-left:30px">※ 단순변심으로 인한 교환/반품의 경우 왕복 배송비 5,000원은 고객측 부담입니다.</div>
 											<br>
 											<div style="text-align: center">								
-												<button class="modal_cancle_btn" disabled style="width: 90px; font-size: 15px">반품신청</button>
+												<button class="modal_refund_btn" disabled style="width: 90px; font-size: 15px">반품신청</button>
 											</div>
-										
+											<br>
 										</div>
 									</div>
-									<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
+									<a style="cursor: pointer; color: gray" class="close06">X</a>
 								</div>
 								<script type="text/javascript">
-									// 모달 만들기
-									function modal(id) {
-										var zIndex = 9999;
-										var modal = document.getElementById(id);
-
-										// 모달 div 뒤에 희끄무레한 레이어
-										var bg = document.createElement('div');
-										bg.setStyle({
-											position : 'fixed',
-											zIndex : zIndex,
-											left : '0px',
-											top : '0px',
-											width : '100%',
-											height : '100%',
-											overflow : 'auto',
-											// 레이어 색갈은 여기서 바꾸면 됨
-											backgroundColor : 'rgba(0,0,0,0.4)'
-										});
-										document.body.append(bg);
-
-										// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-										modal
-												.querySelector(
-														'.modal_cancle_btn')
-												.addEventListener(
-														'click',
-														function() {
-															bg.remove();
-															modal.style.display = 'none';
-														});
-										modal
-												.querySelector(
-														'.modal_close_btn')
-												.addEventListener(
-														'click',
-														function() {
-															bg.remove();
-															modal.style.display = 'none';
-														});
-
-										modal
-												.setStyle({
-													position : 'fixed',
-													display : 'block',
-													boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-
-													// 시꺼먼 레이어 보다 한칸 위에 보이기
-													zIndex : zIndex + 1,
-
-													// div center 정렬
-													top : '50%',
-													left : '50%',
-													transform : 'translate(-50%, -50%)',
-													msTransform : 'translate(-50%, -50%)',
-													webkitTransform : 'translate(-50%, -50%)'
-												});
-									}
-									// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-									Element.prototype.setStyle = function(
-											styles) {
-										for ( var k in styles)
-											this.style[k] = styles[k];
-										return this;
-									};
-
-									document.querySelector('#btn_store_bought_return_ask')
-											.addEventListener('click',
-													function() {
-														// 모달창 띄우기
-														modal('police_modal4');
-													});
-									
+								/* 스토어 상품 주문 반품요청 모달*/
+								  $(document).ready(function( $ ){     
+								    $(".btn_store_bought_return_ask").on("click", function(event) {  //팝업오픈 버튼 누르면
+								    $("#popup06").show();   //팝업 오픈
+								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+								    });
+								    
+								    $("body").on("click", function(event) { 
+								        if(event.target.className == 'close06' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_refund_btn' ){
+								            $("#popup06").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+								              $(".backon").hide();
+								        }
+								      });
+								 
+								  });
 								
-									//신고하기 select box 선택 사유가 없을 경우 버튼 비활성화
-								 	$("#order_cancle_reason").change(function(){
-										if($("#order_cancle_reason").val() == ''){
-											$(".modal_cancle_btn").attr("disabled",true);
+									//반품사유 select box 선택 사유가 없을 경우 버튼 비활성화
+								 	$(".order_refund_reason").change(function(){
+										if($(".order_refund_reason").val() == ''){
+											$(".modal_refund_btn").attr("disabled",true);
 														
 										}else{
-											$(".modal_cancle_btn").attr("disabled",false);
+											$(".modal_refund_btn").attr("disabled",false);
 										}
 									});
 								</script>
 								
 								<!-- 스토어 상품 교환요청 모달  -->		
-								<div id="police_modal5">
+								<div id="popup07">
 									<div>
-										<div style="font-size: 20px">   🔁&nbsp;주문한 상품 교환하기&nbsp;🔁 </div>
+										<div style="font-size: 20px; margin-left:30px; margin-top:20px">   🔁&nbsp;주문한 상품 교환하기&nbsp;🔁 </div>
 										<hr>
 										<div>
-											<div class="police_category">
+											<div class="police_category" style="margin-left:30px">
 												<div style="font-size:18px">
 													<span style="color: #26e4ca;">주문한 상품명</span> 상품 교환
 												</div>
 												<div class="police_category">
 													<span style="padding-right: 10px">교환사유</span>
-													<select id="order_cancle_reason" name="cancle_reason">
+													<select class="order_exchange_reason" name="cancle_reason">
 														<option value="">교환 사유 선택</option>
 														<option value="배송누락">배송 누락</option>
 														<option value="배송지연">배송 지연</option>
@@ -1883,102 +1610,46 @@ if (request.getAttribute("result") != null) {
 											</div>
 											<hr>
 											<br>
-											<div class="write_police_reason">
+											<div class="write_police_reason" style="margin-left:30px">
 												<textarea style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
 											</div>
 											
-											<div style="font-size:14px; color:gray">※ 교환요청 시 등록한 주소로 담당 택배사 직원이 3~4일 이내로 수거 예정입니다.</div>
-											<div style="font-size:14px; color:gray">※ 단순변심으로 인한 교환/반품의 경우 왕복 배송비 5,000원은 고객측 부담입니다.</div>
+											<div style="font-size:14px; color:gray; margin-left:30px">※ 교환요청 시 등록한 주소로 담당 택배사 직원이 3~4일 이내로 수거 예정입니다.</div>
+											<div style="font-size:14px; color:gray; margin-left:30px">※ 단순변심으로 인한 교환/반품의 경우 왕복 배송비 5,000원은 고객측 부담입니다.</div>
 											<br>
 											<div style="text-align: center">								
-												<button class="modal_cancle_btn" disabled style="width: 90px; font-size: 15px">교환신청</button>
+												<button class="modal_exchange_btn" disabled style="width: 90px; font-size: 15px">교환신청</button>
 											</div>
-										
+											<br> 
 										</div>
+										
 									</div>
-									<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
+									<a style="cursor: pointer; color: gray" class="close07">X</a>
 								</div>
 								<script type="text/javascript">
-									// 모달 만들기
-									function modal(id) {
-										var zIndex = 9999;
-										var modal = document.getElementById(id);
+								/* 스토어 상품 주문 교환요청 모달*/
+								  $(document).ready(function( $ ){     
+								    $(".btn_store_bought_exchange_product").on("click", function(event) {  //팝업오픈 버튼 누르면
+								    $("#popup07").show();   //팝업 오픈
+								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+								    });
+								    
+								    $("body").on("click", function(event) { 
+								        if(event.target.className == 'close07' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_exchange_btn' ){
+								            $("#popup07").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+								              $(".backon").hide();
+								        }
+								      });
 
-										// 모달 div 뒤에 희끄무레한 레이어
-										var bg = document.createElement('div');
-										bg.setStyle({
-											position : 'fixed',
-											zIndex : zIndex,
-											left : '0px',
-											top : '0px',
-											width : '100%',
-											height : '100%',
-											overflow : 'auto',
-											// 레이어 색갈은 여기서 바꾸면 됨
-											backgroundColor : 'rgba(0,0,0,0.4)'
-										});
-										document.body.append(bg);
-
-										// 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-										modal
-												.querySelector(
-														'.modal_cancle_btn')
-												.addEventListener(
-														'click',
-														function() {
-															bg.remove();
-															modal.style.display = 'none';
-														});
-										modal
-												.querySelector(
-														'.modal_close_btn')
-												.addEventListener(
-														'click',
-														function() {
-															bg.remove();
-															modal.style.display = 'none';
-														});
-
-										modal
-												.setStyle({
-													position : 'fixed',
-													display : 'block',
-													boxShadow : '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-
-													// 시꺼먼 레이어 보다 한칸 위에 보이기
-													zIndex : zIndex + 1,
-
-													// div center 정렬
-													top : '50%',
-													left : '50%',
-													transform : 'translate(-50%, -50%)',
-													msTransform : 'translate(-50%, -50%)',
-													webkitTransform : 'translate(-50%, -50%)'
-												});
-									}
-									// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
-									Element.prototype.setStyle = function(
-											styles) {
-										for ( var k in styles)
-											this.style[k] = styles[k];
-										return this;
-									};
-
-									document.querySelector('#btn_store_bought_exchange_product')
-											.addEventListener('click',
-													function() {
-														// 모달창 띄우기
-														modal('police_modal5');
-													});
-									
+								  });
 								
-									//신고하기 select box 선택 사유가 없을 경우 버튼 비활성화
-								 	$("#order_cancle_reason").change(function(){
-										if($("#order_cancle_reason").val() == ''){
-											$(".modal_cancle_btn").attr("disabled",true);
+									//교환사유 select box 선택 사유가 없을 경우 버튼 비활성화
+								 	$(".order_exchange_reason").change(function(){
+										if($(".order_exchange_reason").val() == ''){
+											$(".modal_exchange_btn").attr("disabled",true);
 														
 										}else{
-											$(".modal_cancle_btn").attr("disabled",false);
+											$(".modal_exchange_btn").attr("disabled",false);
 										}
 									});
 								</script>
