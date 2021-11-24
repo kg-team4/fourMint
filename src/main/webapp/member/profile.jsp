@@ -426,6 +426,9 @@
 									<hr>
 								</div>
 								<br> <br> <br>
+								
+								
+								
 								<!-- 이름을 눌렀을 때 프로필 모달창 띄우기 --> 
 									<div id="popup01">
 									    <div class="close">X</div>
@@ -637,19 +640,27 @@
 								<div class="store_review">
 									<table width="100%" height="120">
 										<tr height="30">
-											<td width="20%" rowspan="2"><a id="store_review_img_area" href="#">
+											<td width="20%" rowspan="2">
+												<a id="store_review_img_area" href="#">
 													<div id="img_box">
 														<img id="store_review_img" src="../img/character_sample1.jpg" alt="상점이미지">
 													</div>
-											</a></td>
-											<td style="font-size: 20px" width="10%"><button class="reviewer_nick" style="color: #26e4ca; border:none; background:none;">닉네임</button></td>
-											<td width="30%"><a class="" href="#">
+												</a>
+											</td>
+											<td style="font-size: 20px" width="10%">
+												<button class="reviewer_nick" style="color: #26e4ca; border:none; background:none;">닉네임</button>
+											</td>
+											<td width="30%">
+												<a class="" href="#">
 													<div class="">
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14"
-															alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
 													</div>
-											</a></td>
-											<td></td>
+												</a>
+											</td>
 											<td style="font-size: 15px" width="10%">
 												<div id="date">1달 전</div>
 											</td>
@@ -680,28 +691,36 @@
 									<c:forEach var="followings" items="${following }">
 										<div class="following">
 											<div id="following_img_box">
-												<a class="following_img_area" style="cursor:pointer" > 
+												<a class="following_img_area" style="cursor: pointer" > 
 													<img id="following_img" src="${followings.profile }" alt="상점이미지">
 												</a>
 											</div>
-											<div class="store_review_text_area" style="cursor:pointer">
+											<input type="hidden" value="${followings.nickname }"/>
+											<div class="store_review_text_area" style="cursor: pointer">
 												<div class="">
-													<a class="following_nick_name"style="color: #26e4ca">${followings.nickname }</a>
+													<a class="following_nick_name" style="color: #26e4ca">${followings.nickname }</a>
 												</div>
 												<div>
-													<span class="">상품</span> <span><a class="" href=# style="color: #26e4ca">${followings.content }</a> | </span> <span class="">팔로워</span> <span><a class="" href="#" style="color: #26e4ca">${followings.following }</a></span>
+													<span class="">상품</span> 
+													<span>
+														<a class="" href=# style="color: #26e4ca">${followings.content }</a> | 
+													</span> 
+													<span class="">팔로워</span> 
+													<span>
+														<a class="" href="#" style="color: #26e4ca">${followings.following }</a>
+													</span>
 												</div>
 											</div>
-											<a class="" href="#">
-												<div class="">
-													<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14"
-														alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												</div>
-											</a> <a class="" href="#">
-												<button id="btn_sold_product_name">
-													&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
-												</button>
-											</a>
+											<div class="">
+												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+											</div>
+											<button id="btn_sold_product_name">
+												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+											</button>
 										</div>
 									</c:forEach>
 								</div>
@@ -711,8 +730,10 @@
 								/*상품 후기 작성자 및 팔로우 팔로워 프로필 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".following_img_area").on("click", function(event) {  //팝업오픈 버튼 누르면
-								    $("#popup01").show();   //팝업 오픈
-								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+								    	
+								    	
+									    $("#popup01").show();   //팝업 오픈
+									    $("body").append('<div class="backon"></div>'); //뒷배경 생성
 								    });
 								    
 								    $("body").on("click", function(event) { 
@@ -836,18 +857,21 @@
 												<td width="70%"></td>
 											</tr>
 											<tr>
-												<td rowspan="3"><a id="store_review_img_area" href="#">
-														<div id="product_img_box">
+												<td rowspan="3">
+													<div id="product_img_box">
+														<a id="store_review_img_area" href="#">
 															<img id="sell_product_img" src="${market.url }" alt="판매상품이미지">
-														</div>
-												</a></td>
+														</a>	
+													</div>
+												</td>
 												<td style="font-size: 18px"><a href="#" style="color: #26e4ca">${market.product_name }</a></td>
 											</tr>
 											<tr>
 												<td style="font-size: 15px">${market.product_price }&nbsp;원</td>
 											</tr>
 											<tr>
-												<td><c:choose>
+												<td>
+												<c:choose>
 														<c:when test="${market.status eq 1}">																											
 															<button class="btn_sell_product_state">판매중</button>
 																<div id="popup02">
@@ -874,8 +898,20 @@
 																	</div>
 																	<a style="cursor: pointer; color: gray" class="close02">X</a>
 																</div>
-																<script>
-								/*판매중을 거래완료로 변경하는 모달 */
+														</c:when>
+														<c:otherwise>
+															<button id="btn_sold_product_state">판매완료</button>
+														</c:otherwise>
+													</c:choose>
+												<button class="btn_sell_product_edit" onclick="location.href='#'">글 수정</button></td>
+											</tr>
+										</table>
+										<br>
+										<hr>
+									</div>
+								</c:forEach>
+								<script>
+									/*판매중을 거래완료로 변경하는 모달 */
 								  $(document).ready(function( $ ){     
 								    $(".btn_sell_product_state").on("click", function(event) {  //팝업오픈 버튼 누르면
 								    $("#popup02").show();   //팝업 오픈
@@ -890,44 +926,7 @@
 								      });
 								 
 								  });
-								 	
-								  
-								  /* 
-									$(".rating").change(
-											function() {
-												$("#modal_police_btn").attr(
-														"disabled", false);
-
-											});
-								
-								$("#deal_completed_preson").change(									
-									function() {
-										if($("#deal_completed_preson").val().length==0 || $("#deal_completed_preson").val().length==""){	
-												$("#mbtn_double_check").attr("disabled", true);
-										}else{
-											$("#mbtn_double_check").attr("disabled", false);
-										}
-								); */
-								 
 								</script>
-																	
-																	
-														</c:when>
-														<c:otherwise>
-															<button id="btn_sold_product_state">판매완료</button>
-														</c:otherwise>
-													</c:choose>
-													<button class="btn_sell_product_edit" onclick="location.href='#'">글 수정</button></td>
-											</tr>
-										</table>
-										<br>
-										<hr>
-									</div>
-									
-									
-								
-									
-								</c:forEach>
 								<br>
 							</div>
 						</div>

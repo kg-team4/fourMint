@@ -35,6 +35,7 @@
 		<typeAlias alias="history" type="four.mint.web.user.store.TransactionHistoryVO"/>
 		<typeAlias alias="marketLike" type="four.mint.web.user.board.common.LikeVO"/>
 		<typeAlias alias="storeLike" type="four.mint.web.user.board.common.LikeVO"/>
+		<typeAlias alias="communityLike" type="four.mint.web.user.board.common.LikeVO"/>
 	</typeAliases>
 	
 	<typeHandlers>

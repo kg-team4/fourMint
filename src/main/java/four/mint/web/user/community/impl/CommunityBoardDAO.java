@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.community.CommunityBoardVO;
 import four.mint.web.user.community.CommunityCommentVO;
@@ -63,5 +64,29 @@ public class CommunityBoardDAO {
 
 	public List<CommunityCommentVO> getCommentList(String nickname) {
 		return sqlSessionTemplate.selectList("CommunityBoardDAO.getCommentList", nickname);
+	}
+
+	public List<CommunityBoardVO> getTopFive() {
+		return sqlSessionTemplate.selectList("CommunityBoardDAO.getTopFive");
+	}
+
+	public void insertLike(int seq) {
+		sqlSessionTemplate.update("CommunityBoardDAO.insertLike", seq);
+	}
+
+	public LikeVO checkLike(LikeVO lVO) {
+		return sqlSessionTemplate.selectOne("CommunityBoardDAO.checkLike", lVO);
+	}
+
+	public void insertCommunityLike(LikeVO lVO) {
+		sqlSessionTemplate.insert("CommunityBoardDAO.insertCommunityLike", lVO);
+	}
+
+	public void deleteLike(int seq) {
+		sqlSessionTemplate.update("CommunityBoardDAO.deleteLike", seq);
+	}
+
+	public void deleteCommunityLike(LikeVO lVO) {
+		sqlSessionTemplate.delete("CommunityBoardDAO.deleteCommunityLike", lVO);
 	}
 }

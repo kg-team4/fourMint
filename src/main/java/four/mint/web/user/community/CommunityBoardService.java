@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 
 public interface CommunityBoardService {
@@ -29,4 +30,16 @@ public interface CommunityBoardService {
 	void updateComments(int board_seq);
 
 	List<CommunityCommentVO> getCommentList(String nickname);
+
+	List<CommunityBoardVO> getTopFive();
+
+	void insertLike(int seq);
+
+	LikeVO checkLike(LikeVO lVO);
+
+	void insertCommunityLike(LikeVO lVO);
+
+	void deleteLike(int seq);
+
+	void deleteCommunityLike(LikeVO lVO);
 }

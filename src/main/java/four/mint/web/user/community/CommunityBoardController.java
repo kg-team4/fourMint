@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.market.MarketService;
 
 @Controller
@@ -38,7 +40,9 @@ public class CommunityBoardController {
 	}
 	
 	@RequestMapping(value = "/communityBoardList.do", method = RequestMethod.GET)
-	public String communityBoardList() {
+	public String communityBoardList(HttpServletRequest request) {
+		List<CommunityBoardVO> topFive = communityBoardService.getTopFive();
+		request.setAttribute("list", topFive);
 		
 		return "/board/community_all_post_list";
 	}
@@ -100,6 +104,24 @@ public class CommunityBoardController {
 		return "redirect:communityBoard.do?seq="+cVO.getBoard_seq();
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/communityLikes.do", method = RequestMethod.POST)
+	public int marketHate(HttpSession session, int seq) throws Exception {
+		LikeVO lVO = new LikeVO();
+			lVO.setSeq(seq);
+			lVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+		LikeVO tempVO = communityBoardService.checkLike(lVO);
+		
+		if(tempVO == null) {
+			communityBoardService.insertLike(seq);
+			communityBoardService.insertCommunityLike(lVO);
+			return 1;
+		} else {
+			communityBoardService.deleteLike(seq);
+			communityBoardService.deleteCommunityLike(lVO);
+			return 0;
+		}
+	}
 }
 
 
