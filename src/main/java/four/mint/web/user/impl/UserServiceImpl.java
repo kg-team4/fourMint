@@ -197,5 +197,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.getMem(vo);
 	}
 
+	@Override
+	public String getId(UserVO vo) {
+		
+		return userDao.getId(vo);
+	}
+
 	
 }

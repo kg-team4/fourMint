@@ -10,17 +10,19 @@
 <script defer src="../js/profile.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- CSS File -->
+
 <link href="../css/profile.css" rel="stylesheet">
 <article>
 	<script>
-		var sns = $
-		{
-			sns
-		};
+		var sns = '${sns}';
+		var address = '${user.address2}';
+		console.log(sns);
 		window.onload = function() {
 			console.log(sns);
 			if (sns == 'naver' || sns == 'kakao') {
-				alert('개인정보를 추가해주세요!');
+				if(address == null){
+					alert('개인정보를 추가해주세요!');
+				}
 			}
 		}
 	</script>

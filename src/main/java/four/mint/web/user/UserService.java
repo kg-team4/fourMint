@@ -25,6 +25,7 @@ public interface UserService {
 	
 	
 	void updateAddress(UserVO vo);
+	//비밀번호 찾기용 
 	String getPw(UserVO vo);
 	void updatePw(UserVO vo);
 	void updateProfile(UserVO uVO);
@@ -42,5 +43,6 @@ public interface UserService {
 	UserVO getUserFromPhone(String phone);
 	UserVO getUserFromEmail(String email);
 	List<UserVO> getMem(SnsVO vo);
+	String getId(UserVO vo);
 	
 }
