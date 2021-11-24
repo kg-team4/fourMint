@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 import four.mint.web.common.AesVO;
 import four.mint.web.common.SThreeVO;
 import four.mint.web.user.board.common.LikeVO;
+import four.mint.web.user.board.common.MarketBuyerVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketCategoryBigVO;
 import four.mint.web.user.market.MarketLikeVO;
+import four.mint.web.user.market.MarketRatingVO;
 import four.mint.web.user.market.MarketService;
 import four.mint.web.user.market.MarketVO;
 
@@ -148,6 +150,21 @@ public class MarketServiceImpl implements MarketService {
 	@Override
 	public List<MarketVO> getMarketLike(String nickname) {
 		return marketDao.getMarketLike(nickname);
+	}
+
+	@Override
+	public void sellProduct(MarketBuyerVO mbVO) {
+		marketDao.sellProduct(mbVO);
+	}
+
+	@Override
+	public List<MarketVO> getMarketBuy(String nickname) {
+		return marketDao.getMarketBuy(nickname);
+	}
+
+	@Override
+	public void insertRating(MarketRatingVO mrVO) {
+		marketDao.insertRating(mrVO);
 	}
 	
 	

@@ -25,13 +25,13 @@ import org.springframework.web.multipart.MultipartFile;
 import four.mint.web.admin.banner.market.AdminBannerMarketService;
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
-import four.mint.web.common.DateUtil;
 import four.mint.web.user.FollowCountVO;
 import four.mint.web.user.FollowService;
 import four.mint.web.user.FollowingVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.board.common.LikeVO;
+import four.mint.web.user.board.common.MarketBuyerVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.community.CommunityBoardService;
 import four.mint.web.user.community.CommunityBoardVO;
@@ -374,4 +374,36 @@ public class MarketController {
 		
 		return 0;
 	}
+	
+	@PostMapping("/marketFinish.do")
+	public String marketSell(int buy_seq, String buyer) {
+		MarketBuyerVO mbVO = new MarketBuyerVO();
+			mbVO.setBuy_seq(buy_seq);
+			mbVO.setBuyer(buyer);
+		marketService.sellProduct(mbVO);
+		
+		return "redirect:profile.do";
+	}
+	
+	@PostMapping("/rating.do")
+	public String rating(HttpSession session, int seq, float star) {
+		String writer = String.valueOf(session.getAttribute("nickname"));
+		MarketRatingVO mrVO = new MarketRatingVO();
+			mrVO.setMarket_seq(seq);
+			mrVO.setRating(star);
+			mrVO.setWriter(writer);
+		
+		marketService.insertRating(mrVO);
+		
+		return "redirect:profile.do";
+	}
 }
+
+
+
+
+
+
+
+
+

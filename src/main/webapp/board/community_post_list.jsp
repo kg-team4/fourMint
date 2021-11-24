@@ -23,166 +23,146 @@
 		<!-- 소식 -->
 		
 		<div class="store_review_all">
-		<c:forEach var="list" items="${list }">
-			<c:choose>
-				<c:when test="${kind eq '소식' }">
-					<div class="store_review">
-						<table>
-							<tr>
-								<td id="news_title">
-									<div id="news_title_content">
-										<img src="../img/megaphone.png" width=25px; height=25px> 
-										<a id="news_title_detail" href="/communityBoard.do?seq=${list.community_seq }">${list.title }</a>
-									</div>
-								</td>
-								<td id="news_useful">
-									<div>
-										<img src="../img/thumbs-up.png" width=15px; height=15px> <span>${list.likes }</span>
-									</div>
-								</td>
-								<td id="news_views">
-									<div>
-										<img src="../img/eye.png" width=15px; height=15px> <span>${list.views }</span>
-									</div>
-								</td>
-								<td id="news_comment">
-									<div>
-										<img src="../img/comment.png" width=15px; height=15px> <span>${list.comments }</span>
-									</div>
-								</td>
-								<td id="writer">
-									<div>${list.nickname }</div>
-								</td>
-							</tr>
-						</table>
-						<div id="search_write_area">
-							<select name="search" style="height: 20px">
-								<option value="content">제목</option>
-								<option value="title">내용</option>
-								<option value="writer">작성자</option>
-							</select> <input type="text" name="" value="" placeholder="검색어를 입력하세요.">
-							<input id="btn_search" type="submit" value="검색"> <input
-								id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
-						</div>
-					</div>
-				</c:when>
-				<c:when test="${kind eq '질문' }">
-					<!-- 질문 -->
-					<div class="store_review">
-						<table>
-							<tr>
-								<td id="news_title">
-									<div id="news_title_content">
-										<img src="../img/question_mark.png" width=20px; height=20px;>
-										<a id="news_title_detail" href="/communityBoard.do?seq=${list.community_seq }">${list.title }</a>
-									</div>
-								</td>
-								<td id="news_useful">
-									<div>
-										<img src="../img/raise-your-hand-to-ask.png" width=18px;
-											height=18px> <span>${list.likes }</span>
-									</div>
-								</td>
-								<td id="news_views">
-									<div>
-										<img src="../img/eye.png" width=15px; height=15px> <span>${list.views }</span>
-									</div>
-								</td>
-								<td id="news_comment">
-									<div>
-										<img src="../img/comment.png" width=15px; height=15px> <span>${list.comments }</span>
-									</div>
-								</td>
-								<td id="writer">
-									<div>작성자명작성자명</div>
-								</td>
-							</tr>
-						</table>
-						<div id="search_write_area">
-							<select name="search" style="height: 20px">
-								<option value="content">제목</option>
-								<option value="title">내용</option>
-								<option value="writer">작성자</option>
-							</select> <input type="text" name="" value="" placeholder="검색어를 입력하세요.">
-							<input id="btn_search" type="submit" value="검색"> 
-							<input id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
-						</div>
-					</div>
-					<!-- end 질문 -->
-				</c:when>
-				<c:when test="${kind eq '분실센터' }">
-					<!-- 분실센터 -->
-					<div class="store_review">
-						<table>
-							<tr>
-								<td id="news_title">
-									<div id="news_title_content">
-										<img src="../img/find.png" width=20px; height=20px;>
-										<a id="news_title_detail" href="/communityBoard.do?seq=${list.community_seq }">${list.title }</a>
-									</div>
-								</td>
-								<td id="news_useful">
-									<div>
-										<img src="../img/sad_icon.png" width=18px;
-											height=18px> <span>${list.likes }</span>
-									</div>
-								</td>
-								<td id="news_views">
-									<div>
-										<img src="../img/eye.png" width=15px; height=15px> <span>${list.views }</span>
-									</div>
-								</td>
-								<td id="news_comment">
-									<div>
-										<img src="../img/comment.png" width=15px; height=15px> <span>${list.comments }</span>
-									</div>
-								</td>
-								<td id="writer">
-									<div>${list.nickname }</div>
-								</td>
-							</tr>
-						</table>
-						<div id="search_write_area">
-							<select name="search" style="height: 20px">
-								<option value="content">제목</option>
-								<option value="title">내용</option>
-								<option value="writer">작성자</option>
-							</select> <input type="text" name="" value="" placeholder="검색어를 입력하세요.">
-							<input id="btn_search" type="submit" value="검색"> 
-							<input id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
-						</div>
-					</div>
-					<!-- end 분실센터 -->
-				</c:when>
-				<c:otherwise>
-					<!-- 모임 / 맛집 / 사진전 -->
-					<div style="margin: 8px 0 30px 0">
-						<div id="border_grid">
-							<div style="margin-left: 14px">
-								<div class="group_all">
-									<a id="group_img_area" href="/communityBoard.do?seq=${list.community_seq }">
-										<div id="group_img_box">
-											<img id="group_img" src="${list.url }" alt="모임이미지">
-										</div>
-										<div id="group_name">${list.title }</div>
-									</a>
+			<div class="store_review">
+				<table>
+					<c:forEach var="list" items="${list }">
+					<c:if test="${kind eq '소식' }">
+					<tr>
+						<td id="news_title">
+							<div id="news_title_content">
+								<img src="../img/megaphone.png" width=25px; height=25px> 
+								<a id="news_title_detail" href="/communityBoard.do?seq=${list.community_seq }">${list.title }</a>
+							</div>
+						</td>
+						<td id="news_useful">
+							<div>
+								<img src="../img/thumbs-up.png" width=15px; height=15px> <span>${list.likes }</span>
+							</div>
+						</td>
+						<td id="news_views">
+							<div>
+								<img src="../img/eye.png" width=15px; height=15px> <span>${list.views }</span>
+							</div>
+						</td>
+						<td id="news_comment">
+							<div>
+								<img src="../img/comment.png" width=15px; height=15px> <span>${list.comments }</span>
+							</div>
+						</td>
+						<td id="writer">
+							<div>${list.nickname }</div>
+						</td>
+					</tr>
+					</c:if>
+					</c:forEach>
+				</table>
+			</div>
+				
+			<!-- 질문 -->
+			<div class="store_review">
+				<table>
+					<c:forEach var="list" items="${list }">
+					<c:if test="${kind eq '질문' }">
+					<tr>
+						<td id="news_title">
+							<div id="news_title_content">
+								<img src="../img/question_mark.png" width=20px; height=20px;>
+								<a id="news_title_detail" href="/communityBoard.do?seq=${list.community_seq }">${list.title }</a>
+							</div>
+						</td>
+						<td id="news_useful">
+							<div>
+								<img src="../img/raise-your-hand-to-ask.png" width=18px;
+									height=18px> <span>${list.likes }</span>
+							</div>
+						</td>
+						<td id="news_views">
+							<div>
+								<img src="../img/eye.png" width=15px; height=15px> <span>${list.views }</span>
+							</div>
+						</td>
+						<td id="news_comment">
+							<div>
+								<img src="../img/comment.png" width=15px; height=15px> <span>${list.comments }</span>
+							</div>
+						</td>
+						<td id="writer">
+							<div>작성자명작성자명</div>
+						</td>
+					</tr>
+					</c:if>
+					</c:forEach>
+				</table>
+			</div>
+			<!-- end 질문 -->
+		
+			<!-- 분실센터 -->
+			<div class="store_review">
+				<table>
+					<c:forEach var="list" items="${list }">
+					<c:if test="${kind eq '분실센터' }">
+					<tr>
+						<td id="news_title">
+							<div id="news_title_content">
+								<img src="../img/find.png" width=20px; height=20px;>
+								<a id="news_title_detail" href="/communityBoard.do?seq=${list.community_seq }">${list.title }</a>
+							</div>
+						</td>
+						<td id="news_useful">
+							<div>
+								<img src="../img/sad_icon.png" width=18px;
+									height=18px> <span>${list.likes }</span>
+							</div>
+						</td>
+						<td id="news_views">
+							<div>
+								<img src="../img/eye.png" width=15px; height=15px> <span>${list.views }</span>
+							</div>
+						</td>
+						<td id="news_comment">
+							<div>
+								<img src="../img/comment.png" width=15px; height=15px> <span>${list.comments }</span>
+							</div>
+						</td>
+						<td id="writer">
+							<div>${list.nickname }</div>
+						</td>
+					</tr>
+					</c:if>
+					</c:forEach>
+				</table>
+			</div>
+			<!-- end 분실센터 -->
+			
+			<!-- 모임 / 맛집 / 사진전 -->
+			<div style="margin: 8px 0 30px 0">
+				<div id="border_grid">
+					<c:forEach var="list" items="${list }">
+					<c:if test="${kind eq '모임' || kind eq '맛집' || kind eq '사진전' }">
+					<div style="margin-left: 14px">
+						<div class="group_all">
+							<a id="group_img_area" href="/communityBoard.do?seq=${list.community_seq }">
+								<div id="group_img_box">
+									<img id="group_img" src="${list.url }" alt="모임이미지">
 								</div>
-							</div>					
+								<div id="group_name">${list.title }</div>
+							</a>
 						</div>
-						<div id="grid_below_search_write_area">
-							<select name="search" style="height: 20px">
-								<option value="content">제목</option>
-								<option value="title">내용</option>
-								<option value="writer">작성자</option>
-							</select> 
-							<input type="text" name="" value="" placeholder="검색어를 입력하세요.">
-							<input id="btn_grid_below_search" type="submit" value="검색"> 
-							<input id="btn_grid_below_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
-						</div>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
+					</div>		
+					</c:if>
+					</c:forEach>			
+				</div>
+				<div id="grid_below_search_write_area">
+					<select name="search" style="height: 20px">
+						<option value="content">제목</option>
+						<option value="title">내용</option>
+						<option value="writer">작성자</option>
+					</select> 
+					<input type="text" name="" value="" placeholder="검색어를 입력하세요.">
+					<input id="btn_grid_below_search" type="submit" value="검색"> 
+					<input id="btn_grid_below_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
+				</div>
+			</div>
 		</div>
 		<!-- end .store_review_all-->		
 	</div>

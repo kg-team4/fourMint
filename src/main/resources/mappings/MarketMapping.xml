@@ -17,6 +17,8 @@
 		<result property="nickname" column="NICKNAME" />
 		<result property="views" column="VIEWS" />
 		<result property="status" column="STATUS" />
+		<result property="buyer" column="BUYER"/>
+		<result property="sell_date" column="SELL_DATE"/>
 	</resultMap>
 	
 	<select id="getMarketOne" resultType="market" parameterType="int">
@@ -32,7 +34,7 @@
 	</select>
 	
 	<select id="getMarketNickname" resultType="market" parameterType="string">
-		SELECT * FROM marketBoard WHERE nickname = #{nickname}
+		SELECT * FROM marketBoard WHERE nickname = #{nickname} ORDER BY status DESC, date DESC
 	</select>
 	
 	<insert id="insertMarket" parameterType="market">
@@ -75,6 +77,10 @@
 		SELECT * FROM marketBoard WHERE nickname NOT IN(#{nickname}) AND address2 LIKE #{address} ORDER BY market_seq DESC LIMIT 3;
 	</select>
 	
+	<update id="sellProduct" parameterType="four.mint.web.user.board.common.MarketBuyerVO">
+		UPDATE marketBoard SET buyer = #{buyer}, sell_date = now() at time zone 'Asia/Seoul', status = 0 WHERE market_seq = #{buy_seq} 
+	</update>
+	
 	<resultMap type="categoryBig" id="categoryBigResult">
 		<result property="num" column="NUM" />
 		<result property="name" column="NAME" />
@@ -93,6 +99,10 @@
 		SELECT address2 FROM marketboard		
 	</select>
 	
+	<select id="getMarketBuy" resultType="market" parameterType="string">
+		SELECT * FROM marketboard WHERE buyer = #{nickname} ORDER BY sell_date DESC;
+	</select>
+
 	<!-- 좋아요 등록 -->
 	<resultMap type="marketLike" id="marketLikeResult">
 		<result property="seq" column="MARKET_SEQ"/>
@@ -114,5 +124,7 @@
 	<select id="getMarketLike" parameterType="string" resultType="market">
 		SELECT b.market_seq, b.date, b.url, b.product_name, b.product_price FROM (SELECT * FROM marketlike WHERE nickname = #{nickname}) AS a JOIN (SELECT * FROM marketboard) AS b ON a.market_seq = b.market_seq;
 	</select>
+	
+	 
 	
 </mapper>
