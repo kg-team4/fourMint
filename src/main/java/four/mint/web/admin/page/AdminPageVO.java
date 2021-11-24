@@ -19,4 +19,5 @@ public class AdminPageVO {
 	private String profile;
 	private Timestamp date;
 	private Timestamp delete_date;
+}
 
