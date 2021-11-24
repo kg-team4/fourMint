@@ -967,7 +967,7 @@ table {
 	cursor: pointer;
 }
 
-.modal_exchange_btn, .modal_refund_btn {
+.modal_exchange_btn, .modal_refund_btn, .modal_cancel_request_btn{
 	border-radius: 5px;
 	width: 80px;
 	background: silver;
@@ -1130,7 +1130,7 @@ ul, li {
 }
 
 .tabnav li a.active:before {
-	background:  #26e4ca;;
+	background:  #26e4ca;
 }
 
 .tabnav li a.active {
@@ -1223,6 +1223,13 @@ margin:auto;
   cursor:pointer;
   color:gray;
 }
+.modal_complete_btn{
+	background: #26e4ca; 
+	color: black; 
+	border-radius:3px;
+	border:1px solid #26e4ca;
+}
+
 /*작성후기보기 모달*/
 #popup04{
     display: none;
