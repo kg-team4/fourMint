@@ -877,7 +877,6 @@
 														<c:when test="${market.status eq 1}">																											
 															<button class="btn_sell_product_state">판매중</button>
 															<input type="hidden" name="market_seq" value="${market.market_seq}" >		
-																	
 														</c:when>
 														<c:otherwise>
 															<button id="btn_sold_product_state">판매완료</button>
@@ -898,36 +897,76 @@
 						
 						
 						<div id="popup02">
+							<div>
+								<div style="font-size: 20px; margin-left:30px; margin-top:20px">📃&nbsp;판매 확정&nbsp;📃</div>
+								<hr>
 								<div>
-									<div style="font-size: 20px; margin-left:30px; margin-top:20px">📃&nbsp;판매완료로 변경하기&nbsp;📃</div>
-									<hr>
-									<div>
-										<div class="police_category" style="font-size:16px; margin-left:30px">
+									<div class="police_category" style="font-size:16px; margin-left:30px">
+										<div>
+											<span style="color: #26e4ca;">구매자</span>&nbsp;확인
 											<div>
-												<span style="color: #26e4ca; ">거래한 대상</span>과의 거래 확인
-												<div>
-													<input type="text" id="deal_completed_preson" value="" style="width:250px" placeholder="" >
-													<span><input type="button" class="btn_check" value="확인" style="width:40px;"></span>
-												</div>
+												<input form="form1" type="text" id="deal_completed_preson" style="width:250px" name="buyer">
+												<input id="nickCck"type="button" class="btn_check" value="확인" style="width:40px;">
+												<div id="chMsg" style="color: red; display: none;">존재하지 않는 사람입니다.</div>
+												<div id="cheMsg" style="color: skyblue; display: none;">확인되었습니다.</div>
+												<script>
+													$("#nickCck").click(function(){
+														var nick = $(this).prev().val();
+														$.ajax({
+															url : 'nickCheck.do', 
+															type : "post", 
+															cache: false,
+															headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+															data : nick, 
+															dataType : "JSON",
+															contentType : "application/json; charset=UTF-8",
+															success : function(data){ 
+																console.log(data.nickCheck);
+																if(data.nickCheck > 0) {
+																	$("#sellCheck").attr("disabled", false);
+																	$("#cheMsg").attr('style', "display: block");
+																	$("#cheMsg").css('color', 'skyblue');
+																} else if(data.nickCheck == 0){
+																	$("#chMsg").attr('style', "display: block");
+																	$("#chMsg").css('color', 'red');
+																}
+															},
+															error : function(data){
+																alert('error');
+															}//error
+														})//ajax
+													});
+													
+													$("#deal_completed_preson").keyup(function(){
+														$("#sellCheck").attr("disabled", true);
+														$("#chMsg").attr('style', "display: none");
+														$("#cheMsg").attr('style', "display: none");
+													});
+												</script>
 											</div>
-																						
-										</div><br>
-										<div style="text-align: center">											
-											<button class="modal_complete_btn" style="width: 90px; font-size: 15px">판매완료로 변경</button>
-											<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 										</div>
-										<br>
+																					
+									</div><br>
+									<div style="text-align: center">
+										<form action="marketFinish.do" method="post" id="form1">											
+											<button id="sellCheck" class="modal_complete_btn" style="width: 90px; font-size: 15px" disabled>판매완료</button>
+											<input id="sellID" name="buy_seq" type="hidden"/>
+											<button type="button" class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+										</form>
 									</div>
+									<br>
 								</div>
-								<a style="cursor: pointer; color: gray" class="close02">X</a>
 							</div>
+							<a style="cursor: pointer; color: gray" class="close02">X</a>
+						</div>
 							<script>
 								/*판매중을 거래완료로 변경하는 모달 */
 								  $(document).ready(function( $ ){     
 								    $(".btn_sell_product_state").on("click", function(event) {  //팝업오픈 버튼 누르면
-									    $("#deal_completed_preson").val($(this).next().val());
+									    var sell_id = $(this).next().val();
 									    $("#popup02").show();   //팝업 오픈
 									    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+									    $("#sellID").val(sell_id);
 								    });
 								    
 								    $("body").on("click", function(event) { 
@@ -945,29 +984,32 @@
 							<hr>
 							<br> <br>
 							<p>
-								<span><strong>구매내역 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">28</span>
+								<span><strong>구매내역 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(buy) }</span>
 							</p>
 							<div class="sell_list_grid">
+								<c:forEach var="buy" items="${buy }">
 								<div class="sell_list">
 									<table width="100%" height="120">
 										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp; 2021.11.04</td>
+											<td align="left" style="font-size: 15px">&nbsp; <fmt:formatDate pattern="yyyy-MM-dd" value="${buy.sell_date }" /></td>
 											<td width="70%"></td>
 										</tr>
 										<tr>
 											<td rowspan="3"><a id="store_review_img_area" href="#">
 													<div id="product_img_box">
-														<img id="sell_product_img" src="../img/store_recommand_product03.png" alt="판매상품이미지">
+														<img id="sell_product_img" src="${buy.url }" alt="판매상품이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 18px"><a href="#" style="color: gray">올인원 비건 샴푸볼 - 어성초 그린</a></td>
+											<td style="font-size: 18px"><a href="#" style="color: gray">${buy.product_name }</a></td>
 										</tr>
 										<tr>
-											<td style="font-size: 15px; color: gray">17,000 &nbsp;원</td>
+											<td style="font-size: 15px; color: gray"><fmt:formatNumber type="number" maxFractionDigits="3" value="${buy.product_price}" /> &nbsp;원</td>
 										</tr>
 										<tr>
 											<td>
 												<button class="btn_write_review" type="button" >거래후기쓰기</button>
+												<input type="hidden" value="${buy.nickname }"/>
+												<input type="hidden" value="${buy.market_seq }"/>
 												<button class="btn_see_review" type="button">작성후기보기</button>
 											</td>
 										</tr>
@@ -975,6 +1017,7 @@
 									<br>
 									<hr>
 								</div>
+								</c:forEach>
 								
 								
 							
@@ -986,76 +1029,75 @@
 										<div>
 											<div class="police_category">
 												<div style="margin-left:30px">
-													<span style="color: #26e4ca; ">거래(판매자)</span> 님과의 거래에 평점 남기기
+													<span id="sellerName" style="color: #26e4ca; "></span> 님과의 거래에 평점 남기기
 												</div>
 												<div class="rating" style="margin-left:30px">
 													<div class="startRadio">
 														<label class="startRadio__box"> 
-															<input type="radio" name="star" id="" checked> 
-															<span class="startRadio__img">
-																<span class="blind">0.5</span>
-															</span>
+															<input form="formScore" type="radio" name="star" class="starScore" value="0.5"> 
+															<span class="startRadio__img">                   
+																<span class="blind">0.5</span>               
+															</span>                                          
 														</label> 
-														
+														                                            
 														<label class="startRadio__box"> 
-															<input type="radio" name="star" id="" checked> 
-															<span class="startRadio__img">
-																<span class="blind">1.0</span>
-															</span>
-														</label> 
-														
+															<input form="formScore" type="radio" name="star" class="starScore" value="1.0"> 
+															<span class="startRadio__img">                   
+																<span class="blind">1.0</span>               
+															</span>                                          
+														</label>               
+														                              
 														<label class="startRadio__box"> 
-															<input type="radio" name="star" id="" checked> 
-															<span class="startRadio__img">
-																<span class="blind">1.5</span>
-															</span>
-														</label> 
-														
-														<label class="startRadio__box"> 
-															<input type="radio" name="star" id="" checked> 
+															<input form="formScore" type="radio" name="star" class="starScore" value="1.5"> 
+															<span class="startRadio__img">                   
+																<span class="blind">1.5</span>               
+															</span>                                          
+														</label>                                             
+														                                                     
+														<label class="startRadio__box">                      
+															<input form="formScore" type="radio" name="star" class="starScore" value="2.0"> 
 															<span class="startRadio__img">
 																<span class="blind">2.0</span>
 															</span>																											
 														</label> 
 														
 														<label class="startRadio__box"> 
-															<input type="radio" name="star" id="" checked> 
+															<input form="formScore" type="radio" name="star" class="starScore" value="2.5"> 
 															<span class="startRadio__img">
 																<span class="blind">2.5</span>
 															</span>
 														</label> 
 														
 														<label class="startRadio__box"> 
-															<input type="radio" name="star" id="" checked> 
+															<input form="formScore" type="radio" name="star" class="starScore" value="3.0"> 
 															<span class="startRadio__img">
 																<span class="blind">3.0</span>
 															</span>
 														</label> 
 														
 														<label class="startRadio__box">
-															<input type="radio" name="star" id="" checked> 
+															<input form="formScore" type="radio" name="star" class="starScore" value="3.5"> 
 															<span class="startRadio__img">
 																<span class="blind">3.5</span>
 															</span>
 														</label> 
 														
-														
 														<label class="startRadio__box"> 
-															<input type="radio" name="star" id="" checked> 
+															<input form="formScore" type="radio" name="star" class="starScore" value="4.0"> 
 															<span class="startRadio__img">
 																<span class="blind">4.0</span>
 															</span>
 														</label> 
 														
 														<label class="startRadio__box"> 
-															<input type="radio" name="star" id="" checked> 
+															<input form="formScore" type="radio" name="star" class="starScore" value="4.5"> 
 															<span class="startRadio__img">
 																<span class="blind">4.5</span>
 															</span>
 														</label> 
 														
 														<label class="startRadio__box"> 
-														<input type="radio" name="star" id="" checked> 
+															<input form="formScore" type="radio" name="star" class="starScore" value="5.0" checked> 
 															<span class="startRadio__img">
 																<span class="blind">5.0</span>
 															</span>
@@ -1070,17 +1112,22 @@
 											</div>
 											<br>
 											<div style="text-align: center; margin-bottom:20px">
-												<button  class="modal_complete_btn" style="width: 90px; font-size: 15px">후기 작성</button>
-												<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+												<form id="formScore" action="rating.do" method="post">
+													<input type="hidden" value="" name="seq" id="seq"/>
+													<button class="modal_complete_btn" style="width: 90px; font-size: 15px">후기 작성</button>
+													<button type="button" class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+												</form>
 											</div>
 										</div>
 									</div>
 									<a style="cursor: pointer; color: gray" class="close03">X</a>
 								</div>
-								<script type="text/javascript">
+								<script>
 								/*거래후기 작성 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".btn_write_review").on("click", function(event) {  //팝업오픈 버튼 누르면
+								    	$("#sellerName").text($(this).next().val());
+								    	$("#seq").val($(this).next().next().val());
 								    $("#popup03").show();   //팝업 오픈
 								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
 								    });
@@ -1102,34 +1149,7 @@
 
 											});
 								</script>
-
 																					
-								<div class="sold_list">
-									<table width="100%" height="120">
-										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp; 2021.10.24</td>
-											<td width="70%"></td>
-										</tr>
-										<tr>
-											<td rowspan="3"><a id="store_review_img_area" href="#">
-													<div id="product_img_box">
-														<img id="sell_product_img" src="../img/store_recommand_product02.png" alt="판매완료상품이미지">
-													</div>
-											</a></td>
-											<td style="font-size: 18px"><a href="#" style="color: gray">고무장갑 팔목라인</a></td>
-										</tr>
-										<tr>
-											<td style="font-size: 15px; color: gray">2,000 &nbsp;원</td>
-										</tr>
-										<tr>
-											<td>
-												<button class="btn_see_review" type="button">작성후기보기</button>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
 								<br>
 							</div>
 							<!-- 작성한 거래 후기 보기 -->
@@ -1160,7 +1180,7 @@
 									<a style="cursor: pointer; color: gray" class="close04">X</a>
 								</div>
 							
-							<script type="text/javascript">
+							<script>
 								/* 작성한 거래후기 보기 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".btn_see_review").on("click", function(event) {  //팝업오픈 버튼 누르면
@@ -1757,194 +1777,6 @@
 	</div>
 <script>
 
-		//============= 글리스트 가져오기 함수 =============
-		//페이지가 처음 로딩될 때 1page를 보여주기 때문에 초기값을 1로 지정한다.
-		//let currentPage=1;
-		//현재 페이지가 로딩중인지 여부를 저장할 변수이다.
-		let currentPage = 1;
-		//currentPage는 무한스크롤에 필요한 현재 페이지
-		//doName은 클릭한 게시판의 컨트롤러명
-		//divName은 ajax로 받은 데이터를 append시킬 div명
-		const GetList = function(currentPage, doName, divName) {
-
-			//하트 컨트롤러 이름 만들어주기
-			let heartUrl = 'lanTrip_';
-			if (divName == 'lantrip') {
-
-			} else if (divName == 'Picture') {
-				heartUrl = '';
-
-			} else if (divName == 'shop') {
-				heartUrl = 'shop_';
-
-			} else if (divName == 'accom') {
-				heartUrl = 'accom_';
-			}
-
-			$.ajax({
-				url : doName,
-				method : "GET",
-				data : "pageNum=" + currentPage,
-				//ajax_page.jsp의 내용이 jspPage로 들어온다.
-				success : function(jspPage) {
-
-					//응답된 문자열은 jsp 형식이다.(profile/게시판명_ajax_page.jsp에 응답내용이 있다.)
-					//해당 문자열을 특정div 태그에 붙여준다.
-					if (divName == 'lantrip') {
-						$('#Picture').empty();
-						$('#shop').empty();
-						$('#accom').empty();
-
-					} else if (divName == 'Picture') {
-						$('#lantrip').empty();
-						$('#shop').empty();
-						$('#accom').empty();
-
-					} else if (divName == 'shop') {
-						$('#lantrip').empty();
-						$('#Picture').empty();
-						$('#accom').empty();
-
-					} else if (divName == 'accom') {
-						$('#lantrip').empty();
-						$('#Picture').empty();
-						$('#shop').empty();
-
-					}
-
-					$('#' + divName).append(jspPage);
-
-					//로딩바를 숨긴다.
-					$(".back-drop").hide();
-					//로딩중이 아니라고 표시한다.
-					isLoading = false;
-
-					if (divName == 'lantrip') {
-						$('.card-img-top').mouseover(function() {
-							$(this).get(0).play();
-						}).mouseout(function() {
-							$(this).get(0).pause();
-						});
-					}
-
-				}
-
-			});
-		}
-
-		//============= 댓글 리스트 가져오는 함수 =============
-		const ReplyList = function(no, divName) {
-			console.log('replyllist의 divName확인중 : ' + divName);
-			$.ajax({
-				url : divName + '_replyList.do',
-				type : 'get',
-				data : {
-					no : no
-				},
-				success : function(jspPage) {
-					///////////// 동적으로 넣어준 html에 대한 이벤트 처리는 같은 함수내에서 다 해줘야한다.
-					///////////// $(document).ready(function(){}); 안에 써주면 안된다.
-
-					// 댓글 리스트 부분에 받아온 댓글 리스트를 넣기
-					$(".reply-list" + no).html(jspPage);
-
-					// 답글에서 답글달기를 누르면 input란에 "@답글작성자"가 들어간다.
-					//$('.write_re_reply_start').on('click', function(){
-					//   $('#input_rereply'+ $(this).attr('no')).val("@"+$(this).attr('writer')+" ");
-					//});
-
-					//답글을 작성한 후 답글달기 버튼을 눌렀을 때 그 click event를 아래처럼 jquery로 처리한다.
-					$('button.btn.btn-success.mb-1.write_rereply').on('click',
-							function() {
-								console.log('no', $(this).attr('no'));
-								console.log('bno', $(this).attr('bno'));
-								let bno = $(this).attr('bno');
-								let no = $(this).attr('no');
-
-								// 답글을 DB에 저장하는 함수를 호출한다. bno와 no를 같이 넘겨주어야한다.
-								WriteReReply(bno, no, divName);
-							});
-
-					// 삭제버튼을 클릭했을 때
-					$('.reply_delete').on(
-							'click',
-							function() {
-								// 모댓글 삭제일때
-								if ($(this).attr('grpl') == 0) {
-									DeleteReply($(this).attr('no'), $(this)
-											.attr('bno'), $(this).attr('grpl'),
-											divName);
-
-									// 답글 삭제일때
-								} else {
-									DeleteReReply($(this).attr('no'), $(this)
-											.attr('bno'), $(this).attr('grp'),
-											divName);
-								}
-
-							})
-
-				},
-				error : function() {
-					alert('서버 에러');
-				}
-			});
-		};
-
-		// 모댓글 삭제일때
-		const DeleteReply = function(no, bno, grpl, divName) {
-			// grp이 no인 댓글이 있는 경우 content에 null을 넣고 없으면 삭제한다.
-			$.ajax({
-				url : divName + '_delete_reply.do',
-				type : 'get',
-				data : {
-					no : no,
-					bno : bno,
-					grpl : grpl
-				},
-				success : function(to) {
-
-					let reply = to.reply;
-
-					console.log("모댓글 reply : " + reply);
-
-					// 페이지, 모달창에 댓글수 갱신
-					$('#m_reply' + bno).text(reply);
-					$('.span_reply' + bno).text(reply);
-
-					alert("모댓글 삭제 성공");
-
-					// 게시물 번호(bno)에 해당하는 댓글리스트를 새로 받아오기
-					ReplyList(bno, divName);
-				},
-				error : function() {
-					alert('서버 에러');
-				}
-			});
-		};
-
-		//게시글 삭제하기
-		const BoardDelete = function(no, divName) {
-			//alert("함수들어왔다!");
-
-			$.ajax({
-				url : divName + '_delete_ok.do',
-				type : 'get',
-				data : {
-					no : no,
-				},
-				success : function(to) {
-
-					document.location.reload();
-					alert("삭제되었습니다!");
-
-				},
-				error : function() {
-					alert('서버 에러');
-				}
-			});
-		}
-
 		// 창 크기가 변할 때마다 가로세로 길이를 맞춰준다.
 		$(window).resize(function() {
 			$('.box').each(function() {
@@ -1952,61 +1784,6 @@
 			});
 		}).resize();
 
-		//============= 무한스크롤 함수 =============
-		//웹브라우저의 창을 스크롤 할 때 마다 호출되는 함수 등록
-		/*    $(window).on("scroll",function(){
-		 //위로 스크롤된 길이
-		 let scrollTop=$(window).scrollTop();
-		 //웹브라우저의 창의 높이
-		 let windowHeight=$(window).height();
-		 //문서 전체의 높이
-		 let documentHeight=$(document).height();
-		 //바닥까지 스크롤 되었는 지 여부를 알아낸다.
-		 let isBottom=scrollTop+windowHeight + 10 >= documentHeight;
-		
-		 //GetList 함수에 매개변수를 위해 active된 id값을 받아와서 매개변수를 지정해준다.
-		 let divName = $( '.tab-content' ).children( '.active' ).attr( 'id' );
-		
-		
-		 let ajaxDoName = '';
-		 if( divName == 'lantrip' ) {
-		 ajaxDoName = 'profile_lanTrip_ajax_page.do';
-		 } else if( divName == 'picture' ) {
-		 ajaxDoName = 'profile_picture_ajax_page.do';
-		 } else if( divName == 'shop' ) {
-		 ajaxDoName = 'profile_shop_ajax_page.do';
-		 } else {
-		 ajaxDoName = 'profile_accom_ajax_page.do';
-		 }
-
-		
-		 if(isBottom) {
-		 //만일 현재 마지막 페이지라면
-		 if(currentPage == ${totalPageCount} || isLoading){
-		
-		 return; //함수를 여기서 끝낸다.
-		 }
-		 //현재 로딩 중이라고 표시한다.
-		 isLoading=true;
-		 //로딩바를 띄우고
-		 $(".back-drop").show();
-		 //요청할 페이지 번호를 1 증가시킨다.
-		 currentPage++;
-		 //추가로 받아올 페이지를 서버에 ajax 요청을 하고
-		
-		 //추가로 불러올 글목록 가져오기
-		 GetList( currentPage, ajaxDoName, divName );
-		
-		 }; 
-		 }); */
-
-		//맨처음 페이지 입장시 실행
-		$(document).ready(function() {
-
-			//현재페이지번호, 컨트롤러명, ajax결과 붙일 div태그명 넘겨준다.
-			GetList(currentPage, 'profile_lanTrip_ajax_page.do', 'lantrip');
-
-		});
 	</script>
 	
 </article>

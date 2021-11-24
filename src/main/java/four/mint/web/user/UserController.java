@@ -204,9 +204,13 @@ public class UserController {
 			List<StoreVO> storeLikeList = storeService.getStoreLike(uVO.getNickname());
 			request.setAttribute("storeLike", storeLikeList);
 			
-			/* 구매 내역 */
+			/* 스토어 구매 내역 */
 			List<TransactionHistoryVO> tVO = storeService.getTransactionList(uVO.getEmail_id());
 			request.setAttribute("history", tVO);
+			
+			/* 중고 구매 내역 */
+			List<MarketVO> buyVO = marketService.getMarketBuy(uVO.getNickname());
+			request.setAttribute("buy", buyVO);
 		}
 		
 		return "/member/profile";
@@ -311,7 +315,6 @@ public class UserController {
 	@RequestMapping(value = "/nickCheck.do", method = RequestMethod.POST, produces = "application/json")
 	public Map<Object, Object> nickCheck(@RequestBody String nick) throws Exception {
 		Map<Object, Object> map = new HashMap<Object, Object>();
-
 		int result = 0;
 
 		result = userService.nickCheck(nick);
@@ -377,14 +380,17 @@ public class UserController {
   
   @RequestMapping(value = "/pwCheck.do", method = RequestMethod.POST)
   @ResponseBody
-  public int pwCheck(HttpServletRequest request, HttpSession session, UserVO vo) {
+  public int pwCheck(HttpServletRequest request, HttpSession session, UserVO vo) throws UnsupportedEncodingException, NoSuchAlgorithmException, GeneralSecurityException {
 	  String pw = request.getParameter("pw");
-	  System.out.println(pw);
+	  AES256Util.setKey(marketService.getKey().getKey());
+      AES256Util aes = new AES256Util();
+      pw = aes.encrypt(pw);
+      System.out.println(pw);
+      
 	  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
 	  vo.setPassword(userService.getPassword(vo.getEmail_id()));
 	  String realPw = vo.getPassword();
 	  System.out.println(realPw);
-	  
 	  
 	  /*
 	   * flag 1 = 비밀번호 일치 2 = 불일
@@ -397,17 +403,22 @@ public class UserController {
 		  flag = 2;
 	  }
 	  
-	  
 	  return flag;
   }
   
-	@RequestMapping(value = "/updatePw.do", method = RequestMethod.POST)
-	public String updatePw(UserVO vo, HttpSession session) {
+	@RequestMapping(value = "/updatePw.do")
+	public String updatePw(UserVO vo, HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException, GeneralSecurityException {
 		System.out.println("updatePw");
 		vo.setEmail_id(session.getAttribute("userEmail_id").toString());
 		
-		if(vo.getPassword() != null) 
+		if(vo.getPassword() != null){
+			AES256Util.setKey(marketService.getKey().getKey());
+			AES256Util aes = new AES256Util();
+			
+			String pw = aes.encrypt(vo.getPassword());
+			vo.setPassword(pw);
 			userService.updatePw(vo);
+		}
 		
 		return "redirect:profile.do";
 	}

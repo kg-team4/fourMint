@@ -10,10 +10,12 @@ import org.springframework.stereotype.Repository;
 import four.mint.web.common.AesVO;
 import four.mint.web.common.SThreeVO;
 import four.mint.web.user.board.common.LikeVO;
+import four.mint.web.user.board.common.MarketBuyerVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketCategoryBigVO;
 import four.mint.web.user.market.MarketLikeVO;
+import four.mint.web.user.market.MarketRatingVO;
 import four.mint.web.user.market.MarketVO;
 
 @Repository
@@ -120,5 +122,17 @@ public class MarketDAO {
 
 	public List<MarketVO> getMarketLike(String nickname) {
 		return sqlSessionTemplate.selectList("MarketDAO.getMarketLike", nickname);
+	}
+
+	public void sellProduct(MarketBuyerVO mbVO) {
+		sqlSessionTemplate.update("MarketDAO.sellProduct", mbVO);
+	}
+
+	public List<MarketVO> getMarketBuy(String nickname) {
+		return sqlSessionTemplate.selectList("MarketDAO.getMarketBuy", nickname);
+	}
+
+	public void insertRating(MarketRatingVO mrVO) {
+		sqlSessionTemplate.insert("MarketDAO.insertRating", mrVO);
 	}
 }

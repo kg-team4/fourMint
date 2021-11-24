@@ -20,4 +20,6 @@ public class MarketVO {
 	private String nickname;
 	private int views;
 	private int status;
+	private String buyer;
+	private Timestamp sell_date;
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import four.mint.web.common.AesVO;
 import four.mint.web.common.SThreeVO;
 import four.mint.web.user.board.common.LikeVO;
+import four.mint.web.user.board.common.MarketBuyerVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 
@@ -54,4 +55,10 @@ public interface MarketService {
 	void deleteLike(LikeVO lVO);
 
 	List<MarketVO> getMarketLike(String nickname);
+
+	void sellProduct(MarketBuyerVO mbVO);
+
+	List<MarketVO> getMarketBuy(String nickname);
+
+	void insertRating(MarketRatingVO mrVO);
 }

@@ -14,7 +14,7 @@ public class Test {
 		
 		System.out.println(encoding);
 		
-		String decoding = aes.decrypt(encoding);
+		String decoding = aes.decrypt("1jfy+Pm3Qj5BtPl7X7fbng==");
 		
 		System.out.println(decoding);
 		
