@@ -172,4 +172,11 @@ public class UserDAO {
 		return sqlSessionTemplate.selectList("UserDAO.getMem", vo);
 	}
 
+	public int getUserCount() {
+		return sqlSessionTemplate.selectOne("UserDAO.getUserCount");
+	}
+	
+	public List<UserVO> getUserList() {
+		return sqlSessionTemplate.selectList("UserDAO.getUserList");
+	}
 }

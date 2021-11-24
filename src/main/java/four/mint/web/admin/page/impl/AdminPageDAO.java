@@ -29,4 +29,7 @@ public class AdminPageDAO {
 		return sqlSessionTemplate.selectList("AdminPageDAO.getAdminPageList");
 	}
 
+	public void deleteMember(String nickname) {
+		sqlSessionTemplate.delete("AdminPageDAO.deleteMember", nickname);
+	}
 }

@@ -17,6 +17,7 @@
 		<result property="social_login" column="SOCIAL_LOGIN"/>
 		<result property="snsid" column="SNSID"/>
 		<result property="profile" column="PROFILE" />
+		<result property="date" column="DATE" />
 		<result property="delete_date" column="DELETE_DATE"/>
 	</resultMap>
 	
@@ -64,7 +65,6 @@
 				SELECT address2 FROM member
 			</otherwise>
 		</choose>
-		
 	</select>
 	
 	<select id="getAddress3" resultType="string">
@@ -157,4 +157,9 @@
 	<select id="getMem" parameterType="string" resultType="user">
 		SELECT * FROM member WHERE email_id = #{email}
 	</select>
+	
+	<select id="getUserCount" resultType="int">
+		SELECT COUNT(email_id) FROM member;
+	</select>
+	
 </mapper>

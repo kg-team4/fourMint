@@ -19,4 +19,7 @@ public interface AdminTableService {
 	ArrayList<UserVO> getAddress2();
 	
 	List<String> getBirth();
+	
+	ArrayList<AdminTableVO> getAddressMan();
+	ArrayList<AdminTableVO> getAddressWoman();
 }

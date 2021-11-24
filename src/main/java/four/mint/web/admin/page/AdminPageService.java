@@ -10,4 +10,6 @@ public interface AdminPageService {
 	String getname(AdminPageVO vo);
 
 	List<AdminPageVO> getAdminPageList();
+	
+	void deleteMember(String nickname);
 }

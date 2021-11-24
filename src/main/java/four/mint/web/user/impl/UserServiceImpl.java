@@ -195,5 +195,14 @@ public class UserServiceImpl implements UserService {
 		return userDao.getMem(vo);
 	}
 
+	@Override
+	public int getUserCount() {
+		return userDao.getUserCount();
+	}
+	
+	@Override
+	public List<UserVO> getUserList() {
+		return userDao.getUserList();
+	}
 	
 }

@@ -66,6 +66,19 @@ public class AdminTableServiceImpl implements AdminTableService {
 		return adminTableDao.getBirth();
 	}
 
+	@Override
+	public 
+	ArrayList<AdminTableVO> getAddressMan() {
+		
+		return adminTableDao.getAddressMan();
+	}
+
+	@Override
+	public ArrayList<AdminTableVO> getAddressWoman() {
+		
+		return adminTableDao.getAddressWoman();
+	}
+
 	
 
 }
