@@ -730,7 +730,7 @@
 								/*상품 후기 작성자 및 팔로우 팔로워 프로필 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".following_img_area").on("click", function(event) {  //팝업오픈 버튼 누르면
-								    	
+								    	var target = $(this).next().val();
 								    	
 									    $("#popup01").show();   //팝업 오픈
 									    $("body").append('<div class="backon"></div>'); //뒷배경 생성
