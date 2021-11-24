@@ -1,6 +1,9 @@
 package four.mint.web.user;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -86,8 +89,16 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/joinProc.do", method = RequestMethod.POST)
-	public String joinProc(UserVO vo) {
+	public String joinProc(UserVO vo) throws UnsupportedEncodingException, NoSuchAlgorithmException, GeneralSecurityException {
 		System.out.println("회원가입 완료");
+		
+		AES256Util.setKey(marketService.getKey().getKey());
+		AES256Util aes = new AES256Util();
+		
+		String encoding = aes.encrypt(vo.getPassword());
+		System.out.println(encoding);
+		
+		vo.setPassword(encoding);
 		userService.insertUser(vo);
 
 		return "/index/index";

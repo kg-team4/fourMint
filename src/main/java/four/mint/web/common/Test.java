@@ -10,7 +10,7 @@ public class Test {
 		
 		AES256Util aes = new AES256Util();
 		
-		String encoding = aes.encrypt("xVsoSrG4HMstk5cQJnwAD6tJL1MY8GO5Sxm9hO5O");
+		String encoding = aes.encrypt("Don1233!");
 		
 		System.out.println(encoding);
 		

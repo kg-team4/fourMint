@@ -63,8 +63,6 @@ public class UserServiceImpl implements UserService {
 		String api_secret = "";
 		Message coolsms = new Message(api_key, api_secret);
 		
-	
-		
 		// 4 params(to, from, type, text) are mandatory. must be filled
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", userPhoneNumber); // 수신전화번호

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import four.mint.web.common.AES256Util;
+import four.mint.web.user.market.MarketService;
+
 
 
 @Controller
@@ -20,6 +23,9 @@ public class LoginController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private MarketService marketService;
 	
 	@Inject
 	private SnsValue naverSns;
@@ -90,24 +96,26 @@ public class LoginController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(UserVO vo, HttpSession session, Model model)throws Exception {
 		String pw = vo.getPassword();
+		AES256Util.setKey(marketService.getKey().getKey());
+		AES256Util aes = new AES256Util();
+		String encoding = aes.encrypt(pw);
+		
 		int flag = 0;
 		UserVO user = userService.getUser(vo);
 		
 		if(user.getEmail_id() != null) {
-			if(user.getPassword().equals(pw)) {
+			if(user.getPassword().equals(encoding)) {
 				session.setAttribute("userEmail_id", user.getEmail_id());
 				session.setAttribute("name", user.getName());
 				session.setAttribute("address2", user.getAddress2());
 				session.setAttribute("nickname", user.getNickname());
 				System.out.println("로그인 성공: " + user.getEmail_id());
-			}else {
+			} else {
 				System.out.println("패스워드 오류");
 				flag = 1;
 				model.addAttribute("flag", flag);
 			
-				
 				return "user/login";
-				
 			}
 		}else {
 			System.out.println("존재하지 않는 아이디");
