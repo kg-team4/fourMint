@@ -28,7 +28,7 @@
 					<div class="card-body"> 
 						<h4 class="card-title">미라백</h4> 
 						<p class="card-text">관리자 미라백 입니다.</p> 
-						<a href="#" class="btn btn-primary stretched-link">프로필 보기</a> 
+						<!-- <a href="#" class="btn btn-primary stretched-link">프로필 보기</a>  -->
 						<!-- stretched-link : 사진전체클릭 --> 
 					</div> 
 					<!-- <div class="card-footer">Footer</div> --> 

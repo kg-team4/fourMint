@@ -47,43 +47,62 @@
                     <h1 class="h3 mb-2 text-gray-800">회원 관리 페이지</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 회원 관리 </a>.</p>
+                            href="https://datatables.net">민트마켓 탈퇴회원 관리 </a>.</p>
+                             <div class="dropdown">
+                     	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     	카테고리
+                     	</button>
+                     	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     		<a class="dropdown-item" href="memberpage.mdo">탈퇴회원목록</a>
+                     		<a class="dropdown-item" href="memberlist.mdo">회원목록</a>
+                     	</div>
+                     </div>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">민트마켓 회원</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">민트마켓 탈퇴회원</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>이메일아이디</th>
                                             <th>이름</th>
-                                            <th>아이디</th>
                                             <th>닉네임</th>
-                                            <th>가입날짜</th>                                          
+                                            <th>휴대폰번호</th>
+                                           	<th>주소2</th>
+                                            <th>생일</th>
+                                            <th>성별</th>
+                                            <th>가입날짜</th>
+                                            <th>탈퇴날짜</th>                                          
                                         </tr>
                                     </thead>                                  
                                     <tbody>
-                                    	<c:forEach var="member" items="${list }">
+                                    	<c:forEach var="deletemember" items="${list }">
 	                                        <tr>
-	                                            <td>${member.name }</td>
-	                                            <td>${member.id }</td>
-	                                            <td>시아동동</td>
-	                                            <td>2021/11/09</td>
+	                                            <td>${deletemember.email_id }</td>
+	                                            <td>${deletemember.name }</td>
+	                                            <td>${deletemember.nickname }</td>
+	                                            <td>${deletemember.phone }</td>
+	                                            <td>${deletemember.address2 }</td>
+	                                            <td>${deletemember.birth }</td>
+	                                            <td>${deletemember.gender }</td>
+	                                            <td>${deletemember.date }</td>
+	                                            <td>${deletemember.delete_date }</td>
                                         	</tr>
                                         </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
+                                  </tbody>
+                              </table>
+                           </div>
+                       	 </div>
+                    	</div>
+					</div>
                 </div>
                 <!-- /.container-fluid -->
-
-            </div>
+			</div>
+           </div>
             <!-- End of Main Content -->
 
        <%@ include file="footer.jsp" %>

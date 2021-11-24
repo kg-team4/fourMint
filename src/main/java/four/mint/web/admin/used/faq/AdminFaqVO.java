@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class AdminFaqVO {
-	String number;
-	String category;
-	String title;
-	String text;
+	int faq_seq;
+	String faq_category;
+	String faq_title;
+	String faq_content;
 
 }

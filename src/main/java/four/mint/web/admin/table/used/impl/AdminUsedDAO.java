@@ -23,10 +23,11 @@ public class AdminUsedDAO {
 		return(AdminUsedVO)sqlSessionTemplate.selectOne("AdminUsedDAO.getAdminUsed",vo);		
 	}
 	
-	public List<AdminUsedVO>getAdminUsedList(){
-		
+	public List<AdminUsedVO>getAdminUsedList(){		
 		return sqlSessionTemplate.selectList("AdminUsedDAO.getAdminUsedList");
 	}
 	
-
+	public void delete(int vo)throws Exception{
+		  sqlSessionTemplate.delete("AdminUsedDAO.delete",vo); 	
+	}	
 }

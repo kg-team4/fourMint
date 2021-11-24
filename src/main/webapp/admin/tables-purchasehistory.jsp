@@ -58,45 +58,42 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>거래번호</th>
+                                            <th>이메일아이디</th>
                                             <th>상품명</th>
-                                            <th>판매자</th>
-                                            <th>등록날짜</th>
-                                            <th>거래날짜</th>
-                                            
+                                            <th>거래가격</th>
+                                            <th>상품수량</th>
+                                            <th>날짜</th>
+                                            <th>주문번호</th>
+                                            <th>주문가격</th>
+                                            <th>요청사항</th>
                                         </tr>
                                     </thead>                                    
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                       
-                                       
-                                                                                                                                                       
+                                        <c:forEach var="transactionhistory" items="${list }">
+	                                        <tr>
+	                                            <td>${transactionhistory.transaction_seq }</td>
+	                                            <td>${transactionhistory.email_id }</td>
+	                                            <td>${transactionhistory.product_name }</td>	                                            
+	                                            <td>${transactionhistory.transaction_price }</td>
+	                                            <td>${transactionhistory.transaction_count }</td>
+	                                            <td>${transactionhistory.date }</td>
+	                                            <td>${transactionhistory.merchant_uid}</td>
+	                                            <td>${transactionhistory.product_price }</td>
+	                                            <td>${transactionhistory.request}</td>	                                           	                       
+                                        	</tr>
+                                        </c:forEach>                                                                                                                                                                                                                                                 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
-
-            </div>
+			</div>
+          </div>
             <!-- End of Main Content -->
-
+	</div>
        <%@ include file="footer.jsp" %>
 
     <!-- Bootstrap core JavaScript-->

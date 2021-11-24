@@ -31,8 +31,7 @@ public class AdminReportServiceImpl implements AdminReportService {
 	}
 
 	@Override
-	public List<AdminReportVO> getAdminReportList() {
-		
+	public List<AdminReportVO> getAdminReportList() {		
 		return adminReportDAO.getAdminReportList();
 	}
 	
@@ -67,8 +66,7 @@ public class AdminReportServiceImpl implements AdminReportService {
 	}
 
 	@Override
-	public List<AdminBlackListVO> getAdminBlackList() {
-		
+	public List<AdminBlackListVO> getAdminBlackList() {		
 		return adminReportDAO.getAdminBlackList();
 	}
 

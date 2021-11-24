@@ -79,14 +79,14 @@
                                     <tbody>
                                     <c:forEach var="faq" items="${list }">
 	                                        <tr>	                                        		                                        		                                        		
-	                                            <td>${faq.number }</td>
-	                                            <td>${faq.category }</td>
-	                                            <td>${faq.title}</td>	
+	                                            <td>${faq.faq_seq }</td>
+	                                            <td>${faq.faq_category }</td>
+	                                            <td>${faq.faq_title}</td>	
 	                                            <td>                                          
 		                                            <div class="dropdown">
 		                 							<btn type="button" class="btn btn-secondary dropdown-toggle" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                         										                                            	 
 	                                            	</btn>
-	                                            	<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"><pre style=" white-space:pre-wrap;line-height: 150%;text-align:left;">${faq.text}</pre>	
+	                                            	<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"><pre style=" white-space:pre-wrap;line-height: 150%;text-align:left;">${faq.faq_content}</pre>	
 	                                            	</ul>
 	                                            	</div>
 	                                            </td> 

@@ -56,95 +56,46 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>카테고리 대분류</th>
-                                            <th>카테고리 중분류</th> 
+                                            <th>대분류</th>     
                                             <th>상품명</th>                                                                                    
-                                            <th>가격</th>
+                                            <th>상품가격</th>
+                                            <th>상품설명</th>
                                             <th>등록일</th>
-                                            
+                                            <th>별명</th>
+                                            <th>구매자</th>
+                                            <th>판매날짜</th>
+                                           <!--  <th scope="col">Actions</th>  -->
                                         </tr>
-                                    </thead>
-                                   
+                                    </thead>                                 
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                           
-                                        <tr>
-                                            <td>2</td>
-                                            <td>leejb</td>
-                                            <td>jb</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                           
-                                        </tr>
-                                        <tr>
-                                           <td>3</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>kimjh</td>
-                                            <td>김주면</td>
-                                            <td>2021/11/09</td>
-                                            <td>거짓가격</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>leejb</td>
-                                            <td>jb</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                           <td>6</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>kangkang</td>
-                                            <td>kang</td>
-                                            <td>2021/11/09</td>
-                                            <td>사기죄</td>
-                                        </tr>
-                                        <tr>
-                                           <td>9</td>
-                                            <td>chaechae</td>
-                                            <td>rin</td>
-                                            <td>2021/11/09</td>
-                                            <td>웃는죄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>sm</td>
-                                            <td>sm</td>
-                                            <td>2021/11/09</td>
-                                            <td>할 수 없는 죄</td>
-                                        </tr>                                                                                                                                                                                                                               
-                                    </tbody>
+                                         <c:forEach var="marketboard" items="${list }">
+		                                        <tr>
+		                                            <td>${marketboard.market_seq }</td>
+		                                            <td>${marketboard.category_big }</td>
+		                                            <td>${marketboard.product_name }</td>	                                            
+		                                            <td>${marketboard.product_price }</td>
+		                                            <td>${marketboard.product_content }</td>
+		                                            <td>${marketboard.date }</td>
+		                                            <td>${marketboard.nickname }</td>	
+		                                            <td>${marketboard.buyer }</td>	
+		                                            <td>${marketboard.sell_date }</td>			
+		                                            <td>		                                            
+		                                        	<%-- <form>		                                        		
+	                                           			<input type="hidden" value="${marketboard.market_seq }" name="market_seq">		                                                                           
+		                                        		<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id= "delete_btn"><i class="far fa-trash-alt"></i></button>	
+	                                        		</form>	 --%>
+		                                       		</td>	                                            
+	                                        	</tr>
+	                                    </c:forEach>                                                                                                                       
+                                  </tbody>                                                                                                                                                                                                                                                                    
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
+               </div>
                 <!-- /.container-fluid -->
-
+				</div>
             </div>
             <!-- End of Main Content -->
  	<%@ include file="footer.jsp" %>

@@ -1,10 +1,13 @@
 package four.mint.web.admin;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,8 @@ import four.mint.web.admin.login.AdminService;
 import four.mint.web.admin.login.AdminVO;
 import four.mint.web.admin.page.store.AdminPageStoreService;
 import four.mint.web.admin.page.store.AdminPageStoreVO;
+import four.mint.web.admin.report.AdminReportService;
+import four.mint.web.admin.report.AdminReportVO;
 import four.mint.web.user.store.StoreCategoryBigVO;
 
 @Controller
@@ -37,10 +42,29 @@ public class AdminController {
 	@Autowired
 	private AdminPageStoreService adminPageStoreService;
 	
+	@Autowired
+	private AdminReportService adminReportService;
+	
 	@RequestMapping(value = "/home.mdo", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(AdminVO vo, HttpSession session) {
+		List<AdminReportVO> adminreportlist = adminReportService.getAdminReportList();
 		
-		return "/index";
+		session.setAttribute("lists", adminreportlist);
+		
+		AdminVO admin = adminService.getAdmin(vo);
+		if(admin != null) {
+			session.setAttribute("admin_id", admin.getId());
+			System.out.println("로그인 성공: " + admin.getId());
+									
+			return "/index";
+			
+		} else {
+			System.out.println("로그인 실패");
+			
+			return "/login";
+		}
+		
+						
 	}
 	
 	@RequestMapping(value = "/buttons.mdo", method = RequestMethod.GET)
@@ -82,12 +106,6 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value = "/utilities-board.mdo", method = RequestMethod.GET)
-	public String Uilities_col(Locale locale, Model model) {
-		
-		return "/utilities-board";
-	}
-	
 
 	@RequestMapping(value = "/register.mdo", method = RequestMethod.GET)
 	public String register(Locale locale, Model model) {
@@ -108,12 +126,6 @@ public class AdminController {
 		return "/forgot-password";
 	}
 	
-	@RequestMapping(value = "/404.mdo", method = RequestMethod.GET)
-	public String error404(Locale locale, Model model) {
-		
-		return "/404";
-	}
-	
 
 	@RequestMapping(value ="/charts.mdo" , method = RequestMethod.GET)
 	public String charts(Locale locale, Model model) {
@@ -127,12 +139,6 @@ public class AdminController {
 		return "/profile";
 	}
 		
-	
-	@RequestMapping(value ="/tables-purchasehistory.mdo" , method = RequestMethod.GET)
-	public String tables_purchasehistory(Locale locale, Model model) {
-		
-		return "/tables-purchasehistory";
-	}
 	
 	@RequestMapping(value ="/merchandise.mdo" , method = RequestMethod.GET)
 	public String tables_used(HttpServletRequest request, Model model) {

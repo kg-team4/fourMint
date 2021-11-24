@@ -32,6 +32,9 @@
 		<typeAlias alias="adminReport" type="four.mint.web.admin.report.AdminReportVO" />
 		<typeAlias alias="adminBlackList" type="four.mint.web.admin.report.AdminBlackListVO" />
 		<typeAlias alias="history" type="four.mint.web.user.store.TransactionHistoryVO"/>
+		<typeAlias alias="adminPurchaseHistory" type="four.mint.web.admin.purchasehistory.AdminPurchaseHistoryVO"/>
+		<typeAlias alias="adminMemberList" type="four.mint.web.admin.page.AdminMemberListVO"/>
+		<typeAlias alias="AdminBoard" type="four.mint.web.admin.board.AdminBoardVO"/>
 	</typeAliases>
 	
 	<typeHandlers>
@@ -58,5 +61,7 @@
 		<mapper resource="mappings/AdminBannerMarketMapping.xml" />
 		<mapper resource="mappings/AdminBannerStoreMapping.xml" />
 		<mapper resource="mappings/AdminPageStoreMapping.xml" />
+		<mapper resource="mappings/AdminPurchaseHistoryMapping.xml" />
+		<mapper resource="mappings/AdminBoardMapping.xml" />
 	</mappers>
 </configuration>

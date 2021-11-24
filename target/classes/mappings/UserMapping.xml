@@ -145,6 +145,7 @@
 		UPDATE member SET (name, nickname, address1, address2, address3, phone, birth) 
 		= (#{name}, #{nickname}, #{address1}, #{address2}, #{address3}, #{phone}, #{birth}) where email_id = #{email_id}
 	</select>
+
 	<select id="getAdminBirth" resultType="String" >
 		SELECT birth FROM member WHERE birth is not null	
 	</select>

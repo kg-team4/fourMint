@@ -122,11 +122,6 @@ public class UserController {
 			return "redirect:/profile.do";
 		}
 
-		@RequestMapping(value = "/profile.do", method = RequestMethod.GET)
-		public String info() {
-			
-			return "/member/profile";
-		}
 	
 	@PostMapping("/profileImage.do")
 	public String profileImage(@RequestParam("file") MultipartFile file, HttpServletRequest requset, UserVO uVO) {

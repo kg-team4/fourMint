@@ -11,7 +11,7 @@ public interface AdminTableService {
 	AdminTableVO getAdmin(AdminTableVO vo);
 	String getname(AdminTableVO vo);
 	
-	List<AdminTableVO>getAdminTableList();
+	List<AdminTableVO> getAdminTableList();
 	
 	int getAdminTableMan();
 	int getAdminTableWoman();

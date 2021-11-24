@@ -17,5 +17,9 @@
 	
 	<select id="getAdminUsedList" resultType="adminUsed" parameterType="string">
 		SELECT * FROM marketboard
-	</select>		
+	</select>	
+	
+	<delete id="delete" parameterType="int">
+		delete from marketboard where market_seq = #{market_seq}
+	</delete>	
 </mapper>
