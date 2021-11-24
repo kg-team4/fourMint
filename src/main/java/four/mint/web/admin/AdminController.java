@@ -58,14 +58,14 @@ public class AdminController {
 	private AdminReportService adminReportService;
 	
 	@RequestMapping(value = "/home.mdo", method = RequestMethod.GET)
-	public String home(AdminVO vo, HttpSession session) {
+	public String home(HttpServletRequest request, AdminVO vo, HttpSession session) {
 		List<AdminReportVO> adminreportlist = adminReportService.getAdminReportList();
 		
 		int userCount = userService.getUserCount();
-		model.addAttribute("userCount", userCount);
+		request.setAttribute("userCount", userCount);
 		
 		int storeCount = adminPageStoreService.getStoreCount();
-		model.addAttribute("storeCount", storeCount);
+		request.setAttribute("storeCount", storeCount);
 		
 		session.setAttribute("lists", adminreportlist);
 		
