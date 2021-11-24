@@ -204,5 +204,12 @@ public class UserServiceImpl implements UserService {
 	public List<UserVO> getUserList() {
 		return userDao.getUserList();
 	}
+
+	@Override
+	public String getId(UserVO vo) {
+		
+		return userDao.getId(vo);
+	}
+
 	
 }

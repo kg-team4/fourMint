@@ -73,19 +73,78 @@ public class UserController {
 	@RequestMapping(value = "/find.do", method = RequestMethod.GET)
 	public String find(UserVO vo, Model model) {
 		
+		
+		
+		return "/user/find_id_pw";
+	}
+	@RequestMapping(value = "/find_id.do", method = RequestMethod.POST)
+	public String findId(UserVO vo, Model model) {
+		
+		String id = userService.getId(vo);
+		
+		if(id != null) {
+			model.addAttribute("id", id);
+			model.addAttribute("flag", 0);
+		}else {
+			model.addAttribute("flag", 1);
+		}
+		
+		
+		return "/user/find_id_result";
+	}
+	@RequestMapping(value = "/find_pw.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int findPw(Model model, HttpServletRequest request) {
+		
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		
+		System.out.println(id);
+		System.out.println(name);
+		System.out.println(phone);
+		
+		
+		UserVO vo = new UserVO();
+		
+		vo.setEmail_id(id);
+		vo.setName(name);
+		vo.setPhone(phone);
+		
+		String pw = userService.getPw(vo);
+		
+		int flag = 0;
+		
+		System.out.println(pw);
+		/*
+		 * flag = 1 조건값들에 적합한 비밀번호가 있음
+		 * flag = 2 없음 
+		 */
+		
+		if(pw != null) {
+			flag = 1;
+			
+		}else {
+			flag = 2;
+		}
 	
-		
-		return "/user/find_id_pw";
+		return flag;
 	}
-	@RequestMapping(value = "/find_id.do", method = RequestMethod.GET)
-	public String findId() {
-
-		return "/user/find_id_pw";
+	@RequestMapping(value = "/update_pw.do", method = RequestMethod.GET)
+	public String update_pw(@RequestParam(name="email_id") String email_id, Model model) {
+		model.addAttribute("email_id", email_id);
+		return "/user/update_pw";
 	}
-	@RequestMapping(value = "/find_pw.do", method = RequestMethod.GET)
-	public String findPw() {
+	@RequestMapping(value = "/update_pw.do", method = RequestMethod.POST)
+	public String update_pw(UserVO vo) {
 		
-		return "/user/find_id_pw";
+		System.out.println(vo.getEmail_id());
+		System.out.println(vo.getPassword());
+		
+		if(vo.getPassword() != null) 
+			userService.updatePw(vo);
+		
+		return "redirect:login.do";
 	}
 
 	@RequestMapping(value = "/joinProc.do", method = RequestMethod.POST)
@@ -322,7 +381,7 @@ public class UserController {
 	  String pw = request.getParameter("pw");
 	  System.out.println(pw);
 	  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
-	  vo.setPassword(userService.getPw(vo));
+	  vo.setPassword(userService.getPassword(vo.getEmail_id()));
 	  String realPw = vo.getPassword();
 	  System.out.println(realPw);
 	  
@@ -342,7 +401,7 @@ public class UserController {
 	  return flag;
   }
   
-	@RequestMapping(value = "/updatePw.do")
+	@RequestMapping(value = "/updatePw.do", method = RequestMethod.POST)
 	public String updatePw(UserVO vo, HttpSession session) {
 		System.out.println("updatePw");
 		vo.setEmail_id(session.getAttribute("userEmail_id").toString());
