@@ -49,6 +49,23 @@
 		UPDATE community SET comments = comments + 1 WHERE community_seq = #{board_seq}
 	</update>
 	
+	<select id="getTopFive" resultType="communityBoard">
+		(SELECT * FROM community WHERE category = '질문' AND date > (current_timestamp + '-1 week') LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '소식' AND date > (current_timestamp + '-1 week') LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '모임' AND date > (current_timestamp + '-1 week') LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '맛집' AND date > (current_timestamp + '-1 week') LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '사진전' AND date > (current_timestamp + '-1 week') LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '분실센터' AND date > (current_timestamp + '-1 week') LIMIT 5) ORDER BY category, views DESC;
+	</select>
+	
+	<update id="insertLike" parameterType="int">
+		UPDATE community SET likes = likes + 1 WHERE community_seq = #{seq}
+	</update>
+	
+	<update id="deleteLike" parameterType="int">
+		UPDATE community SET likes = likes - 1 WHERE community_seq = #{seq}
+	</update>
+	
 	<resultMap type="communityComment" id="commentResult">
 		<result property="comment_seq" column="COMMENT_SEQ"/>
 		<result property="nickname" column="NICKNAME" />
@@ -64,11 +81,42 @@
 	</insert>
 	
 	<select id="getCommunityComment" resultType="communityComment" parameterType="int">
-		SELECT * FROM (SELECT b.profile, c.* FROM (SELECT profile, nickname FROM member) as b JOIN (SELECT * FROM communitycomment) as c ON b.nickname = c.nickname) as d WHERE board_seq = #{community_seq};
+		SELECT * FROM (SELECT b.profile, c.* FROM (SELECT profile, nickname FROM member) AS b JOIN (SELECT * FROM communitycomment) AS c ON b.nickname = c.nickname) AS d WHERE board_seq = #{community_seq};
 	</select>
 	
 	<select id="getCommentList" resultType="communityComment" parameterType="string">
-		select a.*, b.title from (select * from communityComment WHERE nickname = #{nickname}) AS a JOIN (select title, community_seq from community) AS b ON a.board_seq = b.community_seq;
+		SELECT a.*, b.title FROM (SELECT * FROM communityComment WHERE nickname = #{nickname}) AS a JOIN (select title, community_seq from community) AS b ON a.board_seq = b.community_seq;
 	</select>
 	
+	<resultMap type="communityLike" id="communityLikeResult">
+		<result property="seq" column="COMMUNITY_SEQ"/>
+		<result property="nickname" column="NICKNAME"/>
+	</resultMap>
+	
+	<select id="checkLike" parameterType="communityLike" resultType="communityLike">
+		SELECT * FROM communityLike WHERE community_seq = #{seq} AND nickname = #{nickname}
+	</select>
+	
+	<insert id="insertCommunityLike" parameterType="communityLike">
+		INSERT INTO communityLike(community_seq, nickname) VALUES(#{seq}, #{nickname})
+	</insert>
+	
+	<delete id="deleteCommunityLike" parameterType="communityLike">
+		DELETE FROM communityLike WHERE community_seq = #{seq} AND nickname = #{nickname}
+	</delete>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

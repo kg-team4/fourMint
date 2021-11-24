@@ -124,21 +124,21 @@
 								<td id="news_useful">
 									<div>
 										<img src="../img/sad_icon.png" width=18px;
-											height=18px> <span>1544</span>
+											height=18px> <span>${list.likes }</span>
 									</div>
 								</td>
 								<td id="news_views">
 									<div>
-										<img src="../img/eye.png" width=15px; height=15px> <span>4055</span>
+										<img src="../img/eye.png" width=15px; height=15px> <span>${list.views }</span>
 									</div>
 								</td>
 								<td id="news_comment">
 									<div>
-										<img src="../img/comment.png" width=15px; height=15px> <span>5666</span>
+										<img src="../img/comment.png" width=15px; height=15px> <span>${list.comments }</span>
 									</div>
 								</td>
 								<td id="writer">
-									<div>작성자명작성자명</div>
+									<div>${list.nickname }</div>
 								</td>
 							</tr>
 						</table>
@@ -148,8 +148,8 @@
 								<option value="title">내용</option>
 								<option value="writer">작성자</option>
 							</select> <input type="text" name="" value="" placeholder="검색어를 입력하세요.">
-							<input id="btn_search" type="submit" value="검색"> <input
-								id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
+							<input id="btn_search" type="submit" value="검색"> 
+							<input id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
 						</div>
 					</div>
 					<!-- end 분실센터 -->

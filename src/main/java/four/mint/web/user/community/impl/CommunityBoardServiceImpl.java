@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.community.CommunityBoardService;
 import four.mint.web.user.community.CommunityBoardVO;
@@ -75,6 +76,36 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	@Override
 	public List<CommunityCommentVO> getCommentList(String nickname) {
 		return communityBoardDao.getCommentList(nickname);
+	}
+
+	@Override
+	public List<CommunityBoardVO> getTopFive() {
+		return communityBoardDao.getTopFive();
+	}
+
+	@Override
+	public void insertLike(int seq) {
+		communityBoardDao.insertLike(seq);
+	}
+
+	@Override
+	public LikeVO checkLike(LikeVO lVO) {
+		return communityBoardDao.checkLike(lVO);
+	}
+
+	@Override
+	public void insertCommunityLike(LikeVO lVO) {
+		communityBoardDao.insertCommunityLike(lVO);
+	}
+
+	@Override
+	public void deleteLike(int seq) {
+		communityBoardDao.deleteLike(seq);
+	}
+
+	@Override
+	public void deleteCommunityLike(LikeVO lVO) {
+		communityBoardDao.deleteCommunityLike(lVO);
 	}
 	
 	

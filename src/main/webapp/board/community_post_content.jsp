@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <title>커뮤니티 상세 페이지</title>
 <link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
@@ -12,7 +13,6 @@
 	<!-- 카테RH리 -->
 	<div class="contents_all">
 		<div class="category_list">
-			<input id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
 			<div><label class="category_title">소식</label></div>
 			<div><label class="category_title">질문</label></div>
 			<div><label class="category_title">모임</label></div>
@@ -41,7 +41,7 @@
 							</tr>
 							<tr>
 								<td>${content.address2 }</td>
-								<td>&emsp;&emsp;&emsp;&emsp;${content.date }</td>
+								<td>&emsp;&emsp;&emsp;&emsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${content.date }" /></td>
 							</tr>
 						</table>
 					</div>
@@ -70,8 +70,33 @@
 							<button type="button" class="btn_good">
 								<img class="img_good" src="../img/thumbs-up.png" alt="유용해요버튼">
 							</button>
-							<span>${content.likes }</span>
+							<input type="hidden" value="${content.community_seq }"/>
+							<span id="likes">${content.likes }</span>
 						</div>
+						<script>
+							$(".btn_good").click(function(){
+								var seq = $(this).next().val();
+								$.ajax({
+									url : 'communityLikes.do', 
+									type : "post", 
+									cache: false,
+									headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+									data : {seq : seq}, 
+									success : function(data){ 
+										if(data == 1){
+											var temp = $("#likes").text();
+											$("#likes").text(Number(temp) + 1);
+										} else if(data == 0) {
+											var temp = $("#likes").text();
+											$("#likes").text(Number(temp) - 1);
+										}
+									},
+									error : function(data){
+										alert('error');
+									}//error
+								})//ajax
+							});
+						</script>
 
 						<div style="margin-left: 10px">
 							<img class="img_comment" src="../img/comment.png"><span>${content.comments }</span>
@@ -140,21 +165,6 @@
 								</tr>
 								<tr>
 									<td>${comment.date }</td>
-									<td>
-										<!-- <div>
-											<div class="reply_police1">
-												<div style="margin-left: 10px">
-													<span id="re_reply_click_style"> 
-													<label for="re-reply1"> 
-														<input type="checkbox" id="re-reply1" style="display: none" value="1" onchange="reReply(this);"> 
-														답글
-													</label>
-													</span>&nbsp;
-												</div>
-	
-											</div>
-										</div> -->
-									</td>
 									<td>
 										<div class="reply_police2">
 											<div style="margin-left: 10px">

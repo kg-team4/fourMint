@@ -153,7 +153,7 @@
 	<select id="getAddressList" resultType="String" >
 		SELECT address2 FROM member WHERE address2 is not null	
 	</select>
-
+	 
 	<select id="getMem" parameterType="string" resultType="user">
 		SELECT * FROM member WHERE email_id = #{email}
 	</select>
