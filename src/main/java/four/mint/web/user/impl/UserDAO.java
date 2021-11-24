@@ -168,4 +168,11 @@ public class UserDAO {
 		return sqlSessionTemplate.selectOne("UserDAO.getUserFromEmail", email);
 	}
 
+	public int getUserCount() {
+		return sqlSessionTemplate.selectOne("UserDAO.getUserCount");
+	}
+	
+	public List<UserVO> getUserList() {
+		return sqlSessionTemplate.selectList("UserDAO.getUserList");
+	}
 }

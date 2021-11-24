@@ -48,4 +48,14 @@ public class AdminTableDAO {
 		return sqlSessionTemplate.selectList("UserDAO.getAdminBirth");
 	}
 	
+	public ArrayList<AdminTableVO> getAddressMan() {
+		
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTableDAO.getAddressMan");
+	}
+	
+	public ArrayList<AdminTableVO> getAddressWoman() {
+		
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTableDAO.getAddressWoman");
+	}
+	
 }

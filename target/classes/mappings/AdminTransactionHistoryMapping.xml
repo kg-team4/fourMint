@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminTransactionHistoryDAO">
+
+	<resultMap type="adminTransactionHistory" id="adminResult">
+		<result property="transaction_seq" column="TRANSACTION_SEQ" />
+		<result property="email_id" column="EMAIL_ID" />
+		<result property="product_name" column="PRODUCT_NAME" />
+		<result property="transaction_price" column="TRANSACTION_PRICE" />
+		<result property="trasaction_count" column="TRANSACTION_COUNT" />
+		<result property="date" column="DATE" />
+		<result property="merchant_uid" column="MERCHANT_UID" />
+		<result property="product_price" column="PRODUCT_PRICE" />
+		<result property="request" column="REQUEST" />
+	</resultMap>
+
+	<select id="getAdminTransactionHistoryDateList" parameterType="string" resultType="adminTransactionHistory">
+		<![CDATA[
+			SELECT sum(th.transaction_price) as total_price,  
+  			]]>
+		<if test="type == 'gender'">m.gender as member_gender,</if>
+  			<![CDATA[ 
+  			COUNT(*) as sales_count,
+  			TO_CHAR(date,]]>
+		<if test="date_term == 'daily'">'MM-dd') as daily_chart</if>
+		<if test="date_term == 'month'">'yy-MM') as month_chart</if>
+		<if test="date_term == 'year'">'YYYY') as year_chart</if>
+  			<![CDATA[
+			FROM transactionHistory as th ]]>
+		<if test="type ==  'gender'">RIGHT join member m on th.email_id = m.email_id</if>
+  			<![CDATA[ 
+			WHERE 1=1 
+			and TO_CHAR(date, 'yyyy-MM-dd')
+			between #{start_date} and #{end_date}
+			]]>
+		<if test="merchant_uid != null and merchant_uid != ''">and merchant_uid = #{merchant_uid}</if>
+  			<![CDATA[ 
+  			GROUP BY TO_CHAR(date,]]>
+		<if test="date_term == 'daily'">'MM-dd')</if>
+		<if test="date_term == 'month'">'yy-MM')</if>
+		<if test="date_term == 'year'">'YYYY')</if>
+		<if test="type == 'gender'">, member_gender</if>
+  			<![CDATA[ 
+			ORDER BY ]]>
+		<if test="date_term == 'daily'"> daily_chart</if>
+		<if test="date_term == 'month'">month_chart</if>
+		<if test="date_term == 'year'">year_chart</if>
+  			<![CDATA[
+		]]>
+	</select>
+</mapper>

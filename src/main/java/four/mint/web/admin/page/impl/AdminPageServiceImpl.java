@@ -38,7 +38,9 @@ public class AdminPageServiceImpl implements AdminPageService{
 		return adminpageDao.getAdminPageList();
 	}
 	
-	
-	
+	@Override
+	public void deleteMember(String nickname) {
+		adminpageDao.deleteMember(nickname);
+	}
 
 }

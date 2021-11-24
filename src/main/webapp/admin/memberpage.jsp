@@ -10,7 +10,8 @@
     <meta name="author" content="">
 
     <title>memeberpage</title>
-
+    
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <!-- Custom fonts for this template -->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -59,19 +60,39 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>이름</th>
+                                            <th>프로필</th>
                                             <th>아이디</th>
+                                            <th>이름</th>
                                             <th>닉네임</th>
+                                            <th>성별</th>
+                                            <th>휴대폰</th>
                                             <th>가입날짜</th>                                          
+                                            <th>비고</th>                                          
                                         </tr>
                                     </thead>                                  
                                     <tbody>
                                     	<c:forEach var="member" items="${list }">
 	                                        <tr>
+	                                            <td><img src="${member.profile }"></td>
+	                                            <td>${member.email_id }</td>
 	                                            <td>${member.name }</td>
-	                                            <td>${member.id }</td>
-	                                            <td>시아동동</td>
-	                                            <td>2021/11/09</td>
+	                                            <td>${member.nickname }</td>
+	                                            <td>${member.gender }</td>
+	                                            <td>${member.phone }</td>
+	                                            <td>${member.date }</td>
+	                                            <td>
+	                                            	<button class="modal_info" style="width: 90px; font-size: 15px">상세정보</button>
+	                                            	<input type="hidden" value="${member.address1 }">
+	                                            	<input type="hidden" value="${member.address2 }">
+	                                            	<input type="hidden" value="${member.address3 }">
+	                                            	<input type="hidden" value="${member.birth }">
+	                                            	<input type="hidden" value="${member.gender }">
+	                                            	<input type="hidden" value="${member.date }">
+	                                            	<form action="deleteMember.mdo" method="post">
+	                                            		<input type="hidden" name="nickname" value="${member.nickname }">
+														<button type="submit" id="deleteMember" class="deleteMember" style="width: 90px; font-size: 15px">삭제</button>
+													</form>
+	                                            </td>
                                         	</tr>
                                         </c:forEach>
                                     </tbody>
@@ -85,10 +106,95 @@
 
             </div>
             <!-- End of Main Content -->
-
+			<div id="member_view" style="background: white; display:none">
+				<div>
+					<div id="info"><input type="text" id="detail_name" readonly style="border: none; width:80px;">님의 회원 정보</div>
+					<hr>
+					<div>
+						<table id="my_info_edit_area">
+							<tr>
+								<td colspan="2">
+									<p style="display: flex;">
+										<img id="detail_img" style="margin: auto;">
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="200px" height="30px">아이디<input type="hidden"></td>
+								<td width="350px">
+									<input type="text" id="detail_id">
+								</td>
+							</tr>
+							<tr>
+								<td height="30px">닉네임</td>
+								<td><input type="text" id="detail_nick"></td>
+							</tr>
+							<tr>
+								<td height="30px">전화번호</td>
+								<td><input type="text" id="detail_phone"></td>
+							</tr>
+							<tr>
+								<td height="30px" rowspan="3" style="vertical-align: top;">주소</td>
+								<td><input type="text"  id="detail_address1"></td>
+							</tr>
+							<tr>
+								<td><input type="text" id="detail_address2"></td>
+							</tr>
+							<tr>
+								<td><input type="text" id="detail_address3"></td>
+							</tr>
+							<tr>
+								<td height="30px">생일</td>
+								<td><input type="text" id="detail_birth"></td>
+							</tr>
+							<tr>
+								<td height="30px">성별</td>
+								<td><input type="text" id="detail_gender"></td>
+							</tr>
+							<tr>
+								<td height="30px">가입날짜</td>
+								<td><input type="text" id="detail_date"></td>
+							</tr>
+						</table>
+						<br>
+						<div style="text-align: center; margin-top: 10px">
+							<button class="modal_cancel_btn" style="width: 90px; font-size: 15px" onclick="return false;">확인</button>
+						</div>
+					</div>
+				</div>
+				<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
+			</div>
        <%@ include file="footer.jsp" %>
           
     <!-- Bootstrap core JavaScript-->
+    <script type="text/javascript" src="admin/js/memberpage.js"></script>
+    <script>
+	    $(".modal_info").click(function() {
+	    	$("#detail_address1").val($(this).next().val());
+			$("#detail_address2").val($(this).next().next().val());
+			$("#detail_address3").val($(this).next().next().next().val());
+			$("#detail_birth").val($(this).next().next().next().next().val());
+			$("#detail_gender").val($(this).next().next().next().next().next().val());
+			$("#detail_date").val($(this).next().next().next().next().next().next().val());
+			$("#detail_name").val($(this).parent().prev().prev().prev().prev().prev().text());
+			$("#detail_img").attr("src", ($(this).parent().prev().prev().prev().prev().prev().prev().prev().children().attr("src")));
+			$("#detail_nick").val($(this).parent().prev().prev().prev().prev().text());
+			$("#detail_phone").val($(this).parent().prev().prev().text());
+			$("#detail_id").val($(this).parent().prev().prev().prev().prev().prev().prev().text());
+			
+			modal('member_view');
+		});
+	    
+	    $(".deleteMember").click(function() {
+			var check = confirm("삭제 하시겠습니까?");
+			if (check) {
+				document.getElementById("deleteMember").submit();
+			} else {
+				return false;
+			}
+		});
+    
+	</script>
     <script src="admin/vendor/jquery/jquery.min.js"></script>
     <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

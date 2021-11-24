@@ -190,5 +190,14 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserFromEmail(email);
 	}
 
+	@Override
+	public int getUserCount() {
+		return userDao.getUserCount();
+	}
+	
+	@Override
+	public List<UserVO> getUserList() {
+		return userDao.getUserList();
+	}
 	
 }

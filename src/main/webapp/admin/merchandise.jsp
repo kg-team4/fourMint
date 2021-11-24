@@ -45,7 +45,6 @@
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">스토어 상품 글 관리</h1>
-					<p class="mb-4"></p>
 					<!-- DataTales  -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
@@ -60,7 +59,7 @@
 										<hr>
 										<div>
 											<form action="insertStore.mdo" method="post" enctype="multipart/form-data">
-												<table id="my_info_add_area">
+												<table id="table table-bordered my_info_add_area">
 													<tr>
 														<td width="200px" height="30px">카테고리</td>
 														<td width="350px">
@@ -154,9 +153,12 @@
 													<button type="button" style="width: 135%; font-size: 15px"
 														class="btn btn--blue-2 btn--radius-2 btn_modify_profile popup_open_btn_edit"
 														id="popup_open_btn_edit">변경</button>
-													<button type="button" style="width: 135%; font-size: 15px"
-														class="btn btn--blue-2 btn--radius-2 btn_modify_profile delete_store"
-														id="delete_store">삭제</button>
+													<form action="deleteStore.mdo" method="post">
+														<input type="hidden" name="store_seq" id="store_seq" value="${store_List.store_seq }">
+														<button type="submit" style="width: 135%; font-size: 15px"
+															class="btn btn--blue-2 btn--radius-2 btn_modify_profile delete_store"
+															id="delete_store">삭제</button>
+													</form>
 												</td>
 											</tr>
 										</c:forEach>
@@ -303,7 +305,7 @@
 						reader.onload = function(e) {
 							$('.preview-wrap2').attr('src', e.target.result);
 						}
-				
+			
 						reader.readAsDataURL(input.files[0]);
 					}
 					$('.preview-wrap').show();
@@ -312,16 +314,12 @@
 				$(".delete_store").click(function() {
 					var check = confirm("삭제 하시겠습니까?");
 					if (check) {
-						
+						document.getElementById("delete_store").submit();
+						console.log(document.getElementById("delete_store"));
+					} else {
+						return false;
 					}
 				});
-				
-				$(".list_table").DataTable({
-					order: ['desc'],
-					ordering: true
-				});
-				
-				
 			</script>
 </body>
 
