@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import four.mint.web.admin.page.AdminMemberListVO;
 import four.mint.web.admin.page.AdminPageService;
 import four.mint.web.admin.page.AdminPageVO;
 
@@ -14,28 +16,25 @@ public class AdminPageServiceImpl implements AdminPageService{
 	private AdminPageDAO adminpageDao;
 	
 	@Override
-	public void insertAdminmember(AdminPageVO vo) {
-		adminpageDao.insertAdminPage(vo);
-		
+	public void insertDeletemember(AdminPageVO vo) {
+		adminpageDao.insertAdminPage(vo);		
 	}
 
 	@Override
 	public AdminPageVO getAdmin(AdminPageVO vo) {
-		AdminPageVO newVo = adminpageDao.getAdminPage(vo);
-		
-		return newVo;
-	}
-
-	@Override
-	public String getname(AdminPageVO vo) {
-		// TODO Auto-generated method stub
+		AdminPageVO newVo = adminpageDao.getAdminPage(vo);		
 		return null;
 	}
 
 	@Override
-	public List<AdminPageVO> getAdminPageList() {
-		
+	public List<AdminPageVO> getAdminPageList() {		
 		return adminpageDao.getAdminPageList();
+	}
+
+	@Override
+	public List<AdminMemberListVO> getAdminMemberList() {
+		
+		return adminpageDao.getAdminMemberList();
 	}
 	
 	@Override

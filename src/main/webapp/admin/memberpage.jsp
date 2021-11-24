@@ -48,12 +48,21 @@
                     <h1 class="h3 mb-2 text-gray-800">회원 관리 페이지</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 회원 관리 </a>.</p>
+                            href="https://datatables.net">민트마켓 탈퇴회원 관리 </a>.</p>
+                             <div class="dropdown">
+                     	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     	카테고리
+                     	</button>
+                     	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     		<a class="dropdown-item" href="memberpage.mdo">탈퇴회원목록</a>
+                     		<a class="dropdown-item" href="memberlist.mdo">회원목록</a>
+                     	</div>
+                     </div>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">민트마켓 회원</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">민트마켓 탈퇴회원</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -71,7 +80,7 @@
                                         </tr>
                                     </thead>                                  
                                     <tbody>
-                                    	<c:forEach var="member" items="${list }">
+                                    	<c:forEach var="deletemember" items="${list }">
 	                                        <tr>
 	                                            <td><img src="${member.profile }"></td>
 	                                            <td>${member.email_id }</td>
@@ -95,16 +104,16 @@
 	                                            </td>
                                         	</tr>
                                         </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
+                                  </tbody>
+                              </table>
+                           </div>
+                       	 </div>
+                    	</div>
+					</div>
                 </div>
                 <!-- /.container-fluid -->
-
-            </div>
+			</div>
+           </div>
             <!-- End of Main Content -->
 			<div id="member_view" style="background: white; display:none">
 				<div>

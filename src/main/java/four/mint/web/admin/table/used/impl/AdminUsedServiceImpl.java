@@ -30,7 +30,10 @@ public class AdminUsedServiceImpl implements AdminUsedService{
 		
 		return adminUsedDao.getAdminUsedList();
 	}
-	
-	
 
+	@Override
+	public void delete(int vo) throws Exception {
+		adminUsedDao.delete(vo);
+		
+	}	
 }

@@ -20,4 +20,3 @@ public class AdminPageVO {
 	private Timestamp date;
 	private Timestamp delete_date;
 
-}

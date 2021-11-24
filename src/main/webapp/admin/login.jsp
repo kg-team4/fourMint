@@ -15,10 +15,10 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+       
     <!-- Custom styles for this template-->
-    <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <link href="admin/css/sb-admin-2.css" rel="stylesheet">
+   
 </head>
 
 <body class="bg-gradient-primary">
@@ -34,7 +34,56 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        
+                        <!-- 캐러셀 -->
+							<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-interval="true">
+								<div class="carousel-indicators">
+									<button type="button" data-bs-target="#carouselExampleCaptions"
+										data-bs-slide-to="0" class="active" aria-current="true"
+										aria-label="Slide 1"></button>
+									<button type="button" data-bs-target="#carouselExampleCaptions"
+										data-bs-slide-to="1" aria-label="Slide 2"></button>
+									<button type="button" data-bs-target="#carouselExampleCaptions"
+										data-bs-slide-to="2" aria-label="Slide 3"></button>
+								</div>
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<img src="admin/img/adminlogo.png" class="d-block w-100"
+											alt="...">
+										<div class="carousel-caption d-none d-md-block">
+											<!-- <h5>민트마켓</h5> -->
+											<p>관리자 로그인 화면 입니다다당</p>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<img src="admin/img/four.jpg" class="d-block w-100" alt="...">
+										<div class="carousel-caption d-none d-md-block">
+											<!-- <h5>Second slide label</h5> -->
+											<p>민트마켓 꽃길만 걷자</p>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<img src="admin/img/character_sample.jpg"
+											class="d-block w-100" alt="...">
+										<div class="carousel-caption d-none d-md-block">
+											<!-- <h5>Third slide label</h5> -->
+											<p>Never mind</p>
+										</div>
+									</div>
+								</div>
+								<button class="carousel-control-prev" type="button"
+									data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button"
+									data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+							</div>
+							
+							<!-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> -->
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -68,6 +117,7 @@
                                     </div>
                                 </div>
                             </div>
+                          
                         </div>
                     </div>
                 </div>
@@ -85,5 +135,6 @@
     <!-- Custom scripts for all pages-->
     <script src="admin/js/sb-admin-2.min.js"></script>
 
-</body>
+</boddy>
+
 </html>

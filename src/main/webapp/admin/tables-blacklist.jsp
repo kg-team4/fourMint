@@ -58,7 +58,6 @@
                		<a class="dropdown-item" href="blacklist_report.mdo">블랙리스트 목록</a>              		
                	</div>
                </div>
-
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -96,8 +95,8 @@
 		                                            <button type="button" onclick="alert('블랙리스트 등록되었습니다.')"   class="btn btn-success" id="modify_btn"><i class="fas fa-edit"></i></button>		                                   
 		                                        	<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id= "delete_btn"><i class="far fa-trash-alt"></i></button>	
 	                                        	</form>
-	                                        	</td> 		                 
-	                                        </tr> 
+	                                        </td> 		                 
+	                                      </tr> 
                                       	</c:forEach> 
                                     </tbody>
                                 </table>
@@ -106,7 +105,7 @@
                     </div>
                 </div>
                 <!-- /.container-fluid -->
-
+				</div>
             </div>
             <!-- End of Main Content -->
            

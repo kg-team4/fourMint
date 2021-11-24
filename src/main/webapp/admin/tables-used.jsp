@@ -21,6 +21,9 @@
 
     <!-- Custom styles for this page -->
     <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+     <!-- 제이쿼리 -->
+ 	<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 
 </head>
 
@@ -74,9 +77,11 @@
 		                                            <td>${marketboard.category_middle }</td>	                                            
 		                                            <td>${marketboard.product_name }</td>
 		                                            <td>${marketboard.product_price }</td>	
-		                                            <td>
-		                                            <button type="button" onclick="alert('등록되었습니다.')" class="btn btn-success"><i class="fas fa-edit"></i></button>
-		                                        	<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
+		                                            <td>		                                            
+		                                        	<form>		                                        		
+	                                           			<input type="hidden" value="${marketboard.market_seq }" name="market_seq">		                                                                           
+		                                        		<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id= "delete_btn"><i class="far fa-trash-alt"></i></button>	
+	                                        		</form>	
 		                                       		</td>	                                            
 	                                        	</tr>
 	                                    </c:forEach>                                                                                   
@@ -90,6 +95,14 @@
 
             </div>
             <!-- End of Main Content -->
+            
+       <script>           
+       $(".btn-danger").click(function(){
+    	   $(this).parent().attr("action", "used_delete.mdo");
+    	   $(this).parent().attr("method", "post");
+    	   $(this).parent().submit();  
+       });
+      </script>
 
       <%@ include file="footer.jsp" %>
 

@@ -37,6 +37,9 @@
 		<typeAlias alias="marketLike" type="four.mint.web.user.board.common.LikeVO"/>
 		<typeAlias alias="storeLike" type="four.mint.web.user.board.common.LikeVO"/>
 		<typeAlias alias="communityLike" type="four.mint.web.user.board.common.LikeVO"/>
+		<typeAlias alias="adminPurchaseHistory" type="four.mint.web.admin.purchasehistory.AdminPurchaseHistoryVO"/>
+		<typeAlias alias="adminMemberList" type="four.mint.web.admin.page.AdminMemberListVO"/>
+		<typeAlias alias="AdminBoard" type="four.mint.web.admin.board.AdminBoardVO"/>
 	</typeAliases>
 	
 	<typeHandlers>
@@ -64,5 +67,7 @@
 		<mapper resource="mappings/AdminBannerStoreMapping.xml" />
 		<mapper resource="mappings/AdminPageStoreMapping.xml" />
 		<mapper resource="mappings/AdminTransactionHistoryMapping.xml" />
+		<mapper resource="mappings/AdminPurchaseHistoryMapping.xml" />
+		<mapper resource="mappings/AdminBoardMapping.xml" />
 	</mappers>
 </configuration>

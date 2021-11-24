@@ -102,12 +102,11 @@
                     </div>
                 </div>
                 <!-- /.container-fluid -->
-</div>
+				</div>
             </div>
             <!-- End of Main Content -->
           
-       <script>       
-    
+       <script>           
        $(".btn-danger").click(function(){
     	   $(this).parent().attr("action", "report_delete.mdo");
     	   $(this).parent().attr("method", "post");

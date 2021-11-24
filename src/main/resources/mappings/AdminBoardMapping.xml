@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminBoardDAO">
+	
+	<resultMap  type="adminBoard" id="adminResult">
+		<result property="market_seq" column="MARKET_SEQ" />
+		<result property="category_big" column="CATEGORY_BIG" />		
+		<result property="product_name" column="PRODUCT_NAME" />	
+		<result property="product_price" column="PRODUCT_PRICE" />
+		<result property="product_content" column="PRODUCT_CONTENT" />
+		<result property="date" column="DATE" />
+		<result property="nickname" column="NICKNAME" />
+		<result property="buyer" column="BUYER" />
+		<result property="sell_date" column="SELL_DATE" />
+	</resultMap>
+	
+	<insert id="insertAdmin" parameterType="string">
+		INSERT INTO marketboard (market_seq,  category_middle, product_name, product_price, product_content, date, nickname,  buyer, sell_date) 
+		VALUES (default, #{category_big},  #{product_name}, #{product_price}, #{product_content}, #{date}, #{nickname}, #{buyer}, #{sell_date})
+	</insert>
+	
+	<select id="getAdminBoardList" resultType="adminBoard" parameterType="string">
+		SELECT * FROM marketboard
+	</select>	
+	
+	<delete id="delete" parameterType="int">
+		delete from marketboard where market_seq = #{market_seq}
+	</delete>	
+</mapper>
