@@ -850,67 +850,7 @@
 												<td><c:choose>
 														<c:when test="${market.status eq 1}">																											
 															<button class="btn_sell_product_state">판매중</button>
-																<div id="popup02">
-																	<div>
-																		<div style="font-size: 20px; margin-left:30px; margin-top:20px">📃&nbsp;판매완료로 변경하기&nbsp;📃</div>
-																		<hr>
-																		<div>
-																			<div class="police_category" style="font-size:16px; margin-left:30px">
-																				<div>
-																					<span style="color: #26e4ca; ">거래한 대상</span>과의 거래 확인
-																					<div>
-																						<input type="text" class="deal_completed_preson" value="" style="width:250px" placeholder="${market.market_seq }" >
-																						<span><input type="button" class="btn_double_check" value="중복확인" ></span>
-																					</div>
-																				</div>
-																															
-																			</div>
-																			<div style="text-align: center">
-																				<button class="modal_police_btn" style="width: 90px; font-size: 15px">판매완료로 변경</button>
-																				<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
-																			</div>
-																			<br>
-																		</div>
-																	</div>
-																	<a style="cursor: pointer; color: gray" class="close02">X</a>
-																</div>
-																<script>
-								/*판매중을 거래완료로 변경하는 모달 */
-								  $(document).ready(function( $ ){     
-								    $(".btn_sell_product_state").on("click", function(event) {  //팝업오픈 버튼 누르면
-								    $("#popup02").show();   //팝업 오픈
-								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
-								    });
-								    
-								    $("body").on("click", function(event) { 
-								        if(event.target.className == 'close02' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_cancle_btn' ){
-								            $("#popup02").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
-								              $(".backon").hide();
-								        }
-								      });
-								 
-								  });
-								 	
-								  
-								  /* 
-									$(".rating").change(
-											function() {
-												$("#modal_police_btn").attr(
-														"disabled", false);
-
-											});
-								
-								$("#deal_completed_preson").change(									
-									function() {
-										if($("#deal_completed_preson").val().length==0 || $("#deal_completed_preson").val().length==""){	
-												$("#mbtn_double_check").attr("disabled", true);
-										}else{
-											$("#mbtn_double_check").attr("disabled", false);
-										}
-								); */
-								 
-								</script>
-																	
+															<input type="hidden" name="market_seq" value="${market.market_seq}" >		
 																	
 														</c:when>
 														<c:otherwise>
@@ -923,16 +863,59 @@
 										<br>
 										<hr>
 									</div>
-									
-									
-								
-									
+	
 								</c:forEach>
 								<br>
 							</div>
 						</div>
 						<br> <br> <br>
-						<div class="sold_list_all">
+						
+						
+						<div id="popup02">
+								<div>
+									<div style="font-size: 20px; margin-left:30px; margin-top:20px">📃&nbsp;판매완료로 변경하기&nbsp;📃</div>
+									<hr>
+									<div>
+										<div class="police_category" style="font-size:16px; margin-left:30px">
+											<div>
+												<span style="color: #26e4ca; ">거래한 대상</span>과의 거래 확인
+												<div>
+													<input type="text" id="deal_completed_preson" value="" style="width:250px" placeholder="" >
+													<span><input type="button" class="btn_check" value="확인" style="width:40px;"></span>
+												</div>
+											</div>
+																						
+										</div><br>
+										<div style="text-align: center">											
+											<button class="modal_complete_btn" style="width: 90px; font-size: 15px">판매완료로 변경</button>
+											<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+										</div>
+										<br>
+									</div>
+								</div>
+								<a style="cursor: pointer; color: gray" class="close02">X</a>
+							</div>
+							<script>
+								/*판매중을 거래완료로 변경하는 모달 */
+								  $(document).ready(function( $ ){     
+								    $(".btn_sell_product_state").on("click", function(event) {  //팝업오픈 버튼 누르면
+									    $("#deal_completed_preson").val($(this).next().val());
+									    $("#popup02").show();   //팝업 오픈
+									    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+								    });
+								    
+								    $("body").on("click", function(event) { 
+								        if(event.target.className == 'close02' || event.target.className == 'backon' || event.target.className =='modal_complete_btn' || event.target.className =='modal_cancle_btn' ){
+								            $("#popup02").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
+								              $(".backon").hide();
+								        }
+								      });
+								 
+								  });
+								 	
+								</script>
+						
+				<div class="sold_list_all">
 							<hr>
 							<br> <br>
 							<p>
@@ -958,7 +941,7 @@
 										</tr>
 										<tr>
 											<td>
-												<button class="btn_write_review" type="button">거래후기쓰기</button>
+												<button class="btn_write_review" type="button" >거래후기쓰기</button>
 												<button class="btn_see_review" type="button">작성후기보기</button>
 											</td>
 										</tr>
@@ -1061,7 +1044,7 @@
 											</div>
 											<br>
 											<div style="text-align: center; margin-bottom:20px">
-												<button  class="modal_police_btn" style="width: 90px; font-size: 15px">후기 작성</button>
+												<button  class="modal_complete_btn" style="width: 90px; font-size: 15px">후기 작성</button>
 												<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 											</div>
 										</div>
@@ -1077,7 +1060,7 @@
 								    });
 								    
 								    $("body").on("click", function(event) { 
-								        if(event.target.className == 'close03' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_cancle_btn' ){
+								        if(event.target.className == 'close03' || event.target.className == 'backon' || event.target.className =='modal_complete_btn' || event.target.className =='modal_cancle_btn' ){
 								            $("#popup03").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
 								              $(".backon").hide();
 								        }
@@ -1088,7 +1071,7 @@
 									//평가점수버튼을 줘서 점수를 줬으면 버튼 활성화
 									$(".rating").change(
 											function() {
-												$("#modal_police_btn").attr(
+												$(".modal_complete_btn").attr(
 														"disabled", false);
 
 											});
@@ -1143,8 +1126,8 @@
 											</div>
 											<br>
 											<div style="text-align: center; margin-bottom:20px">
-												<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">확인</button>
-												<button class="modal_police_btn" style="width: 90px; font-size: 15px">취소</button>
+												<button class="modal_complete_btn" style="width: 90px; font-size: 15px">확인</button>
+												<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 											</div>
 										</div>
 									</div>
@@ -1160,7 +1143,7 @@
 								    });
 								    
 								    $("body").on("click", function(event) { 
-								        if(event.target.className == 'close04' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_cancle_btn' ){
+								        if(event.target.className == 'close04' || event.target.className == 'backon' || event.target.className =='modal_complete_btn' || event.target.className =='modal_cancle_btn' ){
 								            $("#popup04").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
 								              $(".backon").hide();
 								        }
@@ -1291,12 +1274,13 @@
 																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
 															</div>
 															<div style="font-size: 15px; margin-top:10px">
-																🚛&nbsp;배송주소 : <span>${his.address2 }</span>&nbsp;🚛
+																🚛&nbsp; <span>${his.address2 }</span>&nbsp;🚛
 															</div>
 														</td>
 														<td align="center">
 															<div>
-																<button id="btn_order_prepare_cancle">취소 요청</button>
+																<button class="btn_order_cancle">취소 요청</button>
+																<input type="hidden" name="transaction_product_name" value="${his.product_name}" >
 															</div>
 															<div>
 																<button id="btn_seller_ask">판매자 문의</button>
@@ -1329,11 +1313,12 @@
 																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
 															</div>
 															<div style="font-size: 15px; margin-top:10px">
-																🚛&nbsp;배송주소 : <span>${his.address2 }</span>&nbsp;🚛
+																🚛&nbsp;<span>${his.address2 }</span>&nbsp;🚛
 															</div></td>
 														<td align="center">
 															<div>
-																<button id="btn_order_shipping_cancle">취소 요청</button>
+																<button class="btn_order_cancle">취소 요청</button>
+																<input type="hidden" name="transaction_product_name" value="${his.product_name}" >
 															</div>
 															<div>
 																<button id="btn_store_bought_product">배송 조회</button>
@@ -1371,15 +1356,17 @@
 																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
 															</div>
 															<div style="font-size: 15px; margin-top:10px">
-																🚛&nbsp;배송주소 : <span>${his.address2 }</span>&nbsp;🚛
+																🚛&nbsp; <span>${his.address2 }</span>&nbsp;🚛
 															</div>
 														</td>
 														<td align="center">
 															<div>
-																<button id="btn_store_bought_return_ask">반품 요청</button>
+																<button class="btn_store_bought_return_ask">반품 요청</button>
+																<input type="hidden" name="transaction_product_name" value="${his.product_name}" >
 															</div>
 															<div>
-																<button id="btn_store_bought_exchange_product">교환 요청</button>
+																<button class="btn_store_bought_exchange_product">교환 요청</button>
+																<input type="hidden" name="transaction_product_name" value="${his.product_name}" >
 															</div>
 											
 															<div>
@@ -1399,13 +1386,7 @@
 								
 								
 								
-								
-												
-				
-							
-								
-								
-								
+										
 								<!-- 스토어 상품 주문 취소요청 모달 -->				
 								<div id="popup05">
 									<div>
@@ -1413,8 +1394,9 @@
 										<hr>
 										<div>
 											<div class="police_category" style="margin-left:30px">
-												<div style="font-size:18px">
-													<span style="color: #26e4ca;">주문한 상품명</span> 상품 취소
+												<div style="margin-bottom:15px">
+													<span style="font-size:16px">주문 취소 상품 : </span>
+													<input type="text" id="order_product" value="" width="auto" readonly style="color: #26e4ca; border:0px; font-size:18px">													
 												</div>
 												<div class="police_category">
 													<span style="padding-right: 10px">취소사유</span>
@@ -1438,23 +1420,24 @@
 											<div style="font-size:14px; color:gray; margin-left:30px">※ 취소 완료 시 결제했던 수단으로 환불됩니다.</div>
 											<br>
 											<div style="text-align: center">								
-												<button class="modal_cancle_btn" disabled style="width: 90px; font-size: 15px">취소신청</button>
+												<button class="modal_cancel_request_btn" disabled style="width: 90px; font-size: 15px">취소신청</button>
 											</div>
 											<br>
 										</div>
 									</div>
 									<a style="cursor: pointer; color: gray" class="close05">X</a>
-								</div>
+								</div> 
 								<script type="text/javascript">
 								/* 스토어 상품 주문 취소 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".btn_order_cancle").on("click", function(event) {  //팝업오픈 버튼 누르면
-								    $("#popup05").show();   //팝업 오픈
-								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+								    	$("#order_product").val($(this).next().val());
+								   		$("#popup05").show();   //팝업 오픈
+								    	$("body").append('<div class="backon"></div>'); //뒷배경 생성
 								    });
 								    
 								    $("body").on("click", function(event) { 
-								        if(event.target.className == 'close05' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_cancle_btn' ){
+								        if(event.target.className == 'close05' || event.target.className == 'backon'  || event.target.className =='modal_cancel_request_btn' ){
 								            $("#popup05").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
 								              $(".backon").hide();
 								        }
@@ -1465,10 +1448,10 @@
 									//취소사유 select box 선택 사유가 없을 경우 버튼 비활성화
 								 	$(".order_cancle_reason").change(function(){
 										if($(".order_cancle_reason").val() == ''){
-											$(".modal_cancle_btn").attr("disabled",true);
+											$(".modal_cancel_request_btn").attr("disabled",true);
 														
 										}else{
-											$(".modal_cancle_btn").attr("disabled",false);
+											$(".modal_cancel_request_btn").attr("disabled",false);
 										}
 									});
 								</script>
@@ -1485,8 +1468,9 @@
 										<hr>
 										<div>
 											<div class="police_category" style="margin-left:30px">
-												<div style="font-size:18px; ">
-													<span style="color: #26e4ca;">주문한 상품명</span> 상품 반품
+												<div style="margin-bottom:15px">
+													<span style="font-size:16px">반품 요청 상품 : </span>
+													<input type="text" id="refund_product" value="" width="auto" readonly style="color: #26e4ca; border:0px; font-size:18px">
 												</div>
 												<div class="police_category">
 													<span style="padding-right: 10px">반품사유</span>
@@ -1525,8 +1509,9 @@
 								/* 스토어 상품 주문 반품요청 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".btn_store_bought_return_ask").on("click", function(event) {  //팝업오픈 버튼 누르면
-								    $("#popup06").show();   //팝업 오픈
-								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+									    $("#refund_product").val($(this).next().val());									    	
+									   	$("#popup06").show();   //팝업 오픈
+									    $("body").append('<div class="backon"></div>'); //뒷배경 생성
 								    });
 								    
 								    $("body").on("click", function(event) { 
@@ -1556,8 +1541,9 @@
 										<hr>
 										<div>
 											<div class="police_category" style="margin-left:30px">
-												<div style="font-size:18px">
-													<span style="color: #26e4ca;">주문한 상품명</span> 상품 교환
+												<div style="margin-bottom:15px">
+													<span style="font-size:16px">교환 요청 상품 : </span>
+													<input type="text" id="exchange_product" value="" width="auto" readonly style="color: #26e4ca; border:0px; font-size:18px">
 												</div>
 												<div class="police_category">
 													<span style="padding-right: 10px">교환사유</span>
@@ -1597,9 +1583,10 @@
 								/* 스토어 상품 주문 교환요청 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".btn_store_bought_exchange_product").on("click", function(event) {  //팝업오픈 버튼 누르면
-								    $("#popup07").show();   //팝업 오픈
-								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
-								    });
+								    	$("#exchange_product").val($(this).next().val());
+									    $("#popup07").show();   //팝업 오픈
+									    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+									    });
 								    
 								    $("body").on("click", function(event) { 
 								        if(event.target.className == 'close07' || event.target.className == 'backon' || event.target.className =='modal_police_btn' || event.target.className =='modal_exchange_btn' ){
