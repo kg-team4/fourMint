@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+button{
+	border:none;
+}
 #received_content, #sent_content {
 	margin-bottom: 0px;
 	white-space: pre-wrap;
@@ -8,6 +11,7 @@
 
 .outgoing_msg {
 	padding-bottom: 1em;
+	padding-right:1em;
 }
 
 .sent_msg p {
@@ -24,7 +28,8 @@
 .modal-body {
 	position: relative;
 	flex: 1 1 auto;
-	padding: 1 rem;
+	padding: 0;
+	overflow-x:hidden;
 }
 
 .modal-content {
@@ -290,9 +295,26 @@
    position: relative;
    top: 2px;
    left: 2px;
+   
+}.msg_send_btn2{
+	background: #50b9abd0 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    height: 26px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 30px;
 }
-
-
+.msg_send_imo{
+	border:none;
+	background:none;	
+	margin-left:135px;
+	margin-top:7px;
+}
 .messaging {
 	padding: 200px 0px 100px 0px;
 }
@@ -337,18 +359,24 @@
 
 #emo_div {
 	width: auto;
-	height: 80px;
+	height: 120px;
 	background: white;
 	display: none;
+	overflow : scroll;
+	overflow-x:hidden;
+	border-top: 1px solid lightgray;
 }
 
 .col-11 {
 	width: 300px;
 }
 
-#message_image {
-	width: 60px;
-	height: 60px;
+#message_image1, #message_image2, #message_image3, #message_image4,
+#message_image5, #message_image6, #message_image7, #message_image8, #message_image9,
+#message_image10, #message_image11, #message_image12, #message_image13, #message_image14, #message_image15, #message_image16
+ {
+	width: 115px;
+	height: 115px;
 }
 #click_emo_img{
 	border:none;

@@ -60,9 +60,10 @@
 								<option value="content">제목</option>
 								<option value="title">내용</option>
 								<option value="writer">작성자</option>
-							</select> <input type="text" name="" value="" placeholder="검색어를 입력하세요.">
-							<input id="btn_search" type="submit" value="검색"> <input
-								id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
+							</select> 
+							<input type="text" name="" value="" placeholder="검색어를 입력하세요.">
+							<input id="btn_search" type="submit" value="검색"> 
+							<input id="btn_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
 						</div>
 					</div>
 				</c:when>

@@ -91,7 +91,7 @@ table {
 	overflow: hidden;
 }
 
-#news_title_detail {
+#news_title_detail, .news_title_detail {
 	text-decoration: none;
 	color: black;
 }

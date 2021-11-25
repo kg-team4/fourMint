@@ -367,4 +367,22 @@ public class UserController {
 		session.invalidate();
 		return "redirect:home.do";
 	}
+	
+// 검색 시 매핑 페이지 
+	@RequestMapping(value = "/searchAllResult.do", method = RequestMethod.GET)
+	public String searchAllResult() {
+		
+		return "/board/search_all_result";
+	}
+	
+	@RequestMapping(value = "/searchCommunityMoreResult.do", method = RequestMethod.GET)
+	public String searchCommunityMoreResult() {
+		
+		return "/board/search_community_more_result";
+	}
+	@RequestMapping(value = "/searchMarketMoreResult.do", method = RequestMethod.GET)
+	public String searchMarketMoreResult() {
+		
+		return "/board/search_market_more_result";
+	}
 }
