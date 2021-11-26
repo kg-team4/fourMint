@@ -389,45 +389,62 @@
 					<div class="tab-pane fade show active" id="lantrip" role="tabpanel" aria-labelledby="home-tab">
 						<div class="store_review_all">
 							<br> <br>
+							
+							
+							<!-------------------- 상점 후기 --------------------------->
 							<p>
-								<span><strong>상점후기 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">17</span>
+								<span><strong>상점후기 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(rating) }</span>
 							</p>
 							<div class="store_review_grid">
+								<c:forEach var="rate" items="${rating }">
 								<div class="store_review">
 									<table width="100%" height="140">
 										<tr>
 											<td width="20%" rowspan="2">
 												<div id="img_box">
-													<a id="store_review_img_area" href="#"> <img id="store_review_img" src="../img/character_sample2.jpg" width="100" height="100" alt="상점이미지">
+													<a id="store_review_img_area" href="#"> 
+													<img id="store_review_img" src="${rate.profile }" width="100" height="100" alt="상점이미지">
 													</a>
 												</div>
 											</td>
-											<td style="font-size: 20px" width="10%" height="40px"><button class="reviewer_nick" style="color: #26e4ca; border:none; background:none;">닉네임</button></td>
+											<td style="font-size: 20px" width="30%" height="54px">
+												<button class="reviewer_nick" style="color: #26e4ca; border:none; background:none;">${rate.writer }</button>
+												<br>
+												<a class="" href="#">
+													<c:set var="star" value="${rate.rating }"/>
+													<c:forEach var="i" begin="1" end="${star}">
+														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+													</c:forEach>
+													<c:if test="${star % 1 > 0 }">
+														<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
+													</c:if>
+												</a>
+											</td>
 											<td width="30%">
 												<div class="">
-													<a class="" href="#"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png"
-														width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-													</a>
 												</div>
 											</td>
 											<td></td>
-											<td style="font-size: 15px" width="10%">
-												<div id="date">1달 전</div>
+											<td style="font-size: 15px" width="30%">
+												<div id="date"><fmt:formatDate pattern="yyyy-MM-dd" value="${rate.date }" /></div>
 											</td>
 										</tr>
 										<tr>
 											<td align="left" colspan="4" style="font-size: 15px">
 												<button id="btn_sold_product_name">
-													&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
+													&nbsp;${rate.product_name } <img src="../img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
 												</button>
-												<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
+												<div id="sold_product_review">${rate.content }</div>
 											</td>
 										</tr>
 									</table>
-									<br>
-									<hr>
+									<br> <hr>
 								</div>
+								<br><br><br>
+								</c:forEach>
 								<br> <br> <br>
+								</div>
+							<br> <br> <br>
 								
 								
 								
@@ -638,50 +655,7 @@
 								</script>
 
 
-				
-								<div class="store_review">
-									<table width="100%" height="120">
-										<tr height="30">
-											<td width="20%" rowspan="2">
-												<a id="store_review_img_area" href="#">
-													<div id="img_box">
-														<img id="store_review_img" src="../img/character_sample1.jpg" alt="상점이미지">
-													</div>
-												</a>
-											</td>
-											<td style="font-size: 20px" width="10%">
-												<button class="reviewer_nick" style="color: #26e4ca; border:none; background:none;">닉네임</button>
-											</td>
-											<td width="30%">
-												<a class="" href="#">
-													<div class="">
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-													</div>
-												</a>
-											</td>
-											<td style="font-size: 15px" width="10%">
-												<div id="date">1달 전</div>
-											</td>
-										</tr>
-										<tr>
-											<td align="left" colspan="4" style="font-size: 15px">
-												<button id="btn_sold_product_name">
-													&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
-												</button>
-												<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
-											</td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-								</div>
-							</div>
-							<br> <br> <br>
-							
+
 							
 							<div class="following_all">
 								<hr>
@@ -714,17 +688,26 @@
 												</div>
 											</div>
 											<div class="">
+												<c:set var="star" value="${followings.rating }"/>
+												<c:forEach var="i" begin="1" end="${star }">
 												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												</c:forEach>
+												<c:if test="${star % 1 > 0 }">
+													<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
+												</c:if>
 											</div>
 											<button id="btn_sold_product_name">
-												&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												&nbsp;언팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
 										</div>
 									</c:forEach>
+									
+									<!-- 언팔로우 -->
+									<script>
+									
+									</script>
+									<!-- 끝 언팔로우 -->
+									
 								</div>
 							</div>
 							<br> <br> <br>
@@ -789,8 +772,13 @@
 											</div>
 											<a class="" href="#">
 												<div class="">
-													<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14"
-														alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+													<c:set var="star" value="${followers.rating }"/>
+													<c:forEach var="i" begin="1" end="${star }">
+														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+													</c:forEach>
+													<c:if test="${star % 1 > 0 }">
+														<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
+													</c:if>
 												</div>
 											</a> <a class="" href="#">
 												<button id="btn_sold_product_name">
@@ -876,13 +864,14 @@
 												<c:choose>
 														<c:when test="${market.status eq 1}">																											
 															<button class="btn_sell_product_state">판매중</button>
-															<input type="hidden" name="market_seq" value="${market.market_seq}" >		
+															<input type="hidden" name="market_seq" value="${market.market_seq}" >
+															<button class="btn_sell_product_edit" onclick="location.href='#'">글 수정</button>		
 														</c:when>
 														<c:otherwise>
 															<button id="btn_sold_product_state">판매완료</button>
 														</c:otherwise>
 													</c:choose>
-												<button class="btn_sell_product_edit" onclick="location.href='#'">글 수정</button></td>
+												</td>
 											</tr>
 										</table>
 										<br>
@@ -1007,10 +996,18 @@
 										</tr>
 										<tr>
 											<td>
-												<button class="btn_write_review" type="button" >거래후기쓰기</button>
-												<input type="hidden" value="${buy.nickname }"/>
-												<input type="hidden" value="${buy.market_seq }"/>
-												<button class="btn_see_review" type="button">작성후기보기</button>
+												<c:choose>
+												<c:when test="${buy.content eq null }">
+													<button class="btn_write_review" type="button" >거래후기쓰기</button>
+													<input type="hidden" value="${buy.nickname }"/>
+													<input type="hidden" value="${buy.market_seq }"/>
+												</c:when>
+												<c:otherwise>
+													<button class="btn_see_review" type="button">작성후기보기</button>
+													<input type="hidden" value="${buy.content }"/>
+													<input type="hidden" value="${buy.product_name }"/>
+												</c:otherwise>
+												</c:choose>
 											</td>
 										</tr>
 									</table>
@@ -1108,7 +1105,7 @@
 											<hr>
 											<br>
 											<div class="write_police_reason" style="margin-left:30px">
-												<textarea style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
+												<textarea form="formScore" name="content" style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
 											</div>
 											<br>
 											<div style="text-align: center; margin-bottom:20px">
@@ -1160,14 +1157,12 @@
 										<div>
 											<div class="police_category">
 												<div style="margin-left:30px">
-													<span style="color: #26e4ca">거래한 상품명</span>에 작성한 후기
+													<span id="ratingName" style="color: #26e4ca"></span>&nbsp;후기
 												</div>												
 											</div>
 
 											<div class="write_police_reason" style="border:1px solid lightgray; margin-left:30px; padding:2px">
-												<pre>
-와 정말 친절한 거래 감사드려요!!! 다음에 기회가 된다면 꼭 다시 거래하고 싶어요!! 와 정말 친절한 거래 감사드려요!!! 다음에 기회가 된다면 꼭 다시 거래하고 싶어요!! 와 정말 친절한 거래 감사드려요!!! 
-										다음에 기회가 된다면 꼭 다시 거래하고 싶어요!!와 정말 친절한 거래 감사드려요!!! 다음에 기회가 된다면 꼭 다시 거래하고 싶어요!												
+												<pre id="ratingContent">											
 												</pre>
 											</div>
 											<br>
@@ -1184,8 +1179,10 @@
 								/* 작성한 거래후기 보기 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".btn_see_review").on("click", function(event) {  //팝업오픈 버튼 누르면
-								    $("#popup04").show();   //팝업 오픈
-								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
+								    	$("#ratingContent").text($(this).next().val());
+								    	$("#ratingName").text($(this).next().next().val());
+									    $("#popup04").show();   //팝업 오픈
+									    $("body").append('<div class="backon"></div>'); //뒷배경 생성
 								    });
 								    
 								    $("body").on("click", function(event) { 
@@ -1303,7 +1300,14 @@
 												<br>
 												<table width="100%" height="120">
 													<tr>
-														<td align="left" colspan="3" style="font-size: 20px">${his.status }</td>
+														<c:choose>
+														<c:when test="${his.cancel_status eq null }">
+															<td align="left" colspan="3" style="font-size: 20px">${his.status }</td>
+														</c:when>
+														<c:otherwise>
+															<td align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
+														</c:otherwise>
+														</c:choose>
 													</tr>
 													<tr>
 														<td>
@@ -1325,8 +1329,11 @@
 														</td>
 														<td align="center">
 															<div>
-																<button class="btn_order_cancle">취소 요청</button>
-																<input type="hidden" name="transaction_product_name" value="${his.product_name}" >
+																<c:if test="${his.cancel_status eq null }">
+																	<button class="btn_order_cancle">취소 요청</button>
+																	<input type="hidden" name="transaction_product_name" value="${his.product_name}" >
+																	<input type="hidden" value="${his.transaction_seq }"/>
+																</c:if>
 															</div>
 															<div>
 																<button id="btn_seller_ask">판매자 문의</button>
@@ -1342,7 +1349,14 @@
 												<br> 
 												<table width="100%" height="120">
 													<tr>
-														<td align="left" colspan="3" style="font-size: 20px">${his.status }</td>
+														<c:choose>
+														<c:when test="${his.cancel_status eq null }">
+															<td align="left" colspan="3" style="font-size: 20px">${his.status }</td>
+														</c:when>
+														<c:otherwise>
+															<td align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
+														</c:otherwise>
+														</c:choose>
 													</tr>
 													<tr>
 														<td>
@@ -1362,13 +1376,16 @@
 																🚛&nbsp;<span>${his.address2 }</span>&nbsp;🚛
 															</div></td>
 														<td align="center">
+															<c:if test="${his.cancel_status eq null }">
 															<div>
 																<button class="btn_order_cancle">취소 요청</button>
 																<input type="hidden" name="transaction_product_name" value="${his.product_name}" >
+																<input type="hidden" value="${his.transaction_seq }"/>
 															</div>
 															<div>
 																<button id="btn_store_bought_product">배송 조회</button>
 															</div>
+															</c:if>
 															<div>
 																<button id="btn_seller_ask">판매자 문의</button>
 															</div>
@@ -1383,7 +1400,14 @@
 												<br> 
 												<table style="width: 100%; height: 120px;">
 													<tr>
-														<td align="left" style="font-size: 20px">${his.status }</td>
+														<c:choose>
+														<c:when test="${his.cancel_status eq null }">
+															<td align="left" colspan="3" style="font-size: 20px">${his.status }</td>
+														</c:when>
+														<c:otherwise>
+															<td align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
+														</c:otherwise>
+														</c:choose>
 														<td></td>
 														<td></td>
 													</tr>
@@ -1406,18 +1430,22 @@
 															</div>
 														</td>
 														<td align="center">
+															<c:if test="${his.cancel_status eq null }">
 															<div>
 																<button class="btn_store_bought_return_ask">반품 요청</button>
 																<input type="hidden" name="transaction_product_name" value="${his.product_name}" >
+																<input type="hidden" value="${his.transaction_seq }"/>
 															</div>
 															<div>
 																<button class="btn_store_bought_exchange_product">교환 요청</button>
 																<input type="hidden" name="transaction_product_name" value="${his.product_name}" >
+																<input type="hidden" value="${his.transaction_seq }"/>
 															</div>
-											
+															
 															<div>
 																<button id="btn_store_bought_product">상품 리뷰 쓰기</button>
 															</div>
+															</c:if>
 															<div>
 																<button id="btn_seller_ask">판매자 문의</button>
 															</div>
@@ -1446,7 +1474,7 @@
 												</div>
 												<div class="police_category">
 													<span style="padding-right: 10px">취소사유</span>
-													<select class="order_cancle_reason" name="cancle_reason">
+													<select class="order_cancle_reason" name="cancel_reason" form="formCancel">
 														<option value="">취소 사유 선택</option>
 														<option value="품절">상품 품절 </option>
 														<option value="배송지연">배송 지연</option>
@@ -1460,13 +1488,17 @@
 											<hr>
 											<br>
 											<div class="write_police_reason" style="margin-left:30px">
-												<textarea style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
+												<textarea name="content" form="formCancel" style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
 											</div>
 											
 											<div style="font-size:14px; color:gray; margin-left:30px">※ 취소 완료 시 결제했던 수단으로 환불됩니다.</div>
 											<br>
-											<div style="text-align: center">								
-												<button class="modal_cancel_request_btn" disabled style="width: 90px; font-size: 15px">취소신청</button>
+											<div style="text-align: center">		
+												<form id="formCancel" action="payCancel.do" method="post">						
+													<input type="hidden" value="" id="cancelSeq" name="cancelSeq"/>
+													<input type="hidden" value="취소 처리 중" name="pay_cancel"/>
+													<button class="modal_cancel_request_btn" disabled style="width: 90px; font-size: 15px">취소신청</button>
+												</form>
 											</div>
 											<br>
 										</div>
@@ -1478,6 +1510,7 @@
 								  $(document).ready(function( $ ){     
 								    $(".btn_order_cancle").on("click", function(event) {  //팝업오픈 버튼 누르면
 								    	$("#order_product").val($(this).next().val());
+								    	$("#cancelSeq").val($(this).next().next().val());
 								   		$("#popup05").show();   //팝업 오픈
 								    	$("body").append('<div class="backon"></div>'); //뒷배경 생성
 								    });
@@ -1520,7 +1553,7 @@
 												</div>
 												<div class="police_category">
 													<span style="padding-right: 10px">반품사유</span>
-													<select class="order_refund_reason" name="cancle_reason">
+													<select class="order_refund_reason" name="cancel_reason" form="exForm">
 														<option value="">반품 사유 선택</option>
 														<option value="배송누락">배송 누락</option>
 														<option value="배송지연">배송 지연</option>
@@ -1537,25 +1570,30 @@
 											<hr>
 											<br>
 											<div class="write_police_reason" style="margin-left:30px">
-												<textarea style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
+												<textarea name="content" style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
 											</div>
 											
 											<div style="font-size:14px; color:gray; margin-left:30px">※ 반품 요청 시 등록한 주소로 담당 택배사 직원이 3~4일 이내로 수거 예정입니다.</div>
 											<div style="font-size:14px; color:gray; margin-left:30px">※ 단순변심으로 인한 교환/반품의 경우 왕복 배송비 5,000원은 고객측 부담입니다.</div>
 											<br>
-											<div style="text-align: center">								
-												<button class="modal_refund_btn" disabled style="width: 90px; font-size: 15px">반품신청</button>
+											<div style="text-align: center">
+												<form id="exForm" action="payCancel.do" method="post">								
+													<button class="modal_refund_btn" disabled style="width: 90px; font-size: 15px">반품신청</button>
+													<input type="hidden" name="pay_cancel" value="반품 처리 중"/>
+													<input type="hidden" name="cancelSeq" value="" id="exSeq"/>
+												</form>
 											</div>
 											<br>
 										</div>
 									</div>
 									<a style="cursor: pointer; color: gray" class="close06">X</a>
 								</div>
-								<script type="text/javascript">
+								<script>
 								/* 스토어 상품 주문 반품요청 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".btn_store_bought_return_ask").on("click", function(event) {  //팝업오픈 버튼 누르면
-									    $("#refund_product").val($(this).next().val());									    	
+									    $("#refund_product").val($(this).next().val());	
+									    $("#exSeq").val($(this).next().next().val());
 									   	$("#popup06").show();   //팝업 오픈
 									    $("body").append('<div class="backon"></div>'); //뒷배경 생성
 								    });
@@ -1593,7 +1631,7 @@
 												</div>
 												<div class="police_category">
 													<span style="padding-right: 10px">교환사유</span>
-													<select class="order_exchange_reason" name="cancle_reason">
+													<select form="ex2Form" class="order_exchange_reason" name="cancel_reason">
 														<option value="">교환 사유 선택</option>
 														<option value="배송누락">배송 누락</option>
 														<option value="배송지연">배송 지연</option>
@@ -1610,18 +1648,21 @@
 											<hr>
 											<br>
 											<div class="write_police_reason" style="margin-left:30px">
-												<textarea style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
+												<textarea form="ex2Form" style="border: 1px solid lightgray" rows="5" cols="63"></textarea>
 											</div>
 											
 											<div style="font-size:14px; color:gray; margin-left:30px">※ 교환요청 시 등록한 주소로 담당 택배사 직원이 3~4일 이내로 수거 예정입니다.</div>
 											<div style="font-size:14px; color:gray; margin-left:30px">※ 단순변심으로 인한 교환/반품의 경우 왕복 배송비 5,000원은 고객측 부담입니다.</div>
 											<br>
-											<div style="text-align: center">								
-												<button class="modal_exchange_btn" disabled style="width: 90px; font-size: 15px">교환신청</button>
+											<div style="text-align: center">
+												<form id="ex2Form" action="payCancel.do" method="post">									
+													<button class="modal_exchange_btn" disabled style="width: 90px; font-size: 15px">교환신청</button>
+													<input type="hidden" name="pay_cancel" value="교환 처리 중"/>
+													<input type="hidden" name="cancelSeq" value="" id="ex2Seq"/>
+												</form>
 											</div>
 											<br> 
 										</div>
-										
 									</div>
 									<a style="cursor: pointer; color: gray" class="close07">X</a>
 								</div>
@@ -1630,6 +1671,7 @@
 								  $(document).ready(function( $ ){     
 								    $(".btn_store_bought_exchange_product").on("click", function(event) {  //팝업오픈 버튼 누르면
 								    	$("#exchange_product").val($(this).next().val());
+								    	$("#ex2Seq").val($(this).next().next().val());
 									    $("#popup07").show();   //팝업 오픈
 									    $("body").append('<div class="backon"></div>'); //뒷배경 생성
 									    });

@@ -12,6 +12,7 @@ import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.community.CommunityBoardService;
 import four.mint.web.user.community.CommunityBoardVO;
 import four.mint.web.user.community.CommunityCommentVO;
+import four.mint.web.user.community.KindAddressVO;
 
 @Service("communityBoardService")
 public class CommunityBoardServiceImpl implements CommunityBoardService {
@@ -39,8 +40,8 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public List<CommunityBoardVO> getKindList(String kind) {
-		return communityBoardDao.getKindList(kind);
+	public List<CommunityBoardVO> getKindList(KindAddressVO kaVO) {
+		return communityBoardDao.getKindList(kaVO);
 	}
 
 	@Override
@@ -79,8 +80,8 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public List<CommunityBoardVO> getTopFive() {
-		return communityBoardDao.getTopFive();
+	public List<CommunityBoardVO> getTopFive(String address) {
+		return communityBoardDao.getTopFive(address);
 	}
 
 	@Override

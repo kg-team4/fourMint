@@ -47,7 +47,7 @@
 	</select>
 	
 	<select id="getCheck" resultType="followings" parameterType="followings">
-		SELECT * FROM follow WHERE standard = #{nickname} AND target = #{following} 
+		SELECT standard AS nickname, target AS following FROM follow WHERE standard = #{nickname} AND target = #{following} 
 	</select>
 	
 	<insert id="insertFollow" parameterType="followings">

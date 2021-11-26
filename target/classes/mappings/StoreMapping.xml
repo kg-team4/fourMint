@@ -111,11 +111,14 @@
 		<result property="status" column="STATUS"/>
 		<result property="cancel_date" column="CANCEL_DATE"/>
 		<result property="cancel_status" column="CANCEL_STATUS"/>
+		<result property="cancel_reason" column="CANCEL_REASON"/>
+		<result property="pay_cancel" column="PAY_CANCEL"/>
+		<result property="url" column="URL"/>
 	</resultMap>
 	
 	<insert id="insertHistory" parameterType="history">
 		INSERT INTO transactionHistory (transaction_seq, email_id, product_name, product_price, transaction_price, transaction_count, merchant_uid, request, date, address2, status)
-		VALUES (DEFAULT, #{email_id}, #{product_name}, #{product_price}, #{transaction_price}, #{transaction_count}, #{merchant_uid}, #{request}, now() at time zone 'Asia/Seoul', #{address2}, '배송준비중')
+		VALUES (DEFAULT, #{email_id}, #{product_name}, #{product_price}, #{transaction_price}, #{transaction_count}, #{merchant_uid}, #{request}, now() at time zone 'Asia/Seoul', #{address2}, '상품 준비 중')
 	</insert>
 	
 	<update id="minusStock" parameterType="history">
@@ -127,6 +130,14 @@
 		(SELECT * FROM transactionHistory WHERE email_id = #{email_id}) AS a 
 		JOIN 
 		(SELECT url, product_name FROM storeBoard) AS b ON a.product_name = b.product_name ORDER BY array_position(array['상품 준비 중', '상품 배송 중', '상품 배송 완료'], status::TEXT), date DESC
+	</select>
+	
+	<update id="updateCancel" parameterType="history">
+		UPDATE transactionHistory SET cancel_date = now(), cancel_status = #{cancel_status}, cancel_reason = #{cancel_reason}, pay_cancel = #{pay_cancel} WHERE transaction_seq = #{transaction_seq}
+	</update>
+	
+	<select id="getTransaction" parameterType="history" resultType="history">
+		SELECT * FROM transactionHistory WHERE email_id = #{email_id} AND transaction_seq = #{transaction_seq}
 	</select>
 	
 	<!-- 좋아요 등록 -->
@@ -151,4 +162,78 @@
 		SELECT b.store_seq, b.date, b.url, b.product_name, b.product_price FROM (SELECT * FROM storelike WHERE nickname = #{nickname}) AS a JOIN (SELECT * FROM storeBoard) AS b ON a.store_seq = b.store_seq;
 	</select>
 	
+	<select id="searchLikes" parameterType="int" resultType="int">
+		SELECT count(*) FROM storeLike WHERE store_seq = #{seq}
+	</select>
+	
+	<!-- 후기 작성용 -->
+	<resultMap type="rate" id="rateResult">	
+		<result property="rate_seq" column="RATE_SEQ"/>
+		<result property="store_seq" column="STORE_SEQ"/>
+		<result property="nickname" column="NICKNAME"/>
+		<result property="rating" column="RATING"/>
+		<result property="content" column="CONTENT"/>
+		<result property="date" column="DATE"/>
+		<result property="profile" column="PROFILE"/>
+	</resultMap>
+	
+	<insert id="insertRate" parameterType="rate">
+		INSERT INTO storeRate(rate_seq, store_seq, nickname, rating, content, date)
+		VALUES(DEFAULT, #{store_seq}, #{nickname}, #{rating}, #{content}, now())
+	</insert>
+	
+	<select id="getRateList" resultType="rate" parameterType="int">
+		SELECT a.*, b.profile FROM 
+		(SELECT * FROM storerate WHERE store_seq = #{seq}) AS a 
+		JOIN 
+		(SELECT nickname, profile FROM member) AS b 
+		ON a.nickname = b.nickname; 
+	</select>
+	
+	<delete id="deleteRate" parameterType="int">
+		DELETE FROM storeRate WHERE rate_seq = #{seq}
+	</delete>
+	
+	<!-- 문의사항 -->
+	<resultMap type="ask" id="askResult">	
+		<result property="ask_seq" column="ASK_SEQ"/>
+		<result property="store_seq" column="STORE_SEQ"/>
+		<result property="nickname" column="NICKNAME"/>
+		<result property="content" column="CONTENT"/>
+		<result property="date" column="DATE"/>
+		<result property="status" column="STATUS"/>
+		<result property="profile" column="PROFILE"/>
+	</resultMap>
+	
+	<insert id="insertAsk" parameterType="ask">
+		INSERT INTO storeAsk(ask_seq, store_seq, nickname, content, date, status)
+		VALUES(DEFAULT, #{store_seq}, #{nickname}, #{content}, now(), 1)
+	</insert>
+	
+	<select id="getAskList" parameterType="ask" resultType="ask">
+		SELECT a.*, b.profile FROM 
+		(SELECT * FROM storeAsk WHERE store_seq = #{store_seq} AND nickname = #{nickname}) AS a 
+		JOIN 
+		(SELECT nickname, profile FROM member) AS b ON a.nickname = b.nickname;
+	</select>
+	
+	<delete id="deleteAsk" parameterType="int">
+		DELETE FROM storeAsk WHERE ask_seq = #{seq}
+	</delete>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

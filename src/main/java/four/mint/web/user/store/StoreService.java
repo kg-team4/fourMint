@@ -56,5 +56,23 @@ public interface StoreService {
 
 	List<StoreVO> getStoreLike(String nickname);
 
+	void updateCancel(TransactionHistoryVO thVO);
+
+	TransactionHistoryVO getTransaction(TransactionHistoryVO tVO);
+
+	void insertRate(StoreRateVO srVO);
+
+	List<StoreRateVO> getRateList(int seq);
+
+	void deleteRate(int seq);
+
+	void insertAsk(StoreAskVO qVO);
+
+	List<StoreAskVO> getAskList(StoreAskVO askVO);
+
+	void deleteAsk(int seq);
+
+	int searchLikes(int seq);
+
 
 }

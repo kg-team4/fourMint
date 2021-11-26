@@ -60,5 +60,11 @@ public interface MarketService {
 
 	List<MarketVO> getMarketBuy(String nickname);
 
-	void insertRating(MarketRatingVO mrVO);
+	void updateRating(MarketRatingVO mrVO);
+
+	List<MarketRatingVO> getMarketRating(String nickname);
+
+	void setRating(int buy_seq);
+
+	int searchLikes(int seq);
 }

@@ -16,5 +16,6 @@ public class UserVO {
 	private String birth;
 	private String gender;
 	private String profile;
+	private float rating;
 
 }

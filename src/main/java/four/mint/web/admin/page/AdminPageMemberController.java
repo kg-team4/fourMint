@@ -61,6 +61,7 @@ public class AdminPageMemberController {
 	@RequestMapping(value = "/deleteMember.mdo", method = RequestMethod.POST)
 	public String updateStore(AdminPageStoreVO vo, HttpServletRequest request) {
 		adminPageService.deleteMember(request.getParameter("nickname"));
+		
 		return "redirect:/memberpage.mdo";
 	}
 }

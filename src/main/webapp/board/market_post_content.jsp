@@ -29,7 +29,14 @@
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
 							<!-- 이미지 미리보기 -->
-							<img class="mainimg" src="${content.url }">
+							<c:choose>
+							<c:when test="${content.status eq 0 }">
+								<img class="mainimg" src="${content.url }" style="filter: brightness(40%);">
+							</c:when>
+							<c:otherwise>
+								<img class="mainimg" src="${content.url }">
+							</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<!-- 이전/다음 버튼(선택) -->
@@ -43,16 +50,30 @@
 				<div class="item padding25">
 					<span class="font30">${content.product_name }</span>
 					<div style="display: flex; justify-content: flex-end">
-						<div class="font27" style="padding-left: 360px; padding-top: 5px">${content.product_price}</div>
-						<span class=font20 style="padding-left: 5px; padding-top: 10px">원</span>
+						<c:choose>
+						<c:when test="${content.status eq 0 }">
+							<div class="font27" style="padding-left: 340px; padding-top: 5px; color: red;">[ 판매 완료 ]</div>
+						</c:when>
+						<c:otherwise>
+							<div class="font27" style="padding-left: 360px; padding-top: 5px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${content.product_price}" /></div>
+							<span class=font20 style="padding-left: 5px; padding-top: 10px">원</span>
+						</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<div class="item padding25">
 					<hr>
 				</div>
 				<div class="item font17 gray-font padding25">
-					<span class="lightgray-font">♥</span> 
-					<span class="font15 padding-right05">&nbsp;1</span> 
+					<c:choose>
+					<c:when test="${like eq 0 }">
+						<span id="heart" class="lightgray-font">♥&nbsp;</span> 
+					</c:when>
+					<c:otherwise>
+						<span id="heart" class="lightgray-font" style="color: red;">♥&nbsp;</span>
+					</c:otherwise>
+					</c:choose>
+					<span id="likes" class="font15 padding-right05">${likes }</span> 
 					<span class="short-border"> 
 						<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAaCAYAAADMp76xAAAAAXNSR0IArs4c6QAABAdJREFUWAm9mFtIFFEYx9tZ11UW1tLoaoGEPShqq3ahgogyIgnqQXqIgih6qKgEH4JIqCgIIoowIrSn6i0irOxCQdAN7wb2IiSlSUZuGJGyumu/b9lZZo8zs7ObdeBwvvNd/uc/53zznWFcs9Js7e3tczVNWzs1NbUKiErGfJfLNYcxVyCRg8g/GAeZdiC3eTyeN2VlZd/Enm5zpRLY09Pjm5yc3EnMbghUMbpTiYd8BP8X9Dt+v/9uYWHhz1TixdcR4YGBgezh4eFD+J+gz5XAGWijYFzKycm5nArxpIQ5+hqAr9AXzgBJM4ggqXWyvLz8uplR1VkShmgOR3iVo9+jBv2LOWs9pu+H+JAdvilhyC4j6AldxqSNhT7g1Oh2u59mZWV9loDx8fGl4XB4C+IBHrpIdA7ad7C2V1RUvLPynUa4u7s7wIvVQsB8qyCDfgK5jgUaWChs0MdFyLo7OjoOo7hI98QN1sJvsHaB+cDMJYFwV1fXCnblJY5+M2dFN8GOVgcCgWeK3nQKdhXYDzE6IR2GdA2k76lgmq7o7OxcBGAzcydkJazOKVlxjvnWieyguTmZ25y21PiEFt3h/v7+rJGRkddYyhOsFhOe/gMvR6lVGliEzZL0YGPep5DTw16vd2VJScmAjhnd4WAweBaFI7KxwEaVLCQyIHOafB2ULrLo9IVkjMU0GnVJ5PmhUOim0UejIqwGuNaoTCZLNVB9yNFTkUikHqzF0kUWnepnFqv6GOdgbWYDDuo6jaduYOLWFU5Gvgk+qX4A73ei08ue6ms3B/ui3LbiozExLUd2AOxSQnWx850h2+f8/PyQYGksfoRxMhVguRRUf06qyYnOLFaNM87BjdAP0KMbq1Fu2phcMDolk2M3WIIbOGf5JjgD1hfpIosuwYmJWazqo8yvGG++6NH29vZmjo2NPcdxveJsOoXQ/yprXcKpsrLyt04kWtaKi4tDPp9vB0T6dIPdSN4Xxa5bO7dpNomR2GkGEwVchjIyMrYbyYpbwstDGSqkHL0CdJ4Jhqr6l1ezfNhvhGynumj8ahYDOSc7vI7+UeZJmke+DajjR3lAy7IoNvERX/CcfEd8pRBsMCMrfBJ2WCdITi8gpx8xD+g6u1FyGvtff15KSlLjt5aWllpumClhIdfX1+cdHR09D0gtu2TpZ/cgKdqasrOzj/M+/bKLS0qEb4JN5PU1QJbbAaVrY0M+UQKPkY73nWAkJSwgkoe84fsQ6+lLRDcD7Stkz3FV35Aq5RTPEWEdLFavt7HQXnTVPEimbnM4ThDbQtytvLy85oKCgnGHcXG3lAjHoxAogbNJlTWIq6VDQn6k5DLmih+y/EgJMsqPlFaOvZW3/y0v1A+xp9v+ADhPuomDsZuZAAAAAElFTkSuQmCC" width="20" height="13" alt="조회수 아이콘">&nbsp;${content.views }
 					</span> 
@@ -205,6 +226,8 @@
 											success : function(data) {
 												$("#likeBtn").attr('type', "hidden");
 												$("#hateBtn").attr('type', "button");
+												$("#heart").attr('style', "color: red");
+												$("#likes").text(Number($("#likes").text())+1);
 											}
 										});
 									});
@@ -220,6 +243,8 @@
 											success : function(data) {
 												$("#hateBtn").attr('type', "hidden");
 												$("#likeBtn").attr('type', "button");
+												$("#heart").attr('style', "color: lightgray");
+												$("#likes").text(Number($("#likes").text())-1);
 											}
 										});
 									});
@@ -416,8 +441,13 @@
 										<div id="member-form">
 											<div style="font-size: 22px">${content.nickname}</div>
 											<div class="seller_grade">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
+												<c:set var="star" value="${user.rating }"/>
+												<c:forEach var="i" begin="1" end="${star }">
+													<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+												</c:forEach>
+												<c:if test="${star % 1 > 0 }">
+													<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
+												</c:if>
 											</div>
 										</div>
 									</div>
@@ -438,9 +468,7 @@
 									<c:forEach var="market" items="${market }">
 										<div class="sell_list">
 											<table width="100%" height="120" style="padding-top: 20px">
-												
 													<tr height="30">
-														
 														<td align="left" style="font-size: 15px">&nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${market.date }" /></td>
 														<td width="70%"></td>
 													</tr>
@@ -500,72 +528,53 @@
 							
 							<div id="tab03">
 								<div class="store_review_grid">
+									<c:forEach var="rate" items="${rating }">
 									<div class="store_review">
 										<table width="100%" height="140">
 											<tr>
 												<td width="20%" rowspan="2" style="padding: 10px">
 													<div id="img_box">
-														<a id="market_review_img_area" href="#"> <img id="store_review_img" src="../img/character_sample2.jpg" width="100" height="100" alt="상점이미지">
+														<a id="market_review_img_area" href="#"> 
+														<img id="store_review_img" src="${rate.profile }" width="100" height="100" alt="상점이미지">
 														</a>
 													</div>
 												</td>
-												<td style="font-size: 20px" width="10%" height="40px"><a href="#" style="color: #26e4ca">닉네임</a></td>
+												<td style="font-size: 20px" width="30%" height="40px">
+													<a href="#" style="color: #26e4ca">${rate.writer }</a><br>
+													<a class="" href="#"> 
+														<c:set var="star" value="${rate.rating }"/>
+														<c:forEach var="i" begin="1" end="${star}">
+															<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+														</c:forEach>
+														<c:if test="${star % 1 > 0 }">
+															<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
+														</c:if>
+														</a>
+												</td>
 												<td width="30%">
 													<div class="">
-														<a class="" href="#"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png"
-															width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-														</a>
 													</div>
 												</td>
-												<td style="font-size: 15px" width="10%">
-													<div id="date" style="text-align: right">1달 전</div>
+												<td style="font-size: 15px" width="30%">
+													<div id="date" style="text-align: right"><fmt:formatDate pattern="yyyy-MM-dd" value="${rate.date }" /></div>
 												</td>
 											</tr>
 											<tr>
 												<td align="left" colspan="4" style="font-size: 15px">
 													<button id="btn_sold_product_name">
-														&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
+														&nbsp;${rate.product_name } <img src="../img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
 													</button>
-													<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
+													<div id="sold_product_review">${rate.content }</div>
 												</td>
 											</tr>
 										</table>
-										<br>
-										<hr>
+										<br> <hr>
 									</div>
 									<br>
-									<div class="store_review">
-										<table width="100%" height="120">
-											<tr height="30">
-												<td width="20%" rowspan="2" style="padding: 10px"><a id="market_review_img_area" href="#">
-														<div id="img_box">
-															<img id="store_review_img" src="../img/character_sample1.jpg" alt="상점이미지">
-														</div>
-												</a></td>
-												<td style="font-size: 20px" width="10%"><a href="#" style="color: #26e4ca">닉네임</a></td>
-												<td width="30%"><a class="" href="#">
-														<div class="">
-															<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14"
-																alt="별점이미지"> <img src="../img/star_rank.png" width="15" height="14" alt="별점이미지">
-														</div>
-												</a></td>
-												<td style="font-size: 15px" width="10%">
-													<div id="date" style="text-align: right">1달 전</div>
-												</td>
-											</tr>
-											<tr>
-												<td align="left" colspan="4" style="font-size: 15px">
-													<button id="btn_sold_product_name">
-														&nbsp;에스파 지젤 포토카드 <img src="../img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
-													</button>
-													<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
-												</td>
-											</tr>
-										</table>
-										<br>
-										<hr>
-									</div>
-									<div class="transmit_no_post">받은 거래 후기가 없습니다.</div>
+									</c:forEach>
+									<c:if test="${rating eq null }">
+										<div class="transmit_no_post">받은 거래 후기가 없습니다.</div>
+									</c:if>
 								</div>
 							</div>
 						</div>
@@ -595,11 +604,16 @@
 										<a class="seller_nick" style="cursor: pointer">${content.nickname }</a>
 									</div>
 									<div class="seller_grade">
-										<img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지">
-										<img src="../img/star_rank.png" width="13" height="12" alt="별점이미지">
+										<c:set var="star" value="${user.rating }"/>
+										<c:forEach var="i" begin="1" end="${star }">
+											<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+										</c:forEach>
+										<c:if test="${star % 1 > 0 }">
+											<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
+										</c:if>
 									</div>
 									<div id="proudct_num_follower">
-										상품 &nbsp;<span>${boardCount }</span> &emsp; 팔로워 &nbsp;<span>${follow.follower }</span>
+										상품 &nbsp;<span>${boardCount }</span> &emsp; 팔로워 &nbsp;<span id="tempFol">${follow.follower }</span>
 									</div>
 									<c:if test="${user.nickname ne nickname }">
 										<input type="hidden" id="seller" value="${content.nickname }"/>
@@ -624,6 +638,7 @@
 										<script>
 											$("#btn_follow").click(function(){
 												var seller = $("#seller").val();
+												$("#tempFol").text(Number($("#tempFol").text())+1);
 												$.ajax({
 													url : "/follow.do",
 													type : "post",
@@ -640,6 +655,7 @@
 											
 											$("#btn_unfollow").click(function(){
 												var seller = $("#seller").val();
+												$("#tempFol").text(Number($("#tempFol").text())-1);
 												$.ajax({
 													url : "/unfollow.do",
 													type : "post",
@@ -663,55 +679,42 @@
 			</div>
 			<br> <br> <br> <br> <br> <br>
 			<div class="right-item34  padding-right30 padding-left30 ">
+				<br><br>
 				<div class="padding15 left-font">
 					<p class=" font27">상점후기</p>
 				</div>
 				<hr>
 				<div class="padding-top30">
+					<c:forEach var="rate" items="${rating }" begin="0" end="1">
 					<div class="float-box float-left">
 						<div class="left-item25  pic-align left-font">
-							<a href="#"> <img class="reply-pic-circle" src="../img/character_sample2.jpg">
+							<a href="#"> <img class="reply-pic-circle" src="${rate.profile }">
 							</a>
 						</div>
 						<div class="right-item75">
-							<div class="top-margin10 left-font seller">
+							<div class="top-margin10 left-font seller" style="margin-top: 0;">
 								<!-- 작성자 -->
 								<div id="member-form">
 									<div>
-										<a class="buyer_nick1">제가샀어요</a>
+										<a class="buyer_nick1">${rate.writer }</a>
 									</div>
 									<div class="seller_grade" style="height: 18px; width: 100px">
-										<img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지">
-										<img src="../img/star_rank.png" width="13" height="12" alt="별점이미지">
+										<c:set var="star" value="${rate.rating }"/>
+										<c:forEach var="i" begin="1" end="${star}">
+											<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+										</c:forEach>
+										<c:if test="${star % 1 > 0 }">
+											<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
+										</c:if>
 									</div>
-									<div id="buyer_review">너무 친절하셔서 좋았어여!! 다음에 또 거래하고 싶어요!! 좋은하루되세요~!! 뭐지뭐지뭐지뭐뭐지</div>
-									<button id="btn_follow" style="width: 100px">상품후기 더보기</button>
+									<br>
+									<div id="buyer_review">${rate.content }</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="float-box float-left">
-						<div class="left-item25  pic-align left-font">
-							<a href="#"> <img class="reply-pic-circle" src="../img/badminton.png">
-							</a>
-						</div>
-						<div class="right-item75">
-							<div class="top-margin10 left-font seller">
-								<!-- 작성자 -->
-								<div id="member-form">
-									<div>
-										<a class="buyer_nick2">reviewer</a>
-									</div>
-									<div class="seller_grade" style="height: 18px; width: 100px">
-										<img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지"> <img src="../img/star_rank.png" width="13" height="12" alt="별점이미지">
-										<img src="../img/star_rank.png" width="13" height="12" alt="별점이미지">
-									</div>
-									<div id="buyer_review">직거래 바로 해주셔서 감사합니다. 룰룰루 잘 사용할게요 항상 좋은 하루 보내세용~!!!!</div>
-									<button id="btn_follow" style="width: 100px">상품후기 더보기</button>
-								</div>
-							</div>
-						</div>
-					</div>
+					<br>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -1297,14 +1300,6 @@
 	};
 
 	document.querySelector('.seller_nick').addEventListener('click', function() {
-	    // 모달창 띄우기
-	    modal('my_modal');
-	});
-	document.querySelector('.buyer_nick1').addEventListener('click', function() {
-	    // 모달창 띄우기
-	    modal('my_modal');
-	});
-	document.querySelector('.buyer_nick2').addEventListener('click', function() {
 	    // 모달창 띄우기
 	    modal('my_modal');
 	});

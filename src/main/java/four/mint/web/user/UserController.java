@@ -31,6 +31,7 @@ import four.mint.web.common.AwsS3;
 import four.mint.web.user.community.CommunityBoardService;
 import four.mint.web.user.community.CommunityBoardVO;
 import four.mint.web.user.community.CommunityCommentVO;
+import four.mint.web.user.market.MarketRatingVO;
 import four.mint.web.user.market.MarketService;
 import four.mint.web.user.market.MarketVO;
 import four.mint.web.user.store.StoreService;
@@ -176,6 +177,10 @@ public class UserController {
 			fVO = followService.getFollowCount(uVO.getNickname());
 			request.setAttribute("follow", fVO);
 			
+			/* 게시글 개수 확인 */
+			int boardCount = marketService.getUserBoardCount(uVO.getNickname());
+			request.setAttribute("boardCount", boardCount);
+			
 			/* 팔로워 리스트 */
 			List<FollowerVO> followerList = userService.getFollowers(uVO.getNickname());
 			request.setAttribute("follower", followerList);
@@ -211,6 +216,10 @@ public class UserController {
 			/* 중고 구매 내역 */
 			List<MarketVO> buyVO = marketService.getMarketBuy(uVO.getNickname());
 			request.setAttribute("buy", buyVO);
+			
+			/* 나에 대한 구매 후기 목록 */
+			List<MarketRatingVO> raVO = marketService.getMarketRating(uVO.getNickname());
+			request.setAttribute("rating", raVO);
 		}
 		
 		return "/member/profile";

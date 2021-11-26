@@ -91,13 +91,29 @@
 								<c:set var="market_category_middle" value="${market.category_middle }" />
 								<c:if test="${ big_no eq market_category_big && middle_no eq market_category_middle }">
 									<li>
-										<a href="marketBoard.do?seq=${market.market_seq }"><img src="${market.url }"></a>
+										<a href="marketBoard.do?seq=${market.market_seq }">
+										<c:choose>
+										<c:when test="${market.status eq 0 }">
+											<img src="${market.url }" style="filter: brightness(40%);">
+										</c:when>
+										<c:otherwise>
+											<img src="${market.url }" >
+										</c:otherwise>
+										</c:choose>
+										</a>
 										<p>
 											<span class="red">${market.category_middle }</span> 
 										</p>
 										<div style="display:flex;">
 											<div id="product_name">${market.product_name }</div>
-											<div id="product_price">${market.product_price }원</div>
+											<c:choose>
+											<c:when test="${market.status eq 0 }">
+												<div id="product_price" style="color: red;">[ 판매 완료 ]</div>
+											</c:when>
+											<c:otherwise>
+												<div id="product_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${market.product_price }" />원</div>
+											</c:otherwise>
+											</c:choose>
 										</div>
 									</li>
 								</c:if>
@@ -106,13 +122,28 @@
 								<c:set var="market_category_big" value="${market.category_big }" />
 								<c:if test="${ big_no eq market_category_big }">
 									<li>
-										<a href="marketBoard.do?seq=${market.market_seq }"> <img src="${market.url }"></a>
+										<a href="marketBoard.do?seq=${market.market_seq }"> 
+										<c:choose>
+										<c:when test="${market.status eq 0 }">
+											<img src="${market.url }" style="filter: brightness(40%);">
+										</c:when>
+										<c:otherwise>
+											<img src="${market.url }" >
+										</c:otherwise>
+										</c:choose></a>
 										<p>
 											<span class="red">${market.category_middle }</span> 
 										</p>
 										<div style="display:flex;">
 											<div id="product_name">${market.product_name }</div>
-											<div id="product_price">${market.product_price }원</div>
+											<c:choose>
+											<c:when test="${market.status eq 0 }">
+												<div id="product_price" style="color: red;">[ 판매 완료 ]</div>
+											</c:when>
+											<c:otherwise>
+												<div id="product_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${market.product_price }" />원</div>
+											</c:otherwise>
+											</c:choose>
 										</div>
 									</li>
 								</c:if>

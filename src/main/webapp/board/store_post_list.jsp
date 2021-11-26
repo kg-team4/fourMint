@@ -125,7 +125,6 @@
 				success : function(data){ 
 				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
-				   $(document).scrollTop(0);
 				},
 				error : function(data){
 					alert('error');
@@ -146,7 +145,6 @@
 				success : function(data){ 
 				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
-				   $(document).scrollTop(0);
 				},
 				error : function(data){
 					alert('error');
@@ -167,7 +165,6 @@
 				success : function(data){ 
 				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
-				   $(document).scrollTop(0);
 				},
 				error : function(data){
 					alert('error');

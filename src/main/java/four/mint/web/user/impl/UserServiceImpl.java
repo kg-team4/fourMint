@@ -211,5 +211,15 @@ public class UserServiceImpl implements UserService {
 		return userDao.getId(vo);
 	}
 
+	@Override
+	public float getRating(String userNickname) {
+		return userDao.getRating(userNickname);
+	}
+
+	@Override
+	public void updateRating(UserVO tempUser) {
+		userDao.updateRating(tempUser);
+	}
+
 	
 }
