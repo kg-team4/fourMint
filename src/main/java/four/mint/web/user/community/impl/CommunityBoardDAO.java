@@ -12,6 +12,7 @@ import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.community.CommunityBoardVO;
 import four.mint.web.user.community.CommunityCommentVO;
+import four.mint.web.user.community.KindAddressVO;
 
 @Repository
 public class CommunityBoardDAO {
@@ -34,8 +35,8 @@ public class CommunityBoardDAO {
 		sqlSessionTemplate.insert("CommunityBoardDAO.insertCommunity", cVO);
 	}
 
-	public List<CommunityBoardVO> getKindList(String kind) {
-		return sqlSessionTemplate.selectList("CommunityBoardDAO.getKindList", kind);
+	public List<CommunityBoardVO> getKindList(KindAddressVO kaVO) {
+		return sqlSessionTemplate.selectList("CommunityBoardDAO.getKindList", kaVO);
 	}
 
 	public CommunityBoardVO getBoard(int seq) {
@@ -66,8 +67,8 @@ public class CommunityBoardDAO {
 		return sqlSessionTemplate.selectList("CommunityBoardDAO.getCommentList", nickname);
 	}
 
-	public List<CommunityBoardVO> getTopFive() {
-		return sqlSessionTemplate.selectList("CommunityBoardDAO.getTopFive");
+	public List<CommunityBoardVO> getTopFive(String address) {
+		return sqlSessionTemplate.selectList("CommunityBoardDAO.getTopFive", address);
 	}
 
 	public void insertLike(int seq) {

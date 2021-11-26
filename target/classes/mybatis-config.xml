@@ -40,6 +40,9 @@
 		<typeAlias alias="adminPurchaseHistory" type="four.mint.web.admin.purchasehistory.AdminPurchaseHistoryVO"/>
 		<typeAlias alias="adminMemberList" type="four.mint.web.admin.page.AdminMemberListVO"/>
 		<typeAlias alias="AdminBoard" type="four.mint.web.admin.board.AdminBoardVO"/>
+		<typeAlias alias="rating" type="four.mint.web.user.market.MarketRatingVO"/>
+		<typeAlias alias="rate" type="four.mint.web.user.store.StoreRateVO"/>
+		<typeAlias alias="ask" type="four.mint.web.user.store.StoreAskVO"/>
 	</typeAliases>
 	
 	<typeHandlers>

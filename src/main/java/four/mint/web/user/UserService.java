@@ -46,5 +46,7 @@ public interface UserService {
 	UserVO getUserFromEmail(String email);
 	List<UserVO> getMem(SnsVO vo);
 	String getId(UserVO vo);
+	float getRating(String userNickname);
+	void updateRating(UserVO tempUser);
 	
 }

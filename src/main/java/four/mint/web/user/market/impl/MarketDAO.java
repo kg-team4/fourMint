@@ -132,7 +132,19 @@ public class MarketDAO {
 		return sqlSessionTemplate.selectList("MarketDAO.getMarketBuy", nickname);
 	}
 
-	public void insertRating(MarketRatingVO mrVO) {
-		sqlSessionTemplate.insert("MarketDAO.insertRating", mrVO);
+	public void updateRating(MarketRatingVO mrVO) {
+		sqlSessionTemplate.update("MarketDAO.updateRating", mrVO);
+	}
+
+	public List<MarketRatingVO> getMarketRating(String nickname) {
+		return sqlSessionTemplate.selectList("MarketDAO.getMarketRating", nickname);
+	}
+
+	public void setRating(int buy_seq) {
+		sqlSessionTemplate.insert("MarketDAO.setRating", buy_seq);
+	}
+
+	public int searchLikes(int seq) {
+		return sqlSessionTemplate.selectOne("MarketDAO.searchLikes", seq);
 	}
 }

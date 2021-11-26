@@ -163,8 +163,23 @@ public class MarketServiceImpl implements MarketService {
 	}
 
 	@Override
-	public void insertRating(MarketRatingVO mrVO) {
-		marketDao.insertRating(mrVO);
+	public void updateRating(MarketRatingVO mrVO) {
+		marketDao.updateRating(mrVO);
+	}
+
+	@Override
+	public List<MarketRatingVO> getMarketRating(String nickname) {
+		return marketDao.getMarketRating(nickname);
+	}
+
+	@Override
+	public void setRating(int buy_seq) {
+		marketDao.setRating(buy_seq);
+	}
+
+	@Override
+	public int searchLikes(int seq) {
+		return marketDao.searchLikes(seq);
 	}
 	
 	

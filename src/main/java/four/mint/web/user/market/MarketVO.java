@@ -22,4 +22,6 @@ public class MarketVO {
 	private int status;
 	private String buyer;
 	private Timestamp sell_date;
+	
+	private String content;
 }

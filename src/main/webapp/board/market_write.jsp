@@ -115,7 +115,7 @@
 		 <br><br>
 		</form>
 		
-		<a href="storeSell.do">스토어 판매</a> 
+		<!-- <a href="storeSell.do">스토어 판매</a>  -->
 	</div>
 </article>
 

@@ -184,4 +184,12 @@ public class UserDAO {
 	public List<UserVO> getUserList() {
 		return sqlSessionTemplate.selectList("UserDAO.getUserList");
 	}
+
+	public float getRating(String userNickname) {
+		return sqlSessionTemplate.selectOne("UserDAO.getRating", userNickname);
+	}
+
+	public void updateRating(UserVO tempUser) {
+		sqlSessionTemplate.update("UserDAO.updateRating", tempUser);
+	}
 }

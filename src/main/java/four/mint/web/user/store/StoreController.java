@@ -70,10 +70,11 @@ public class StoreController {
 		svo = storeService.getStoreOne(Integer.valueOf(request.getParameter("seq")));
 		request.setAttribute("content", svo);
 		
+		int seq = Integer.valueOf(request.getParameter("seq"));
 		/* 좋아요 눌렀는지 확인 */
 		LikeVO tempLVO = new LikeVO();
 			tempLVO.setNickname(String.valueOf(session.getAttribute("nickname")));
-			tempLVO.setSeq(Integer.valueOf(request.getParameter("seq")));
+			tempLVO.setSeq(seq);
 		LikeVO lVO = storeService.getLike(tempLVO);
 		if(lVO == null) {
 			int result = 0;
@@ -82,6 +83,31 @@ public class StoreController {
 			int result = 1;
 			request.setAttribute("like", result);
 		}
+		
+		/* 좋아요 숫자 확인 */
+		int sum = storeService.searchLikes(Integer.valueOf(request.getParameter("seq")));
+		request.setAttribute("likes", sum);
+		
+		TransactionHistoryVO tVO = new TransactionHistoryVO();
+			tVO.setEmail_id((String)session.getAttribute("userEmail_id"));
+			tVO.setTransaction_seq(seq);
+			
+		TransactionHistoryVO tempVO = storeService.getTransaction(tVO);	
+		
+		if(tempVO == null) {
+			request.setAttribute("buyOrNot", 0);
+		} else {
+			request.setAttribute("buyOrNot", 1);
+		}
+		
+		List<StoreRateVO> srList = storeService.getRateList(seq);
+		request.setAttribute("rate", srList);
+		
+		StoreAskVO askVO = new StoreAskVO();
+			askVO.setStore_seq(seq);
+			askVO.setNickname((String)session.getAttribute("nickname"));
+		List<StoreAskVO> askList = storeService.getAskList(askVO);
+		request.setAttribute("ask", askList);
 
 		return "/board/store_post_content";
 	}
@@ -487,6 +513,59 @@ public class StoreController {
 		lVO.setNickname(String.valueOf(session.getAttribute("nickname")));
 		lVO.setSeq(seq);
 		storeService.deleteLike(lVO);		
+		
+		return 0;
+	}
+	
+	@PostMapping("/payCancel.do")
+	public String payCancel(String cancel_reason, String content, int cancelSeq, String pay_cancel) {
+		TransactionHistoryVO thVO = new TransactionHistoryVO();
+			thVO.setCancel_reason(content);
+			thVO.setCancel_status(cancel_reason);
+			thVO.setTransaction_seq(cancelSeq);
+			thVO.setPay_cancel(pay_cancel);
+		storeService.updateCancel(thVO);
+		
+		return "redirect:profile.do";
+	}
+	
+	@PostMapping("/storeRate.do")
+	public String storeRate(HttpSession session, int store_seq, float star, String content) {
+		StoreRateVO srVO = new StoreRateVO();
+			srVO.setStore_seq(store_seq);
+			srVO.setRating(star);
+			srVO.setContent(content);
+			srVO.setNickname((String)session.getAttribute("nickname"));
+			
+		storeService.insertRate(srVO);	
+		
+		return "redirect:storeBoard.do?seq="+store_seq;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteRate.do", method = RequestMethod.POST)
+	public int deleteRate(int seq) throws Exception {
+		storeService.deleteRate(seq);
+		
+		return 0;
+	}
+	
+	@ResponseBody
+	@PostMapping("storeQNA.do")
+	public int insertAsk(int seq, String content, HttpSession session) {
+		StoreAskVO qVO = new StoreAskVO();
+			qVO.setStore_seq(seq);
+			qVO.setNickname((String)session.getAttribute("nickname"));
+			qVO.setContent(content);
+		storeService.insertAsk(qVO);	
+		
+		return 0;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteAsk.do", method = RequestMethod.POST)
+	public int deleteAsk(int seq) throws Exception {
+		storeService.deleteAsk(seq);
 		
 		return 0;
 	}

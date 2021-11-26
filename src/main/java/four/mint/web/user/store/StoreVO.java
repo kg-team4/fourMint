@@ -16,4 +16,6 @@ public class StoreVO {
 	private int product_stock;
 	private String url;
 	private Timestamp date;
+	
+	
 }

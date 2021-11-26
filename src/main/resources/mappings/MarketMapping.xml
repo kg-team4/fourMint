@@ -17,114 +17,179 @@
 		<result property="nickname" column="NICKNAME" />
 		<result property="views" column="VIEWS" />
 		<result property="status" column="STATUS" />
-		<result property="buyer" column="BUYER"/>
-		<result property="sell_date" column="SELL_DATE"/>
+		<result property="buyer" column="BUYER" />
+		<result property="sell_date" column="SELL_DATE" />
 	</resultMap>
-	
-	<select id="getMarketOne" resultType="market" parameterType="int">
-		SELECT * FROM marketBoard WHERE market_seq = ${market_seq}
+
+	<select id="getMarketOne" resultType="market"
+		parameterType="int">
+		SELECT * FROM marketBoard WHERE market_seq =
+		${market_seq}
 	</select>
-	
+
 	<select id="getMarketList" resultType="market" parameterType="int">
-		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM marketboard ORDER BY market_seq DESC) AS b WHERE rnum >= #{startRow} AND rnum <= #{endRow}]]> 
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM marketboard ORDER BY market_seq DESC) AS b WHERE rnum >= #{startRow} AND rnum <= #{endRow}]]>
 	</select>
-	
+
 	<select id="getMarketCount" resultType="int">
-		SELECT count(product_name) FROM marketBoard
+		SELECT
+		count(product_name) FROM marketBoard
 	</select>
-	
-	<select id="getMarketNickname" resultType="market" parameterType="string">
-		SELECT * FROM marketBoard WHERE nickname = #{nickname} ORDER BY status DESC, date DESC
+
+	<select id="getMarketNickname" resultType="market"
+		parameterType="string">
+		SELECT * FROM marketBoard WHERE nickname = #{nickname}
+		ORDER BY status DESC, date DESC
 	</select>
-	
+
 	<insert id="insertMarket" parameterType="market">
-		INSERT INTO marketBoard VALUES(DEFAULT, #{img_name}, #{category_big} ,#{category_middle}, #{product_name}, #{product_price}, #{product_content}, #{url}, now() at time zone 'Asia/Seoul', #{address2}, #{nickname})
+		INSERT INTO marketBoard
+		VALUES(DEFAULT, #{img_name}, #{category_big} ,#{category_middle},
+		#{product_name}, #{product_price}, #{product_content}, #{url}, now()
+		at time zone 'Asia/Seoul', #{address2}, #{nickname})
 	</insert>
-	
-	<select id="getKindCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
-		SELECT count(product_name) FROM marketBoard WHERE category_big = #{kind}
+
+	<select id="getKindCount" resultType="int"
+		parameterType="four.mint.web.user.board.common.SearchVO">
+		SELECT count(product_name) FROM marketBoard WHERE
+		category_big = #{kind}
 	</select>
-	
-	<select id="getKindTwoCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
-		SELECT count(product_name) FROM marketBoard WHERE category_big = #{kind} AND category_middle = #{kindTwo}
+
+	<select id="getKindTwoCount" resultType="int"
+		parameterType="four.mint.web.user.board.common.SearchVO">
+		SELECT count(product_name) FROM marketBoard WHERE
+		category_big = #{kind} AND category_middle = #{kindTwo}
 	</select>
-	
-	<select id="getKindList" resultType="market" parameterType="four.mint.web.user.board.common.SearchVO">
-		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM marketboard WHERE category_big = #{kind} ORDER BY market_seq DESC) AS c) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9);]]> 
+
+	<select id="getKindList" resultType="market"
+		parameterType="four.mint.web.user.board.common.SearchVO">
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM marketboard WHERE category_big = #{kind} ORDER BY status DESC, market_seq DESC) AS c) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9);]]>
 	</select>
-	
-	<select id="getKindTwoList" resultType="market" parameterType="four.mint.web.user.board.common.SearchVO">
-		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM marketboard WHERE category_big = #{kind} AND category_middle = #{kindTwo} ORDER BY market_seq DESC) AS c ) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9)]]> 
+
+	<select id="getKindTwoList" resultType="market"
+		parameterType="four.mint.web.user.board.common.SearchVO">
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM marketboard WHERE category_big = #{kind} AND category_middle = #{kindTwo} ORDER BY status DESC, market_seq DESC) AS c ) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9)]]>
 	</select>
-	
+
 	<select id="updateViews" parameterType="int">
-		UPDATE marketBoard SET views = views +1 where market_seq = ${market_seq}
+		UPDATE marketBoard SET
+		views = views +1 where market_seq = ${market_seq}
 	</select>
-	
+
 	<delete id="deleteMarket" parameterType="int">
-		DELETE FROM marketboard WHERE market_seq = #{seq}
+		DELETE FROM marketboard
+		WHERE market_seq = #{seq}
 	</delete>
-	
+
 	<select id="getBest" resultType="market">
-		SELECT * FROM marketBoard ORDER BY views DESC LIMIT 3;
+		SELECT * FROM marketBoard ORDER
+		BY views DESC LIMIT 3;
 	</select>
-	
+
 	<select id="getRecent" resultType="market">
-		SELECT * FROM marketBoard ORDER BY market_seq DESC LIMIT 3; 
+		SELECT * FROM marketBoard
+		ORDER BY market_seq DESC LIMIT 3;
 	</select>
-	
-	<select id="getMarketListAddress" resultType="market" parameterType="HashMap">
-		SELECT * FROM marketBoard WHERE nickname NOT IN(#{nickname}) AND address2 LIKE #{address} ORDER BY market_seq DESC LIMIT 3;
+
+	<select id="getMarketListAddress" resultType="market"
+		parameterType="HashMap">
+		SELECT * FROM marketBoard WHERE nickname NOT
+		IN(#{nickname}) AND address2 LIKE #{address} ORDER BY status DESC, market_seq DESC
+		LIMIT 3;
 	</select>
-	
-	<update id="sellProduct" parameterType="four.mint.web.user.board.common.MarketBuyerVO">
-		UPDATE marketBoard SET buyer = #{buyer}, sell_date = now() at time zone 'Asia/Seoul', status = 0 WHERE market_seq = #{buy_seq} 
+
+	<update id="sellProduct"
+		parameterType="four.mint.web.user.board.common.MarketBuyerVO">
+		UPDATE marketBoard SET buyer = #{buyer}, sell_date =
+		now() at time zone 'Asia/Seoul', status = 0 WHERE market_seq =
+		#{buy_seq}
 	</update>
-	
+
 	<resultMap type="categoryBig" id="categoryBigResult">
 		<result property="num" column="NUM" />
 		<result property="name" column="NAME" />
 		<result property="middle" column="MIDDLE" />
 	</resultMap>
-	
+
 	<select resultType="categoryBig" id="getMarketCategoryBig">
-		SELECT * FROM market_category_big ORDER BY num ASC
+		SELECT * FROM
+		market_category_big ORDER BY num ASC
 	</select>
-	
-	<select id="getUserBoardCount" resultType="int" parameterType="string">
-		SELECT count(*) FROM marketBoard WHERE nickname = #{nickname}
+
+	<select id="getUserBoardCount" resultType="int"
+		parameterType="string">
+		SELECT count(*) FROM marketBoard WHERE nickname =
+		#{nickname}
 	</select>
-	
-	<select id="getAddress2" resultType="string">		
-		SELECT address2 FROM marketboard		
+
+	<select id="getAddress2" resultType="string">
+		SELECT address2 FROM marketboard
 	</select>
-	
+
 	<select id="getMarketBuy" resultType="market" parameterType="string">
-		SELECT * FROM marketboard WHERE buyer = #{nickname} ORDER BY sell_date DESC;
+		SELECT a.*, b.content FROM 
+		(SELECT * FROM marketboard WHERE buyer = #{nickname} ORDER BY sell_date DESC) AS a JOIN
+		(SELECT * FROM marketrating) AS b ON a.market_seq = b.market_seq;
 	</select>
 
 	<!-- 좋아요 등록 -->
 	<resultMap type="marketLike" id="marketLikeResult">
-		<result property="seq" column="MARKET_SEQ"/>
-		<result property="nickname" column="NICKNAME"/>
+		<result property="seq" column="MARKET_SEQ" />
+		<result property="nickname" column="NICKNAME" />
 	</resultMap>
-	
+
 	<insert id="insertLike" parameterType="marketLike">
-		INSERT INTO marketLike VALUES(#{seq}, #{nickname})
+		INSERT INTO marketLike
+		VALUES(#{seq}, #{nickname})
 	</insert>
-	
-	<select id="getLike" parameterType="marketLike" resultType="marketLike">
-		SELECT * FROM marketLike WHERE nickname = #{nickname} AND market_seq = #{seq}
+
+	<select id="getLike" parameterType="marketLike"
+		resultType="marketLike">
+		SELECT * FROM marketLike WHERE nickname = #{nickname} AND
+		market_seq = #{seq}
 	</select>
-	
+
 	<select id="deleteLike" parameterType="marketLike">
-		DELETE FROM marketLike WHERE nickname = #{nickname} AND market_seq = #{seq}
+		DELETE FROM marketLike
+		WHERE nickname = #{nickname} AND market_seq = #{seq}
+	</select>
+
+	<select id="getMarketLike" parameterType="string"
+		resultType="market">
+		SELECT b.market_seq, b.date, b.url, b.product_name,
+		b.product_price FROM (SELECT * FROM marketlike WHERE nickname =
+		#{nickname}) AS a JOIN (SELECT * FROM marketboard) AS b ON
+		a.market_seq = b.market_seq;
 	</select>
 	
-	<select id="getMarketLike" parameterType="string" resultType="market">
-		SELECT b.market_seq, b.date, b.url, b.product_name, b.product_price FROM (SELECT * FROM marketlike WHERE nickname = #{nickname}) AS a JOIN (SELECT * FROM marketboard) AS b ON a.market_seq = b.market_seq;
+	<select id="searchLikes" parameterType="int" resultType="int">
+		SELECT count(*) FROM marketLike WHERE market_seq = #{seq}
+	</select>
+
+	<!-- 후기 관리 -->
+	<resultMap type="rating" id="ratingResult">
+		<result property="market_seq" column="MARKET_SEQ" />
+		<result property="rating" column="RATING" />
+		<result property="writer" column="WRITER" />
+		<result property="date" column="DATE" />
+		<result property="content" column="CONTENT" />
+		<result property="product_name" column="PRODUCT_NAME"/>
+		<result property="profile" column="PROFILE"/>
+	</resultMap>
+
+	<update id="updateRating" parameterType="rating">
+		UPDATE marketRating SET rating = #{rating}, writer = #{writer}, date = now(), content = #{content} WHERE market_seq = #{market_seq}
+	</update>
+
+	<select id="getMarketRating" parameterType="string" resultType="rating">
+		SELECT c.*, d.profile FROM (SELECT b.*, a.product_name, a.nickname FROM (SELECT * FROM marketboard) AS a JOIN
+		(SELECT * FROM marketrating) AS b ON a.market_seq = b.market_seq WHERE a.nickname = #{nickname}) AS c
+		JOIN
+		(SELECT nickname, profile FROM member) AS d ON c.writer = d.nickname ORDER BY date DESC;
 	</select>
 	
-	 
-	
+	<insert id="setRating" parameterType="int">
+		INSERT INTO marketRating(market_seq) VALUES(#{buy_seq})
+	</insert>
+
 </mapper>

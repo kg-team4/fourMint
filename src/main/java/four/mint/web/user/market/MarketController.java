@@ -124,30 +124,40 @@ public class MarketController {
 		request.setAttribute("community", communityList);
 		
 		/* 좋아요 눌렀는지 확인 */
+		int result = 0;
 		LikeVO tempLVO = new LikeVO();
 			tempLVO.setNickname(String.valueOf(session.getAttribute("nickname")));
 			tempLVO.setSeq(Integer.valueOf(request.getParameter("seq")));
 		LikeVO lVO = marketService.getLike(tempLVO);
 		if(lVO == null) {
-			int result = 0;
+			result = 0;
 			request.setAttribute("like", result);
 		} else {
-			int result = 1;
+			result = 1;
 			request.setAttribute("like", result);
 		}
 		
+		/* 좋아요 숫자 확인 */
+		int sum = marketService.searchLikes(Integer.valueOf(request.getParameter("seq")));
+		request.setAttribute("likes", sum);
+		
 		/* 팔로우 확인 */
+		int folResult = 0;
 		FollowingVO fchVO = new FollowingVO();
 			fchVO.setNickname(String.valueOf(session.getAttribute("nickname")));
 			fchVO.setFollowing(user.getNickname());
 		FollowingVO nfVO = followService.getCheck(fchVO);
 		if(nfVO == null) {
-			int result = 0;
-			request.setAttribute("fol", result);
+			folResult = 0;
+			request.setAttribute("fol", folResult);
 		} else {
-			int result = 0;
-			request.setAttribute("fol", result);
+			folResult = 1;
+			request.setAttribute("fol", folResult);
 		}
+		
+		/* 나에 대한 구매 후기 목록 */
+		List<MarketRatingVO> raVO = marketService.getMarketRating(user.getNickname());
+		request.setAttribute("rating", raVO);
 		
 		return "/board/market_post_content";
 	}
@@ -381,19 +391,36 @@ public class MarketController {
 			mbVO.setBuy_seq(buy_seq);
 			mbVO.setBuyer(buyer);
 		marketService.sellProduct(mbVO);
+		marketService.setRating(buy_seq);
 		
 		return "redirect:profile.do";
 	}
 	
 	@PostMapping("/rating.do")
-	public String rating(HttpSession session, int seq, float star) {
+	public String rating(HttpSession session, int seq, float star, String content) {
 		String writer = String.valueOf(session.getAttribute("nickname"));
 		MarketRatingVO mrVO = new MarketRatingVO();
 			mrVO.setMarket_seq(seq);
 			mrVO.setRating(star);
 			mrVO.setWriter(writer);
+			mrVO.setContent(content);
 		
-		marketService.insertRating(mrVO);
+		marketService.updateRating(mrVO);
+		
+		/* 등급 갱신 */
+		MarketVO tempVO = marketService.getMarketOne(seq);
+			String userNickname = tempVO.getNickname();
+		
+		float origin = userService.getRating(userNickname);
+		float compare = mrVO.getRating();
+		
+		float sum = (origin + compare) / 2;
+		
+		UserVO tempUser = new UserVO();
+			tempUser.setNickname(userNickname);
+			tempUser.setRating(sum);
+			
+		userService.updateRating(tempUser);
 		
 		return "redirect:profile.do";
 	}

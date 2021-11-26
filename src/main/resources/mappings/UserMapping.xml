@@ -111,6 +111,14 @@
 		SELECT password FROM member WHERE email_id = #{email_id}
 	</select>
 	
+	<select id="getRating" resultType="float" parameterType="string">
+		SELECT rating FROM member WHERE nickname = #{userNickname}
+	</select>
+	
+	<update id="updateRating" parameterType="user">
+		UPDATE member SET rating = #{rating} WHERE nickname = #{nickname}	
+	</update>
+	
 	<resultMap type="report" id="reportResult">
 		<result property="report_seq" column="REPORT_SEQ"/>
 		<result property="reason" column="REASON" />
@@ -134,11 +142,11 @@
 	</select>
 	
 	<select id="insertDel">
-		INSERT INTO deletemember SELECT * FROM member WHERE email_id = #{id}
+		INSERT INTO deleteMember SELECT * FROM member WHERE email_id = #{id}
 	</select>
 	
 	<select id="dropMem">
-		DELETE FROM member WHERE email_id = #{id}
+		DELETE FROM member WHERE email_id = #{id} 
 	</select>
 	
 	<select id="updateSns" parameterType="user">

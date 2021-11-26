@@ -30,7 +30,7 @@
 	</insert>
 	
 	<select id="getKindList" resultType="communityBoard" parameterType="string">
-		SELECT * FROM community WHERE category = #{kind}
+		SELECT * FROM community WHERE category = #{kind} AND address2 LIKE #{address}
 	</select>
 	
 	<select id="getBoard" resultType="communityBoard" parameterType="int">
@@ -49,13 +49,13 @@
 		UPDATE community SET comments = comments + 1 WHERE community_seq = #{board_seq}
 	</update>
 	
-	<select id="getTopFive" resultType="communityBoard">
-		(SELECT * FROM community WHERE category = '질문' AND date > (current_timestamp + '-1 week') LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '소식' AND date > (current_timestamp + '-1 week') LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '모임' AND date > (current_timestamp + '-1 week') LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '맛집' AND date > (current_timestamp + '-1 week') LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '사진전' AND date > (current_timestamp + '-1 week') LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '분실센터' AND date > (current_timestamp + '-1 week') LIMIT 5) ORDER BY category, views DESC;
+	<select id="getTopFive" resultType="communityBoard" parameterType="string">
+		(SELECT * FROM community WHERE category = '질문' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '소식' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '모임' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '맛집' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '사진전' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '분실센터' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) ORDER BY category, views DESC ;
 	</select>
 	
 	<update id="insertLike" parameterType="int">

@@ -15,7 +15,7 @@ public interface CommunityBoardService {
 
 	void insertCommunity(CommunityBoardVO cVO);
 
-	List<CommunityBoardVO> getKindList(String kind);
+	List<CommunityBoardVO> getKindList(KindAddressVO kaVO);
 
 	CommunityBoardVO getBoard(int seq);
 
@@ -31,7 +31,7 @@ public interface CommunityBoardService {
 
 	List<CommunityCommentVO> getCommentList(String nickname);
 
-	List<CommunityBoardVO> getTopFive();
+	List<CommunityBoardVO> getTopFive(String address);
 
 	void insertLike(int seq);
 

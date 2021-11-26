@@ -20,5 +20,8 @@ public class TransactionHistoryVO {
 	private String status;
 	private Timestamp cancel_date;
 	private String cancel_status;
+	private String cancel_reason;
+	private String pay_cancel;
+	
 	private String url;
 }

@@ -12,7 +12,9 @@ import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.store.CartVO;
+import four.mint.web.user.store.StoreAskVO;
 import four.mint.web.user.store.StoreCategoryBigVO;
+import four.mint.web.user.store.StoreRateVO;
 import four.mint.web.user.store.StoreVO;
 import four.mint.web.user.store.TransactionHistoryVO;
 import four.mint.web.user.store.UpVO;
@@ -120,5 +122,41 @@ public class StoreDAO {
 
 	public List<StoreVO> getStoreLike(String nickname) {
 		return sqlSessionTemplate.selectList("StoreDAO.getStoreLike", nickname);
+	}
+
+	public void updateCancel(TransactionHistoryVO thVO) {
+		sqlSessionTemplate.update("StoreDAO.updateCancel", thVO);
+	}
+
+	public TransactionHistoryVO getTransaction(TransactionHistoryVO tVO) {
+		return sqlSessionTemplate.selectOne("StoreDAO.getTransaction", tVO);
+	}
+
+	public void insertRate(StoreRateVO srVO) {
+		sqlSessionTemplate.insert("StoreDAO.insertRate", srVO);
+	}
+
+	public List<StoreRateVO> getRateList(int seq) {
+		return sqlSessionTemplate.selectList("StoreDAO.getRateList", seq);
+	}
+
+	public void deleteRate(int seq) {
+		sqlSessionTemplate.delete("StoreDAO.deleteRate", seq);
+	}
+
+	public void insertAsk(StoreAskVO qVO) {
+		sqlSessionTemplate.insert("StoreDAO.insertAsk", qVO);
+	}
+
+	public List<StoreAskVO> getAskList(StoreAskVO askVO) {
+		return sqlSessionTemplate.selectList("StoreDAO.getAskList", askVO);
+	}
+
+	public void deleteAsk(int seq) {
+		sqlSessionTemplate.delete("StoreDAO.deleteAsk", seq);
+	}
+
+	public int searchLikes(int seq) {
+		return sqlSessionTemplate.selectOne("StoreDAO.searchLikes", seq);
 	}
 }

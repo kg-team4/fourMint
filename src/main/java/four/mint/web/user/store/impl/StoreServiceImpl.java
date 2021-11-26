@@ -11,7 +11,9 @@ import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
 import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.store.CartVO;
+import four.mint.web.user.store.StoreAskVO;
 import four.mint.web.user.store.StoreCategoryBigVO;
+import four.mint.web.user.store.StoreRateVO;
 import four.mint.web.user.store.StoreService;
 import four.mint.web.user.store.StoreVO;
 import four.mint.web.user.store.TransactionHistoryVO;
@@ -148,6 +150,51 @@ public class StoreServiceImpl implements StoreService {
 	@Override
 	public List<StoreVO> getStoreLike(String nickname) {
 		return storeDao.getStoreLike(nickname);
+	}
+
+	@Override
+	public void updateCancel(TransactionHistoryVO thVO) {
+		storeDao.updateCancel(thVO);
+	}
+
+	@Override
+	public TransactionHistoryVO getTransaction(TransactionHistoryVO tVO) {
+		return storeDao.getTransaction(tVO);
+	}
+
+	@Override
+	public void insertRate(StoreRateVO srVO) {
+		storeDao.insertRate(srVO);
+	}
+
+	@Override
+	public List<StoreRateVO> getRateList(int seq) {
+		return storeDao.getRateList(seq);
+	}
+
+	@Override
+	public void deleteRate(int seq) {
+		storeDao.deleteRate(seq);
+	}
+
+	@Override
+	public void insertAsk(StoreAskVO qVO) {
+		storeDao.insertAsk(qVO);
+	}
+
+	@Override
+	public List<StoreAskVO> getAskList(StoreAskVO askVO) {
+		return storeDao.getAskList(askVO);
+	}
+
+	@Override
+	public void deleteAsk(int seq) {
+		storeDao.deleteAsk(seq);
+	}
+
+	@Override
+	public int searchLikes(int seq) {
+		return storeDao.searchLikes(seq);
 	}
 
 	
