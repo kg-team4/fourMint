@@ -46,7 +46,7 @@
 							</td>
 							<td id="news_title">
 								<div id="news_title_content">
-									 <a id="news_title_detail" >${staticNotice.notice_title }</a>
+									 <a class="news_title_detail" >${staticNotice.notice_title }</a>
 								</div>
 							</td>
 							<td id="down_arrow" style="color:gray">
@@ -79,7 +79,7 @@
 						</td>
 						<td id="news_title">
 							<div id="news_title_content">
-								 <a id="news_title_detail">${normalNotice.notice_title}</a>
+								 <a class="news_title_detail">${normalNotice.notice_title}</a>
 							</div>
 						</td>
 						<td style="color:gray">					
@@ -118,5 +118,6 @@ $( document ).ready( function() {
 	   	}
 	});
  });
+
 </script>
 <jsp:include page="../template/footer.jsp"></jsp:include>

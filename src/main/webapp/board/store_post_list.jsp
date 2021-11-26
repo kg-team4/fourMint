@@ -18,13 +18,13 @@
 		<div class="best categoroy" style="align-self: flex-start; width: 100px; margin-left:200px; margin-top: 50px;">
 			<section class="category_list" style="width: 135px;">
 				<div class="best" style="width:160px; margin-top: 60px;">
-					<h3 style="padding: 0 45%; margin-top: -20px; font-size:15px;"></h3>
+					<h3 style="padding: 0 50%; margin-top: -20px;"></h3>
 					<c:forEach var="big" items="${ storeCategoryBig }">
 					<div class="bestBox" style="display: block;">
 						<c:set var="name" value="${big.name }" />
 						<!-- 카테고리 목록 -->
 						<h2 class="category_list_title" style="color:#7b7b7b; font-size:20px; margin: 0 10px 6px 0; font-weight:400;">
-							<label class="category_big_name" style="color:#7b7b7b;  cursor:pointer">${ name }</label>
+							<label class="category_big_name" style="color:#7b7b7b; font-size:20px; cursor:pointer">${ name }</label>
 						</h2>
 					</div>
 					<br>
@@ -43,11 +43,11 @@
 		</c:if>
 		<!-- 게시글이 존재할 때 -->
 		<c:if test="${ listCount > 0 }"> 
-			<div class="best" style="width: 1000px;">
+			<div class="best" style="width: 1020px;">
 				<br> <br> <br>
-				<h2 style="padding: 0 48%; font-size:18px;">${kind }</h2>
+				<h2  style="margin-left:49%; font-size:18px;">${kind }</h2>
 				<br>
-				<ul class="bestBox" style="margin-left: 100px;">
+				<ul class="bestBox" style="margin-left: 65px;">
 					<!-- 스토어 글 목록 -->
 					<c:set var="big_no" value="${kind }" />
 					<c:forEach var="store" items="${storeList }">
@@ -67,15 +67,29 @@
 			</div>
 		</c:if>
 	</div>
-	<div style="text-align: center; padding-left: 30px; margin-left:218px; margin-bottom:30px">
-	<c:set var="startPage" value="${ startPage }" />
-	<c:set var="endPage" value="${ endPage }" />
-	<c:set var="pageCount" value="${ maxPage }" />
-		<label class="pagingNumPrev">◀</label>
-	<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-		<label class="pagingNum">${i}</label>
-	</c:forEach>
-		<label class="pagingNumNext">▶</label>
+	<div style="display:flex; margin-bottom:40px ">
+		
+			<div style="text-align: center; margin-left:780px; padding-top:12px">
+				<c:set var="startPage" value="${ startPage }" />
+				<c:set var="endPage" value="${ endPage }" />
+				<c:set var="pageCount" value="${ maxPage }" />
+					<label class="pagingNumPrev">◀</label>
+				<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+					<label class="pagingNum">${i}</label>
+				</c:forEach>
+					<label class="pagingNumNext">▶</label>
+			</div>
+			
+
+			<div id="search_write_area" style="margin-left:170px; margin-top:10px">
+				<select name="search" style="height: 20px">
+					<option value="content">제목</option>
+					<option value="title">내용</option>
+					<option value="writer">작성자</option>
+				</select> 
+				<input type="text" name="" value="" placeholder="검색어를 입력하세요.">
+				<input id="btn_search" type="submit" value="검색"> 
+			</div>
 	</div>
 </article>
 

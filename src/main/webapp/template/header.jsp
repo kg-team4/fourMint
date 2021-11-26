@@ -20,8 +20,10 @@
 			<a href="home.do"><img src="../img/mintmarket_logo.png"></a>
 		</div>
 		<div class="search">
-			<form action="../board/used_all_post_list.jsp" method="get" style="border: 1px solid white;">
-				<input type="hidden" name="type" value="post_title"> <input type="text" class="search-bar" name="keyword" placeholder="검색어를 입력해주세요!"> <input type="submit" class="search-icon" value="">
+			<form action="searchAllResult.do" method="get" style="border: 1px solid white;">
+				<input type="hidden" name="type" value="post_title"> 
+				<input type="text" class="search-bar" id="search-bar" name="keyword" placeholder="검색어를 입력해주세요!"> 
+				<input type="submit" class="search-icon" value="">
 			</form>
 		</div>
 		<div class="sign">
@@ -55,5 +57,54 @@
 				</c:choose>
 			</ul>
 		</div>
+		
+		<script>
+        $(".search-icon").click(function() {
+			
+			var str = $(".search-bar").val();
+
+            if( str == '' || str == null ){
+                alert( '검색어를 입력해주세요' );
+                return false;
+            } 
+
+            var blank_pattern = /^\s+|\s+$/g;
+            if( str.value.replace( blank_pattern, '' ) == "" ){
+                alert(' 공백만 입력되었습니다 ');
+                return false;
+            }
+
+ 
+
+//공백 금지
+            //var blank_pattern = /^\s+|\s+$/g;(/\s/g
+/*             var blank_pattern = /[\s]/g;
+            if( blank_pattern.test( str.value) == true){
+                alert(' 공백은 사용할 수 없습니다. ');
+                return false;
+            }
+			
+			var special_pattern = /[`~!@#$%^&*()_|+\-=?;:,.<>\{\}\[\]\\\/]/gim; 
+            var special_pattern = /[~!@#$%^&*()_+|<>?:{}]/;
+
+            if( special_pattern.test(str.value) == true ){
+                alert('특수문자는 사용할 수 없습니다.');
+                return false;
+            }
+
+            alert( '최종 : ' + str.value );
+
+            
+            if( str.value.search(/\W|\s/g) > -1 ){
+                alert( '특수문자 또는 공백을 입력할 수 없습니다.' );
+                str.focus();
+                return false;
+            }
+ */
+ 
+
+        });
+    </script>
+		
 	</header>
 	<jsp:include page="../template/nav.jsp"></jsp:include>

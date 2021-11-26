@@ -28,13 +28,13 @@
 	<c:if test="${address2 ne null }">
 		<div class="best">
 			<br> <br> <br>
-			<h1>주변상품<br>[${addressSub}]</h1>
+			<h1 style="margin-bottom:8px">주변상품<br>[${addressSub}]</h1>
 			<ul class="bestBox">
 				<c:forEach var="address" items="${address }">
 					<c:if test="${address.nickname ne nickname }">
 						<li>
 							<a href="marketBoard.do?seq=${address.market_seq }">
-								<img src="${address.url }" alt="추천상품1">
+								<img src="${address.url }" alt="주변상품" style="width:293px; height:255px">
 							</a>
 							<p>
 								<c:choose>
@@ -57,12 +57,12 @@
 	</c:if>
 	<div class="best">
 		<br> <br> <br>
-		<h1>추천상품</h1>
+		<h1 style="margin-bottom:8px">추천상품</h1>
 		<ul class="bestBox">
 			<c:forEach var="recent" items="${recent }">
 				<li>
 					<a href="marketBoard.do?seq=${recent.market_seq }"> 
-						<img src="${recent.url }" alt="추천상품1">
+						<img src="${recent.url }" alt="추천상품" style="width:293px; height:255px">
 					</a>
 					<p>
 						<c:choose>
@@ -83,12 +83,12 @@
 	</div>
 	<div class="best">
 		<br> <br> <br>
-		<h1>인기상품</h1>
+		<h1 style="margin-bottom:8px">인기상품</h1>
 		<ul class="bestBox">
 			<c:forEach var="best" items="${best }">
 				<li>
 					<a href="marketBoard.do?seq=${best.market_seq }"> 
-						<img src="${best.url }" alt="추천상품1">
+						<img src="${best.url }" alt="인기상품" style="width:293px; height:255px">
 					</a>
 					<p>	
 						<c:choose>

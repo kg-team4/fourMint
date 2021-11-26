@@ -30,12 +30,12 @@
 	</div>
 	<div class="best">
 		<br> <br> <br>
-		<h1>추천 상품</h1>
+		<h1 style="margin-bottom:8px">추천 상품</h1>
 		<ul class="bestBox">
 			<c:forEach var="store" items="${list }">
 				<li>
 					<a href="storeBoard.do?seq=${store.store_seq }">
-						<img src="${store.url }" alt="추천상품">
+						<img class=product_img src="${store.url }" alt="추천상품" style="width:293px; height:255px" >
 					</a>
 					<p>
 						<span class="red">[${store.category_big }]</span>
@@ -47,12 +47,12 @@
 			</c:forEach>
 		</ul>
 		<br><br><br>
-		<h1>인기 상품</h1>
+		<h1 style="margin-bottom:8px">인기 상품</h1>
 		<ul class="bestBox">
 			<c:forEach var="best" items="${best }">
 				<li>
 					<a href="storeBoard.do?seq=${best.store_seq }">
-						<img src="${best.url }" alt="추천상품">
+						<img class=product_img src="${best.url }" alt="인기상품" style="width:293px; height:255px">
 					</a>
 					<p>
 						<span class="red">[${best.category_big }]</span>

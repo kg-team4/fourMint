@@ -59,7 +59,7 @@
 				<div class="item padding25" >
 					<span class="font30">${content.product_name }</span> 
 					<div style="display:flex; justify-content: flex-end">
-						<div class="font27" style="padding-left:360px;padding-top:5px">
+						<div class="font25" style="padding-left:360px;padding-top:5px">
 							${content.product_price}						
 						</div>
 						<span class=font20 style="padding-left:5px; padding-top:10px">원</span>
@@ -165,16 +165,42 @@
 		<div class="float-box float-left">
 			<div class="left-item100 left-font ">
 				<div class="padding15">
-					<p class="font27">상품정보</p>
+					<p class="font25">상품정보</p>
 				</div>
 				<hr>
-				<div class="padding-top40 padding40 product-info-border ">
-					<p class="font18">스토어 상품 정보 내용 불러오기</p>
+				<div class="padding-top40 padding40 product-info-border " style="text-align: center">
+					<img class="store_product_info_img" width="800px" height="5000px" src="${content.product_content}" alt="상품상세설명이미지" >
 				</div>
 				
 				
-				<div class="padding-top70">
-					<span class="font27">상품후기</span>					
+				<div class="padding-top100">
+					<div class="font25">배송 안내</div>	
+					<hr>
+					<div style="line-height: 130%; color:gray;">
+						<div style="margin-top:10px">- 모든 제품의 배송은 환경을 위해 종이재질로 발송됩니다. (종이박스, 종이완충재, 종이테이프)</div>
+						<div>- 수령하신 택배박스는 운송장을 제거한 후 종이로 분리배출 해주세요.</div>
+						<div>- 결제완료 후 제품을 수령하시까지 약 2~5일 소요됩니다.</div>
+						<div>- 배송이 늦어지거나 일부 제품이 품절인 경우에 개별 연락드릴 예정이오니 기다려주시길 바랍니다.</div>
+						<div>- 30,000원 이상 주문 건의 경우 무료배송됩니다.</div>
+					</div>
+								
+				</div>
+				
+				<div class="padding-top100">
+					<div class="font25">교환 / 환불 / AS안내</div>	
+					<hr>
+					<div style="line-height: 130%; color:gray;">
+						<div style="margin-top:10px">- 구매자의 단순 변심에 의한 반품 및 교환 요청은 제품 수령 후 7일 이내에 가능합니다. (이 때 발생하는 왕복배송비는 구매자 부담입니다.)</div>
+						<div>- 마이페이지에서 교환 또는 반품 과정 진행이 가능합니다.</div>
+						<div>- 제품을 개봉하였거나 사용하셨을 경우 교환 및 반품이 불가합니다.</div>
+						<div>- 제품 하자에 의한 교환 및 환불은 가능합니다.</div>
+					</div>
+								
+				</div>
+				
+				
+				<div class="padding-top100">
+					<span class="font25">상품후기</span>					
 				</div>
 				<hr>
 				<span>
@@ -422,8 +448,8 @@
 						</div>
 					</div>
 				
-				<div class="padding-top70">
-					<p class="font27">상품문의</p>					
+				<div class="padding-top100">
+					<p class="font25">상품문의</p>					
 					<form action="write_reply.do" method="post">
 						<input type="hidden" name="no" value="1"> <input type="hidden" name="post_no" value="1"> <input type="hidden" name="reply_table_name" value="이름"> <input type="hidden" name="reply_seq_name" value="이름"> <input type="hidden" name="post_path" value="asd?asd">
 						<div class="reply-div-padding">

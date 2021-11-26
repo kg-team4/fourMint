@@ -39,11 +39,11 @@
 							<p id="sent_content" style="max-width: 200px">${tmp.content }</p>
 						</c:if>
 						<c:if test="${tmp.image ne null}">
-							<img src="${tmp.image }" style="width:50px; height:50px">
+							<img src="${tmp.image }" style="width:145px; height:145px">
 						</c:if>
 					</div>
 					<div class="sent_msg" style="width: auto">
-						<span class="time_date" style="padding: 8px"> ${tmp.send_time }</span>
+						<span class="time_date" style="padding: 8px;"> ${tmp.send_time }</span>
 					</div>
 				</div>
 			</c:if>
