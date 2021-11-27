@@ -6,15 +6,25 @@
 		<result property="notice_seq" column="NOTICE_SEQ" />
 		<result property="notice_title" column="NOTICE_TITLE" />
 		<result property="notice_content" column="NOTICE_CONTENT" />	
-		<result property="date" column="DATE" />			
+		<result property="date" column="DATE" />
+		<result property="status" column="STATUS" />		
 	</resultMap>
 	
 	<insert id="insertAdmin" parameterType="four.mint.web.admin.announce.AdminAnnounceVO">
-		INSERT INTO notice (notice_seq, notice_title, notice_content, date) 
-		VALUES (#{notice_seq}, #{notice_title}, #{notice_content}, #{date})
+		INSERT INTO notice (notice_seq, notice_title, notice_content, date, status) 
+		VALUES (default, #{notice_title}, #{notice_content}, now(), #{status})
 	</insert>
 	
 	<select id="getAdminAnnounceList" resultType="adminAnnounce" parameterType="four.mint.web.admin.announce.AdminAnnounceVO">
 		SELECT * FROM notice
-	</select>		
+	</select>	
+	
+	<delete id="announce_delete" parameterType="int">
+		delete from notice where notice_seq = #{parameter}
+	</delete>
+
+	<update id="update_announcement" parameterType="adminAnnounce">
+		update notice set notice_title = #{notice_title}, notice_content=#{notice_content}, date=now() where notice_seq = #{notice_seq}
+	</update>
+	
 </mapper>

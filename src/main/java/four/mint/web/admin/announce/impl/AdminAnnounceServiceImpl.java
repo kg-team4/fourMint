@@ -15,7 +15,7 @@ public class AdminAnnounceServiceImpl implements AdminAnnounceService {
 	public AdminAnnounceDAO adminAnnounceDao;
 
 	@Override
-	public void insertannounce(AdminAnnounceVO vo) {
+	public void insertAdminAnnounce(AdminAnnounceVO vo) {
 		adminAnnounceDao.insertAdminAnnounce(vo);
 		
 	}
@@ -32,4 +32,14 @@ public class AdminAnnounceServiceImpl implements AdminAnnounceService {
 		return adminAnnounceDao.getAdminAnnounceList();
 	}
 
+	@Override
+	public void announce_delete(int parameter) {
+		adminAnnounceDao.announce_delete(parameter);
+	}
+
+	@Override
+	public void update_announcement(AdminAnnounceVO announcementVO) {
+		adminAnnounceDao.update_announcement(announcementVO);
+		
+	}	
 }

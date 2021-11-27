@@ -46,7 +46,7 @@
                     <h1 class="h3 mb-2 text-gray-800">스토어 물품</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 스토어 리스트 물품</a>.</p>
+                            href="home.mdo">민트마켓 스토어 리스트 물품</a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">

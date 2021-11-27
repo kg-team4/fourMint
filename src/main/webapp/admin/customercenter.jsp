@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,6 +22,8 @@
 
     <!-- Custom styles for this page -->
     <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    
 
 </head>
 
@@ -46,7 +49,7 @@
                     <h1 class="h3 mb-2 text-gray-800">고객센터(Q&A) 페이지</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 고객센터(Q&A) 관리 </a>.</p>
+                            href="home.mdo">민트마켓 고객센터(Q&A) 관리 </a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
@@ -57,61 +60,132 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
-                                            <th>이름</th>
-                                            <th>아이디</th>
+                                     <tr>
+                                            <th>질문번호</th>
+                                            <th>상품번호</th>
                                             <th>닉네임</th>
-                                            <th>가입날짜</th>
-                                            
+                                            <th>내용</th>
+                                            <th>날짜</th>
+                                            <th>상품명</th>
+                                            <th>답변상태</th>
+                                            <th scope="col">Actions</th>                                             
                                         </tr>
-                                    </thead>
-                                   
-                                    <tbody>
-                                        <tr>
-                                            <td>박동녘</td>
-                                            <td>dongdong</td>
-                                            <td>시아동동</td>
-                                            <td>2021/11/09</td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>장형준</td>
-                                            <td>jangjang</td>
-                                            <td>믹키형준</td>
-                                            <td>2021/11/09</td>                                                                                     
-                                        </tr>
-                                        <tr>
-                                            <td>백미라</td>
-                                            <td>mira</td>
-                                            <td>유노미라</td>
-                                            <td>2021/11/09</td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <td>김주호</td>
-                                            <td>jumen</td>
-                                            <td>영웅주호</td>
-                                            <td>2021/11/09</td>                                           
-                                        </tr>
-                                        <tr>
-                                            <td>이정빈</td>
-                                            <td>jblee</td>
-                                            <td>최강정빈</td>
-                                            <td>2021/11/09</td>                                      
-                                        </tr>                                                                                                                                                                                                                                                                                                                                                               
-                                    </tbody>
+                                    		</thead>         
+                                         <tbody>                                     
+                                       <c:forEach var="storeask" items="${list}">
+	                                       <tr>	                                   		                                        		                                        		
+	                                           <td>${storeask.ask_seq}</td>
+	                                           <td>${storeask.store_seq}</td>
+	                                           <td>${storeask.nickname }</td>
+	                                           <td>${storeask.content}</td>
+	                                           <td> <fmt:formatDate value="${storeask.date}" pattern="yyyy-MM-dd"/></td>
+	                                           <td>${storeask.product_name}</td>	
+	                                           	<td><c:set value="${storeask.status}" var="ask" />
+					                                 <c:choose>
+					                                    <c:when test="${ask eq '0'}"><span style="color: blue">답변완료</span></c:when>
+					                                    <c:when test="${ask eq '1'}"><span style="color: red">답변대기</span></c:when>
+					                                 </c:choose></td>
+	                                           <td>
+	                                           <form>
+	                                           		<input type="hidden" value="${storeask.ask_seq }" name="ask_seq">	                                           		
+		                                            <button type="button"   class="btn btn-success" ><i class="fas fa-edit"></i></button>		                                   
+		                                        	<button type="button"  class="btn btn-danger" ><i class="far fa-trash-alt"></i></button>	
+	                                        	</form>
+	                                        </td> 		                 
+	                                      </tr> 
+                                      	</c:forEach> 
+                                    </tbody>                                                                                                                                                                                                                                                                                                                                                                                   
                                 </table>
+                                 <!-- 등록 모달창 -->
+		                        <div class="modal_cover">
+								    <div class="modal_shut"><a href="#">close</a></div>
+								    <div>
+								      <form action="modify_faq.mdo"  method="post">
+								      <table>
+								      <tr>
+								      	<td>질문번호</td>
+								      	<td><input id="hi_ask_seq" type="text" value="" name="ask_seq" readonly></td>
+								      </tr>
+								      <tr>
+								      		<td>상품번호</td>
+								      		<td><textarea id="hi_seq" name="store_seq" required="required"></textarea></td>
+								      	</tr>
+								      	<tr>
+									      	<td>닉네임</td>
+									      	<td> <input id="hi_nickname" type="text" name="nickname" required="required"></td>
+								      	</tr>
+								      	<tr>
+								      		<td>내용</td>
+								      		<td><textarea id="hi_content" name="content" required="required"></textarea></td>
+								      	</tr>
+								      	<tr>
+								      		<td>날짜</td>
+								      		<td><input id="hi_date" name="date" required="required"></textarea></td>
+								      	</tr>
+								      	<tr>
+								      		<td>상품명</td>
+								      		<td><input id="hi_product_name" name="product_name" required="required"></textarea></td>
+								      	</tr>
+								      	<tr>
+								      		<td>답변상태</td>
+								      		<td><input id="hi_status" name="status" required="required"></textarea></td>
+								      	</tr>
+								      		<tr>
+								      			<td>
+								      				<input type="submit" value="등록" />
+								      			</td>						      		
+								      		</tr>							 
+								      	</table>	
+								      </form>  
+								    </div>
+								</div>
+					<script>   
+					window.onload = function() {
+						
+						function offClick2() {
+					        document.querySelector('.modal_cover').style.display ='none';
+					        document.querySelector('.black_bg').style.display ='none';
+					    }
+					 
+					    document.querySelector('.modal_shut').addEventListener('click', offClick2);
+					    /* 수정 js */	
+					    	
+						 /* 수정 js */
+					    $(".btn-success").click(function onClick2() {
+					    	$("#hi_ask_seq").val($(this).prev().prev().prev().val());
+					    	$("#hi_seq").val($(this).prev().prev().val());
+					    	$("#hi_nickname").val($(this).prev().prev().val());
+					    	$("#hi_content").val($(this).prev().prev().val());
+					    	$("#hi_date").val($(this).prev().val());
+					    	$("#hi_product_name").val($(this).prev().val());
+					    	$("#hi_status").val($(this).prev().val());
+					    	
+					        document.querySelector('.modal_cover').style.display ='block';
+					        document.querySelector('.black_bg').style.display ='block';
+					          
+					    }); 
+						 </script>
                             </div>
                         </div>
                     </div>
-
+					</div>
                 </div>
                 <!-- /.container-fluid -->
-
+				</div>
             </div>
-            <!-- End of Main Content -->
-
-       <%@ include file="footer.jsp" %>
+            <!-- End of Main Content-->	
+		<script>
+		$(".btn-danger").click(function() {
+			if (!confirm('삭제하시겠습니까?')) {
+				return false;
+			}
+			$(this).parent().attr("action", "faq_delete.mdo");
+			$(this).parent().attr("method", "post");
+			$(this).parent().submit();
+		});
+		</script>
+	
+								<%@ include file="footer.jsp" %>
           
     <!-- Bootstrap core JavaScript-->
     <script src="admin/vendor/jquery/jquery.min.js"></script>

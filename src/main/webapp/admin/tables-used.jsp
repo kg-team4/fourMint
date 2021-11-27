@@ -49,7 +49,7 @@
                     <h1 class="h3 mb-2 text-gray-800">중고 물품목록</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 중고거래 물품목록</a>.</p>
+                            href="home.mdo">민트마켓 중고거래 물품목록</a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">

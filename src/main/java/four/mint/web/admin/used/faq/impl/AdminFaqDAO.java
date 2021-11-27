@@ -19,13 +19,21 @@ public class AdminFaqDAO {
 		sqlSessionTemplate.insert("AdminFaqDAO.insertAdmin",vo);
 	}
 	
-	public AdminFaqVO getAdminFaq(AdminFaqVO vo) {
-		return(AdminFaqVO)sqlSessionTemplate.selectOne("AdminFaqDAO.getAdminFaq",vo);							
-	}
 	
 	public List<AdminFaqVO>getAdminFaqList(){
 		
 		return sqlSessionTemplate.selectList("AdminFaqDAO.getAdminFaqList");
+	}
+
+	public void faq_delete(int parameter) {
+		sqlSessionTemplate.delete("AdminFaqDAO.faq_delete",parameter);
+		
+	}
+
+
+	public void update_faq(AdminFaqVO faqVO) {
+		sqlSessionTemplate.update("AdminFaqDAO.update_faq",faqVO);
+		
 	}
 
 }

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -49,7 +50,7 @@
                     <h1 class="h3 mb-2 text-gray-800">블랙리스트 목록</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 신고 목록</a>.</p>
+                            href="home.mdo">민트마켓 신고 목록</a>.</p>
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                	신고목록
                	</button>
@@ -85,7 +86,7 @@
 	                                           <td>${blacklist.name }</td>
 	                                           <td>${blacklist.email_id }</td>
 	                                           <td>${blacklist.nickname }</td>
-	                                           <td>${blacklist.date}</td>
+	                                           <td><fmt:formatDate value="${blacklist.date}" pattern="yyyy-MM-dd"/></td>
 	                                           <td>${blacklist.report_seq}</td>		                                       		                                                       
 	                                           <td>
 	                                           <form>

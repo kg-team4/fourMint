@@ -9,12 +9,23 @@
 		<result property="faq_content" column="FAQ_CONTENT" />			
 	</resultMap>
 	
-	<insert id="insertAdmin" parameterType="string">
+	<insert id="insertAdmin" parameterType="adminFaq">
 		INSERT INTO faq (faq_category, faq_title, faq_content, faq_seq) 
-		VALUES (#{faq_category}, #{faq_title}, #{faq_content}, #{faq_seq})
+		VALUES (#{faq_category}, #{faq_title}, #{faq_content}, default)
 	</insert>
 	
 	<select id="getAdminFaqList" resultType="adminFaq" parameterType="string">
 		SELECT * FROM faq
-	</select>		
+	</select>
+	
+	<delete id="faq_delete" parameterType="int"	>
+		delete from faq where faq_seq = #{parameter}
+	</delete>	
+	
+	
+	<update id="update_faq" parameterType="adminFaq">
+		update faq set faq_title = #{faq_title}, faq_content=#{faq_content}, faq_category=#{faq_category} where faq_seq = #{faq_seq}
+	</update>
+	
+	
 </mapper>
