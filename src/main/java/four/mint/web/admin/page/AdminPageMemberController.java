@@ -40,9 +40,8 @@ public class AdminPageMemberController {
 	}
 	
 	@RequestMapping(value = "/deleteMember.mdo", method = RequestMethod.POST)
-	public String updateStore(HttpServletRequest request) {
+	public String deleteMember(HttpServletRequest request) {
 		AdminPageVO newVO = adminPageService.getMemberOne(request.getParameter("nickname"));
-		System.out.println(newVO);
 		adminTableService.insertMember(newVO);
 		adminPageService.deleteMember(request.getParameter("nickname"));
 		
@@ -51,7 +50,6 @@ public class AdminPageMemberController {
 	
 	@RequestMapping(value = "/memberlist.mdo", method = RequestMethod.GET)
 	public String memberlist(HttpSession session, HttpServletRequest request) {
-
 		if (session.getAttribute("admin_id") == null) {
 			return "/login";
 		}
@@ -63,4 +61,10 @@ public class AdminPageMemberController {
 		return "/memberlist";
 	}
 
+	@RequestMapping(value = "/delete.mdo", method = RequestMethod.POST)
+	public String delMem(HttpServletRequest request) {
+		adminTableService.deleteMember(request.getParameter("nickname"));
+		
+		return "redirect:/memberlist.mdo";
+	}
 }

@@ -54,8 +54,8 @@
                      	카테고리
                      	</button>
                      	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                     		<a class="dropdown-item" href="memberpage.mdo">탈퇴회원목록</a>
-                     		<a class="dropdown-item" href="memberlist.mdo">회원목록</a>
+                     		<a class="dropdown-item" href="memberpage.mdo">회원목록</a>
+                     		<a class="dropdown-item" href="memberlist.mdo">탈퇴회원목록</a>
                      	</div>
                      </div>
                     <!-- DataTales  -->
@@ -79,7 +79,7 @@
                                         </tr>
                                     </thead>                                  
                                     <tbody>
-                                    	<c:forEach var="deletemember" items="${list }">
+                                    	<c:forEach var="member" items="${list}">
 	                                        <tr>
 	                                            <td><img src="${member.profile }"></td>
 	                                            <td>${member.email_id }</td>
@@ -98,7 +98,7 @@
 	                                            	<input type="hidden">
 	                                            	<form action="deleteMember.mdo" method="post">
 	                                            		<input type="hidden" name="nickname" value="${member.nickname }">
-														<button type="submit" id="deleteMember" class="deleteMember" style="width: 90px; font-size: 15px">삭제</button>
+														<button id="deleteMember" class="deleteMember" style="width: 90px; font-size: 15px">삭제</button>
 													</form>
 	                                            </td>
                                         	</tr>
@@ -175,7 +175,7 @@
        <%@ include file="footer.jsp" %>
           
     <!-- Bootstrap core JavaScript-->
-    <script type="text/javascript" src="admin/js/memberpage.js"></script>
+    <script src="admin/js/memberpage.js"></script>
     <script>
 	    $(".modal_info").click(function() {
 	    	$("#detail_address1").val($(this).next().val());

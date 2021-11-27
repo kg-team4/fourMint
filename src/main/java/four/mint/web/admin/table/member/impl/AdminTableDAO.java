@@ -57,5 +57,13 @@ public class AdminTableDAO {
 		
 		return (ArrayList)sqlSessionTemplate.selectList("AdminTableDAO.getAddressWoman");
 	}
+
+	public AdminTableVO getMemberOne(String parameter) {
+		return sqlSessionTemplate.selectOne("AdminTableDAO.getMemberOne", parameter);
+	}
+
+	public void deleteMember(String parameter) {
+		sqlSessionTemplate.delete("AdminTableDAO.deleteMember", parameter);
+	}
 	
 }

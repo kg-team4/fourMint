@@ -573,27 +573,4 @@ public class AdminController {
 		return "/storedistribution";
 	}
 	
-	@RequestMapping(value ="/etc.mdo" , method = RequestMethod.GET)
-	public String etc(Locale locale, Model model) {
-		
-		return "/etc";
-	}
-	
-	@RequestMapping(value ="/exchange.mdo" , method = RequestMethod.GET)
-	public String exchange(Locale locale, Model model) {
-		
-		return "/exchange";
-	}
-	
-	@RequestMapping(value ="/cancel.mdo" , method = RequestMethod.GET)
-	public String cancel(Locale locale, Model model) {
-		
-		return "/cancel";
-	}
-	
-	@RequestMapping(value ="/delivery.mdo" , method = RequestMethod.GET)
-	public String delivery(Locale locale, Model model) {
-		
-		return "/delivery";
-	}
 }
