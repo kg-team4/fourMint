@@ -50,22 +50,22 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">상품 배송 관리</h1>
+					<h1 class="h3 mb-2 text-gray-800">상품 취소 관리</h1>
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button"
 							id="dropdownMenuButton" class="list_status" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">카테고리</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							<a class="dropdown-item" href="javascript:goPost('전체 목록')">전체 목록</a>
-							<a class="dropdown-item" href="javascript:goPost('상품 준비 중')">상품 준비 중</a>
-							<a class="dropdown-item" href="javascript:goPost('상품 배송 중')">상품 배송 중</a>
-							<a class="dropdown-item" href="javascript:goPost('상품 배송 완료')">상품 배송 완료</a>
+							<a class="dropdown-item" href="javascript:goPost('교환 처리 중')">교환 처리 중</a>
+							<a class="dropdown-item" href="javascript:goPost('취소 처리 중')">취소 처리 중</a>
+							<a class="dropdown-item" href="javascript:goPost('반품 처리 중')">반품 처리 중</a>
 						</div>
 					</div>
 					<!-- DataTales  -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">스토어 상품 글</h6>
+							<h6 class="m-0 font-weight-bold text-primary">상품 취소 관리</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -78,6 +78,7 @@
 											<th>총액</th>
 											<th>주문날짜</th>
 											<th>배송현황</th>
+											<th>취소날짜</th>
 											<th>비고</th>
 										</tr>
 									</thead>
@@ -89,13 +90,15 @@
 												<td>${list.transaction_price }</td>
 												<td>${list.date }</td>
 												<td>${list.status }</td>
+												<td>${list.cancel_date }</td>
 												<td>
 													<button type="button" id="detail_list" class="detail_list" style="width: 90px; font-size: 15px">상세보기</button>
+													<input type="hidden" value="${list.address2 }">	
 													<input type="hidden" value="${list.transaction_count }">	
 													<input type="hidden" value="${list.product_price }">
-													<input type="hidden" value="${list.request }">
-													<input type="hidden" value="${list.address2 }">
+													<input type="hidden" value="${list.cancel_reason }">
 													<input type="hidden" value="${list.transaction_seq }">
+													<input type="hidden" value="${list.pay_cancel }">
 												</td>
 											</tr>
 										</c:forEach>
@@ -109,14 +112,13 @@
 
 			</div>
 			<!-- End of Main Content -->
-			<!-- 상세 보기 모달 -->
 			<div id="detail_view" style="background: white; display:none">
 				<div>
 					<div id="info">상세정보</div>
 					<hr>
-					<div>
-						<form action="updateStatus.mdo" method="post">
-								<table id="detail_table">
+					<form action="updateProcess.mdo" method="post">
+						<div>
+							<table id="detail_tablesdafdsf">
 								<!-- 이미지 x -->
 								<!-- <tr>
 									<td colspan="2">
@@ -128,56 +130,55 @@
 								<tr>
 									<td width="200px" height="30px">상품명</td>
 									<td width="350px">
-										<input type="text" id="detail_product_name" style="border: 0px;">
+										<input type="text" name="product_name" id="detail_product_name" readonly style="border: 0px;">
 									</td>
 								</tr>
 								<tr>
 									<td height="30px">주문 아이디</td>
-									<td><input type="text" id="detail_email_id" style="border: 0px;"></td>
+									<td><input type="text" id="detail_email_id" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
 									<td height="30px">주소</td>
-									<td><input type="text" id="detail_address" style="border: 0px;"></td>
+									<td><input type="text" id="detail_address" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
 									<td height="30px">가격</td>
-									<td><input type="text" id="detail_product_price" style="border: 0px;"></td>
+									<td><input type="text" id="detail_product_price" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
 									<td height="30px">수량</td>
-									<td><input type="text" id="detail_transaction_count" style="border: 0px;"></td>
+									<td><input type="text" id="detail_transaction_count" name="transaction_count" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
 									<td height="30px">총액</td>
-									<td><input type="text" id="detail_transaction_price" style="border: 0px;"></td>
+									<td><input type="text" id="detail_transaction_price" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
 									<td height="30px">주문일시</td>
-									<td><input type="text" id="detail_date" style="border: 0px;"></td>
+									<td><input type="text" id="detail_date" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">요청사항</td>
-									<td><textarea id="detail_request" style="border: 0px; resize: none;"></textarea></td>
+									<td height="30px">취소날짜</td>
+									<td><input type="text" id="detail_cancel_date" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">배송상태</td>
-									<td>
-										<select id="detail_status" name="status" class="used_cate_style">
-											<c:forEach var="strList" items="${strList }">
-												<option value="${strList }">${strList }</option>
-											</c:forEach>
-										</select>
-									</td>
+									<td height="30px">상태</td>
+									<td><input type="text" id="detail_cancel_status" readonly style="border: 0px;"></td>
+								</tr>
+								<tr>
+									<td height="30px">이유</td>
+									<td><textarea id="detail_cancel_reason" readonly style="border: 0px; resize: none;"></textarea></td>
 								</tr>
 							</table>
 							<br>
-							<div style="text-align: center; margin-top: 10px">
-									<input type="hidden" id="form_seq" name="transaction_seq">
-									<button type="submit" id="edit_btn" class="edit_btn" style="width: 90px; font-size: 15px">변경</button>
-								<button class="modal_cancel_btn" style="width: 90px; font-size: 15px" onclick="return false;">취소</button>
+							<div style="text-align: center; margin-top: 10px; display: flex;">
+								<input type="hidden" id="pay_cancel" name="pay_cancel">
+								<input type="hidden" id="detail_seq" name="transaction_seq">
+								<button type="submit" id="btn_payCancel" class="btn_payCancel" style="width: 90px; font-size: 15px">처리하기</button>
+								<button class="modal_cancel_btn" style="width: 90px; font-size: 15px" onclick="return false;">확인</button>
 							</div>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
 				<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
 			</div>
@@ -187,24 +188,25 @@
 			<script type="text/javascript" src="admin/js/storeTransactionStatusPage.js"></script>
 			<script>
 				$(".detail_list").click(function() {
-					$("#detail_product_name").val($(this).parent().prev().prev().prev().prev().prev().text());
-					$("#detail_email_id").val($(this).parent().prev().prev().prev().prev().text());
-					$("#detail_address").val($(this).next().next().next().next().val());
-					$("#detail_product_price").val($(this).next().next().val());
-					$("#detail_transaction_count").val($(this).next().val());
-					$("#detail_transaction_price").val($(this).parent().prev().prev().prev().text());
-					$("#detail_date").val($(this).parent().prev().prev().prev().prev().prev().text());
-					$("#detail_request").val($(this).next().next().next().val());
-					$("#detail_status").val($(this).parent().prev().text());
-					$("#form_seq").val($(this).next().next().next().next().next().val());
-					
+					$("#detail_product_name").val($(this).parent().prev().prev().prev().prev().prev().prev().text());
+					$("#detail_email_id").val($(this).parent().prev().prev().prev().prev().prev().text());
+					$("#detail_address").val($(this).next().val());
+					$("#detail_product_price").val($(this).next().next().next().val());
+					$("#detail_transaction_count").val($(this).next().next().val());
+					$("#detail_transaction_price").val($(this).parent().prev().prev().prev().prev().text());
+					$("#detail_date").val($(this).parent().prev().prev().prev().text());
+					$("#detail_cancel_date").val($(this).parent().prev().prev().text());
+					$("#detail_cancel_status").val($(this).parent().prev().text());
+					$("#detail_cancel_reason").text($(this).next().next().next().next().val());
+					$("#detail_seq").val($(this).next().next().next().next().next().val());
+					$("#pay_cancel").val($(this).next().next().next().next().next().next().val());
 					modal('detail_view');
 				});
-				
-				$(".edit_btn").click(function() {
-					var check = confirm("변경 하시겠습니까?");
+
+				$(".btn_payCancel").click(function() {
+					var check = confirm("처리 하시겠습니까?");
 					if (check) {
-						document.getElementById("edit_btn").submit();
+						document.getElementById("btn_payCancel").submit();
 					} else {
 						return false;
 					}
@@ -216,15 +218,16 @@
 				    let obj;
 				    obj = document.createElement('input');
 				    obj.setAttribute('type', 'hidden');
-				    obj.setAttribute('name', 'status');
+				    obj.setAttribute('name', 'pay_cancel');
 				    obj.setAttribute('value', status);
 				    
 				    f.appendChild(obj);
 				    f.setAttribute('method', 'get');
-				    f.setAttribute('action', 'storestatus.mdo');
+				    f.setAttribute('action', 'storecancelstatus.mdo');
 				    document.body.appendChild(f);
 				    f.submit();
 				}
+
 
 			</script>
 			<script src="admin/vendor/jquery/jquery.min.js"></script>

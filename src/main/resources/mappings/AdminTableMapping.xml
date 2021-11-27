@@ -4,6 +4,7 @@
 	
 	<resultMap  type="adminTable" id="adminResult">
 		<result property="email_id" column="EMAIL_ID" />
+		<result property="password" column="PASSWORD" />
 		<result property="name" column="NAME" />
 		<result property="nickname" column="NICKNAME" />	
 		<result property="phone" column="PHONE" />	
@@ -13,39 +14,41 @@
 		<result property="birth" column="BIRTH" />
 		<result property="gender" column="GENDER" />
 		<result property="date" column="DATE" />
+		<result property="profile" column="PROFILE" />
+		<result property="delete_date" column="DELETE_DATE" />
 	</resultMap>
 	
-	<insert id="insertAdmin" parameterType="four.mint.web.admin.page.AdminPageVO">
-		INSERT INTO member (email_id, name, nickname, phone, address1, address2, address3, birth, gender, date ) 
-		VALUES (#{email_id}, #{password}, #{name}, #{nickname}, #{phone}, #{address1}, #{address2}, #{address3}, #{birth}, #{gender}, #{date} )
+	<insert id="insertMember" parameterType="four.mint.web.admin.page.AdminPageVO">
+		INSERT INTO deleteMember (email_id, password, name, nickname, phone, address1, address2, address3, birth, gender, date, profile, delete_date ) 
+		VALUES (#{email_id}, #{password}, #{name}, #{nickname}, #{phone}, #{address1}, #{address2}, #{address3}, #{birth}, #{gender}, #{date}, #{profile}, now() )
 	</insert>
 	
 	<select id="getAdminTableList" resultType="adminTable" parameterType="four.mint.web.admin.table.member.AdminTableVO">
-		SELECT * FROM member 
+		SELECT * FROM deleteMember 
 	</select>	
 	
 	<select id="getAdminTableWoman" resultType="int">
-		SELECT count(*) FROM member where gender = 'woman' 
+		SELECT count(*) FROM deleteMember where gender = 'woman' 
 	</select>
 	
 	<select id="getAdminTableMan" resultType="int">
-		SELECT count(*) FROM member where gender = 'man' 
+		SELECT count(*) FROM deleteMember where gender = 'man' 
 	</select>
 		
 	<select id="getAdminTableAddress" resultType="string">
-		SELECT count(*) FROM member where address = 'address' 
+		SELECT count(*) FROM deleteMember where address = 'address' 
 	</select>
 	
 	<select id="getAdminTableBirth" resultType="string">
-		SELECT count(*) FROM member where birth = 'birth' 
+		SELECT count(*) FROM deleteMember where birth = 'birth' 
 	</select>
 	
 	<select id="getAddressMan" resultType="string">
-		SELECT address2 FROM member WHERE gender = 'man'
+		SELECT address2 FROM deleteMember WHERE gender = 'man'
 	</select>
 	
 	<select id="getAddressWoman" resultType="string">
-		SELECT address2 FROM member WHERE gender = 'woman'
+		SELECT address2 FROM deleteMember WHERE gender = 'woman'
 	</select>
 	
 </mapper>

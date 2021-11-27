@@ -48,14 +48,27 @@
 		SELECT * FROM storeBoard WHERE store_seq = #{seq}
 	</select>
 	
+	<select id="getTransactionHistoryOne" resultType="store" parameterType="store">
+		SELECT product_name, transaction_count as product_stock FROM transactionHistory WHERE product_name = #{product_name} AND transaction_seq = #{transaction_seq}
+	</select>
+	
 	<select id="getStoreListSix" resultType="store">
 		SELECT * FROM storeBoard ORDER BY store_seq DESC LIMIT 6;
+	</select>
+	
+	<!-- 취소 시 재고 증가 -->
+	<select id="plusStock" parameterType="store">
+		UPDATE storeBoard SET product_stock = product_stock + #{product_stock} WHERE product_name = #{product_name}
 	</select>
 	
 	<select id="getBest" resultType="store">
 		SELECT a.store_seq, a.category_big, a.product_name, a.product_price, a.url FROM (SELECT * FROM storeboard) AS a 
 		JOIN (SELECT count(*), product_name FROM transactionhistory GROUP BY product_name ORDER BY count DESC LIMIT 6) AS b 
 		ON a.product_name = b.product_name ORDER BY count DESC; 
+	</select>
+	
+	<select id="getCategoryBig" resultType="int">
+		SELECT COUNT(*) FROM storeBoard GROUP BY category_big
 	</select>
 	
 	<resultMap type="cart" id="cartResult">
@@ -237,3 +250,5 @@
 
 
 
+	
+</mapper>

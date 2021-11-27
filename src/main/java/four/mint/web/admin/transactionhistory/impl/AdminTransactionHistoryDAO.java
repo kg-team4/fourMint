@@ -14,8 +14,56 @@ public class AdminTransactionHistoryDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public ArrayList<AdminTransactionHistoryVO> getAdminTransactionHistoryDateList(AdminTransactionHistoryVO vo) {
-		return (ArrayList)sqlSessionTemplate.selectList("AdminPurchaseHistoryDAO.getAdminTransactionHistoryDateList", vo);
+	public ArrayList<AdminTransactionHistoryVO> getTransitionAllList() {
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTransactionHistoryDAO.getTransitionAllList");
 	}
-
+	
+	public ArrayList<AdminTransactionHistoryVO> getTransitionStatusList(String status) {
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTransactionHistoryDAO.getTransitionStatusList", status);
+	}
+	
+	public ArrayList<AdminTransactionHistoryVO> getTransitionCancelList(String pay_cancel) {
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTransactionHistoryDAO.getTransitionCancelList", pay_cancel);
+	}
+	
+	public ArrayList<AdminTransactionHistoryVO> getTransitionAllCancelList() {
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTransactionHistoryDAO.getTransitionAllCancelList");
+	}
+	
+	public void updatePayCancel(int seq) {
+		sqlSessionTemplate.update("AdminTransactionHistoryDAO.updatePayCancel", seq);
+	}
+	
+	public void updateExchangeCount(int seq) {
+		sqlSessionTemplate.update("AdminTransactionHistoryDAO.updateExchangeCount", seq);
+	}
+	
+	public void updateStatus(AdminTransactionHistoryVO vo) {
+		sqlSessionTemplate.update("AdminTransactionHistoryDAO.updateStatus", vo);
+	}
+	
+	public void updateRefund(int seq) {
+		sqlSessionTemplate.update("AdminTransactionHistoryDAO.updateRefund", seq);
+	}
+	
+	public AdminTransactionHistoryVO getSelectOne(int seq) {
+		return sqlSessionTemplate.selectOne("AdminTransactionHistoryDAO.getSelectOne", seq);
+	}
+	
+	public ArrayList<String> getStatus() {
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTransactionHistoryDAO.getStatus");
+	}
+	
+	public ArrayList<AdminTransactionHistoryVO> getCancelComplete() {
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTransactionHistoryDAO.getCancelComplete");
+	}
+	
+	public ArrayList<AdminTransactionHistoryVO> getRefundComplete() {
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTransactionHistoryDAO.getRefundComplete");
+	}
+	
+	public ArrayList<AdminTransactionHistoryVO> getCancelRefundComplete() {
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTransactionHistoryDAO.getCancelRefundComplete");
+	}
+	
 }

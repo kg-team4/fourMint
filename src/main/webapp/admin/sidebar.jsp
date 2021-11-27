@@ -56,6 +56,8 @@
 				<a class="collapse-item" href="useddistribution.mdo">중고거래 분포도 페이지</a>
 				<h6 class="collapse-header">스토어 거래 페이지:</h6>
 				<a class="collapse-item" href="storestatus.mdo">거래 현황 조회 페이지</a> 
+				<a class="collapse-item" href="storecancelstatus.mdo">취소 요청 조회 페이지</a> 
+				<a class="collapse-item" href="storecancelrefundcomplete.mdo">취소/반품 완료 페이지</a> 
 				<a class="collapse-item" href="storedistribution.mdo">거래 분포도 페이지</a>
 			</div>
 		</div></li>

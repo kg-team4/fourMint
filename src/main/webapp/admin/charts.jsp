@@ -84,7 +84,7 @@
 				title : {
 					display : true,
 					text : '지역별 회원 현황'
-				}
+				},
 			}
 		});
 	});
@@ -113,10 +113,39 @@
 		]);
 	
 		// Set chart options
-		var options = {'title':'연령별 회원 차트', 'width':800, 'height':500};
+		var options = {'title':'연령별 회원 차트', 'width':300, 'height':200};
 		
 		// Instantiate and draw our chart, passing in some options.
 		var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+	}
+
+	// Load the Visualization API and the corechart package.
+	google.charts.load('current', {'packages':['corechart']});
+	
+	// Set a callback to run when the Google Visualization API is loaded.
+	google.charts.setOnLoadCallback(drawCategoryBig);
+	
+	// Callback that creates and populates a data table,
+	// instantiates the pie chart, passes in the data and
+	// draws it.
+	function drawCategoryBig() {
+	
+		// Create the data table.
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Topping');
+		data.addColumn('number', 'Slices');
+		data.addRows([
+			['주방', ${categoryBigList[0]}],
+			['욕실', ${categoryBigList[1]}],
+			['생활', ${categoryBigList[2]}]
+		]);
+	
+		// Set chart options
+		var options = {'title':'카테고리 종류', 'width':500, 'height':400};
+		
+		// Instantiate and draw our chart, passing in some options.
+		var chart = new google.visualization.PieChart(document.getElementById('chart_category'));
 			chart.draw(data, options);
 	}
 </script>
@@ -258,9 +287,8 @@
 				<%@ include file="header.jsp"%>
 				<!-- End of Topbar -->
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div class="container-fluid" style="margin-top:-40px; margin-left:-60px;">
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">차트</h1>
 					<p class="mb-4">
 						<a target="_blank" href="https://www.chartjs.org/docs/latest/"></a>
 					</p>
@@ -273,33 +301,7 @@
 						</ul>
 						<div class="tabcontent_banner">
 							<div id="tab01">
-								<div class="card shadow mb-4">
-									<div class="card-header py-3">
-										<h6 class="m-0 font-weight-bold text-primary">민트마켓 회원성비</h6>
-									</div>
-									<ul class="chartSex">
-										<li>
-											<dl>
-												<dt>남성</dt>
-												<dd class="stat-cs-data1 male">
-													<div class="data-bar" style="height:${mpercent}%"></div>
-												</dd>
-												<dd class="stat-cs-percent">${mpercent}%</dd>
-												<dd class="stat-cs-count">${man}</dd>
-											</dl>
-										</li>
-										<li>
-											<dl>
-												<dt>여성</dt>
-												<dd class="stat-cs-data1 female">
-													<div class="data-bar" style="height:${wpercent}%"></div>
-												</dd>
-												<dd class="stat-cs-percent">${wpercent}%</dd>
-												<dd class="stat-cs-count">${woman}</dd>
-											</dl>
-										</li>
-									</ul>
-								</div>
+								
 								<div class="card shadow mb-4" style="height: 600px">
 									<div class="card-header py-3">
 										<h6 class="m-0 font-weight-bold text-primary">지역별 회원 현황</h6>
@@ -320,23 +322,108 @@
 															style="position: absolute; width: 200%; height: 200%; left: 0; top: 0"></div>
 													</div>
 												</div>
-												<canvas id="chart-line" width="299" height="200"
+												<canvas id="chart-line" width="1920" height="1080"
 													class="chartjs-render-monitor"
-													style="display: block; width: 299px; height: 200px;"></canvas>
+													style="display: block; width: 700px; height: 550px;">
+												</canvas>
+												<div style="diplay: block">
+													<ul class="chartSex">
+														<li>
+															<dl>
+																<dt>남성</dt>
+																<dd class="stat-cs-data1 male">
+																	<div class="data-bar" style="height:${mpercent}%"></div>
+																</dd>
+																<dd class="stat-cs-percent">${mpercent}%</dd>
+																<dd class="stat-cs-count">${man}</dd>
+															</dl>
+														</li>
+														<li>
+															<dl>
+																<dt>여성</dt>
+																<dd class="stat-cs-data1 female">
+																	<div class="data-bar" style="height:${wpercent}%"></div>
+																</dd>
+																<dd class="stat-cs-percent">${wpercent}%</dd>
+																<dd class="stat-cs-count">${woman}</dd>
+															</dl>
+														</li>
+													</ul>
+													<div id="chart_div"></div>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="card shadow mb-4" style="height: 600px">
-									<div class="card-header py-3">
-										<h6 class="m-0 font-weight-bold text-primary">지역별 회원 현황</h6>
-									</div>
-									<!--Div that will hold the pie chart-->
-									<div id="chart_div"></div>
-								</div>
 							</div>
 							<div id="tab02">
-								<%-- <div class="container-fluid px-4">
+								<div class="row">
+									<div class="col-xl-8 col-lg-7">
+										<!-- Area Chart -->
+										<div class="card shadow mb-4">
+											<div class="card-header py-3">
+												<h6 class="m-0 font-weight-bold text-primary">스토어 카테고리</h6>
+											</div>
+											<div id="chart_category"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="tab03">
+								<div class="row">
+									<div class="col-xl-8 col-lg-7">
+										<!-- Area Chart -->
+										<div class="card shadow mb-4">
+											<div class="card-header py-3">
+												<h6 class="m-0 font-weight-bold text-primary">매출</h6>
+											</div>
+											<div class="card-body">
+												<div class="chart-area">
+													<canvas id="myAreaChart"
+														style="display: block; height: 160px; width: 44px;"
+														width="55" height="200" class="chartjs-render-monitor"></canvas>
+													<script src="js/demo/chart-area-demo.js"></script>
+												</div>
+											</div>
+										</div>
+										<!-- Bar Chart -->
+										<div class="card shadow mb-4">
+											<div class="card-header py-3">
+												<h6 class="m-0 font-weight-bold text-primary">회원랭킹</h6>
+											</div>
+											<div class="card-body">
+												<div class="chart-bar">
+													<canvas id="myBarChart" width="55" height="200"
+														style="display: block; height: 160px; width: 44px;"
+														class="chartjs-render-monitor"></canvas>
+													<script src="js/demo/chart-bar-demo.js">
+														
+													</script>
+												</div>
+											</div>
+										</div>
+										<!-- pie Chart -->
+										<div class="col-xl-4 col-lg-5">
+											<div class="card shadow mb-4">
+												<!-- Card Header - Dropdown -->
+												<div class="card-header py-3">
+													<h6 class="m-0 font-weight-bold text-primary">상품랭킹</h6>
+												</div>
+												<!-- Card Body -->
+												<div class="card-body">
+													<div class="chart-pie pt-4">
+														<canvas id="myPieChart" width="55" height="200"
+															style="display: block; height: 216px; width: 20px;"
+															class="chartjs-render-monitor"></canvas>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="tab04">
+							<%-- <div class="container-fluid px-4">
 									<div class="card mb-4" style="width: 100%; height: 20%; float: left;">
 										<input type="hidden" id="chartType" value="line">
 										<div class="card-header">
@@ -735,60 +822,7 @@
 										</div>
 									</div>
 								</div> --%>
-							</div>
-							<div id="tab03">문의</div>
-							<div id="tab04">
-								<div class="row">
-									<div class="col-xl-8 col-lg-7">
-										<!-- Area Chart -->
-										<div class="card shadow mb-4">
-											<div class="card-header py-3">
-												<h6 class="m-0 font-weight-bold text-primary">매출</h6>
-											</div>
-											<div class="card-body">
-												<div class="chart-area">
-													<canvas id="myAreaChart"
-														style="display: block; height: 160px; width: 44px;"
-														width="55" height="200" class="chartjs-render-monitor"></canvas>
-													<script src="js/demo/chart-area-demo.js"></script>
-												</div>
-											</div>
-										</div>
-										<!-- Bar Chart -->
-										<div class="card shadow mb-4">
-											<div class="card-header py-3">
-												<h6 class="m-0 font-weight-bold text-primary">회원랭킹</h6>
-											</div>
-											<div class="card-body">
-												<div class="chart-bar">
-													<canvas id="myBarChart" width="55" height="200"
-														style="display: block; height: 160px; width: 44px;"
-														class="chartjs-render-monitor"></canvas>
-													<script src="js/demo/chart-bar-demo.js">
-														
-													</script>
-												</div>
-											</div>
-										</div>
-										<!-- pie Chart -->
-										<div class="col-xl-4 col-lg-5">
-											<div class="card shadow mb-4">
-												<!-- Card Header - Dropdown -->
-												<div class="card-header py-3">
-													<h6 class="m-0 font-weight-bold text-primary">상품랭킹</h6>
-												</div>
-												<!-- Card Body -->
-												<div class="card-body">
-													<div class="chart-pie pt-4">
-														<canvas id="myPieChart" width="55" height="200"
-															style="display: block; height: 216px; width: 20px;"
-															class="chartjs-render-monitor"></canvas>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -818,50 +852,45 @@
 			<script src="admin/js/demo/datatables-demo.js"></script>
 			<script>
 				var ctx = document.getElementById("myPieChart");
-				var myPieChart = new Chart(
-						ctx,
-						{
-							type : 'doughnut',
-							data : {
-								labels : [ "Direct", "Referral", "Social" ],
-								datasets : [ {
-									data : [ 100, 50, 10 ],
-									backgroundColor : [ '#4e73df', '#1cc88a',
-											'#36b9cc' ],
-									hoverBackgroundColor : [ '#2e59d9',
-											'#17a673', '#2c9faf' ],
-									hoverBorderColor : "rgba(234, 236, 244, 1)",
-								} ],
-							},
-							options : {
-								maintainAspectRatio : false,
-								tooltips : {
-									backgroundColor : "rgb(255,255,255)",
-									bodyFontColor : "#858796",
-									borderColor : '#dddfeb',
-									borderWidth : 1,
-									xPadding : 15,
-									yPadding : 15,
-									displayColors : false,
-									caretPadding : 10,
-								},
-								legend : {
-									display : false
-								},
-								cutoutPercentage : 80,
-							},
-						});
+				var myPieChart = new Chart(ctx, {
+					type : 'doughnut',
+					data : {
+						labels : [ "Direct", "Referral", "Social" ],
+						datasets : [ {
+							data : [ 100, 50, 10 ],
+							backgroundColor : [ '#4e73df', '#1cc88a', '#36b9cc' ],
+							hoverBackgroundColor : [ '#2e59d9', '#17a673', '#2c9faf' ],
+							hoverBorderColor : "rgba(234, 236, 244, 1)",
+						} ],
+					},
+					options : {
+						maintainAspectRatio : false,
+						tooltips : {
+							backgroundColor : "rgb(255,255,255)",
+							bodyFontColor : "#858796",
+							borderColor : '#dddfeb',
+							borderWidth : 1,
+							xPadding : 15,
+							yPadding : 15,
+							displayColors : false,
+							caretPadding : 10,
+						},
+						legend : {
+							display : false
+						},
+						cutoutPercentage : 80,
+					},
+				});
 
 				$(function() {
 					$('.tabcontent_banner > div').hide();
-					$('.tabnav_banner a').click(
-							function() {
-								$('.tabcontent_banner > div').hide().filter(
-										this.hash).fadeIn();
-								$('.tabnav_banner a').removeClass('active');
-								$(this).addClass('active');
-								return false;
-							}).filter(':eq(0)').click();
+					$('.tabnav_banner a').click( function() {
+						$('.tabcontent_banner > div').hide().filter(
+								this.hash).fadeIn();
+						$('.tabnav_banner a').removeClass('active');
+						$(this).addClass('active');
+						return false;
+					}).filter(':eq(0)').click();
 				});
 			</script>
 </body>

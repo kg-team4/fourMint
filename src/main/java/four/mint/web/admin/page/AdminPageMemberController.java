@@ -15,8 +15,6 @@ import four.mint.web.admin.page.store.AdminPageStoreVO;
 import four.mint.web.admin.table.member.AdminTableService;
 import four.mint.web.admin.table.member.AdminTableVO;
 
-
-
 @Controller
 public class AdminPageMemberController {
 	
@@ -59,9 +57,27 @@ public class AdminPageMemberController {
 	}
 	
 	@RequestMapping(value = "/deleteMember.mdo", method = RequestMethod.POST)
-	public String updateStore(AdminPageStoreVO vo, HttpServletRequest request) {
+	public String updateStore(HttpServletRequest request) {
+		AdminPageVO newVO = adminPageService.getMemberOne(request.getParameter("nickname"));
+		System.out.println(newVO);
+		adminTableService.insertMember(newVO);
 		adminPageService.deleteMember(request.getParameter("nickname"));
 		
 		return "redirect:/memberpage.mdo";
 	}
+	
+	@RequestMapping(value = "/memberlist.mdo", method = RequestMethod.GET)
+	public String memberlist(HttpSession session, HttpServletRequest request) {
+
+		if (session.getAttribute("admin_id") == null) {
+			return "/login";
+		}
+		
+		List<AdminTableVO> adminMemberlist = adminTableService.getAdminTableList();
+
+		request.setAttribute("list", adminMemberlist);
+
+		return "/memberlist";
+	}
+
 }

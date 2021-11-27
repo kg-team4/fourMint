@@ -29,4 +29,7 @@
 		DELETE FROM member WHERE nickname = #{nickname}
 	</delete>
 	
+	<select id="getMemberOne" parameterType="string" resultType="four.mint.web.admin.page.AdminPageVO">
+		SELECT * FROM member WHERE nickname = #{nickname}
+	</select>
 </mapper>

@@ -75,4 +75,11 @@ public interface StoreService {
 	int searchLikes(int seq);
 
 
+	// admin chart
+	List<Integer> getCategoryBig();
+	
+	// admin transactionHistory
+	void plusStock(StoreVO vo);
+	
+	StoreVO getTransactionHistoryOne(StoreVO vo);
 }

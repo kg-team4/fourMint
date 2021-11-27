@@ -3,11 +3,12 @@ package four.mint.web.admin.table.member;
 import java.util.ArrayList;
 import java.util.List;
 
+import four.mint.web.admin.page.AdminPageVO;
 import four.mint.web.user.UserVO;
 
 
 public interface AdminTableService {
-	void inserttablemember(AdminTableVO vo);
+	void insertMember(AdminPageVO vo);
 	AdminTableVO getAdmin(AdminTableVO vo);
 	String getname(AdminTableVO vo);
 	

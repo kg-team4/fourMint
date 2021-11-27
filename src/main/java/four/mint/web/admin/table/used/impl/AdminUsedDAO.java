@@ -13,21 +13,16 @@ public class AdminUsedDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-
-	public void insertAdminUsed(AdminUsedVO vo) {
-		System.out.println("상품관리");
-		sqlSessionTemplate.insert("AdminUsedDAO.insertAdmin",vo);
-	}
 	
-	public AdminUsedVO getAdminUsed(AdminUsedVO vo) {
-		return(AdminUsedVO)sqlSessionTemplate.selectOne("AdminUsedDAO.getAdminUsed",vo);		
-	}
-	
-	public List<AdminUsedVO>getAdminUsedList(){		
+	public List<AdminUsedVO> getAdminUsedList(){
+		
 		return sqlSessionTemplate.selectList("AdminUsedDAO.getAdminUsedList");
 	}
 	
-	public void delete(int vo)throws Exception{
-		  sqlSessionTemplate.delete("AdminUsedDAO.delete",vo); 	
-	}	
+	public List<AdminUsedVO> getAdminUsedSellList(int status){
+		
+		return sqlSessionTemplate.selectList("AdminUsedDAO.getAdminUsedSellList", status);
+	}
+	
+	
 }

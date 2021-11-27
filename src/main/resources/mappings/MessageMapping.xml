@@ -19,7 +19,7 @@
 		select no, room, send_nick, recv_nick, send_time, read_time, content, read_check, image
 		from message
 		where no in (select max(no) from message group by room) and (send_nick = #{nickname} or recv_nick=#{nickname})
-		order by no asc;
+		order by no desc;
 	</select>
 	
 	<!-- 메세지 list에서 상대방 profile 가져오기 : 오른쪽 위에 메세지 보내기 버튼 클릭 시 -->

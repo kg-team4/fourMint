@@ -48,17 +48,16 @@
                     <h1 class="h3 mb-2 text-gray-800">회원 관리 페이지</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 탈퇴회원 관리 </a>.</p>
-                             <div class="dropdown">
-                     	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     	카테고리
-                     	</button>
-                     	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                     		<a class="dropdown-item" href="memberpage.mdo">탈퇴회원목록</a>
-                     		<a class="dropdown-item" href="memberlist.mdo">회원목록</a>
-                     	</div>
+                            href="https://datatables.net">민트마켓 회원 관리 </a>.</p>
+					<div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        카테고리
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                           <a class="dropdown-item" href="memberpage.mdo">회원목록</a>
+                           <a class="dropdown-item" href="memberlist.mdo">탈퇴목록</a>
+                        </div>
                      </div>
-
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -96,7 +95,7 @@
 	                                            	<input type="hidden" value="${member.address3 }">
 	                                            	<input type="hidden" value="${member.birth }">
 	                                            	<input type="hidden" value="${member.gender }">
-	                                            	<input type="hidden" value="${member.date }">
+	                                            	<input type="hidden">
 	                                            	<form action="deleteMember.mdo" method="post">
 	                                            		<input type="hidden" name="nickname" value="${member.nickname }">
 														<button type="submit" id="deleteMember" class="deleteMember" style="width: 90px; font-size: 15px">삭제</button>
@@ -184,7 +183,7 @@
 			$("#detail_address3").val($(this).next().next().next().val());
 			$("#detail_birth").val($(this).next().next().next().next().val());
 			$("#detail_gender").val($(this).next().next().next().next().next().val());
-			$("#detail_date").val($(this).next().next().next().next().next().next().val());
+			$("#detail_date").val($(this).parent().prev().text());
 			$("#detail_name").val($(this).parent().prev().prev().prev().prev().prev().text());
 			$("#detail_img").attr("src", ($(this).parent().prev().prev().prev().prev().prev().prev().prev().children().attr("src")));
 			$("#detail_nick").val($(this).parent().prev().prev().prev().prev().text());

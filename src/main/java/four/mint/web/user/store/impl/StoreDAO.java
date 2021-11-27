@@ -158,5 +158,17 @@ public class StoreDAO {
 
 	public int searchLikes(int seq) {
 		return sqlSessionTemplate.selectOne("StoreDAO.searchLikes", seq);
+	
+	// admin chart
+	public List<Integer> getCategoryBig() {
+		return sqlSessionTemplate.selectList("StoreDAO.getCategoryBig");
+	}
+	
+	public void plusStock(StoreVO vo) {
+		sqlSessionTemplate.selectOne("StoreDAO.plusStock", vo);
+	}
+	
+	public StoreVO getTransactionHistoryOne(StoreVO vo) {
+		return sqlSessionTemplate.selectOne("StoreDAO.getTransactionHistoryOne", vo);
 	}
 }

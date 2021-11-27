@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import four.mint.web.admin.page.AdminPageVO;
 import four.mint.web.admin.table.member.AdminTableVO;
 import four.mint.web.user.UserVO;
 
@@ -17,9 +18,8 @@ public class AdminTableDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public void insertAdminTable(AdminTableVO vo) {
-		System.out.println("회원목록");
-		sqlSessionTemplate.insert("AdminTableDAO.insertAdmin",vo);
+	public void insertMember(AdminPageVO vo) {
+		sqlSessionTemplate.insert("AdminTableDAO.insertMember", vo);
 	}
 	
 	public AdminTableVO getAdminTable(AdminTableVO vo) {

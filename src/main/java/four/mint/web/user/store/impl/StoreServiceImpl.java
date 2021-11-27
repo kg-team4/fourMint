@@ -197,7 +197,20 @@ public class StoreServiceImpl implements StoreService {
 		return storeDao.searchLikes(seq);
 	}
 
+	// admin chart
+	@Override
+	public List<Integer> getCategoryBig() {
+		return storeDao.getCategoryBig();
+	}
+
+	@Override
+	public void plusStock(StoreVO vo) {
+		storeDao.plusStock(vo);
+	}
 	
-	
+	@Override
+	public StoreVO getTransactionHistoryOne(StoreVO vo) {
+		return storeDao.getTransactionHistoryOne(vo);
+	}
 
 }

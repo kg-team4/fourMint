@@ -12,28 +12,17 @@ import four.mint.web.admin.table.used.AdminUsedVO;
 public class AdminUsedServiceImpl implements AdminUsedService{
 	
 	@Autowired
-	private AdminUsedDAO adminUsedDao;
-
-	@Override
-	public void insertmarketboard(AdminUsedVO vo) {
-		adminUsedDao.insertAdminUsed(vo);		
-	}
-
-	@Override
-	public AdminUsedVO getAdmin(AdminUsedVO vo) {
-		AdminUsedVO newVo = adminUsedDao.getAdminUsed(vo);
-		return null;
-	}
+	private AdminUsedDAO adminUsedDAO;
 
 	@Override
 	public List<AdminUsedVO> getAdminUsedList() {
 		
-		return adminUsedDao.getAdminUsedList();
+		return adminUsedDAO.getAdminUsedList();
 	}
 
 	@Override
-	public void delete(int vo) throws Exception {
-		adminUsedDao.delete(vo);
+	public List<AdminUsedVO> getAdminUsedSellList(int status) {
 		
-	}	
+		return adminUsedDAO.getAdminUsedSellList(status);
+	}
 }
