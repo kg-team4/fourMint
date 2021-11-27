@@ -39,23 +39,6 @@ public class AdminPageMemberController {
 		}
 	}
 	
-	
-	@RequestMapping(value="/memberlist.mdo", method= RequestMethod.GET)
-	public String memberlist(HttpSession session, HttpServletRequest request) {
-		
-		if(session.getAttribute("admin_id") == null) {
-			return "/login";
-		}
-		else {
-			
-		}
-		List<AdminTableVO> adminMemberlist = adminTableService.getAdminTableList();
-		
-		request.setAttribute("list", adminMemberlist);
-		
-		return "/memberlist";
-	}
-	
 	@RequestMapping(value = "/deleteMember.mdo", method = RequestMethod.POST)
 	public String updateStore(HttpServletRequest request) {
 		AdminPageVO newVO = adminPageService.getMemberOne(request.getParameter("nickname"));

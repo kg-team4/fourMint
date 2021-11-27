@@ -158,6 +158,7 @@ public class StoreDAO {
 
 	public int searchLikes(int seq) {
 		return sqlSessionTemplate.selectOne("StoreDAO.searchLikes", seq);
+	}
 	
 	// admin chart
 	public List<Integer> getCategoryBig() {
