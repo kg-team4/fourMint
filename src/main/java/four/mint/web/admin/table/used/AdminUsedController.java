@@ -24,20 +24,5 @@ public class AdminUsedController {
 		request.setAttribute("list", adminusedlist);
 		return "/tables-used";
 	}
-	
-	
-	  @RequestMapping(value = "/used_delete.mdo", method = RequestMethod.GET)
-	  public void getmarket_delete(Model model)throws Exception {
-	  
-		 
-	  }
-	 
-	
-	@RequestMapping(value = "/used_delete.mdo", method = RequestMethod.POST)
-	 public String used_delete(int market_seq) throws Exception { 
-		  adminUsedService.delete(market_seq);
-	  
-		 return "redirect:tables-used.mdo"; 
-	  }
 
 }
