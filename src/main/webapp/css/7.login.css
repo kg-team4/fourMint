@@ -41,6 +41,7 @@
     padding-top: 180px;
     padding-bottom: 50px;
     font-size: 18px;
+    min-height: 750px;   
 }
 
 /* 로고 이미지 사이즈 */
@@ -154,6 +155,7 @@
 #login-area{
 	min-width: 1400px;
 	width:1400px;
+	margin:auto;
 }
 #space-area{
 	width:500px;

@@ -3,8 +3,8 @@
 <%@	page import="java.text.NumberFormat"%>
 <%@	page import="java.util.List"%>
 
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -13,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
-<title>¹ÎÆ®½ºÅä¾î ¼­ºñ½º¼¾ÅÍ</title>
+<title>ë¯¼íŠ¸ìŠ¤í† ì–´ ì„œë¹„ìŠ¤ì„¼í„°</title>
 <link rel="stylesheet" href="../css/reset.css">
 <link rel="stylesheet" href="../css/store_service_center.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
@@ -23,18 +23,19 @@
 </head>
 <body>
 <article>
-	<!-- Ä«Å×°í¸® -->
+	<!-- ì¹´í…Œê³ ë¦¬ -->
 	<div class="contents_all">
 		<div class="category_list">
+			<% String scKind = (String)request.getParameter("cate"); %>
 			<div>
-				<a class="category_title" href="storeServiceCenter.do">NOTICE</a>
+				<a class="category_title" href="storeServiceCenter.do?cate=notice"<% if ("notice".equals(scKind)) { %>style="color: #26e4ca; cursor:pointer;"<% } %>>NOTICE</a>
 			</div>
 			<div>
-				<a class="category_title" href="storeServiceCenterFAQ.do">FAQ</a>
+				<a class="category_title" href="storeServiceCenterFAQ.do?cate=faq"<% if ("faq".equals(scKind)) { %>style="color: #26e4ca; cursor:pointer;"<% } %>>FAQ</a>
 			</div>
 		</div>
 	</div>
-	<!-- °øÁö»çÇ× -->
+	<!-- ê³µì§€ì‚¬í•­ -->
 		<div class="store_review_all">
 			<div class="store_review">
 				<table>
@@ -50,7 +51,7 @@
 								</div>
 							</td>
 							<td id="down_arrow" style="color:gray">
-								<input type="button" class="slider" value="¡å" style="background: none; border:0px; color:gray; cursor:pointer;">
+								<input type="button" class="slider" value="â–¼" style="background: none; border:0px; color:gray; cursor:pointer;">
 							</td>
 						
 					</tr>
@@ -83,7 +84,7 @@
 							</div>
 						</td>
 						<td style="color:gray">					
-							<input type="button" class="slider" value="¡å" style="background: none; border:0px; color:gray; cursor:pointer">
+							<input type="button" class="slider" value="â–¼" style="background: none; border:0px; color:gray; cursor:pointer">
 						</td>
 					</tr>										
 										
@@ -111,10 +112,10 @@ $( document ).ready( function() {
 	$(".slider").click(function(){
 		if($(this).parent().parent().next().is(":visible")){
 			$(this).parent().parent().next().slideUp(400);
-	      	$(this).val("¡å");
+	      	$(this).val("â–¼");
 	    } else{
 	    	$(this).parent().parent().next().slideDown(400);
-	    	$(this).val("¡ã");
+	    	$(this).val("â–²");
 	   	}
 	});
  });

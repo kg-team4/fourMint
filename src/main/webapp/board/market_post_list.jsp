@@ -108,7 +108,7 @@
 											<div id="product_name">${market.product_name }</div>
 											<c:choose>
 											<c:when test="${market.status eq 0 }">
-												<div id="product_price" style="color: red;">[ 판매 완료 ]</div>
+												<div id="product_price" style="text-align:center; width:60px; background: #50b9abd0; border-radius:3px;color:white">sold out</div>
 											</c:when>
 											<c:otherwise>
 												<div id="product_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${market.product_price }" />원</div>
@@ -138,7 +138,7 @@
 											<div id="product_name">${market.product_name }</div>
 											<c:choose>
 											<c:when test="${market.status eq 0 }">
-												<div id="product_price" style="color: red;">[ 판매 완료 ]</div>
+												<div id="product_price" style="text-align:center; width:60px; background: #50b9abd0; border-radius:3px;color:white">sold out</div>
 											</c:when>
 											<c:otherwise>
 												<div id="product_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${market.product_price }" />원</div>

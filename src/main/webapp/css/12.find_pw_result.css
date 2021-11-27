@@ -1,5 +1,32 @@
 @charset "UTF-8";
 
+@keyframes move_img{
+    0%{
+    	transform: rotate( 0deg );
+    	transform-origin: center ;
+    }
+    25%{
+    	transform: rotate( -8deg );
+    	transform-origin: center ;
+    }
+    50%{
+    	transform: rotate( 0deg );
+    	transform-origin: center ;
+    }
+    75%{
+    	transform: rotate( 8deg );
+    	transform-origin: center ;
+    }
+    100%{
+    	transform: rotate( 0deg );
+    	transform-origin: center ;
+    }
+}
+
+#logo_icon {
+	animation: move_img 0.2s linear infinite;
+}
+
 #full-article {
 	min-width: 1200px;
 	height: auto;
@@ -17,8 +44,8 @@
 
 .title {
 	text-align: center;
-	font-size: 32px;
-	color: orange;
+	font-size: 27px;
+	color: #26e4ca;
 	font-weight: bold;
 	margin-top: 50px;
 }
@@ -33,7 +60,7 @@
 }
 
 .id-find, .pw-find {
-	height: 100%;
+	height: 44%;
 }
 
 .id-find>h2, .pw-find>h2 {
@@ -50,32 +77,31 @@
 	border-bottom: 3px solid #ff8900;
 }
 
-.submit {
+.btn_pw_reset {
 	width: 300px;
 	height: 55px;
 	cursor: pointer;
-	margin: 60px 0px 0px 0px;
+	margin: 40px 0px 0px 0px;
 	font-size: 28px;
-	color: rgba(255, 137, 0, 0.87);
-	border: 3px solid rgba(255, 137, 0, 0.87);
+	color: white;
+	border: 3px solid #26e4ca;
 	padding-left: 0px;
 	border-radius: 15px;
-	background-color: transparent;
+	background-color: #26e4ca;
 }
 
-.submit:hover {
+.btn_pw_reset:hover {
 	border: 1px solid transparent;
-	background-color: rgba(255, 137, 0, 0.87);
+	background-color: #50b9abd0;
 	color: white;
 }
 
 .find-form-body {
 	width: 100%;
 	height: 200px;
-	display: flex;
-	
+	display: flex;	
 	text-align: center;
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .find-form-body>div {

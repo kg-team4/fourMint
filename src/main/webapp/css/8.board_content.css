@@ -258,6 +258,9 @@ pre {
 	padding-left: 35px;
 }
 
+.padding-right02 {
+	padding-right: 0.2rem;
+}
 .padding-right05 {
 	padding-right: 0.5rem;
 }
@@ -319,6 +322,7 @@ pre {
 	width: 90%;
 	padding: 0.5rem;
 	float: left;
+	height:40.8px;
 }
 
 .edit-button {

@@ -37,7 +37,7 @@
          <!-- 메세지 내용 영역 -->
          <div class="mesgs" style="width:50%; margin-left: 10%">
             <!-- 메세지 내용 목록 -->
-            <div class="msg_history" name="contentList" style="height:370px;">
+            <div class="msg_history" name="contentList" style="height:490px;">	
                <!-- 메세지 내용이 올 자리 -->
             </div>
             <div class="send_message"></div>
@@ -73,10 +73,70 @@
                let send_msg = "";
                send_msg += "<div class='type_msg'>";
                send_msg += "   <div class='input_msg_write row'>";
-               send_msg += "      <div class='emo_div' style='width: auto; height: 80px; background: white; display:none;'>";
+               send_msg += "      <div class='emo_div' style='width: auto; height: 120px; background: white; display:none; overflow:scroll; overflow-x:hidden;'>";
                // -------------------------------- 동녘아 여기다가 이모티콘 넣어 --------------------------------
-               send_msg += "         <button id='click_emo_img' type='button' onclick='javascript:SendImo('${content.nickname}')'>";
-               send_msg += "            <img id='message_image' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_bad.png'>";
+               send_msg += "         <button id='click_emo_img1' type='button' onclick='javascript:SendImo1('${content.nickname}')'>";
+               send_msg += "            <img id='message_image1' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_buying.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img2' type='button' onclick='javascript:SendImo2('${content.nickname}')'>";
+               send_msg += "            <img id='message_image2' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_cry.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img3' type='button' onclick='javascript:SendImo3('${content.nickname}')'>";
+               send_msg += "            <img id='message_image3' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_discount.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img4' type='button' onclick='javascript:SendImo4('${content.nickname}')'>";
+               send_msg += "            <img id='message_image4' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_flex.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img5' type='button' onclick='javascript:SendImo5('${content.nickname}')'>";
+               send_msg += "            <img id='message_image5' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_going.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img6' type='button' onclick='javascript:SendImo6('${content.nickname}')'>";
+               send_msg += "            <img id='message_image6' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_heart.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img7' type='button' onclick='javascript:SendImo7('${content.nickname}')'>";
+               send_msg += "            <img id='message_image7' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_late.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img8' type='button' onclick='javascript:SendImo8('${content.nickname}')'>";
+               send_msg += "            <img id='message_image8' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_laugh.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img9' type='button' onclick='javascript:SendImo9('${content.nickname}')'>";
+               send_msg += "            <img id='message_image9' class='img_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_like.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img10' type='button' onclick='javascript:SendImo10('${content.nickname}')'>";
+               send_msg += "            <img id='message_image10' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_mine.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img11' type='button' onclick='javascript:SendImo11('${content.nickname}')'>";
+               send_msg += "            <img id='message_image11' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_no.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img12' type='button' onclick='javascript:SendImo12('${content.nickname}')'>";
+               send_msg += "            <img id='message_image12' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_ok.png'>";
+               send_msg += "         </button>";
+             
+               send_msg += "         <button id='click_emo_img13' type='button' onclick='javascript:SendImo13('${content.nickname}')'>";
+               send_msg += "            <img id='message_image13' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_thank.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img14' type='button' onclick='javascript:SendImo14('${content.nickname}')'>";
+               send_msg += "            <img id='message_image14' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_tired.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img15' type='button' onclick='javascript:SendImo15('${content.nickname}')'>";
+               send_msg += "            <img id='message_image15' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_hung.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img16' type='button' onclick='javascript:SendImo16('${content.nickname}')'>";
+               send_msg += "            <img id='message_image16' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_wish.png'>";
                send_msg += "         </button>";
                send_msg += "         <button id='click_emo_img1' type='button' onclick='javascript:SendImo1('${content.nickname}')'>";
                send_msg += "            <img id='message_image1' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_cry.png'>";
@@ -86,11 +146,11 @@
                // -------------------------------- 여기까지야 화이팅 ^^ 하핫 ----------------------------------
                send_msg += "      </div>";
                send_msg += "      <div class='col-11' style='text-align: left;'>";
-               send_msg += "         <textarea class='write_msg form-control' placeholder='메세지를 입력...' style='max-width: 520px; height: 60px; resize: none;'></textarea>";
-               send_msg += "     	 <div class='button_area' style='text-align: right;'>";
-               send_msg += "         	<button class='button_emo' type='button'>🙂</button>";
-               send_msg += "         	<button class='msg_send_btn' type='button' style='position: inherit;'>전송</button>";
-               send_msg += "      	</div>";
+               send_msg += "         <textarea class='write_msg form-control' placeholder='메세지를 입력...' style='width: 584px; height: 60px; resize: none;'></textarea>";
+               send_msg += "         <div class='button_area' style='text-align: right;'>";
+               send_msg += "            <button class='button_emo' type='button'>🙂</button>";
+               send_msg += "            <button class='msg_send_btn' type='button' style='position: inherit;'>전송</button>";
+               send_msg += "         </div>";
                send_msg += "      </div>";
                send_msg += "   </div>";
                send_msg += "</div>";
@@ -110,13 +170,71 @@
                   //$('.chat_list_box:first').addClass('active_chat');
                });
                
-               $('#click_emo_img').on('click', function() {
-                  SendImage(room, other_nick);
-               });
-               
                $('#click_emo_img1').on('click', function() {
                   SendImage1(room, other_nick);
                });
+               
+               $('#click_emo_img2').on('click', function() {
+                  SendImage2(room, other_nick);
+               });
+               
+               $('#click_emo_img3').on('click', function() {
+                   SendImage3(room, other_nick);
+                });
+               
+               $('#click_emo_img4').on('click', function() {
+                   SendImage4(room, other_nick);
+                });
+               
+               $('#click_emo_img5').on('click', function() {
+                   SendImage5(room, other_nick);
+                });
+               
+               $('#click_emo_img6').on('click', function() {
+                   SendImage6(room, other_nick);
+                });
+               
+               $('#click_emo_img7').on('click', function() {
+                   SendImage7(room, other_nick);
+                });
+               
+               $('#click_emo_img8').on('click', function() {
+                   SendImage8(room, other_nick);
+                });
+               
+               $('#click_emo_img9').on('click', function() {
+                   SendImage9(room, other_nick);
+                });
+               
+               $('#click_emo_img10').on('click', function() {
+                   SendImage10(room, other_nick);
+                });
+               
+               $('#click_emo_img11').on('click', function() {
+                   SendImage11(room, other_nick);
+                });
+               
+               $('#click_emo_img12').on('click', function() {
+                   SendImage12(room, other_nick);
+                });
+               
+               $('#click_emo_img13').on('click', function() {
+                   SendImage13(room, other_nick);
+                });
+               
+               $('#click_emo_img14').on('click', function() {
+                   SendImage14(room, other_nick);
+                });
+               
+               $('#click_emo_img15').on('click', function() {
+                   SendImage15(room, other_nick);
+                });
+               
+               $('#click_emo_img16').on('click', function() {
+                   SendImage16(room, other_nick);
+                });
+               
+               
                
                $(".write_msg").keyup(function(e) {
                   e.preventDefault();
@@ -173,18 +291,77 @@
                let send_msg = "";
                send_msg += "<div class='type_msg'>";
                send_msg += "   <div class='input_msg_write row'>";
-               send_msg += "      <div class='emo_div' style='width: auto; height: 80px; background: yellow; display:none;'>";
+               send_msg += "     <div class='emo_div' style='width: auto; height: 100px; background: white; display:none; overflow:scroll; overflow-x:hidden;'>";
                // -------------------------------- 동녘아 여기다가 이모티콘 넣어 --------------------------------
-               send_msg += "         <button id='click_emo_img' type='button' onclick='javascript:SendImo('${content.nickname}')'>";
-               send_msg += "            <img id='message_image' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_bad.png'>";
-               send_msg += "         </button>";
                send_msg += "         <button id='click_emo_img1' type='button' onclick='javascript:SendImo1('${content.nickname}')'>";
-               send_msg += "            <img id='message_image1' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_cry.png'>";
+               send_msg += "            <img id='message_image1' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_buying.png'>";
                send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img2' type='button' onclick='javascript:SendImo2('${content.nickname}')'>";
+               send_msg += "            <img id='message_image2' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_cry.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img3' type='button' onclick='javascript:SendImo3('${content.nickname}')'>";
+               send_msg += "            <img id='message_image3' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_discount.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img4' type='button' onclick='javascript:SendImo4('${content.nickname}')'>";
+               send_msg += "            <img id='message_image4' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_flex.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img5' type='button' onclick='javascript:SendImo5('${content.nickname}')'>";
+               send_msg += "            <img id='message_image5' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_going.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img6' type='button' onclick='javascript:SendImo6('${content.nickname}')'>";
+               send_msg += "            <img id='message_image6' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_heart.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img7' type='button' onclick='javascript:SendImo7('${content.nickname}')'>";
+               send_msg += "            <img id='message_image7' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_late.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img8' type='button' onclick='javascript:SendImo8('${content.nickname}')'>";
+               send_msg += "            <img id='message_image8' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_laugh.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img9' type='button' onclick='javascript:SendImo9('${content.nickname}')'>";
+               send_msg += "            <img id='message_image9' class='img_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_like.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img10' type='button' onclick='javascript:SendImo10('${content.nickname}')'>";
+               send_msg += "            <img id='message_image10' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_mine.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img11' type='button' onclick='javascript:SendImo11('${content.nickname}')'>";
+               send_msg += "            <img id='message_image11' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_no.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img12' type='button' onclick='javascript:SendImo12('${content.nickname}')'>";
+               send_msg += "            <img id='message_image12' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_ok.png'>";
+               send_msg += "         </button>";
+             
+               send_msg += "         <button id='click_emo_img13' type='button' onclick='javascript:SendImo13('${content.nickname}')'>";
+               send_msg += "            <img id='message_image13' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_thank.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img14' type='button' onclick='javascript:SendImo14('${content.nickname}')'>";
+               send_msg += "            <img id='message_image14' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_tired.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img15' type='button' onclick='javascript:SendImo15('${content.nickname}')'>";
+               send_msg += "            <img id='message_image15' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_hung.png'>";
+               send_msg += "         </button>";
+               
+               send_msg += "         <button id='click_emo_img16' type='button' onclick='javascript:SendImo16('${content.nickname}')'>";
+               send_msg += "            <img id='message_image16' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_wish.png'>";
+               send_msg += "         </button>";
+               
+               
                // -------------------------------- 여기까지야 화이팅 ^^ 하핫 ----------------------------------
                send_msg += "      </div>";
                send_msg += "      <div class='col-11' style='text-align: left;'>";
-               send_msg += "         <textarea class='write_msg form-control' placeholder='메세지를 입력...' style='max-width: 520px; height: 60px; resize: none;'></textarea>";
+               send_msg += "         <textarea class='write_msg form-control' placeholder='메세지를 입력...' style='width: 584px; height: 60px; resize: none;'></textarea>";
                send_msg += "         <button class='button_emo' type='button'>🙂</button>";
                send_msg += "         <button class='msg_send_btn' type='button' style='position: inherit;'>전송</button>";
                send_msg += "      </div>";
@@ -205,9 +382,71 @@
                   //$('.chat_list_box:first').addClass('active_chat');
                });
                
-               $('#click_emo_img').on('click', function() {
-                  SendImage(room, other_nick);
-               });
+               $('#click_emo_img1').on('click', function() {
+                   SendImage1(room, other_nick);
+                });
+                
+                $('#click_emo_img2').on('click', function() {
+                   SendImage2(room, other_nick);
+                });
+                
+                $('#click_emo_img3').on('click', function() {
+                    SendImage3(room, other_nick);
+                 });
+                
+                $('#click_emo_img4').on('click', function() {
+                    SendImage4(room, other_nick);
+                 });
+                
+                $('#click_emo_img5').on('click', function() {
+                    SendImage5(room, other_nick);
+                 });
+                
+                $('#click_emo_img6').on('click', function() {
+                    SendImage6(room, other_nick);
+                 });
+                
+                $('#click_emo_img7').on('click', function() {
+                    SendImage7(room, other_nick);
+                 });
+                
+                $('#click_emo_img8').on('click', function() {
+                    SendImage8(room, other_nick);
+                 });
+                
+                $('#click_emo_img9').on('click', function() {
+                    SendImage9(room, other_nick);
+                 });
+                
+                $('#click_emo_img10').on('click', function() {
+                    SendImage10(room, other_nick);
+                 });
+                
+                $('#click_emo_img11').on('click', function() {
+                    SendImage11(room, other_nick);
+                 });
+                
+                $('#click_emo_img12').on('click', function() {
+                    SendImage12(room, other_nick);
+                 });
+                
+                $('#click_emo_img13').on('click', function() {
+                    SendImage13(room, other_nick);
+                 });
+                
+                $('#click_emo_img14').on('click', function() {
+                    SendImage14(room, other_nick);
+                 });
+                
+                $('#click_emo_img15').on('click', function() {
+                    SendImage15(room, other_nick);
+                 });
+                
+                $('#click_emo_img16').on('click', function() {
+                    SendImage16(room, other_nick);
+                 });
+               
+               
                
                $('#click_emo_img1').on('click', function() {
                   SendImage1(room, other_nick);
@@ -316,34 +555,6 @@
    };
 
    // 이미지를 전송하는 함수
-   const SendImage = function(room, other_nick) {
-      console.log(room);
-      console.log(other_nick);
-      let image = $('#message_image').attr("src");
-
-      $.ajax({
-         url : "message_send_image.do",
-         method : "GET",
-         data : {
-            room : room,
-            other_nick : other_nick,
-            image : image
-         },
-         success : function(data) {
-            console.log("메세지 전송 성공");
-
-            // 메세지 내용  리로드
-            MessageContentList(room);
-
-            // 메세지 리스트 리로드
-            MessageList();
-         },
-         error : function() {
-            alert('서버 에러');
-         }
-      });
-   };
-   
    const SendImage1 = function(room, other_nick) {
       console.log(room);
       console.log(other_nick);
@@ -371,14 +582,435 @@
          }
       });
    };
-
-   $(document).ready(function() {
-      // 메세지 리스트 리로드
-      FirstMessageList();
-   });
    
-   function aaa() {
-      alert("aaa");
-   }
+   const SendImage2 = function(room, other_nick) {
+      console.log(room);
+      console.log(other_nick);
+      let image = $('#message_image2').attr("src");
+
+      $.ajax({
+         url : "message_send_image.do",
+         method : "GET",
+         data : {
+            room : room,
+            other_nick : other_nick,
+            image : image
+         },
+         success : function(data) {
+            console.log("메세지 전송 성공");
+
+            // 메세지 내용  리로드
+            MessageContentList(room);
+
+            // 메세지 리스트 리로드
+            MessageList();
+         },
+         error : function() {
+            alert('서버 에러');
+         }
+      });
+   };
+   
+  
+	const SendImage3 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_imag3').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	const SendImage4 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image4').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	const SendImage5 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image5').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	const SendImage6 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image6').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	const SendImage7 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image7').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	const SendImage8 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image8').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	const SendImage9 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image9').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	const SendImage10 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image10').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	const SendImage11 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image11').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	const SendImage12 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image12').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	const SendImage13 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image13').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+	
+	const SendImage14 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image14').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+	
+	const SendImage15 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image15').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+	
+	const SendImage16 = function(room, other_nick) {
+		console.log(room);
+		console.log(other_nick);
+		let image = $('#message_image16').attr("src");
+
+		$.ajax({
+			url : "message_send_image.do",
+			method : "GET",
+			data : {
+				room : room,
+				other_nick : other_nick,
+				image : image
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 내용  리로드
+				MessageContentList(room);
+
+				// 메세지 리스트 리로드
+				MessageList();
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+
+	$(document).ready(function() {
+		// 메세지 리스트 리로드
+		FirstMessageList();
+	});
+
+	function aaa() {
+		alert("aaa");
+	}
 </script>
 <jsp:include page="../template/footer.jsp"></jsp:include>

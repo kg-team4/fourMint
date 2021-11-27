@@ -25,11 +25,12 @@
 	<article>
 		<div class="contents_all">
 			<div class="category_list">
+				<% String scKind = (String)request.getParameter("cate"); %>
 				<div>
-					<a class="category_title" href="storeServiceCenter.do">NOTICE</a>
+					<a class="category_title" href="storeServiceCenter.do?cate=notice"<% if ("notice".equals(scKind)) { %>style="color: #26e4ca; cursor:pointer;"<% } %>>NOTICE</a>
 				</div>
 				<div>
-					<a class="category_title" href="storeServiceCenterFAQ.do">FAQ</a>
+					<a class="category_title" href="storeServiceCenterFAQ.do?cate=faq"<% if ("faq".equals(scKind)) { %>style="color: #26e4ca; cursor:pointer;"<% } %>>FAQ</a>
 				</div>
 			</div>
 

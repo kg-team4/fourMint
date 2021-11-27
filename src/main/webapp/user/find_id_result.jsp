@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
+<title>민트마켓 아이디 찾기 결과</title>
+
 <jsp:include page="../template/header.jsp"></jsp:include>
 
 <link href="../css/11.find_id_result.css"rel="stylesheet"
@@ -21,7 +24,7 @@
 </script>
 	<div class="main-form">
 	<div style="height: 150px;">
-		<img src="../img/shoping.png" alt="logo_icon" id="logo_icon">
+		<img src="../img/mt_happy_buying.png" alt="logo_icon" id="logo_icon">
     </div>    
        <div id="find-form">
 	   	<div class="id-find">
@@ -40,7 +43,7 @@
 			          	</div>
 			          	<div>
 			          		<form action="find.do" method="get"style="text-align:left;">
-			          			<input  class="submit"  type="submit"value="비밀번호 찾으러 go~!"style="margin-left:50px;">
+			          			<input  class="submit"  type="submit"value="비밀번호 찾기"style="margin-left:50px;">
 			          		</form>
 			          	</div>
 			          </div>
@@ -55,7 +58,7 @@
 			          	</div>
 			          	<div>
 			          		<form action="find.do" method="get"style="text-align:left;">
-			          			<input  class="submit"  type="submit"value="아이디 찾으러 go~!"style="margin-left:50px;">
+			          			<input  class="submit"  type="submit"value="아이디 찾기"style="margin-left:50px;">
 			          		</form>
 			          	</div>
 			          </div>

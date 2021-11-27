@@ -53,6 +53,11 @@
 								<img src="../img/message.png" style="height: 18px; width: 20px">
 							</button>
 						</li>
+						<li> <!-- user 주소 -->
+							<div id="user_address" style="color:#26e4ca">
+								${addressSub}
+							</div>
+						</li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

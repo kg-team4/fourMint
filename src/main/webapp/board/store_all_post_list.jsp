@@ -35,10 +35,10 @@
 			<c:forEach var="store" items="${list }">
 				<li>
 					<a href="storeBoard.do?seq=${store.store_seq }">
-						<img class=product_img src="${store.url }" alt="추천상품" style="width:293px; height:255px" >
+						<img class=product_img src="${store.url }" alt="추천상품" style="width:293px; height:320px" >
 					</a>
 					<p>
-						<span class="red">[${store.category_big }]</span>
+						<span class="red" style="margin-top:8px">[${store.category_big }]</span>
 					</p>
 					<p>
 						<span>${store.product_name }</span> <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${store.product_price }" />원</span>
@@ -52,10 +52,10 @@
 			<c:forEach var="best" items="${best }">
 				<li>
 					<a href="storeBoard.do?seq=${best.store_seq }">
-						<img class=product_img src="${best.url }" alt="인기상품" style="width:293px; height:255px">
+						<img class=product_img src="${best.url }" alt="인기상품" style="width:293px; height:320px">
 					</a>
 					<p>
-						<span class="red">[${best.category_big }]</span>
+						<span class="red" style="margin-top:8px">[${best.category_big }]</span>
 					</p>
 					<p>
 						<span>${best.product_name }</span> <span><fmt:formatNumber type="number" maxFractionDigits="3" value="${best.product_price }" />원</span>
