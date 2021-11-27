@@ -18,14 +18,18 @@
 		<result property="delete_date" column="DELETE_DATE" />
 	</resultMap>
 	
-	<insert id="insertMember" parameterType="four.mint.web.admin.page.AdminPageVO">
+	<insert id="insertMember" parameterType="adminTable">
 		INSERT INTO deleteMember (email_id, password, name, nickname, phone, address1, address2, address3, birth, gender, date, profile, delete_date ) 
 		VALUES (#{email_id}, #{password}, #{name}, #{nickname}, #{phone}, #{address1}, #{address2}, #{address3}, #{birth}, #{gender}, #{date}, #{profile}, now() )
 	</insert>
 	
-	<select id="getAdminTableList" resultType="adminTable" parameterType="four.mint.web.admin.table.member.AdminTableVO">
-		SELECT * FROM deleteMember 
+	<select id="getAdminTableList" resultType="adminTable" parameterType="adminTable">
+		SELECT * FROM deletemember 
 	</select>	
+	
+	<select id="getMemberOne" parameterType="string" resultType="adminTable">
+		SELECT * FROM deletemember WHERE nickname = #{nickname}
+	</select>
 	
 	<select id="getAdminTableWoman" resultType="int">
 		SELECT count(*) FROM deleteMember where gender = 'woman' 
@@ -50,5 +54,9 @@
 	<select id="getAddressWoman" resultType="string">
 		SELECT address2 FROM deleteMember WHERE gender = 'woman'
 	</select>
+	
+	<delete id="deleteMember" parameterType="string">
+		DELETE FROM deleteMember WHERE nickname = #{parameter}
+	</delete>
 	
 </mapper>

@@ -25,4 +25,5 @@ public class AdminUsedController {
 		return "/tables-used";
 	}
 
+	
 }

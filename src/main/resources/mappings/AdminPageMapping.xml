@@ -16,20 +16,20 @@
 		<result property="delete_date" column="DELETE_DATE" />
 	</resultMap>
 	
-	<insert id="insertAdmin" parameterType="four.mint.web.admin.page.AdminPageVO">
+	<insert id="insertAdmin" parameterType="adminPage">
 		INSERT INTO deletemember (email_id, name, nickname, phone, address2,  birth, gender, date, delete_date ) 
 		VALUES (#{id}, #{password}, #{name}, #{nickname}, #{phone}, #{address2}, #{birth}, #{gender}, #{date}, #{delete_date} )
 	</insert>
 	
-	<select id="getAdminPageList" resultType="adminPage" parameterType="four.mint.web.admin.page.AdminPageVO">
-		SELECT * FROM deletemember
+	<select id="getAdminPageList" resultType="adminPage" parameterType="adminPage">
+		SELECT * FROM member
 	</select>	
 	
 	<delete id="deleteMember" parameterType="string">
 		DELETE FROM member WHERE nickname = #{nickname}
 	</delete>
 	
-	<select id="getMemberOne" parameterType="string" resultType="four.mint.web.admin.page.AdminPageVO">
+	<select id="getMemberOne" parameterType="string" resultType="adminPage">
 		SELECT * FROM member WHERE nickname = #{nickname}
 	</select>
 </mapper>

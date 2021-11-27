@@ -31,7 +31,6 @@ public class AdminPageDAO {
 		return sqlSessionTemplate.selectList("AdminPageDAO.getAdminPageList");
 	}
 	
-	
 	public List<AdminTableVO> getAdminTableList() {
 			
 		return sqlSessionTemplate.selectList("AdminTableDAO.getAdminTableList");

@@ -77,6 +77,16 @@ public class AdminTableServiceImpl implements AdminTableService {
 		return adminTableDao.getAddressWoman();
 	}
 
-	
+	@Override
+	public AdminTableVO getMemberOne(String parameter) {
+		return adminTableDao.getMemberOne(parameter);
+	}
 
+	@Override
+	public void deleteMember(String parameter) {
+		adminTableDao.deleteMember(parameter);
+	}
+
+	
+		
 }

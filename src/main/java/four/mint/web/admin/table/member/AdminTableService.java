@@ -23,4 +23,6 @@ public interface AdminTableService {
 	
 	ArrayList<AdminTableVO> getAddressMan();
 	ArrayList<AdminTableVO> getAddressWoman();
+	AdminTableVO getMemberOne(String parameter);
+	void deleteMember(String parameter);
 }

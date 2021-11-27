@@ -94,7 +94,7 @@
 	                                            <td>${member.nickname }</td>
 	                                            <td>${member.gender }</td>
 	                                            <td>${member.phone }</td>
-	                                            <td>${member.delete_date }</td>
+	                                            <td>${member.delete_date }</td> 
 	                                            <td>
 	                                            	<button class="modal_info" style="width: 90px; font-size: 15px">상세정보</button>
 	                                            	<input type="hidden" value="${member.address1 }">
@@ -103,7 +103,7 @@
 	                                            	<input type="hidden" value="${member.birth }">
 	                                            	<input type="hidden" value="${member.gender }">
 	                                            	<input type="hidden" value="${member.date }">
-	                                            	<form action="deleteMember.mdo" method="post">
+	                                            	<form action="delete.mdo" method="post">
 	                                            		<input type="hidden" name="nickname" value="${member.nickname }">
 														<button type="submit" id="deleteMember" class="deleteMember" style="width: 90px; font-size: 15px">삭제</button>
 													</form>
