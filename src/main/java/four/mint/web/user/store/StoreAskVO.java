@@ -13,6 +13,7 @@ public class StoreAskVO {
 	private String content;
 	private Timestamp date;
 	private int status;
+	private String product_name;
 	
 	private String profile;
 }

@@ -14,6 +14,7 @@
 		<result property="url" column="URL"/>
 		<result property="views" column="VIEWS"/>
 		<result property="likes" column="LIKES"/>
+		<result property="profile" column="PROFILE"/>
 	</resultMap>
 	
 	<select id="getCommunityBoardList" resultType="communityBoard" parameterType="int">
@@ -34,7 +35,9 @@
 	</select>
 	
 	<select id="getBoard" resultType="communityBoard" parameterType="int">
-		SELECT * FROM community WHERE community_seq = #{seq}
+		SELECT a.*, b.profile FROM (SELECT * FROM community WHERE community_seq = #{seq}) AS a
+		LEFT JOIN 
+		(SELECT * FROM member) AS b ON a.nickname = b.nickname; 
 	</select>
 	
 	<select id="getCommunityListMe" resultType="communityBoard" parameterType="string">
@@ -48,6 +51,14 @@
 	<update id="updateComments" parameterType="int">
 		UPDATE community SET comments = comments + 1 WHERE community_seq = #{board_seq}
 	</update>
+	
+	<update id='updateCommunity' parameterType="communityBoard">
+		UPDATE community SET title = #{title}, category = #{category}, content = #{content}, url = #{url} WHERE community_seq = #{community_seq}
+	</update>
+	
+	<delete id="deleteCommunity" parameterType="int">
+		DELETE FROM community WHERE community_seq = #{seq}
+	</delete>
 	
 	<select id="getTopFive" resultType="communityBoard" parameterType="string">
 		(SELECT * FROM community WHERE category = '질문' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
@@ -87,6 +98,10 @@
 	<select id="getCommentList" resultType="communityComment" parameterType="string">
 		SELECT a.*, b.title FROM (SELECT * FROM communityComment WHERE nickname = #{nickname}) AS a JOIN (select title, community_seq from community) AS b ON a.board_seq = b.community_seq;
 	</select>
+	
+	<delete id="deleteCommunityComment" parameterType="int">
+		DELETE FROM communityComment WHERE comment_seq = #{seq}
+	</delete>
 	
 	<resultMap type="communityLike" id="communityLikeResult">
 		<result property="seq" column="COMMUNITY_SEQ"/>

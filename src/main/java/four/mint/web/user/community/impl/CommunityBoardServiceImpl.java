@@ -108,6 +108,21 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	public void deleteCommunityLike(LikeVO lVO) {
 		communityBoardDao.deleteCommunityLike(lVO);
 	}
+
+	@Override
+	public void updateCommunity(CommunityBoardVO cVO) {
+		communityBoardDao.updateCommunity(cVO);
+	}
+
+	@Override
+	public void deleteCommunity(int seq) {
+		communityBoardDao.deleteCommunity(seq);
+	}
+
+	@Override
+	public void deleteCommunityComment(int seq) {
+		communityBoardDao.deleteCommunityComment(seq);
+	}
 	
 	
 }

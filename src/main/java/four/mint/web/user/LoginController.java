@@ -35,11 +35,9 @@ public class LoginController {
 		System.out.println("여기"+session.getAttribute("userEmail_id"));
 		if(session.getAttribute("userEmail_id") != null) {
 			return "redirect:/home.do";
-		}else {
-			
-		
-		SNSLogin naverLogin = new SNSLogin(naverSns);
-		model.addAttribute("naver_url", naverLogin.getNaverAuthURL());
+		} else {
+			SNSLogin naverLogin = new SNSLogin(naverSns);
+			model.addAttribute("naver_url", naverLogin.getNaverAuthURL());
 		}
 		return "/user/login";
 		

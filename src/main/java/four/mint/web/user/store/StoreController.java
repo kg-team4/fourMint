@@ -67,6 +67,11 @@ public class StoreController {
 
 	@RequestMapping(value = "/storeBoard.do", method = RequestMethod.GET)
 	public String storeBoard(HttpServletRequest request, StoreVO svo, HttpSession session) {
+		if(session.getAttribute("userEmail_id") == null) {
+			return "redirect:/login.do";
+		} else if(session.getAttribute("nickname") == null) {
+			return "redirect:/profile.do";
+		}
 		svo = storeService.getStoreOne(Integer.valueOf(request.getParameter("seq")));
 		request.setAttribute("content", svo);
 		
@@ -327,6 +332,11 @@ public class StoreController {
 	
 	@RequestMapping(value = "/payment.do", method = RequestMethod.GET)
 	public String order(HttpServletRequest request, 	HttpSession session) {
+		if(session.getAttribute("userEmail_id") == null) {
+			return "redirect:/login.do";
+		} else if(session.getAttribute("nickname") == null) {
+			return "redirect:/profile.do";
+		}
 		String nickname = String.valueOf(session.getAttribute("nickname"));
 		List<CartVO> cartList = storeService.getCartList(nickname);
 
@@ -552,11 +562,12 @@ public class StoreController {
 	
 	@ResponseBody
 	@PostMapping("storeQNA.do")
-	public int insertAsk(int seq, String content, HttpSession session) {
+	public int insertAsk(int seq, String content, HttpSession session, String product_name) {
 		StoreAskVO qVO = new StoreAskVO();
 			qVO.setStore_seq(seq);
 			qVO.setNickname((String)session.getAttribute("nickname"));
 			qVO.setContent(content);
+			qVO.setProduct_name(product_name);
 		storeService.insertAsk(qVO);	
 		
 		return 0;

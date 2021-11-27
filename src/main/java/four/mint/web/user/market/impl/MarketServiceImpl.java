@@ -181,6 +181,16 @@ public class MarketServiceImpl implements MarketService {
 	public int searchLikes(int seq) {
 		return marketDao.searchLikes(seq);
 	}
+
+	@Override
+	public void updateMarket(MarketVO mVO) {
+		marketDao.updateMarket(mVO);
+	}
+
+	@Override
+	public List<MarketVO> getFindList(String keyword) {
+		return marketDao.getFindList(keyword);
+	}
 	
 	
 }

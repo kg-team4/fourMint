@@ -18,15 +18,24 @@
 		<result property="follower" column="FOLLOWER"/>
 		<result property="profile" column="PROFILE"/>
 		<result property="content" column="CONTENT"/>
+		<result property="status" column="STATUS"/>
 	</resultMap>
 	
 	<select id="getFollowers" resultType="followers" parameterType="string">
-		SELECT n.nickname, n.rating, n.follower, n.profile, m.content FROM (SELECT q.nickname, q.rating, p.follower, q.profile FROM (
+		SELECT dod.*, be.target AS status FROM (SELECT n.nickname, n.rating, n.follower, n.profile, m.content FROM (SELECT q.nickname, q.rating, p.follower, q.profile FROM (
 		(SELECT DISTINCT nickname, rating, profile FROM member as m JOIN follow as f ON m.nickname = f.target) as q 
 		JOIN 
 		(SELECT follower, nickname FROM ((SELECT count(target) as follower, target as nickname FROM follow GROUP BY target) as a 
 		JOIN (SELECT standard FROM follow WHERE target = #{nickname}) as b ON a.nickname = b.standard) AS c) as p ON q.nickname = p.nickname)) as n JOIN (
-		SELECT nickname, count(*) as content FROM marketBoard GROUP BY nickname) as m ON n.nickname = m.nickname;
+		SELECT nickname, count(*) as content FROM marketBoard GROUP BY nickname) as m ON n.nickname = m.nickname) as dod
+		LEFT JOIN
+		(SELECT a.target FROM 
+		(SELECT * FROM follow where standard = #{nickname}) AS a 
+		JOIN
+		(SELECT * FROM follow) AS b
+		ON
+		a.standard = b.target AND a.target = b.standard) as be
+		on dod.nickname = be.target;
 	</select>
 	
 	<resultMap type="followings" id="followingsResult">

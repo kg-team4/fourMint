@@ -1,251 +1,126 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
- <%--   
-      <%
-   
-  	long post_no = Long.parseLong(request.getParameter("post_no"));   
-    System.out.println(post_no);
-      
-  	PromotionPostDAO ppdao = new PromotionPostDAO();
-  	PromotionPostDTO ppdto = ppdao.get(post_no);
-  	//카테고리 이름 뽑기
-  	PromotionBoardDAO pbdao = new PromotionBoardDAO();
-	PromotionBoardDTO pbdto = pbdao.get(ppdto.getPromotion_cate_num());
-  	
-  %>
-
-<script>
-   function calculateCount() {
-      var text = document.querySelector(".first").value;
-      var len = text.length;
-      var countTag = document.querySelector(".letter-count");
-
-      countTag.textContent = len;
-   }
-   function changeValue() {
-      var cb = document.querySelector("input[type=checkbox]").checked;
-      var se = document.querySelector("select").value;
-   }
-   
-   // 이미지 미리보기 
-   function preview() {
-      var fileTag = document.querySelector("input[name=promotion_post_img]");
-      var divTag = document.querySelector(".preview-wrap");
-      
-      if(fileTag.files.length > 0) {
-         divTag.innerHTML = "";
-         
-         for(var i = 0; i < fileTag.files.length; i++){
-            var reader = new FileReader();
-            reader.onload = function(data){
-               var imgTag = document.createElement("img");
-               imgTag.setAttribute("src",data.target.result);
-               divTag.appendChild(imgTag);
-            };
-            reader.readAsDataURL(fileTag.files[i])
-         }
-      }
-      else {
-         divTag.innerHTML ="";
-      }
-   }
-   
-   // 제목 2글자 이상 검사 
-   function checkTitle() {
-      var title = document.querySelector("input[name=post_title]").value;
-
-      var regex= /^.{2,30}$/;
-
-      var titleInfo = document.querySelector("#titleInfo");
-      var titleInfoText = document.querySelector("#titleInfoText");
-
-      if (title.match(regex) == null && titleInfoText == null) {
-            
-         var titleInfoText = document.createElement("div");
-         titleInfoText.textContent = "⛔   제목은 2자 이상 입력해주세요.";
-         titleInfoText.setAttribute("id", "titleInfoText");
-         titleInfoText.setAttribute("style", "color: red; font-size: 15px;");
-         titleInfo.appendChild(titleInfoText);
-
-      } 
-      else if (title.match(regex) != null && titleInfoText != null) {
-            titleInfo.removeChild(titleInfo.childNodes[0]);
-      }
-   }
-// 가격 숫자만 입력 검사 
-   function checkPrice() {
-      var price = document.querySelector("input[name=post_price]").value;
-
-      var regex= /^[0-9]{1,10}$/;
-
-      var priceInfo = document.querySelector("#priceInfo");
-      var priceInfoText = document.querySelector("#priceInfoText");
-
-      if (price.match(regex) == null && priceInfoText == null) {
-            
-         var priceInfoText = document.createElement("div");
-         priceInfoText.textContent = "⛔   숫자만 입력하세요.";
-         priceInfoText.setAttribute("id", "priceInfoText");
-         priceInfoText.setAttribute("style", "color: red; font-size: 15px;");
-         priceInfo.appendChild(priceInfoText);
-
-      } 
-      else if (price.match(regex) != null && priceInfoText != null) {
-            priceInfo.removeChild(priceInfo.childNodes[0]);
-      }
-   }
-   
-// 전화번호 숫자만 입력 검사 
-   function checkPhone() {
-      var phone = document.querySelector("input[name=post_phone]").value;
-
-      var regex= /^[0-9]{1,11}$/;
-
-      var phoneInfo = document.querySelector("#phoneInfo");
-      var phoneInfoText = document.querySelector("#phoneInfoText");
-
-      if (phone.match(regex) == null && phoneInfoText == null) {
-            
-         var phoneInfoText = document.createElement("div");
-         phoneInfoText.textContent = "⛔   -를 제외한 올바른 전화번호를 입력하세요.";
-         phoneInfoText.setAttribute("id", "phoneInfoText");
-         phoneInfoText.setAttribute("style", "color: red; font-size: 15px;");
-         phoneInfo.appendChild(phoneInfoText);
-
-      } 
-      else if (phone.match(regex) != null && phoneInfoText != null) {
-            phoneInfo.removeChild(phoneInfo.childNodes[0]);
-      }
-   }
-  
-</script>
- 
-<%
-	String path = request.getContextPath();
-%>
- --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<title>커뮤니티 글 쓰기</title>
+<link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
 <jsp:include page="../template/header.jsp"></jsp:include>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="../css/12.promotion_write.css" type="text/css" rel="stylesheet">
-
-
-<form action="promopostedit.do" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="post_no" value="1">
-	<input type="hidden" name="board_no" value="2">
-	
 <article style="padding-top: 200px;" id="used-write-form">
-   <div class="container" align="left">
-      <h1 align="left" style="font-size: 30px; font-weight: normal;">
-         동네홍보 글 수정 &nbsp; <span class="must">   *필수항목 </span>
-      </h1>
-      <br><br>
-      <hr class="hr_style2">
-      <br><br>
- 
-      <!--  
-          준비 : post_title(글제목), used_cate_num(카테고리 번호), used_price(가격), used_content(내용) 
-      -->
-
-      
-         <input type="hidden" name="board_no" value="2">
-         
-         <div class="used_container" >
-
-            <!--  이미지 등록 -->
-            <div class="used_photo">
-               <div class="used_photo_text" >
-                  상품이미지 <span class="must">*</span>
-               </div>
-               <div class="used_photo_img">
-                 
-                  <input class="form-input" type="file" name="promotion_post_img" multiple accept=".jpg, .png, .gif" onchange="preview();">
-                  <div class="preview-wrap"></div>                
-                  <div class="used_photo_explain" >
-                     * 상품 이미지는 640x640에 최적화 되어 있습니다.<br> 
-                     - 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.<br> 
-                     - 이미지를 클릭 할 경우 원본이미지를 확인할 수 있습니다. <br> 
-                     - 큰 이미지일경우 이미지가 깨지는 경우가 발생할 수 있습니다. <br> 
-                     - 이미지는 최대 5개까지 등록 가능합니다.<br>
-                     최대 지원 사이즈인 640 X 640 으로 리사이즈 해서 올려주세요.(개당 이미지 최대 10M)
-                  </div>
-               </div>
-            </div>
-            <hr>
-
-            <!-- 제목 입력 -->
-            <div class="used_title" style="list-style: none; margin-bottom:40px;">
-               <div class="used_text">
-                  제목 <span class="must">*</span> 
-                  <input class="form-title" type="text" name="post_title" placeholder="상품 제목을 입력해주세요." required value="제목">
-               </div>
-            </div>
-            <hr>
-
-
-            <!-- 카테고리 선택 -->
-            <div class="used_cate" >
-               <div class="used_text">
-                  카테고리 <span class="must">*</span>
-                  <select class="promotion_cate_style" name="promotion_cate_num">
-                     <option value="1">ㅁㅁㅁㅁㅁㅁㅁ</option>
-                     <option value="1">중고차/오토바이</option>
-                     <option value="2">동네 구인구직</option>
-                     <option value="3">부동산</option>
-                     <option value="4">농수산물</option>
-                     <option value="5">지역업체</option>
-                     <option value="6">과외/클래스 모집</option>   
-                     <option value="7">전시/공연</option>               
-                  </select>
-               </div>
-            </div>
-            <hr>
-			
-			 <!-- 전화번호 입력 -->
-            <div class="used_phone" style="list-style: none; margin-bottom:40px;">
-               <div class="used_text">
-                  전화번호 <span class="must">*</span> 
-                  <input class="form-phone" type="text" name="post_phone" placeholder="전화번호를 입력해주세요." required value="번호">
-               </div>
-            </div>
-            <hr>
-			
-            <!-- 가격 입력 -->
-            <div class="used_price" style="margin-bottom:40px;">
-               <div class="used_text">
-                  가격 <span class="must">*</span> 
-                  <input class="form-price" type="text" name="post_price" placeholder="숫자만 입력해주세요"value="가격">원
-               </div>
-            </div>
-            <hr><br><br>
-
-            <!-- 상품 내용 입력 -->
-            <div class="used_content">
-               <div class="main">
-                  <div class="used_content_text">
-                     설명<span class="must">*</span>
-                  </div>
-                  <div class="content">
-                     <div>
-                        <textarea class="first" name="post_content" oninput="calculateCount();">설명</textarea>
-                        <div align="right" class="countNum">
-                           <span class="letter-count">0</span>/2000
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div style="clear: both;"></div>
-            <br><hr>
-
-         </div>
-         <!--  등록 버튼 -->
-         <div align="right" class="form-input">
-            <input class="form-btn" type="submit" value="수정완료">
-         </div>
-
-      
-   </div>
+	<div class="container" align="left">
+		<h1 align="left" style="font-size: 30px; font-weight: normal;">
+			커뮤니티 글쓰기 &nbsp; <span class="must"> *필수항목 </span>
+		</h1>
+		<br>
+		<br>
+		<hr class="hr_style2">
+		<br>
+		<br>
+		<form action="communityEdit.do" method="post" enctype="multipart/form-data">
+			<!--  이미지 등록 -->
+			<div class="used_photo">
+				<div class="used_photo_text">
+					글 이미지 <span class="must">*</span>
+				</div>
+				<div class="used_photo_img">
+					<c:choose>
+					<c:when test="${community.category eq '소식' || community.category eq '질문' || community.category eq '분실센터'}">
+						<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="preview();"> <br> 
+					</c:when>
+					<c:otherwise>
+						<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="preview();" required> <br> 
+					</c:otherwise>
+					</c:choose>
+					<img class="preview-wrap" src="#" alt="등록할 상품 사진을 넣어주세요." onerror="this.style.display='none'" /> <br>
+					<div class="used_photo_explain">
+						* 상품 이미지는 640x640에 최적화 되어 있습니다.<br> - 이미지는 상품등록 시 정사각형으로 짤려서 등록됩니다.<br> - 이미지를 클릭 할 경우 원본이미지를 확인할 수 있습니다. <br> - 큰 이미지일경우 이미지가 깨지는 경우가 발생할 수 있습니다. <br> - 이미지는 최대 5개까지 등록 가능합니다.<br> 최대 지원 사이즈인 640 X 640 으로 리사이즈 해서 올려주세요.(개당 이미지 최대 10M)
+					</div>
+				</div>
+			</div>
+			<hr>
+			<!-- 제목 입력 -->
+			<div class="used_title" style="list-style: none;">
+				<div class="used_text">
+					<span class="title_announce">제목 <span class="must">*</span></span> 
+					<span><input class="form-title" type="text" name="title" placeholder="글 제목을 입력해주세요." oninput="checkTitle();" value="${community.title }" required></span>
+					<div id="titleInfo"></div>
+					<div class="titleHeight"></div>
+				</div>
+				<hr>
+				<!-- 카테고리 선택 -->
+				<div class="used_cate">
+					<div class="used_text">
+						카테고리 <span class="must">*</span> <select class="promotion_cate_style" name="category" required>
+							<option value="">카테고리 선택</option>
+							<option value="소식">소식</option>
+							<option value="질문">질문</option>
+							<option value="모임">모임</option>
+							<option value="맛집">맛집</option>
+							<option value="분실센터">분실센터</option>
+							<option value="사진전">사진전</option>
+						</select>
+					</div>
+				</div>
+				<hr>
+				<br>
+				<br>
+				<!-- 상품 내용 입력 -->
+				<div class="used_content">
+					<div class="main">
+						<div class="used_content_text">
+							설명<span class="must">*</span>
+						</div>
+						<div class="content">
+							<div>
+								<textarea class="first" name="content" oninput="calculateCount();" required>${community.content }</textarea>
+								<div align="right" class="countNum">
+									<span class="letter-count">0</span>/2000
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="clear: both;"></div>
+				<br>
+				<hr>
+			</div>
+			<!--  등록 버튼 -->
+			<div align="right" class="form-input">
+				<input type="hidden" name="community_seq" value="${community.community_seq}" /> 
+				<input class="form-btn" type="submit" value="등록하기">
+			</div>
+			<br>
+			<br>
+		</form>
+	</div>
 </article>
-</form>
+<script>
+	$(function() {
+		$(".form-input").on('change', function() {
+			readURL(this);
+		});
+	});
 
->>>>>>> refs/remotes/origin/master
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function(e) {
+				$('.preview-wrap').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+		$('.preview-wrap').show();
+	}
+
+	$(".first").keyup(function(e) {
+		var content = $(this).val();
+		$('.letter-count').html(content.length); //글자수 실시간 카운팅
+
+		if (content.length > 2000) {
+			alert("최대 2000자까지 입력 가능합니다.");
+			$(this).val(content.substring(0, 2000));
+			$('.letter-count').html(2000);
+		}
+	});
+</script>
 <jsp:include page="../template/footer.jsp"></jsp:include>

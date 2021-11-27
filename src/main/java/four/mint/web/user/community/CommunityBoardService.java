@@ -42,4 +42,10 @@ public interface CommunityBoardService {
 	void deleteLike(int seq);
 
 	void deleteCommunityLike(LikeVO lVO);
+
+	void updateCommunity(CommunityBoardVO cVO);
+
+	void deleteCommunity(int seq);
+
+	void deleteCommunityComment(int seq);
 }

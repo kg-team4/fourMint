@@ -67,4 +67,8 @@ public interface MarketService {
 	void setRating(int buy_seq);
 
 	int searchLikes(int seq);
+
+	void updateMarket(MarketVO mVO);
+
+	List<MarketVO> getFindList(String keyword);
 }

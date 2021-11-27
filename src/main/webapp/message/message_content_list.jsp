@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link href="../css/message/message.css" rel="stylesheet">
 
 <c:forEach var="tmp" items="${list }" >
@@ -24,7 +25,7 @@
 					<img src="${tmp.image }" style="width:50px; height:50px">
 				</c:if>
 					<div class="received_withd_msg" style="max-width: fit-content;">
-						<span class="time_date" style="padding: 8px"> ${tmp.send_time }</span>
+						<span class="time_date" style="padding: 8px"> <fmt:formatDate value="${tmp.send_time }" pattern="yyyy-MM-dd HH:mm"/></span>
 					</div>
 				</div>
 			</div>
@@ -43,7 +44,7 @@
 						</c:if>
 					</div>
 					<div class="sent_msg" style="width: auto">
-						<span class="time_date" style="padding: 8px;"> ${tmp.send_time }</span>
+						<span class="time_date" style="padding: 8px;"> <fmt:formatDate value="${tmp.send_time }" pattern="yyyy-MM-dd HH:mm"/></span>
 					</div>
 				</div>
 			</c:if>

@@ -21,7 +21,6 @@
 		</div>
 		<div class="search">
 			<form action="searchAllResult.do" method="get" style="border: 1px solid white;">
-				<input type="hidden" name="type" value="post_title"> 
 				<input type="text" class="search-bar" id="search-bar" name="keyword" placeholder="검색어를 입력해주세요!"> 
 				<input type="submit" class="search-icon" value="">
 			</form>

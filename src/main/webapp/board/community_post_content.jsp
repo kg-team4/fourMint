@@ -32,7 +32,7 @@
 
 					<div class="img_box">
 						<img class="writer_img" alt="작성자프로필사진"
-							src="../img/character_sample.png">
+							src="${content.profile }">
 					</div>
 					<div class="writer_infomation">
 						<table class="writer_info">
@@ -77,7 +77,7 @@
 							$(".btn_good").click(function(){
 								var seq = $(this).next().val();
 								$.ajax({
-									url : 'communityLikes.do', 
+									url : 'communityLikes.do',    
 									type : "post", 
 									cache: false,
 									headers: {"cache-control":"no-cache", "pragma": "no-cache"},
@@ -164,15 +164,14 @@
 									<td colspan="4">${comment.nickname }</td>
 								</tr>
 								<tr>
-									<td>${comment.date }</td>
+									<td><fmt:formatDate value="${comment.date }" pattern="yyyy-MM-dd"/></td>
 									<td>
 										<div class="reply_police2">
 											<div style="margin-left: 10px">
 												<span id="re_reply_click_style"> 
 													<label style="cursor: pointer; margin-left:15px; margin-right:5px" for="re-reply1"> 
-														<input type="checkbox" id="re-reply1" style="display: none; " value="1" onchange="reReply(this);"> 수정<!--답글 -->											
+														<input type="button" class="btn_delete_comment" value="삭제"/>
 													</label>
-													<span><input type="button" class="btn_delete_comment" value="삭제"/></span>
 												</span>&nbsp;
 											</div>
 
@@ -197,92 +196,6 @@
 					</div>
 				</div>
 			</c:forEach>
-				<%-- <c:forEach var="recomment" items=${recomment }>
-					<!-- 답글내용 -->
-					<div class="commenter_contents_all">
-						<div class="commenter_infomation_all">
-							<img class="reply_arrow_img" alt="답글화살표" src="../img/right-arrow.png">
-							<div class="img_box">						
-								<img class="commenter_img" alt="작성자프로필사진"
-									src="../img/character_sample.png">
-							</div>
-							<div class="commenter_infomation">
-								<table class="commenter_info">
-									<tr style="font-size: 18">
-										<td colspan="4">주난</td>
-									</tr>
-									<tr>
-										<td>묘동</td>
-										<td>&emsp;&emsp;&emsp;&emsp;4시간전</td>
-										<td>
-											<div>
-												<div class="reply_police1">
-													<div style="margin-left: 10px">
-														<span class="post_writer"> 
-															작성자
-														</span>&nbsp;
-													</div>
-		
-												</div>
-											</div>
-
-										</div>
-									</div>
-								</td>
-								<td>
-									<div class="reply_police2">
-
-										<div style="margin-left: 10px">
-											<button type="button" class="btn_police_comment">
-												<img class="img_police" src="../img/police.png" alt="신고버튼">
-											</button>
-										</div>
-									</div>
-								</td>
-
-							</tr>
-						</table>
-					</div>
-				</div>
-				<div class="comment_content">
-					<pre>
-넵~!! 좋은 하루 되세요!!
-					</pre>
-				</div>
-
-			</div>
-			
-			
-	
-
-			<!-- 답글달기 글쓰기창 -->
-			<div class="write_reply_area rereply-off " id="rereply-form1">
-				<p style="font-size: 18px">답글쓰기</p>
-				<form action="communityComment.do" method="post">
-					<input type="hidden" name="board_seq" value="${content.community_seq }"> 
-					<input type="hidden" name="nickname" value="${nickname }"> 
-					<input type="hidden" name="address" value="${address2 }"> 
-					<input type="hidden" name="reply_seq_n" value="이름"> 
-					<input type="hidden" name="post_path" value="asd?asd">
-					<div class="reply-div-padding">
-						<div class="reply-border">
-							<textarea class="text-padding font15" name="reply_content"
-								placeholder="답글 내용 입력" cols="80" rows="5"></textarea>
-						</div>
-					</div>
-					<div class="reply-num-border">
-						<div class="float-box float-left">
-							<div class="left-item50">
-								<p class="font12 gray-font text-padding10">
-								<p></p>
-							</div>
-							<div class="left-item50 text-padding10">
-								<input type="submit" class="right-float reply-button" value="등록">
-							</div>
-						</div>
-					</div>
-				</form>
-			</div> --%>
 			<!-- 댓글달기(고정) -->
 			<div class="write_comment_area rereply-off" id="comment-form1">
 				<p style="font-size: 18px">댓글쓰기</p>

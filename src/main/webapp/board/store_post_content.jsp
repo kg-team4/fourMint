@@ -475,19 +475,22 @@
 								<p class="font12 gray-font text-padding10">
 							</div>
 							<div class="left-item50 text-padding10">
+								<input type="hidden" name="product_name" value="${content.product_name }"/>
 								<input type="hidden" name="seq" value="${content.store_seq }"> 
 								<input type="button" class="right-float reply-button" value="등록">
 								<script>
 									$(".reply-button").click(function(){
 										var seq = $(this).prev().val();
 										var content = $(this).parent().parent().parent().prev().find("#qnacontent").val();
+										var product_name = $(this).prev().prev().val();
 										console.log(content);
 										$.ajax({
 											url : "/storeQNA.do",
 											type : "post",
 											data : {
 												seq : seq,
-												content : content
+												content : content,
+												product_name : product_name
 											},
 											success : function(data) {
 												$("#askDiv").load(window.location.href + " #askDiv");
