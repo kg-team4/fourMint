@@ -24,4 +24,5 @@ public class TransactionHistoryVO {
 	private String pay_cancel;
 	
 	private String url;
+	private int store_seq;
 }

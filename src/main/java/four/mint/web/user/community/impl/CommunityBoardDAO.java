@@ -90,4 +90,16 @@ public class CommunityBoardDAO {
 	public void deleteCommunityLike(LikeVO lVO) {
 		sqlSessionTemplate.delete("CommunityBoardDAO.deleteCommunityLike", lVO);
 	}
+
+	public void updateCommunity(CommunityBoardVO cVO) {
+		sqlSessionTemplate.update("CommunityBoardDAO.updateCommunity", cVO);
+	}
+
+	public void deleteCommunity(int seq) {
+		sqlSessionTemplate.delete("CommunityBoardDAO.deleteCommunity", seq);
+	}
+
+	public void deleteCommunityComment(int seq) {
+		sqlSessionTemplate.delete("CommunityBoardDAO.deleteCommunityComment", seq);
+	}
 }

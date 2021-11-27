@@ -26,11 +26,6 @@
 			}
 		}
 	</script>
-	<!-- 메뉴바 
-       현재페이지 뭔지 param.thisPage에 넣어서 navbar.jsp에  던짐 -->
-	<%-- <jsp:include page="./navbar.jsp">
-      <jsp:param value="profile" name="thisPage" />
-   </jsp:include> --%>
 	<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 	<div class="container bootstrap snippet" style="padding-left: 100px">
 		<div class="row">
@@ -657,7 +652,7 @@
 
 
 							
-							<div class="following_all">
+							<div class="following_all" id="following_re">
 								<hr>
 								<br> <br>
 								<p>
@@ -690,26 +685,21 @@
 											<div class="">
 												<c:set var="star" value="${followings.rating }"/>
 												<c:forEach var="i" begin="1" end="${star }">
-												<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+													<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
 												</c:forEach>
 												<c:if test="${star % 1 > 0 }">
 													<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
 												</c:if>
 											</div>
-											<button id="btn_sold_product_name">
+											<button id="btn_sold_product_name" class="btn_sold_product_name">
 												&nbsp;언팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
 											</button>
+											<input type="hidden" value="${followings.nickname }"/>
 										</div>
 									</c:forEach>
-									
-									<!-- 언팔로우 -->
-									<script>
-									
-									</script>
-									<!-- 끝 언팔로우 -->
-									
 								</div>
 							</div>
+							
 							<br> <br> <br>
 							<script>
 								/*상품 후기 작성자 및 팔로우 팔로워 프로필 모달*/
@@ -770,25 +760,69 @@
 													<span class="">상품</span> <span><a class="" href="#" style="color: #26e4ca">${followers.content }</a> &nbsp;|&nbsp; </span> <span class="">팔로워</span> <span><a class="" href="#" style="color: #26e4ca">${followers.follower }</a></span>
 												</div>
 											</div>
-											<a class="" href="#">
-												<div class="">
-													<c:set var="star" value="${followers.rating }"/>
-													<c:forEach var="i" begin="1" end="${star }">
-														<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
-													</c:forEach>
-													<c:if test="${star % 1 > 0 }">
-														<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
-													</c:if>
-												</div>
-											</a> <a class="" href="#">
-												<button id="btn_sold_product_name">
+											<div class="">
+												<c:set var="star" value="${followers.rating }"/>
+												<c:forEach var="i" begin="1" end="${star }">
+													<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+												</c:forEach>
+												<c:if test="${star % 1 > 0 }">
+													<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
+												</c:if>
+											</div>
+											<c:choose>
+											<c:when test="${followers.status eq null }">
+												<button id="btn_sold_product_name" class="btn_sold_product">
 													&nbsp;팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
 												</button>
-											</a>
+											</c:when>
+											<c:otherwise>
+												<button id="btn_sold_product_name" class="btn_sold_product_name">
+													&nbsp;언팔로우 <img src="../img/following_icon.png" width="15" height="10" alt="팔로잉아이콘">&nbsp;
+												</button>
+											</c:otherwise>
+											</c:choose>
+											<input type="hidden" value="${followers.nickname }"/>
 										</div>
 									</c:forEach>
 								</div>
 							</div>
+							
+							<!-- 언팔로우 -->
+							<script>
+								$(".btn_sold_product_name").click(function(){
+									var seller = $(this).next().val();
+									$.ajax({
+										url : "/profileUnfollow.do",
+										type : "post",
+										data : {
+											seller : seller
+										},
+										success : function(data) {
+											location.href="profile.do";
+										}
+									});
+								});
+							</script>
+							<!-- 끝 언팔로우 -->
+							
+							<!-- 팔로우 버튼 -->
+							<script>
+								$(".btn_sold_product").click(function(){
+									var seller2 = $(this).next().val();
+									$.ajax({
+										url : "/profileFollow.do",
+										type : "post",
+										data : {
+											seller : seller2
+										},
+										success : function(data) {
+											location.href="profile.do";
+										}
+									});
+								});
+							</script>
+							<!-- 끝 팔로우 버튼 -->
+							
 							
 							<script>
 								/*상품 후기 작성자 및 팔로우 팔로워 프로필 모달*/
@@ -849,12 +883,12 @@
 											<tr>
 												<td rowspan="3">
 													<div id="product_img_box">
-														<a id="store_review_img_area" href="#">
+														<a id="store_review_img_area" href="marketBoard.do?seq=${market.market_seq }">
 															<img id="sell_product_img" src="${market.url }" alt="판매상품이미지">
 														</a>	
 													</div>
 												</td>
-												<td style="font-size: 18px"><a href="#" style="color: #26e4ca">${market.product_name }</a></td>
+												<td style="font-size: 18px"><a href="marketBoard.do?seq=${market.market_seq }" style="color: #26e4ca">${market.product_name }</a></td>
 											</tr>
 											<tr>
 												<td style="font-size: 15px">${market.product_price }&nbsp;원</td>
@@ -865,7 +899,7 @@
 														<c:when test="${market.status eq 1}">																											
 															<button class="btn_sell_product_state">판매중</button>
 															<input type="hidden" name="market_seq" value="${market.market_seq}" >
-															<button class="btn_sell_product_edit" onclick="location.href='#'">글 수정</button>		
+															<button class="btn_sell_product_edit" onclick="location.href='updateMarket.do?seq=${market.market_seq}'">글 수정</button>		
 														</c:when>
 														<c:otherwise>
 															<button id="btn_sold_product_state">판매완료</button>
@@ -984,12 +1018,12 @@
 											<td width="70%"></td>
 										</tr>
 										<tr>
-											<td rowspan="3"><a id="store_review_img_area" href="#">
+											<td rowspan="3"><a id="store_review_img_area" href="marketBoard.do?seq=${buy.market_seq }">
 													<div id="product_img_box">
 														<img id="sell_product_img" src="${buy.url }" alt="판매상품이미지">
 													</div>
 											</a></td>
-											<td style="font-size: 18px"><a href="#" style="color: gray">${buy.product_name }</a></td>
+											<td style="font-size: 18px"><a href="marketBoard.do?seq=${buy.market_seq }" style="color: gray">${buy.product_name }</a></td>
 										</tr>
 										<tr>
 											<td style="font-size: 15px; color: gray"><fmt:formatNumber type="number" maxFractionDigits="3" value="${buy.product_price}" /> &nbsp;원</td>
@@ -1212,7 +1246,7 @@
 												<td align="left" style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${community.date }" /></td>
 												<td width="60%" align="center" style="font-size: 18px">
 													<div>${community.category }</div>
-													<div>${community.title }</div>
+													<div><a href="communityBoard.do?seq=${community.community_seq }">${community.title }</a></div>
 												</td>
 												<td align="left" style="font-size: 15px"><c:choose>
 														<c:when test="${community.category eq '소식' }">
@@ -1237,8 +1271,12 @@
 													<div>조회수 ${community.views }</div>
 													<div>답변 ${community.comments }</div></td>
 												<td width="15%" align="center">
-													<button class="btn_community_update">글 수정</button>
-													<button class="btn_community_delete">글 삭제</button>
+													<form action="communityEdit.do" method="get">
+														<input type="hidden" value="${community.community_seq }" name="seq"/>
+														<button class="btn_community_update">글 수정</button>
+													</form>
+													<input type="button" class="btn_community_delete" value="글 삭제"/>
+													<input type="hidden" value="${community.community_seq }"/>
 												</td>
 											</tr>
 										</table>
@@ -1249,8 +1287,29 @@
 								<br> <br>
 							</div>
 						</div>
+						
+						<script>
+							$(".btn_community_delete").click(function(){
+								var seq = $(this).next().val();
+								var check = confirm("삭제하시겠습니까?");
+								if(check) {
+									$.ajax({
+										url : "/deleteCommunity.do",
+										type : "post",
+										data : {
+											seq : seq
+										},
+										success : function(data) {
+											location.href="profile.do"
+										}
+									});
+								}
+							});							
+						</script>
+						
+						
 						<br> <br> <br>
-						<div class="community_comment_list_all">
+						<div class="community_comment_list_all" id="commentList">
 							<hr>
 							<br> <br>
 							<p>
@@ -1263,14 +1322,14 @@
 											<tr height="30">
 												<td align="left" style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${comment.date }" /></td>
 												<td width="70%" align="center" style="font-size: 18px">
-													<div style="color: gray;">[원글] ${comment.title }</div>
+													<div><a href="communityBoard.do?seq=${comment.board_seq }" style="color: gray;">[원글] ${comment.title }</a></div>
 													<div>
 														&nbsp;&nbsp;<img src="../img/right-arrow.png" style="width: 9px; height: 9px"> [내가 쓴 댓글] ${comment.content }
 													</div>
 												</td>
 												<td width="20%" align="center">
-													<button id="btn_community_comment_update">댓글 수정</button>
-													<button id="btn_community_comment_delete">댓글 삭제</button>
+													<button class="btn_community_comment_delete">댓글 삭제</button>
+													<input type="hidden" value="${comment.comment_seq }"/>
 												</td>
 											</tr>
 										</table>
@@ -1278,6 +1337,26 @@
 										<hr>
 									</div>
 								</c:forEach>
+								
+								<script>
+									$(".btn_community_comment_delete").click(function(){
+										var seq = $(this).next().val();
+										var check = confirm("삭제하시겠습니까?");
+										if(check) {
+											$.ajax({
+												url : "/deleteCommunityComment.do",
+												type : "post",
+												data : {
+													seq : seq
+												},
+												success : function(data) {
+													location.href="profile.do";
+												}
+											});
+										}
+									});							
+								</script>
+								
 								<br>
 							</div>
 						</div>
@@ -1336,7 +1415,7 @@
 																</c:if>
 															</div>
 															<div>
-																<button id="btn_seller_ask">판매자 문의</button>
+																<button type="button" id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}'">판매자 문의</button>
 															</div>
 														</td>
 													</tr>
@@ -1387,7 +1466,7 @@
 															</div>
 															</c:if>
 															<div>
-																<button id="btn_seller_ask">판매자 문의</button>
+																<button id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}'">판매자 문의</button>
 															</div>
 														</td>
 													</tr>
@@ -1447,7 +1526,7 @@
 															</div>
 															</c:if>
 															<div>
-																<button id="btn_seller_ask">판매자 문의</button>
+																<button id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}'">판매자 문의</button>
 															</div>
 														</td>
 													</tr>
@@ -1455,6 +1534,43 @@
 												<br><hr>
 											</div>
 										</c:when>
+										<c:otherwise>
+											<div class="store_bought_list">
+												<br> 
+												<table style="width: 100%; height: 120px;">
+													<tr>
+														<td align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div id="product_img_box">
+																<a id="store_review_img_area" href="#">
+																	<img id="bought_product_img" src="${his.url }" alt="판매완료상품이미지">
+																</a>
+															</div>
+														</td>
+														<td align="left" style="font-size: 15px">
+															<div style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${his.date }" /> 결제</div>
+															<div style="font-size: 18px">${his.product_name }</div>
+															<div>
+																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
+															</div>
+															<div style="font-size: 15px; margin-top:10px">
+																🚛&nbsp; <span>${his.address2 }</span>&nbsp;🚛
+															</div>
+														</td>
+														<td align="center">
+															<div>
+																<button id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}'">판매자 문의</button>
+															</div>
+														</td>
+													</tr>
+												</table>
+												<br><hr>
+											</div>
+										</c:otherwise>
 									</c:choose>
 								</c:forEach>
 								
@@ -1727,7 +1843,8 @@
 										</tr>
 										<tr>
 											<td>
-												<button id="btn_heart_product" type="button" onclick="location.href='#' ">관심상품</button>
+												<button id="btn_heart_product" class="btn_heart_market" type="button">관심상품</button>
+												<input type="hidden" value="${mlike.market_seq }"/>
 											</td>
 										</tr>
 									</table>
@@ -1735,6 +1852,24 @@
 									<hr>
 								</div>
 								</c:forEach>
+								<script>
+								$(".btn_heart_market").click(function() {
+									var seq = $(this).next().val();
+									var check = confirm('취소하시겠습니까?');
+									if(check) {
+										$.ajax({
+											url : "/marketHate.do",
+											type : "post",
+											data : {
+												seq : seq
+											},
+											success : function(data) {
+												
+											}
+										});
+									}
+								});
+								</script>
 								<br>
 							</div>
 							<br> <br> <br>
@@ -1757,14 +1892,15 @@
 														</a>
 													</div>
 												</td>
-												<td style="font-size: 18px"><a href="#" style="color: #26e4ca">${slike.product_name }</a></td>
+												<td style="font-size: 18px"><a href="storeBoard.do?seq=${slike.store_seq }" style="color: #26e4ca">${slike.product_name }</a></td>
 											</tr>
 											<tr>
 												<td style="font-size: 15px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${slike.product_price}" /> &nbsp;원</td>
 											</tr>
 											<tr>
 												<td>
-													<button id="btn_heart_product" type="button" onclick="location.href='#' ">관심상품</button>
+													<button id="btn_heart_product" class="btn_heart_store" type="button">관심상품</button>
+													<input type="hidden" value="${slike.store_seq }"/>
 												</td>
 											</tr>
 										</table>
@@ -1772,6 +1908,24 @@
 										<hr>
 									</div>
 								</c:forEach>
+								<script>
+								$(".btn_heart_store").click(function() {
+									var seq = $(this).next().val();
+									var check = confirm('취소하시겠습니까?');
+									if(check) {
+										$.ajax({
+											url : "/storeHate.do",
+											type : "post",
+											data : {
+												seq : seq
+											},
+											success : function(data) {
+												
+											}
+										});
+									}
+								});
+								</script>
 							</div>
 						</div>
 						<!--/col-9-->
@@ -1791,7 +1945,7 @@
 						<hr />
 						<div class="modal-body row" style="padding: 0px 0px 0px 5px;">
 							<div class="used_photo_img" style="text-align: center;">
-								<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="preview();" /> <br> <img class="preview-wrap" src="${user.profile }" alt="등록할 프로필 사진을 넣어주세요." /> <br>
+								<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" onchange="preview();" required /> <br> <img class="preview-wrap" src="${user.profile }" alt="등록할 프로필 사진을 넣어주세요." /> <br>
 							</div>
 						</div>
 						<div class="modal-footer">

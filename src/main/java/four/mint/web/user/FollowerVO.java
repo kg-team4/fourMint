@@ -11,4 +11,6 @@ public class FollowerVO {
 	private String profile;
 	private int content;
 	
+	private String status;
+	
 }

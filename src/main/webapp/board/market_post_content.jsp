@@ -19,6 +19,11 @@
 <link href="../css/swiper.min.css" rel="stylesheet">
 <script src="../js/swiper.min.js"></script>
 <script src="../js/post_content.js"></script>
+<style>
+hr{
+	color: #008C8C;
+}
+</style>
 <article style="padding-top: 220px; padding-bottom: 100px" id="post-content-form">
 	<div class="container bootstrap snippet padding50">
 		<div class="float-box float-left row">
@@ -601,7 +606,7 @@
 								<!-- 작성자 -->
 								<div id="member-form">
 									<div>
-										<a class="seller_nick" style="cursor: pointer">${content.nickname }</a>
+										<a class="seller_nick" style="cursor: pointer; color: #8d508d;">${content.nickname }</a>
 									</div>
 									<div class="seller_grade">
 										<c:set var="star" value="${user.rating }"/>
@@ -613,7 +618,7 @@
 										</c:if>
 									</div>
 									<div id="proudct_num_follower">
-										상품 &nbsp;<span>${boardCount }</span> &emsp; 팔로워 &nbsp;<span id="tempFol">${follow.follower }</span>
+										상품&nbsp;<span style="color: #3ED0C8;">${boardCount }</span>&emsp;팔로워&nbsp;<span id="tempFol" style="color: #3ED0C8;">${follow.follower }</span>
 									</div>
 									<c:if test="${user.nickname ne nickname }">
 										<input type="hidden" id="seller" value="${content.nickname }"/>

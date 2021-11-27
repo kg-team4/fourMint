@@ -127,6 +127,7 @@
 		<result property="cancel_reason" column="CANCEL_REASON"/>
 		<result property="pay_cancel" column="PAY_CANCEL"/>
 		<result property="url" column="URL"/>
+		<result property="store_seq" column="STORE_SEQ"/>
 	</resultMap>
 	
 	<insert id="insertHistory" parameterType="history">
@@ -139,10 +140,10 @@
 	</update>
 	
 	<select id="getTransactionList" resultType="history" parameterType="string">
-		SELECT a.*, b.url FROM 
+		SELECT a.*, b.url, b.store_seq FROM 
 		(SELECT * FROM transactionHistory WHERE email_id = #{email_id}) AS a 
 		JOIN 
-		(SELECT url, product_name FROM storeBoard) AS b ON a.product_name = b.product_name ORDER BY array_position(array['상품 준비 중', '상품 배송 중', '상품 배송 완료'], status::TEXT), date DESC
+		(SELECT url, product_name, store_seq FROM storeBoard) AS b ON a.product_name = b.product_name ORDER BY array_position(array['상품 준비 중', '상품 배송 중', '상품 배송 완료'], status::TEXT), date DESC
 	</select>
 	
 	<update id="updateCancel" parameterType="history">
@@ -215,12 +216,13 @@
 		<result property="content" column="CONTENT"/>
 		<result property="date" column="DATE"/>
 		<result property="status" column="STATUS"/>
+		<result property="product_name" column="PRODUCT_NAME"/>
 		<result property="profile" column="PROFILE"/>
 	</resultMap>
 	
 	<insert id="insertAsk" parameterType="ask">
-		INSERT INTO storeAsk(ask_seq, store_seq, nickname, content, date, status)
-		VALUES(DEFAULT, #{store_seq}, #{nickname}, #{content}, now(), 1)
+		INSERT INTO storeAsk(ask_seq, store_seq, nickname, content, date, status, product_name)
+		VALUES(DEFAULT, #{store_seq}, #{nickname}, #{content}, now(), 1, #{product_name})
 	</insert>
 	
 	<select id="getAskList" parameterType="ask" resultType="ask">

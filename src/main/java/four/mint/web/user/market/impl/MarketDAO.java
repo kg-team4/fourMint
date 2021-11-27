@@ -147,4 +147,12 @@ public class MarketDAO {
 	public int searchLikes(int seq) {
 		return sqlSessionTemplate.selectOne("MarketDAO.searchLikes", seq);
 	}
+
+	public void updateMarket(MarketVO mVO) {
+		sqlSessionTemplate.update("MarketDAO.updateMarket", mVO); 
+	}
+
+	public List<MarketVO> getFindList(String keyword) {
+		return sqlSessionTemplate.selectList("MarketDAO.getFindList", keyword);
+	}
 }

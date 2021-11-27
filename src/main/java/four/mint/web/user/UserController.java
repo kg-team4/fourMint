@@ -74,10 +74,9 @@ public class UserController {
 	@RequestMapping(value = "/find.do", method = RequestMethod.GET)
 	public String find(UserVO vo, Model model) {
 		
-		
-		
 		return "/user/find_id_pw";
 	}
+	
 	@RequestMapping(value = "/find_id.do", method = RequestMethod.POST)
 	public String findId(UserVO vo, Model model) {
 		
@@ -90,9 +89,9 @@ public class UserController {
 			model.addAttribute("flag", 1);
 		}
 		
-		
 		return "/user/find_id_result";
 	}
+	
 	@RequestMapping(value = "/find_pw.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int findPw(Model model, HttpServletRequest request) {
@@ -136,6 +135,7 @@ public class UserController {
 		model.addAttribute("email_id", email_id);
 		return "/user/update_pw";
 	}
+	
 	@RequestMapping(value = "/update_pw.do", method = RequestMethod.POST)
 	public String update_pw(UserVO vo) {
 		
@@ -166,6 +166,9 @@ public class UserController {
 
 	@RequestMapping(value = "/profile.do", method = RequestMethod.GET)
 	public String info(HttpServletRequest request, HttpSession session, UserVO uVO, FollowCountVO fVO) {
+		if(session.getAttribute("userEmail_id") == null) {
+			return "redirect:/login.do";
+		}  
 		
 		if(session.getAttribute("sns") == null || session.getAttribute("nickname") != null ) {
 			
@@ -260,24 +263,23 @@ public class UserController {
 		return "profile.do";
 		
 	}
-
 	
-	   @RequestMapping(value = "/updateAddr.do", method = RequestMethod.POST)
-	   @ResponseBody
-	   public String updateAddr(HttpServletRequest request, HttpSession session ,UserVO vo ) {
-		  vo.setEmail_id(session.getAttribute("userEmail_id").toString());
-		  System.out.println(session.getAttribute("userEmail_id").toString());
-		  vo.setAddress1(request.getParameter("addr1"));
-		  vo.setAddress2(request.getParameter("addr2"));
-		  vo.setAddress3(request.getParameter("addr3"));
-		  
-		  userService.updateAddress(vo);
-		  session.setAttribute("address2", vo.getAddress2());
-		  System.out.println(vo.getEmail_id());
-		  System.out.println(vo.getAddress2());
-		  
-		  return "/profile.do";
-	   }
+	@RequestMapping(value = "/updateAddr.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateAddr(HttpServletRequest request, HttpSession session, UserVO vo) {
+		vo.setEmail_id(session.getAttribute("userEmail_id").toString());
+		System.out.println(session.getAttribute("userEmail_id").toString());
+		vo.setAddress1(request.getParameter("addr1"));
+		vo.setAddress2(request.getParameter("addr2"));
+		vo.setAddress3(request.getParameter("addr3"));
+
+		userService.updateAddress(vo);
+		session.setAttribute("address2", vo.getAddress2());
+		System.out.println(vo.getEmail_id());
+		System.out.println(vo.getAddress2());
+
+		return "/profile.do";
+	}
 
 	
 	@PostMapping("/profileImage.do")
@@ -447,9 +449,13 @@ public class UserController {
 		return "redirect:home.do";
 	}
 	
-// 검색 시 매핑 페이지 
+	// 검색 시 매핑 페이지 
 	@RequestMapping(value = "/searchAllResult.do", method = RequestMethod.GET)
-	public String searchAllResult() {
+	public String searchAllResult(HttpServletRequest request, String keyword) {
+		List<MarketVO> mVL = marketService.getFindList(keyword);
+		request.setAttribute("market", mVL);
+		
+		
 		
 		return "/board/search_all_result";
 	}
@@ -459,9 +465,47 @@ public class UserController {
 		
 		return "/board/search_community_more_result";
 	}
+	
 	@RequestMapping(value = "/searchMarketMoreResult.do", method = RequestMethod.GET)
 	public String searchMarketMoreResult() {
 		
 		return "/board/search_market_more_result";
 	}
+	
+	/* 팔로우, 팔로잉 */
+	@ResponseBody
+	@PostMapping("profileUnfollow.do")
+	public int proUnfollow(HttpSession session, String seller) {
+		FollowingVO fVO = new FollowingVO();
+			fVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+			fVO.setFollowing(seller);
+		followService.deleteFollow(fVO);
+	
+		return 0;
+	}
+	
+	@ResponseBody
+	@PostMapping("profileFollow.do")
+	public int proFollow(HttpSession session, String seller) {
+		FollowingVO fVO = new FollowingVO();
+			fVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+			fVO.setFollowing(seller);
+		followService.insertFollow(fVO);
+			
+		return 0;
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+

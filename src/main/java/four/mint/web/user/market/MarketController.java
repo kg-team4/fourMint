@@ -96,6 +96,11 @@ public class MarketController {
 
 	@RequestMapping(value = "/marketBoard.do", method = RequestMethod.GET)
     public String mintBoard(HttpServletRequest request, MarketVO marVO, FollowCountVO fVO, HttpSession session) {
+		if(session.getAttribute("userEmail_id") == null) {
+			return "redirect:/login.do";
+		} else if(session.getAttribute("nickname") == null) {
+			return "redirect:/profile.do";
+		}
 		/* 조회수 증가 */
 		marketService.updateViews(Integer.valueOf(request.getParameter("seq")));
 		
@@ -278,7 +283,7 @@ public class MarketController {
 	public String marketSell(Model model, HttpSession session) {
 		if(session.getAttribute("userEmail_id") == null) {
 			return "redirect:/login.do";
-		}else if(session.getAttribute("nickname") == null) {
+		} else if(session.getAttribute("nickname") == null) {
 			return "redirect:/profile.do";
 		}
 		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
@@ -336,9 +341,40 @@ public class MarketController {
 	
 	@GetMapping("updateMarket.do")
 	public String goUpdateMarket(HttpServletRequest request, int seq) {
-		request.setAttribute("seq", seq);
+		MarketVO mVO = marketService.getMarketOne(seq);
+		request.setAttribute("market", mVO);
+		
+		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
+		request.setAttribute("marketCategoryBig", marketCategoryBig);
 		
 		return "/board/market_post_content_edit";
+	}
+	
+	@PostMapping("updateMarket.do")
+	public String updateMarket(@RequestParam("file") MultipartFile file, HttpServletRequest request, MarketVO mVO, HttpSession session) throws NoSuchAlgorithmException, GeneralSecurityException {
+		try {
+			AES256Util.setKey(marketService.getKey().getKey());
+			AES256Util aes = new AES256Util();
+			AwsS3.setAccessKey(aes.decrypt(marketService.getSkey().getAckey()));
+			AwsS3.setSecretKey(aes.decrypt(marketService.getSkey().getSekey()));
+			AwsS3 awsS3 = AwsS3.getInstance();
+			String uploadFolder = "https://mintmarket.s3.ap-northeast-2.amazonaws.com/";
+			String key = "market/" + file.getOriginalFilename();
+			InputStream is = file.getInputStream();
+			String contentType = file.getContentType();
+			long contentLength = file.getSize();
+			awsS3.upload(is, key, contentType, contentLength);
+				mVO.setImg_name(file.getOriginalFilename());
+				mVO.setUrl(uploadFolder + key);
+				mVO.setCategory_middle(mVO.getCategory_middle().replace(",", ""));
+				mVO.setAddress2(String.valueOf(session.getAttribute("address2")));
+				mVO.setNickname(String.valueOf(session.getAttribute("nickname")));
+			marketService.updateMarket(mVO);
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		
+		return "redirect:marketBoard.do?seq=" + mVO.getMarket_seq();
 	}
 	
 	@ResponseBody

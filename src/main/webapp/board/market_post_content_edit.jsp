@@ -27,7 +27,7 @@
 					상품이미지 <span class="must">*</span>
 				</div>
 				<div class="used_photo_img">
-					<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" oninput="preview();"> 
+					<input class="form-input" type="file" name="file" multiple accept=".jpg, .png, .gif" oninput="preview();" required> 
 					<br> 
 					<img class="preview-wrap" src="#" alt="등록할 상품 사진을 넣어주세요." onerror="this.style.display='none'"/> 
 					<br>
@@ -41,7 +41,7 @@
             <!-- 제목 입력 -->
 			<div class="used_title">
 				<div class="used_text">
-					제목 <span class="must">*</span> <input class="form-title" type="text" name="product_name" placeholder="상품 제목을 입력해주세요." oninput="checkTitle();">
+					제목 <span class="must">*</span> <input class="form-title" type="text" value="${market.product_name }" name="product_name" placeholder="상품 제목을 입력해주세요." oninput="checkTitle();" required>
 					<div id="titleInfo"></div>
 					<div class="titleHeight"></div>
 				</div>
@@ -52,7 +52,7 @@
 			<div class="used_cate">
 				<div class="used_text">
 					카테고리 <span class="must">*</span> 
-					<select id="cate_sel" class="used_cate_style" name="category_big">
+					<select id="cate_sel" class="used_cate_style" name="category_big" required>
 						<option value="">카테고리 선택</option>
 						<c:forEach var="big" items="${ marketCategoryBig }">
 							<option value="${big.name }">${big.name }</option>
@@ -77,7 +77,7 @@
             <!-- 가격 입력 -->
 			<div class="used_price">
 				<div class="used_text">
-					가격 <span class="must">*</span> <input class="form-price" type="text" name="product_price" placeholder="숫자만 입력해주세요" oninput="checkPrice();">&nbsp;원
+					가격 <span class="must">*</span> <input class="form-price" type="text" name="product_price" placeholder="숫자만 입력해주세요" oninput="checkPrice();" value="${market.product_price }" required>&nbsp;원
 				</div>
 				<div id="priceInfo"></div>
 				<div class="titleHeight"></div>
@@ -93,7 +93,7 @@
 					</div>
 					<div class="content">
 						<div>
-							<textarea class="first" name="product_content"></textarea>
+							<textarea class="first" name="product_content" required>${market.product_content }</textarea>
 							<div align="right" class="countNum">
 								<span class="letter-count">0</span>/2000
 							</div>
@@ -107,13 +107,13 @@
          </div>
          
          <!--  등록 버튼 -->
-			<div align="right" class="form-input">
-				<input class="form-btn" type="submit" value="등록하기">
+			<div align="right" class="form-input">.
+				<input type="hidden" name="market_seq" value="${market.market_seq }"/>
+				<input class="form-btn" type="submit" value="수정하기" required>
 			</div>
 		 <br><br>
 		</form>
 		
-		<a href="storeSell.do">스토어 판매</a> 
 	</div>
 </article>
 
