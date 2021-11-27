@@ -34,15 +34,15 @@
 					<c:if test="${address.nickname ne nickname }">
 						<li>
 							<a href="marketBoard.do?seq=${address.market_seq }">
-								<img src="${address.url }" alt="주변상품" style="width:293px; height:255px">
+								<img src="${address.url }" alt="주변상품" style="width:293px; height:320px">
 							</a>
 							<p>
 								<c:choose>
 									<c:when test="${address.category_middle eq '' }">
-										<span class="red">[${address.category_big }]</span>
+										<span class="red" style="margin-top:8px">[${address.category_big }]</span>
 									</c:when>
 									<c:otherwise>
-										<span class="red">[${address.category_middle }]</span>	
+										<span class="red" style="margin-top:8px">[${address.category_middle }]</span>	
 									</c:otherwise>
 								</c:choose>
 							</p>
@@ -62,15 +62,15 @@
 			<c:forEach var="recent" items="${recent }">
 				<li>
 					<a href="marketBoard.do?seq=${recent.market_seq }"> 
-						<img src="${recent.url }" alt="추천상품" style="width:293px; height:255px">
+						<img src="${recent.url }" alt="추천상품" style="width:293px; height:320px">
 					</a>
 					<p>
 						<c:choose>
 							<c:when test="${recent.category_middle eq '' }">
-								<span class="red">[${recent.category_big }]</span>
+								<span class="red" style="margin-top:8px">[${recent.category_big }]</span>
 							</c:when>
 							<c:otherwise>
-								<span class="red">[${recent.category_middle }]</span>	
+								<span class="red" style="margin-top:8px">[${recent.category_middle }]</span>	
 							</c:otherwise>
 						</c:choose>
 					</p>
@@ -88,15 +88,15 @@
 			<c:forEach var="best" items="${best }">
 				<li>
 					<a href="marketBoard.do?seq=${best.market_seq }"> 
-						<img src="${best.url }" alt="인기상품" style="width:293px; height:255px">
+						<img src="${best.url }" alt="인기상품" style="width:293px; height:320px">
 					</a>
 					<p>	
 						<c:choose>
 							<c:when test="${best.category_middle eq '' }">
-								<span class="red">[${best.category_big }]</span>
+								<span class="red" style="margin-top:8px">[${best.category_big }]</span>
 							</c:when>
 							<c:otherwise>
-								<span class="red">[${best.category_middle }]</span>	
+								<span class="red" style="margin-top:8px">[${best.category_middle }]</span>	
 							</c:otherwise>
 						</c:choose>
 					</p>

@@ -792,7 +792,7 @@
 			});
 		}
 	};
-	
+
 	// 이미지 보내기
 	const SendImo1 = function(other_nick) {
 			

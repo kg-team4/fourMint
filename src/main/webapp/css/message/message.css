@@ -103,6 +103,7 @@ button{
 	padding: 10px 29px 10px 20px;
 	overflow: hidden;
 	border-bottom: 1px solid #f7f7f7;
+	text-align: center;
 }
 
 .recent_heading h4 {
@@ -258,6 +259,7 @@ button{
 }
 .button_area{
 	width:580px;
+	text-align:left;
 }
 
 .button_emo{
@@ -269,7 +271,7 @@ button{
     font-size: 18px;
     height: 23px;
     width: 25px;
-    margin-top:15px;
+    padding-top:8px;
 }
 .msg_send_btn {
     background: #50b9abd0 none repeat scroll 0 0;
@@ -283,6 +285,8 @@ button{
     right: 5px;
     top: 5px;
     width: 30px;
+    margin-bottom:10px;
+    margin-right:5px;
 }
 
 .msg_send_btn:hover {
@@ -319,9 +323,10 @@ button{
 	padding: 200px 0px 100px 0px;
 }
 
-.msg_history {
-	height: 400px;
+.msg_history {	
+	height:450px;
 	overflow-y: auto;
+	
 }
 
 #received_content {

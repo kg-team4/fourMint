@@ -31,6 +31,7 @@
                         </span>
                     </div>
                 </div>
+               	<div style="margin-right:120px">
                 <div id="login-area">
                 <div id="space-area"></div>
                 <div>			
@@ -40,6 +41,7 @@
 						<li style="float:left"><span ><a id="naverLogin"href="${naver_url }"><img src="../img/naver_login.png" style="width:153px;height:44px"></a></span></li>
 					</ul>
 					<br><br><br>
+                </div>
                 </div>
                 </div>
             </form>

@@ -69,22 +69,18 @@
 				<div class="item padding25">
 					<hr>
 				</div>
-				<div class="item font17 gray-font padding25">
+				<div class="item font17 gray-font padding15" style="margin-left:458px;" >
 					<c:choose>
 					<c:when test="${like eq 0 }">
-						<span id="heart" class="lightgray-font">♥&nbsp;</span>
+						<span id="heart" class="lightgray-font" style="">♥&nbsp;</span>
 					</c:when>
 					<c:otherwise>
 						<span id="heart" class="lightgray-font" style="color: red;">♥&nbsp;</span>
 					</c:otherwise>
 					</c:choose>
-					<span id="likes" class="font15 padding-right05">${likes }</span> 
-					<span class="short-border">
-					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAaCAYAAADMp76xAAAAAXNSR0IArs4c6QAABAdJREFUWAm9mFtIFFEYx9tZ11UW1tLoaoGEPShqq3ahgogyIgnqQXqIgih6qKgEH4JIqCgIIoowIrSn6i0irOxCQdAN7wb2IiSlSUZuGJGyumu/b9lZZo8zs7ObdeBwvvNd/uc/53zznWFcs9Js7e3tczVNWzs1NbUKiErGfJfLNYcxVyCRg8g/GAeZdiC3eTyeN2VlZd/Enm5zpRLY09Pjm5yc3EnMbghUMbpTiYd8BP8X9Dt+v/9uYWHhz1TixdcR4YGBgezh4eFD+J+gz5XAGWijYFzKycm5nArxpIQ5+hqAr9AXzgBJM4ggqXWyvLz8uplR1VkShmgOR3iVo9+jBv2LOWs9pu+H+JAdvilhyC4j6AldxqSNhT7g1Oh2u59mZWV9loDx8fGl4XB4C+IBHrpIdA7ad7C2V1RUvLPynUa4u7s7wIvVQsB8qyCDfgK5jgUaWChs0MdFyLo7OjoOo7hI98QN1sJvsHaB+cDMJYFwV1fXCnblJY5+M2dFN8GOVgcCgWeK3nQKdhXYDzE6IR2GdA2k76lgmq7o7OxcBGAzcydkJazOKVlxjvnWieyguTmZ25y21PiEFt3h/v7+rJGRkddYyhOsFhOe/gMvR6lVGliEzZL0YGPep5DTw16vd2VJScmAjhnd4WAweBaFI7KxwEaVLCQyIHOafB2ULrLo9IVkjMU0GnVJ5PmhUOim0UejIqwGuNaoTCZLNVB9yNFTkUikHqzF0kUWnepnFqv6GOdgbWYDDuo6jaduYOLWFU5Gvgk+qX4A73ei08ue6ms3B/ui3LbiozExLUd2AOxSQnWx850h2+f8/PyQYGksfoRxMhVguRRUf06qyYnOLFaNM87BjdAP0KMbq1Fu2phcMDolk2M3WIIbOGf5JjgD1hfpIosuwYmJWazqo8yvGG++6NH29vZmjo2NPcdxveJsOoXQ/yprXcKpsrLyt04kWtaKi4tDPp9vB0T6dIPdSN4Xxa5bO7dpNomR2GkGEwVchjIyMrYbyYpbwstDGSqkHL0CdJ4Jhqr6l1ezfNhvhGynumj8ahYDOSc7vI7+UeZJmke+DajjR3lAy7IoNvERX/CcfEd8pRBsMCMrfBJ2WCdITi8gpx8xD+g6u1FyGvtff15KSlLjt5aWllpumClhIdfX1+cdHR09D0gtu2TpZ/cgKdqasrOzj/M+/bKLS0qEb4JN5PU1QJbbAaVrY0M+UQKPkY73nWAkJSwgkoe84fsQ6+lLRDcD7Stkz3FV35Aq5RTPEWEdLFavt7HQXnTVPEimbnM4ThDbQtytvLy85oKCgnGHcXG3lAjHoxAogbNJlTWIq6VDQn6k5DLmih+y/EgJMsqPlFaOvZW3/y0v1A+xp9v+ADhPuomDsZuZAAAAAElFTkSuQmCC"
-					width="20" height="13" alt="조회수 아이콘">&nbsp;1
-					</span> 
+					<span id="likes" class="font15 ">${likes }</span>  	
 				</div>
-				<div class="item font15 padding15">
+				<div class="item font15 padding15" style="margin-top:20px; margin-bottom:20px; font-size:17px">
 					<div class="padding15">
 						<span class="gray-font">&middot; 카테고리</span><span>&emsp;${content.category_big}</span>
 					</div>
@@ -99,17 +95,17 @@
 					</div>
 				</div>
 				<div>
-					<div class="float-box float-left">
-						<div class="left-item33">
+					<div class="float-box float-left" style="margin-top:60px">
+						<div class="left-item33" >
 							<input id="likeVal" type="hidden" value="${content.store_seq }"/>
 							<c:choose>
 								<c:when test="${like eq 0 }">
-									<input type="button" class="like-button cursor" id="likeBtn" value="♥ 찜 좋아요" style="">
-									<input type="hidden" class="like-button cursor" id="hateBtn" value="싫어졌어용" style="">
+									<input type="button" class="like-button cursor" id="likeBtn" value="찜 좋아요 ♥" style="">
+									<input type="hidden" class="like-button cursor" id="hateBtn" value="찜 취소 X" style="">
 								</c:when>
 								<c:otherwise>
-									<input type="hidden" class="like-button cursor" id="likeBtn" value="♥ 찜 좋아요" style="">
-									<input type="button" class="like-button cursor" id="hateBtn" value="싫어졌어용" style="">
+									<input type="hidden" class="like-button cursor" id="likeBtn" value="찜 좋아요 ♥"style="">
+									<input type="button" class="like-button cursor" id="hateBtn" value="찜 취소 X" style="">
 								</c:otherwise>
 							</c:choose>
 							<script>
