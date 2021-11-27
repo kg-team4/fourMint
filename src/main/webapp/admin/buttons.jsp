@@ -11,7 +11,7 @@
 <meta name="author" content="">
 
 <title>민트마켓 광고/배너관리</title>
-<script defer src="../js/mint_store.js"></script>
+<script defer src="admin/js/buttons.js"></script>
 <!-- Custom fonts for this template-->
 <link href="admin/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
@@ -55,10 +55,10 @@
 											<div class="card-body">
 												<div class="slide">
 													<ul class="slideImg">
-														<li class="jsSlide"><a href=""><img id="slide_img1" src="${store_banner1 }" alt="민트마켓슬라이드1"></a></li>
-														<li class="jsSlide"><a href=""><img id="slide_img2" src="${store_banner2 }" alt="민트마켓슬라이드2"></a></li>
-														<li class="jsSlide"><a href=""><img id="slide_img3" src="${store_banner3 }" alt="민트마켓슬라이드3"></a></li>
-														<li class="jsSlide"><a href=""><img id="slide_img4" src="${store_banner4 }" alt="민트마켓슬라이드4"></a></li>
+														<li class="jsSlide"><a href="javascript:void(0)"><img id="slide_img1" src="${store_banner1 }" alt="민트마켓슬라이드1"></a></li>
+														<li class="jsSlide"><a href="javascript:void(0)"><img id="slide_img2" src="${store_banner2 }" alt="민트마켓슬라이드2"></a></li>
+														<li class="jsSlide"><a href="javascript:void(0)"><img id="slide_img3" src="${store_banner3 }" alt="민트마켓슬라이드3"></a></li>
+														<li class="jsSlide"><a href="javascript:void(0)"><img id="slide_img4" src="${store_banner4 }" alt="민트마켓슬라이드4"></a></li>
 													</ul>
 													<ul class="circleBtn">
 														<li><span class="circle" onclick="dotSlide(0)"><label for="slide1">&nbsp;</label></span></li>
@@ -72,7 +72,7 @@
 														<div>
 															<div class="used_photo">
 																<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
-																	<img class="preview-wrap1" alt="등록할 상품 사진을 넣어주세요."
+																	<img class="preview-wrap1" src="${store_banner1 }" alt="등록할 상품 사진을 넣어주세요."
 																	onerror="this.style.display='none'">
 																</div>
 																<div>
@@ -147,16 +147,16 @@
 											<div class="card-body">
 												<div class="slide">
 													<ul class="slideImg">
-														<li class="jsSlide"><a href=""><img id="slide_img1" src="${market_banner1 }" alt="민트마켓슬라이드1"></a></li>
-														<li class="jsSlide"><a href=""><img id="slide_img2" src="${market_banner2 }" alt="민트마켓슬라이드2"></a></li>
-														<li class="jsSlide"><a href=""><img id="slide_img3" src="${market_banner3 }" alt="민트마켓슬라이드3"></a></li>
-														<li class="jsSlide"><a href=""><img id="slide_img4" src="${market_banner4 }" alt="민트마켓슬라이드4"></a></li>
+														<li class="jsSlide"><a href="javascript:void(0)"><img id="slide_img1" src="${market_banner1 }" alt="민트마켓슬라이드1"></a></li>
+														<li class="jsSlide"><a href="javascript:void(0)"><img id="slide_img2" src="${market_banner2 }" alt="민트마켓슬라이드2"></a></li>
+														<li class="jsSlide"><a href="javascript:void(0)"><img id="slide_img3" src="${market_banner3 }" alt="민트마켓슬라이드3"></a></li>
+														<li class="jsSlide"><a href="javascript:void(0)"><img id="slide_img4" src="${market_banner4 }" alt="민트마켓슬라이드4"></a></li>
 													</ul>
 													<ul class="circleBtn">
-														<li><span class="circle" onclick="dotSlide(0)"><label for="slide1">&nbsp;</label></span></li>
-														<li><span class="circle" onclick="dotSlide(1)"><label for="slide2">&nbsp;</label></span></li>
-														<li><span class="circle" onclick="dotSlide(2)"><label for="slide3">&nbsp;</label></span></li>
-														<li><span class="circle" onclick="dotSlide(3)"><label for="slide4">&nbsp;</label></span></li>
+														<li><span class="circle" onclick="dotSlide1(0)"><label for="slide1">&nbsp;</label></span></li>
+														<li><span class="circle" onclick="dotSlide1(1)"><label for="slide2">&nbsp;</label></span></li>
+														<li><span class="circle" onclick="dotSlide1(2)"><label for="slide3">&nbsp;</label></span></li>
+														<li><span class="circle" onclick="dotSlide1(3)"><label for="slide4">&nbsp;</label></span></li>
 													</ul>
 												</div>
 												<form action="bannerMarket.mdo" method="post" enctype="multipart/form-data">

@@ -16,7 +16,7 @@ public class AdminPageDAO {
 	
 	public void insertAdminPage(AdminPageVO vo) {
 		System.out.println("관리자멤버관리");
-		sqlSessionTemplate.insert("AdminPageDAO.insertAdmin",vo);
+		sqlSessionTemplate.insert("AdminPageDAO.insertAdmin", vo);
 	}
 	
 	public AdminPageVO getAdminPage(AdminPageVO vo) {
@@ -31,5 +31,9 @@ public class AdminPageDAO {
 
 	public void deleteMember(String nickname) {
 		sqlSessionTemplate.delete("AdminPageDAO.deleteMember", nickname);
+	}
+	
+	public AdminPageVO getMemberOne(String nickname) {
+		return sqlSessionTemplate.selectOne("AdminPageDAO.getMemberOne", nickname);
 	}
 }

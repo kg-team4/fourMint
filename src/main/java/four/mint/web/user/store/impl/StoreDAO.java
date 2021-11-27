@@ -121,4 +121,17 @@ public class StoreDAO {
 	public List<StoreVO> getStoreLike(String nickname) {
 		return sqlSessionTemplate.selectList("StoreDAO.getStoreLike", nickname);
 	}
+	
+	// admin chart
+	public List<Integer> getCategoryBig() {
+		return sqlSessionTemplate.selectList("StoreDAO.getCategoryBig");
+	}
+	
+	public void plusStock(StoreVO vo) {
+		sqlSessionTemplate.selectOne("StoreDAO.plusStock", vo);
+	}
+	
+	public StoreVO getTransactionHistoryOne(StoreVO vo) {
+		return sqlSessionTemplate.selectOne("StoreDAO.getTransactionHistoryOne", vo);
+	}
 }

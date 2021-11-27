@@ -7,14 +7,18 @@ import lombok.Data;
 @Data
 public class AdminTransactionHistoryVO {
 	int transaction_seq;
-	String email_id;
+	String email_id;		// 주문자 아이디
 	String product_name;
-	String transaction_price;
-	String transaction_count;
+	int transaction_price;
+	int transaction_count;
 	Timestamp date;
 	String merchant_uid;
-	String product_price;
+	int product_price;
 	String request;
-	String start_date;
-	String end_date;
+	String address2;
+	String status;
+	String cancel_date;
+	String cancel_status;
+	String cancel_reason;
+	String pay_cancel;
 }

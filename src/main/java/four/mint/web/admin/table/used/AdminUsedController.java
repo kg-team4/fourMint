@@ -21,7 +21,6 @@ public class AdminUsedController {
 		
 		request.setAttribute("list", adminusedlist);
 		return "/tables-used";
-		
 	}
 
 }

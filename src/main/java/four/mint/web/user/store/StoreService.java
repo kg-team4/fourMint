@@ -56,5 +56,11 @@ public interface StoreService {
 
 	List<StoreVO> getStoreLike(String nickname);
 
-
+	// admin chart
+	List<Integer> getCategoryBig();
+	
+	// admin transactionHistory
+	void plusStock(StoreVO vo);
+	
+	StoreVO getTransactionHistoryOne(StoreVO vo);
 }

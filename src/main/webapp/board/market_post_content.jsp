@@ -783,6 +783,32 @@
 		});
 	};
 	
+	const SendImo1 = function(other_nick) {
+		let image = $('#message_image1').attr("src");
+		console.log(image);
+		$.ajax({
+			url : "message_send_inlist_image.do",
+			method : "GET",
+			data : {
+				other_nick : other_nick,
+                image : image,	              
+			},
+			success : function(data) {
+				console.log("메세지 전송 성공");
+
+				// 메세지 입력칸 비우기
+                $('.write_msg').val("");
+
+                // 메세지 내용  리로드
+                MessageContentList(other_nick);
+
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+	};
+	
 	function timeForToday(value) {
 	    const today = new Date();
 	    const timeValue = new Date(value);

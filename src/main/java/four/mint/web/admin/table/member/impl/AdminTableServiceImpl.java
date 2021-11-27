@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import four.mint.web.admin.login.AdminService;
-import four.mint.web.admin.login.AdminVO;
-import four.mint.web.admin.login.impl.AdminDAO;
+import four.mint.web.admin.page.AdminPageVO;
 import four.mint.web.admin.table.member.AdminTableService;
 import four.mint.web.admin.table.member.AdminTableVO;
 import four.mint.web.user.UserVO;
@@ -22,14 +20,14 @@ public class AdminTableServiceImpl implements AdminTableService {
 
 
 	@Override
-	public void inserttablemember(AdminTableVO vo) {
-		adminTableDao.insertAdminTable(vo);
+	public void insertMember(AdminPageVO vo) {
+		adminTableDao.insertMember(vo);
 	}
 
 	@Override
 	public AdminTableVO getAdmin(AdminTableVO vo) {
 		AdminTableVO newVo = adminTableDao.getAdminTable(vo);
-		return null;
+		return newVo;
 	}
 
 	@Override

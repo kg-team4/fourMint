@@ -11319,6 +11319,23 @@ body.sidebar-toggled footer.sticky-footer {
     width:100%;
 }
 
+.slideImg1 {
+    width:400%;
+}
+
+.slideImg1 > li {
+	list-style: none;
+    width:100%;
+}
+
+.slideImg1 > li > a {
+    width:100%;
+}
+
+.slideImg1 > li > a > img {
+    width:100%;
+}
+
 .jsSlide {
 	display: list-item;
 	box-sizing: border-box;
@@ -11327,14 +11344,14 @@ body.sidebar-toggled footer.sticky-footer {
 /*tab css*/
 .tab_banner {
 	display:block;
-	width: 850px;
+	width: 1150px;
 	height: auto;
 	margin: 50px 0 0 50px;
 }
 
 .tabnav_banner {
 	font-size: 0;
-	width: 850px;
+	width: 1150px;
 	border: 1px solid #ddd;
 	padding-left: 0px;
 	margin-bottom: 0px;

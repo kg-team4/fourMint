@@ -14,33 +14,18 @@ public class AdminPageServiceImpl implements AdminPageService{
 	private AdminPageDAO adminpageDao;
 	
 	@Override
-	public void insertAdminmember(AdminPageVO vo) {
-		adminpageDao.insertAdminPage(vo);
-		
-	}
-
-	@Override
-	public AdminPageVO getAdmin(AdminPageVO vo) {
-		AdminPageVO newVo = adminpageDao.getAdminPage(vo);
-		
-		return newVo;
-	}
-
-	@Override
-	public String getname(AdminPageVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<AdminPageVO> getAdminPageList() {
-		
 		return adminpageDao.getAdminPageList();
 	}
 	
 	@Override
 	public void deleteMember(String nickname) {
 		adminpageDao.deleteMember(nickname);
+	}
+
+	@Override
+	public AdminPageVO getMemberOne(String nickname) {
+		return adminpageDao.getMemberOne(nickname);
 	}
 
 }

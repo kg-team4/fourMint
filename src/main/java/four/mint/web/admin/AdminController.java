@@ -24,9 +24,15 @@ import four.mint.web.admin.page.store.AdminPageStoreService;
 import four.mint.web.admin.page.store.AdminPageStoreVO;
 import four.mint.web.admin.table.member.AdminTableService;
 import four.mint.web.admin.table.member.AdminTableVO;
+import four.mint.web.admin.table.used.AdminUsedService;
+import four.mint.web.admin.table.used.AdminUsedVO;
+import four.mint.web.admin.transactionhistory.AdminTransactionHistoryService;
+import four.mint.web.admin.transactionhistory.AdminTransactionHistoryVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.store.StoreCategoryBigVO;
+import four.mint.web.user.store.StoreService;
+import four.mint.web.user.store.StoreVO;
 
 @Controller
 public class AdminController {
@@ -49,8 +55,14 @@ public class AdminController {
 	@Autowired
 	private AdminTableService adminTableService;
 	
-//	@Autowired
-//	private AdminTransactionHistoryService adminTransactionHistoryService;
+	@Autowired
+	private StoreService storeService;
+	
+	@Autowired
+	private AdminUsedService adminUsedService;
+	
+	@Autowired
+	private AdminTransactionHistoryService adminTransactionHistoryService;
 	
 	@RequestMapping(value = "/home.mdo", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -157,59 +169,16 @@ public class AdminController {
 		ArrayList<AdminTableVO> man = adminTableService.getAddressMan();
 		ArrayList<AdminTableVO> woman = adminTableService.getAddressWoman();
 		
-		int seoul = 0;
-		int gyunggi = 0;
-		int kangwon = 0;
-		int incheon = 0;
-		int chungnam = 0;
-		int chungbuk = 0;
-		int daejeon = 0;
-		int gyeongbuk = 0;
-		int daegu = 0;
-		int gyeongnam = 0;
-		int ulsan = 0;
-		int busan = 0;
-		int jeonbuk = 0;
-		int jeonnam = 0;
-		int kwangju = 0;
-		int jeju = 0;
-		int sejong = 0;
+		int seoul = 0, gyunggi = 0, kangwon = 0, incheon = 0, chungnam = 0, chungbuk = 0, daejeon = 0, gyeongbuk = 0,
+				daegu = 0, gyeongnam = 0, ulsan = 0, busan = 0, jeonbuk = 0, jeonnam = 0, kwangju = 0, jeju = 0, sejong = 0;
 		
-		int manSeoul = 0;
-		int manGyunggi = 0;
-		int manKangwon = 0;
-		int manIncheon = 0;
-		int manChungnam = 0;
-		int manChungbuk = 0;
-		int manDaejeon = 0;
-		int manGyeongbuk = 0;
-		int manDaegu = 0;
-		int manGyeongnam = 0;
-		int manUlsan = 0;
-		int manBusan = 0;
-		int manJeonbuk = 0;
-		int manJeonnam = 0;
-		int manKwangju = 0;
-		int manJeju = 0;
-		int manSejong = 0;
+		int manSeoul = 0, manGyunggi = 0, manKangwon = 0, manIncheon = 0, manChungnam = 0, manChungbuk = 0,
+				manDaejeon = 0, manGyeongbuk = 0, manDaegu = 0, manGyeongnam = 0, manUlsan = 0, manBusan = 0,
+				manJeonbuk = 0, manJeonnam = 0, manKwangju = 0, manJeju = 0, manSejong = 0;
 		
-		int womanSeoul = 0;
-		int womanGyunggi = 0;
-		int womanKangwon = 0;
-		int womanIncheon = 0;
-		int womanChungnam = 0;
-		int womanChungbuk = 0;
-		int womanDaejeon = 0;
-		int womanGyeongbuk = 0;
-		int womanDaegu = 0;
-		int womanGyeongnam = 0;
-		int womanUlsan = 0;
-		int womanBusan = 0;
-		int womanJeonbuk = 0;
-		int womanJeonnam = 0;
-		int womanKwangju = 0;
-		int womanJeju = 0;
-		int womanSejong = 0;
+		int womanSeoul = 0, womanGyunggi = 0, womanKangwon = 0, womanIncheon = 0, womanChungnam = 0, womanChungbuk = 0,
+				womanDaejeon = 0, womanGyeongbuk = 0, womanDaegu = 0, womanGyeongnam = 0, womanUlsan = 0,
+				womanBusan = 0, womanJeonbuk = 0, womanJeonnam = 0, womanKwangju = 0, womanJeju = 0, womanSejong = 0;
 
 		for (int i = 0; i < arr.size(); i++) {
 			// 주소 공백 제거
@@ -218,59 +187,24 @@ public class AdminController {
 			String add = address[0];
 			// 비교
 			switch (add) {
-			case "서울":
-				seoul++;
-				break;
-			case "경기":
-				gyunggi++;
-				break;
-			case "강원":
-				kangwon++;
-				break;
-			case "인천":
-				incheon++;
-				break;
-			case "충남":
-				chungnam++;
-				break;
-			case "충북":
-				chungbuk++;
-				break;
-			case "대전":
-				daejeon++;
-				break;
-			case "경북":
-				gyeongbuk++;
-				break;
-			case "대구":
-				daegu++;
-				break;
-			case "경남":
-				gyeongnam++;
-				break;
-			case "울산":
-				ulsan++;
-				break;
-			case "부산":
-				busan++;
-				break;
-			case "전북":
-				jeonbuk++;
-				break;
-			case "전남":
-				jeonnam++;
-				break;
-			case "광주":
-				kwangju++;
-				break;
-			case "제주":
-				jeju++;
-				break;
-			case "세종":
-				sejong++;
-				break;
-			default:
-				break;
+				case "서울":	seoul++; 		break;
+				case "경기":	gyunggi++;		break;
+				case "강원":	kangwon++;		break;
+				case "인천":	incheon++;		break;
+				case "충남":	chungnam++;		break;
+				case "충북":	chungbuk++;		break;
+				case "대전":	daejeon++;		break;
+				case "경북":	gyeongbuk++;	break;
+				case "대구":	daegu++;		break;
+				case "경남":	gyeongnam++;	break;
+				case "울산":	ulsan++;		break;
+				case "부산":	busan++;		break;
+				case "전북":	jeonbuk++;		break;
+				case "전남":	jeonnam++;		break;
+				case "광주":	kwangju++;		break;
+				case "제주":	jeju++;			break;
+				case "세종":	sejong++;		break;
+				default:					break;
 			}
 		}
 
@@ -282,59 +216,24 @@ public class AdminController {
 			// 비교
 			
 			switch (strMan) {
-			case "서울":
-				manSeoul++;
-				break;
-			case "경기":
-				manGyunggi++;
-				break;
-			case "강원":
-				manKangwon++;
-				break;
-			case "인천":
-				manIncheon++;
-				break;
-			case "충남":
-				manChungnam++;
-				break;
-			case "충북":
-				manChungbuk++;
-				break;
-			case "대전":
-				manDaejeon++;
-				break;
-			case "경북":
-				manGyeongbuk++;
-				break;
-			case "대구":
-				manDaegu++;
-				break;
-			case "경남":
-				manGyeongnam++;
-				break;
-			case "울산":
-				manUlsan++;
-				break;
-			case "부산":
-				manBusan++;
-				break;
-			case "전북":
-				manJeonbuk++;
-				break;
-			case "전남":
-				manJeonnam++;
-				break;
-			case "광주":
-				manKwangju++;
-				break;
-			case "제주":
-				manJeju++;
-				break;
-			case "세종":
-				manSejong++;
-				break;
-			default:
-				break;
+				case "서울":	manSeoul++;		break;
+				case "경기":	manGyunggi++;	break;
+				case "강원":	manKangwon++;	break;
+				case "인천":	manIncheon++;	break;
+				case "충남":	manChungnam++;	break;
+				case "충북":	manChungbuk++;	break;
+				case "대전":	manDaejeon++;	break;
+				case "경북":	manGyeongbuk++;	break;
+				case "대구":	manDaegu++;		break;
+				case "경남":	manGyeongnam++;	break;
+				case "울산":	manUlsan++;		break;
+				case "부산":	manBusan++;		break;
+				case "전북":	manJeonbuk++;	break;
+				case "전남":	manJeonnam++;	break;
+				case "광주":	manKwangju++;	break;
+				case "제주":	manJeju++;		break;
+				case "세종":	manSejong++;	break;
+				default:					break;
 			}
 		}
 		
@@ -345,59 +244,24 @@ public class AdminController {
 			String strWoman = womanAddress[0];
 			// 비교
 			switch (strWoman) {
-			case "서울":
-				womanSeoul++;
-				break;
-			case "경기":
-				womanGyunggi++;
-				break;
-			case "강원":
-				womanKangwon++;
-				break;
-			case "인천":
-				womanIncheon++;
-				break;
-			case "충남":
-				womanChungnam++;
-				break;
-			case "충북":
-				womanChungbuk++;
-				break;
-			case "대전":
-				womanDaejeon++;
-				break;
-			case "경북":
-				womanGyeongbuk++;
-				break;
-			case "대구":
-				womanDaegu++;
-				break;
-			case "경남":
-				womanGyeongnam++;
-				break;
-			case "울산":
-				womanUlsan++;
-				break;
-			case "부산":
-				womanBusan++;
-				break;
-			case "전북":
-				womanJeonbuk++;
-				break;
-			case "전남":
-				womanJeonnam++;
-				break;
-			case "광주":
-				womanKwangju++;
-				break;
-			case "제주":
-				womanJeju++;
-				break;
-			case "세종":
-				womanSejong++;
-				break;
-			default:
-				break;
+				case "서울":	womanSeoul++;		break;
+				case "경기":	womanGyunggi++;		break;
+				case "강원":	womanKangwon++;		break;
+				case "인천":	womanIncheon++;		break;
+				case "충남":	womanChungnam++;	break;
+				case "충북":	womanChungbuk++;	break;
+				case "대전":	womanDaejeon++;		break;
+				case "경북":	womanGyeongbuk++;	break;
+				case "대구":	womanDaegu++;		break;
+				case "경남":	womanGyeongnam++;	break;
+				case "울산":	womanUlsan++;		break;
+				case "부산":	womanBusan++;		break;
+				case "전북":	womanJeonbuk++;		break;
+				case "전남":	womanJeonnam++;		break;
+				case "광주":	womanKwangju++;		break;
+				case "제주":	womanJeju++;		break;
+				case "세종":	womanSejong++;		break;
+				default:						break;
 			}
 		}
 		// 주소 전체
@@ -513,6 +377,10 @@ public class AdminController {
 
 		request.setAttribute("ageList", ageList);
 		
+		List<Integer> categoryBigList = storeService.getCategoryBig();
+		
+		request.setAttribute("categoryBigList", categoryBigList);
+		
 		return "/charts";
 	}
 
@@ -552,6 +420,9 @@ public class AdminController {
 	}
 	@RequestMapping(value ="/usedstatus.mdo" , method = RequestMethod.GET)
 	public String usedstatus(Locale locale, Model model) {
+		List<AdminUsedVO> list = adminUsedService.getAdminUsedSellList(0);
+		
+		model.addAttribute("list", list);
 		
 		return "/usedstatus";
 	}
@@ -560,11 +431,139 @@ public class AdminController {
 		
 		return "/useddistribution";
 	}
+	
 	@RequestMapping(value ="/storestatus.mdo" , method = RequestMethod.GET)
-	public String storestatus(Locale locale, Model model) {
+	public String storestatus(HttpServletRequest request) {
+		
+		String str = request.getParameter("status");
+		ArrayList<AdminTransactionHistoryVO> status = null;
+		ArrayList<String> strList = adminTransactionHistoryService.getStatus();
+		
+		if (str == null) {
+			str = "전체 목록";
+			status = adminTransactionHistoryService.getTransitionAllList();
+		}
+		
+		switch (str) {
+		case "전체 목록":
+			status = adminTransactionHistoryService.getTransitionAllList();
+			break;
+		case "상품 준비 중":
+			status = adminTransactionHistoryService.getTransitionStatusList(str);
+			break;
+		case "상품 배송 중":
+			status = adminTransactionHistoryService.getTransitionStatusList(str);
+			break;
+		case "상품 배송 완료":
+			status = adminTransactionHistoryService.getTransitionStatusList(str);
+			break;
+		default:
+			break;
+		}
+		
+		request.setAttribute("status", status);
+		request.setAttribute("strList", strList);
 		
 		return "/storestatus";
 	}
+	
+	@RequestMapping(value ="/storecancelrefundcomplete.mdo" , method = RequestMethod.GET)
+	public String storecancelrefundcomplete(HttpServletRequest request) {
+		String str = request.getParameter("pay_cancel");
+		ArrayList<AdminTransactionHistoryVO> status = null;
+		if (str == null) {
+			str = "전체 목록";
+			status = adminTransactionHistoryService.getCancelRefundComplete();
+		}
+		
+		switch (str) {
+		case "전체 목록":
+			status = adminTransactionHistoryService.getCancelRefundComplete();
+			break;
+		case "취소 완료":
+			status = adminTransactionHistoryService.getCancelComplete();
+			break;
+		case "반품 완료":
+			status = adminTransactionHistoryService.getRefundComplete();
+			break;
+		default:
+			break;
+		}
+		
+		request.setAttribute("status", status);
+		
+		return "/storecancelrefundcomplete";
+	}
+	
+	@RequestMapping(value ="/storecancelstatus.mdo" , method = RequestMethod.GET)
+	public String storecancelstatus(HttpServletRequest request) {
+		String str = request.getParameter("pay_cancel");
+		ArrayList<AdminTransactionHistoryVO> status = null;
+		
+		if (str == null) {
+			str = "전체 목록";
+			status = adminTransactionHistoryService.getTransitionAllCancelList();
+		}
+		
+		switch (str) {
+		case "전체 목록":
+			status = adminTransactionHistoryService.getTransitionAllCancelList();
+			break;
+		case "교환 처리 중":
+			status = adminTransactionHistoryService.getTransitionCancelList(str);
+			break;
+		case "취소 처리 중":
+			status = adminTransactionHistoryService.getTransitionCancelList(str);
+			break;
+		case "반품 처리 중":
+			status = adminTransactionHistoryService.getTransitionCancelList(str);
+			break;
+		default:
+			break;
+		}
+		
+		request.setAttribute("status", status);
+		
+		return "/storecancelstatus";
+	}
+
+	@RequestMapping(value ="/updateStatus.mdo" , method = RequestMethod.POST)
+	public String updateStatus(HttpServletRequest request) {
+		
+		int seq = Integer.parseInt(request.getParameter("transaction_seq"));
+		AdminTransactionHistoryVO vo = adminTransactionHistoryService.getSelectOne(seq);
+		vo.setStatus(request.getParameter("status"));
+		adminTransactionHistoryService.updateStatus(vo);
+		
+		return "redirect:/storestatus.mdo";
+	}
+	
+	@RequestMapping(value ="/updateProcess.mdo" , method = RequestMethod.POST)
+	public String updatePayCancel(HttpServletRequest request, StoreVO vo) {
+		int seq = Integer.parseInt(request.getParameter("transaction_seq"));
+		vo.setProduct_name(request.getParameter("product_name"));
+		vo.setTransaction_count(Integer.parseInt(request.getParameter("transaction_count")));
+		StoreVO thVO = storeService.getTransactionHistoryOne(vo);
+		String str = request.getParameter("pay_cancel");
+		
+		switch (str) {
+		case "교환 처리 중":
+			adminTransactionHistoryService.updateExchangeCount(seq);
+			break;
+		case "취소 처리 중":
+			adminTransactionHistoryService.updatePayCancel(seq);
+			storeService.plusStock(thVO);
+			break;
+		case "반품 처리 중":
+			adminTransactionHistoryService.updateRefund(seq);
+			break;
+		default:
+			break;
+		}
+		
+		return "redirect:/storecancelstatus.mdo";
+	}
+	
 	@RequestMapping(value ="/store" + "distribution.mdo" , method = RequestMethod.GET)
 	public String storedistribution(Locale locale, Model model) {
 		
@@ -594,7 +593,4 @@ public class AdminController {
 		
 		return "/delivery";
 	}
-	
-	
 }
-

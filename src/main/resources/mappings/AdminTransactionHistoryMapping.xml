@@ -12,40 +12,70 @@
 		<result property="merchant_uid" column="MERCHANT_UID" />
 		<result property="product_price" column="PRODUCT_PRICE" />
 		<result property="request" column="REQUEST" />
+		<result property="address2" column="ADDRESS2" />
+		<result property="status" column="STATUS" />
+		<result property="cancel_date" column="CANCEL_DATE" />
+		<result property="cancel_status" column="CANCEL_STATUS" />
+		<result property="cancel_reason" column="CANCEL_REASON" />
+		<result property="pay_cancel" column="PAY_CANCEL" />
 	</resultMap>
-
-	<select id="getAdminTransactionHistoryDateList" parameterType="string" resultType="adminTransactionHistory">
-		<![CDATA[
-			SELECT sum(th.transaction_price) as total_price,  
-  			]]>
-		<if test="type == 'gender'">m.gender as member_gender,</if>
-  			<![CDATA[ 
-  			COUNT(*) as sales_count,
-  			TO_CHAR(date,]]>
-		<if test="date_term == 'daily'">'MM-dd') as daily_chart</if>
-		<if test="date_term == 'month'">'yy-MM') as month_chart</if>
-		<if test="date_term == 'year'">'YYYY') as year_chart</if>
-  			<![CDATA[
-			FROM transactionHistory as th ]]>
-		<if test="type ==  'gender'">RIGHT join member m on th.email_id = m.email_id</if>
-  			<![CDATA[ 
-			WHERE 1=1 
-			and TO_CHAR(date, 'yyyy-MM-dd')
-			between #{start_date} and #{end_date}
-			]]>
-		<if test="merchant_uid != null and merchant_uid != ''">and merchant_uid = #{merchant_uid}</if>
-  			<![CDATA[ 
-  			GROUP BY TO_CHAR(date,]]>
-		<if test="date_term == 'daily'">'MM-dd')</if>
-		<if test="date_term == 'month'">'yy-MM')</if>
-		<if test="date_term == 'year'">'YYYY')</if>
-		<if test="type == 'gender'">, member_gender</if>
-  			<![CDATA[ 
-			ORDER BY ]]>
-		<if test="date_term == 'daily'"> daily_chart</if>
-		<if test="date_term == 'month'">month_chart</if>
-		<if test="date_term == 'year'">year_chart</if>
-  			<![CDATA[
-		]]>
+	
+	<select id="getTransitionAllList" resultType="adminTransactionHistory">
+		SELECT * FROM transactionHistory WHERE pay_cancel is null OR status = '상품 배송 완료'
 	</select>
+	
+	<select id="getTransitionStatusList" parameterType="String" resultType="adminTransactionHistory">
+		SELECT * FROM transactionHistory
+		<if test="status != '상품 배송 완료'">
+			WHERE status = #{status} and pay_cancel is null;
+		</if>
+		<if test="pay_cancel == '취소 처리 중' or status == '상품 배송 완료'">
+			WHERE status = #{status}
+		</if>
+	</select>
+	
+	<select id="getTransitionCancelList" parameterType="String" resultType="adminTransactionHistory">
+		SELECT * FROM transactionHistory WHERE pay_cancel = #{pay_cancel}
+	</select>
+	
+	<select id="getTransitionAllCancelList" resultType="adminTransactionHistory">
+		SELECT * FROM transactionHistory WHERE pay_cancel != '취소 완료' and pay_cancel !='반품 완료' and pay_cancel is not null;
+	</select>
+	
+	<update id="updatePayCancel" parameterType="int">
+		UPDATE transactionHistory SET pay_cancel = '취소 완료', status = null WHERE transaction_seq = #{transaction_seq};
+	</update>
+	
+	<update id="updateExchangeCount" parameterType="int">
+		UPDATE transactionHistory SET exchange_count = exchange_count + 1, status = '상품 준비 중', cancel_date = null, pay_cancel = null, cancel_status = null, cancel_reason = null WHERE transaction_seq = #{transaction_seq}
+	</update>
+	
+	<update id="updateStatus" parameterType="adminTransactionHistory">
+		UPDATE transactionHistory SET status = #{status} WHERE transaction_seq = #{transaction_seq}
+	</update>
+	
+	<update id="updateRefund" parameterType="int">
+		UPDATE transactionHistory SET pay_cancel = '반품 완료', status = null WHERE transaction_seq = #{transaction_seq}
+	</update>
+	
+	<select id="getSelectOne" parameterType="int" resultType="adminTransactionHistory">
+		SELECT * FROM transactionHistory WHERE transaction_seq = #{transaction_seq}
+	</select>
+	
+	<select id="getStatus" resultType="string">
+		SELECT DISTINCT(status) FROM transactionHistory WHERE status is not null
+	</select>
+	
+	<select id="getCancelComplete" resultType="adminTransactionHistory">
+		SELECT * FROM transactionHistory WHERE pay_cancel = '취소 완료'
+	</select>
+	
+	<select id="getRefundComplete" resultType="adminTransactionHistory">
+		SELECT * FROM transactionHistory WHERE pay_cancel = '반품 완료'
+	</select>
+	
+	<select id="getCancelRefundComplete" resultType="adminTransactionHistory">
+		SELECT * FROM transactionHistory WHERE pay_cancel = '취소 완료' or pay_cancel = '반품 완료'
+	</select>
+	
 </mapper>

@@ -78,6 +78,9 @@
                send_msg += "         <button id='click_emo_img' type='button' onclick='javascript:SendImo('${content.nickname}')'>";
                send_msg += "            <img id='message_image' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_bad.png'>";
                send_msg += "         </button>";
+               send_msg += "         <button id='click_emo_img1' type='button' onclick='javascript:SendImo1('${content.nickname}')'>";
+               send_msg += "            <img id='message_image1' class='image_size' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_cry.png'>";
+               send_msg += "         </button>";
                
                
                // -------------------------------- 여기까지야 화이팅 ^^ 하핫 ----------------------------------
@@ -109,6 +112,10 @@
                
                $('#click_emo_img').on('click', function() {
                   SendImage(room, other_nick);
+               });
+               
+               $('#click_emo_img1').on('click', function() {
+                  SendImage1(room, other_nick);
                });
                
                $(".write_msg").keyup(function(e) {
@@ -169,7 +176,10 @@
                send_msg += "      <div class='emo_div' style='width: auto; height: 80px; background: yellow; display:none;'>";
                // -------------------------------- 동녘아 여기다가 이모티콘 넣어 --------------------------------
                send_msg += "         <button id='click_emo_img' type='button' onclick='javascript:SendImo('${content.nickname}')'>";
-               send_msg += "            <img id='message_image' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/img/like.png'>";
+               send_msg += "            <img id='message_image' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_bad.png'>";
+               send_msg += "         </button>";
+               send_msg += "         <button id='click_emo_img1' type='button' onclick='javascript:SendImo1('${content.nickname}')'>";
+               send_msg += "            <img id='message_image1' src='https://mintmarket.s3.ap-northeast-2.amazonaws.com/emoticon/mt_cry.png'>";
                send_msg += "         </button>";
                // -------------------------------- 여기까지야 화이팅 ^^ 하핫 ----------------------------------
                send_msg += "      </div>";
@@ -197,6 +207,10 @@
                
                $('#click_emo_img').on('click', function() {
                   SendImage(room, other_nick);
+               });
+               
+               $('#click_emo_img1').on('click', function() {
+                  SendImage1(room, other_nick);
                });
                
                $(".write_msg").keyup(function(e) {
@@ -306,6 +320,34 @@
       console.log(room);
       console.log(other_nick);
       let image = $('#message_image').attr("src");
+
+      $.ajax({
+         url : "message_send_image.do",
+         method : "GET",
+         data : {
+            room : room,
+            other_nick : other_nick,
+            image : image
+         },
+         success : function(data) {
+            console.log("메세지 전송 성공");
+
+            // 메세지 내용  리로드
+            MessageContentList(room);
+
+            // 메세지 리스트 리로드
+            MessageList();
+         },
+         error : function() {
+            alert('서버 에러');
+         }
+      });
+   };
+   
+   const SendImage1 = function(room, other_nick) {
+      console.log(room);
+      console.log(other_nick);
+      let image = $('#message_image1').attr("src");
 
       $.ajax({
          url : "message_send_image.do",
