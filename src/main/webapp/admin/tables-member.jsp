@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,7 +48,7 @@
                     <h1 class="h3 mb-2 text-gray-800">회원목록</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 회원목록</a>.</p>
+                            href="home.mdo">민트마켓 회원목록</a>.</p>
                             <div class="dropdown">
                      	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      	카테고리
@@ -94,7 +95,7 @@
 	                                            <td>${member.phone}</td>
 	                                            <td>${member.birth }</td>
 	                                            <td>${member.gender}</td>
-	                                            <td>${member.date }</td>	                       
+	                                            <td><fmt:formatDate value="${member.date}" pattern="yyyy-MM-dd"/></td>	                       
                                         	</tr>
                                         </c:forEach>                                                                                                                                                                                                                                                                                                                 
                                     </tbody>

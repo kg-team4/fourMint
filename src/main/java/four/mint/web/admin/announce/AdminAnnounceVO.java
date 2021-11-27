@@ -10,5 +10,6 @@ public class AdminAnnounceVO {
 	String notice_title;
 	String notice_content;
 	Timestamp date;
+	int status;
 
 }

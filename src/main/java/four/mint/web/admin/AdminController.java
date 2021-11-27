@@ -420,11 +420,7 @@ public class AdminController {
 		
 		return "/index";
 	}	
-	@RequestMapping(value ="/customercenter.mdo" , method = RequestMethod.GET)
-	public String customercenter(Locale locale, Model model) {
-		
-		return "/customercenter";
-	}
+	
 	@RequestMapping(value ="/usedstatus.mdo" , method = RequestMethod.GET)
 	public String usedstatus(Locale locale, Model model) {
 		List<AdminUsedVO> list = adminUsedService.getAdminUsedSellList(0);

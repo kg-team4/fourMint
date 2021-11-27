@@ -48,15 +48,15 @@
                     <h1 class="h3 mb-2 text-gray-800">회원 관리 페이지</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 회원 관리 </a>.</p>
-					<div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        카테고리
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                           <a class="dropdown-item" href="memberpage.mdo">회원목록</a>
-                           <a class="dropdown-item" href="memberlist.mdo">탈퇴목록</a>
-                        </div>
+                            href="home.mdo">민트마켓 탈퇴회원 관리 </a>.</p>
+                             <div class="dropdown">
+                     	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     	카테고리
+                     	</button>
+                     	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                     		<a class="dropdown-item" href="memberpage.mdo">탈퇴회원목록</a>
+                     		<a class="dropdown-item" href="memberlist.mdo">회원목록</a>
+                     	</div>
                      </div>
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">

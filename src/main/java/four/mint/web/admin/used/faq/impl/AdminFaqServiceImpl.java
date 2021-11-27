@@ -19,15 +19,23 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 		adminFaqDao.insertAdminFaq(vo);		
 	}
 
-	@Override
-	public AdminFaqVO getAdmin(AdminFaqVO vo) {
-		AdminFaqVO newVo = adminFaqDao.getAdminFaq(vo);
-		return null;
-	}
 
 	@Override
 	public List<AdminFaqVO> getAdminFaqList() {
 		
 		return adminFaqDao.getAdminFaqList();
-	}	
+	}
+
+	@Override
+	public void faq_delete(int parameter) {
+		adminFaqDao.faq_delete(parameter);
+		
+	}
+
+	@Override
+	public void update_faq(AdminFaqVO faqVO) {
+		adminFaqDao.update_faq(faqVO);
+		
+	}
+
 }

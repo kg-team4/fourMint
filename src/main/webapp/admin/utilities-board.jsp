@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -43,7 +44,7 @@
                     <h1 class="h3 mb-2 text-gray-800">중고거래 글 관리</h1>
                     <p class="mb-4">
                      <a target="_blank"
-                            href="https://datatables.net">민트마켓 중고거래 목록</a>.</p>
+                            href="home.mdo">민트마켓 중고거래 목록</a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
@@ -75,10 +76,10 @@
 		                                            <td>${marketboard.product_name }</td>	                                            
 		                                            <td>${marketboard.product_price }</td>
 		                                            <td>${marketboard.product_content }</td>
-		                                            <td>${marketboard.date }</td>
+		                                            <td><fmt:formatDate value="${marketboard.date}" pattern="yyyy-MM-dd"/> </td>
 		                                            <td>${marketboard.nickname }</td>	
 		                                            <td>${marketboard.buyer }</td>	
-		                                            <td>${marketboard.sell_date }</td>			
+		                                            <td><fmt:formatDate value="${marketboard.sell_date}" pattern="yyyy-MM-dd"/> </td>			
 		                                            <td>		                                            
 		                                        	<%-- <form>		                                        		
 	                                           			<input type="hidden" value="${marketboard.market_seq }" name="market_seq">		                                                                           

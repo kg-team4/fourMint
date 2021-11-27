@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminAnnounceController {
@@ -32,4 +33,43 @@ public class AdminAnnounceController {
 		}
 	}
 	
+	@RequestMapping(value="/announcement.mdo",method=RequestMethod.POST)
+	public String annoucement(HttpServletRequest request) {
+		System.out.println(request.getParameter("title"));
+		System.out.println(request.getParameter("content"));
+		
+		AdminAnnounceVO announcementVO = new AdminAnnounceVO();
+			announcementVO.setNotice_title(request.getParameter("title"));
+			announcementVO.setNotice_content(request.getParameter("content"));
+		
+		adminAnnounceService.insertAdminAnnounce(announcementVO);
+		
+		return "redirect:utilities-annoucement.mdo";
+		
+	}
+	
+
+	@RequestMapping(value="/announce_delete.mdo",method=RequestMethod.POST)
+	public String announce_delete(HttpServletRequest request) {
+		
+		  adminAnnounceService.announce_delete(Integer.valueOf(request.getParameter("notice_seq")));
+		 		
+		
+		return "redirect:utilities-annoucement.mdo";
+	}
+	
+
+	@RequestMapping(value="/update_announcement.mdo",method=RequestMethod.POST)
+	public String update_announcement(HttpServletRequest request) {
+		
+		AdminAnnounceVO announcementVO = new AdminAnnounceVO();
+			announcementVO.setNotice_seq(Integer.valueOf(request.getParameter("seq")));
+			announcementVO.setNotice_title(request.getParameter("title"));
+			announcementVO.setNotice_content(request.getParameter("content"));
+			
+			adminAnnounceService.update_announcement(announcementVO);
+		
+		return "redirect:utilities-annoucement.mdo";
+		
+	}
 }

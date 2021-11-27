@@ -43,6 +43,7 @@
 		<typeAlias alias="rating" type="four.mint.web.user.market.MarketRatingVO"/>
 		<typeAlias alias="rate" type="four.mint.web.user.store.StoreRateVO"/>
 		<typeAlias alias="ask" type="four.mint.web.user.store.StoreAskVO"/>
+		<typeAlias alias="AdminQna" type="four.mint.web.admin.qna.AdminQnaVO"/>
 	</typeAliases>
 	
 	<typeHandlers>
@@ -72,5 +73,6 @@
 		<mapper resource="mappings/AdminTransactionHistoryMapping.xml" />
 		<mapper resource="mappings/AdminPurchaseHistoryMapping.xml" />
 		<mapper resource="mappings/AdminBoardMapping.xml" />
+		<mapper resource="mappings/AdminQnaMapping.xml" />
 	</mappers>
 </configuration>

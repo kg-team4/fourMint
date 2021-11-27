@@ -29,4 +29,11 @@ public class AdminAnnounceDAO {
 		return sqlSessionTemplate.selectList("AdminAnnounceDAO.getAdminAnnounceList");
 	}
 
+	public void announce_delete(int parameter) {
+		sqlSessionTemplate.delete("AdminAnnounceDAO.announce_delete", parameter);
+	}
+
+	public void update_announcement(AdminAnnounceVO announcementVO) {
+		sqlSessionTemplate.update("AdminAnnounceDAO.update_announcement", announcementVO);
+	}
 }

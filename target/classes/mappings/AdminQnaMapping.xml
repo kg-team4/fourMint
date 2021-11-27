@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminQnaDAO">
+	
+	<resultMap  type="adminqna" id="adminResult">
+		<result property="ask_seq" column="NOTICE_SEQ" />
+		<result property="store_seq" column="NOTICE_TITLE" />
+		<result property="nickname" column="NOTICE_CONTENT" />	
+		<result property="content" column="NOTICE_CONTENT" />	
+		<result property="date" column="DATE" />	
+		<result property="product_name" column="DATE" />	
+		<result property="status" column="DATE" />			
+	</resultMap>
+	
+	<insert id="insertAdmin" parameterType="four.mint.web.admin.qna.AdminQnaVO">
+		INSERT INTO storeask (ask_seq, store_seq, nickname, content, date, product_name, status) 
+		VALUES (default, #{store_seq}, #{nickname},#{content}, now(),#{product_name}, #{status})
+	</insert>
+	
+	<select id="getAdminQnaList" resultType="adminQna" parameterType="four.mint.web.admin.qna.AdminQnaVO">
+		SELECT * FROM storeask
+	</select>	
+	
+	<delete id="qna_delete" parameterType="int">
+		delete from storeask where ask_seq = #{parameter}
+	</delete>
+	
+	<update id="modift_qna" parameterType="adminQna">
+		update notice set ask_seq = #{ask_seq}, store_seq=#{store_seq}, nickname=#{nickname}, content=#{content}, date=now() product_name=#{product_name}, status=#{status},where ask_seq = #{ask_seq}
+	</update>
+	
+	
+	
+	
+</mapper>
