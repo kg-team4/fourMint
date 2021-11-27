@@ -452,6 +452,7 @@ public class UserController {
 	// 검색 시 매핑 페이지 
 	@RequestMapping(value = "/searchAllResult.do", method = RequestMethod.GET)
 	public String searchAllResult(HttpServletRequest request, String keyword) {
+		keyword = "%" + keyword + "%";
 		List<MarketVO> mVL = marketService.getFindList(keyword);
 		request.setAttribute("market", mVL);
 		

@@ -86,7 +86,7 @@
 	</update>
 	
 	<select id="getFindList" parameterType="string" resultType="market">
-		SELECT * FROM marketboard where product_name = #{keyword}
+		SELECT * FROM marketboard where product_name LIKE #{keyword} OR product_content
 	</select>
 
 	<resultMap type="categoryBig" id="categoryBigResult">
