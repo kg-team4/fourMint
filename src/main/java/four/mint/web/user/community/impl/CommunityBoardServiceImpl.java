@@ -71,11 +71,6 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public void updateComments(int board_seq) {
-		communityBoardDao.updateComments(board_seq);
-	}
-
-	@Override
 	public List<CommunityCommentVO> getCommentList(String nickname) {
 		return communityBoardDao.getCommentList(nickname);
 	}

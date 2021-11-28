@@ -53,13 +53,27 @@
 					<c:forEach var="store" items="${storeList }">
 						<c:if test="${ big_no eq store.category_big}">
 							<li>
-								<a href="storeBoard.do?seq=${store.store_seq }"> <img src="${store.url }"></a>
-								<div style="display:flex; padding-top:20px;">
-									<div id="product_name"
-										style="width: 180px; text-align: left; word-wrap: break-word; white-space: nowrap; text-overflow: ellipsis; display: inline-block; overflow: hidden;">${store.product_name }</div>
-									<div id="product_price"
-										style="width: 100px; text-align: right; word-wrap: break-word; white-space: nowrap; display: inline-block; overflow: hidden; text-overflow: ellipsis; margin-left: 10px; font-size: 15px; color: #50b9abd0; ">${store.product_price }원</div>
-								</div>
+							<c:choose>
+							<c:when test="${ store.product_stock < 1}">
+							<a href="storeBoard.do?seq=${store.store_seq }"> <img src="${store.url }" style="opacity: 50%;"></a>
+							<div style="display:flex; padding-top:20px;">
+								<div id="product_name"
+									style="width: 180px; text-align: left; word-wrap: break-word; white-space: nowrap; text-overflow: ellipsis; display: inline-block; overflow: hidden;">${store.product_name }</div>
+								<div id="product_price"
+									style="width: 100px; text-align: right; word-wrap: break-word; white-space: nowrap; display: inline-block; overflow: hidden; text-overflow: ellipsis; margin-left: 10px; font-size: 15px; color: red; ">[ 품절 ]</div>
+							</div>
+							</c:when>
+							<c:otherwise>
+							<a href="storeBoard.do?seq=${store.store_seq }"> <img src="${store.url }"></a>
+							<div style="display:flex; padding-top:20px;">
+								<div id="product_name"
+									style="width: 180px; text-align: left; word-wrap: break-word; white-space: nowrap; text-overflow: ellipsis; display: inline-block; overflow: hidden;">${store.product_name }</div>
+								<div id="product_price"
+									style="width: 100px; text-align: right; word-wrap: break-word; white-space: nowrap; display: inline-block; overflow: hidden; text-overflow: ellipsis; margin-left: 10px; font-size: 15px; color: #50b9abd0; ">${store.product_price }원</div>
+							</div>
+							</c:otherwise>
+							</c:choose>
+								
 							</li>
 						</c:if>
 					</c:forEach>

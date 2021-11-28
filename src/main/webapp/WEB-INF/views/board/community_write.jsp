@@ -41,7 +41,7 @@
             <div class="used_title" style="list-style: none;">
                <div class="used_text">
                   <span class="title_announce">제목 <span class="must">*</span></span>
-                  <span><input class="form-title" type="text" name="title" placeholder="글 제목을 입력해주세요." oninput="checkTitle();"></span>
+                  <span><input class="form-title" type="text" name="title" placeholder="글 제목을 입력해주세요." oninput="checkTitle();" required></span>
                   <div id="titleInfo"></div>
                   <div class="titleHeight"></div>              
             </div>
@@ -52,7 +52,7 @@
             <div class="used_cate" >
                <div class="used_text">
                   카테고리 <span class="must">*</span>
-                  <select class="promotion_cate_style" name="category">
+                  <select class="promotion_cate_style" name="category" required>
                      <option value="">카테고리 선택</option>
                      <option value="소식">소식</option>
                      <option value="질문">질문</option>
@@ -72,7 +72,7 @@
                   </div>
                   <div class="content">
                      <div>
-                        <textarea class="first" name="content" oninput="calculateCount();"></textarea>
+                        <textarea class="first" name="content" oninput="calculateCount();" required></textarea>
                         <div align="right" class="countNum">
                            <span class="letter-count">0</span>/2000
                         </div>

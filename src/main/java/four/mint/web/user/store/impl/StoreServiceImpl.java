@@ -213,4 +213,10 @@ public class StoreServiceImpl implements StoreService {
 		return storeDao.getTransactionHistoryOne(vo);
 	}
 
+	@Override
+	public float getAvg(int seq) {
+		return storeDao.getAvg(seq);
+	}
+
+	
 }

@@ -113,6 +113,9 @@ public class StoreController {
 			askVO.setNickname((String)session.getAttribute("nickname"));
 		List<StoreAskVO> askList = storeService.getAskList(askVO);
 		request.setAttribute("ask", askList);
+		
+		float avg = storeService.getAvg(seq);
+		request.setAttribute("avg", avg);
 
 		return "/board/store_post_content";
 	}

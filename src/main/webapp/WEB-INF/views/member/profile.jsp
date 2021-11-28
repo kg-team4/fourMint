@@ -730,7 +730,7 @@
 							</div>
 							
 							<br> <br> <br>
-							<script>
+<!-- 							<script>
 								/*상품 후기 작성자 및 팔로우 팔로워 프로필 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".following_img_area").on("click", function(event) {  //팝업오픈 버튼 누르면
@@ -764,7 +764,7 @@
 									  });	
 								 
 								</script>
-								
+ -->								
 								
 								
 							<div class="follower_all">
@@ -853,7 +853,7 @@
 							<!-- 끝 팔로우 버튼 -->
 							
 							
-							<script>
+							<!-- <script>
 								/*상품 후기 작성자 및 팔로우 팔로워 프로필 모달*/
 								  $(document).ready(function( $ ){     
 								    $(".following_img_area").on("click", function(event) {  //팝업오픈 버튼 누르면
@@ -884,7 +884,7 @@
 									 
 									  });	
 								 
-								</script>
+								</script> -->
 							
 						</div>
 					</div>

@@ -31,17 +31,14 @@ public class AdminQnaController {
 		return "redirect:customercenter.mdo";
 	}
 	
-	@RequestMapping(value="/modify_faq.mdo",method=RequestMethod.POST)
+	@RequestMapping(value="/qnaAnswer.mdo",method=RequestMethod.POST)
 	public String modify_qna(HttpServletRequest request) {
 		
-		AdminAnswerVO answerVO = new AdminAnswerVO();
-			answerVO.setAsk_seq(Integer.valueOf(request.getParameter("ask_seq")));
-			answerVO.setContent(request.getParameter("content"));
+		AdminQnaVO aqVO = new AdminQnaVO();
+			aqVO.setAsk_seq(Integer.valueOf(request.getParameter("ask_seq")));
+			aqVO.setAnswer(request.getParameter("content"));
 			
-			
-			adminQnaService.modify_qna(answerVO);
-			adminQnaService.update_status(Integer.valueOf(request.getParameter("ask_seq")));
-		
+		adminQnaService.answer(aqVO);
 		
 		return "redirect:customercenter.mdo";
 		

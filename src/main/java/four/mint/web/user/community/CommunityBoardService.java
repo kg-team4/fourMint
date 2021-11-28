@@ -28,8 +28,6 @@ public interface CommunityBoardService {
 
 	void updateViews(int seq);
 
-	void updateComments(int board_seq);
-
 	List<CommunityCommentVO> getCommentList(String nickname);
 
 	List<CommunityBoardVO> getTopFive(String address);

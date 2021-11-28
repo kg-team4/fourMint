@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class AdminVO {
-	String id;
-	String password;
-	String name;
+	private String id;
+	private String password;
+	private String name;
 		
 }

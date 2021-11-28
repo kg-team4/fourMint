@@ -26,26 +26,19 @@ public class StoreDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public List<StoreVO> getStoreList(HttpServletRequest request, PageVO vo) {
-		System.out.println("====> marketList SELECT");
-
 		return sqlSessionTemplate.selectList("StoreDAO.getStoreList", vo);
 	}
 	
 	public int getStoreCount() {
-		
 		return sqlSessionTemplate.selectOne("StoreDAO.getStoreCount");
 	}
 
 	public List<StoreCategoryBigVO> getStoreCategoryBig() {
-		System.out.println("======> categoryBig get");
-		
 		return sqlSessionTemplate.selectList("StoreDAO.getStoreCategoryBig");
 	}
 	
 	public void insertStore(StoreVO vo) {
 		sqlSessionTemplate.insert("StoreDAO.insertStore", vo);
-		
-		System.out.println("======> store INSERT");
 	}
 
 	public int getKindCount(SearchVO svo) {
@@ -171,5 +164,12 @@ public class StoreDAO {
 	
 	public StoreVO getTransactionHistoryOne(StoreVO vo) {
 		return sqlSessionTemplate.selectOne("StoreDAO.getTransactionHistoryOne", vo);
+	}
+
+	public float getAvg(int seq) {
+		if(sqlSessionTemplate.selectOne("StoreDAO.getAvg", seq) == null) {
+			return 0;
+		}
+		return sqlSessionTemplate.selectOne("StoreDAO.getAvg", seq);
 	}
 }

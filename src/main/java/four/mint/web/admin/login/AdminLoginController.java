@@ -24,7 +24,6 @@ public class AdminLoginController {
 	public String login(AdminVO vo, HttpSession session, HttpServletRequest request) {
 		vo.setId(request.getParameter("id"));
 		vo.setPassword(request.getParameter("password"));
-		System.out.println(vo);
 		AdminVO admin = adminService.getAdmin(vo);
 		if(admin != null) {
 			session.setAttribute("admin_id", admin.getId());

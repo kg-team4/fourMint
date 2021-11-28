@@ -9,7 +9,7 @@
 		<result property="content" column="CONTENT" />	
 		<result property="date" column="DATE" />	
 		<result property="product_name" column="PRODUCT_NAME" />	
-		<result property="status" column="STATUS" />			
+		<result property="status" column="STATUS" />
 	</resultMap>
 	
 	<insert id="insertAdmin" parameterType="four.mint.web.admin.qna.AdminQnaVO">
@@ -25,11 +25,6 @@
 		delete from storeask where ask_seq = #{parameter}
 	</delete>
 	
-	<insert id="modify_qna" parameterType="four.mint.web.admin.qna.AdminAnswerVO">
-		INSERT INTO storeanswer (ask_seq, content, date )
-		VALUES (#{ask_seq},#{content}, now()) 
-	</insert>
-	
 	<update id="update_status" parameterType="adminqna">
 		update storeask set status = 0 where ask_seq = #{ask_seq}
 	</update>
@@ -37,5 +32,9 @@
 	<select id="getQNA" resultType="int">
 		SELECT COUNT(*) FROM storeAsk WHERE status = 1;
 	</select>
+	
+	<update id="answer" parameterType="four.mint.web.admin.qna.AdminQnaVO">
+		UPDATE storeask SET answer = #{answer}, answer_date = now(), status = 0 WHERE ask_seq = #{ask_seq}
+	</update>
 	
 </mapper>

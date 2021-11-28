@@ -14,6 +14,9 @@ public class StoreAskVO {
 	private Timestamp date;
 	private int status;
 	private String product_name;
+	private String answer;
+	private Timestamp answer_date;
 	
 	private String profile;
+	
 }

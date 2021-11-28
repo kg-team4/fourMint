@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -101,11 +102,6 @@ public class UserController {
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		
-		System.out.println(id);
-		System.out.println(name);
-		System.out.println(phone);
-		
-		
 		UserVO vo = new UserVO();
 		
 		vo.setEmail_id(id);
@@ -116,7 +112,6 @@ public class UserController {
 		
 		int flag = 0;
 		
-		System.out.println(pw);
 		/*
 		 * flag = 1 조건값들에 적합한 비밀번호가 있음
 		 * flag = 2 없음 
@@ -143,8 +138,6 @@ public class UserController {
 		AES256Util.setKey(marketService.getKey().getKey());
 	    AES256Util aes = new AES256Util();
 	    String pw = aes.encrypt(vo.getPassword());
-		System.out.println(vo.getEmail_id());
-		System.out.println(vo.getPassword());
 		vo.setPassword(pw);
 		if(vo.getPassword() != null) 
 			userService.updatePw(vo);
@@ -154,14 +147,11 @@ public class UserController {
 
 	@RequestMapping(value = "/joinProc.do", method = RequestMethod.POST)
 	public String joinProc(UserVO vo) throws UnsupportedEncodingException, NoSuchAlgorithmException, GeneralSecurityException {
-		System.out.println("회원가입 완료");
-		
 		AES256Util.setKey(marketService.getKey().getKey());
 		AES256Util aes = new AES256Util();
 		
 		String encoding = aes.encrypt(vo.getPassword());
-		System.out.println(encoding);
-		
+
 		vo.setPassword(encoding);
 		userService.insertUser(vo);
 
@@ -272,15 +262,12 @@ public class UserController {
 	@ResponseBody
 	public String updateAddr(HttpServletRequest request, HttpSession session, UserVO vo) {
 		vo.setEmail_id(session.getAttribute("userEmail_id").toString());
-		System.out.println(session.getAttribute("userEmail_id").toString());
 		vo.setAddress1(request.getParameter("addr1"));
 		vo.setAddress2(request.getParameter("addr2"));
 		vo.setAddress3(request.getParameter("addr3"));
 
 		userService.updateAddress(vo);
 		session.setAttribute("address2", vo.getAddress2());
-		System.out.println(vo.getEmail_id());
-		System.out.println(vo.getAddress2());
 
 		return "/profile.do";
 	}

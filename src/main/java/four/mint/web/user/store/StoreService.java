@@ -82,4 +82,6 @@ public interface StoreService {
 	void plusStock(StoreVO vo);
 	
 	StoreVO getTransactionHistoryOne(StoreVO vo);
+
+	float getAvg(int seq);
 }

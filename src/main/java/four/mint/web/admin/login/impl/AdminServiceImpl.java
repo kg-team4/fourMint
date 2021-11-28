@@ -2,10 +2,12 @@ package four.mint.web.admin.login.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import four.mint.web.admin.login.AdminVO;
 import four.mint.web.admin.login.AdminService;
+import four.mint.web.admin.login.AdminVO;
 
+@Transactional
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
 

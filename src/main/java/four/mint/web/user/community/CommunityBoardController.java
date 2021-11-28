@@ -96,7 +96,6 @@ public class CommunityBoardController {
 		svo.setOption("title");
 		
 		String kind = request.getParameter("kind");
-		svo.setKind(kind);
 		request.setAttribute("kind", kind);
 		
 			String address = (String) session.getAttribute("address2");
@@ -175,7 +174,18 @@ public class CommunityBoardController {
 				page = (page + 6) / 6 + (5 * ((page + 6) / 6)) - ((page - 1) / 5);
 			}
 		}
-
+		
+		String address = (String) session.getAttribute("address2");
+		String[] temp = address.split(" ");
+		address = temp[1];
+		if(temp[1].substring(address.length()-1).equals("시")) {
+			address = temp[2];
+		}
+		request.setAttribute("addressSub", address);
+		
+		address = "%" + address.substring(0, 2) + "%";
+		svo.setAddress(address);
+		
 		svo.setKind(kind);
 
 		if (page > Math.round((double) communityBoardService.getKindCount(svo) / 9)) {
@@ -213,7 +223,7 @@ public class CommunityBoardController {
 	
 	/* 커뮤니티 글 작성 프로세스 */
 	@RequestMapping(value = "/communityWrite.do", method = RequestMethod.POST)
-	public String communityWrite(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response, HttpSession session, CommunityBoardVO cVO) throws NoSuchAlgorithmException, GeneralSecurityException {
+	public String communityWrite(@RequestParam(required=false) MultipartFile file, HttpServletRequest request, HttpServletResponse response, HttpSession session, CommunityBoardVO cVO) throws NoSuchAlgorithmException, GeneralSecurityException {
 		try {
 			AES256Util.setKey(marketService.getKey().getKey());
 			AES256Util aes = new AES256Util();
@@ -241,7 +251,6 @@ public class CommunityBoardController {
 	@PostMapping("communityComment.do")
 	public String communityComment(HttpServletRequest request, CommunityCommentVO cVO) {
 		communityBoardService.insertComment(cVO);
-		communityBoardService.updateComments(cVO.getBoard_seq());
 		
 		return "redirect:communityBoard.do?seq="+cVO.getBoard_seq();
 	}
