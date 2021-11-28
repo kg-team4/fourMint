@@ -19,10 +19,9 @@ public interface AdminTransactionHistoryService {
 	ArrayList<AdminTransactionHistoryVO> getRefundComplete();
 	ArrayList<AdminTransactionHistoryVO> getCancelRefundComplete();
 	int getTotalPrice();
-	ArrayList<AdminTransactionHistoryVO> getAdminTransactionHistoryDateList(AdminTransactionHistoryVO vo);
 
 	List<AdminTransactionHistoryVO> orderList();
 
-	
+	ArrayList<AdminTransactionHistoryVO> getCountTopFive();
 
 }

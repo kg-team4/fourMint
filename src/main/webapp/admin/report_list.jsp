@@ -52,9 +52,6 @@
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">신고목록</h1>
-					<p class="mb-4">
-						<a target="_blank" href="home.mdo">민트마켓 회원 신고목록</a>.
-					</p>
 					<button class="btn btn-secondary dropdown-toggle" type="button"
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">신고 목록</button>

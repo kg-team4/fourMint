@@ -14,17 +14,17 @@ public class AdminTransactionHistoryServiceImpl implements AdminTransactionHisto
 
 	@Autowired
 	private AdminTransactionHistoryDAO adminTransactionHistoryDAO;
-	
+
 	@Override
 	public ArrayList<AdminTransactionHistoryVO> getTransitionAllList() {
 		return adminTransactionHistoryDAO.getTransitionAllList();
 	}
-	
+
 	@Override
 	public ArrayList<AdminTransactionHistoryVO> getTransitionStatusList(String status) {
 		return adminTransactionHistoryDAO.getTransitionStatusList(status);
 	}
-	
+
 	@Override
 	public ArrayList<AdminTransactionHistoryVO> getTransitionCancelList(String pay_cancel) {
 		return adminTransactionHistoryDAO.getTransitionCancelList(pay_cancel);
@@ -67,7 +67,7 @@ public class AdminTransactionHistoryServiceImpl implements AdminTransactionHisto
 
 	@Override
 	public ArrayList<AdminTransactionHistoryVO> getCancelComplete() {
-		
+
 		return adminTransactionHistoryDAO.getCancelComplete();
 	}
 
@@ -83,14 +83,17 @@ public class AdminTransactionHistoryServiceImpl implements AdminTransactionHisto
 
 	@Override
 	public List<AdminTransactionHistoryVO> orderList() {
-		
+
 		return adminTransactionHistoryDAO.orderList();
 	}
 
-	
-	
 	@Override
 	public int getTotalPrice() {
 		return adminTransactionHistoryDAO.getTotalPrice();
+	}
+
+	@Override
+	public ArrayList<AdminTransactionHistoryVO> getCountTopFive() {
+		return adminTransactionHistoryDAO.getCountTopFive();
 	}
 }

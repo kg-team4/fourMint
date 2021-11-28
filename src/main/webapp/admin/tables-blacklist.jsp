@@ -52,12 +52,7 @@
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">블랙리스트 목록</h1>
-					<p class="mb-4">
-						<a target="_blank" href="home.mdo">민트마켓 신고 목록</a>.
-					</p>
-					<form action="excel_blacklist.mdo" method="get">
-						<button>액셀</button>
-					</form>
+					
 					<button class="btn btn-secondary dropdown-toggle" type="button"
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">블랙리스트 목록</button>
@@ -69,8 +64,11 @@
 
 				<!-- DataTales  -->
 				<div class="card shadow mb-4">
-					<div class="card-header py-3">
+					<div class="card-header py-3" style="display: inline-flex;align-items: center;justify-content: space-between;">
 						<h6 class="m-0 font-weight-bold text-primary">신고목록</h6>
+						<form action="excel_blacklist.mdo" method="get">
+							<button>엑셀파일</button>
+						</form>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">

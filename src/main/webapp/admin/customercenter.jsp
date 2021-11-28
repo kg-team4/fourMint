@@ -51,9 +51,6 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">고객센터(Q&A) 페이지</h1>
-                    <p class="mb-4">
-                     <a target="_blank"
-                            href="home.mdo">민트마켓 고객센터(Q&A) 관리 </a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">

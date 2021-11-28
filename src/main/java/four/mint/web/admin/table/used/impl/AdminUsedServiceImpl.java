@@ -29,6 +29,11 @@ public class AdminUsedServiceImpl implements AdminUsedService{
 	@Override
 	public List<AdminUsedVO> orderList() {
 		
-		return adminUsedDao.orderList();
-	}	
+		return adminUsedDAO.orderList();
+	}
+
+	@Override
+	public void delete(int market_seq) throws Exception {
+		adminUsedDAO.delete(market_seq);
+	}
 }

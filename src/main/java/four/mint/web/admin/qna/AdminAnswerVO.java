@@ -10,4 +10,4 @@ public class AdminAnswerVO {
 	String content;
 	Timestamp date;
 
-	}
+}

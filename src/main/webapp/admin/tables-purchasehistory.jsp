@@ -45,16 +45,13 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">거래내역</h1>
-                    <p class="mb-4">
-                     <a target="_blank"
-                            href="home.mdo">민트마켓 거래내역</a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3" style="display: inline-flex;align-items: center;justify-content: space-between;">
                             <h6 class="m-0 font-weight-bold text-primary">민트마켓 거래내역 입니다.</h6>
                             <form action="excel_purchasehistory.mdo" method="get">
-                    			<button>액셀</button>
+                    			<button>엑셀파일</button>
                     		</form>
                         </div>
                         <div class="card-body">
