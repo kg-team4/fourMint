@@ -28,10 +28,6 @@ public class AdminUsedDAO {
 		sqlSessionTemplate.delete("AdminUsedDAO.delete", market_seq); 
 	}
 	
-	public void delete(int vo)throws Exception{
-		  sqlSessionTemplate.delete("AdminUsedDAO.delete",vo); 	
-	}
-
 	public List<AdminUsedVO> orderList() {
 		
 		return sqlSessionTemplate.selectList("AdminUsedDAO.orderList");

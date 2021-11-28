@@ -29,7 +29,7 @@ public class AdminUsedServiceImpl implements AdminUsedService{
 	@Override
 	public List<AdminUsedVO> orderList() {
 		
-		return adminUsedDao.orderList();
+		return adminUsedDAO.orderList();
 	}	
 
 	@Override

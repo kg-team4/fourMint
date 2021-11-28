@@ -21,7 +21,7 @@ public class AdminTableVO {
 	private String gender;
 	private Float rating;
 	private String profile;
-	private int reoports;
+	private int reports;
 	private Timestamp date;
 	private Timestamp delete_date;
 	
