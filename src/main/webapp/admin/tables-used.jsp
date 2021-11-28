@@ -47,18 +47,14 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">중고 물품목록</h1>
-                    <form action="excel_used.mdo" method="get">
-                    	<button>액셀</button>
-                    </form>
-                    <p class="mb-4">
-                     <a target="_blank"
-                            href="home.mdo">민트마켓 중고거래 물품목록</a>.</p>
-
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3" style="display: inline-flex;align-items: center;justify-content: space-between;">
                             <h6 class="m-0 font-weight-bold text-primary">중고거래 물품 목록입니다.</h6>
-                        </div>
+							<form action="excel_used.mdo" method="get">
+								<button>엑셀파일</button>
+							</form>
+						</div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

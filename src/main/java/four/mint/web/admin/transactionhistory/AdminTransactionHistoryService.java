@@ -22,6 +22,6 @@ public interface AdminTransactionHistoryService {
 
 	List<AdminTransactionHistoryVO> orderList();
 
-	
+	ArrayList<AdminTransactionHistoryVO> getCountTopFive();
 
 }

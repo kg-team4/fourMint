@@ -43,9 +43,6 @@
 
                  <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">FAQ</h1>
-                    <p class="mb-4">
-                     <a target="_blank"
-                            href="home.mdo">민트마켓 FAQ</a>.</p>
                      <div class="dropdown">
                      	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      	분류

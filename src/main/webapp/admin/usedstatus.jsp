@@ -45,9 +45,6 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">중고거래 현황 조회 페이지</h1>
-                    <p class="mb-4">
-                     <a target="_blank"
-                            href="home.mdo">민트마켓 중고거래 현황 조회 </a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">

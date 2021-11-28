@@ -44,18 +44,15 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">스토어 물품</h1>
-                    <p class="mb-4">
-                     <a target="_blank"
-                            href="home.mdo">민트마켓 스토어 리스트 물품</a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
+                        <div class="card-header py-3" style="display: inline-flex;align-items: center;justify-content: space-between;">
                             <h6 class="m-0 font-weight-bold text-primary">민트마켓 리스트</h6>
-                        </div>
-                        <form action="excel_storeGoods.mdo" method="get">
-                    		<button>액셀</button>
-                    	</form>
+							<form action="excel_storeGoods.mdo" method="get">
+								<button>엑셀파일</button>
+							</form>
+						</div>
                         <div class="card-body">
                         <form action="storeSell.do" method="POST" ebctype="multipart/form-data" onsubmint="return checkForm();">
                         	<div class="form-group">

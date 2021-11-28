@@ -17,10 +17,11 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<context:component-scan	base-package="four.mint.web"></context:component-scan>
+	<context:component-scan
+		base-package="four.mint.web"></context:component-scan>
 
 	<mvc:annotation-driven />
-	<context:annotation-config/>
+	<context:annotation-config />
 	<context:property-placeholder
 		location="classpath:config/database.properties" />
 
@@ -57,23 +58,30 @@
 			</props>
 		</property>
 	</bean>
-	
-	<!--  OAuth2 login  -->
+
+	<!-- OAuth2 login -->
 	<bean id="naverClientID" class="java.lang.String">
-		<constructor-arg value="L1KoaKl8P4eiKiZycEl7"/>
+		<constructor-arg value="L1KoaKl8P4eiKiZycEl7" />
 	</bean>
 	<bean id="naverClientSecret" class="java.lang.String">
-		<constructor-arg value="AEACaBm1CV"/>
+		<constructor-arg value="AEACaBm1CV" />
 	</bean>
 	<bean id="naverRedirectUrl" class="java.lang.String">
-		<constructor-arg value="http://localhost:8080/navercallback.do"/>
+		<constructor-arg
+			value="http://localhost:8080/navercallback.do" />
 	</bean>
 	<bean id="naverSns" class="four.mint.web.user.SnsValue">
-		<constructor-arg value="naver"/>
-		<constructor-arg ref="naverClientID"/>
-		<constructor-arg ref="naverClientSecret"/>
-		<constructor-arg ref="naverRedirectUrl"/>	
+		<constructor-arg value="naver" />
+		<constructor-arg ref="naverClientID" />
+		<constructor-arg ref="naverClientSecret" />
+		<constructor-arg ref="naverRedirectUrl" />
 	</bean>
-
-	
+	<!-- <bean id="kakaoClientID" class="java.lang.String"> <constructor-arg 
+		value="67f4a0492398f30f491a028bba163eac"/> </bean> <bean id="kakaoClientSecret" 
+		class="java.lang.String"> <constructor-arg value="uQx55fPPxlTvXi3QifmzXzhAodV0qHAT"/> 
+		</bean> <bean id="kakaoRedirectUrl" class="java.lang.String"> <constructor-arg 
+		value="http://localhost:8080/kakaocallback.do"/> </bean> <bean id="kakaoSns" 
+		class="four.mint.web.user.SnsValue"> <constructor-arg value="kakao"/> <constructor-arg 
+		ref="kakaoClientID"/> <constructor-arg ref="kakaoClientSecret"></constructor-arg> 
+		<constructor-arg ref="kakaoRedirectUrl"/> </bean> -->
 </beans>
