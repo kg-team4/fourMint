@@ -47,6 +47,9 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">중고 물품목록</h1>
+                    <form action="excel_used.mdo" method="get">
+                    	<button>액셀</button>
+                    </form>
                     <p class="mb-4">
                      <a target="_blank"
                             href="home.mdo">민트마켓 중고거래 물품목록</a>.</p>

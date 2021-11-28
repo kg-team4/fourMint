@@ -3,6 +3,7 @@ package four.mint.web.admin.table.member;
 import java.sql.Timestamp;
 import lombok.Data;
 
+
 @Data
 public class AdminTableVO {
 	private String email_id;

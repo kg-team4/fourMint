@@ -82,4 +82,7 @@
 		SELECT SUM(transaction_price) FROM transactionHistory;
 	</select>
 	
+	<select id="orderList" resultType="adminTransactionHistory">
+		SELECT * FROM transactionhistory
+	</select>
 </mapper>

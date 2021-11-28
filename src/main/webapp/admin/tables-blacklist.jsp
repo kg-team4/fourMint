@@ -55,6 +55,9 @@
 					<p class="mb-4">
 						<a target="_blank" href="home.mdo">민트마켓 신고 목록</a>.
 					</p>
+					<form action="excel_blacklist.mdo" method="get">
+						<button>액셀</button>
+					</form>
 					<button class="btn btn-secondary dropdown-toggle" type="button"
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">블랙리스트 목록</button>

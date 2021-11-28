@@ -137,11 +137,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/update_pw.do", method = RequestMethod.POST)
-	public String update_pw(UserVO vo) {
+	public String update_pw(UserVO vo) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 		
+		AES256Util.setKey(marketService.getKey().getKey());
+	    AES256Util aes = new AES256Util();
+	    String pw = aes.encrypt(vo.getPassword());
 		System.out.println(vo.getEmail_id());
 		System.out.println(vo.getPassword());
-		
+		vo.setPassword(pw);
 		if(vo.getPassword() != null) 
 			userService.updatePw(vo);
 		

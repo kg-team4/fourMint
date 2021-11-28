@@ -47,6 +47,7 @@
             </form>
         </article>	
 <script>
+	console.log(${flag});
 	if(${flag} == 1){
 		alert("비밀번호가 틀렸습니다.");
 	}else if(${flag} == 2){

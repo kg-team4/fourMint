@@ -48,5 +48,6 @@ public interface UserService {
 	String getId(UserVO vo);
 	float getRating(String userNickname);
 	void updateRating(UserVO tempUser);
+	String getEmailId(String email);
 	
 }

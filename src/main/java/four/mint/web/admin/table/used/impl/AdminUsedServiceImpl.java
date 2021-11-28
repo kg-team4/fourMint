@@ -25,4 +25,10 @@ public class AdminUsedServiceImpl implements AdminUsedService{
 		
 		return adminUsedDAO.getAdminUsedSellList(status);
 	}
+
+	@Override
+	public List<AdminUsedVO> orderList() {
+		
+		return adminUsedDao.orderList();
+	}	
 }

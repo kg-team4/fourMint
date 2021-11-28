@@ -66,6 +66,9 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">스토어 상품 글</h6>
+							<form action="excel_transactionhistory.mdo" method="get" >
+								<button>엑셀</button>
+							</form>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import four.mint.web.admin.purchasehistory.AdminPurchaseHistoryService;
 import four.mint.web.admin.purchasehistory.AdminPurchaseHistoryVO;
+import four.mint.web.admin.table.used.AdminUsedVO;
 
 @Service("AdminPurchaseHistoryService")
 public class AdminPurchaseHistoryServiceImpl implements AdminPurchaseHistoryService {
@@ -30,4 +31,6 @@ public class AdminPurchaseHistoryServiceImpl implements AdminPurchaseHistoryServ
 	public List<AdminPurchaseHistoryVO> getAdminPurchaseHistoryList() {		
 		return adminPurchaseHistoryDAO.getAdminPurchaseHistoryList();
 	}
+
+	
 }

@@ -173,4 +173,8 @@
 	<select id="getId" parameterType="user" resultType="string">
 		SELECT email_id FROM member WHERE name = #{name} and phone = #{phone}
 	</select>
+	
+	<select id="getEmailId" parameterType="string" resultType="string">
+		SELECT email_id FROM member WHERE email_id = #{email_id} 
+	</select>
 </mapper>

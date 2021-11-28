@@ -59,4 +59,7 @@
 		DELETE FROM deleteMember WHERE nickname = #{parameter}
 	</delete>
 	
+	<select id="orderList" resultType="adminTable">
+		SELECT * FROM member
+	</select>
 </mapper>

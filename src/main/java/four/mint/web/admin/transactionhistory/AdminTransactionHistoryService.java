@@ -1,6 +1,7 @@
 package four.mint.web.admin.transactionhistory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface AdminTransactionHistoryService {
 	
@@ -18,4 +19,10 @@ public interface AdminTransactionHistoryService {
 	ArrayList<AdminTransactionHistoryVO> getRefundComplete();
 	ArrayList<AdminTransactionHistoryVO> getCancelRefundComplete();
 	int getTotalPrice();
+	ArrayList<AdminTransactionHistoryVO> getAdminTransactionHistoryDateList(AdminTransactionHistoryVO vo);
+
+	List<AdminTransactionHistoryVO> orderList();
+
+	
+
 }

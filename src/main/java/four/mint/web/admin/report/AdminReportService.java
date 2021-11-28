@@ -21,6 +21,8 @@ public interface AdminReportService {
 	void insertblacklist(AdminBlackListVO vo);
 	
 	UserVO getUserInfo(String nickname);
+	
+	
 
 	
 

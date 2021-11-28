@@ -24,5 +24,12 @@ public class AdminUsedDAO {
 		return sqlSessionTemplate.selectList("AdminUsedDAO.getAdminUsedSellList", status);
 	}
 	
-	
+	public void delete(int vo)throws Exception{
+		  sqlSessionTemplate.delete("AdminUsedDAO.delete",vo); 	
+	}
+
+	public List<AdminUsedVO> orderList() {
+		
+		return sqlSessionTemplate.selectList("AdminUsedDAO.orderList");
+	}	
 }

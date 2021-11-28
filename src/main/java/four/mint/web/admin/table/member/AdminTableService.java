@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import four.mint.web.admin.page.AdminPageVO;
+import four.mint.web.admin.ChartVO;
 import four.mint.web.user.UserVO;
 
 
@@ -25,4 +26,7 @@ public interface AdminTableService {
 	ArrayList<AdminTableVO> getAddressWoman();
 	AdminTableVO getMemberOne(String parameter);
 	void deleteMember(String parameter);
+	List<AdminTableVO> orderList();
+	ArrayList<ChartVO> getinitialChart(ChartVO chart);
+	ArrayList<ChartVO> getResponsiveChart(ChartVO chart);
 }
