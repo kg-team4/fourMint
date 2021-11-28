@@ -80,4 +80,8 @@ public class AdminTransactionHistoryServiceImpl implements AdminTransactionHisto
 		return adminTransactionHistoryDAO.getCancelRefundComplete();
 	}
 	
+	@Override
+	public int getTotalPrice() {
+		return adminTransactionHistoryDAO.getTotalPrice();
+	}
 }

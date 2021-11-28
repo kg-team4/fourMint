@@ -35,7 +35,6 @@
 
 </head>
 <body id="page-top">
-
 	<!-- 페이지 전체 -->
 	<div id="wrapper">
 		<%@ include file="sidebar.jsp"%>
@@ -106,7 +105,7 @@
 												class="text-xs font-weight-bold text-info text-uppercase mb-1">문의</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">건</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${qnaCount }&nbsp;&nbsp;&nbsp;건</div>
 												</div>
 											</div>
 										</div>
@@ -125,7 +124,7 @@
 										<div class="col mr-2">
 											<div
 												class="text-xs font-weight-bold text-warning text-uppercase mb-1">매출</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800">원</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800">${totalPrice }&nbsp;&nbsp;&nbsp;원</div>
 										</div>
 										<div class="col-auto">
 											<i class="fas fa-won-sign fa-2x text-gray-300"></i>
@@ -242,55 +241,6 @@
 									</div>													
 								</div>
 							</div> -->
-						<div class='col-lg-6 mb-4'>
-							<div class="card shadow mb-4">
-								<div class="card-header py-3" id="datetimepicker1" data-target-input="nearest">
-									<h6 class="m-0 font-weight-bold text-primary">매출</h6>
-									<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" value="01/11/2020">
-									<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-										<div class="input-group-text">
-											<i class="fa fa-calendar"></i>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class='col-lg-6 mb-4'>
-							<div class="card shadow mb-4">
-								<div class="card-header py-3" id="datetimepicker2" data-target-input="nearest">
-									<h6 class="m-0 font-weight-bold text-primary">매출</h6>
-									<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" value="01/15/2020">
-									<div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
-										<div class="input-group-text">
-											<i class="fa fa-calendar"></i>
-										</div>
-									</div>
-									<script type="text/javascript">
-										$(function() {
-											$('#datetimepicker1').datetimepicker({
-												format : 'L'
-											});
-											$('#datetimepicker2').datetimepicker({
-												format : 'L',
-												useCurrent : false
-											});
-											$("#datetimepicker1").on("change.datetimepicker", function(e) {
-												$('#datetimepicker2').datetimepicker(
-													'minDate',
-													e.date
-												);
-											});
-											$("#datetimepicker2").on("change.datetimepicker", function(e) {
-												$('#datetimepicker1').datetimepicker(
-													'maxDate',
-													e.date
-												);
-											});
-										});
-									</script>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>

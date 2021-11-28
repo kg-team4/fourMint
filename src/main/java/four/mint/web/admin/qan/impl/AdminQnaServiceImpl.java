@@ -30,4 +30,9 @@ public class AdminQnaServiceImpl implements AdminQnaService {
 		adminQnaDAO.modify_qna(qnaVO);
 		
 	}
+	
+	@Override
+	public int getQNA() {
+		return adminQnaDAO.getQNA();
+	}
 }

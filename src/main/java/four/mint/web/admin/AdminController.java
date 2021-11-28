@@ -1,7 +1,5 @@
 package four.mint.web.admin;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,6 +23,9 @@ import four.mint.web.admin.login.AdminService;
 import four.mint.web.admin.login.AdminVO;
 import four.mint.web.admin.page.store.AdminPageStoreService;
 import four.mint.web.admin.page.store.AdminPageStoreVO;
+import four.mint.web.admin.qna.AdminQnaService;
+import four.mint.web.admin.report.AdminReportService;
+import four.mint.web.admin.report.AdminReportVO;
 import four.mint.web.admin.table.member.AdminTableService;
 import four.mint.web.admin.table.member.AdminTableVO;
 import four.mint.web.admin.table.used.AdminUsedService;
@@ -33,8 +34,6 @@ import four.mint.web.admin.transactionhistory.AdminTransactionHistoryService;
 import four.mint.web.admin.transactionhistory.AdminTransactionHistoryVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
-import four.mint.web.admin.report.AdminReportService;
-import four.mint.web.admin.report.AdminReportVO;
 import four.mint.web.user.store.StoreCategoryBigVO;
 import four.mint.web.user.store.StoreService;
 import four.mint.web.user.store.StoreVO;
@@ -72,6 +71,9 @@ public class AdminController {
 	@Autowired
 	private AdminTransactionHistoryService adminTransactionHistoryService;
 	
+	@Autowired
+	private AdminQnaService adminQnaService;
+	
 	@RequestMapping(value = "/home.mdo", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, AdminVO vo, HttpSession session) {
 		List<AdminReportVO> adminreportlist = adminReportService.getAdminReportList();
@@ -82,23 +84,25 @@ public class AdminController {
 		int storeCount = adminPageStoreService.getStoreCount();
 		request.setAttribute("storeCount", storeCount);
 		
+		int qnaCount = adminQnaService.getQNA();
+		request.setAttribute("qnaCount", qnaCount);
+		
+		int totalPrice = adminTransactionHistoryService.getTotalPrice();
+		request.setAttribute("totalPrice", totalPrice);
+		
 		session.setAttribute("lists", adminreportlist);
 		
+		vo.setId(String.valueOf(session.getAttribute("admin_id")));
+		vo.setPassword(String.valueOf(session.getAttribute("admin_password")));
 		AdminVO admin = adminService.getAdmin(vo);
 		
 		if(admin != null) {
 			session.setAttribute("admin_id", admin.getId());
-			System.out.println("로그인 성공: " + admin.getId());
 									
 			return "/index";
-			
 		} else {
-			System.out.println("로그인 실패");
-			
 			return "/login";
 		}
-		
-						
 	}
 	
 	@RequestMapping(value = "/buttons.mdo", method = RequestMethod.GET)
@@ -132,13 +136,7 @@ public class AdminController {
 		
 		return "/cards";
 	}
-	
-	@RequestMapping(value = "/utilities-boardmanage.mdo", method = RequestMethod.GET)
-	public String Uilities_ani(Locale locale, Model model) {
-		
-		return "/utilities-boardmanage";
-	}
-	
+
 	
 
 	@RequestMapping(value = "/register.mdo", method = RequestMethod.GET)
@@ -429,11 +427,6 @@ public class AdminController {
 		
 		return "/usedstatus";
 	}
-	@RequestMapping(value ="/useddistribution.mdo" , method = RequestMethod.GET)
-	public String useddistribution(Locale locale, Model model) {
-		
-		return "/useddistribution";
-	}
 	
 	@RequestMapping(value ="/storestatus.mdo" , method = RequestMethod.GET)
 	public String storestatus(HttpServletRequest request) {
@@ -565,12 +558,6 @@ public class AdminController {
 		}
 		
 		return "redirect:/storecancelstatus.mdo";
-	}
-	
-	@RequestMapping(value ="/store" + "distribution.mdo" , method = RequestMethod.GET)
-	public String storedistribution(Locale locale, Model model) {
-		
-		return "/storedistribution";
 	}
 	
 }

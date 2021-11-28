@@ -59,8 +59,8 @@
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">블랙리스트 목록</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="blacklist_report.mdo">신고목록</a> <a
-							class="dropdown-item" href="tables-blacklist.mdo">블랙리스트 목록</a>
+						<a class="dropdown-item" href="report_list.mdo">신고목록</a> <a
+							class="dropdown-item" href="black_list.mdo">블랙리스트 목록</a>
 					</div>
 				</div>
 
@@ -94,7 +94,16 @@
 											<td><fmt:formatDate value="${blacklist.date}"
 													pattern="yyyy-MM-dd" /></td>
 											<td>${blacklist.report_seq}</td>
-											<td></td>
+											<td>
+												<form>
+													<input type="hidden" value="${blacklist.blacklist_seq }"
+														name="blacklist_seq">
+													<button type="button" onclick="alert('삭제되었습니다.')"
+														class="btn btn-danger" id="delete_btn">
+														<i class="far fa-trash-alt"></i>
+													</button>
+												</form>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -107,6 +116,16 @@
 		</div>
 	</div>
 	<!-- End of Main Content -->
+
+	<script>
+		$(".btn-danger").click(function() {
+			$(this).parent().attr("action", "report_delete.mdo");
+			$(this).parent().attr("method", "post");
+			$(this).parent().submit();
+		});
+	</script>
+
+
 	<%@ include file="footer.jsp"%>
 
 	<!-- Bootstrap core JavaScript-->

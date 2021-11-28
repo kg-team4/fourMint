@@ -9,5 +9,5 @@ public interface AdminQnaService {
 
 	void modify_qna(AdminQnaVO qnaVO);
 
-
+	int getQNA();
 }

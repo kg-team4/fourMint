@@ -1,4 +1,4 @@
-+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!------------------------------------- 사이드바 -------------------------------------->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 	<!-- 사이드바 - 로고(브랜드) -->
@@ -11,7 +11,7 @@
 	<!-- 구분선 -->
 	<hr class="sidebar-divider my-0">
 	<!-- 메뉴 - 대시보드 -->
-	<li class="nav-item active"><a class="nav-link" href="home.mdo"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>게시판</span></a></li>
+	<li class="nav-item active"><a class="nav-link" href="home.mdo"><i class="fas fa-fw fa-tachometer-alt"></i> <span>게시판</span></a></li>
 	<!-- 구분선 -->
 	<hr class="sidebar-divider">
 	<!-- 메뉴 이름 -->
@@ -20,9 +20,13 @@
 	</a>
 		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<h6 class="collapse-header">커스텀 구성:</h6>
+				<h6 class="collapse-header">카테고리 페이지:</h6>
 				<a class="collapse-item" href="buttons.mdo">광고/배너관리</a> 
 				<a class="collapse-item" href="cards.mdo">매출관리</a>
+				<a class="collapse-item" href="memberpage.mdo">회원 관리 페이지</a> 
+				<a class="collapse-item" href="merchandise.mdo">상품 관리 페이지</a> 
+				<a class="collapse-item" href="report_list.mdo">신고/블랙리스트</a> 
+				<a class="collapse-item" href="customercenter.mdo">고객센터 페이지(Q&A)</a>
 			</div>
 		</div></li>
 	<!-- 메뉴 - 유틸 메뉴 -->
@@ -34,7 +38,6 @@
 				<h6 class="collapse-header">글 관리:</h6>
 				<a class="collapse-item" href="utilities-board.mdo">중고거래 글 관리</a>
 				<a class="collapse-item" href="utilities-annoucement.mdo">공지사항</a> 
-				<a class="collapse-item" href="utilities-boardmanage.mdo">스토어 상품 글 관리</a> 
 				<a class="collapse-item" href="utilities-usedfaq.mdo">FAQ</a>
 			</div>
 		</div></li>
@@ -46,19 +49,12 @@
 	</a>
 		<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<h6 class="collapse-header">카테고리 페이지:</h6>
-				<a class="collapse-item" href="memberpage.mdo">회원 관리 페이지</a> 
-				<a class="collapse-item" href="merchandise.mdo">상품관리 페이지</a> 
-				<a class="collapse-item" href="customercenter.mdo">고객센터 페이지(Q&A)</a>
-				<div class="collapse-divider"></div>
 				<h6 class="collapse-header">중고거래 페이지:</h6>
 				<a class="collapse-item" href="usedstatus.mdo">중고거래 현황 조회 페이지</a> 
-				<a class="collapse-item" href="useddistribution.mdo">중고거래 분포도 페이지</a>
 				<h6 class="collapse-header">스토어 거래 페이지:</h6>
 				<a class="collapse-item" href="storestatus.mdo">거래 현황 조회 페이지</a> 
 				<a class="collapse-item" href="storecancelstatus.mdo">취소 요청 조회 페이지</a> 
 				<a class="collapse-item" href="storecancelrefundcomplete.mdo">취소/반품 완료 페이지</a> 
-				<a class="collapse-item" href="storedistribution.mdo">거래 분포도 페이지</a>
 			</div>
 		</div></li>
 	<!-- 메뉴 - 차트 -->
@@ -73,7 +69,7 @@
 				<a class="collapse-item" href="tables-member.mdo">회원목록</a>
 				<a class="collapse-item" href="tables-used.mdo">중고 물품 목록</a> 
 				<a class="collapse-item" href="tables-purchasehistory.mdo">거래내역</a> 
-				<a class="collapse-item" href="tables-blacklist.mdo">블랙리스트 목록</a>
+				<a class="collapse-item" href="tables-blacklist.mdo">신고/블랙리스트</a>
 				<a class="collapse-item" href="tables-storegoods.mdo">스토어 물품 목록</a>
 			</div>
 		</div></li>				

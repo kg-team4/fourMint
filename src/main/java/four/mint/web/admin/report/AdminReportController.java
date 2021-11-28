@@ -20,73 +20,70 @@ import four.mint.web.user.UserVO;
 
 @Controller
 public class AdminReportController<BoardReportVO> {
-	
+
 	@Autowired
 	private AdminReportService adminReportService;
-	
-	@RequestMapping(value= "/tables-blacklist.mdo", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/tables-blacklist.mdo", method = RequestMethod.GET)
 	public String report(HttpServletRequest request) {
-		List<AdminReportVO> adminreportlist = adminReportService.getAdminReportList();
-		
-		request.setAttribute("list", adminreportlist);
-		return"/tables-blacklist";
+		List<AdminBlackListVO> adminblacklist = adminReportService.getAdminBlackList();
+
+		request.setAttribute("list", adminblacklist);
+		return "/tables-blacklist";
 	}
-	
-	@RequestMapping(value = "/blacklist_modify.mdo", method = RequestMethod.GET)
-	public void getblacklist_modify(@RequestParam("report_seq")int report_seq,Model model)throws Exception {
-		
-			
-		model.addAttribute("modify",report_seq);
-													
-	}
-		
-	
-	@RequestMapping(value = "/blacklist_report.mdo", method = RequestMethod.GET)
-	public String getblacklist_report(HttpServletRequest request) {
+
+	@RequestMapping(value = "/black_list.mdo", method = RequestMethod.GET)
+	public String black_list(HttpServletRequest request) {
 		List<AdminBlackListVO> adminblacklist = adminReportService.getAdminBlackList();
 		
 		request.setAttribute("list", adminblacklist);
+		return "/black_list";
+	}
+
+	@RequestMapping(value = "/blacklist_report.mdo", method = RequestMethod.GET)
+	public String getblacklist_report(HttpServletRequest request) {
+		List<AdminReportVO> adminreportlist = adminReportService.getAdminReportList();
+
+		request.setAttribute("list", adminreportlist);
 		return "/report";
-													
 	}
 	
-	
-	@RequestMapping(value = "/blacklist_delete.mdo", method = RequestMethod.GET)
-	public void getblacklist_delete(@RequestParam("report_seq") int report_seq,Model model)throws Exception {
+	@RequestMapping(value = "/report_list.mdo", method = RequestMethod.GET)
+	public String report_list(HttpServletRequest request) {
+		List<AdminReportVO> adminreportlist = adminReportService.getAdminReportList();
+
+		request.setAttribute("list", adminreportlist);
 		
-		model.addAttribute("delete",report_seq);		
+		return "/report_list";
 	}
-	
-	@RequestMapping(value ="/blacklist_modify.mdo", method = RequestMethod.POST)
-	public String blacklist_modify(@RequestParam("nickname") String nickname, int report_seq) throws Exception{
+
+	@RequestMapping(value = "/blacklist_modify.mdo", method = RequestMethod.POST)
+	public String blacklist_modify(@RequestParam("nickname") String nickname, int report_seq) throws Exception {
 		UserVO vo = adminReportService.getUserInfo(nickname);
 
 		AdminBlackListVO blackVO = new AdminBlackListVO();
-			blackVO.setEmail_id(vo.getEmail_id());
-			blackVO.setName(vo.getName());
-			blackVO.setNickname(vo.getNickname());
-			blackVO.setReport_seq(report_seq);
-			
+		blackVO.setEmail_id(vo.getEmail_id());
+		blackVO.setName(vo.getName());
+		blackVO.setNickname(vo.getNickname());
+		blackVO.setReport_seq(report_seq);
+
 		adminReportService.insertblacklist(blackVO);
-			
-			
-		return "redirect:blacklist_report.mdo";
+
+		return "redirect:black_list.mdo";
 	}
-		
-	 @RequestMapping(value = "/blacklist_delete.mdo", method = RequestMethod.POST)
-	 public String blacklist_delete(@RequestParam("report_seq") int report_seq) throws Exception { 
-		  adminReportService.delete(report_seq);
-	  
-		 return "/tables-blacklist"; 
-	  }
-	 
-	 @RequestMapping(value = "/report_delete.mdo", method = RequestMethod.POST)
-	 public String report_delete(@RequestParam("blacklist_seq") int blacklist_seq) throws Exception { 
-		  adminReportService.blacklist_delete(blacklist_seq);
-	  
-		 return "redirect:blacklist_report.mdo"; 
-	  }
-	 
-		  
+
+	@RequestMapping(value = "/blacklist_delete.mdo", method = RequestMethod.POST)
+	public String blacklist_delete(@RequestParam("report_seq") int report_seq) throws Exception {
+		adminReportService.delete(report_seq);
+
+		return "/black_list";
+	}
+
+	@RequestMapping(value = "/report_delete.mdo", method = RequestMethod.POST)
+	public String report_delete(@RequestParam("blacklist_seq") int blacklist_seq) throws Exception {
+		adminReportService.blacklist_delete(blacklist_seq);
+
+		return "redirect:report_list.mdo";
+	}
 
 }

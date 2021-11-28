@@ -26,7 +26,9 @@ public class AdminQnaDAO {
 
 	public void modify_qna(AdminQnaVO qnaVO) {
 		sqlSessionTemplate.update("AdminQnaDAO.modift_qna",qnaVO);
-		
 	}
-
+	
+	public int getQNA() {
+		return sqlSessionTemplate.selectOne("AdminQnaDAO.getQNA");
+	}
 }

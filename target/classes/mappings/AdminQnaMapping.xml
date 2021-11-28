@@ -29,7 +29,8 @@
 		update notice set ask_seq = #{ask_seq}, store_seq=#{store_seq}, nickname=#{nickname}, content=#{content}, date=now() product_name=#{product_name}, status=#{status},where ask_seq = #{ask_seq}
 	</update>
 	
-	
-	
+	<select id="getQNA" resultType="int">
+		SELECT COUNT(*) FROM storeAsk WHERE status = 1;
+	</select>
 	
 </mapper>
