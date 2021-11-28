@@ -14,6 +14,7 @@
     <title>공지사항</title>
 
     <!-- Custom fonts for this template-->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -77,18 +78,15 @@
 						      	</tr>
 						      		<tr>
 						      			<td><input type="submit" value="등록" /></td>						      		
-						      		</tr>
-						 
+						      		</tr>						 
 						      	</table>	
 						      </form>  
 						    </div>
 						</div>
-						<!-- 글쓰기 모달창 -->
-						
+						<!-- 글쓰기 모달창 -->					
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <!--  <input type="submit" class="btn btn-primary btn-user btn-block" value="제출하기"> -->                                     
-                                   
+                                <!--  <input type="submit" class="btn btn-primary btn-user btn-block" value="제출하기"> -->                                                                       
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -100,7 +98,7 @@
                                         </tr>
                                     </thead>                                  
                                     <tbody>                                   		
-                                            <c:forEach var="notice" items="${list }">
+                                        <c:forEach var="notice" items="${list }">
 	                                        <tr>	                                        		                                        		                                        		
 	                                            <td>${notice.notice_seq }</td>
 	                                            <td>${notice.notice_title }</td>
@@ -113,19 +111,18 @@
 					                                    <c:when test="${notice_status eq '1'}"><span style="color: red">고정</span></c:when>
 					                                 </c:choose></td>	                                          
 	                                           <td>
-	                                            <form>
+	                                         <form>
 		                                            <input type="hidden" value="${notice.notice_seq  }" name="notice_seq">
 	                                           		<input type="hidden" value="${notice.notice_title }" name="notice_title">
 	                                           		<input type="hidden" value="${notice.notice_content}" name="notice_content">
 		                                            <button type="button"  class="btn btn-success" ><i class="fas fa-edit"></i></button>		                                   
 		                                        	<button type="button" class="btn btn-danger" ><i class="far fa-trash-alt"></i></button>	
-		                                        </form>
-		                                        </td>                                         
+		                                       </form>
+		                                       </td>                                         
                                         	</tr>
                                       </c:forEach>        		                                                                                                                                                                                                                                                                                                                                                                         
                                     </tbody>
-                                </table>
-                                +
+                                </table>                              
                                 <!-- 수정 모달창 -->
 		                        <div class="modal_cover">
 								    <div class="modal_shut"><a href="#">close</a></div>
@@ -151,10 +148,9 @@
 								      		</tr>							 
 								      	</table>	
 								      </form>  
-								    </div>
+								   </div>
 								</div>
-								<!-- 수정 모달창 -->
-                                
+								<!-- 수정 모달창 -->                               
                             </div>
                         </div>
                     </div>
@@ -162,11 +158,9 @@
                </div>
                 <!-- /.container-fluid -->
 			</div>
-            </div>
-            <!-- End of Main Content -->
-            
-        <script>               
-       
+          </div>
+            <!-- End of Main Content -->            
+  <script>                     
        $(".btn-danger").click(function(){
     	   if(!confirm('삭제하시겠습니까?')){
     		   return false;
@@ -175,9 +169,9 @@
     	   $(this).parent().attr("method", "post");
     	   $(this).parent().submit();  
        });
-      </script>
+  </script>
       
-      <script>
+  <script>
     window.onload = function() {
  
     /* 글쓰기 js */
@@ -209,9 +203,7 @@
     }
  
     document.querySelector('.modal_shut').addEventListener('click', offClick2);
-    /* 수정 js */
-    
- 
+    /* 수정 js */    
 };
 </script>
 

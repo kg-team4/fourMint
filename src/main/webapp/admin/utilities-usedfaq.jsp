@@ -66,7 +66,7 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">FAQ </h6>
                         </div>
-                        <div class="card-body">
+                      <div class="card-body">
                         
                         <!-- 글쓰기 모딜창 -->
                         <button type='button' id="modal_btn">글쓰기</button>
@@ -228,16 +228,15 @@
 		                   		    document.querySelector('.modal_shut').addEventListener('click', offClick2);
 		                   		    /* 수정 js */
                                 };        
-                                </script>                              
-                                
+                                </script>                                                             
                             </div>
                         </div>
                     </div>
                 </div>
-               </div>
+              </div>
                 <!-- /.container-fluid -->
-				</div> 
-            </div>
+		</div> 
+       </div>
             <!-- End of Main Content -->
 		<script>     
     		 	function deleteFaq(faq_seq){

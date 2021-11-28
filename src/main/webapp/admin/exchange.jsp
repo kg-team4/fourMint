@@ -67,42 +67,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">FAQ </h6>
                         </div>
                         <div class="card-body">
-                        
-                          <!-- 글쓰기 모딜창 -->
-                        <button type='button' id="modal_btn">글쓰기</button>
-						<div class="black_bg"></div>
-                        <div class="modal_wrap">
-						    <div class="modal_close"><a href="#">close</a></div>
-						    <div>
-						      <form action="faq.mdo"  method="post">
-						      <table>					      
-						      	<tr>
-							      	<td>제목</td>
-							      	<td> <input type="text" name="title" required="required"></td>
-						      	</tr>
-						      		<select name="category">
-						      			<option value="">선택</option>						      									      			
-						      			<option value="기타">기타</option>
-						      			<option value="주문/결제">주문/결제</option>
-						      			<option value="반품/교환">반품/교환</option>
-						      			<option value="취소/환불">취소/환불</option>
-						      			<option value="배송">배송</option>
-						      			<option value="민트마켓">민트마켓</option>
-						      		</select>
-						      	<tr>
-						      	</tr>
-						      	<tr>
-						      		<td>내용</td>
-						      		<td><textarea name="content" required="required"></textarea></td>
-						      	</tr>
-						      	<tr>
-						      			<td><input type="submit" value="등록" /></td>						      		
-						      	</tr>						 
-						      	</table>	
-						      </form>  
-						    </div>
-						</div>
-						<!-- 글쓰기 모달창 -->
+                                               
 						
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -147,21 +112,7 @@
                                 
 								<script>
                                 window.onload = function() {
-                                	
-	                                /* 글쓰기 js */
-	                    		    function onClick() {
-	                    		        document.querySelector('.modal_wrap').style.display ='block';
-	                    		        document.querySelector('.black_bg').style.display ='block';
-	                    		    }   
-	                    		    function offClick() {
-	                    		        document.querySelector('.modal_wrap').style.display ='none';
-	                    		        document.querySelector('.black_bg').style.display ='none';
-	                    		    }
-	                    		 
-	                    		    document.getElementById('modal_btn').addEventListener('click', onClick);
-	                    		    document.querySelector('.modal_close').addEventListener('click', offClick);
-	                    		    /* 글쓰기 js */
-	                    		    };
+                                		                              
 	                    		};
                                 </script>
                                 

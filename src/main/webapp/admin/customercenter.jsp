@@ -23,6 +23,9 @@
     <!-- Custom styles for this page -->
     <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     
+   <!-- 제이쿼리 -->
+ <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    
     
 
 </head>
@@ -87,9 +90,11 @@
 					                                 </c:choose></td>
 	                                           <td>
 	                                           <form>
-	                                           		<input type="hidden" value="${storeask.ask_seq }" name="ask_seq">	                                           		
-		                                            <button type="button"   class="btn btn-success" ><i class="fas fa-edit"></i></button>		                                   
-		                                        	<button type="button"  class="btn btn-danger" ><i class="far fa-trash-alt"></i></button>	
+	                                           		<input type="hidden" value="${storeask.ask_seq }" name="ask_seq">		                                           		
+	                                           		<input type="hidden" value="${storeask.content }" name="content">  
+	                                           		<input type="hidden" value="${storeask.status }" name="status">  	                                         	                                           		                     		
+		                                            <button type="button" class="btn btn-success" ><i class="fas fa-edit"></i></button>		                                   
+		                                        	<button type="button" class="btn btn-danger" ><i class="far fa-trash-alt"></i></button>	
 	                                        	</form>
 	                                        </td> 		                 
 	                                      </tr> 
@@ -105,87 +110,62 @@
 								      <tr>
 								      	<td>질문번호</td>
 								      	<td><input id="hi_ask_seq" type="text" value="" name="ask_seq" readonly></td>
-								      </tr>
-								      <tr>
-								      		<td>상품번호</td>
-								      		<td><textarea id="hi_seq" name="store_seq" required="required"></textarea></td>
-								      	</tr>
-								      	<tr>
-									      	<td>닉네임</td>
-									      	<td> <input id="hi_nickname" type="text" name="nickname" required="required"></td>
-								      	</tr>
+								      </tr>								      								      	
 								      	<tr>
 								      		<td>내용</td>
-								      		<td><textarea id="hi_content" name="content" required="required"></textarea></td>
-								      	</tr>
-								      	<tr>
-								      		<td>날짜</td>
-								      		<td><input id="hi_date" name="date" required="required"></textarea></td>
-								      	</tr>
-								      	<tr>
-								      		<td>상품명</td>
-								      		<td><input id="hi_product_name" name="product_name" required="required"></textarea></td>
-								      	</tr>
-								      	<tr>
-								      		<td>답변상태</td>
-								      		<td><input id="hi_status" name="status" required="required"></textarea></td>
-								      	</tr>
+								      		<td><textarea id="hi_content"  name="content" required="required"></textarea></td>
+								      	</tr>								      	
 								      		<tr>
 								      			<td>
 								      				<input type="submit" value="등록" />
 								      			</td>						      		
 								      		</tr>							 
-								      	</table>	
-								      </form>  
-								    </div>
+								      </table>	
+								   </form>  
 								</div>
-					<script>   
-					window.onload = function() {
-						
-						function offClick2() {
-					        document.querySelector('.modal_cover').style.display ='none';
-					        document.querySelector('.black_bg').style.display ='none';
-					    }
-					 
-					    document.querySelector('.modal_shut').addEventListener('click', offClick2);
-					    /* 수정 js */	
-					    	
-						 /* 수정 js */
-					    $(".btn-success").click(function onClick2() {
-					    	$("#hi_ask_seq").val($(this).prev().prev().prev().val());
-					    	$("#hi_seq").val($(this).prev().prev().val());
-					    	$("#hi_nickname").val($(this).prev().prev().val());
-					    	$("#hi_content").val($(this).prev().prev().val());
-					    	$("#hi_date").val($(this).prev().val());
-					    	$("#hi_product_name").val($(this).prev().val());
-					    	$("#hi_status").val($(this).prev().val());
-					    	
-					        document.querySelector('.modal_cover').style.display ='block';
-					        document.querySelector('.black_bg').style.display ='block';
-					          
-					    }); 
-						 </script>
-                            </div>
-                        </div>
-                    </div>
+							</div>	
+							<!-- 등록 모달창 -->												
+                         </div>
+                       </div>
+                   	 </div>
 					</div>
                 </div>
                 <!-- /.container-fluid -->
-				</div>
-            </div>
+			</div>
+           </div>
+          
             <!-- End of Main Content-->	
+            
 		<script>
 		$(".btn-danger").click(function() {
 			if (!confirm('삭제하시겠습니까?')) {
 				return false;
 			}
-			$(this).parent().attr("action", "faq_delete.mdo");
+			$(this).parent().attr("action", "qna_delete.mdo");
 			$(this).parent().attr("method", "post");
 			$(this).parent().submit();
 		});
 		</script>
+		
+		<script>
+		  window.onload = function() {					    	
+					 /* 등록 js */
+					    $(".btn-success").click(function onClick2() {
+					    	$("#hi_ask_seq").val($(this).prev().prev().prev().val());					    	
+					    	
+					        document.querySelector('.modal_cover').style.display ='block';
+					        document.querySelector('.black_bg').style.display ='block';
+					    });
+					    function offClick2() {
+						     document.querySelector('.modal_cover').style.display ='none';
+						     document.querySelector('.black_bg').style.display ='none';
+						     
+						 document.querySelector('.modal_shut').addEventListener('click', offClick2);  
+					    }					          
+					   }; 
+		</script>
 	
-								<%@ include file="footer.jsp" %>
+	<%@ include file="footer.jsp" %>
           
     <!-- Bootstrap core JavaScript-->
     <script src="admin/vendor/jquery/jquery.min.js"></script>
