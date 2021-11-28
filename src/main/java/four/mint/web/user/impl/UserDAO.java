@@ -176,6 +176,11 @@ public class UserDAO {
 		
 		return sqlSessionTemplate.selectOne("UserDAO.getId", vo);
 	}
+	
+	public String getEmailId(String email) {
+		
+		return sqlSessionTemplate.selectOne("UserDAO.getEmailId", email);
+	}
 
 	public int getUserCount() {
 		return sqlSessionTemplate.selectOne("UserDAO.getUserCount");

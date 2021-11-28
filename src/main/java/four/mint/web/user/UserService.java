@@ -46,5 +46,6 @@ public interface UserService {
 	UserVO getUserFromEmail(String email);
 	List<UserVO> getMem(SnsVO vo);
 	String getId(UserVO vo);
+	String getEmailId(String email);
 	
 }

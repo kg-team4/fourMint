@@ -63,6 +63,9 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">신고가 들어오면 블랙리스트 처리</h6>
                         </div>
+                            <form action="excel_blacklist.mdo" method="get">
+                    			<button>액셀</button>
+                    		</form>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

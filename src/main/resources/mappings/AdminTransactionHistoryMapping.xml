@@ -48,4 +48,7 @@
   			<![CDATA[
 		]]>
 	</select>
+	<select id="orderList" resultType="adminTransactionHistory">
+		SELECT * FROM transactionhistory
+	</select>
 </mapper>

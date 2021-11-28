@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import four.mint.web.admin.purchasehistory.AdminPurchaseHistoryVO;
+import four.mint.web.admin.table.used.AdminUsedVO;
 
 @Repository
 public class AdminPurchaseHistoryDAO {
@@ -25,6 +26,8 @@ public class AdminPurchaseHistoryDAO {
 	public List<AdminPurchaseHistoryVO>getAdminPurchaseHistoryList(){
 		return sqlSessionTemplate.selectList("AdminPurchaseHistoryDAO.getAdminPurchaseHistoryList");
 	}
+
+	
 
 
 }

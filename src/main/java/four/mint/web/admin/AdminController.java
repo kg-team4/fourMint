@@ -3,19 +3,33 @@ package four.mint.web.admin;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itextpdf.text.DocumentException;
 
@@ -27,11 +41,14 @@ import four.mint.web.admin.page.store.AdminPageStoreService;
 import four.mint.web.admin.page.store.AdminPageStoreVO;
 import four.mint.web.admin.table.member.AdminTableService;
 import four.mint.web.admin.table.member.AdminTableVO;
+import four.mint.web.admin.transactionhistory.AdminTransactionHistoryService;
+import four.mint.web.admin.transactionhistory.AdminTransactionHistoryVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.admin.report.AdminReportService;
 import four.mint.web.admin.report.AdminReportVO;
 import four.mint.web.user.store.StoreCategoryBigVO;
+import net.sf.json.JSONArray;
 
 @Controller
 public class AdminController {
@@ -56,6 +73,11 @@ public class AdminController {
 	
 	@Autowired
 	private AdminReportService adminReportService;
+	
+	@Autowired
+	private AdminTransactionHistoryService adminThistoryService;
+	
+	//Thistory == TransactionHistory
 	
 	@RequestMapping(value = "/home.mdo", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, AdminVO vo, HttpSession session) {
@@ -144,6 +166,55 @@ public class AdminController {
 		
 		return "/forgot-password";
 	}
+	
+	@RequestMapping(value = "/chartEx.mdo", method = RequestMethod.GET)
+	public String chartsEx(Model model) {
+		
+		 SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		 Calendar week = Calendar.getInstance();
+		 week.add(Calendar.DATE , -7);
+		 ChartVO c = new ChartVO();
+		 String startDate= (date.format(week.getTime()));
+		 
+		 c.setEnd_date(date.format(new Date()));
+		 c.setStart_date(startDate);
+		 
+//		 c.setEnd_date(Timestamp.valueOf((date.format(new Date()))));
+//		 c.setStart_date(Timestamp.valueOf(startDate));
+		 
+		 String[] aa = startDate.split(" ");
+		 String StartDate = aa[0];
+		 c.setStartDate(StartDate);
+		 String bb = date.format(new Date());
+		 String [] cc = bb.split(" ");
+		 String EndDate = cc[0];
+		 c.setEndDate(EndDate);
+		 
+		 
+		 System.out.println(c.getStartDate());
+		 System.out.println(c.getEndDate());
+		 getChart(c,model);
+			
+	
+		
+		return "/chartex";
+	}
+	
+	
+	@ResponseBody
+	@PostMapping("getNewChart.mdo")
+	public JSONArray getNewChart(@RequestBody ChartVO chart,HttpSession session){
+		
+		return JSONArray.fromObject(adminTableService.getResponsiveChart(chart));
+	}
+	
+	private void getChart(ChartVO chart, Model model) {
+		model.addAttribute("chartList",JSONArray.fromObject(adminTableService.getinitialChart(chart)));
+	    model.addAttribute("start_date",chart.getStart_date());
+	    model.addAttribute("end_date",chart.getEnd_date());
+		
+	}
+	
 	
 
 	@RequestMapping(value ="/charts.mdo" , method = RequestMethod.GET)
@@ -520,6 +591,32 @@ public class AdminController {
 		ageList.add(thirties);
 		ageList.add(forties);
 		ageList.add(overfifties);
+		
+		//매출 차
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		 Calendar week = Calendar.getInstance();
+		 week.add(Calendar.DATE , -7);
+		 ChartVO c = new ChartVO();
+		 String startDate= (date.format(week.getTime()));
+		 
+		 c.setEnd_date(date.format(new Date()));
+		 c.setStart_date(startDate);
+		 
+//		 c.setEnd_date(Timestamp.valueOf((date.format(new Date()))));
+//		 c.setStart_date(Timestamp.valueOf(startDate));
+		 
+		 String[] aa = startDate.split(" ");
+		 String StartDate = aa[0];
+		 c.setStartDate(StartDate);
+		 String bb = date.format(new Date());
+		 String [] cc = bb.split(" ");
+		 String EndDate = cc[0];
+		 c.setEndDate(EndDate);
+		 
+		 
+		 System.out.println(c.getStartDate());
+		 System.out.println(c.getEndDate());
+		 getChart(c,model);
 
 		request.setAttribute("ageList", ageList);
 		
@@ -565,7 +662,13 @@ public class AdminController {
 		return "/useddistribution";
 	}
 	@RequestMapping(value ="/storestatus.mdo" , method = RequestMethod.GET)
-	public String storestatus(Locale locale, Model model) {
+	public String storestatus(Locale locale, Model model, HttpServletRequest request) {
+		
+		
+		
+		
+		
+		
 		
 		return "/storestatus";
 	}
@@ -598,7 +701,70 @@ public class AdminController {
 		
 		return "/delivery";
 	}
-	
+	 @GetMapping("excel_transactionhistory.mdo")
+	    public void excelDownload(HttpServletResponse response) throws IOException {
+	      
+	          // Workbook wb = new HSSFWorkbook();
+	           Workbook wb = new XSSFWorkbook();
+	           Sheet sheet = wb.createSheet("첫번째 시트");
+	           Row row = null;
+	           Cell cell = null;
+	           int rowNum = 0;
+
+	           // Header
+	           String[] header = {"사용자이메일", "상품이름", "금액", "판매개수", "날짜", "uid", "금액", "요청사항", "주소", "상태", "취소날짜", "취소이유", "취소상세이유", "취소상태"};
+	           row = sheet.createRow(rowNum++);
+	           for(int i=0; i<header.length; i++) {
+	              cell = row.createCell(i);
+	              cell.setCellValue(header[i]);
+	           }
+	         
+	           List<AdminTransactionHistoryVO> paymentList = adminThistoryService.orderList();
+	           // Body
+	           for (int i=0; i<paymentList.size(); i++) {           
+	            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+	                
+	               row = sheet.createRow(rowNum++);
+	               cell = row.createCell(0);
+	               cell.setCellValue(paymentList.get(i).getEmail_id());
+	               cell = row.createCell(1);
+	               cell.setCellValue(paymentList.get(i).getProduct_name());
+	               cell = row.createCell(2);
+	               cell.setCellValue(paymentList.get(i).getTransaction_price());
+	               cell = row.createCell(3);
+	               cell.setCellValue(paymentList.get(i).getTransaction_count());
+	               cell = row.createCell(4);
+	               cell.setCellValue(date.format(paymentList.get(i).getDate()));
+	               cell = row.createCell(5);
+	               cell.setCellValue(paymentList.get(i).getMerchant_uid());
+	               cell = row.createCell(6);
+	               cell.setCellValue(paymentList.get(i).getProduct_price());
+	               cell = row.createCell(7);
+	               cell.setCellValue(paymentList.get(i).getRequest());
+	               cell = row.createCell(8);
+	               cell.setCellValue(paymentList.get(i).getAddress2());
+	               cell = row.createCell(9);
+	               cell.setCellValue(paymentList.get(i).getStatus());
+	               cell = row.createCell(10);
+	               cell.setCellValue(paymentList.get(i).getCancel_date());
+	               cell = row.createCell(11);
+	               cell.setCellValue(paymentList.get(i).getCancel_status());
+	               cell = row.createCell(12);
+	               cell.setCellValue(paymentList.get(i).getCancel_reason());
+	               cell = row.createCell(13);
+	               cell.setCellValue(paymentList.get(i).getPay_cancel());
+	           }
+
+	           // 컨텐츠 타입과 파일명 지정
+	           response.setContentType("ms-vnd/excel");
+	          // response.setHeader("Content-Disposition", "attachment;filename=example.xls");
+	           response.setHeader("Content-Disposition", "attachment;filename=상품거래.xlsx");
+
+	           // Excel File Output
+	           wb.write(response.getOutputStream());
+	           wb.close();
+	       }
+	   
 	
 }
 

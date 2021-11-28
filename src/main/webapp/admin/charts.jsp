@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -8,24 +8,75 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>차트</title>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-	crossorigin="anonymous"></script>
-<!--  -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+ <script
+   src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+   crossorigin="anonymous"></script>
+
 <script src="https://kit.fontawesome.com/d0b304acae.js"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="resources/js/join/datepicker.js"></script>
-<script>
+   crossorigin="anonymous"></script>
+   
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ 
+
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+
+
+
+   
+<!-- fontawesomeCDN -->
+
+<!-- Bootstrap CSS -->
+
+<!-- Font Awesome -->
+
+<!--  -->
+
+<link
+   href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Rambla|Calligraffitti'
+   rel='stylesheet' type='text/css'>
+
+
+
+
+
+ 
+
+
+<script type="text/javascript">
+
 	$(document).ready(function() {
+		$.datepicker.setDefaults({
+		    dateFormat: 'yy-mm-dd' //Input Display Format 변경
+		    ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+		    ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+		    ,changeYear: true //콤보박스에서 년 선택 가능
+		    ,changeMonth: true //콤보박스에서 월 선택 가능                
+		    ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+		    ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
+		    ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+		    ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
+		    ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
+		    ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+		    ,minDate: "-100Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+				,yearRange: "-100:-0"
+		    ,maxDate: "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)      
+			         });
+			 $( "#m_birth" ).datepicker();
+			 $( "#start_history1" ).datepicker();
+			$( "#end_history1" ).datepicker();
+			$( "#start_history" ).datepicker('setDate', '-7D');
+			$( "#end_history" ).datepicker('setDate', 'today');
+				
 		var ctx = $("#chart-line");
 		var myLineChart = new Chart(ctx, {
 			type : 'bar',
@@ -87,6 +138,8 @@
 				}
 			}
 		});
+		
+		
 	});
 
 	// Load the Visualization API and the corechart package.
@@ -119,7 +172,41 @@
 		var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
 			chart.draw(data, options);
 	}
+	
+	
+	function genderPdf(){
+	    html2canvas($('#tab01')[0]).then(function(canvas) { //저장 영역 div id
+			
+		    // 캔버스를 이미지로 변환
+		    var imgData = canvas.toDataURL('image/png');
+			     
+		    var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
+		    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+		    var imgHeight = canvas.height * imgWidth / canvas.width;
+		    var heightLeft = imgHeight;
+		    var margin = 10; // 출력 페이지 여백설정
+		    var doc = new jsPDF('p', 'mm');
+		    var position = 0;
+		       
+		    // 첫 페이지 출력
+		    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+		    heightLeft -= pageHeight;
+		         
+		    // 한 페이지 이상일 경우 루프 돌면서 출력
+		    while (heightLeft >= 20) {
+		        position = heightLeft - imgHeight;
+		        doc.addPage();
+		        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+		        heightLeft -= pageHeight;
+		    }
+		 
+		    // 파일 저장
+		    doc.save('file-name.pdf');	  
+		});
+}	
+	
 </script>
+
 <style>
 	body {
 		background-color: #f9f9fa
@@ -246,7 +333,7 @@
 	rel="stylesheet">
 </head>
 <body id="page-top">
-	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 		<%@ include file="sidebar.jsp"%>
@@ -276,7 +363,9 @@
 								<div class="card shadow mb-4">
 									<div class="card-header py-3">
 										<h6 class="m-0 font-weight-bold text-primary">민트마켓 회원성비</h6>
+										<button type="button" class="btn btn-primary" id="genderPdf" onclick="genderPdf();" >PDF 저장</button>
 									</div>
+									<div id="chartGender">
 									<ul class="chartSex">
 										<li>
 											<dl>
@@ -299,6 +388,7 @@
 											</dl>
 										</li>
 									</ul>
+									</div>
 								</div>
 								<div class="card shadow mb-4" style="height: 600px">
 									<div class="card-header py-3">
@@ -336,405 +426,274 @@
 								</div>
 							</div>
 							<div id="tab02">
-								<%-- <div class="container-fluid px-4">
-									<div class="card mb-4" style="width: 100%; height: 20%; float: left;">
-										<input type="hidden" id="chartType" value="line">
-										<div class="card-header">
-											<i class="fas fa-chart-area me-1"></i><span id="sales_term">&nbsp;<span
-												id="start_date_span">20${start_date }</span> ~ <span
-												id="end_date_span">20${end_date }</span> 별 매출
-											</span> &nbsp;&nbsp;&nbsp; 합계 : <span id="totalspan"></span> &#8361;
-											<button onclick="newLineChart()" class="btn btn-warning"
-												id="barOrLine" style="float: right;">bar</button>
-										</div>
-										<div class="card-body">
-											<canvas id="myChart" width="50%" height="30"></canvas>
-											<div class="card mb-4" style="width: 100%;">
-												<div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio" name="date_term"
-															id="flexRadioDefault1" checked value="daily">
-															<label class="form-check-label" for="flexRadioDefault1"> 일 별</label>
-													</div>
-						
-													<div class="form-check">
-														<input class="form-check-input" type="radio" name="date_term"
-															id="flexRadioDefault2" value="month"> <label
-															class="form-check-label" for="flexRadioDefault2"> 월 별</label>
-													</div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio" name="date_term"
-															id="flexRadioDefault3" value="year"> <label
-															class="form-check-label" for="flexRadioDefault3"> 년 별</label>
-													</div>
-												</div>
-												<div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio" name="type"
-															id="flexRadioDefault4" checked value="none"> <label
-															class="form-check-label" for="flexRadioDefault4"> 없 음</label>
-													</div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio" name="type"
-															id="flexRadioDefault5" value="gender"> <label
-															class="form-check-label" for="flexRadioDefault5"> 성 별</label>
-													</div>
-													<div class="form-check">
-														<input class="form-check-input" type="radio" name="type"
-															id="flexRadioDefault6" value="pay_status"> <label
-															class="form-check-label" for="flexRadioDefault6"> 결제 유형</label>
-													</div>
-													<div>
-														<br> <input type="text" name="store_code" id="store_code"
-															maxlength="10" />
-														<div class="form-check">
-															<input type="text" name="start_date" id="start_history"
-																maxlength="10" readonly="readonly" /> &nbsp; ~ &nbsp; <input
-																type="text" name="end_date" id="end_history" maxlength="10"
-																readonly="readonly" />
-															<button type="button" class="btn btn-warning"
-																onclick='getNewChart()'>검색</button>
-														</div>
-													</div>
-						
-													<script type="text/javascript">
-														//Set new default font family and font color to mimic Bootstrap's default styling
-						
-														Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-														Chart.defaults.global.defaultFontColor = '#292b2c';
-														
-														var chartType = $('#chartType').val();
-														// Area Chart Example
-														var total = 0;
-														var max = 0;
-						
-														var jsonChart = ${chartList};
-						
-														var labels = jsonChart.map(function(e) {
-															return e.daily_chart;
-														})
-						
-														var data = jsonChart.map(function(e) {
-															total += e.sales_amount;
-						
-															if (e.sales_amount > max)
-																max = e.sales_amount;
-						
-															return e.sales_amount;
-														})
-														
-														$('#totalspan').html(total);
-														var options = {
-															scales : {
-																xAxes : [ {
-																	time : {
-																		unit : 'date'
-																	},
-																	gridLines : {
-																		display : false
-																	},
-																	ticks : {
-																		maxTicksLimit : 7
-																	}
-																} ],
-																yAxes : [ {
-																	ticks : {
-																		min : 0,
-																		max : (max + 10000),
-																		maxTicksLimit : 5
-																	},
-																	gridLines : {
-																		color : "rgba(0, 0, 0, .125)",
-																	}
-																} ],
-															},
-															legend : {
-																display : false
-															}
-														}
-						
-														var dataSets = [ {
-															label : "sales amount",
-															lineTension : 0.3,
-															backgroundColor : "rgba(2,117,216,0.2)",
-															borderColor : "rgba(2,117,216,1)",
-															pointRadius : 5,
-															pointBackgroundColor : "rgba(2,117,216,1)",
-															pointBorderColor : "rgba(255,255,255,0.8)",
-															pointHoverRadius : 5,
-															pointHoverBackgroundColor : "rgba(2,117,216,1)",
-															pointHitRadius : 50,
-															pointBorderWidth : 2,
-															data : data
-														} ];
-						
-														var chartData = {
-															labels : labels,
-															datasets : dataSets
-														}
-						
-														var ctx = document.getElementById("myChart").getContext('2d');
-														var myLineChart = new Chart(ctx, {
-															type : $('#chartType').val(),
-															data : chartData,
-															options : options
-														});
-						
-														function newLineChart() {
-															if ($('#chartType').val() == 'line') {
-																$('#chartType').val('bar');
-																chartType = $('#chartType').val();
-																$('#barOrLine').text('line');
-															} else {
-																$('#chartType').val('line');
-																chartType = $('#chartType').val();
-																$('#barOrLine').text('bar');
-															}
-						
-															ctx = document.getElementById("myChart");
-															myLineChart = new Chart(ctx, {
-																type : $('#chartType').val(),
-																data : chartData,
-																options : options
-															});
-														}
-						
-														function getNewChart() {
-															var store_code = $('#store_code').val();
-															console.log(store_code);
-															var start_date = $('input[name="start_date"]').val();
-															var end_date = $('input[name="end_date"]').val();
-						
-															var date_term = $('input[name="date_term"]:checked').val();
-															var type = $('input[name="type"]:checked').val();
-															var order_status = $('input[name="order_status"]:checked').val();
-						
-															var man_array = [];
-															var woman_array = [];
-															var nogend_array = [];
-						
-															var cash_array = [];
-															var card_array = [];
-															var elsepay_array = [];
-						
-															$('#start_date_span').html('<i><font>' + start_date + '</font></i>');
-															$('#end_date_span').html('<i><font>' + end_date + '</font></i>');
-						
-															$.ajax(
-																{
-																	type : "post",
-																	url : "getCharts.mdo",
-																	async : false,
-																	data : JSON.stringify({
-																		"start_date" : start_date,
-																		"end_date" : end_date,
-																		"date_term" : date_term,
-																		"type" : type,
-																		"order_status" : order_status,
-																		"store_code" : store_code
-																	}),
-																	contentType : "application/json"
-																}).done( function(res) {
-																	max = 0;
-																	total = 0;
-																	for ( var i in res) {
-																		if (res[i].sales_amount > max)
-																			max = res[i].sales_amount;
-																		total += res[i].sales_amount;
-																		res[i].sales_amount;
-																	}
-																	$('#totalspan').html(
-																			total);
-																	labels = res.map(function(e) {
-																		if (date_term == 'daily') {
-																			return e.daily_chart;
-																		} else if (date_term == 'month') {
-																			return e.month_chart;
-																		} else if (date_term == 'year') {
-																			return e.year_chart;
-																		}
-																	})//end label_term
-		
-																	if (type == 'gender') {
-																		for ( var i in res) {
-																			if (res[i].user_gender == 'man') {
-																				man_array
-																						.push(res[i].sales_amount);
-																			} else if (res[i].user_gender == 'woman') {
-																				woman_array
-																						.push(res[i].sales_amount);
-																			} else {
-																				nogend_array
-																						.push(res[i].sales_amount);
-																			}
-																		}
-		
-																		dataSets = [
-																			{
-																				label : "sales amount man",
-																				backgroundColor : [
-																						'rgba(255, 99, 132, 0.2)',
-																						'rgba(54, 162, 235, 0.2)',
-																						'rgba(255, 206, 86, 0.2)' ],
-																				borderColor : [
-																						'rgba(255, 99, 132, 1)',
-																						'rgba(54, 162, 235, 1)',
-																						'rgba(255, 206, 86, 1)' ],
-																				data : man_array,
-																				borderWidth : 1
-																			},
-																			{
-																				label : "sales amount woman",
-																				backgroundColor : [
-																						'rgba(75, 192, 192, 0.2)',
-																						'rgba(153, 102, 255, 0.2)',
-																						'rgba(255, 159, 64, 0.2)' ],
-																				borderColor : [
-																						'rgba(75, 192, 192, 1)',
-																						'rgba(153, 102, 255, 1)',
-																						'rgba(255, 159, 64, 1)' ],
-																				data : woman_array,
-																				borderWidth : 1
-																			},
-																			{
-																				label : "sales amount woman",
-																				backgroundColor : [
-																						'rgba(75, 192, 192, 0.2)',
-																						'rgba(153, 102, 255, 0.2)',
-																						'rgba(255, 159, 64, 0.2)' ],
-																				borderColor : [
-																						'rgba(75, 192, 192, 1)',
-																						'rgba(153, 102, 255, 1)',
-																						'rgba(255, 159, 64, 1)' ],
-																				data : nogend_array,
-																				borderWidth : 1
-																			} ];
-		
-																	} else if (type == 'pay_status') {
-																		for ( var i in res) {
-																			if (res[i].payment_type == 'card') {
-																				card_array
-																						.push(res[i].sales_amount);
-																			} else if (res[i].payment_type == 'cash') {
-																				cash_array
-																						.push(res[i].sales_amount);
-																			} else {
-																				elsepay_array
-																						.push(res[i].sales_amount);
-																			}
-																		}
-		
-																		dataSets = [
-																			{
-																				label : "pay type cash",
-																				backgroundColor : [
-																						'rgba(255, 99, 132, 0.2)',
-																						'rgba(54, 162, 235, 0.2)',
-																						'rgba(255, 206, 86, 0.2)' ],
-																				borderColor : [
-																						'rgba(255, 99, 132, 1)',
-																						'rgba(54, 162, 235, 1)',
-																						'rgba(255, 206, 86, 1)' ],
-																				data : cash_array,
-																				borderWidth : 1
-																			},
-																			{
-																				label : "pay type card",
-																				backgroundColor : [
-																						'rgba(75, 192, 192, 0.2)',
-																						'rgba(153, 102, 255, 0.2)',
-																						'rgba(255, 159, 64, 0.2)' ],
-																				borderColor : [
-																						'rgba(75, 192, 192, 1)',
-																						'rgba(153, 102, 255, 1)',
-																						'rgba(255, 159, 64, 1)' ],
-																				data : card_array,
-																				borderWidth : 1
-																			},
-																			{
-																				label : "pay type else",
-																				backgroundColor : [
-																						'rgba(75, 192, 192, 0.2)',
-																						'rgba(153, 102, 255, 0.2)',
-																						'rgba(255, 159, 64, 0.2)' ],
-																				borderColor : [
-																						'rgba(75, 192, 192, 1)',
-																						'rgba(153, 102, 255, 1)',
-																						'rgba(255, 159, 64, 1)' ],
-																				data : elsepay_array,
-																				borderWidth : 1
-																			} ];
-																	} else {
-																		data = res.map(function(e) {
-																			return e.sales_amount;
-																		})
-																		dataSets = [ {
-																			label : "sales amount",
-																			lineTension : 0.3,
-																			backgroundColor : "rgba(2,117,216,0.2)",
-																			borderColor : "rgba(2,117,216,1)",
-																			pointRadius : 5,
-																			pointBackgroundColor : "rgba(2,117,216,1)",
-																			pointBorderColor : "rgba(255,255,255,0.8)",
-																			pointHoverRadius : 5,
-																			pointHoverBackgroundColor : "rgba(2,117,216,1)",
-																			pointHitRadius : 50,
-																			pointBorderWidth : 2,
-																			data : data
-																		} ];
-																	}
-																	chartData = {
-																		labels : labels,
-																		datasets : dataSets
-																	};
-																	ctx = document.getElementById("myChart").getContext('2d');
-																	options = {
-																		scales : {
-																			xAxes : [ {
-																				time : {
-																					unit : 'date'
-																				},
-																				gridLines : {
-																					display : false
-																				},
-																				ticks : {
-																					maxTicksLimit : 7
-																				}
-																			} ],
-																			yAxes : [ {
-																				ticks : {
-																					min : 0,
-																					max : (max + 10000),
-																					maxTicksLimit : 5
-																				},
-																				gridLines : {
-																					color : "rgba(0, 0, 0, .125)",
-																				}
-																			} ],
-																		},
-																		legend : {
-																			display : false
-																		}
-																	};			
-		
-															myLineChart = new Chart(
-																ctx,
-																{
-																	type : $(
-																			'#chartType')
-																			.val(),
-																	data : chartData,
-																	op	tions : options
-																});
-															})
-														}
-													</script>
-												</div>
-												<div class="card-footer small text-muted"></div>
-											</div>
-										</div>
+								<div id="layoutSidenav_content">
+							   <main>
+							      <div class="container-fluid px-4">
+							         <h1 class="mt-4">차트</h1>
+							         <div class="card mb-4" style="width: 50%; height: 20%; float: left;">
+							            <input type="hidden" id="chartType" value="line">
+							            <div class="card-header">
+							               <i class="fas fa-chart-area me-1"></i><span id="sales_term">&nbsp;<span
+							                  id="start_date_span">${start_date }</span> ~ <span
+							                  id="end_date_span">${end_date }</span> 별 매출
+							               </span> &nbsp;&nbsp;&nbsp; 합계 : <span id="totalspan"></span> &#8361;
+							               <button onclick="newLineChart()" class="btn btn-warning"
+							                  id="barOrLine" style="float: right;">bar</button>
+							            </div>
+							            <div class="card-body">
+							               <canvas id="myChart" width="50%" height="30"></canvas>
+							               <div class="card mb-4" style="width: 100%; border: 1px solid black; margin-top: 20px; height: 250px; padding-left: 20px; padding-top: 10px;">
+							               <div class="form-check" >
+								               <div class="form-check form-check-inline">
+								                  <input class="form-check-input" type="radio" name="date_term"
+								                     id="flexRadioDefault2" checked value="daily"> <label
+								                     class="form-check-label" for="flexRadioDefault2"> 일 별</label>
+								               </div>
+								                <div class="form-check form-check-inline">
+								                  <input class="form-check-input" type="radio" name="date_term"
+								                     id="flexRadioDefault1" value="month"> <label
+								                     class="form-check-label" for="flexRadioDefault1"> 월 별</label>
+								               </div>
+								                <div class="form-check form-check-inline">
+								                  <input class="form-check-input" type="radio" name="date_term"
+								                     id="flexRadioDefault1" value="year"> <label
+								                     class="form-check-label" for="flexRadioDefault1"> 년 별</label>
+								               </div>
+							           	 	</div>
+							                  <div class="form-check" style="padding-left:5px;">
+							                     <input type="text" name="start_date" id="start_history1" class="form-control"
+							                        maxlength="10" style="width: 120px;" readonly="readonly" /> &nbsp; ~ &nbsp; 
+							                        <input type="text" name="end_date" id="end_history1" class="form-control" maxlength="10" style="width: 120px;"
+							                        readonly="readonly" />
+							                     <button type="button" class="btn btn-primary"
+							                        onclick='getNewChart()' style="margin-bottom:3px; margin-left:25px; width:100px;">검색</button>
+							                  </div>
+							       		 	</div>
+							       		 	
+							             </div>
 									</div>
-								</div> --%>
+								</div>
+							<script type="text/javascript">
+							//Set new default font family and font color to mimic Bootstrap's default styling
+							
+							Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+							Chart.defaults.global.defaultFontColor = '#292b2c';
+							var chartType= $('#chartType').val();
+							// Area Chart Example
+							var total =0;
+							var max =0;
+							
+							var jsonChart =  ${chartList};
+							
+							var labels = jsonChart.map(function(e){
+							   return e.daily_chart;
+							})
+							
+							var data = jsonChart.map(function(e){
+							   total += e.sales_amount;
+							   
+							   if(e.sales_amount>max)
+							      max = e.sales_amount;
+							   
+							   return e.sales_amount;
+							})
+							$('#totalspan').html(total);
+							var options = {
+							       scales: {
+							            xAxes: [{
+							              time: {
+							                unit: 'date'
+							              },
+							              gridLines: {
+							                display: false
+							              },
+							              ticks: {
+							                maxTicksLimit: 7
+							              }
+							            }],
+							            yAxes: [{
+							              ticks: {
+							                min: 0,
+							                max: (max+10000),
+							                maxTicksLimit: 5
+							              },
+							              gridLines: {
+							                color: "rgba(0, 0, 0, .125)",
+							              }
+							            }],
+							          },
+							          legend: {
+							            display: false
+							          }
+							 }
+							
+							var dataSets =  [{
+							    label: "sales amount",
+							    lineTension: 0.3,
+							    backgroundColor: "rgba(2,117,216,0.2)",
+							    borderColor: "rgba(2,117,216,1)",
+							    pointRadius: 5,
+							    pointBackgroundColor: "rgba(2,117,216,1)",
+							    pointBorderColor: "rgba(255,255,255,0.8)",
+							    pointHoverRadius: 5,
+							    pointHoverBackgroundColor: "rgba(2,117,216,1)",
+							    pointHitRadius: 50,
+							    pointBorderWidth: 2,
+							    data: data
+							  }];
+							
+							var chartData = {
+							    labels: labels,
+							    datasets: dataSets
+							  }
+							
+							var ctx = document.getElementById("myChart").getContext('2d');
+							var myLineChart = new Chart(ctx,{
+							     type: $('#chartType').val(),
+							     data:chartData,
+							     options: options
+							   });
+							
+							function newLineChart(){
+								myLineChart.destroy();
+							   if($('#chartType').val()=='line'){
+							      $('#chartType').val('bar');
+							      chartType = $('#chartType').val();
+							      $('#barOrLine').text('line');
+							   }
+							   else{
+							      $('#chartType').val('line');
+							      chartType = $('#chartType').val();
+							      $('#barOrLine').text('bar');
+							   }
+							   
+							   ctx = document.getElementById("myChart");
+							    myLineChart = new Chart(ctx,{
+							        type: $('#chartType').val(),
+							        data: chartData,
+							        options: options
+							      });
+							}
+							               
+							function getNewChart(){
+								myLineChart.destroy();
+							   var store_code =$('#store_code').val();
+							   console.log(store_code);
+							   var start_date = $('input[name="start_date"]').val();
+							   var end_date = $('input[name="end_date"]').val();
+							   
+							   var date_term = $('input[name="date_term"]:checked').val();
+							   var type = $('input[name="type"]:checked').val();
+							   var status = $('input[name="status"]:checked').val();
+							   
+							/*    var man_array = [];
+							   var woman_array = [];
+							   var nogend_array = [];
+							   
+							   var cash_array = [];
+							   var card_array = [];
+							   var elsepay_array = [];
+							 */   
+							
+							   $('#start_date_span').html('<i><font>'+start_date+'</font></i>');
+							   $('#end_date_span').html('<i><font>'+end_date+'</font></i>');
+							   
+							   $.ajax({
+							      type:"post",
+							      url: "getNewChart.mdo",
+							      async :false,
+							      data : JSON.stringify({
+							      "start_date" : start_date,
+							      "end_date" : end_date,
+							      "date_term" : date_term,
+							      "status" : status,
+							      }),
+							      contentType :"application/json"
+							         }).done(function(res){
+							         max = 0;
+							         total = 0;
+							         for(var i in res){
+							            if(res[i].sales_amount>max)
+							               max = res[i].sales_amount;
+							            total += res[i].sales_amount;res[i].sales_amount;
+							         }
+							         $('#totalspan').html(total);
+							         labels = res.map(function(e){
+							            if(date_term=='daily'){
+							                  return e.daily_chart;
+							            }else if(date_term=='month'){
+							                  return e.month_chart;
+							            }else if(date_term=='year'){
+							                     return e.year_chart;
+							            }
+							         })//end label_term
+							         
+							        
+							     
+							         data = res.map(function(e){
+							            return e.sales_amount;
+							         })
+							         dataSets =  [{
+							             label: "sales amount",
+							             lineTension: 0.3,
+							             backgroundColor: "rgba(2,117,216,0.2)",
+							             borderColor: "rgba(2,117,216,1)",
+							             pointRadius: 5,
+							             pointBackgroundColor: "rgba(2,117,216,1)",
+							             pointBorderColor: "rgba(255,255,255,0.8)",
+							             pointHoverRadius: 5,
+							             pointHoverBackgroundColor: "rgba(2,117,216,1)",
+							             pointHitRadius: 50,
+							             pointBorderWidth: 2,
+							             data: data
+							           }];
+							 
+							         chartData={
+							                labels: labels,
+							                datasets: dataSets
+							                    };
+							        
+							          ctx = document.getElementById("myChart").getContext('2d');
+							          options = {
+							                   scales: {
+							                        xAxes: [{
+							                          time: {
+							                            unit: 'date'
+							                          },
+							                          gridLines: {
+							                            display: false
+							                          },
+							                          ticks: {
+							                            maxTicksLimit: 7
+							                          }
+							                        }],
+							                        yAxes: [{
+							                          ticks: {
+							                            min: 0,
+							                            max: (max+10000),
+							                            maxTicksLimit: 5
+							                          },
+							                          gridLines: {
+							                            color: "rgba(0, 0, 0, .125)",
+							                          }
+							                        }],
+							                      },
+							                      legend: {
+							                        display: false
+							                      }
+							                    };
+							          
+							          myLineChart = new Chart(ctx,{
+							              type: $('#chartType').val(),
+							              data: chartData,
+							              options:options 
+							            });
+							   })
+							}
+							</script>
+							           
+							
+								</main>
 							</div>
 							<div id="tab03">문의</div>
 							<div id="tab04">

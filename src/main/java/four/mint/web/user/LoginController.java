@@ -100,11 +100,19 @@ public class LoginController {
 		AES256Util aes = new AES256Util();
 		String encoding = aes.encrypt(pw);
 		
+		System.out.println(encoding);
+		
 		int flag = 0;
 		UserVO user = userService.getUser(vo);
 		
-		if(user.getEmail_id() != null) {
-			if(user.getPassword().equals(encoding)) {
+		String id = userService.getEmailId(vo.getEmail_id());
+		
+		String realpw = userService.getPassword(id);
+		
+		String encoding2 = aes.encrypt(realpw);
+		
+		if(id != null) {
+			if(encoding.equals(encoding2)) {
 				session.setAttribute("userEmail_id", user.getEmail_id());
 				session.setAttribute("name", user.getName());
 				session.setAttribute("address2", user.getAddress2());

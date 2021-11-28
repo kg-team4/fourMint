@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import four.mint.web.admin.ChartVO;
 import four.mint.web.admin.table.member.AdminTableVO;
 import four.mint.web.user.UserVO;
 
@@ -56,6 +57,24 @@ public class AdminTableDAO {
 	public ArrayList<AdminTableVO> getAddressWoman() {
 		
 		return (ArrayList)sqlSessionTemplate.selectList("AdminTableDAO.getAddressWoman");
+	}
+
+	public List<AdminTableVO> orderList() {
+		
+		return sqlSessionTemplate.selectList("AdminTableDAO.orderList");
+	}
+
+	
+	public ArrayList<ChartVO> getinitialChart(ChartVO chart) {
+		
+		
+		return (ArrayList)sqlSessionTemplate.selectList("AdminDAO.getinitialChart", chart);
+		
+	}
+
+	public ArrayList<ChartVO> getResponsivceChart(ChartVO chart) {
+		
+		return (ArrayList)sqlSessionTemplate.selectList("AdminDAO.getResponsivceChart", chart);
 	}
 	
 }

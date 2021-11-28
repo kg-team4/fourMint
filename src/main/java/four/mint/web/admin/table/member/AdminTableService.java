@@ -3,6 +3,7 @@ package four.mint.web.admin.table.member;
 import java.util.ArrayList;
 import java.util.List;
 
+import four.mint.web.admin.ChartVO;
 import four.mint.web.user.UserVO;
 
 
@@ -22,4 +23,7 @@ public interface AdminTableService {
 	
 	ArrayList<AdminTableVO> getAddressMan();
 	ArrayList<AdminTableVO> getAddressWoman();
+	List<AdminTableVO> orderList();
+	ArrayList<ChartVO> getinitialChart(ChartVO chart);
+	ArrayList<ChartVO> getResponsiveChart(ChartVO chart);
 }

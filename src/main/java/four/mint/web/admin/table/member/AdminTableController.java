@@ -1,21 +1,31 @@
 package four.mint.web.admin.table.member;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.amazonaws.Request;
 import com.itextpdf.text.pdf.hyphenation.TernaryTree.Iterator;
 
+import four.mint.web.admin.transactionhistory.AdminTransactionHistoryVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 import four.mint.web.user.impl.UserDAO;
@@ -425,4 +435,70 @@ public class AdminTableController {
 		request.setAttribute("womanList", womanList);
 		return "/memberaddress";
 	}
+	
+	@GetMapping(value="excel_tablemember.mdo")
+	 public void excelDownload(HttpServletResponse response) throws IOException {
+	      
+          // Workbook wb = new HSSFWorkbook();
+           Workbook wb = new XSSFWorkbook();
+           Sheet sheet = wb.createSheet("첫번째 시트");
+           Row row = null;
+           Cell cell = null;
+           int rowNum = 0;
+
+           // Header
+           String[] header = {"사용자이메일", "이름", "닉네임", "가입날짜", "핸드폰번호", "우편번호", "주소", "상세주소", "생일", "성별", "블랙리스트 날짜", "소셜로그인여부", "등급", "신고당한횟수"};
+           row = sheet.createRow(rowNum++);
+           for(int i=0; i<header.length; i++) {
+              cell = row.createCell(i);
+              cell.setCellValue(header[i]);
+           }
+         
+           List<AdminTableVO> paymentList = adminTableService.orderList();
+           
+           // Body
+           for (int i=0; i<paymentList.size(); i++) {           
+            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+                
+               row = sheet.createRow(rowNum++);
+               cell = row.createCell(0);
+               cell.setCellValue(paymentList.get(i).getEmail_id());
+               cell = row.createCell(1);
+               cell.setCellValue(paymentList.get(i).getName());
+               cell = row.createCell(2);
+               cell.setCellValue(paymentList.get(i).getNickname());
+               cell = row.createCell(3);
+               cell.setCellValue(paymentList.get(i).getPhone());
+               cell = row.createCell(4);
+               cell.setCellValue(date.format(paymentList.get(i).getDate()));
+               cell = row.createCell(5);
+               cell.setCellValue(paymentList.get(i).getAddress1());
+               cell = row.createCell(6);
+               cell.setCellValue(paymentList.get(i).getAddress2());
+               cell = row.createCell(7);
+               cell.setCellValue(paymentList.get(i).getAddress3());
+               cell = row.createCell(8);
+               cell.setCellValue(paymentList.get(i).getBirth());
+               cell = row.createCell(9);
+               cell.setCellValue(paymentList.get(i).getGender());
+               cell = row.createCell(10);            
+               cell.setCellValue(paymentList.get(i).getBlacklist_date());
+               cell = row.createCell(11);
+               cell.setCellValue(paymentList.get(i).getSocial_login());
+               cell = row.createCell(12);
+               cell.setCellValue(paymentList.get(i).getRating());
+               cell = row.createCell(13);
+               cell.setCellValue(paymentList.get(i).getReports());
+           }
+
+           // 컨텐츠 타입과 파일명 지정
+           response.setContentType("ms-vnd/excel");
+          // response.setHeader("Content-Disposition", "attachment;filename=example.xls");
+           response.setHeader("Content-Disposition", "attachment;filename=member.xlsx");
+
+           // Excel File Output
+           wb.write(response.getOutputStream());
+           wb.close();
+       }
+   
 }

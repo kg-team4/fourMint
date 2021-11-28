@@ -211,5 +211,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.getId(vo);
 	}
 
+	@Override
+	public String getEmailId(String email) {
+		
+		return userDao.getEmailId(email);
+	}
+
 	
 }

@@ -10,5 +10,6 @@ public interface AdminUsedService {
 	
 	//삭제
 	public void delete(int market_seq)throws Exception;
+	List<AdminUsedVO> orderList();
 
 }

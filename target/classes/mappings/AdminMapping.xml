@@ -8,6 +8,12 @@
 		<result property="password" column="PASSWORD" />
 		<result property="name" column="NAME" />		
 	</resultMap>
+	<resultMap type="chart" id="chartEx">
+		<result property="transaction_price" column="TRANSACTION_PRICE"/>
+		<result property="product_name" column="PRODUCT_NAME"/>
+		<result property="date" column="DATE"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>
 	
 	<insert id="insertAdmin" parameterType="string">
 		INSERT INTO admin (id, password, name ) 
@@ -17,4 +23,44 @@
 	<select id="getAdmin" resultType="admin" parameterType="string">
 		SELECT * FROM admin WHERE id = #{id} AND password = #{password}
 	</select>	
+	
+	<select id="getinitialChart" parameterType="chart" resultType="chart">
+	<![CDATA[
+			SELECT 	sum(transaction_price) as sales_amount,
+  			COUNT(*) as sales_count,
+  			TO_CHAR(date, 'MM-dd') as daily_chart
+			FROM (select * from transactionhistory
+			WHERE status='상품 배송 완료' and TO_CHAR(date, 'yyyy-MM-dd')
+			between #{start_date} and #{end_date}) as a GROUP BY TO_CHAR(date, 'MM-dd')
+			ORDER BY daily_chart;
+		]]>
+	</select>
+	
+	<select id="getResponsivceChart" parameterType="chart" resultType="chart">
+	<![CDATA[
+			SELECT 	sum(o.transaction_price) as sales_amount,  
+  			COUNT(*) as sales_count,
+  			TO_CHAR(date,]]>
+		<if test="date_term ==  'daily'">'MM-dd') as daily_chart</if>
+		<if test="date_term ==  'month'">'yy-MM') as month_chart</if>
+		<if test="date_term ==  'year'">'YYYY') as year_chart</if>
+  			<![CDATA[
+			FROM transactionhistory as o 
+			WHERE 1=1 and status='상품 배송 완료' 
+			and TO_CHAR(date, 'yyyy-MM-dd')
+			between #{start_date} and #{end_date}
+			]]>
+  			<![CDATA[ 
+  			GROUP BY TO_CHAR(date,]]>
+		<if test="date_term ==  'daily'">'MM-dd')</if>
+		<if test="date_term ==  'month'">'yy-MM')</if>
+		<if test="date_term ==  'year'">'YYYY')</if>
+  			<![CDATA[ 
+			ORDER BY ]]>
+		<if test="date_term ==  'daily'"> daily_chart</if>
+		<if test="date_term ==  'month'">month_chart</if>
+		<if test="date_term ==  'year'">year_chart</if>
+  			<![CDATA[
+		]]>
+	</select>
 </mapper>

@@ -1,21 +1,31 @@
 package four.mint.web.admin.report;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.codehaus.plexus.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import four.mint.web.admin.login.AdminService;
 import four.mint.web.admin.login.AdminVO;
+import four.mint.web.admin.purchasehistory.AdminPurchaseHistoryVO;
 import four.mint.web.user.UserVO;
 
 @Controller
@@ -87,6 +97,56 @@ public class AdminReportController<BoardReportVO> {
 		 return "redirect:blacklist_report.mdo"; 
 	  }
 	 
+	 @GetMapping(value="excel_blacklist.mdo")
+	 public void excelDownload(HttpServletResponse response) throws IOException {
+	      
+        // Workbook wb = new HSSFWorkbook();
+         Workbook wb = new XSSFWorkbook();
+         Sheet sheet = wb.createSheet("첫번째 시트");
+         Row row = null;
+         Cell cell = null;
+         int rowNum = 0;
+
+         // Header
+         String[] header = {"이메일", "이름", "블랙리스트로 넘어온 날짜"};
+         row = sheet.createRow(rowNum++);
+         for(int i=0; i<header.length; i++) {
+            cell = row.createCell(i);
+            cell.setCellValue(header[i]);
+         }
+       
+         List<AdminBlackListVO> blackList = adminReportService.getAdminBlackList();
+         
+      
+         // Body
+         for (int i=0; i<blackList.size(); i++) {           
+          SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+              
+             row = sheet.createRow(rowNum++);
+             cell = row.createCell(0);
+             cell.setCellValue(blackList.get(i).getEmail_id());
+             cell = row.createCell(1);
+             cell.setCellValue(blackList.get(i).getName());
+             cell = row.createCell(2);
+             cell.setCellValue(blackList.get(i).getNickname());
+             cell = row.createCell(3);
+             cell.setCellValue(date.format(blackList.get(i).getDate()));
+             
+             
+           
+             
+            
+         }
+
+         // 컨텐츠 타입과 파일명 지정
+         response.setContentType("ms-vnd/excel");
+        // response.setHeader("Content-Disposition", "attachment;filename=example.xls");
+         response.setHeader("Content-Disposition", "attachment;filename=blacklist.xlsx");
+
+         // Excel File Output
+         wb.write(response.getOutputStream());
+         wb.close();
+     }
 		  
 
 }

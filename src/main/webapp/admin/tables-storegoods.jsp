@@ -53,6 +53,9 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">민트마켓 리스트</h6>
                         </div>
+                        <form action="excel_storeGoods.mdo" method="get">
+                    		<button>액셀</button>
+                    	</form>
                         <div class="card-body">
                         <form action="storeSell.do" method="POST" ebctype="multipart/form-data" onsubmint="return checkForm();">
                         	<div class="form-group">

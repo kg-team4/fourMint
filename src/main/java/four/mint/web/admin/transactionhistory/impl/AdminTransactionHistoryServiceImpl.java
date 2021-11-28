@@ -1,6 +1,7 @@
 package four.mint.web.admin.transactionhistory.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,13 @@ public class AdminTransactionHistoryServiceImpl implements AdminTransactionHisto
 	public ArrayList<AdminTransactionHistoryVO> getAdminTransactionHistoryDateList(AdminTransactionHistoryVO vo) {		
 		return (ArrayList)adminTransactionHistoryDAO.getAdminTransactionHistoryDateList(vo);
 	}
+
+	@Override
+	public List<AdminTransactionHistoryVO> orderList() {
+		
+		return adminTransactionHistoryDAO.orderList();
+	}
+
+	
 	
 }

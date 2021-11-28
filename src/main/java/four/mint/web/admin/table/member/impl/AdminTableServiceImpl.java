@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import four.mint.web.admin.ChartVO;
 import four.mint.web.admin.login.AdminService;
 import four.mint.web.admin.login.AdminVO;
 import four.mint.web.admin.login.impl.AdminDAO;
@@ -77,6 +78,24 @@ public class AdminTableServiceImpl implements AdminTableService {
 	public ArrayList<AdminTableVO> getAddressWoman() {
 		
 		return adminTableDao.getAddressWoman();
+	}
+
+	@Override
+	public List<AdminTableVO> orderList() {
+		
+		return adminTableDao.orderList();
+	}
+
+	@Override
+	public ArrayList<ChartVO> getinitialChart(ChartVO chart) {
+		
+		return adminTableDao.getinitialChart(chart);
+	}
+
+	@Override
+	public ArrayList<ChartVO> getResponsiveChart(ChartVO chart) {
+		
+		return adminTableDao.getResponsivceChart(chart);
 	}
 
 	

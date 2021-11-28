@@ -40,6 +40,7 @@
 		<typeAlias alias="adminPurchaseHistory" type="four.mint.web.admin.purchasehistory.AdminPurchaseHistoryVO"/>
 		<typeAlias alias="adminMemberList" type="four.mint.web.admin.page.AdminMemberListVO"/>
 		<typeAlias alias="AdminBoard" type="four.mint.web.admin.board.AdminBoardVO"/>
+		<typeAlias alias="chart" type="four.mint.web.admin.ChartVO"/>
 	</typeAliases>
 	
 	<typeHandlers>

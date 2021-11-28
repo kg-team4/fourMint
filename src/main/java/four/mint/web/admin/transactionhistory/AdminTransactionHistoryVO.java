@@ -15,6 +15,10 @@ public class AdminTransactionHistoryVO {
 	String merchant_uid;
 	String product_price;
 	String request;
-	String start_date;
-	String end_date;
+	String address2;
+	String status;
+	String cancel_date;
+	String cancel_status;
+	String cancel_reason;
+	String pay_cancel;
 }

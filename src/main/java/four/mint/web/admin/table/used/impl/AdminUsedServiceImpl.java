@@ -35,5 +35,11 @@ public class AdminUsedServiceImpl implements AdminUsedService{
 	public void delete(int vo) throws Exception {
 		adminUsedDao.delete(vo);
 		
+	}
+
+	@Override
+	public List<AdminUsedVO> orderList() {
+		
+		return adminUsedDao.orderList();
 	}	
 }

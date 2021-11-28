@@ -48,6 +48,9 @@
                     <p class="mb-4">
                      <a target="_blank"
                             href="https://datatables.net">민트마켓 회원목록</a>.</p>
+                            <form action="excel_tablemember.mdo" method="get">
+                            	<button>엑셀파일</button>
+                            </form>
                             <div class="dropdown">
                      	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      	카테고리

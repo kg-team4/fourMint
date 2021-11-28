@@ -52,6 +52,9 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">거래 현황 조회 입니다.</h6>
+                           <form action="excel_transactionhistory.mdo" method="get" >
+                           		<button>엑셀</button>
+                           </form>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -69,7 +72,8 @@
                                     </thead>
                                   
                                     <tbody>
-                                        <tr>
+                                    	
+              							<tr>
                                             <td>갤럭시워치</td>
                                             <td>이정빈</td>
                                             <td>2021/11/09</td>

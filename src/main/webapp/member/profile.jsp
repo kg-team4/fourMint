@@ -16,11 +16,11 @@
 	<script>
 		var sns = '${sns}';
 		var address = '${user.address2}';
-		console.log(sns);
+		console.log(address);
 		window.onload = function() {
 			console.log(sns);
 			if (sns == 'naver' || sns == 'kakao') {
-				if(address == null){
+				if(address == ''){
 					alert('개인정보를 추가해주세요!');
 				}
 			}
@@ -36,29 +36,58 @@
 		<div class="row">
 			<div class="col-sm-3">
 				<!--left col-->
-				<div class="nick-div">
-					<h5>
-						<b><span style="color: #26e4ca;">${user.nickname}&nbsp;</span>님의 프로필</b>
-					</h5>
-				</div>
-				<div class="text-center row">
-					<div class="box col-1">
-						<div>
-							<img src="${user.profile }" class="avatar img-circle img-profile" alt="avatar">
-						</div>
+				<c:choose>
+					<c:when test="${empty sns }">
+					<div class="nick-div">
+						<h5>
+							<b><span style="color: #26e4ca;">${user.nickname}&nbsp;</span>님의 프로필</b>
+						</h5>
 					</div>
-					<span class="col-0 profile_d_m" style="text-align: right; padding: 0px; width: 100px;">
-						<button type="button" style="font-size: 10px; margin-left: 240px; margin-top: -60px" class="btn btn--blue-2 btn--radius-2" data-bs-toggle="modal" data-bs-target="#edit_img">edit</button>
-					</span>
-				</div>
-				<br>
-				<ul class="list-group" style="text-align:center">
-					<li class="list-group-item text-muted" style="font-size:23px">${user.nickname }&nbsp;&nbsp;</li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span> 민트 3단계</li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>팔로잉&nbsp;&nbsp;</strong></span> ${follow.following }</li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>팔로워&nbsp;&nbsp;</strong></span> ${follow.follower }</li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>상품판매횟수&nbsp;&nbsp;</strong></span> ${boardCount}</li>
-				</ul>
+					<div class="text-center row">
+						<div class="box col-1">
+							<div>
+								<img src="${user.profile }" class="avatar img-circle img-profile" alt="avatar">
+							</div>
+						</div>
+						<span class="col-0 profile_d_m" style="text-align: right; padding: 0px; width: 100px;">
+							<button type="button" style="font-size: 10px; margin-left: 240px; margin-top: -60px" class="btn btn--blue-2 btn--radius-2" data-bs-toggle="modal" data-bs-target="#edit_img">edit</button>
+						</span>
+					</div>
+					<br>
+					<ul class="list-group" style="text-align:center">
+						<li class="list-group-item text-muted" style="font-size:23px">${user.nickname }&nbsp;&nbsp;</li>
+						<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span> 민트 3단계</li>
+						<li class="list-group-item text-right"><span class="pull-left"><strong>팔로잉&nbsp;&nbsp;</strong></span> ${follow.following }</li>
+						<li class="list-group-item text-right"><span class="pull-left"><strong>팔로워&nbsp;&nbsp;</strong></span> ${follow.follower }</li>
+						<li class="list-group-item text-right"><span class="pull-left"><strong>상품판매횟수&nbsp;&nbsp;</strong></span> ${boardCount}</li>
+					</ul>
+					</c:when>
+					<c:otherwise>
+						<div class="nick-div">
+							<h5>
+								<b><span style="color: #26e4ca;">sns유저&nbsp;</span>님의 프로필</b>
+							</h5>
+						</div>
+						<div class="text-center row">
+							<div class="box col-1">
+								<div>
+									<img src="${user.profile }" class="avatar img-circle img-profile" alt="avatar">
+								</div>
+							</div>
+							<span class="col-0 profile_d_m" style="text-align: right; padding: 0px; width: 100px;">
+								<button type="button" style="font-size: 10px; margin-left: 240px; margin-top: -60px" class="btn btn--blue-2 btn--radius-2" data-bs-toggle="modal" data-bs-target="#edit_img">edit</button>
+							</span>
+						</div>
+						<br>
+						<ul class="list-group" style="text-align:center">
+							<li class="list-group-item text-muted" style="font-size:23px">sns유저&nbsp;&nbsp;</li>
+							<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span> 민트 3단계</li>
+							<li class="list-group-item text-right"><span class="pull-left"><strong>팔로잉&nbsp;&nbsp;</strong></span> ${follow.following }</li>
+							<li class="list-group-item text-right"><span class="pull-left"><strong>팔로워&nbsp;&nbsp;</strong></span> ${follow.follower }</li>
+							<li class="list-group-item text-right"><span class="pull-left"><strong>상품판매횟수&nbsp;&nbsp;</strong></span> ${boardCount}</li>
+					</ul>
+					</c:otherwise>
+				</c:choose>
 				<div class="col-6 offset-2 div_modify_profile">
 					<div id="my_modal">
 						<div>

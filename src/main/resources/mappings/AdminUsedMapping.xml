@@ -21,5 +21,8 @@
 	
 	<delete id="delete" parameterType="int">
 		delete from marketboard where market_seq = #{market_seq}
-	</delete>	
+	</delete>
+	<select id="orderList" resultType="adminUsed">
+		SELECT * FROM marketboard
+	</select>	
 </mapper>
