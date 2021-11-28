@@ -1,5 +1,6 @@
 package four.mint.web.admin.login;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,16 @@ public class AdminLoginController {
 	}
 	
 	@RequestMapping(value ="/login.mdo", method = RequestMethod.POST)
-	public String login(AdminVO vo, HttpSession session) {
+	public String login(AdminVO vo, HttpSession session, HttpServletRequest request) {
+		vo.setId(request.getParameter("id"));
+		vo.setPassword(request.getParameter("password"));
+		System.out.println(vo);
 		AdminVO admin = adminService.getAdmin(vo);
 		if(admin != null) {
 			session.setAttribute("admin_id", admin.getId());
-			System.out.println("로그인 성공: " + admin.getId());
+			session.setAttribute("admin_password", admin.getPassword());
 			
-			return "/index";
+			return "redirect:home.mdo";
 		} else {
 			System.out.println("로그인 실패");
 			

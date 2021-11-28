@@ -34,7 +34,8 @@
 		update storeask set status = 0 where ask_seq = #{ask_seq}
 	</update>
 	
-	
-	
+	<select id="getQNA" resultType="int">
+		SELECT COUNT(*) FROM storeAsk WHERE status = 1;
+	</select>
 	
 </mapper>

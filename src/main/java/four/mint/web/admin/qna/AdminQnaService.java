@@ -11,5 +11,5 @@ public interface AdminQnaService {
 
 	void update_status(int paramter);
 
-
+	int getQNA();
 }

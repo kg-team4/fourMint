@@ -1,6 +1,5 @@
 package four.mint.web.user.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import four.mint.web.user.FollowerVO;
 import four.mint.web.user.FollowingVO;
-import four.mint.web.user.KakaoVO;
-import four.mint.web.user.NaverVO;
 import four.mint.web.user.SnsVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;

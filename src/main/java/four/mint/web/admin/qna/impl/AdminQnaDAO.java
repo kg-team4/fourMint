@@ -31,5 +31,8 @@ public class AdminQnaDAO {
 		sqlSessionTemplate.update("AdminQnaDAO.update_status",parameter);
 		
 	}
-
+	
+	public int getQNA() {
+		return sqlSessionTemplate.selectOne("AdminQnaDAO.getQNA");
+	}
 }

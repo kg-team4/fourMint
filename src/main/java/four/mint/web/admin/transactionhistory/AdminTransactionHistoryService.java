@@ -17,4 +17,5 @@ public interface AdminTransactionHistoryService {
 	ArrayList<AdminTransactionHistoryVO> getCancelComplete();
 	ArrayList<AdminTransactionHistoryVO> getRefundComplete();
 	ArrayList<AdminTransactionHistoryVO> getCancelRefundComplete();
+	int getTotalPrice();
 }

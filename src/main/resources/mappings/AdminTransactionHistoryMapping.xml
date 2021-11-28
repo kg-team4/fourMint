@@ -78,4 +78,8 @@
 		SELECT * FROM transactionHistory WHERE pay_cancel = '취소 완료' or pay_cancel = '반품 완료'
 	</select>
 	
+	<select id="getTotalPrice" resultType="int">
+		SELECT SUM(transaction_price) FROM transactionHistory;
+	</select>
+	
 </mapper>

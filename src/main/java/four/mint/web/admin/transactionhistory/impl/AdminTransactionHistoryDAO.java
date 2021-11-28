@@ -66,4 +66,7 @@ public class AdminTransactionHistoryDAO {
 		return (ArrayList)sqlSessionTemplate.selectList("AdminTransactionHistoryDAO.getCancelRefundComplete");
 	}
 	
+	public int getTotalPrice() {
+		return sqlSessionTemplate.selectOne("AdminTransactionHistoryDAO.getTotalPrice");
+	}
 }

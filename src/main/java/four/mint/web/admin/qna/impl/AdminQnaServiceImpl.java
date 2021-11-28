@@ -35,4 +35,9 @@ public class AdminQnaServiceImpl implements AdminQnaService {
 		adminQnaDAO.update_status(parameter);
 		
 	}
+	
+	@Override
+	public int getQNA() {
+		return adminQnaDAO.getQNA();
+	}
 }
