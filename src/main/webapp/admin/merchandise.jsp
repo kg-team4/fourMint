@@ -55,14 +55,14 @@
 								
 								<div id="add_product">
 									<div>
-										<div id="my_info_edit_title">상품 추가</div>
+										<div id="my_info_edit_title" style="color:black; font-weight: 700">상품 추가</div>
 										<hr>
-										<div>
+										<div style="width:700px; height:530px">
 											<form action="insertStore.mdo" method="post" enctype="multipart/form-data">
 												<table id="table table-bordered my_info_add_area">
 													<tr>
-														<td width="200px" height="30px">카테고리</td>
-														<td width="350px">
+														<td width="100px" height="42px" style="font-weight: 600; color:black">카테고리 &emsp;</td>
+														<td width="600px">
 															<select id="cate_sel" class="used_cate_style" name="category_big">
 																<option value="">카테고리 선택</option>
 																<c:forEach var="big" items="${ storeCategoryBig }">
@@ -72,61 +72,62 @@
 														</td>
 													</tr>
 													<tr>
-														<td height="30px">상품명</td>
+														<td height="42px" style="font-weight: 600; color:black">상품명 &emsp;</td>
 														<td><input type="text" name="product_name"></td>
 													</tr>
 													<tr>
-														<td height="30px">상품이미지</td>
+														<td height="140px" style="font-weight: 600; color:black">상품이미지</td>
 														<td>
 															<div class="used_photo">
 																<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
-																	<img class="preview-wrap1" alt="등록할 상품 사진을 넣어주세요."
+																	<img class="preview-wrap1" alt="등록할 상품 사진을 넣어주세요." style="margin:0; width:150px; height:120px; border:1px solid lightgray; margin-right:5px;"
 																	onerror="this.style.display='none'">
 																</div>
 																<div>
-																	<input id="banner_file" class="form-input1" type="file" name="file1" multiple accept=".jpg, .png, .gif">
+																	<input id="banner_file" class="form-input1" type="file" name="file1" multiple accept=".jpg, .png, .gif"  required="required">
 																</div>
 															</div>
 														</td>
 													</tr>
 													<tr>
-														<td height="30px">가격</td>
+														<td height="42px" style="font-weight: 600; color:black">가격</td>
 														<td><input type="text" name="product_price"></td>
 													</tr>
 													<tr>
-														<td height="30px">내용</td>
+														<td height="230px" style="font-weight: 600; color:black">내용</td>
 														<td>
 															<div class="used_photo">
 																<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
-																	<img class="preview-wrap2" alt="등록할 상품 사진을 넣어주세요."
-																	onerror="this.style.display='none'">
+																	<img style="margin:0px; width:150px; height:200px; border:1px solid lightgray; margin-right:5px;" class="preview-wrap2" alt="등록할 상품 사진을 넣어주세요." onerror="this.style.display='none'">
 																</div>
 																<div>
-																	<input id="banner_file" class="form-input2" type="file" name="file2" multiple accept=".jpg, .png, .gif">
+																	<input id="banner_file" class="form-input2" type="file" name="file2" multiple accept=".jpg, .png, .gif" required="required" >
 																</div>
 															</div>
 														</td>
 													</tr>
 													<tr>
-														<td height="30px">재고</td>
+														<td height="42px" style="font-weight: 600; color:black">재고</td>
 														<td><input type="text" name="product_stock"></td>
 													</tr>
 												</table>
 												<br>
-												<div style="text-align: center; margin-top: 10px">
+												<div style="text-align: center; margin-top: 5px; margin-left:180px; width:200px">
 													<button class="modal_info_edit_btn"
-														style="width: 90px; font-size: 15px">추가</button>
+														style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none;">추가</button>
 													<button class="modal_cancel_btn"
-														style="width: 90px; font-size: 15px" onclick="return false;">취소</button>
+														style="width: 90px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none;" onclick="return false;">취소</button>
 												</div>
 											</form>
 										</div>
 									</div>
 									<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
 								</div>
-								<button type="button" style="width: 135%; font-size: 15px"
-									class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
-									id="popup_open_btn_add">추가</button>
+								
+								
+								<button type="button" class="btn btn--blue-2 btn--radius-2 btn_modify_profile" id="popup_open_btn_add" style="width:90px; font-size: 15px; margin-left:92%; color:black; background: #79d4c8; border-radius: 3px; border:none; font-weight: 700" >
+									상품추가
+								</button>
 								
 								<table class="table table-bordered list_table" id="dataTable" width="100%" cellspacing="0">
 									<thead>
@@ -144,20 +145,22 @@
 										<c:forEach var="store_List" items="${storeList }" varStatus="status">
 											<tr>
 												<td><input type="hidden" class="hidden_content" value="${store_List.product_content }">${fn:length(storeList) - status.index }</td >
-												<td><img src="${store_List.url }"></td>
+												<td style="text-align:center; width:130px;"><img src="${store_List.url }" style="width:90px; height:90px; margin-right:20px"></td>
 												<td>${store_List.category_big }</td>
 												<td>${store_List.product_name }</td>
 												<td>${store_List.product_price }</td>
 												<td>${store_List.product_stock }<input type="hidden" name="store_seq" id="store_seq" value="${store_List.store_seq }"></td>
-												<td>
-													<button type="button" style="width: 135%; font-size: 15px"
-														class="btn btn--blue-2 btn--radius-2 btn_modify_profile popup_open_btn_edit"
-														id="popup_open_btn_edit">변경</button>
+												<td style="width:130px; vertical-align: middle; text-align: center">
+													<button type="button" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; color:black;"
+														class="btn btn--blue-2 btn--radius-2 btn_modify_profile popup_open_btn_edit" id="popup_open_btn_edit">
+														변경
+													</button>
 													<form action="deleteStore.mdo" method="post">
 														<input type="hidden" name="store_seq" id="store_seq" value="${store_List.store_seq }">
-														<button type="submit" style="width: 135%; font-size: 15px"
-															class="btn btn--blue-2 btn--radius-2 btn_modify_profile delete_store"
-															id="delete_store">삭제</button>
+														<button type="submit" style="width: 90px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; color:black;"
+															class="btn btn--blue-2 btn--radius-2 btn_modify_profile delete_store" id="delete_store">
+															삭제
+														</button>
 													</form>
 												</td>
 											</tr>
@@ -175,13 +178,13 @@
 				
 				<div id="edit_product">
 					<div>
-						<div id="my_info_edit_title">상품 수정</div>
+						<div id="my_info_edit_title" style="color:black; font-weight: 700; font-size:23px">상품 수정</div>
 						<hr>
-						<div>
+						<div style="width:700px; height:530px">
 							<table id="my_info_edit_area">
 								<tr>
-									<td width="200px" height="30px">카테고리<input type="hidden" name="store_seq" id="edit_seq"></td>
-									<td width="350px">
+									<td width="100px" height="42px" style="font-weight: 600; color:black; font-size:16px">카테고리<input type="hidden" name="store_seq" id="edit_seq"></td>
+									<td width="600px">
 										<select id="edit_category" class="used_cate_style" name="category_big">
 											<option value="">카테고리 선택</option>
 											<c:forEach var="big" items="${ storeCategoryBig }">
@@ -191,16 +194,16 @@
 									</td>
 								</tr>
 								<tr>
-									<td height="30px">상품명</td>
+									<td height="42px" style="font-weight: 600; color:black; font-size:16px">상품명</td>
 									<td><input type="text" name="product_name" id="edit_name"></td>
 								</tr>
 								<tr>
-									<td height="30px">상품이미지</td>
+									<td height="140px" style="font-weight: 600; color:black; font-size:16px">상품이미지</td>
 									<td>
 										<div class="used_photo">
 											<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
-												<img class="preview-wrap1" alt="등록할 상품 사진을 넣어주세요." name="product_url"
-												onerror="this.style.display='none'" id="edit_url">
+												<img  style="margin:0; width:150px; height:120px; border:1px solid lightgray; margin-right:5px;" class="preview-wrap1" alt="등록할 상품 사진을 넣어주세요." name="product_url"
+												onerror="this.style.display='none'" id="edit_url" >
 											</div>
 											<div>
 												<input id="banner_file" class="form-input1" type="file" name="file1" multiple accept=".jpg, .png, .gif" required="required">
@@ -209,15 +212,15 @@
 									</td>
 								</tr>
 								<tr>
-									<td height="30px">가격</td>
+									<td height="42px" style="font-weight: 600; color:black; font-size:16px">가격</td>
 									<td><input type="text" name="product_price" id="edit_price"></td>
 								</tr>
 								<tr>
-									<td height="30px">내용</td>
+									<td height="230px" style="font-weight: 600; color:black; font-size:16px">내용</td>
 									<td>
 										<div class="used_photo">
 											<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
-												<img class="preview-wrap2" alt="등록할 상품 사진을 넣어주세요." name="product_content"
+												<img class="preview-wrap2" alt="등록할 상품 사진을 넣어주세요." name="product_content" style="margin:0px; width:150px; height:200px; border:1px solid lightgray; margin-right:5px;"
 												onerror="this.style.display='none'" id="edit_content">
 											</div>
 											<div>
@@ -227,14 +230,14 @@
 									</td>
 								</tr>
 								<tr>
-									<td height="30px">재고</td>
+									<td height="42px" style="font-weight: 600; color:black; font-size:16px">재고</td>
 									<td><input type="text" name="product_stock" id="edit_stock"></td>
 								</tr>
 							</table>
 							<br>
-							<div style="text-align: center; margin-top: 10px">
-								<button class="modal_info_edit_btn" style="width: 90px; font-size: 15px">변경</button>
-								<button class="modal_cancel_btn" style="width: 90px; font-size: 15px" onclick="return false;">취소</button>
+							<div style="text-align: center; margin-top: 5px; margin-left:180px; width:200px">
+								<button class="modal_info_edit_btn" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none;">수정</button>
+								<button class="modal_cancel_btn" style="width: 90px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none;" onclick="return false;">취소</button>
 							</div>
 						</div>
 					</div>

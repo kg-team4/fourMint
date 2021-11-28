@@ -4,9 +4,9 @@
 	<!-- 사이드바 - 로고(브랜드) -->
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.mdo">
 		<div class="sidebar-brand-icon rotate-n-15">			
-			<img src="admin/img/adminlogo.png">
+			<img src="admin/img/adminlogo.png" style="width:65px; height:65px">
 		</div>
-		<div class="sidebar-brand-text mx-3">민트마켓</div>
+		<div class="sidebar-brand-text mx-3" style="color:black; font-size:20px;">민트마켓</div>
 	</a>
 	<!-- 구분선 -->
 	<hr class="sidebar-divider my-0">

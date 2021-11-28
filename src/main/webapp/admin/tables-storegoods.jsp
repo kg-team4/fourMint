@@ -54,21 +54,16 @@
                             <h6 class="m-0 font-weight-bold text-primary">민트마켓 리스트</h6>
                         </div>
                         <div class="card-body">
-                        <form action="storeSell.do" method="POST" ebctype="multipart/form-data" onsubmint="return checkForm();">
-                        	<div class="form-group">
-                        	<div align="right" class="form-input">                       
-                   			<input type="button" class="btn btn-default" a href="storeSell.do">스토어 판매</div>
-                   			</div>
-                   		</form>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>대분류</th>
+                                            <th>분류</th>
                                             <th>상품명</th>   
                                             <th>상품가격</th>  
-                                            <th scope="col">Actions</th>                                        
+                                            <th>상품재고</th>
+                                            <th>상품 좋아요</th>                                        
                                         </tr>
                                     </thead>                                   
                                     <tbody>
@@ -78,10 +73,8 @@
 		                                            <td>${storeboard.category_big }</td>
 		                                            <td>${storeboard.product_name }</td>	                                            
 		                                            <td>${storeboard.product_price }</td>
-		                                            <td>
-		                                            <button type="button" onclick="alert('등록되었습니다.')" class="btn btn-success"><i class="fas fa-edit"></i></button>
-		                                        	<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>	
-		                                       		</td>                                           	                                            
+		                                            <td>${storeboard.product_stock }</td>
+		                                            <td style="width:110px;">${storeboard.product_like }</td>                                       	                                            
 	                                        	</tr>
 	                                        </c:forEach>                                          
                                     </tbody>

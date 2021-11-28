@@ -15,6 +15,10 @@
 
 <article style="padding-top: 200px; margin: 0px 20%">
 
+	<div id="user_address" style="color:#26e4ca; text-align: center; font-size:24px;">
+		<span style="color:#7b7b7b;">나의 동네 </span> <strong>[${addressSub}]</strong>
+	</div>
+
 	<!-- 소식 -->
 	<div class="community_news_all">
 		<br> <br>

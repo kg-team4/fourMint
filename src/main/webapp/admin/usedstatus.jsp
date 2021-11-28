@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -45,14 +46,11 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">중고거래 현황 조회 페이지</h1>
-                    <p class="mb-4">
-                     <a target="_blank"
-                            href="home.mdo">민트마켓 중고거래 현황 조회 </a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">중고거래 현황 조회 입니다.</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">중고거래 현황 조회</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -74,12 +72,12 @@
 	                                            <td>${list.product_name }</td>
 	                                            <td>${list.nickname }</td>
 	                                            <td>${list.buyer }</td>
-	                                            <td>${list.sell_date }</td>
+	                                            <td><fmt:formatDate value="${list.sell_date }" pattern="yyyy-MM-dd"/></td>
 	                                            <td>
-	                                            	<button class="modal_info" style="width: 90px; font-size: 15px">상세정보</button>
+	                                            	<button class="modal_info" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">상세정보</button>
 	                                            	<input type="hidden" value="${list.product_price }">
 	                                            	<input type="hidden" value="${list.url }">
-	                                            	<input type="hidden" value="${list.date }">
+	                                            	<input type="hidden" value="<fmt:formatDate value="${list.date }" pattern="yyyy-MM-dd"/>" />
 												</td>
 	                                        </tr>
                                         </c:forEach>
@@ -96,51 +94,53 @@
             <!-- End of Main Content -->
 			<div id="market_view" style="background: white; display:none">
 				<div>
-					<div id="info"><input type="text" readonly style="border: none; width:80px;">상세 정보</div>
+					<div id="info" style="text-align: center; margin-top:5px; font-size:23px">
+						<strong>상세 정보</strong>
+					</div>
 					<hr>
 					<div>
 						<table id="my_info_edit_area">
 							<tr>
 								<td colspan="2">
 									<p style="display: flex;">
-										<img id="detail_url" style="margin: auto;">
+										<img id="detail_url" style="margin: auto; width:130px; height:120px; border-radius: 5px">
 									</p>
-									<p style="text-align: center;">
-										<input type="text" readonly id="detail_porduct_name" style="text-align: center; border: 0px">
+									<p style="text-align: center; ">
+										<input type="text" readonly id="detail_porduct_name" style="width:300px; text-align: center; border: 0px; font-size:20px; font-weight: 700; color:gray; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" readonly>
 									</p>
 								</td>
 							</tr>
 							<tr>
-								<td width="200px" height="30px">분류<input type="hidden"></td>
+								<td width="200px" height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;분류</strong><input type="hidden"></td>
 								<td width="350px">
-									<input type="text" id="detail_category_big">
+									<input type="text" id="detail_category_big" readonly>
 								</td>
 							</tr>
 							<tr>
-								<td height="30px">가격</td>
+								<td height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;가격</strong></td>
 								<td><input type="text" readonly id="detail_price"></td>
 							</tr>
 							<tr>
-								<td height="30px">판매자</td>
+								<td height="42px " style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;판매자</strong></td>
 								<td><input type="text" readonly id="detail_nickname"></td>
 							</tr>
 							<tr>
 							<tr>
-								<td height="30px">등록날짜</td>
+								<td height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;등록날짜</strong></td>
 								<td><input type="text" readonly id="detail_date"></td>
 							</tr>
 							<tr>
-								<td height="30px">구매자</td>
+								<td height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;구매자</strong></td>
 								<td><input type="text" readonly id="detail_buyer"></td>
 							</tr>
 							<tr>
-								<td height="30px">거래날짜</td>
+								<td height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;거래날짜</strong></td>
 								<td><input type="text" readonly id="detail_sell_date"></td>
 							</tr>
 						</table>
 						<br>
 						<div style="text-align: center; margin-top: 10px">
-							<button class="modal_cancel_btn" style="width: 90px; font-size: 15px" onclick="return false;">확인</button>
+							<button class="modal_cancel_btn" style="width: 90px; height:30px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-20px;  font-weight: 700" onclick="return false;">확인</button>
 						</div>
 					</div>
 				</div>
