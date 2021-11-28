@@ -23,6 +23,10 @@ public class AdminUsedDAO {
 		
 		return sqlSessionTemplate.selectList("AdminUsedDAO.getAdminUsedSellList", status);
 	}
+
+	public void delete(int market_seq) {
+		sqlSessionTemplate.delete("AdminUsedDAO.delete", market_seq); 
+	}
 	
 	public void delete(int vo)throws Exception{
 		  sqlSessionTemplate.delete("AdminUsedDAO.delete",vo); 	

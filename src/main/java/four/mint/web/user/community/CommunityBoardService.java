@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.board.common.SearchVO;
 
 public interface CommunityBoardService {
 
@@ -15,7 +16,7 @@ public interface CommunityBoardService {
 
 	void insertCommunity(CommunityBoardVO cVO);
 
-	List<CommunityBoardVO> getKindList(KindAddressVO kaVO);
+	List<CommunityBoardVO> getKindList(SearchVO svo);
 
 	CommunityBoardVO getBoard(int seq);
 
@@ -48,4 +49,8 @@ public interface CommunityBoardService {
 	void deleteCommunity(int seq);
 
 	void deleteCommunityComment(int seq);
+
+	List<CommunityBoardVO> getFindList(FindVO fVO);
+
+	int getKindCount(SearchVO svo);
 }

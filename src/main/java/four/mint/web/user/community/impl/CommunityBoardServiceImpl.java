@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 
 import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.community.CommunityBoardService;
 import four.mint.web.user.community.CommunityBoardVO;
 import four.mint.web.user.community.CommunityCommentVO;
-import four.mint.web.user.community.KindAddressVO;
+import four.mint.web.user.community.FindVO;
 
 @Service("communityBoardService")
 public class CommunityBoardServiceImpl implements CommunityBoardService {
@@ -40,8 +41,8 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	}
 
 	@Override
-	public List<CommunityBoardVO> getKindList(KindAddressVO kaVO) {
-		return communityBoardDao.getKindList(kaVO);
+	public List<CommunityBoardVO> getKindList(SearchVO svo) {
+		return communityBoardDao.getKindList(svo);
 	}
 
 	@Override
@@ -122,6 +123,16 @@ public class CommunityBoardServiceImpl implements CommunityBoardService {
 	@Override
 	public void deleteCommunityComment(int seq) {
 		communityBoardDao.deleteCommunityComment(seq);
+	}
+
+	@Override
+	public List<CommunityBoardVO> getFindList(FindVO fVO) {
+		return communityBoardDao.getFindList(fVO);
+	}
+
+	@Override
+	public int getKindCount(SearchVO svo) {
+		return communityBoardDao.getKindCount(svo);
 	}
 	
 	

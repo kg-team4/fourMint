@@ -23,7 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 import four.mint.web.common.AES256Util;
 import four.mint.web.common.AwsS3;
 import four.mint.web.user.board.common.LikeVO;
+import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.market.MarketService;
+import four.mint.web.user.store.StoreVO;
 
 @Controller
 public class CommunityBoardController {
@@ -81,16 +83,20 @@ public class CommunityBoardController {
 	
 	/* 카테고리별 목록 */
 	@RequestMapping(value = "/communityDetailList.do", method = RequestMethod.GET)
-	public String communityDetailList(HttpServletRequest request, HttpSession session) {
+	public String communityDetailList(HttpServletRequest request, HttpSession session, SearchVO svo) {
 		if(session.getAttribute("userEmail_id") == null) {
 			return "redirect:/login.do";
 		} else if(session.getAttribute("nickname") == null) {
 			return "redirect:/profile.do";
 		}
-		KindAddressVO kaVO = new KindAddressVO();
 		
-			String kind = request.getParameter("kind");
-		kaVO.setKind(kind);
+		request.setAttribute("keyword", "");
+		svo.setKeyword("%%");
+		request.setAttribute("option", "title");
+		svo.setOption("title");
+		
+		String kind = request.getParameter("kind");
+		svo.setKind(kind);
 		request.setAttribute("kind", kind);
 		
 			String address = (String) session.getAttribute("address2");
@@ -102,11 +108,105 @@ public class CommunityBoardController {
 			request.setAttribute("addressSub", address);
 			
 			address = "%" + address.substring(0, 2) + "%";
-		kaVO.setAddress(address);
+		svo.setAddress(address);
 		
-		List<CommunityBoardVO> list = communityBoardService.getKindList(kaVO);
+		/* 페이징 처리 */
+		int page = 1;
+		int limit = 9;
+
+		svo.setKind(kind);
+		svo.setPage(page);
+
+		int listCount = communityBoardService.getKindCount(svo);
+		svo.setRnum(listCount);
+		int maxPage = (listCount + limit - 1) / limit;
+		int startPage = ((page - 1) / 5) * 5 + 1;
+		int endPage = startPage + 5 - 1;
+		if (endPage > maxPage)
+			endPage = maxPage;
+		if (endPage < page)
+			page = endPage;
+		/* 페이징 처리 끝 */
 		
+		List<CommunityBoardVO> list = communityBoardService.getKindList(svo);
+		
+		request.setAttribute("kind", kind);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("listCount", listCount);
+		request.setAttribute("pageNum", page);
 		request.setAttribute("list", list);
+		
+		return "/board/community_post_list";
+	}
+	
+	@RequestMapping(value = "/communityDetailList.do", method = RequestMethod.POST)
+	public String communityDetailLists(@RequestParam(required = false) String keyword, HttpServletRequest request, HttpSession session, SearchVO svo) {
+		if(keyword != null) {
+			request.setAttribute("keyword", keyword);
+			svo.setKeyword("%" + keyword + "%");
+		} else {
+			request.setAttribute("keyword", "");
+			svo.setKeyword("%%");
+		}
+		request.setAttribute("option", svo.getOption());
+		
+		String kind = request.getParameter("kind");
+		String arrow = request.getParameter("arrow");
+		
+		/* 페이징 처리 시작 */
+		String currentPage = request.getParameter("pageNum");
+		int page;
+
+		if (currentPage == null) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(currentPage);
+		}
+
+		if (arrow != null) {
+			if (arrow.equals("prev")) {
+				page = (page - 1) / 5 + ((page - 1) / 5) * 4;
+				if (page < 1) {
+					page = 1;
+				}
+			} else if (arrow.equals("next")) {
+				page = (page + 6) / 6 + (5 * ((page + 6) / 6)) - ((page - 1) / 5);
+			}
+		}
+
+		svo.setKind(kind);
+
+		if (page > Math.round((double) communityBoardService.getKindCount(svo) / 9)) {
+			page = (int) Math.round((double) communityBoardService.getKindCount(svo) / 9) + 1;
+		}
+
+		request.setAttribute("pageNum", page);
+
+		int limit = 9;
+
+		svo.setPage(page);
+		int listCount = communityBoardService.getKindCount(svo);
+		svo.setRnum(listCount);
+		int maxPage = (listCount + limit - 1) / limit;
+		int startPage = ((page - 1) / 5) * 5 + 1;
+		int endPage = startPage + 5 - 1;
+		if (endPage > maxPage)
+			endPage = maxPage;
+		if (endPage < page)
+			page = endPage;
+		/* 페이징 처리 끝 */
+
+		List<CommunityBoardVO> sVo;
+		sVo = communityBoardService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
+
+		request.setAttribute("kind", kind);
+		request.setAttribute("maxPage", maxPage);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("listCount", listCount);
+		request.setAttribute("list", sVo);
 		
 		return "/board/community_post_list";
 	}

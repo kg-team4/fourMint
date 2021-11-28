@@ -31,4 +31,11 @@ public class AdminUsedServiceImpl implements AdminUsedService{
 		
 		return adminUsedDao.orderList();
 	}	
+
+	@Override
+	public void delete(int market_seq) {
+		adminUsedDAO.delete(market_seq);
+	}
+	
+	
 }

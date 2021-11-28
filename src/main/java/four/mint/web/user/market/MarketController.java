@@ -172,6 +172,10 @@ public class MarketController {
 		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
 		request.setAttribute("marketCategoryBig", marketCategoryBig);
 		
+		request.setAttribute("keyword", "");
+		svo.setKeyword("%%");
+		request.setAttribute("option", "title");
+		svo.setOption("title");
 		String kind = request.getParameter("kind");
 		
 		/*페이징 처리 시작*/
@@ -207,9 +211,18 @@ public class MarketController {
 	}
 	
 	@RequestMapping(value = "/marketDetailList.do", method = RequestMethod.POST)
-	public String mintDetailListKind(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
+	public String mintDetailListKind(@RequestParam(required = false) String keyword, HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
 		List<MarketCategoryBigVO> marketCategoryBig = marketService.getMarketCategoryBig();
 		request.setAttribute("marketCategoryBig", marketCategoryBig);
+		
+		if(keyword != null) {
+			request.setAttribute("keyword", keyword);
+			svo.setKeyword("%" + keyword + "%");
+		} else {
+			request.setAttribute("keyword", "");
+			svo.setKeyword("%%");
+		}
+		request.setAttribute("option", svo.getOption());
 		
 		String kind = request.getParameter("kind");
 		String kindTwo = request.getParameter("kindTwo");

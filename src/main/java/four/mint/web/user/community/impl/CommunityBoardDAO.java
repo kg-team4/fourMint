@@ -10,8 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import four.mint.web.user.board.common.LikeVO;
 import four.mint.web.user.board.common.PageVO;
+import four.mint.web.user.board.common.SearchVO;
 import four.mint.web.user.community.CommunityBoardVO;
 import four.mint.web.user.community.CommunityCommentVO;
+import four.mint.web.user.community.FindVO;
 import four.mint.web.user.community.KindAddressVO;
 
 @Repository
@@ -35,8 +37,8 @@ public class CommunityBoardDAO {
 		sqlSessionTemplate.insert("CommunityBoardDAO.insertCommunity", cVO);
 	}
 
-	public List<CommunityBoardVO> getKindList(KindAddressVO kaVO) {
-		return sqlSessionTemplate.selectList("CommunityBoardDAO.getKindList", kaVO);
+	public List<CommunityBoardVO> getKindList(SearchVO svo) {
+		return sqlSessionTemplate.selectList("CommunityBoardDAO.getKindList", svo);
 	}
 
 	public CommunityBoardVO getBoard(int seq) {
@@ -101,5 +103,13 @@ public class CommunityBoardDAO {
 
 	public void deleteCommunityComment(int seq) {
 		sqlSessionTemplate.delete("CommunityBoardDAO.deleteCommunityComment", seq);
+	}
+
+	public List<CommunityBoardVO> getFindList(FindVO fVO) {
+		return sqlSessionTemplate.selectList("CommunityBoardDAO.getFindList", fVO);
+	}
+
+	public int getKindCount(SearchVO svo) {
+		return sqlSessionTemplate.selectOne("CommunityBoardDAO.getKindCount", svo);
 	}
 }

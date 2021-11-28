@@ -152,15 +152,28 @@
 					</c:if>
 					</c:forEach>			
 				</div>
-				<div id="grid_below_search_write_area">
-					<select name="search" style="height: 20px">
-						<option value="content">제목</option>
-						<option value="title">내용</option>
-						<option value="writer">작성자</option>
+				
+				<div id="grid_below_search_write_area"><br>
+					<select id="option" name="search" style="height: 20px">
+						<option value="title">제목</option>
+						<option value="content">내용</option>
 					</select> 
-					<input type="text" name="" value="" placeholder="검색어를 입력하세요.">
-					<input id="btn_grid_below_search" type="submit" value="검색"> 
+					<input id="search" type="text" name="" value="${keyword }" placeholder="검색어를 입력하세요.">
+					<input class="btn_search" id="btn_grid_below_search" type="button" value="검색"> 
 					<input id="btn_grid_below_write" type="button" value="글쓰기" onclick="location.href='/communityBoardWrite.do'">
+				</div>
+			</div>
+			<div style="display:flex; margin-bottom:40px ">
+		
+				<div style="text-align: center; margin-left:780px; padding-top:12px">
+					<c:set var="startPage" value="${ startPage }" />
+					<c:set var="endPage" value="${ endPage }" />
+					<c:set var="pageCount" value="${ maxPage }" />
+						<label class="pagingNumPrev">◀</label>
+					<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+						<label class="pagingNum">${i}</label>
+					</c:forEach>
+						<label class="pagingNumNext">▶</label>
 				</div>
 			</div>
 		</div>
@@ -188,6 +201,92 @@ $(function(){
 			}//error
 		})//ajax
 	});//click
+	
+	$(".pagingNum").on('click',function(){
+		var pageNum = $(this).text();  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	
+		var kind = "${kind}";
+		var search = "${keyword}";
+		var option = "${option}";
+		$.ajax({
+			url : 'communityDetailList.do', // 이 주소로 
+			type : "post", // 포스트 방식으로 보내는데
+			cache: false,
+			headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+			data : {"kind" : kind, "pageNum" : pageNum, "keyword" : search, "option" : option}, // kind를 kind로 명명하여 보내겠다
+			success : function(data){ 
+			   console.log(data);
+			   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
+			},
+			error : function(data){
+				alert('error');
+			}//error
+		})//ajax
+	});//click
+	
+	$(".pagingNumPrev").on('click',function(){
+		var pageNum = "${pageNum}";  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	
+		var kind = "${kind}";
+		var arrow = "prev";
+		var search = "${keyword}";
+		var option = "${option}";
+		$.ajax({
+			url : 'communityDetailList.do', // 이 주소로 
+			type : "post", // 포스트 방식으로 보내는데
+			cache: false,
+			headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+			data : {"kind" : kind, "pageNum" : pageNum, "arrow" : arrow, "keyword" : search, "option" : option}, // kind를 kind로 명명하여 보내겠다
+			success : function(data){ 
+			   console.log(data);
+			   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
+			},
+			error : function(data){
+				alert('error');
+			}//error
+		})//ajax
+	});//click
+	
+	$(".pagingNumNext").on('click',function(){
+		var pageNum = "${pageNum}";  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	
+		var kind = "${kind}";
+		var arrow = "next";
+		var search = "${keyword}";
+		var option = "${option}";
+		$.ajax({
+			url : 'communityDetailList.do', // 이 주소로 
+			type : "post", // 포스트 방식으로 보내는데
+			cache: false,
+			headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+			data : {"kind" : kind, "pageNum" : pageNum, "arrow" : arrow, "keyword" : search, "option" : option}, // kind를 kind로 명명하여 보내겠다
+			success : function(data){ 
+			   console.log(data);
+			   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
+			},
+			error : function(data){
+				alert('error');
+			}//error
+		})//ajax
+	});//click
+	
+	$(".btn_search").on('click', function(){
+		var kind = "${kind}";
+		var search = $("#search").val();
+		var option = $("#option").val();
+		$.ajax({
+			url : 'communityDetailList.do',
+			type : "post",
+			cache: false,
+			headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+			data : {
+				"kind" : kind,
+				"keyword" : search,
+				"option" : option
+			},
+			success : function(data) {
+				console.log(data);
+				$('body').html(data);
+			}
+		})
+	});
 });
 </script>
 

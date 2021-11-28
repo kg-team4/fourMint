@@ -30,7 +30,7 @@
 		SELECT * FROM report
 	</select>	
 	
-		<select id="getAdminBlackList" resultType="adminBlackList" parameterType="four.mint.web.admin.report.AdminBlackListVO">
+	<select id="getAdminBlackList" resultType="adminBlackList" parameterType="four.mint.web.admin.report.AdminBlackListVO">
 		SELECT * FROM blacklist
 	</select>
 	

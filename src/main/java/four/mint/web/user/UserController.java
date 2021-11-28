@@ -31,6 +31,7 @@ import four.mint.web.common.AwsS3;
 import four.mint.web.user.community.CommunityBoardService;
 import four.mint.web.user.community.CommunityBoardVO;
 import four.mint.web.user.community.CommunityCommentVO;
+import four.mint.web.user.community.FindVO;
 import four.mint.web.user.market.MarketRatingVO;
 import four.mint.web.user.market.MarketService;
 import four.mint.web.user.market.MarketVO;
@@ -454,24 +455,79 @@ public class UserController {
 	
 	// 검색 시 매핑 페이지 
 	@RequestMapping(value = "/searchAllResult.do", method = RequestMethod.GET)
-	public String searchAllResult(HttpServletRequest request, String keyword) {
+	public String searchAllResult(Model model, String keyword, HttpSession session) {
+		model.addAttribute("keyword", keyword);
 		keyword = "%" + keyword + "%";
+		
+		String[] addSpl = null;
 		List<MarketVO> mVL = marketService.getFindList(keyword);
-		request.setAttribute("market", mVL);
+		for(int i=0; i<mVL.size(); i++) {
+			addSpl = mVL.get(i).getAddress2().split(" ");
+			if(addSpl[1].substring(addSpl[1].length()-1).equals("시")) {
+				mVL.get(i).setAddress2(addSpl[0] + " " + addSpl[1] + " " + addSpl[2]);
+			} else {
+				mVL.get(i).setAddress2(addSpl[0] + " " + addSpl[1]);
+			}
+		}
+		model.addAttribute("market", mVL);
 		
-		
+		FindVO fVO = new FindVO();
+			fVO.setKeyword(keyword);
+			String address = (String) session.getAttribute("address2");
+			if(address != null) {
+				String[] temp = address.split(" ");
+				address = temp[1];
+				if(temp[1].substring(address.length()-1).equals("시")) {
+					address = temp[2];
+				}
+				address = "%" + address.substring(0, 2) + "%";
+				fVO.setAddress(address);
+			} 
+		List<CommunityBoardVO> cVL = communityBoardService.getFindList(fVO);
+		model.addAttribute("community", cVL);
 		
 		return "/board/search_all_result";
 	}
 	
 	@RequestMapping(value = "/searchCommunityMoreResult.do", method = RequestMethod.GET)
-	public String searchCommunityMoreResult() {
+	public String searchCommunityMoreResult(Model model, String keyword, HttpSession session) {
+		model.addAttribute("keyword", keyword);
+		keyword = "%" + keyword + "%";
 		
+			FindVO fVO = new FindVO();
+			fVO.setKeyword(keyword);
+			String address = (String) session.getAttribute("address2");
+			if(address != null) {
+				String[] temp = address.split(" ");
+				address = temp[1];
+				if(temp[1].substring(address.length()-1).equals("시")) {
+					address = temp[2];
+				}
+				address = "%" + address.substring(0, 2) + "%";
+				fVO.setAddress(address);
+			} 
+		List<CommunityBoardVO> cVL = communityBoardService.getFindList(fVO);
+		model.addAttribute("community", cVL);
+			
 		return "/board/search_community_more_result";
 	}
 	
 	@RequestMapping(value = "/searchMarketMoreResult.do", method = RequestMethod.GET)
-	public String searchMarketMoreResult() {
+	public String searchMarketMoreResult(Model model, String keyword, HttpSession session) {
+		model.addAttribute("keyword", keyword);
+		keyword = "%" + keyword + "%";
+		
+		String[] addSpl = null;
+		List<MarketVO> mVL = marketService.getFindList(keyword);
+		for(int i=0; i<mVL.size(); i++) {
+			addSpl = mVL.get(i).getAddress2().split(" ");
+			if(addSpl[1].substring(addSpl[1].length()-1).equals("시")) {
+				mVL.get(i).setAddress2(addSpl[0] + " " + addSpl[1] + " " + addSpl[2]);
+			} else {
+				mVL.get(i).setAddress2(addSpl[0] + " " + addSpl[1]);
+			}
+		}
+		model.addAttribute("market", mVL);
 		
 		return "/board/search_market_more_result";
 	}

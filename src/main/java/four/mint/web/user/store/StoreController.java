@@ -122,6 +122,10 @@ public class StoreController {
 		List<StoreCategoryBigVO> storeCategoryBig = storeService.getStoreCategoryBig();
 		request.setAttribute("storeCategoryBig", storeCategoryBig);
 
+		request.setAttribute("keyword", "");
+		svo.setKeyword("%%");
+		request.setAttribute("option", "title");
+		svo.setOption("title");
 		String kind = request.getParameter("kind");
 
 		/* 페이징 처리 */
@@ -157,12 +161,22 @@ public class StoreController {
 	}
 
 	@RequestMapping(value = "/storeDetailList.do", method = RequestMethod.POST)
-	public String storeListKind(HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
+	public String storeListKind(@RequestParam(required = false) String keyword, HttpServletRequest request, HttpServletResponse response, SearchVO svo) {
 		List<StoreCategoryBigVO> storeCategoryBig = storeService.getStoreCategoryBig();
 		request.setAttribute("storeCategoryBig", storeCategoryBig);
 
+		if(keyword != null) {
+			request.setAttribute("keyword", keyword);
+			svo.setKeyword("%" + keyword + "%");
+		} else {
+			request.setAttribute("keyword", "");
+			svo.setKeyword("%%");
+		}
+		request.setAttribute("option", svo.getOption());
+		
 		String kind = request.getParameter("kind");
 		String arrow = request.getParameter("arrow");
+		
 		/* 페이징 처리 시작 */
 		String currentPage = request.getParameter("pageNum");
 		int page;

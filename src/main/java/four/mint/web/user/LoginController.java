@@ -121,17 +121,17 @@ public class LoginController {
 				flag = 1;
 				model.addAttribute("flag", flag);
 			
-				return "user/login";
+				return "/user/login";
 			}
 		}else {
 			System.out.println("존재하지 않는 아이디");
 			flag = 2;
 			model.addAttribute("flag", flag);
 			
-			return "user/login";
+			return "/user/login";
 		}
 		
-		return "index/index";
+		return "/index/index";
 	}
 	
 	@RequestMapping(value = "/navercallback.do", method = {RequestMethod.GET, RequestMethod.POST})

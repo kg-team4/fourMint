@@ -37,11 +37,11 @@ public class AdminUsedController {
 	}
 	
 	@RequestMapping(value = "/used_delete.mdo", method = RequestMethod.POST)
-	 public String used_delete(int market_seq) throws Exception { 
-		  adminUsedService.delete(market_seq);
-	  
-		 return "redirect:tables-used.mdo"; 
-	  }
+   public String used_delete(int market_seq) throws Exception { 
+      adminUsedService.delete(market_seq);
+   
+      return "redirect:tables-used.mdo"; 
+   }
 	
 	@GetMapping(value="excel_used.mdo")
 	 public void excelDownload(HttpServletResponse response) throws IOException {
@@ -89,5 +89,7 @@ public class AdminUsedController {
           wb.close();
       }
 
+		return "redirect:tables-used.mdo";
+	}
 	
 }
