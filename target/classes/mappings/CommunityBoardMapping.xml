@@ -15,6 +15,7 @@
 		<result property="views" column="VIEWS"/>
 		<result property="likes" column="LIKES"/>
 		<result property="profile" column="PROFILE"/>
+		<result property="address" column="ADDRESS"/>
 	</resultMap>
 	
 	<select id="getCommunityBoardList" resultType="communityBoard" parameterType="int">
@@ -30,8 +31,27 @@
 		VALUES(DEFAULT, #{title}, #{category}, #{nickname}, #{address2}, #{content}, #{url})
 	</insert>
 	
+	<select id="getKindCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
+		SELECT count(title) FROM (SELECT * FROM community 
+			<if test='!keyword.equals("%%")'>
+				<if test='option.equals("title")'>
+					WHERE title LIKE #{keyword} 
+				</if>
+			</if>
+		) AS a WHERE category = #{kind} AND address2 LIKE #{address}
+	</select>
+	
 	<select id="getKindList" resultType="communityBoard" parameterType="string">
-		SELECT * FROM community WHERE category = #{kind} AND address2 LIKE #{address}
+		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM (SELECT * FROM community]]> 
+		<if test='!keyword.equals("%%")'>
+			<if test='option.equals("title")'>
+				WHERE title LIKE #{keyword} 
+			</if>
+			<if test='option.equals("content")'>
+				WHERE content LIKE #{keyword}
+			</if>
+		</if> 
+		<![CDATA[) AS a WHERE category = #{kind} AND address2 LIKE #{address} ORDER BY community_seq DESC) AS c) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9)]]>
 	</select>
 	
 	<select id="getBoard" resultType="communityBoard" parameterType="int">
@@ -76,6 +96,15 @@
 	<update id="deleteLike" parameterType="int">
 		UPDATE community SET likes = likes - 1 WHERE community_seq = #{seq}
 	</update>
+	
+	<resultMap type="find" id="findResult">
+		<result property="keyword" column="KEYWORD"/>
+		<result property="address" column="ADDRESS" />
+	</resultMap>
+	
+	<select id="getFindList" parameterType="find" resultType="communityBoard">
+		SELECT * FROM (SELECT * FROM community WHERE address2 LIKE #{address}) AS a WHERE title LIKE #{keyword} OR content LIKE #{keyword};
+	</select>
 	
 	<resultMap type="communityComment" id="commentResult">
 		<result property="comment_seq" column="COMMENT_SEQ"/>

@@ -157,27 +157,34 @@
 	
 	<div style="display:flex; margin-bottom:40px ">
 		
-			<div style="text-align: center; margin-left:780px; padding-top:12px">
-				<c:set var="startPage" value="${ startPage }" />
-				<c:set var="endPage" value="${ endPage }" />
-				<c:set var="pageCount" value="${ maxPage }" />
-					<label class="pagingNumPrev">◀</label>
-				<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-					<label class="pagingNum">${i}</label>
-				</c:forEach>
-					<label class="pagingNumNext">▶</label>
-			</div>
-			
+		<div style="text-align: center; margin-left:780px; padding-top:12px">
+			<c:set var="startPage" value="${ startPage }" />
+			<c:set var="endPage" value="${ endPage }" />
+			<c:set var="pageCount" value="${ maxPage }" />
+				<label class="pagingNumPrev">◀</label>
+			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+				<label class="pagingNum">${i}</label>
+			</c:forEach>
+				<label class="pagingNumNext">▶</label>
+		</div>
+		
 
-			<div id="search_write_area" style="margin-left:106px; margin-top:10px">
-				<select name="search" style="height: 20px">
-					<option value="content">제목</option>
-					<option value="title">내용</option>
-					<option value="writer">작성자</option>
-				</select> 
-				<input type="text" name="" value="" placeholder="검색어를 입력하세요.">
-				<input id="btn_search" type="submit" value="검색"> 
-			</div>
+		<div id="search_write_area" style="margin-left:106px; margin-top:10px">
+			<select id="option" name="search" style="height: 20px">
+				<c:choose>
+				<c:when test="${option eq 'title' }">
+				<option value="title" selected>제목</option>
+				<option value="content">내용</option>
+				</c:when>
+				<c:otherwise>
+				<option value="title">제목</option>
+				<option value="content" selected>내용</option>
+				</c:otherwise>
+				</c:choose>
+			</select> 
+			<input type="text" id="search" name="searchVal" value="${keyword }" placeholder="검색어를 입력하세요.">
+			<input id="btn_search" type="button" value="검색"> 
+		</div>
 	</div>
 </article>
 
@@ -219,7 +226,7 @@
 				type : "post", // 포스트 방식으로 보내는데
 				cache: false,
 				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
-				data : {"kind" : kind, "kindTwo" : kindTwo}, // kind를 kind로 명명하여 보내겠다
+				data : {"kind" : kind, "kindTwo" : kindTwo, "search" : search}, // kind를 kind로 명명하여 보내겠다
 				success : function(data){ 
 				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
@@ -234,12 +241,14 @@
 			var pageNum = $(this).text();  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	
 			var kind = "${kind}";
 			var kindTwo = "${kindTwo}";
+			var search = "${keyword}";
+			var option = "${option}";
 			$.ajax({
 				url : 'marketDetailList.do', // 이 주소로 
 				type : "post", // 포스트 방식으로 보내는데
 				cache: false,
 				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
-				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum}, // kind를 kind로 명명하여 보내겠다
+				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum, "keyword" : search, "option" : option}, // kind를 kind로 명명하여 보내겠다
 				success : function(data){ 
 				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
@@ -255,12 +264,14 @@
 			var kind = "${kind}";
 			var kindTwo = "${kindTwo}";
 			var arrow = "prev";
+			var search = "${keyword}";
+			var option = "${option}";
 			$.ajax({
 				url : 'marketDetailList.do', // 이 주소로 
 				type : "post", // 포스트 방식으로 보내는데
 				cache: false,
 				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
-				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum, "arrow" : arrow}, // kind를 kind로 명명하여 보내겠다
+				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum, "arrow" : arrow, "keyword" : search, "option" : option}, // kind를 kind로 명명하여 보내겠다
 				success : function(data){ 
 				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
@@ -276,12 +287,14 @@
 			var kind = "${kind}";
 			var kindTwo = "${kindTwo}";
 			var arrow = "next";
+			var search = "${keyword}";
+			var option = "${option}";
 			$.ajax({
 				url : 'marketDetailList.do', // 이 주소로 
 				type : "post", // 포스트 방식으로 보내는데
 				cache: false,
 				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
-				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum, "arrow" : arrow}, // kind를 kind로 명명하여 보내겠다
+				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum, "arrow" : arrow, "keyword" : search, "option" : option}, // kind를 kind로 명명하여 보내겠다
 				success : function(data){ 
 				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
@@ -291,6 +304,29 @@
 				}//error
 			})//ajax
 		});//click
+		
+		$("#btn_search").on('click', function(){
+			var kind = "${kind}";
+			var kindTwo = "${kindTwo}";
+			var search = $("#search").val();
+			var option = $("#option").val();
+			$.ajax({
+				url : 'marketDetailList.do',
+				type : "post",
+				cache: false,
+				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
+				data : {
+					"kind" : kind,
+					"kindTwo" : kindTwo,
+					"keyword" : search,
+					"option" : option
+				},
+				success : function(data) {
+					console.log(data);
+					$('body').html(data);
+				}
+			})
+		});
 	});//ready
 	
 	// 카테고리(label) 클릭 시 색상 변화 

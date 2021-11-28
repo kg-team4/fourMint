@@ -5,8 +5,11 @@ import lombok.Data;
 @Data
 public class SearchVO {
 	
-	String kind;
-	String kindTwo;
-	int page;
-	int rnum;
+	private String kind;
+	private String kindTwo;
+	private int page;
+	private int rnum;
+	private String keyword;
+	private String option;
+	private String address;
 }

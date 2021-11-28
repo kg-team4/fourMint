@@ -44,6 +44,7 @@
 		<typeAlias alias="rate" type="four.mint.web.user.store.StoreRateVO"/>
 		<typeAlias alias="ask" type="four.mint.web.user.store.StoreAskVO"/>
 		<typeAlias alias="AdminQna" type="four.mint.web.admin.qna.AdminQnaVO"/>
+		<typeAlias alias="find" type="four.mint.web.user.community.FindVO"/>
 	</typeAliases>
 	
 	<typeHandlers>

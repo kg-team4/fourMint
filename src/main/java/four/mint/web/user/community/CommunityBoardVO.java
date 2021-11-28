@@ -20,4 +20,5 @@ public class CommunityBoardVO {
 	private int comments;
 	
 	private String profile;
+	private String address;
 }

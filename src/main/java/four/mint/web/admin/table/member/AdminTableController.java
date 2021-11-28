@@ -3,22 +3,18 @@ package four.mint.web.admin.table.member;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.amazonaws.Request;
-import com.itextpdf.text.pdf.hyphenation.TernaryTree.Iterator;
-
+import four.mint.web.admin.page.AdminPageService;
+import four.mint.web.admin.page.AdminPageVO;
 import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
-import four.mint.web.user.impl.UserDAO;
 
 
 @Controller
@@ -26,15 +22,18 @@ public class AdminTableController {
 
 	@Autowired
 	private AdminTableService adminTableService;
+	
+	@Autowired
+	private AdminPageService adminPageService; 
 
 	@Autowired
 	private UserService userService;
 
 	@RequestMapping(value = "/tables-member.mdo", method = RequestMethod.GET)
 	public String tablemember(HttpServletRequest request) {
-		List<AdminTableVO> admintablelist = adminTableService.getAdminTableList();
+		List<AdminPageVO> adminpagelist = adminPageService.getAdminPageList();
 
-		request.setAttribute("list", admintablelist);
+		request.setAttribute("list", adminpagelist);
 		return "/tables-member";
 
 	}

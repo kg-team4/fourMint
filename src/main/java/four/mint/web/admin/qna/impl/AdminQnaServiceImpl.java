@@ -1,4 +1,4 @@
-package four.mint.web.admin.qan.impl;
+package four.mint.web.admin.qna.impl;
 
 import java.util.List;
 
