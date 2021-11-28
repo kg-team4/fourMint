@@ -66,10 +66,7 @@ public class LoginController {
 		}
 		
 		vo.setSocial_login("kakao");
-//		System.out.println("email" + vo.getEmail());
-//		System.out.println("!!!!!!!" + vo.getSocial_login());
 		String doubleCheck = userService.getBySns(vo.getEmail());
-//		System.out.println(doubleCheck);
 		if(doubleCheck == null) {
 			session.setAttribute("sns", vo.getSocial_login());
 			session.setAttribute("userEmail_id", vo.getEmail());
@@ -98,8 +95,6 @@ public class LoginController {
 		AES256Util aes = new AES256Util();
 		String encoding = aes.encrypt(pw);
 		
-		System.out.println(encoding);
-		
 		int flag = 0;
 		UserVO user = userService.getUser(vo);
 		
@@ -107,10 +102,8 @@ public class LoginController {
 		
 		String realpw = userService.getPassword(id);
 		
-		String encoding2 = aes.encrypt(realpw);
-		
 		if(id != null) {
-			if(encoding.equals(encoding2)) {
+			if(encoding.equals(realpw)) {
 				session.setAttribute("userEmail_id", user.getEmail_id());
 				session.setAttribute("name", user.getName());
 				session.setAttribute("address2", user.getAddress2());

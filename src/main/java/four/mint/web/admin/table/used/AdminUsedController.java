@@ -44,7 +44,7 @@ public class AdminUsedController {
    }
 	
 	@GetMapping(value="excel_used.mdo")
-	 public void excelDownload(HttpServletResponse response) throws IOException {
+	 public String excelDownload(HttpServletResponse response) throws IOException {
 	      
          // Workbook wb = new HSSFWorkbook();
           Workbook wb = new XSSFWorkbook();
@@ -87,7 +87,6 @@ public class AdminUsedController {
           // Excel File Output
           wb.write(response.getOutputStream());
           wb.close();
-      }
 
 		return "redirect:tables-used.mdo";
 	}

@@ -86,11 +86,10 @@ public class AdminTransactionHistoryServiceImpl implements AdminTransactionHisto
 		
 		return adminTransactionHistoryDAO.orderList();
 	}
-
-	
 	
 	@Override
 	public int getTotalPrice() {
 		return adminTransactionHistoryDAO.getTotalPrice();
 	}
+
 }
