@@ -59,28 +59,22 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>거래번호</th>
-                                            <th>이메일아이디</th>
-                                            <th>상품명</th>
-                                            <th>거래가격</th>
-                                            <th>상품수량</th>
-                                            <th>날짜</th>
-                                            <th>주문번호</th>
-                                            <th>주문가격</th>
+                                        	<th>주문번호</th>
+                                            <th>주문자ID</th>
+                                            <th>주문상품명</th>
+                                            <th>주문총액</th>
+                                            <th>주문날짜</th>
                                             <th>요청사항</th>
                                         </tr>
                                     </thead>                                    
                                     <tbody>
                                         <c:forEach var="transactionhistory" items="${list }">
 	                                        <tr>
-	                                            <td>${transactionhistory.transaction_seq }</td>
+	                                      		<td style="width:120px">${transactionhistory.merchant_uid}</td>
 	                                            <td>${transactionhistory.email_id }</td>
 	                                            <td>${transactionhistory.product_name }</td>	                                            
 	                                            <td>${transactionhistory.transaction_price }</td>
-	                                            <td>${transactionhistory.transaction_count }</td>
-	                                            <td><fmt:formatDate value="${transactionhistory.date}" pattern="yyyy-MM-dd" /></td>
-	                                            <td>${transactionhistory.merchant_uid}</td>
-	                                            <td>${transactionhistory.product_price }</td>
+	                                            <td style="width:100px"><fmt:formatDate value="${transactionhistory.date}" pattern="yyyy-MM-dd" /></td>	                                            
 	                                            <td>${transactionhistory.request}</td>	                                           	                       
                                         	</tr>
                                         </c:forEach>                                                                                                                                                                                                                                                 

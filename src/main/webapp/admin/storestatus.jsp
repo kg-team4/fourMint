@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -79,7 +81,7 @@
 											<th>상품명</th>
 											<th>주문자</th>
 											<th>총액</th>
-											<th>주문날짜</th>
+											<th>주문일시</th>
 											<th>배송현황</th>
 											<th>비고</th>
 										</tr>
@@ -90,10 +92,10 @@
 												<td>${list.product_name }</td>
 												<td>${list.email_id }</td>
 												<td>${list.transaction_price }</td>
-												<td>${list.date }</td>
+												<td><fmt:formatDate value="${list.date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 												<td>${list.status }</td>
 												<td>
-													<button type="button" id="detail_list" class="detail_list" style="width: 90px; font-size: 15px">상세보기</button>
+													<button type="button" id="detail_list" class="detail_list" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">상세정보</button>
 													<input type="hidden" value="${list.transaction_count }">	
 													<input type="hidden" value="${list.product_price }">
 													<input type="hidden" value="${list.request }">
@@ -115,7 +117,9 @@
 			<!-- 상세 보기 모달 -->
 			<div id="detail_view" style="background: white; display:none">
 				<div>
-					<div id="info">상세정보</div>
+					<div id="info" style="text-align: center; margin-top:5px; font-size:23px">
+						<strong>상세 정보</strong>
+					</div>
 					<hr>
 					<div>
 						<form action="updateStatus.mdo" method="post">
@@ -129,41 +133,41 @@
 									</td>
 								</tr> -->
 								<tr>
-									<td width="200px" height="30px">상품명</td>
+									<td width="200px" height="30px" style="text-align:left; color:black">&emsp;&emsp;&emsp;&emsp;&emsp;<strong>상품명</strong></td>
 									<td width="350px">
-										<input type="text" id="detail_product_name" style="border: 0px;">
+										<input type="text" id="detail_product_name" readonly style="border: 0px; width:300px">
 									</td>
 								</tr>
 								<tr>
-									<td height="30px">주문 아이디</td>
-									<td><input type="text" id="detail_email_id" style="border: 0px;"></td>
+									<td height="42px" style="text-align:left; color:black">&emsp;&emsp;&emsp;&emsp;&emsp;<strong>주문자ID</strong></td>
+									<td><input type="text" id="detail_email_id" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">주소</td>
-									<td><input type="text" id="detail_address" style="border: 0px;"></td>
+									<td height="42px" style="text-align:left; color:black">&emsp;&emsp;&emsp;&emsp;&emsp;<strong>주소</strong></td>
+									<td><input type="text" id="detail_address" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">가격</td>
-									<td><input type="text" id="detail_product_price" style="border: 0px;"></td>
+									<td height="42px"style="text-align:left; color:black">&emsp;&emsp;&emsp;&emsp;&emsp;<strong>가격</strong></td>
+									<td><input type="text" id="detail_product_price" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">수량</td>
-									<td><input type="text" id="detail_transaction_count" style="border: 0px;"></td>
+									<td height="42px" style="text-align:left; color:black">&emsp;&emsp;&emsp;&emsp;&emsp;<strong>수량</strong></td>
+									<td><input type="text" id="detail_transaction_count" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">총액</td>
-									<td><input type="text" id="detail_transaction_price" style="border: 0px;"></td>
+									<td height="42px" style="text-align:left; color:black">&emsp;&emsp;&emsp;&emsp;&emsp;<strong>총액</strong></td>
+									<td><input type="text" id="detail_transaction_price" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">주문일시</td>
-									<td><input type="text" id="detail_date" style="border: 0px;"></td>
+									<td height="42px" style="text-align:left; color:black">&emsp;&emsp;&emsp;&emsp;&emsp;<strong>주문일시</strong></td>
+									<td><input type="text" id="detail_date" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">요청사항</td>
-									<td><textarea id="detail_request" style="border: 0px; resize: none;"></textarea></td>
+									<td height="42px" style="text-align:left; color:black">&emsp;&emsp;&emsp;&emsp;&emsp;<strong>요청사항</strong></td>
+									<td><textarea id="detail_request" readonly style="border: 0px; resize: none; width:300px; height:42px; margin-top:13px"></textarea></td>
 								</tr>
 								<tr>
-									<td height="30px">배송상태</td>
+									<td height="60px" style="text-align:left; color:black">&emsp;&emsp;&emsp;&emsp;&emsp;<strong>배송상태</strong></td>
 									<td>
 										<select id="detail_status" name="status" class="used_cate_style">
 											<c:forEach var="strList" items="${strList }">
@@ -176,8 +180,8 @@
 							<br>
 							<div style="text-align: center; margin-top: 10px">
 									<input type="hidden" id="form_seq" name="transaction_seq">
-									<button type="submit" id="edit_btn" class="edit_btn" style="width: 90px; font-size: 15px">변경</button>
-								<button class="modal_cancel_btn" style="width: 90px; font-size: 15px" onclick="return false;">취소</button>
+									<button type="submit" id="edit_btn" class="edit_btn" style="width: 90px; height:30px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-25px;  font-weight: 700">변경</button>
+								<button class="modal_cancel_btn" style="width: 90px; height:30px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-25px;  font-weight: 700" onclick="return false;">취소</button>
 							</div>
 						</form>
 					</div>
@@ -196,7 +200,7 @@
 					$("#detail_product_price").val($(this).next().next().val());
 					$("#detail_transaction_count").val($(this).next().val());
 					$("#detail_transaction_price").val($(this).parent().prev().prev().prev().text());
-					$("#detail_date").val($(this).parent().prev().prev().prev().prev().prev().text());
+					$("#detail_date").val($(this).parent().prev().prev().text());
 					$("#detail_request").val($(this).next().next().next().val());
 					$("#detail_status").val($(this).parent().prev().text());
 					$("#form_seq").val($(this).next().next().next().next().next().val());

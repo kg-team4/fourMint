@@ -7,17 +7,12 @@ import lombok.Data;
 
 @Data
 public class AdminGoodsVO {
-	String store_seq;
-	String category_big;
-	String product_name;
-	String product_price;
-	Timestamp date;
-	int product_stock;
-	int product_like;
-	
-	
-	
-	
+	private String store_seq;
+	private String category_big;
+	private String product_name;
+	private String product_price;
+	private int product_stock;
+	private int product_like;
 	
 
 }

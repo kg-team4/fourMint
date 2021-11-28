@@ -62,26 +62,26 @@
                                             <th>별명</th>
                                             <th>구매자</th>
                                             <th>판매날짜</th>
-                                           <!--  <th scope="col">Actions</th>  -->
-                                        </tr>
+                                            <th scope="col">삭제</th> 
+                                        </tr>	
                                     </thead>                                 
                                     <tbody>
                                          <c:forEach var="marketboard" items="${list }">
 		                                        <tr>
-		                                            <td>${marketboard.market_seq }</td>
-		                                            <td>${marketboard.category_big }</td>
-		                                            <td>${marketboard.product_name }</td>	                                            
-		                                            <td>${marketboard.product_price }</td>
-		                                            <td>${marketboard.product_content }</td>
-		                                            <td><fmt:formatDate value="${marketboard.date}" pattern="yyyy-MM-dd"/> </td>
-		                                            <td>${marketboard.nickname }</td>	
-		                                            <td>${marketboard.buyer }</td>	
-		                                            <td><fmt:formatDate value="${marketboard.sell_date}" pattern="yyyy-MM-dd"/> </td>			
+		                                            <td style="width:55px">${marketboard.market_seq }</td>
+		                                            <td style="width:100px">${marketboard.category_big }</td>
+		                                            <td style="width:120px">${marketboard.product_name }</td>	                                            
+		                                            <td style="width:110px">${marketboard.product_price }</td>
+		                                            <td style="width:480px">${marketboard.product_content }</td>
+		                                            <td style="width:140px"><fmt:formatDate value="${marketboard.date}" pattern="yyyy-MM-dd"/> </td>
+		                                            <td style="width:180px">${marketboard.nickname }</td>	
+		                                            <td style="width:180px">${marketboard.buyer }</td>	
+		                                            <td style="width:140px"><fmt:formatDate value="${marketboard.sell_date}" pattern="yyyy-MM-dd"/> </td>			
 		                                            <td>		                                            
-		                                        	<%-- <form>		                                        		
-	                                           			<input type="hidden" value="${marketboard.market_seq }" name="market_seq">		                                                                           
-		                                        		<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id= "delete_btn"><i class="far fa-trash-alt"></i></button>	
-	                                        		</form>	 --%>
+			                                        	<form>		                                        		
+		                                           			<input type="hidden" value="${marketboard.market_seq }" name="market_seq">		                                                                           
+			                                        		<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id= "delete_btn"><i class="far fa-trash-alt"></i></button>	
+		                                        		</form>	
 		                                       		</td>	                                            
 	                                        	</tr>
 	                                    </c:forEach>                                                                                                                       

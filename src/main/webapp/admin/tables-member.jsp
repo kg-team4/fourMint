@@ -32,75 +32,82 @@
 
 <body id="page-top">
 
-	<!-- Page Wrapper -->
-	<div id="wrapper">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-		<%@ include file="sidebar.jsp"%>
+        <%@ include file="sidebar.jsp" %>
 
-		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-			<!-- Main Content -->
-			<div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-				<%@ include file="header.jsp"%>
+              <%@ include file="header.jsp" %>
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">회원목록</h1>
-					<div class="dropdown">
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">회원목록</h1>
+                   
+                       <!-- <div class="dropdown">
+                     	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     	카테고리
+                     	</button>
+	                     	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	                     		<a class="dropdown-item" href="membergender.mdo">성별</a>
+	                     		<a class="dropdown-item" href="memberbirth.mdo">년도</a>
+	                     		<a class="dropdown-item" href="memberaddress.mdo">주소</a>          
+	                     		<a class="dropdown-item" href="tables-member.mdo">회원목록</a>
+	                     	</div>
+                    	</div> -->
 
-						<!-- DataTales  -->
-						<div class="card shadow mb-4">
-							<div class="card-header py-3"
+                    <!-- DataTales  -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3"
 								style="display: inline-flex; align-items: center; justify-content: space-between;">
 								<h6 class="m-0 font-weight-bold text-primary">민트마켓 회원</h6>
 								<form action="excel_tablemember.mdo" method="get">
 									<button>엑셀파일</button>
 								</form>
 							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-bordered" id="dataTable" width="100%"
-										cellspacing="0">
-										<thead>
-											<tr>
-												<th>이메일아이디</th>
-												<th>이름</th>
-												<th>별명</th>
-												<th>주소1</th>
-												<th>주소2</th>
-												<th>주소3</th>
-												<th>휴대폰 번호</th>
-												<th>생년월일</th>
-												<th>성별</th>
-												<th>가입날짜</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="member" items="${list }">
-												<tr>
-													<td>${member.email_id }</td>
-													<td>${member.name }</td>
-													<td>${member.nickname }</td>
-													<td>${member.address1 }</td>
-													<td>${member.address2 }</td>
-													<td>${member.address3 }</td>
-													<td>${member.phone}</td>
-													<td>${member.birth }</td>
-													<td>${member.gender}</td>
-													<td><fmt:formatDate value="${member.date}"
-															pattern="yyyy-MM-dd" /></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>이메일아이디</th>
+                                            <th>이름</th>
+                                            <th>별명</th>
+                                            <th>주소</th>
+                                            <th>휴대폰 번호</th>
+                                            <th>생년월일</th>
+                                            <th>성별</th>
+                                            <th>가입날짜</th>
+                                        </tr>
+                                    </thead>                                  
+                                    <tbody>
+                                    	<c:forEach var="member" items="${list }">
+	                                        <tr>
+	                                            <td>${member.email_id }</td>
+	                                            <td>${member.name }</td>
+	                                            <td>${member.nickname }</td>	                                            
+	                                            <td>${member.address1 } &nbsp;|&nbsp;${member.address2 }&nbsp;${member.address3 }</td>
+	                                            <td>${member.phone}</td>
+	                                            <td>${member.birth }</td>
+	                                            <td>${member.gender}</td>
+	                                            <td><fmt:formatDate value="${member.date}" pattern="yyyy-MM-dd"/></td>	                       
+                                        	</tr>
+                                        </c:forEach>                                                                                                                                                                                                                                                                                                                 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- /.container-fluid -->
 				</div>
 				<!-- /.container-fluid -->
 			</div>

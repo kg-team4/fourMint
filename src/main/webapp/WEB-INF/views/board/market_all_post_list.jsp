@@ -28,7 +28,10 @@
 	<c:if test="${address2 ne null }">
 		<div class="best">
 			<br> <br> <br>
-			<h1 style="margin-bottom:8px">주변상품<br>[${addressSub}]</h1>
+			<div style="margin-bottom:20px; font-size:24px; color:#7b7b7b; text-align: center">
+				주변상품
+				<span style="color:#26e4ca; font-size:24px;"> [${addressSub}]</span>
+			</div>
 			<ul class="bestBox">
 				<c:forEach var="address" items="${address }">
 					<c:if test="${address.nickname ne nickname }">
@@ -57,7 +60,9 @@
 	</c:if>
 	<div class="best">
 		<br> <br> <br>
-		<h1 style="margin-bottom:8px">추천상품</h1>
+			<div style="margin-bottom:20px; font-size:24px; color:#7b7b7b; text-align: center">
+				추천상품
+			</div>
 		<ul class="bestBox">
 			<c:forEach var="recent" items="${recent }">
 				<li>
@@ -83,7 +88,9 @@
 	</div>
 	<div class="best">
 		<br> <br> <br>
-		<h1 style="margin-bottom:8px">인기상품</h1>
+		<div style="margin-bottom:20px; font-size:24px; color:#7b7b7b; text-align: center">
+				인기상품
+		</div>
 		<ul class="bestBox">
 			<c:forEach var="best" items="${best }">
 				<li>

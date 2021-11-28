@@ -326,22 +326,20 @@ body {
 				<%@ include file="header.jsp"%>
 				<!-- End of Topbar -->
 				<!-- Begin Page Content -->
-				<div class="container-fluid"
-					style="margin-top: -40px; margin-left: -30px;">
+				<div class="container-fluid" style="margin-top:-40px; margin-left:-30px;">
 					<!-- Page Heading -->
 					<p class="mb-4">
 						<a target="_blank" href="https://www.chartjs.org/docs/latest/"></a>
 					</p>
-					<div class="tab_banner">
-						<ul class="tabnav_banner">
+					<div class="tab_banner" >
+						<ul class="tabnav_banner" >
 							<li><a href="#tab01">회원</a></li>
 							<li><a href="#tab02">상품</a></li>
 						</ul>
 						<div class="tabcontent_banner">
 							<div id="tab01">
-
-								<div class="card shadow mb-4"
-									style="height: 900px; overflow-y: hidden; overflow-x: hidden">
+								
+								<div class="card shadow mb-4" style="height: 900px; overflow-y:hidden; overflow-x:hidden">
 									<div class="card-header py-3">
 										<h6 class="m-0 font-weight-bold text-primary">회원 현황</h6>
 									</div>

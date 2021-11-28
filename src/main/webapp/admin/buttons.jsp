@@ -36,7 +36,7 @@
 
 			<!-- Main Content -->
 			<div id="content">
-
+				<form>
 				<%@ include file="header.jsp"%>
 				<div class="tab_banner">
 					<ul class="tabnav_banner">
@@ -75,10 +75,10 @@
 																	<img class="preview-wrap1" src="${store_banner1 }" alt="등록할 상품 사진을 넣어주세요."
 																	onerror="this.style.display='none'">
 																</div>
-																<div>
+																<div style="display:flex; vertical-align: center; margin-top:60px; margin-bottom:60px">
 																	<input id="banner_file" class="form-input1" type="file" name="file" multiple accept=".jpg, .png, .gif">
 																	<input type="hidden" value="1" name="no">
-																	<input type="submit" value="저장">
+																	<input type="submit" value="저장" style="width:50px; height:30px">
 																</div>
 															</div>
 														</div>
@@ -91,10 +91,10 @@
 																<img class="preview-wrap2" src="${store_banner2 }" alt="등록할 상품 사진을 넣어주세요."
 																onerror="this.style.display='none'">
 															</div>
-															<div>
-																<input id="banner_file" class="form-input2" type="file" name="file" multiple accept=".jpg, .png, .gif">
+															<div style="display:flex; vertical-align: center; margin-top:60px; margin-bottom:60px">
+																<input id="banner_file" class="form-input2" type="file" name="file" multiple accept=".jpg, .png, .gif" style="">
 																<input type="hidden" value="2" name="no">
-																<input type="submit" value="저장">
+																<input type="submit" value="저장" style="width:50px; height:30px">
 															</div>
 														</div>
 													</div>
@@ -106,10 +106,10 @@
 																<img class="preview-wrap3" src="${store_banner3 }" alt="등록할 상품 사진을 넣어주세요."
 																onerror="this.style.display='none'">
 															</div>
-															<div>
+															<div style="display:flex; vertical-align: center; margin-top:60px; margin-bottom:60px">
 																<input id="banner_file" class="form-input3" type="file" name="file" multiple accept=".jpg, .png, .gif">
 																<input type="hidden" value="3" name="no">
-																<input type="submit" value="저장">
+																<input type="submit" value="저장" style="width:50px; height:30px">
 															</div>
 														</div>
 														
@@ -122,10 +122,10 @@
 																<img class="preview-wrap4" src="${store_banner4 }" alt="등록할 상품 사진을 넣어주세요."
 																onerror="this.style.display='none'">
 															</div>
-															<div>
+															<div style="display:flex; vertical-align: center; margin-top:60px; margin-bottom:60px">
 																<input id="banner_file" class="form-input4" type="file" name="file" multiple accept=".jpg, .png, .gif">
 																<input type="hidden" value="4" name="no">
-																<input type="submit" value="저장">
+																<input type="submit" value="저장" style="width:50px; height:30px">
 															</div>
 														</div>
 													</div>
@@ -167,10 +167,10 @@
 																	<img class="preview-wrap1" src="${market_banner1 }" alt="등록할 상품 사진을 넣어주세요."
 																	onerror="this.style.display='none'">
 																</div>
-																<div>
+																<div style="display:flex; vertical-align: center; margin-top:60px; margin-bottom:60px">
 																	<input id="banner_file" class="form-input1" type="file" name="file" multiple accept=".jpg, .png, .gif">
 																	<input type="hidden" value="1" name="no">
-																	<input type="submit" value="저장">
+																	<input type="submit" value="저장" style="width:50px; height:30px">
 																</div>
 															</div>
 														</div>
@@ -180,13 +180,12 @@
 													<div>
 														<div class="used_photo">
 															<div class="used_photo_img"><!--  class="btn btn-primary btn-circle" -->
-																<img class="preview-wrap2" src="${market_banner2 }" alt="등록할 상품 사진을 넣어주세요."
-																onerror="this.style.display='none'">
+																<img class="preview-wrap2" src="${market_banner2 }" alt="등록할 상품 사진을 넣어주세요."onerror="this.style.display='none'" style="padding-bottom-top:20px; padding-bottom:20px">
 															</div>
-															<div>
+															<div style="display:flex; vertical-align: center; margin-top:60px; margin-bottom:60px">
 																<input id="banner_file" class="form-input2" type="file" name="file" multiple accept=".jpg, .png, .gif">
 																<input type="hidden" value="2" name="no">
-																<input type="submit" value="저장">
+																<input type="submit" value="저장" style="width:50px; height:30px">
 															</div>
 														</div>
 													</div>
@@ -198,10 +197,10 @@
 																<img class="preview-wrap3" src="${market_banner3 }" alt="등록할 상품 사진을 넣어주세요."
 																onerror="this.style.display='none'">
 															</div>
-															<div>
+															<div style="display:flex; vertical-align: center; margin-top:60px; margin-bottom:60px">
 																<input id="banner_file" class="form-input3" type="file" name="file" multiple accept=".jpg, .png, .gif">
 																<input type="hidden" value="3" name="no">
-																<input type="submit" value="저장">
+																<input type="submit" value="저장" style="width:50px; height:30px">
 															</div>
 														</div>
 														
@@ -214,10 +213,10 @@
 																<img class="preview-wrap4" src="${market_banner4 }" alt="등록할 상품 사진을 넣어주세요."
 																onerror="this.style.display='none'">
 															</div>
-															<div>
+															<div style="display:flex; vertical-align: center; margin-top:60px; margin-bottom:60px">
 																<input id="banner_file" class="form-input4" type="file" name="file" multiple accept=".jpg, .png, .gif">
 																<input type="hidden" value="4" name="no">
-																<input type="submit" value="저장">
+																<input type="submit" value="저장" style="width:50px; height:30px">
 															</div>
 														</div>
 													</div>

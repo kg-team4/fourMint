@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -64,24 +65,23 @@
                                             <th>대분류</th>
                                             <th>중분류</th>
                                             <th>상품명</th>
+                                            <th>판매자</th>
                                             <th>상품가격</th> 
-                                            <th scope="col">Actions</th>                                                                        
+                                            <th>등록날짜</th>                                           
+                                            <th>판매완료날짜</th>                                                                        
                                         </tr>
                                     </thead>                                 
                                     <tbody>
 	                                    <c:forEach var="marketboard" items="${list }">
 		                                        <tr>
-		                                            <td>${marketboard.market_seq }</td>
-		                                            <td>${marketboard.category_big }</td>
-		                                            <td>${marketboard.category_middle }</td>	                                            
-		                                            <td>${marketboard.product_name }</td>
-		                                            <td>${marketboard.product_price }</td>	
-		                                            <td>		                                            
-		                                        	<form>		                                        		
-	                                           			<input type="hidden" value="${marketboard.market_seq }" name="market_seq">		                                                                           
-		                                        		<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id= "delete_btn"><i class="far fa-trash-alt"></i></button>	
-	                                        		</form>	
-		                                       		</td>	                                            
+		                                            <td style="width:55px">${marketboard.market_seq }</td>
+		                                            <td style="width:100px">${marketboard.category_big }</td>
+		                                            <td style="width:100px">${marketboard.category_middle }</td>	                                            
+		                                            <td style="width:180px">${marketboard.product_name }</td>
+		                                            <td style="width:120px">${marketboard.nickname }</td>
+		                                            <td style="width:110px">${marketboard.product_price }</td>	
+		                                            <td style="width:120px"><fmt:formatDate value="${marketboard.date }" pattern="yyyy-MM-dd"/></td>
+		                                            <td style="width:120px"><fmt:formatDate value="${marketboard.sell_date }" pattern="yyyy-MM-dd"/></td>	                                            
 	                                        	</tr>
 	                                    </c:forEach>                                                                                   
                                     </tbody>

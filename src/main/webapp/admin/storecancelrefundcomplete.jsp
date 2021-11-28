@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -89,7 +90,7 @@
 												<td>${list.cancel_date }</td>
 												<td>${list.pay_cancel }</td>
 												<td>
-													<button type="button" id="detail_list" class="detail_list" style="width: 90px; font-size: 15px">상세보기</button>
+													<button type="button" id="detail_list" class="detail_list"style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">상세정보</button>
 													<input type="hidden" value="${list.address2 }">	
 													<input type="hidden" value="${list.transaction_count }">	
 													<input type="hidden" value="${list.product_price }">
@@ -111,7 +112,9 @@
 			<!-- End of Main Content -->
 			<div id="detail_view" style="background: white; display:none">
 				<div>
-					<div id="info">상세정보</div>
+					<div id="info" style="text-align: center; margin-top:5px; font-size:23px">
+						<strong>상세정보</strong>
+					</div>
 					<hr>
 					<div>
 						<table id="detail_tablesdafdsf">
@@ -124,45 +127,45 @@
 								</td>
 							</tr> -->
 							<tr>
-								<td width="200px" height="30px">상품명</td>
+								<td width="200px" height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;상품명</strong></td>
 								<td width="350px">
 									<input type="text" name="product_name" id="detail_product_name" readonly style="border: 0px;">
 								</td>
 							</tr>
 							<tr>
-								<td height="30px">주문 아이디</td>
+								<td height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;주문 아이디</strong></td>
 								<td><input type="text" id="detail_email_id" readonly style="border: 0px;"></td>
 							</tr>
 							<tr>
-								<td height="30px">주소</td>
+								<td height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;주소</strong></td>
 								<td><input type="text" id="detail_address" readonly style="border: 0px;"></td>
 							</tr>
 							<tr>
-								<td height="30px">가격</td>
+								<td height="42px"style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;가격</strong></td>
 								<td><input type="text" id="detail_product_price" readonly style="border: 0px;"></td>
 							</tr>
 							<tr>
-								<td height="30px">수량</td>
+								<td height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;수량</strong></td>
 								<td><input type="text" id="detail_transaction_count" name="transaction_count" readonly style="border: 0px;"></td>
 							</tr>
 							<tr>
-								<td height="30px">총액</td>
+								<td height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;총액</strong></td>
 								<td><input type="text" id="detail_transaction_price" readonly style="border: 0px;"></td>
 							</tr>
 							<tr>
-								<td height="30px">주문일시</td>
+								<td height="42px"style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;주문일시</strong></td>
 								<td><input type="text" id="detail_date" readonly style="border: 0px;"></td>
 							</tr>
 							<tr>
-								<td height="30px">취소날짜</td>
+								<td height="42px"style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;취소날짜</strong></td>
 								<td><input type="text" id="detail_cancel_date" readonly style="border: 0px;"></td>
 							</tr>
 							<tr>
-								<td height="30px">상태</td>
+								<td height="42px"style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;상태</strong></td>
 								<td><input type="text" id="detail_cancel_status" readonly style="border: 0px;"></td>
 							</tr>
 							<tr>
-								<td height="30px">이유</td>
+								<td height="42px"style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;이유</strong></td>
 								<td><textarea id="detail_cancel_reason" readonly style="border: 0px; resize: none;"></textarea></td>
 							</tr>
 						</table>
@@ -170,7 +173,7 @@
 						<div style="text-align: center; margin-top: 10px; display: flex;">
 							<input type="hidden" id="pay_cancel" name="pay_cancel">
 							<input type="hidden" id="detail_seq" name="transaction_seq">
-							<button class="modal_cancel_btn" style="width: 90px; font-size: 15px" onclick="return false;">확인</button>
+							<button class="modal_cancel_btn" style="width: 90px; height:30px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-20px;  font-weight: 700" onclick="return false;">확인</button>
 						</div>
 					</div>
 				</div>

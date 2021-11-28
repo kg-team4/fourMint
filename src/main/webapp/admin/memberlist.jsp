@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -71,8 +72,7 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
 											<th>프로필</th>
@@ -88,24 +88,24 @@
 									<tbody>
 										<c:forEach var="member" items="${list }">
 	                                        <tr>
-	                                            <td><img src="${member.profile }"></td>
+	                                            <td><img src="${member.profile }" style="margin-right:35px"></td>
 	                                            <td>${member.email_id }</td>
 	                                            <td>${member.name }</td>
 	                                            <td>${member.nickname }</td>
 	                                            <td>${member.gender }</td>
 	                                            <td>${member.phone }</td>
-	                                            <td>${member.delete_date }</td> 
-	                                            <td>
-	                                            	<button class="modal_info" style="width: 90px; font-size: 15px">상세정보</button>
+	                                            <td><fmt:formatDate value="${member.delete_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+	                                            <td style="vertical-align: middle; text-align: center">
+	                                            	<button class="modal_info" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">상세정보</button>
 	                                            	<input type="hidden" value="${member.address1 }">
 	                                            	<input type="hidden" value="${member.address2 }">
 	                                            	<input type="hidden" value="${member.address3 }">
 	                                            	<input type="hidden" value="${member.birth }">
 	                                            	<input type="hidden" value="${member.gender }">
-	                                            	<input type="hidden" value="${member.date }">
+	                                            	<input type="hidden" value="<fmt:formatDate value="${member.date }" pattern="yyyy-MM-dd HH:mm:ss"/>"/>
 	                                            	<form action="delete.mdo" method="post">
 	                                            		<input type="hidden" name="nickname" value="${member.nickname }">
-														<button type="submit" id="deleteMember" class="deleteMember" style="width: 90px; font-size: 15px">삭제</button>
+														<button type="submit" id="deleteMember" class="deleteMember" style="width: 90px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; height:34.5px">삭제</button>
 													</form>
 	                                            </td>
                                         	</tr>
@@ -124,7 +124,10 @@
 	
 	<div id="member_view" style="background: white; display:none">
 		<div>
-			<div id="info"><input type="text" id="detail_name" readonly style="border: none; width:80px;">님의 회원 정보</div>
+			<div id="info" style="text-align: center; margin-top:20px">
+				<input type="text" id="detail_name" readonly style="border: none; width:80px;font-size:18px; font-weight: 700">
+				<strong>님의 회원 정보</strong>
+			</div>
 			<hr>
 			<div>
 				<table id="my_info_edit_area">
@@ -136,49 +139,49 @@
 						</td>
 					</tr>
 					<tr>
-						<td width="200px" height="30px">아이디<input type="hidden"></td>
+						<td width="200px" height="30px"style="text-align:right; color:black"><strong>아이디 &emsp;</strong><input type="hidden"></td>
 						<td width="350px">
-							<input type="text" id="detail_id">
+							<input type="text" id="detail_id" readonly>
 						</td>
 					</tr>
 					<tr>
-						<td height="30px">닉네임</td>
-						<td><input type="text" id="detail_nick"></td>
+						<td height="30px" style="text-align:right; color:black"><strong>닉네임&emsp;</strong></td>
+						<td><input type="text" id="detail_nick" readonly></td>
 					</tr>
 					<tr>
-						<td height="30px">전화번호</td>
-						<td><input type="text" id="detail_phone"></td>
+						<td height="30px" style="text-align:right; color:black"><strong>전화번호&emsp;</strong></td>
+						<td><input type="text" id="detail_phone" readonly></td>
 					</tr>
 					<tr>
-						<td height="30px" rowspan="3" style="vertical-align: top;">주소</td>
-						<td><input type="text"  id="detail_address1"></td>
+						<td height="30px" rowspan="3" style="vertical-align: top; text-align:right; color:black"><strong>주소&emsp;</strong></td>
+						<td><input type="text"  id="detail_address1" readonly></td>
 					</tr>
 					<tr>
-						<td><input type="text" id="detail_address2"></td>
+						<td><input type="text" id="detail_address2" readonly></td>
 					</tr>
 					<tr>
-						<td><input type="text" id="detail_address3"></td>
+						<td><input type="text" id="detail_address3" readonly></td>
 					</tr>
 					<tr>
-						<td height="30px">생일</td>
-						<td><input type="text" id="detail_birth"></td>
+						<td height="30px"style="text-align:right; color:black"><strong>생일&emsp;</strong></td>
+						<td><input type="text" id="detail_birth" readonly></td>
 					</tr>
 					<tr>
-						<td height="30px">성별</td>
-						<td><input type="text" id="detail_gender"></td>
+						<td height="30px"style="text-align:right; color:black"><strong>성별&emsp;</strong></td>
+						<td><input type="text" id="detail_gender" readonly></td>
 					</tr>
 					<tr>
-						<td height="30px">가입날짜</td>
-						<td><input type="text" id="detail_date"></td>
+						<td height="30px"style="text-align:right; color:black"><strong>가입날짜&emsp;</strong></td>
+						<td><input type="text" id="detail_date" readonly></td>
 					</tr>
 					<tr>
-						<td height="30px">탈퇴날짜</td>
-						<td><input type="text" id="detail_delete_date"></td>
+						<td height="30px"style="text-align:right; color:black"><strong>탈퇴날짜&emsp;</strong></td>
+						<td><input type="text" id="detail_delete_date"readonly></td>
 					</tr>
 				</table>
 				<br>
 				<div style="text-align: center; margin-top: 10px">
-					<button class="modal_cancel_btn" style="width: 90px; font-size: 15px" onclick="return false;">확인</button>
+					<button class="modal_cancel_btn" style="width: 90px; height:30px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-top:-20px;margin-bottom:30px; font-weight: 700" onclick="return false;">확인</button>
 				</div>
 			</div>
 		</div>

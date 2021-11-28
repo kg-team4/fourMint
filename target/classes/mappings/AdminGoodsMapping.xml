@@ -6,7 +6,9 @@
 		<result property="store_seq" column="STORE_SEQ" />
 		<result property="category_big" column="CATEGORY_BIG" />
 		<result property="product_name" column="PRODUCT_NAME" />
-		<result property="product_price" column="PRODUCT_PRICE" />			
+		<result property="product_price" column="PRODUCT_PRICE" />
+		<result property="product_stock" column="PRODUCT_STOCK" />	
+		<result property="product_like" column="PRODUCT_LIKE" />				
 	</resultMap>
 	
 	<insert id="insertAdmin" parameterType="string">

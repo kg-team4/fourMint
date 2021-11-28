@@ -30,7 +30,9 @@
 	</div>
 	<div class="best">
 		<br> <br> <br>
-		<h1 style="margin-bottom:8px">추천 상품</h1>
+		<div style="margin-bottom:20px; font-size:24px; color:#7b7b7b; text-align: center">
+				추천상품
+		</div>
 		<ul class="bestBox">
 			<c:forEach var="store" items="${list }">
 				<li>
@@ -47,7 +49,9 @@
 			</c:forEach>
 		</ul>
 		<br><br><br>
-		<h1 style="margin-bottom:8px">인기 상품</h1>
+		<div style="margin-bottom:20px; font-size:24px; color:#7b7b7b; text-align: center">
+				인기상품
+		</div>
 		<ul class="bestBox">
 			<c:forEach var="best" items="${best }">
 				<li>
