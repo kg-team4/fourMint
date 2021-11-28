@@ -152,11 +152,18 @@
 					</c:if>
 					</c:forEach>			
 				</div>
-				
-				<div id="grid_below_search_write_area"><br>
+				<div id="grid_below_search_write_area" style="display: inline-block;">
 					<select id="option" name="search" style="height: 20px">
-						<option value="title">제목</option>
-						<option value="content">내용</option>
+						<c:choose>
+						<c:when test="${option eq 'title' }">
+							<option value="title" selected>제목</option>
+							<option value="content">내용</option>
+						</c:when>
+						<c:otherwise>
+							<option value="title">제목</option>
+							<option value="content" selected>내용</option>
+						</c:otherwise>
+						</c:choose>
 					</select> 
 					<input id="search" type="text" name="" value="${keyword }" placeholder="검색어를 입력하세요.">
 					<input class="btn_search" id="btn_grid_below_search" type="button" value="검색"> 

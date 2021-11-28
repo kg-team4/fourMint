@@ -23,13 +23,10 @@ public class CommunityBoardDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public List<CommunityBoardVO> getCommunityBoardList(HttpServletRequest request, PageVO vo) {
-		System.out.println("====> communityBoardList SELETE");
-		
 		return sqlSessionTemplate.selectList("CommunityBoardDAO.getCommunityBoardList", vo);
 	}
 	
 	public int getBoardCount() {
-		
 		return sqlSessionTemplate.selectOne("CommunityBoardDAO.getBoardCount");
 	}
 
@@ -59,10 +56,6 @@ public class CommunityBoardDAO {
 
 	public void updateViews(int seq) {
 		sqlSessionTemplate.update("CommunityBoardDAO.updateViews", seq);
-	}
-
-	public void updateComments(int board_seq) {
-		sqlSessionTemplate.update("CommunityBoardDAO.updateComments", board_seq);
 	}
 
 	public List<CommunityCommentVO> getCommentList(String nickname) {

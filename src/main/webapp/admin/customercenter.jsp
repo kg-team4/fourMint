@@ -106,7 +106,7 @@
 		                        <div class="modal_cover">
 								    <div class="modal_shut"><a href="#">close</a></div>
 								    <div>
-								      <form action="modify_faq.mdo"  method="post">
+								      <form action="qnaAnswer.mdo"  method="post">
 								      <table>
 								      <tr>
 								      	<td>질문번호</td>

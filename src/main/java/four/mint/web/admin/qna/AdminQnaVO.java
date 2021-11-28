@@ -5,12 +5,13 @@ import java.sql.Timestamp;
 import lombok.Data;
 @Data
 public class AdminQnaVO {
-	int ask_seq;
-	int store_seq;
-	String nickname;
-	String content;
-	Timestamp date;
-	String product_name;
-	int status;
-
+	private int ask_seq;
+	private int store_seq;
+	private String nickname;
+	private String content;
+	private Timestamp date;
+	private String product_name;
+	private int status;
+	private String answer;
+	private Timestamp answer_date;
 }

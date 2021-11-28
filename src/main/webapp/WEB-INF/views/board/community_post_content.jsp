@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@	taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <title>커뮤니티 상세 페이지</title>
 <link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
@@ -99,7 +100,7 @@
 						</script>
 
 						<div style="margin-left: 10px">
-							<img class="img_comment" src="../img/comment.png"><span>${content.comments }</span>
+							<img class="img_comment" src="../img/comment.png"><span>${fn:length(comment) }</span>
 						</div>
 
 						<div style="margin-left: 10px">
@@ -116,7 +117,6 @@
 
 					<div style="font-size:20px">🚨&nbsp;신고하기&nbsp;🚨</div>
 					<hr>
-					
 					
 					<div>
 					<div class="police_category">
@@ -143,8 +143,6 @@
 							<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 						</div>
 					</div>
-					
-					
 				</div>
 				<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
 			</div>

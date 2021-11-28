@@ -42,7 +42,7 @@
 	</select>
 	
 	<select id="getKindList" resultType="communityBoard" parameterType="string">
-		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM (SELECT * FROM community]]> 
+		<![CDATA[SELECT b.*, d.comments FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM (SELECT * FROM community]]> 
 		<if test='!keyword.equals("%%")'>
 			<if test='option.equals("title")'>
 				WHERE title LIKE #{keyword} 
@@ -51,7 +51,8 @@
 				WHERE content LIKE #{keyword}
 			</if>
 		</if> 
-		<![CDATA[) AS a WHERE category = #{kind} AND address2 LIKE #{address} ORDER BY community_seq DESC) AS c) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9)]]>
+		<![CDATA[) AS a WHERE category = #{kind} AND address2 LIKE #{address}) AS c) AS b 
+		LEFT JOIN (SELECT count(*) AS comments, board_seq FROM communityComment GROUP BY board_seq) AS d ON b.community_seq = d.board_seq WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9) ORDER BY community_seq DESC]]>
 	</select>
 	
 	<select id="getBoard" resultType="communityBoard" parameterType="int">
@@ -68,10 +69,6 @@
 		UPDATE community SET views = views + 1 WHERE community_seq = #{seq}
 	</update>
 	
-	<update id="updateComments" parameterType="int">
-		UPDATE community SET comments = comments + 1 WHERE community_seq = #{board_seq}
-	</update>
-	
 	<update id='updateCommunity' parameterType="communityBoard">
 		UPDATE community SET title = #{title}, category = #{category}, content = #{content}, url = #{url} WHERE community_seq = #{community_seq}
 	</update>
@@ -81,12 +78,12 @@
 	</delete>
 	
 	<select id="getTopFive" resultType="communityBoard" parameterType="string">
-		(SELECT * FROM community WHERE category = '질문' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '소식' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '모임' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '맛집' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '사진전' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '분실센터' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} LIMIT 5) ORDER BY category, views DESC ;
+		(SELECT * FROM community WHERE category = '질문' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '소식' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '모임' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '맛집' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '사진전' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) UNION
+		(SELECT * FROM community WHERE category = '분실센터' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) ORDER BY category ASC, views DESC;
 	</select>
 	
 	<update id="insertLike" parameterType="int">

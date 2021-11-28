@@ -220,6 +220,10 @@
 		DELETE FROM storeRate WHERE rate_seq = #{seq}
 	</delete>
 	
+	<select id="getAvg" parameterType="int" resultType="float">
+		SELECT avg(rating) FROM storeRate WHERE store_seq = #{seq} GROUP BY store_seq
+	</select>
+	
 	<!-- 문의사항 -->
 	<resultMap type="ask" id="askResult">	
 		<result property="ask_seq" column="ASK_SEQ"/>
@@ -230,6 +234,8 @@
 		<result property="status" column="STATUS"/>
 		<result property="product_name" column="PRODUCT_NAME"/>
 		<result property="profile" column="PROFILE"/>
+		<result property="answer" column="ANSWER"/>
+		<result property="answer_date" column="ANSWER_DATE"/>
 	</resultMap>
 	
 	<insert id="insertAsk" parameterType="ask">

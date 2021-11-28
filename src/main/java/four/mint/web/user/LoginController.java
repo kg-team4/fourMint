@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import four.mint.web.common.AES256Util;
 import four.mint.web.user.market.MarketService;
-
 
 
 @Controller
@@ -32,7 +32,6 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET )
 	public String login(Model model, HttpSession session) throws Exception {
-		System.out.println("여기"+session.getAttribute("userEmail_id"));
 		if(session.getAttribute("userEmail_id") != null) {
 			return "redirect:/home.do";
 		} else {
@@ -108,16 +107,13 @@ public class LoginController {
 				session.setAttribute("name", user.getName());
 				session.setAttribute("address2", user.getAddress2());
 				session.setAttribute("nickname", user.getNickname());
-				System.out.println("로그인 성공: " + user.getEmail_id());
 			} else {
-				System.out.println("패스워드 오류");
 				flag = 1;
 				model.addAttribute("flag", flag);
 			
 				return "/user/login";
 			}
 		}else {
-			System.out.println("존재하지 않는 아이디");
 			flag = 2;
 			model.addAttribute("flag", flag);
 			

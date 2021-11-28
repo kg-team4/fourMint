@@ -33,7 +33,7 @@ public class MessageController {
 
 		request.setAttribute("list", list);
 
-		return "message/message_list";
+		return "/message/message_list";
 	}
 
 	// 메세지 목록
@@ -50,7 +50,7 @@ public class MessageController {
 
 		request.setAttribute("list", list);
 
-		return "message/message_ajax_list";
+		return "/message/message_ajax_list";
 		
 	}
 
@@ -68,7 +68,7 @@ public class MessageController {
 
 		request.setAttribute("list", list);
 
-		return "message/message_content_list";
+		return "/message/message_content_list";
 	}
 	
 	// 메세지 리스트에서 메세지 보내기
@@ -128,7 +128,7 @@ public class MessageController {
 
 //		System.out.println(list);
 
-		return "message/message_content_list";
+		return "/message/message_content_list";
 	}
 	
 	// 중고 마켓에서 메세지 보내기

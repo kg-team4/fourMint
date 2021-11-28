@@ -6,6 +6,7 @@
 <%@page import="java.text.NumberFormat"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <link rel="shortcut icon" type="image/x-icon" href="../img/logo_icon.png" />
@@ -208,7 +209,15 @@
 				
 				
 				<div class="padding-top100">
-					<span class="font25">상품후기</span>					
+					<span class="font25">상품후기</span>&emsp;
+					<c:set var="star" value="${avg }"/>
+					<c:forEach var="i" begin="1" end="${star }">
+						<img src="../img/star_rank.png" width="15" height="14" alt="별점이미지"> 
+					</c:forEach>
+					<c:if test="${star % 1 > 0 }">
+						<img src="../img/star_rank_half.png" width="15" height="14" alt="별점이미지">
+					</c:if>	
+					(${fn:length(rate)})
 				</div>
 				<hr>
 				<c:if test="${buyOrNot eq 1 }">
@@ -503,7 +512,7 @@
 
 				<div class="padding-top25 ">
 
-					<div class="float-box float-left reply-margin20 padding-top30" id="askDiv" >
+					<div class="float-box float-left reply-margin20 padding-top30" id="askDiv" style="margin-top: 0;">
 						<c:forEach var="ask" items="${ask }">
 						<div class="left-item10">
 							<!-- 프로필 이미지 영역 -->
@@ -534,6 +543,29 @@
 								</div>
 							</div>
 						</div>
+						
+						<!-- 운영자 답변 -->
+						<div class="left-item10" style="margin-top: 30px;">
+							<img class="reply-pic-circle" src="https://mintmarket.s3.ap-northeast-2.amazonaws.com/profile/character_sample.png">
+						</div>
+						<div class="right-item90" style="margin-top: 30px;">
+							<div class="reply-nick-font">
+								<span id="reply-member-form" for="11">
+								<input type="checkbox" id="11" value="1" onchange="">&emsp;&emsp;민트마켓
+								</span>
+								
+								<span class="right-float font15 gray-font"> <fmt:formatDate pattern="yyyy-MM-dd" value="${ask.answer_date }" /> </span>
+							</div>
+							<div class="font15 reply-content-form">
+								<div class="reply-content">
+									<form action="edit_reply.do" method="post" id="edit-reply-form">
+										<pre class="review_grid font15 right-float" style="margin-left:35px; line-height:150%">
+										${ask.answer }
+										</pre>										
+									</form>
+								</div>								
+							</div>
+						</div>
 						</c:forEach>
 						
 						<script>
@@ -555,34 +587,6 @@
 						
 					</div><br>
 															
-					<div class="padding-top20 rereply-off padding-bottom30" id="rereply-form1">
-						<p class="font20">답글</p>
-						<form action="write_reply.do" method="post">
-							<input type="hidden" name="no" value="1"> 
-							<input type="hidden" name="reply_no" value="1"> 
-							<input type="hidden" name="post_no" value="1"> 
-							<input type="hidden" name="reply_table_name" value="이름"> 
-							<input type="hidden" name="reply_seq_name" value="이름"> 
-							<input
-								type="hidden" name="post_path" value="asd?asd">
-							<div class="reply-div-padding">
-								<div class="reply-border">
-									<textarea class="text-padding font15" name="reply_content" placeholder="문의답변글 또는 댓글내용" cols="116" rows="5"></textarea>
-								</div>
-							</div>
-							<div class="reply-num-border">
-								<div class="float-box float-left">
-									<div class="left-item50">
-										<p class="font12 gray-font text-padding10">
-										<p></p>
-									</div>
-									<div class="left-item50 text-padding10">
-										<input type="submit" class="right-float reply-button" value="등록">
-									</div>
-								</div>
-							</div>
-						</form>
-					</div><br>
 				</div>
 			</div>
 			

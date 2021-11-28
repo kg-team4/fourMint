@@ -7,9 +7,7 @@ public interface AdminQnaService {
 
 	void qna_delete(int parameter);
 
-	void modify_qna(AdminAnswerVO answerVO);
-
-	void update_status(int paramter);
-
 	int getQNA();
+
+	void answer(AdminQnaVO aqVO);
 }
