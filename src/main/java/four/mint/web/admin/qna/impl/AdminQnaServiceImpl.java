@@ -1,10 +1,11 @@
-package four.mint.web.admin.qan.impl;
+package four.mint.web.admin.qna.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import four.mint.web.admin.qna.AdminAnswerVO;
 import four.mint.web.admin.qna.AdminQnaService;
 import four.mint.web.admin.qna.AdminQnaVO;
 
@@ -21,13 +22,17 @@ public class AdminQnaServiceImpl implements AdminQnaService {
 
 	@Override
 	public void qna_delete(int parameter) {
-		adminQnaDAO.qna_delete(parameter);
-		
+		adminQnaDAO.qna_delete(parameter);		
 	}
 
 	@Override
-	public void modify_qna(AdminQnaVO qnaVO) {
-		adminQnaDAO.modify_qna(qnaVO);
+	public void modify_qna(AdminAnswerVO answerVO) {
+		adminQnaDAO.modify_qna(answerVO);		
+	}
+
+	@Override
+	public void update_status(int parameter) {
+		adminQnaDAO.update_status(parameter);
 		
 	}
 }

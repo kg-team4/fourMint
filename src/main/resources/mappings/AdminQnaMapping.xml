@@ -3,13 +3,13 @@
 <mapper namespace="AdminQnaDAO">
 	
 	<resultMap  type="adminqna" id="adminResult">
-		<result property="ask_seq" column="NOTICE_SEQ" />
-		<result property="store_seq" column="NOTICE_TITLE" />
-		<result property="nickname" column="NOTICE_CONTENT" />	
-		<result property="content" column="NOTICE_CONTENT" />	
+		<result property="ask_seq" column="ASK_SEQ" />
+		<result property="store_seq" column="STORE_SEQ" />
+		<result property="nickname" column="NICKNAME" />	
+		<result property="content" column="CONTENT" />	
 		<result property="date" column="DATE" />	
-		<result property="product_name" column="DATE" />	
-		<result property="status" column="DATE" />			
+		<result property="product_name" column="PRODUCT_NAME" />	
+		<result property="status" column="STATUS" />			
 	</resultMap>
 	
 	<insert id="insertAdmin" parameterType="four.mint.web.admin.qna.AdminQnaVO">
@@ -25,8 +25,13 @@
 		delete from storeask where ask_seq = #{parameter}
 	</delete>
 	
-	<update id="modift_qna" parameterType="adminQna">
-		update notice set ask_seq = #{ask_seq}, store_seq=#{store_seq}, nickname=#{nickname}, content=#{content}, date=now() product_name=#{product_name}, status=#{status},where ask_seq = #{ask_seq}
+	<insert id="modify_qna" parameterType="four.mint.web.admin.qna.AdminAnswerVO">
+		INSERT INTO storeanswer (ask_seq, content, date )
+		VALUES (#{ask_seq},#{content}, now()) 
+	</insert>
+	
+	<update id="update_status" parameterType="adminqna">
+		update storeask set status = 0 where ask_seq = #{ask_seq}
 	</update>
 	
 	
