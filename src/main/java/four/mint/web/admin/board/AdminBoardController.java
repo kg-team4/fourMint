@@ -1,7 +1,9 @@
 package four.mint.web.admin.board;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,11 @@ public class AdminBoardController {
 	
 
 	@RequestMapping(value = "/utilities-board.mdo", method = RequestMethod.GET)
-	public String Uilities_board(HttpServletRequest request) {
+	public String Uilities_board(HttpServletRequest request, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		List<AdminBoardVO> adminboardlist = adminBoardService.getAdminBoardList();
 		
 		request.setAttribute("list", adminboardlist);

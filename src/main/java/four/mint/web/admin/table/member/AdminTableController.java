@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -16,21 +17,12 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.amazonaws.Request;
-import com.itextpdf.text.pdf.hyphenation.TernaryTree.Iterator;
-
-import four.mint.web.admin.transactionhistory.AdminTransactionHistoryVO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import four.mint.web.admin.page.AdminPageService;
 import four.mint.web.admin.page.AdminPageVO;
-import four.mint.web.user.UserService;
 import four.mint.web.user.UserVO;
 
 
@@ -43,20 +35,25 @@ public class AdminTableController {
 	@Autowired
 	private AdminPageService adminPageService; 
 
-	@Autowired
-	private UserService userService;
-
 	@RequestMapping(value = "/tables-member.mdo", method = RequestMethod.GET)
-	public String tablemember(HttpServletRequest request) {
+	public String tablemember(HttpServletRequest request, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		List<AdminPageVO> adminpagelist = adminPageService.getAdminPageList();
-
 		request.setAttribute("list", adminpagelist);
+		
 		return "/tables-member";
 
 	}
 
 	@RequestMapping(value = "/membergender.mdo", method = RequestMethod.GET)
-	public String membergender(HttpServletRequest request) {
+	public String membergender(HttpServletRequest request, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		double AdminTableWoman = adminTableService.getAdminTableWoman();
 		double AdminTableMan = adminTableService.getAdminTableMan();
 
@@ -75,7 +72,11 @@ public class AdminTableController {
 	}
 
 	@RequestMapping(value = "/memberbirth.mdo", method = RequestMethod.GET)
-	public String memberbirth(HttpServletRequest request) {
+	public String memberbirth(HttpServletRequest request, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		List<String> array = adminTableService.getBirth();
 
 		int teenager = 0;
@@ -125,7 +126,11 @@ public class AdminTableController {
 	}
 
 	@RequestMapping(value = "/memberaddress.mdo", method = RequestMethod.GET)
-	public String memberaddress(HttpServletRequest request) {
+	public String memberaddress(HttpServletRequest request, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		ArrayList<UserVO> arr = adminTableService.getAddress2();
 		ArrayList<AdminTableVO> man = adminTableService.getAddressMan();
 		ArrayList<AdminTableVO> woman = adminTableService.getAddressWoman();

@@ -36,7 +36,7 @@
                 <div id="space-area"></div>
                 <div>			
 					<ul style="margin-top:50px; ">
-						<li style="float:left"><span><button id="login-submit" style="margin-left:511px; margin-right:20px"><img src="img/logo_icon.png" style="height:30px;width:30px;">&nbsp;민트 로그인</button></span></li>
+						<li style="float:left"><span><button id="login-submit" style="margin-left:511px; margin-right:20px"><img src="${pageContext.request.contextPath}/resources/user/img/logo_icon.png" style="height:30px;width:30px;">&nbsp;민트 로그인</button></span></li>
 						<li style="float:left; margin-right:20px;" id="kakaoLogin"  onclick="kakaoLogin()"><a href="javascript:void(0)"><span><img src="${pageContext.request.contextPath}/resources/user/img/kakao_login.png" style="width:153px;height:44px"></span> </a></li>
 						<li style="float:left"><span ><a id="naverLogin"href="${naver_url }"><img src="${pageContext.request.contextPath}/resources/user/img/naver_login.png" style="width:153px;height:44px"></a></span></li>
 					</ul>

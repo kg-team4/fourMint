@@ -21,23 +21,18 @@ public class AdminAnnounceController {
 	public String announce(HttpSession session, HttpServletRequest request) {
 		
 		if(session.getAttribute("admin_id") == null) {
-			return "/login";
+			return "redirect:login.mdo";
 		}
-		else {
 			
 		List<AdminAnnounceVO> adminannouncelist = adminAnnounceService.getAdminAnnounceList();
 		request.setAttribute("list", adminannouncelist);
 		
 		return "/utilities-annoucement";
 		
-		}
 	}
 	
 	@RequestMapping(value="/announcement.mdo",method=RequestMethod.POST)
 	public String annoucement(HttpServletRequest request) {
-		System.out.println(request.getParameter("title"));
-		System.out.println(request.getParameter("content"));
-		
 		AdminAnnounceVO announcementVO = new AdminAnnounceVO();
 			announcementVO.setNotice_title(request.getParameter("title"));
 			announcementVO.setNotice_content(request.getParameter("content"));
@@ -51,10 +46,8 @@ public class AdminAnnounceController {
 
 	@RequestMapping(value="/announce_delete.mdo",method=RequestMethod.POST)
 	public String announce_delete(HttpServletRequest request) {
-		
-		  adminAnnounceService.announce_delete(Integer.valueOf(request.getParameter("notice_seq")));
+		adminAnnounceService.announce_delete(Integer.valueOf(request.getParameter("notice_seq")));
 		 		
-		
 		return "redirect:utilities-annoucement.mdo";
 	}
 	
