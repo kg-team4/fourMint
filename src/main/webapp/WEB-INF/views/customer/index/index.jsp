@@ -14,7 +14,7 @@
 <link href="${pageContext.request.contextPath}/resources/user/css/map.css" rel="stylesheet">
 
 <!-- Java Script -->
-<script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
 <script src="${pageContext.request.contextPath}/resources/user/js/index.js"></script>
 <script src="${pageContext.request.contextPath}/resources/user/js/jquery-3.6.0.min.js"></script>
 
