@@ -73,7 +73,7 @@ public class AdminGoodsController {
              cell = row.createCell(4);
              cell.setCellValue(goods.get(i).getProduct_stock());
              cell = row.createCell(5);
-             cell.setCellValue(date.format(goods.get(i).getDate()));
+//             cell.setCellValue(date.format(goods.get(i).getDate()));
              
              
            

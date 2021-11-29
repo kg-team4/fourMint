@@ -13,7 +13,10 @@
 <meta name="author" content="">
 
 <title>매출 관리</title>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<script type = "text/javascript" src = "http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
 	crossorigin="anonymous"></script>
@@ -43,6 +46,7 @@
 <!-- Custom styles for this page -->
 <link href="admin/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
+
 <script type="text/javascript">
 	$(function() {
 		$.datepicker.setDefaults({
@@ -84,6 +88,51 @@
 	});
 </script>
 
+<script>
+		$(document).ready(function() {
+			$('#savePdf').click(function() { // pdf저장 button id
+				
+			    html2canvas($('#ex2')[0]).then(function(canvas) { //저장 영역 div id
+				
+			    // 캔버스를 이미지로 변환
+			    var imgData = canvas.toDataURL('image/png');
+				     
+			    var imgWidth = 190; // 이미지 가로 길이(mm) / A4 기준 210mm
+			    var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+			    var imgHeight = canvas.height * imgWidth / canvas.width;
+			    var heightLeft = imgHeight;
+			    var margin = 10; // 출력 페이지 여백설정
+			    var doc = new jsPDF('p', 'mm');
+			    var position = 0;
+			       
+			    // 첫 페이지 출력
+			    doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+			    heightLeft -= pageHeight;
+			         
+			    // 한 페이지 이상일 경우 루프 돌면서 출력
+			    while (heightLeft >= 20) {
+			        position = heightLeft - imgHeight;
+			        doc.addPage();
+			        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+			        heightLeft -= pageHeight;
+			    }
+			 
+			    // 파일 저장
+			    doc.save('file-name.pdf');
+		
+				  
+			});
+		
+			});
+			
+			
+		})
+
+
+
+</script>
+
+
 </head>
 
 
@@ -103,11 +152,13 @@
 
 				<!-- Begin Page Content -->
 				<div id="layoutSidenav_content">
-					<main>
-						<div class="container-fluid px-4">
+					<main >
+						<div class="container-fluid px-4" id="contents">
 							<div class="card mb-4"
 								style="width: 50%; height: 20%; float: left;">
 								<input type="hidden" id="chartType" value="line">
+								
+							<div id="ex2">
 								<div class="card-header"
 									style="justify-content: space-between; display: flex; align-items: center; padding: 5px;">
 									<div>
@@ -118,9 +169,12 @@
 									</div>
 									<button onclick="newLineChart()" class="btn btn-warning"
 										id="barOrLine" style="float: right;">bar</button>
+									<button type="button" class="btn btn-primary" id="savePdf" >PDF 저장</button>
 								</div>
 								<div class="card-body">
 									<canvas id="myChart" width="50%" height="30"></canvas>
+							</div>
+				
 									<div class="card mb-4"
 										style="width: 100%; border: 0px; margin-top: 20px; height: auto; align-items: center; justify-content: center;">
 										<div class="form-check" style="display: flex;">
@@ -157,6 +211,9 @@
 								</div>
 							</div>
 						</div>
+						</main>
+				</div>
+			</div>
 						<script type="text/javascript">
 							//Set new default font family and font color to mimic Bootstrap's default styling
 
