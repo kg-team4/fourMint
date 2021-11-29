@@ -380,7 +380,7 @@ hr{
 				</div>
 				<br>
 				<div id="map" style="width: 100%; height: 350px;"></div>
-				<script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
+				<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
 				<script>
 					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 					mapOption = {
