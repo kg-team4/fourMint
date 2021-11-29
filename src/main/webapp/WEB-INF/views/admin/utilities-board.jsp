@@ -19,7 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="${pageContext.request.contextPath}/resources/admin/css/sb-admin-2.css" rel="stylesheet">
-
+    <!-- 제이쿼리 -->
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 </head>
 
 <body id="page-top">
@@ -42,7 +43,6 @@
 
                   <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">중고거래 글 관리</h1>
-
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -61,10 +61,12 @@
                                             <th>등록일</th>
                                             <th>별명</th>
                                             <th>구매자</th>
-                                            <th>판매날짜</th>
+                                            <th>판매일</th>
                                             <th scope="col">삭제</th> 
                                         </tr>	
-                                    </thead>                                 
+                                    </thead>
+                                    
+                                                                     
                                     <tbody>
                                          <c:forEach var="marketboard" items="${list }">
 		                                        <tr>
@@ -77,16 +79,27 @@
 		                                            <td style="width:180px">${marketboard.nickname }</td>	
 		                                            <td style="width:180px">${marketboard.buyer }</td>	
 		                                            <td style="width:140px"><fmt:formatDate value="${marketboard.sell_date}" pattern="yyyy-MM-dd"/> </td>			
-		                                            <td>		                                            
-			                                        	<form>		                                        		
-		                                           			<input type="hidden" value="${marketboard.market_seq }" name="market_seq">		                                                                           
-			                                        		<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id= "delete_btn"><i class="far fa-trash-alt"></i></button>	
-		                                        		</form>	
+		                                            <td>		  
+		                                            	<form>                                                                           		                                           				                                                                           
+			                                        		<button type="button" class="btn_cancel" style="width: 90px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">삭제</button>
+		                                        			<input type="hidden" value="${marketboard.market_seq }" name="market_seq">	
+		                                       			</form>
 		                                       		</td>	                                            
 	                                        	</tr>
 	                                    </c:forEach>                                                                                                                       
                                   </tbody>                                                                                                                                                                                                                                                                    
                                 </table>
+                                <script>
+							 	$(".btn_cancel").click(function() {
+							 		var check = confirm('삭제하시겠습니까?');
+									if (check) {
+										$(this).parent().attr("action", "used_delete.mdo");
+										$(this).parent().attr("method", "post");
+										$(this).parent().submit();
+									}
+								});
+							 	
+							 	</script>
                             </div>
                         </div>
                     </div>
@@ -97,6 +110,7 @@
             </div>
             <!-- End of Main Content -->
  	<%@ include file="footer.jsp" %>
+ 	
 
     <!-- Bootstrap core JavaScript-->
     <script src="${pageContext.request.contextPath}/resources/admin/vendor/jquery/jquery.min.js"></script>

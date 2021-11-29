@@ -62,30 +62,34 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                      <tr>
-                                            <th>질문번호</th>
-                                            <th>상품번호</th>
-                                            <th>닉네임</th>
-                                            <th>내용</th>
-                                            <th>날짜</th>
-                                            <th>상품명</th>
-                                            <th>답변상태</th>
-                                            <th scope="col">Actions</th>                                             
+                                     		<th width="100px">상품명</th>
+                                            <th width="100px">닉네임</th>
+                                            <th width="250px">문의내용</th>
+                                            <th width="100px">날짜</th>
+                                            <th width="100px">상태</th>
+                                            <th width="400px">답변내용</th>
+                                            <th width="80px"scope="col">비고</th>                                             
                                         </tr>
                                     		</thead>         
                                          <tbody>                                     
                                        <c:forEach var="storeask" items="${list}">
 	                                       <tr>	                                   		                                        		                                        		
-	                                           <td>${storeask.ask_seq}</td>
-	                                           <td>${storeask.store_seq}</td>
+											  <td>${storeask.product_name}</td>
 	                                           <td>${storeask.nickname }</td>
 	                                           <td>${storeask.content}</td>
-	                                           <td> <fmt:formatDate value="${storeask.date}" pattern="yyyy-MM-dd"/></td>
-	                                           <td>${storeask.product_name}</td>	
+	                                           <td> <fmt:formatDate value="${storeask.date}" pattern="yyyy-MM-dd"/></td>	                                           	
 	                                           	<td><c:set value="${storeask.status}" var="ask" />
 					                                 <c:choose>
 					                                    <c:when test="${ask eq '0'}"><span style="color: blue">답변완료</span></c:when>
 					                                    <c:when test="${ask eq '1'}"><span style="color: red">답변대기</span></c:when>
-					                                 </c:choose></td>
+					                                 </c:choose>
+					                            </td>
+					                            <td>
+	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
+	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
+	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
+	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
+	                                        	</td>
 	                                           <td>
 	                                           <form>
 	                                           		<input type="hidden" value="${storeask.ask_seq }" name="ask_seq">		                                           		
@@ -94,12 +98,14 @@
 		                                            <button type="button" class="btn btn-success" ><i class="fas fa-edit"></i></button>		                                   
 		                                        	<button type="button" class="btn btn-danger" ><i class="far fa-trash-alt"></i></button>	
 	                                        	</form>
-	                                        </td> 		                 
+	                                        	</td> 		                 
 	                                      </tr> 
                                       	</c:forEach> 
                                     </tbody>                                                                                                                                                                                                                                                                                                                                                                                   
                                 </table>
                                  <!-- 등록 모달창 -->
+                                 
+                                 
 		                        <div class="modal_cover">
 								    <div class="modal_shut"><a href="#">close</a></div>
 								    <div>

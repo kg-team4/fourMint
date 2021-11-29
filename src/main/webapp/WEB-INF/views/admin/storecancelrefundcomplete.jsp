@@ -86,8 +86,8 @@
 											<tr>
 												<td>${list.product_name }</td>
 												<td>${list.email_id }</td>
-												<td>${list.date }</td>
-												<td>${list.cancel_date }</td>
+												<td><fmt:formatDate value="${list.date }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+												<td><fmt:formatDate value="${list.cancel_date }" pattern="yyyy-MM-dd hh:mm:ss"/></td>
 												<td>${list.pay_cancel }</td>
 												<td>
 													<button type="button" id="detail_list" class="detail_list"style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">상세정보</button>
@@ -166,14 +166,14 @@
 							</tr>
 							<tr>
 								<td height="42px"style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;이유</strong></td>
-								<td><textarea id="detail_cancel_reason" readonly style="border: 0px; resize: none;"></textarea></td>
+								<td><textarea id="detail_cancel_reason" readonly style="border: 0px; resize: none; width:300px; height:42px; margin-top:13px"></textarea></td>
 							</tr>
 						</table>
 						<br>
 						<div style="text-align: center; margin-top: 10px; display: flex;">
 							<input type="hidden" id="pay_cancel" name="pay_cancel">
 							<input type="hidden" id="detail_seq" name="transaction_seq">
-							<button class="modal_cancel_btn" style="width: 90px; height:30px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-20px;  font-weight: 700" onclick="return false;">확인</button>
+							<button class="modal_cancel_btn" style="width: 90px; height:30px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin:auto; margin-bottom:25px; margin-top:-20px;  font-weight: 700" onclick="return false;">확인</button>
 						</div>
 					</div>
 				</div>
