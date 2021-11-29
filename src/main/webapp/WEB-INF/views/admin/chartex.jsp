@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
 	crossorigin="anonymous"></script>
@@ -13,7 +19,6 @@
 	crossorigin="anonymous"></script>
 <!-- fontawesomeCDN -->
 
-<!-- Bootstrap CSS -->
 
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -21,13 +26,20 @@
 <!--  -->
 
 
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<link
+   href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300|Rambla|Calligraffitti'
+   rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css"
+   href="/js/jquery/ui/themes/base/jquery-ui.css" />
+
+
+<script type = "text/javascript" src = "http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <!--  -->
 <script type="text/javascript">
@@ -133,10 +145,7 @@
 				var total = 0;
 				var max = 0;
 
-				var jsonChart = $
-				{
-					chartList
-				};
+				var jsonChart = ${chartList};
 
 				var labels = jsonChart.map(function(e) {
 					return e.daily_chart;
