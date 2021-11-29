@@ -8,14 +8,14 @@
 <%@include file="../template/header.jsp"%>
 
 <!-- css -->
-<link href="${pageContext.request.contextPath}/resources/user/css/swiper.min.css" type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/user/css/3.promotion.css" type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/user/css/4.article.css" type="text/css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/user/css/map.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/user/css/swiper.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/user/css/3.promotion.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/user/css/4.article.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/user/css/map.css" rel="stylesheet">
 
 <!-- Java Script -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/user/js/index.js"></script>
+<script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
+<script src="${pageContext.request.contextPath}/resources/user/js/index.js"></script>
 <script src="${pageContext.request.contextPath}/resources/user/js/jquery-3.6.0.min.js"></script>
 
 <!-- 회원 주소 데이터 자바스크립트로 보내기 -->

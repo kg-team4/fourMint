@@ -66,13 +66,11 @@
 				<!-- DataTales  -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">신고가 들어오면 블랙리스트
-							처리</h6>
+						<h6 class="m-0 font-weight-bold text-primary">신고가 들어오면 블랙리스트 처리</h6>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered" id="dataTable" width="100%"
-								cellspacing="0">
+							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 								<thead>
 									<tr>
 										<th>번호</th>
@@ -94,8 +92,7 @@
 											<td>${report.market_seq }</td>
 											<td>${report.reporter}</td>
 											<td>${report.reported}</td>
-											<td><fmt:formatDate value="${report.date}"
-													pattern="yyyy-MM-dd" /></td>
+											<td><fmt:formatDate value="${report.date}" pattern="yyyy-MM-dd" /></td>
 											<td></td>
 										</tr>
 									</c:forEach>

@@ -49,7 +49,7 @@ public class AdminReportDAO {
 	}
 	
 	public  UserVO getUserInfo(String nickname) {
-		return sqlSessionTemplate.selectOne("UserDAO.getUserNickname",nickname);	
+		return sqlSessionTemplate.selectOne("UserDAO.getUserFromNickname",nickname);	
 	}
 
 	public List<AdminBlackListVO> getAdminBlackList() {

@@ -13,7 +13,7 @@
 <jsp:include page="../template/header.jsp"></jsp:include>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/user/js/reply.js"></script>
+<script src="${pageContext.request.contextPath}/resources/user/js/reply.js"></script>
 <link href="${pageContext.request.contextPath}/resources/user/css/8.board_content.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/user/css/message/message.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/user/css/swiper.min.css" rel="stylesheet">
@@ -380,7 +380,7 @@ hr{
 				</div>
 				<br>
 				<div id="map" style="width: 100%; height: 350px;"></div>
-				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
+				<script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
 				<script>
 					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 					mapOption = {

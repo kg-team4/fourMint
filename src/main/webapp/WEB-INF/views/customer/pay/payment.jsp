@@ -230,7 +230,15 @@
 					</c:choose>
 					</span> 
 					<span class="tx_sign equal">=</span> 
-					<span class="tx_total_price">총 결제금액 <span class="tx_price"><span id="reallyPrice" class="tx_num">${sum + delivery}</span>원</span></span>
+					<span class="tx_total_price">총 결제금액 <span class="tx_price"><span id="reallyPrice" class="tx_num">
+					<c:choose>
+						<c:when test="${sum >= 50000 }">
+						${sum}
+						</c:when>
+						<c:otherwise>
+						${sum + 2500 }
+						</c:otherwise>
+					</c:choose></span>원</span></span>
 				</div>
 			</div>
 			<div class="order_btn_area order_cart">

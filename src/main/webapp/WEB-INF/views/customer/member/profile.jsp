@@ -51,7 +51,25 @@
 					<br>
 					<ul class="list-group" style="text-align:center">
 						<li class="list-group-item text-muted" style="font-size:23px">${user.nickname }&nbsp;&nbsp;</li>
-						<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span> 민트 3단계</li>
+						<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span>
+							<c:choose>
+							<c:when test="${user.rating <= 1}">
+								<img src="${pageContext.request.contextPath}/resources/user/img/mint_grade1.png" style="width: 25px; height: 25px;"/>
+							</c:when>
+							<c:when test="${user.rating <= 2}">
+								<img src="${pageContext.request.contextPath}/resources/user/img/mint_grade2.png" style="width: 25px; height: 25px;"/>
+							</c:when>
+							<c:when test="${user.rating <= 3}">
+								<img src="${pageContext.request.contextPath}/resources/user/img/mint_grade3.png" style="width: 25px; height: 25px;"/>
+							</c:when>
+							<c:when test="${user.rating <= 4}">
+								<img src="${pageContext.request.contextPath}/resources/user/img/mint_grade4.png" style="width: 25px; height: 25px;"/>
+							</c:when>
+							<c:when test="${user.rating <= 5}">
+								<img src="${pageContext.request.contextPath}/resources/user/img/mint_grade5.png" style="width: 25px; height: 25px;"/>
+							</c:when>
+							</c:choose>
+						</li>
 						<li class="list-group-item text-right"><span class="pull-left"><strong>팔로잉&nbsp;&nbsp;</strong></span> ${follow.following }</li>
 						<li class="list-group-item text-right"><span class="pull-left"><strong>팔로워&nbsp;&nbsp;</strong></span> ${follow.follower }</li>
 						<li class="list-group-item text-right"><span class="pull-left"><strong>상품판매횟수&nbsp;&nbsp;</strong></span> ${boardCount}</li>
@@ -60,7 +78,7 @@
 					<c:otherwise>
 						<div class="nick-div">
 							<h5>
-								<b><span style="color: #26e4ca;">sns유저&nbsp;</span>님의 프로필</b>
+								<b><span style="color: #26e4ca;">${user.nickname }&nbsp;</span>님의 프로필</b>
 							</h5>
 						</div>
 						<div class="text-center row">
@@ -75,8 +93,26 @@
 						</div>
 						<br>
 						<ul class="list-group" style="text-align:center">
-							<li class="list-group-item text-muted" style="font-size:23px">sns유저&nbsp;&nbsp;</li>
-							<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span> 민트 3단계</li>
+							<li class="list-group-item text-muted" style="font-size:23px">${user.nickname }&nbsp;&nbsp;</li>
+							<li class="list-group-item text-right"><span class="pull-left"><strong>상점등급&nbsp;&nbsp;</strong></span>
+							<c:choose>
+							<c:when test="${user.rating <= 1}">
+								<img src="${pageContext.request.contextPath}/resources/user/img/mint_grade1.png" style="width: 25px; height: 25px;"/>
+							</c:when>
+							<c:when test="${user.rating <= 2}">
+								<img src="${pageContext.request.contextPath}/resources/user/img/mint_grade2.png" style="width: 25px; height: 25px;"/>
+							</c:when>
+							<c:when test="${user.rating <= 3}">
+								<img src="${pageContext.request.contextPath}/resources/user/img/mint_grade3.png" style="width: 25px; height: 25px;"/>
+							</c:when>
+							<c:when test="${user.rating <= 4}">
+								<img src="${pageContext.request.contextPath}/resources/user/img/mint_grade4.png" style="width: 25px; height: 25px;"/>
+							</c:when>
+							<c:when test="${user.rating <= 5}">
+								<img src="${pageContext.request.contextPath}/resources/user/img/mint_grade5.png" style="width: 25px; height: 25px;"/>
+							</c:when>
+							</c:choose>
+							</li>
 							<li class="list-group-item text-right"><span class="pull-left"><strong>팔로잉&nbsp;&nbsp;</strong></span> ${follow.following }</li>
 							<li class="list-group-item text-right"><span class="pull-left"><strong>팔로워&nbsp;&nbsp;</strong></span> ${follow.follower }</li>
 							<li class="list-group-item text-right"><span class="pull-left"><strong>상품판매횟수&nbsp;&nbsp;</strong></span> ${boardCount}</li>
@@ -379,7 +415,7 @@
 						<button type="button" style="width: 135%; font-size: 15px; box-shadow: none"
 							class="btn btn--blue-2 btn--radius-2 btn_modify_profile"
 							id="popup_open_info">주소 수정하기</button>
-						<button type="button" style="box-shadow: none" class="btn btn-primary btn--blue-2 btn--radius-2 btn_quit" data-bs-toggle="modal" data-bs-target="#sns_secession">
+						<button type="button" style="width: 135%; font-size: 15px; box-shadow: none" class="btn btn-primary btn--blue-2 btn--radius-2 btn_quit" data-bs-toggle="modal" data-bs-target="#sns_secession">
 							 탈퇴하기
 						</button>
 						</c:otherwise>

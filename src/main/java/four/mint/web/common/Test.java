@@ -10,11 +10,11 @@ public class Test {
 		
 		AES256Util aes = new AES256Util();
 		
-		String encoding = aes.encrypt("Don1233!");
+		String encoding = aes.encrypt("mira");
 		
 		System.out.println(encoding);
 		
-		String decoding = aes.decrypt("ilzkd1wJ/H8TYKP7QdYlhg==");
+		String decoding = aes.decrypt("FP08PJpLcpyGw22TuwkUgQ==");
 		
 		System.out.println(decoding);
 		

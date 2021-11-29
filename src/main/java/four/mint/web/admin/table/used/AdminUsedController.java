@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -14,13 +15,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import four.mint.web.admin.table.member.AdminTableVO;
 
 @Controller
 public class AdminUsedController {
@@ -29,7 +26,11 @@ public class AdminUsedController {
 	private AdminUsedService adminUsedService;
 	
 	@RequestMapping(value="/tables-used.mdo",method= RequestMethod.GET)
-	public String marketboard(HttpServletRequest request) {
+	public String marketboard(HttpServletRequest request, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		List<AdminUsedVO> adminusedlist = adminUsedService.getAdminUsedList();
 		
 		request.setAttribute("list", adminusedlist);

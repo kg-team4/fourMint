@@ -28,15 +28,13 @@ public class AdminPageMemberController {
 	public String memberpage(HttpSession session, HttpServletRequest request) {
 
 		if(session.getAttribute("admin_id") == null) {
-			return "/login";
+			return "redirect:login.mdo";
 		}
-		else {
-		List<AdminPageVO> adminpagelist = adminPageService.getAdminPageList();
 		
+		List<AdminPageVO> adminpagelist = adminPageService.getAdminPageList();
 		request.setAttribute("list", adminpagelist);
 		
 		return "/memberpage";
-		}
 	}
 	
 	@RequestMapping(value = "/deleteMember.mdo", method = RequestMethod.POST)
@@ -50,8 +48,8 @@ public class AdminPageMemberController {
 	
 	@RequestMapping(value = "/memberlist.mdo", method = RequestMethod.GET)
 	public String memberlist(HttpSession session, HttpServletRequest request) {
-		if (session.getAttribute("admin_id") == null) {
-			return "/login";
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
 		}
 		
 		List<AdminTableVO> adminMemberlist = adminTableService.getAdminTableList();

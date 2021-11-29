@@ -94,6 +94,10 @@ public class AdminController {
 	
 	@RequestMapping(value = "/home.mdo", method = RequestMethod.GET)
 	public String home(HttpServletRequest request, AdminVO vo, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		List<AdminReportVO> adminreportlist = adminReportService.getAdminReportList();
 		
 		int userCount = userService.getUserCount();
@@ -108,23 +112,14 @@ public class AdminController {
 		int totalPrice = adminTransactionHistoryService.getTotalPrice();
 		request.setAttribute("totalPrice", totalPrice);
 		
-		session.setAttribute("lists", adminreportlist);
-		
-		vo.setId(String.valueOf(session.getAttribute("admin_id")));
-		vo.setPassword(String.valueOf(session.getAttribute("admin_password")));
-		AdminVO admin = adminService.getAdmin(vo);
-		
-		if(admin != null) {
-			session.setAttribute("admin_id", admin.getId());
-									
-			return "/index";
-		} else {
-			return "/login";
-		}
+		return "/index";
 	}
 	
 	@RequestMapping(value = "/buttons.mdo", method = RequestMethod.GET)
-	public String buttons(Locale locale, Model model) {
+	public String buttons(HttpSession session, Model model) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
 		
 		String market_image1 = adminBannerMarketService.getBanner(1);
 		String market_image2 = adminBannerMarketService.getBanner(2);
@@ -150,7 +145,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/cards.mdo", method = RequestMethod.GET)
-	public String cards(Locale locale, Model model) {
+	public String cards(HttpSession session, Model model) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar week = Calendar.getInstance();
 		week.add(Calendar.DATE, -7);
@@ -193,30 +192,23 @@ public class AdminController {
 		
 		return "/forgot-password";
 	}
-
-	@RequestMapping(value = "/chartEx.mdo", method = RequestMethod.GET)
-	public String chartsEx(Model model) {
-
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar week = Calendar.getInstance();
-		week.add(Calendar.DATE, -7);
-		ChartVO c = new ChartVO();
-		String startDate = (date.format(week.getTime()));
-
-		c.setEnd_date(date.format(new Date()));
-		c.setStart_date(startDate);
-
-		String[] aa = startDate.split(" ");
-		String StartDate = aa[0];
-		c.setStartDate(StartDate);
-		String bb = date.format(new Date());
-		String[] cc = bb.split(" ");
-		String EndDate = cc[0];
-		c.setEndDate(EndDate);
-
-		getChart(c, model);
-		return "/chartex";
-	}
+	
+	/*
+	 * @RequestMapping(value = "/chartEx.mdo", method = RequestMethod.GET) public
+	 * String chartsEx(Model model) {
+	 * 
+	 * SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); Calendar week =
+	 * Calendar.getInstance(); week.add(Calendar.DATE, -7); ChartVO c = new
+	 * ChartVO(); String startDate = (date.format(week.getTime()));
+	 * 
+	 * c.setEnd_date(date.format(new Date())); c.setStart_date(startDate);
+	 * 
+	 * String[] aa = startDate.split(" "); String StartDate = aa[0];
+	 * c.setStartDate(StartDate); String bb = date.format(new Date()); String[] cc =
+	 * bb.split(" "); String EndDate = cc[0]; c.setEndDate(EndDate);
+	 * 
+	 * getChart(c, model); return "/chartex"; }
+	 */
 
 	@ResponseBody
 	@PostMapping("getNewChart.mdo")
@@ -233,7 +225,10 @@ public class AdminController {
 	}
 
 	@RequestMapping(value ="/charts.mdo" , method = RequestMethod.GET)
-	public String charts(Locale locale, Model model, HttpServletRequest request) {
+	public String charts(HttpSession session, Model model, HttpServletRequest request) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
 		
 		double AdminTableWoman = adminTableService.getAdminTableWoman();
 		double AdminTableMan = adminTableService.getAdminTableMan();
@@ -473,14 +468,21 @@ public class AdminController {
 	}
 
 	@RequestMapping(value ="/profile.mdo" , method = RequestMethod.GET)
-	public String profile(Locale locale, Model model) {
+	public String profile(HttpSession session, Model model) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
 		
 		return "/profile";
 	}
 		
 	
 	@RequestMapping(value ="/merchandise.mdo" , method = RequestMethod.GET)
-	public String tables_used(HttpServletRequest request, Model model) {
+	public String tables_used(HttpServletRequest request, Model model, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		List<StoreCategoryBigVO> storeCategoryBig = adminPageStoreService.getStoreCategoryBig();
 		request.setAttribute("storeCategoryBig", storeCategoryBig);
 		
@@ -489,6 +491,7 @@ public class AdminController {
 		
 		return "/merchandise";
 	}
+	
 	@RequestMapping(value ="/ConvertToPdf.mdo" , method = RequestMethod.GET)
 	public String convert(Locale locale, Model model, HttpServletRequest request) throws DocumentException, IOException {
 		ConvertToPdf.createPdf("Admin2", "<h1>안녕하세요</h1>", request);
@@ -506,7 +509,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value ="/storestatus.mdo" , method = RequestMethod.GET)
-	public String storestatus(HttpServletRequest request) {
+	public String storestatus(HttpServletRequest request, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
 		
 		String str = request.getParameter("status");
 		ArrayList<AdminTransactionHistoryVO> status = null;
@@ -541,7 +547,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value ="/storecancelrefundcomplete.mdo" , method = RequestMethod.GET)
-	public String storecancelrefundcomplete(HttpServletRequest request) {
+	public String storecancelrefundcomplete(HttpServletRequest request, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		String str = request.getParameter("pay_cancel");
 		ArrayList<AdminTransactionHistoryVO> status = null;
 		if (str == null) {
@@ -569,7 +579,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value ="/storecancelstatus.mdo" , method = RequestMethod.GET)
-	public String storecancelstatus(HttpServletRequest request) {
+	public String storecancelstatus(HttpServletRequest request, HttpSession session) {
+		if(session.getAttribute("admin_id") == null) {
+			return "redirect:login.mdo";
+		}
+		
 		String str = request.getParameter("pay_cancel");
 		ArrayList<AdminTransactionHistoryVO> status = null;
 		

@@ -19,6 +19,7 @@
 		<result property="profile" column="PROFILE" />
 		<result property="date" column="DATE" />
 		<result property="delete_date" column="DELETE_DATE"/>
+		<result property="rating" column="RATING"/>
 	</resultMap>
 	
 	<insert id="insertUser" parameterType="user">
