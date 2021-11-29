@@ -13,6 +13,7 @@ public class AdminGoodsVO {
 	private String product_price;
 	private int product_stock;
 	private int product_like;
+	private Timestamp date;
 	
 
 }
