@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -88,17 +89,18 @@
 												<td>${list.product_name }</td>
 												<td>${list.email_id }</td>
 												<td>${list.transaction_price }</td>
-												<td>${list.date }</td>
+												<td><fmt:formatDate value="${list.date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 												<td>${list.status }</td>
-												<td>${list.cancel_date }</td>
+												<td><fmt:formatDate value="${list.cancel_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 												<td>
-													<button type="button" id="detail_list" class="detail_list" style="width: 90px; font-size: 15px">상세보기</button>
+													<button type="button" id="detail_list" class="detail_list" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">상세보기</button>
 													<input type="hidden" value="${list.address2 }">	
 													<input type="hidden" value="${list.transaction_count }">	
 													<input type="hidden" value="${list.product_price }">
 													<input type="hidden" value="${list.cancel_reason }">
 													<input type="hidden" value="${list.transaction_seq }">
 													<input type="hidden" value="${list.pay_cancel }">
+													<input type="hidden" value="${list.cancel_status }">
 												</td>
 											</tr>
 										</c:forEach>
@@ -114,7 +116,8 @@
 			<!-- End of Main Content -->
 			<div id="detail_view" style="background: white; display:none">
 				<div>
-					<div id="info">상세정보</div>
+					<div id="info" style="text-align: center; margin-top:5px; font-size:23px">
+						<strong>상세정보</strong></div>
 					<hr>
 					<form action="updateProcess.mdo" method="post">
 						<div>
@@ -128,54 +131,54 @@
 									</td>
 								</tr> -->
 								<tr>
-									<td width="200px" height="30px">상품명</td>
+									<td width="200px" height="42px"style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;상품명</strong></td>
 									<td width="350px">
 										<input type="text" name="product_name" id="detail_product_name" readonly style="border: 0px;">
 									</td>
 								</tr>
 								<tr>
-									<td height="30px">주문 아이디</td>
+									<td  height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;주문 아이디</strong></td>
 									<td><input type="text" id="detail_email_id" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">주소</td>
+									<td  height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;주소</strong></td>
 									<td><input type="text" id="detail_address" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">가격</td>
+									<td  height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;가격</strong></td>
 									<td><input type="text" id="detail_product_price" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">수량</td>
+									<td  height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;수량</strong></td>
 									<td><input type="text" id="detail_transaction_count" name="transaction_count" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">총액</td>
+									<td  height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;총액</strong></td>
 									<td><input type="text" id="detail_transaction_price" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">주문일시</td>
+									<td  height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;주문일시</strong></td>
 									<td><input type="text" id="detail_date" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">취소날짜</td>
+									<td  height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;취소날짜</strong></td>
 									<td><input type="text" id="detail_cancel_date" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">상태</td>
+									<td  height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;상태</strong></td>
 									<td><input type="text" id="detail_cancel_status" readonly style="border: 0px;"></td>
 								</tr>
 								<tr>
-									<td height="30px">이유</td>
-									<td><textarea id="detail_cancel_reason" readonly style="border: 0px; resize: none;"></textarea></td>
+									<td  height="42px" style="text-align:left; color:black"><strong>&emsp;&emsp;&emsp;&emsp;&emsp;이유</strong></td>
+									<td><textarea id="detail_cancel_reason" readonly style="border: 0px; resize: none; width:300px; height:42px; margin-top:13px"></textarea></td>
 								</tr>
 							</table>
 							<br>
-							<div style="text-align: center; margin-top: 10px; display: flex;">
+							<div style="text-align: center; vertical-align: middle">
 								<input type="hidden" id="pay_cancel" name="pay_cancel">
 								<input type="hidden" id="detail_seq" name="transaction_seq">
-								<button type="submit" id="btn_payCancel" class="btn_payCancel" style="width: 90px; font-size: 15px">처리하기</button>
-								<button class="modal_cancel_btn" style="width: 90px; font-size: 15px" onclick="return false;">확인</button>
+								<button type="submit" id="btn_payCancel" class="btn_payCancel"style="width: 90px; height:30px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-25px;  font-weight: 700">처리</button>
+								<button class="modal_cancel_btn" style="width: 90px; height:30px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-25px;  font-weight: 700" onclick="return false;">취소</button>
 							</div>
 						</div>
 					</form>
@@ -195,8 +198,8 @@
 					$("#detail_transaction_count").val($(this).next().next().val());
 					$("#detail_transaction_price").val($(this).parent().prev().prev().prev().prev().text());
 					$("#detail_date").val($(this).parent().prev().prev().prev().text());
-					$("#detail_cancel_date").val($(this).parent().prev().prev().text());
-					$("#detail_cancel_status").val($(this).parent().prev().text());
+					$("#detail_cancel_date").val($(this).parent().prev().text());
+					$("#detail_cancel_status").val($(this).next().next().next().next().next().next().val());
 					$("#detail_cancel_reason").text($(this).next().next().next().next().val());
 					$("#detail_seq").val($(this).next().next().next().next().next().val());
 					$("#pay_cancel").val($(this).next().next().next().next().next().next().val());

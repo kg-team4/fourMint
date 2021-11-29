@@ -101,7 +101,7 @@
 	                                            	<input type="hidden">
 	                                            	<form action="deleteMember.mdo" method="post">
 	                                            		<input type="hidden" name="nickname" value="${member.nickname }">
-														<button id="deleteMember" class="deleteMember" style="width: 90px; height:30px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-20px;  font-weight: 700">삭제</button>
+														<button id="deleteMember" class="deleteMember" style="width: 90px; height:30px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-20px; ">삭제</button>
 													</form>
 	                                            </td>
                                         	</tr>

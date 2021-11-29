@@ -47,9 +47,6 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">고객센터(Q&A) 페이지</h1>
-                    <p class="mb-4">
-                     <a target="_blank"
-                            href="home.mdo">민트마켓 고객센터(Q&A) 관리 </a>.</p>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
@@ -61,55 +58,61 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                      <tr>
-                                            <th>질문번호</th>
-                                            <th>상품번호</th>
-                                            <th>닉네임</th>
-                                            <th>내용</th>
-                                            <th>날짜</th>
-                                            <th>상품명</th>
-                                            <th>답변상태</th>
-                                            <th scope="col">Actions</th>                                             
+                                     		<th width="100px">상품명</th>
+                                            <th width="100px">닉네임</th>
+                                            <th width="250px">문의내용</th>
+                                            <th width="100px">날짜</th>
+                                            <th width="100px">상태</th>
+                                            <th width="400px">답변내용</th>
+                                            <th width="80px"scope="col">비고</th>                                             
                                         </tr>
                                     		</thead>         
                                          <tbody>                                     
                                        <c:forEach var="storeask" items="${list}">
 	                                       <tr>	                                   		                                        		                                        		
-	                                           <td>${storeask.ask_seq}</td>
-	                                           <td>${storeask.store_seq}</td>
+											  <td>${storeask.product_name}</td>
 	                                           <td>${storeask.nickname }</td>
 	                                           <td>${storeask.content}</td>
-	                                           <td> <fmt:formatDate value="${storeask.date}" pattern="yyyy-MM-dd"/></td>
-	                                           <td>${storeask.product_name}</td>	
+	                                           <td> <fmt:formatDate value="${storeask.date}" pattern="yyyy-MM-dd"/></td>	                                           	
 	                                           	<td><c:set value="${storeask.status}" var="ask" />
 					                                 <c:choose>
 					                                    <c:when test="${ask eq '0'}"><span style="color: blue">답변완료</span></c:when>
 					                                    <c:when test="${ask eq '1'}"><span style="color: red">답변대기</span></c:when>
-					                                 </c:choose></td>
+					                                 </c:choose>
+					                            </td>
+					                            <td>
+	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
+	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
+	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
+	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
+	                                        	</td>
 	                                           <td>
 	                                           <form>
 	                                           		<input type="hidden" value="${storeask.ask_seq }" name="ask_seq">	                                           		
-		                                            <button type="button"   class="btn btn-success" ><i class="fas fa-edit"></i></button>		                                   
-		                                        	<button type="button"  class="btn btn-danger" ><i class="far fa-trash-alt"></i></button>	
+		                                            <button type="button"   class="btn-success" style="width: 90px; height: 34.5px; font-size: 15px; background: #79d4c8; border-radius: 3px; border: none; margin-bottom: 4px; color: black;" >수정</button>		                                   
+		                                        	<button type="button"  class="btn-danger" style="width: 90px; height: 34.5px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border: none; color: black;">삭제</button>	
 	                                        	</form>
-	                                        </td> 		                 
+	                                        	</td> 		                 
 	                                      </tr> 
                                       	</c:forEach> 
                                     </tbody>                                                                                                                                                                                                                                                                                                                                                                                   
                                 </table>
                                  <!-- 등록 모달창 -->
+                                 
+                                 
 		                        <div class="modal_cover">
 								    <div class="modal_shut"><a href="#">close</a></div>
 								    <div>
 								      <form action="modify_faq.mdo"  method="post">
-								      <table>
-								      <tr>
-								      	<td>질문번호</td>
-								      	<td><input id="hi_ask_seq" type="text" value="" name="ask_seq" readonly></td>
-								      </tr>
-								      <tr>
-								      		<td>상품번호</td>
-								      		<td><textarea id="hi_seq" name="store_seq" required="required"></textarea></td>
-								      	</tr>
+									      <table>
+									      <tr>
+									     	 <td>상품번호</td>
+									      	<td><textarea id="hi_seq" name="store_seq" required="required"></textarea></td>									      	
+									      </tr>
+									      <tr>
+								      		<td>질문번호</td>
+								      		<td><input id="hi_ask_seq" type="text" value="" name="ask_seq" readonly></td>	
+								     	 </tr>
 								      	<tr>
 									      	<td>닉네임</td>
 									      	<td> <input id="hi_nickname" type="text" name="nickname" required="required"></td>

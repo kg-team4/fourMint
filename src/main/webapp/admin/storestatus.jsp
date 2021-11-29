@@ -175,7 +175,7 @@
 								</tr>
 							</table>
 							<br>
-							<div style="text-align: center; margin-top: 10px">
+							<div style="text-align: center;">
 									<input type="hidden" id="form_seq" name="transaction_seq">
 									<button type="submit" id="edit_btn" class="edit_btn" style="width: 90px; height:30px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-25px;  font-weight: 700">변경</button>
 								<button class="modal_cancel_btn" style="width: 90px; height:30px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-25px;  font-weight: 700" onclick="return false;">취소</button>
