@@ -16,14 +16,10 @@ public class ServiceCenterDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	public List<ServiceCenterVO> getServiceCenterStaticNoticeList() {
-		System.out.println("====> serviceCenterStaticNoticeList SELECT");
-
 		return sqlSessionTemplate.selectList("ServiceCenterDAO.getServiceCenterStaticNoticeList");
 	}
 	
 	public List<ServiceCenterVO> getServiceCenterNormalNoticeList() {
-		System.out.println("====> getServiceCenterNormalNoticeList SELECT");
-
 		return sqlSessionTemplate.selectList("ServiceCenterDAO.getServiceCenterNormalNoticeList");
 	}
 	

@@ -20,12 +20,13 @@ public class AdminFaqController {
 	private AdminFaqService adminFaqService;
 	
 	@RequestMapping(value="/utilities-usedfaq.mdo",method= RequestMethod.GET)
-	public String faq(HttpServletRequest request, HttpSession session) {
+	public String faq(HttpServletRequest request, HttpSession session, String category) {
 		if(session.getAttribute("admin_id") == null) {
 			return "redirect:login.mdo";
 		}
 		
-		List<AdminFaqVO> adminfaqlist = adminFaqService.getAdminFaqList();
+		category = "%" + category + "%";
+		List<AdminFaqVO> adminfaqlist = adminFaqService.getAdminFaqList(category);
 		request.setAttribute("list", adminfaqlist);
 		
 		return "/utilities-usedfaq";
@@ -43,78 +44,6 @@ public class AdminFaqController {
 		
 		return "redirect:utilities-usedfaq.mdo";
 		
-	}
-
-	@RequestMapping(value ="/etc.mdo" , method = RequestMethod.GET)
-	public String etc(HttpServletRequest request, HttpSession session) {
-		if(session.getAttribute("admin_id") == null) {
-			return "redirect:login.mdo";
-		}
-		
-		List<AdminFaqVO> adminfaqlist = adminFaqService.getAdminFaqList();
-		request.setAttribute("list", adminfaqlist);
-		
-		return "/etc";
-	}
-	
-	@RequestMapping(value ="/exchange.mdo" , method = RequestMethod.GET)
-	public String exchange(HttpServletRequest request, HttpSession session) {
-		if(session.getAttribute("admin_id") == null) {
-			return "redirect:login.mdo";
-		}
-		
-		List<AdminFaqVO> adminfaqlist = adminFaqService.getAdminFaqList();
-		request.setAttribute("list", adminfaqlist);
-		
-		return "/exchange";
-	}
-	
-	@RequestMapping(value ="/cancel.mdo" , method = RequestMethod.GET)
-	public String cancel(HttpServletRequest request, HttpSession session) {
-		if(session.getAttribute("admin_id") == null) {
-			return "redirect:login.mdo";
-		}
-		
-		List<AdminFaqVO> adminfaqlist = adminFaqService.getAdminFaqList();
-		request.setAttribute("list", adminfaqlist);
-		
-		return "/cancel";
-	}
-	
-	@RequestMapping(value ="/delivery.mdo" , method = RequestMethod.GET)
-	public String delivery(HttpServletRequest request, HttpSession session) {
-		if(session.getAttribute("admin_id") == null) {
-			return "redirect:login.mdo";
-		}
-		
-		List<AdminFaqVO> adminfaqlist = adminFaqService.getAdminFaqList();
-		request.setAttribute("list", adminfaqlist);
-		
-		return "/delivery";
-	}
-	
-	@RequestMapping(value ="/order.mdo" , method = RequestMethod.GET)
-	public String order(HttpServletRequest request, HttpSession session) {
-		if(session.getAttribute("admin_id") == null) {
-			return "redirect:login.mdo";
-		}
-		
-		List<AdminFaqVO> adminfaqlist = adminFaqService.getAdminFaqList();
-		request.setAttribute("list", adminfaqlist);
-		
-		return "/order";
-	}
-	
-	@RequestMapping(value ="/mintmarket.mdo" , method = RequestMethod.GET)
-	public String mintmarket(HttpServletRequest request, HttpSession session) {
-		if(session.getAttribute("admin_id") == null) {
-			return "redirect:login.mdo";
-		}
-		
-		List<AdminFaqVO> adminfaqlist = adminFaqService.getAdminFaqList();
-		request.setAttribute("list", adminfaqlist);
-		
-		return "/mintmarket";
 	}
 	
 	@RequestMapping(value="/faq_delete.mdo", method = RequestMethod.POST)

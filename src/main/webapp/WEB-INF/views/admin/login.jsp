@@ -24,26 +24,24 @@
 	
 	img {
 		border: none;
-		vertical-align: top;
+		vertical-align: center;
 	}
 	
 	.c_wrap {
 		width: 500px;
 		margin: 0 auto;
 		position: relative;
-		border: 2px solid #000;
 	}
 	
 	.carousel {
 		width: 400px;
 		margin: 0 auto;
-		border: 2px solid aqua;
 		overflow: hidden;
 	}
 	
 	.carousel .list {
 		width: 1600px;
-		margin-left: -400px;
+		margin-left: -100px;
 	}
 	
 	.carousel .list:after {
@@ -54,48 +52,10 @@
 	
 	.carousel .list li {
 		float: left;
-		height: 200px;
-		width: 400px;
+		height: 500px;
+		width: 500px;
 		color: white;
 		font-size: 50px;
-	}
-	
-	.carousel .list li.a1 {
-		background-color: red;
-	}
-	
-	.carousel .list li.a2 {
-		background-color: blue;
-	}
-	
-	.carousel .list li.a3 {
-		background-color: green;
-	}
-	
-	.carousel .list li.a4 {
-		background-color: gray;
-	}
-	
-	.prev {
-		position: absolute;
-		left: 0px;
-		top: 50%;
-		width: 25px;
-		height: 50px;
-		background-color: #000;
-		color: #fff;
-		margin-top: -25px;
-	}
-	
-	.next {
-		position: absolute;
-		right: 0px;
-		top: 50%;
-		width: 25px;
-		height: 50px;
-		background-color: #000;
-		color: #fff;
-		margin-top: -25px;
 	}
 </style>
 </head>
@@ -118,31 +78,30 @@
 										<li class="a3"><img src="${pageContext.request.contextPath}/resources/admin/img/character_sample.jpg" class="d-block w-100" alt="..."></li>
 									</ul>
 								</div>
-								<p class="prev">이전</p>
-								<p class="next">이후</p>
 							</div>
 							<script>
 								$(document).ready(function() {
-								  $('.prev').click(function() {
-								    $('.list').stop().animate({
-								      'margin-left': '-800px'
-								    }, function() {
-								      $('.list li:first-child').appendTo('.list');
-								      $('.list').css({
-								        'margin-left': '-400px'
-								      });
-								    });
-								  });
-								  $('.next').click(function() {
-								    $('.list').stop().animate({
-								      'margin-left': '0px'
-								    }, function() {
-								      $('.list li:last-child').prependTo('.list');
-								      $('.list').css({
-								        'margin-left': '-400px'
-								      });
-								    });
-								  });
+								  var auto = setInterval(function(){
+								   		$('.list').stop().animate({'margin-left':'0px'}, function(){
+								           $('.list>li').eq(2).prependTo('.list');
+								           $('.list').css({'margin-left':'-100px'});
+								       });
+								   },2000);
+								   
+								   /* 마우스 올렸을때 캐러셀 자동 멈춤 */
+								   $('.carousel').mouseenter(function(){
+								        clearInterval(auto);  
+								   });
+								   
+								   /* 마우스 내렸을때 캐러셀 자동 다시실행 */
+								   $('.carousel').mouseleave(function(){
+								        auto = setInterval(function(){
+								         		$('.list').stop().animate({'margin-left': '0px'},function(){
+								           $('.list>li').eq(2).prependTo('.list');
+								           $('.list').css({'margin-left':'-100px'});
+								        });
+								    },2000);
+								   });
 								});
 							</script>
 							<%-- <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-interval="true">

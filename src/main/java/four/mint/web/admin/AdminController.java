@@ -255,7 +255,7 @@ public class AdminController {
 			// 주소 공백 제거
 			String[] address = String.valueOf(arr.get(i)).split(" ");
 			// 주소 앞
-			String add = address[0];
+			String add = address[0].substring(0, 2);
 			// 비교
 			switch (add) {
 				case "서울":	seoul++; 		break;
@@ -283,7 +283,7 @@ public class AdminController {
 			// 주소 공백 제거
 			String[] manAddress = String.valueOf(man.get(i)).split(" ");
 			// 주소 앞
-			String strMan = manAddress[0];
+			String strMan = manAddress[0].substring(0, 2);
 			// 비교
 			
 			switch (strMan) {
@@ -312,7 +312,7 @@ public class AdminController {
 			// 주소 공백 제거
 			String[] womanAddress = String.valueOf(woman.get(i)).split(" ");
 			// 주소 앞
-			String strWoman = womanAddress[0];
+			String strWoman = womanAddress[0].substring(0, 2);
 			// 비교
 			switch (strWoman) {
 				case "서울":	womanSeoul++;		break;
@@ -508,7 +508,6 @@ public class AdminController {
 		
 		String str = request.getParameter("status");
 		ArrayList<AdminTransactionHistoryVO> status = null;
-		ArrayList<String> strList = adminTransactionHistoryService.getStatus();
 		
 		if (str == null) {
 			str = "전체 목록";
@@ -533,7 +532,6 @@ public class AdminController {
 		}
 		
 		request.setAttribute("status", status);
-		request.setAttribute("strList", strList);
 		
 		return "/storestatus";
 	}
@@ -608,10 +606,10 @@ public class AdminController {
 
 	@RequestMapping(value ="/updateStatus.mdo" , method = RequestMethod.POST)
 	public String updateStatus(HttpServletRequest request) {
-		
 		int seq = Integer.parseInt(request.getParameter("transaction_seq"));
 		AdminTransactionHistoryVO vo = adminTransactionHistoryService.getSelectOne(seq);
 		vo.setStatus(request.getParameter("status"));
+		vo.setMerchant_uid(request.getParameter("merchant_uid"));
 		adminTransactionHistoryService.updateStatus(vo);
 		
 		return "redirect:/storestatus.mdo";

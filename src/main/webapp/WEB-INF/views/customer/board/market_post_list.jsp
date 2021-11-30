@@ -31,7 +31,7 @@
 							<c:choose>
 								<c:when test="${no eq name}">
 									<div class="category_list_title" style="color:#7b7b7b; font-size:20px; margin: 0 10px 6px 0;">
-											<label class="category_big_name" style="color:#7b7b7b; hover:color:#26e4ca">${big.name}</label>									
+											<label class="category_big_name" style="color:#7b7b7b; hover:color:#26e4ca;">${big.name}</label>									
 										<c:if test="${big.name ne etc && big.name ne buy}">
 											<input type="button" class="slider" value="▲" style="background: none; border: 0px; color:#26e4ca;">
 										</c:if>
@@ -204,7 +204,7 @@
 			var kind = $(this).text();  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	
 			$.ajax({
 				url : 'marketDetailList.do', // 이 주소로 
-				type : "post", // 포스트 방식으로 보내는데
+				type : "get", // 포스트 방식으로 보내는데
 				cache: false,
 				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
 				data : {"kind" : kind}, // kind를 kind로 명명하여 보내겠다

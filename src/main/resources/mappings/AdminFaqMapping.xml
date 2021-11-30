@@ -15,13 +15,15 @@
 	</insert>
 	
 	<select id="getAdminFaqList" resultType="adminFaq" parameterType="string">
-		SELECT * FROM faq
+		SELECT * FROM faq 
+		<if test='!faq_category.equals("%all%")'>
+			WHERE faq_category LIKE #{faq_cateogory}
+		</if>
 	</select>
 	
 	<delete id="faq_delete" parameterType="int"	>
 		delete from faq where faq_seq = #{parameter}
 	</delete>	
-	
 	
 	<update id="update_faq" parameterType="adminFaq">
 		update faq set faq_title = #{faq_title}, faq_content=#{faq_content}, faq_category=#{faq_category} where faq_seq = #{faq_seq}

@@ -25,55 +25,35 @@ public class MarketDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public MarketVO getMarketOne(int market_seq) {
-		System.out.println("==========> get marketOne");
-		
 		return sqlSessionTemplate.selectOne("MarketDAO.getMarketOne", market_seq);
 	}
 	
 	public List<MarketVO> getMarketList(PageVO vo) {
-		System.out.println("====> marketList SELETE");
-
 		return sqlSessionTemplate.selectList("MarketDAO.getMarketList", vo);
 	}
 	
 	public int getMarketCount() {
-		
 		return sqlSessionTemplate.selectOne("MarketDAO.getMarketCount");
 	}
 	
 	public void insertMarket(MarketVO vo) {
-		System.out.println("======> market INSERT");
 		sqlSessionTemplate.insert("MarketDAO.insertMarket", vo);
 	}
 	
 	public List<MarketCategoryBigVO> getMarketCategoryBig() {
-		System.out.println("======> categoryBig get");
-		
 		return sqlSessionTemplate.selectList("MarketDAO.getMarketCategoryBig");
 	}
 	
 	public SThreeVO getSThree() {
-		System.out.println("=====> s3key");
-		
 		return sqlSessionTemplate.selectOne("KeyDAO.getSkey");
 	}
 	
 	public AesVO getAes() {
-		System.out.println("=====> aeskey");
-		
 		return sqlSessionTemplate.selectOne("KeyDAO.getKey");
 	}
 
-	public int getKindCount(SearchVO svo) {
-		return sqlSessionTemplate.selectOne("MarketDAO.getKindCount", svo);
-	}
-	
 	public int getKindTwoCount(SearchVO svo) {
-		return sqlSessionTemplate.selectOne("MarketDAO.getKindCount", svo);
-	}
-
-	public List<MarketVO> getKindList(SearchVO svo) {
-		return sqlSessionTemplate.selectList("MarketDAO.getKindList", svo);
+		return sqlSessionTemplate.selectOne("MarketDAO.getKindTwoCount", svo);
 	}
 
 	public List<MarketVO> getKindTwoList(SearchVO svo) {

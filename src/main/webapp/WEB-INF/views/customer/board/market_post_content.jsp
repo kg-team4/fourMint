@@ -430,7 +430,7 @@ hr{
 				</div>
 			</div>
 			
-			<!-- 이름클릭 시 프로필 모달창 -->
+			<!-- 이름 클릭 시 프로필 모달창 -->
 			<div id="my_modal">
 				<div>
 					<div id="my_info_edit_title">
@@ -483,7 +483,7 @@ hr{
 																	<img id="sell_product_img" src="${market.url}" alt="판매상품이미지">
 																</div>
 														</a></td>
-														<td style="font-size: 18px"><a href="#" style="color: #26e4ca">${market.product_name }</a></td>
+														<td style="font-size: 18px"><a href="marketBoard.do?seq=${market.market_seq }" style="color: #26e4ca">${market.product_name }</a></td>
 													</tr>
 													<tr>
 														<td style="font-size: 15px">${market.product_price } &nbsp;원</td>
@@ -517,7 +517,7 @@ hr{
 												<table>
 													<tr>
 														<td style="text-align: center; padding: 8px;"><div class="community_category">${community.category }</div>&nbsp;</td>
-														<td style="text-align: center; padding: 8px;"><div class="community_title">${community.title }</div>&nbsp;</td>
+														<td style="text-align: center; padding: 8px;"><div class="community_title"><a href="communityBoard.do?seq=${community.community_seq}">${community.title }</a></div>&nbsp;</td>
 														<td style="text-align: center; padding: 8px;"><div class="community_date"><fmt:formatDate pattern="yyyy-MM-dd" value="${community.date }" /></div>&nbsp;</td>
 													</tr>
 												</table>

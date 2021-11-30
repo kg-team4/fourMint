@@ -15,21 +15,18 @@ public class AdminFaqDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public void insertAdminFaq(AdminFaqVO vo) {
-		System.out.println("FAQ");
 		sqlSessionTemplate.insert("AdminFaqDAO.insertAdmin",vo);
 	}
 	
 	
-	public List<AdminFaqVO>getAdminFaqList(){
-		
-		return sqlSessionTemplate.selectList("AdminFaqDAO.getAdminFaqList");
+	public List<AdminFaqVO>getAdminFaqList(String category){
+		return sqlSessionTemplate.selectList("AdminFaqDAO.getAdminFaqList", category);
 	}
 
 	public void faq_delete(int parameter) {
 		sqlSessionTemplate.delete("AdminFaqDAO.faq_delete",parameter);
 		
 	}
-
 
 	public void update_faq(AdminFaqVO faqVO) {
 		sqlSessionTemplate.update("AdminFaqDAO.update_faq",faqVO);
