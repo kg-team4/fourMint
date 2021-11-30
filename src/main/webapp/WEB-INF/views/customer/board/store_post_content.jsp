@@ -62,7 +62,7 @@
 					<span class="font30">${content.product_name }</span> 
 					<div style="display:flex; justify-content: flex-end">
 						<div class="font25" style="padding-left:360px;padding-top:5px">
-							${content.product_price}						
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${content.product_price}" />						
 						</div>
 						<span class=font20 style="padding-left:5px; padding-top:10px">원</span>
 					</div>					

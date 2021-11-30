@@ -59,7 +59,7 @@ try {
 <div id="Container">
 	<input type="hidden" id="all" name="all" value="${all }" />
 	<!-- #Contents -->
-	<div id="Contents" style="padding-top: 143px;">
+	<div id="Contents" style="padding-top: 135px;">
 		<script>;
 			var kakaoApiKey = "";
 			

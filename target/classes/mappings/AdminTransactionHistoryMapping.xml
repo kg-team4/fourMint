@@ -79,7 +79,7 @@
 	</select>
 	
 	<select id="getTotalPrice" resultType="int">
-		SELECT SUM(transaction_price) FROM transactionHistory;
+		SELECT SUM(transaction_price) FROM transactionHistory WHERE status = '상품 배송 완료';
 	</select>
 	
 	<select id="orderList" resultType="adminTransactionHistory">

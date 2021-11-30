@@ -73,9 +73,6 @@ public class AdminController {
 	private AdminTableService adminTableService;
 	
 	@Autowired
-	private AdminReportService adminReportService;
-
-	@Autowired
 	private StoreService storeService;
 	
 	@Autowired
@@ -83,9 +80,6 @@ public class AdminController {
 	
 	@Autowired
 	private AdminTransactionHistoryService adminTransactionHistoryService;
-	
-	@Autowired
-	private AdminQnaService adminQnaService;
 	
 	@Autowired
 	private AdminTransactionHistoryService adminThistoryService;
@@ -98,16 +92,14 @@ public class AdminController {
 			return "redirect:login.mdo";
 		}
 		
-		List<AdminReportVO> adminreportlist = adminReportService.getAdminReportList();
-		
 		int userCount = userService.getUserCount();
 		request.setAttribute("userCount", userCount);
 		
 		int storeCount = adminPageStoreService.getStoreCount();
 		request.setAttribute("storeCount", storeCount);
 		
-		int qnaCount = adminQnaService.getQNA();
-		request.setAttribute("qnaCount", qnaCount);
+		int usedCount = adminUsedService.usedCount();
+		request.setAttribute("usedCount", usedCount);
 		
 		int totalPrice = adminTransactionHistoryService.getTotalPrice();
 		request.setAttribute("totalPrice", totalPrice);

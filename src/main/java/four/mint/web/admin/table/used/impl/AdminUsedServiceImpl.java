@@ -36,6 +36,11 @@ public class AdminUsedServiceImpl implements AdminUsedService{
 	public void delete(int market_seq) {
 		adminUsedDAO.delete(market_seq);
 	}
+
+	@Override
+	public int usedCount() {
+		return adminUsedDAO.usedCount();
+	}
 	
 	
 }

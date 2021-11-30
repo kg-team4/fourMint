@@ -16,7 +16,6 @@ public class AdminAnnounceDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public void insertAdminAnnounce(AdminAnnounceVO vo) {
-		System.out.println("공지사항");
 		sqlSessionTemplate.insert("AdminAnnounceDAO.insertAdmin",vo);
 	}
 	

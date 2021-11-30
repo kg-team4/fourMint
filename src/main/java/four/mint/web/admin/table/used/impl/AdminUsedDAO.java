@@ -31,5 +31,9 @@ public class AdminUsedDAO {
 	public List<AdminUsedVO> orderList() {
 		
 		return sqlSessionTemplate.selectList("AdminUsedDAO.orderList");
+	}
+
+	public int usedCount() {
+		return sqlSessionTemplate.selectOne("AdminUsedDAO.usedCount");
 	}	
 }

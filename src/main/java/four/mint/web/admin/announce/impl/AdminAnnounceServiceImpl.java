@@ -17,7 +17,6 @@ public class AdminAnnounceServiceImpl implements AdminAnnounceService {
 	@Override
 	public void insertAdminAnnounce(AdminAnnounceVO vo) {
 		adminAnnounceDao.insertAdminAnnounce(vo);
-		
 	}
 
 	@Override

@@ -380,7 +380,7 @@ hr{
 				</div>
 				<br>
 				<div id="map" style="width: 100%; height: 350px;"></div>
-				<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
+				<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e779d3db34b72df8c41309b36657dbf8&libraries=services"></script>
 				<script>
 					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 					mapOption = {
@@ -726,6 +726,7 @@ hr{
 	</div>
 </div>
 </article>
+
 <script>
 	//메세지 내역을 가져온다.
 	const MessageContentList = function(other_nick) {
@@ -830,32 +831,6 @@ hr{
 			
 		let image = $('#message_image2').attr("src");
 		
-		console.log(image);
-		$.ajax({
-			url : "message_send_inlist_image.do",
-			method : "GET",
-			data : {
-				other_nick : other_nick,
-                image : image,	              
-			},
-			success : function(data) {
-				console.log("메세지 전송 성공");
-
-				// 메세지 입력칸 비우기
-                $('.write_msg').val("");
-
-                // 메세지 내용  리로드
-                MessageContentList(other_nick);
-
-			},
-			error : function() {
-				alert('서버 에러');
-			}
-		});
-	};
-	
-	const SendImo1 = function(other_nick) {
-		let image = $('#message_image1').attr("src");
 		console.log(image);
 		$.ajax({
 			url : "message_send_inlist_image.do",

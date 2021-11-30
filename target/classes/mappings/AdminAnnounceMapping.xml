@@ -24,7 +24,7 @@
 	</delete>
 
 	<update id="update_announcement" parameterType="adminAnnounce">
-		update notice set notice_title = #{notice_title}, notice_content=#{notice_content}, date=now() where notice_seq = #{notice_seq}
+		update notice set notice_title = #{notice_title}, notice_content=#{notice_content}, date=now(), status=${status} where notice_seq = #{notice_seq}
 	</update>
 	
 </mapper>
