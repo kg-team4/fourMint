@@ -52,10 +52,9 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">상품 배송 관리</h1>
-					<div class="dropdown">
+					<div class="dropdown" style="margin-bottom: 5px;">
 						<button class="btn btn-secondary dropdown-toggle" type="button"
-							id="dropdownMenuButton" class="list_status" data-toggle="dropdown"
+							id="dropdownMenuButton" class="list_status" data-toggle="dropdown" style="background: #dee1e3; border: none; color:#514c57"
 							aria-haspopup="true" aria-expanded="false">카테고리</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							<a class="dropdown-item" href="javascript:goPost('전체 목록')">전체 목록</a>
@@ -66,10 +65,10 @@
 					</div>
 					<!-- DataTales  -->
 					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">스토어 상품 글</h6>
+						<div class="card-header py-3" style="display: inline-flex; align-items: center; justify-content: space-between;">
+							<h5 class="m-0 font-weight-bold text-primary text-gray-800">스토어 거래 현황 조회</h5>
 							<form action="excel_transactionhistory.mdo" method="get" >
-								<button>엑셀</button>
+								<button style="width: 90px; font-size: 15px; color: black; background: #c5c9c9; border-radius: 3px; border: none; font-weight: 600; height: 34.5px">엑셀파일</button>
 							</form>
 						</div>
 						<div class="card-body">
@@ -89,12 +88,12 @@
 									<tbody>
 										<c:forEach var="list" items="${status }" varStatus="status">
 											<tr>
-												<td>${list.product_name }</td>
-												<td>${list.email_id }</td>
-												<td>${list.transaction_price }</td>
-												<td><fmt:formatDate value="${list.date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-												<td>${list.status }</td>
-												<td>
+												<td style="vertical-align: middle">${list.product_name }</td>
+												<td style="vertical-align: middle">${list.email_id }</td>
+												<td style="vertical-align: middle">${list.transaction_price }</td>
+												<td style="vertical-align: middle"><fmt:formatDate value="${list.date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+												<td style="vertical-align: middle">${list.status }</td>
+												<td style="vertical-align: middle; text-align: center">
 													<button type="button" id="detail_list" class="detail_list" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">상세정보</button>
 													<input type="hidden" value="${list.transaction_count }">	
 													<input type="hidden" value="${list.product_price }">

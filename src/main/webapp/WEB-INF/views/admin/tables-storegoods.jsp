@@ -43,14 +43,13 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">스토어 물품</h1>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display: inline-flex;align-items: center;justify-content: space-between;">
-                            <h6 class="m-0 font-weight-bold text-primary">민트마켓 리스트</h6>
+                            <h5 class="m-0 font-weight-bold text-primary text-gray-800">스토어 상품 목록</h5>
 							<form action="excel_storeGoods.mdo" method="get">
-								<button>엑셀파일</button>
+								<button style="width: 90px; font-size: 15px; color: black; background: #c5c9c9; border-radius: 3px; border: none; font-weight: 600; height: 34.5px">엑셀파일</button>
 							</form>
 						</div>
                         <div class="card-body">
@@ -69,12 +68,12 @@
                                     <tbody>
                                     	 <c:forEach var="storeboard" items="${list }">
 		                                        <tr>
-		                                            <td>${storeboard.store_seq}</td>
-		                                            <td>${storeboard.category_big }</td>
-		                                            <td>${storeboard.product_name }</td>	                                            
-		                                            <td>${storeboard.product_price }</td>
-		                                            <td>${storeboard.product_stock }</td>
-		                                            <td style="width:110px;">${storeboard.product_like }</td>                                       	                                            
+		                                            <td style="vertical-align: middle">${storeboard.store_seq}</td>
+		                                            <td style="vertical-align: middle">${storeboard.category_big }</td>
+		                                            <td style="vertical-align: middle">${storeboard.product_name }</td>	                                            
+		                                            <td style="vertical-align: middle">${storeboard.product_price }</td>
+		                                            <td style="vertical-align: middle">${storeboard.product_stock }</td>
+		                                            <td style="vertical-align: middle; width:110px;">${storeboard.product_like }</td>                                       	                                            
 	                                        	</tr>
 	                                        </c:forEach>                                          
                                     </tbody>

@@ -51,10 +51,10 @@
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">게시판</h1>
 						<div>
-							<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+							<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="background-color: #79d4c8; color:#514c57">
 								<i class="fas fa-download fa-sm text-white-50"></i>&nbsp;엑셀로 출력하기
 							</a>
-							<a href="ConvertToPdf.mdo" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+							<a href="ConvertToPdf.mdo" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"  style="background-color: #79d4c8; color:#514c57">
 								<i class="fas fa-download fa-sm text-white-50"></i>&nbsp;PDF로 출력하기
 							</a>
 						</div>

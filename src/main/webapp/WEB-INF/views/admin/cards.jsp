@@ -110,7 +110,7 @@
 								<input type="hidden" id="chartType" value="line">
 								<div class="card-header"
 									style="justify-content: space-between; display: flex; align-items: center; padding: 5px;">
-									<div>
+									<div class="m-0 font-weight-bold text-primary text-gray-800">
 										<i class="fas fa-chart-area me-1"></i><span id="sales_term">&nbsp;<span
 											id="start_date_span">${start_date }</span> ~ <span
 											id="end_date_span">${end_date }</span> 별 매출

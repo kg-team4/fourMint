@@ -45,8 +45,8 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">신고목록</h1>
 					<button class="btn btn-secondary dropdown-toggle" type="button"
+					 style="margin-bottom: 5px; background: #dee1e3; border: none; color:#514c57"
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">신고 목록</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -57,8 +57,7 @@
 				<!-- DataTales  -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">신고가 들어오면 블랙리스트
-							처리</h6>
+						<h5 class="m-0 font-weight-bold text-primary text-gray-800">신고 관리</h5>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -67,34 +66,35 @@
 								<thead>
 									<tr>
 										<th>번호</th>
-										<th>이유</th>
-										<th>글</th>
-										<th>게시글 번호</th>
+										<th width="120px">이유</th>
+										<th width="300px">글</th>
+										<th width="120px">게시글 번호</th>
 										<th>신고한 사람</th>
 										<th>신고 당한 사람</th>
 										<th>신고날짜</th>
-										<th scope="col">Actions</th>
+										<th scope="col">비고</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="report" items="${list}">
 										<tr>
-											<td>${report.report_seq }</td>
-											<td>${report.reason }</td>
-											<td>${report.content }</td>
-											<td>${report.market_seq }</td>
-											<td>${report.reporter}</td>
-											<td>${report.reported}</td>
-											<td><fmt:formatDate value="${report.date}" pattern="yyyy-MM-dd" /></td>
-											<td>
+											<td style="vertical-align: middle">${report.report_seq }</td>
+											<td style="vertical-align: middle">${report.reason }</td>
+											<td style="vertical-align: middle">${report.content }</td>
+											<td style="vertical-align: middle">${report.market_seq }</td>
+											<td style="vertical-align: middle">${report.reporter}</td>
+											<td style="vertical-align: middle">${report.reported}</td>
+											<td style="vertical-align: middle"><fmt:formatDate value="${report.date}" pattern="yyyy-MM-dd" /></td>
+											<td style="vertical-align: middle; text-align: center" width="130px">
 												<form>
 													<input type="hidden" value="${report.report_seq }" name="report_seq"> 
 													<input type="hidden" value="${report.reported }" name="nickname">
-													<button type="button" onclick="alert('블랙리스트 등록되었습니다.')" class="btn btn-success" id="modify_btn">
-														<i class="fas fa-edit"></i>
+													<button type="button" onclick="alert('블랙리스트로 등록되었습니다.')" class="btn btn-success" id="modify_btn" style="width: 120px; color:black; font-size: 13px; background: #79d4c8; margin-bottom: 5px; border-radius: 3px; border:none; height:34.5px">
+														블랙리스트 등록
 													</button>
-													<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id="delete_btn">
-														<i class="far fa-trash-alt"></i>
+													<br>
+													<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id="delete_btn" style="width: 120px; font-size: 13px; color:black; background: #c5c9c9; border-radius: 3px; border:none; height:34.5px">
+														신고 삭제
 													</button>
 												</form>
 											</td>

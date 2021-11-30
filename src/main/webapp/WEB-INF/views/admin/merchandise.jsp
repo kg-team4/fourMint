@@ -44,11 +44,10 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">스토어 상품 글 관리</h1>
 					<!-- DataTales  -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">스토어 상품 글</h6>
+							<h5 class="m-0 font-weight-bold text-primary text-gray-800">스토어 상품 관리</h5>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -144,12 +143,12 @@
 									<tbody>
 										<c:forEach var="store_List" items="${storeList }" varStatus="status">
 											<tr>
-												<td><input type="hidden" class="hidden_content" value="${store_List.product_content }">${fn:length(storeList) - status.index }</td >
+												<td style="vertical-align: middle"><input type="hidden" class="hidden_content" value="${store_List.product_content }">${fn:length(storeList) - status.index }</td >
 												<td style="text-align:center; width:130px;"><img src="${store_List.url }" style="width:90px; height:90px; margin-right:20px"></td>
-												<td>${store_List.category_big }</td>
-												<td>${store_List.product_name }</td>
-												<td>${store_List.product_price }</td>
-												<td>${store_List.product_stock }<input type="hidden" name="store_seq" id="store_seq" value="${store_List.store_seq }"></td>
+												<td style="vertical-align: middle">${store_List.category_big }</td>
+												<td style="vertical-align: middle">${store_List.product_name }</td>
+												<td style="vertical-align: middle">${store_List.product_price }</td>
+												<td style="vertical-align: middle">${store_List.product_stock }<input type="hidden" name="store_seq" id="store_seq" value="${store_List.store_seq }"></td>
 												<td style="width:130px; vertical-align: middle; text-align: center">
 													<button type="button" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; color:black;"
 														class="btn btn--blue-2 btn--radius-2 btn_modify_profile popup_open_btn_edit" id="popup_open_btn_edit">

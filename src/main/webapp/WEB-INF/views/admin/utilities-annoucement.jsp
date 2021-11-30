@@ -49,11 +49,10 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">공지사항</h1>
 					<!-- DataTales  -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
+							<h5 class="m-0 font-weight-bold text-primary text-gray-800">공지사항 글 관리</h5>
 						</div>
 						<div class="card-body">
 
@@ -166,12 +165,12 @@
 									</div>
 									<div>
 										<div id="my_info_edit_title"
-											style="font-weight: 700; font-size:23px; text-align:center;</div>">상품
+											style="font-weight: 700; font-size:23px; text-align:center;">공지사항
 											수정</div>
 										<hr>
 										<form action="update_announcement.mdo" method="post">
 											<table
-												style="margin-top: -10px; margin-left: 20px; vertical-align: middle">
+												style="margin-top: -10px; margin-left: 20px;">
 												<tr>
 													<td height="42px" style="text-align: left; color: black"><strong>고정여부&emsp;</strong></td>
 													<td><select id="static_status" name="static_status">
@@ -194,13 +193,13 @@
 												<tr>
 													<td height="42px" style="text-align: left; color: black"><strong>내용&emsp;</strong></td>
 													<td><textarea id="hi_content" name="content"
-															style="resize: none; width: 350px; height: 270px;"
-															name="content" required="required"></textarea></td>
+															style="resize: none; width: 350px; height: 260px;"
+															required="required"></textarea></td>
 												</tr>
 											</table>
 											<div style="margin: auto">
 												<button type="submit"
-													style="width: 90px; font-size: 15px; background: #79d4c8; margin-left: 220px; margin-bottom: 30px; border-radius: 3px; border: none; color: black;">수정</button>
+													style="width: 90px; height:34.5px; font-size: 15px; background: #79d4c8; margin-left: 220px; margin-bottom: 10px; border-radius: 3px; border: none; color: black;">수정</button>
 											</div>
 										</form>
 									</div>

@@ -51,9 +51,8 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">상품 취소 관리</h1>
-					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" type="button"
+					<div class="dropdown" style="margin-bottom: 5px;">
+						<button class="btn btn-secondary dropdown-toggle" type="button" style="background: #dee1e3; border: none; color:#514c57"
 							id="dropdownMenuButton" class="list_status" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">카테고리</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -66,7 +65,7 @@
 					<!-- DataTales  -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">상품 취소 관리</h6>
+							<h5 class="m-0 font-weight-bold text-primary text-gray-800" >주문 취소 요청 조회 · 처리</h5>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -86,13 +85,13 @@
 									<tbody>
 										<c:forEach var="list" items="${status }" varStatus="status">
 											<tr>
-												<td>${list.product_name }</td>
-												<td>${list.email_id }</td>
-												<td>${list.transaction_price }</td>
-												<td><fmt:formatDate value="${list.date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-												<td>${list.status }</td>
-												<td><fmt:formatDate value="${list.cancel_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-												<td>
+												<td style="vertical-align: middle">${list.product_name }</td>
+												<td style="vertical-align: middle">${list.email_id }</td>
+												<td style="vertical-align: middle">${list.transaction_price }</td>
+												<td style="vertical-align: middle"><fmt:formatDate value="${list.date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+												<td style="vertical-align: middle">${list.status }</td>
+												<td style="vertical-align: middle"><fmt:formatDate value="${list.cancel_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+												<td style="vertical-align: middle; text-align: center">
 													<button type="button" id="detail_list" class="detail_list" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">상세보기</button>
 													<input type="hidden" value="${list.address2 }">	
 													<input type="hidden" value="${list.transaction_count }">	

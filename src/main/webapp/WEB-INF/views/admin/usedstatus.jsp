@@ -45,12 +45,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">중고거래 현황 조회 페이지</h1>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">중고거래 현황 조회</h6>
+                            <h5 class="m-0 font-weight-bold text-primary text-gray-800">중고거래 현황 조회</h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -68,12 +67,12 @@
                                     <tbody>
                                     	<c:forEach var="list" items="${list }" varStatus="status">
 	                                        <tr>
-	                                            <td>${list.category_big }</td>
-	                                            <td>${list.product_name }</td>
-	                                            <td>${list.nickname }</td>
-	                                            <td>${list.buyer }</td>
-	                                            <td><fmt:formatDate value="${list.sell_date }" pattern="yyyy-MM-dd"/></td>
-	                                            <td>
+	                                            <td style="vertical-align: middle">${list.category_big }</td>
+	                                            <td style="vertical-align: middle">${list.product_name }</td>
+	                                            <td style="vertical-align: middle">${list.nickname }</td>
+	                                            <td style="vertical-align: middle">${list.buyer }</td>
+	                                            <td style="vertical-align: middle"><fmt:formatDate value="${list.sell_date }" pattern="yyyy-MM-dd"/></td>
+	                                            <td style="vertical-align: middle; text-align: center;">
 	                                            	<button class="modal_info" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">상세정보</button>
 	                                            	<input type="hidden" value="${list.product_price }">
 	                                            	<input type="hidden" value="${list.url }">

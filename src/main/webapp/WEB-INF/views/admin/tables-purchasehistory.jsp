@@ -44,14 +44,13 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">거래내역</h1>
 
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="display: inline-flex;align-items: center;justify-content: space-between;">
-                            <h6 class="m-0 font-weight-bold text-primary">민트마켓 거래내역 입니다.</h6>
+                            <h5 class="m-0 font-weight-bold text-primary text-gray-800">거래 내역 목록</h5>
                             <form action="excel_purchasehistory.mdo" method="get">
-                    			<button>엑셀파일</button>
+								<button style="width: 90px; font-size: 15px; color: black; background: #c5c9c9; border-radius: 3px; border: none; font-weight: 600; height: 34.5px">엑셀파일</button>	
                     		</form>
                         </div>
                         <div class="card-body">
@@ -70,12 +69,12 @@
                                     <tbody>
                                         <c:forEach var="transactionhistory" items="${list }">
 	                                        <tr>
-	                                      		<td style="width:120px">${transactionhistory.merchant_uid}</td>
-	                                            <td>${transactionhistory.email_id }</td>
-	                                            <td>${transactionhistory.product_name }</td>	                                            
-	                                            <td>${transactionhistory.transaction_price }</td>
-	                                            <td style="width:100px"><fmt:formatDate value="${transactionhistory.date}" pattern="yyyy-MM-dd" /></td>	                                            
-	                                            <td>${transactionhistory.request}</td>	                                           	                       
+	                                      		<td style="vertical-align: middle" style="width:120px">${transactionhistory.merchant_uid}</td>
+	                                            <td style="vertical-align: middle">${transactionhistory.email_id }</td>
+	                                            <td style="vertical-align: middle">${transactionhistory.product_name }</td>	                                            
+	                                            <td style="vertical-align: middle">${transactionhistory.transaction_price }</td>
+	                                            <td style="vertical-align: middle" style="width:100px"><fmt:formatDate value="${transactionhistory.date}" pattern="yyyy-MM-dd" /></td>	                                            
+	                                            <td style="vertical-align: middle">${transactionhistory.request}</td>	                                           	                       
                                         	</tr>
                                         </c:forEach>                                                                                                                                                                                                                                                 
                                     </tbody>

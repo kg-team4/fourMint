@@ -45,7 +45,7 @@
 		<c:if test="${ listCount > 0 }"> 
 			<div class="best" style="width: 1020px;">
 				<br> <br> <br>
-				<h2  style="margin-left:49%; font-size:18px;">${kind }</h2>
+				<h2  style="margin-left:49%; font-size:22px;">${kind }</h2>
 				<br>
 				<ul class="bestBox" style="margin-left: 65px;">
 					<!-- 스토어 글 목록 -->
@@ -60,8 +60,8 @@
 								<div id="product_name"
 									style="width: 180px; text-align: left; word-wrap: break-word; white-space: nowrap; text-overflow: ellipsis; display: inline-block; overflow: hidden;">${store.product_name }</div>
 								<div id="product_price"
-									style="width: 100px; text-align: right; word-wrap: break-word; white-space: nowrap; display: inline-block; overflow: hidden; text-overflow: ellipsis; margin-left: 10px; font-size: 15px; color: red; ">[ 품절 ]</div>
-							</div>
+									style="text-align:center; width:60px; background: #50b9abd0; border-radius:3px;color:white">sold out</div>
+								</div>
 							</c:when>
 							<c:otherwise>
 							<a href="storeBoard.do?seq=${store.store_seq }"> <img src="${store.url }"></a>

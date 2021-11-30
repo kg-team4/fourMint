@@ -49,7 +49,6 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">회원목록</h1>
                    
                        <!-- <div class="dropdown">
                      	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,9 +66,9 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3"
 								style="display: inline-flex; align-items: center; justify-content: space-between;">
-								<h6 class="m-0 font-weight-bold text-primary">민트마켓 회원</h6>
+								<h5 class="m-0 font-weight-bold text-primary text-gray-800">회원 목록</h5>
 								<form action="excel_tablemember.mdo" method="get">
-									<button>엑셀파일</button>
+									<button style="width: 90px; font-size: 15px; color: black; background: #c5c9c9; border-radius: 3px; border: none; font-weight: 600; height: 34.5px">엑셀파일</button>
 								</form>
 							</div>
                         <div class="card-body">
@@ -77,27 +76,27 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>이메일아이디</th>
-                                            <th>이름</th>
-                                            <th>별명</th>
-                                            <th>주소</th>
-                                            <th>휴대폰 번호</th>
-                                            <th>생년월일</th>
-                                            <th>성별</th>
-                                            <th>가입날짜</th>
+                                            <th width="120px">이메일아이디</th>
+                                            <th width="80px">이름</th>
+                                            <th width="115px">닉네임</th>
+                                            <th width="350px">주소</th>
+                                            <th width="120px">휴대폰 번호</th>
+                                            <th width="100px">생년월일</th>
+                                            <th width="75px">성별</th>
+                                            <th width="120px">가입날짜</th>
                                         </tr>
                                     </thead>                                  
                                     <tbody>
                                     	<c:forEach var="member" items="${list }">
 	                                        <tr>
-	                                            <td>${member.email_id }</td>
-	                                            <td>${member.name }</td>
-	                                            <td>${member.nickname }</td>	                                            
-	                                            <td>${member.address1 } &nbsp;|&nbsp;${member.address2 }&nbsp;${member.address3 }</td>
-	                                            <td>${member.phone}</td>
-	                                            <td>${member.birth }</td>
-	                                            <td>${member.gender}</td>
-	                                            <td><fmt:formatDate value="${member.date}" pattern="yyyy-MM-dd"/></td>	                       
+	                                            <td style="vertical-align: middle">${member.email_id }</td>
+	                                            <td style="vertical-align: middle">${member.name }</td>
+	                                            <td style="vertical-align: middle">${member.nickname }</td>	                                            
+	                                            <td style="vertical-align: middle">${member.address1 } &nbsp;|&nbsp;${member.address2 }&nbsp;${member.address3 }</td>
+	                                            <td style="vertical-align: middle">${member.phone}</td>
+	                                            <td style="vertical-align: middle">${member.birth }</td>
+	                                            <td style="vertical-align: middle">${member.gender}</td>
+	                                            <td style="vertical-align: middle"><fmt:formatDate value="${member.date}" pattern="yyyy-MM-dd"/></td>	                       
                                         	</tr>
                                         </c:forEach>                                                                                                                                                                                                                                                                                                                 
                                     </tbody>

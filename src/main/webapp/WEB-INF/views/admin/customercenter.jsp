@@ -67,36 +67,36 @@
                                             <th width="250px">문의내용</th>
                                             <th width="100px">날짜</th>
                                             <th width="100px">상태</th>
-                                            <th width="400px">답변내용</th>
+                                            <th width="430px">답변내용</th>
                                             <th width="80px"scope="col">비고</th>                                             
                                         </tr>
                                     		</thead>         
                                          <tbody>                                     
                                        <c:forEach var="storeask" items="${list}">
 	                                       <tr>	                                   		                                        		                                        		
-											  <td>${storeask.product_name}</td>
-	                                           <td>${storeask.nickname }</td>
-	                                           <td>${storeask.content}</td>
-	                                           <td> <fmt:formatDate value="${storeask.date}" pattern="yyyy-MM-dd"/></td>	                                           	
-	                                           	<td><c:set value="${storeask.status}" var="ask" />
+											  <td style="vertical-align: middle">${storeask.product_name}</td>
+	                                           <td style="vertical-align: middle">${storeask.nickname }</td>
+	                                           <td style="vertical-align: middle">${storeask.content}</td>
+	                                           <td style="vertical-align: middle"> <fmt:formatDate value="${storeask.date}" pattern="yyyy-MM-dd"/></td>	                                           	
+	                                           	<td style="vertical-align: middle"><c:set value="${storeask.status}" var="ask" />
 					                                 <c:choose>
 					                                    <c:when test="${ask eq '0'}"><span style="color: blue">답변완료</span></c:when>
 					                                    <c:when test="${ask eq '1'}"><span style="color: red">답변대기</span></c:when>
 					                                 </c:choose>
 					                            </td>
-					                            <td>
+					                            <td style="vertical-align: middle">
 	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
 	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
 	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
 	                                           		답변내욘내용ㄹㅇㄹㄴㅁ아ㅣ;ㅗㅇㄹㄴ맘니오;ㅣㅏㄹㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ놀안미;ㅓㅇㄹ니ㅓ이ㅏ너밈ㄴㅇㄹ
 	                                        	</td>
-	                                           <td>
+	                                           <td style="vertical-align: middle; text-align:center">
 	                                           <form>
 	                                           		<input type="hidden" value="${storeask.ask_seq }" name="ask_seq">		                                           		
 	                                           		<input type="hidden" value="${storeask.content }" name="content">  
 	                                           		<input type="hidden" value="${storeask.status }" name="status">  	                                         	                                           		                     		
-		                                            <button type="button" class="btn btn-success" ><i class="fas fa-edit"></i></button>		                                   
-		                                        	<button type="button" class="btn btn-danger" ><i class="far fa-trash-alt"></i></button>	
+		                                            <button type="button" class="btn btn-success" style="width: 90px; color:black; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:5px; height:34.5px">답변 등록</button>		                                   
+		                                        	<button type="button" class="btn btn-danger" style="width: 90px; color:black; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; height:34.5px">답변 삭제</button>	
 	                                        	</form>
 	                                        	</td> 		                 
 	                                      </tr> 
@@ -108,23 +108,24 @@
                                  
 		                        <div class="modal_cover">
 								    <div class="modal_shut"><a href="#">close</a></div>
+								    <div id="info" style="text-align: center; margin-top: 5px; font-size: 23px">
+									<strong>답변 등록하기</strong>
+									</div>
+									<hr>		    
 								    <div>
 								      <form action="qnaAnswer.mdo"  method="post">
-								      <table>
-								      <tr>
-								      	<td>질문번호</td>
-								      	<td><input id="hi_ask_seq" type="text" value="" name="ask_seq" readonly></td>
-								      </tr>								      								      	
-								      	<tr>
-								      		<td>내용</td>
-								      		<td><textarea id="hi_content"  name="content" required="required"></textarea></td>
-								      	</tr>								      	
-								      		<tr>
-								      			<td>
-								      				<input type="submit" value="등록" />
-								      			</td>						      		
-								      		</tr>							 
+								      <table style="margin-top: -10px; margin-left: 20px; border-spacing: 10px; border-collapse: separate;">
+									      <tr>
+									      	<td height="42px" style="text-align: left; color: black"><strong>문의 내용 </strong></td>
+									      	<td><input id="hi_ask_content" type="text"  name="content" readonly style=" border:none;  border:1px solid #c5c9c9; resize: none; width: 320px; height: 175px;"></td>
+									      	
+									      </tr>								      								      	
+									      	<tr>
+									      		<td height="42px" style="text-align: left; color: black"><strong>문의 답변 내용</strong></td>
+									      		<td><textarea id="ask_answer"  name="answer_content" required="required" style="resize: none; border:1px solid #79d4c8; padding-top:15px; width: 320px; height: 175px;"></textarea></td>
+									      	</tr>								      	
 								      </table>	
+								      <input type="submit" value="등록" style="width: 90px; height:30px; font-size: 15px; background: #79d4c8; margin-left: 220px; margin-bottom: 30px; border-radius: 3px; border: none; color: black;"/>
 								   </form>  
 								</div>
 							</div>	
@@ -155,7 +156,7 @@
 		  window.onload = function() {					    	
 					 /* 등록 js */
 					    $(".btn-success").click(function onClick2() {
-					    	$("#hi_ask_seq").val($(this).prev().prev().prev().val());					    	
+					    	$("#hi_ask_content").val($(this).prev().prev().val());					    	
 					    	
 					        document.querySelector('.modal_cover').style.display ='block';
 					        document.querySelector('.black_bg').style.display ='block';
@@ -163,9 +164,9 @@
 					    function offClick2() {
 						     document.querySelector('.modal_cover').style.display ='none';
 						     document.querySelector('.black_bg').style.display ='none';
-						     
-						 document.querySelector('.modal_shut').addEventListener('click', offClick2);  
-					    }					          
+					    }    
+						document.querySelector('.modal_shut').addEventListener('click', offClick2);  
+					    					          
 					   }; 
 		</script>
 	

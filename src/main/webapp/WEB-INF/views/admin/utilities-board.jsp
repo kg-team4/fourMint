@@ -42,11 +42,10 @@
                 <div class="container-fluid">
 
                   <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">중고거래 글 관리</h1>
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">중고거래 글 </h6>
+                            <h5 class="m-0 font-weight-bold text-primary text-gray-800">중고거래 글 관리 </h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -70,18 +69,18 @@
                                     <tbody>
                                          <c:forEach var="marketboard" items="${list }">
 		                                        <tr>
-		                                            <td style="width:55px">${marketboard.market_seq }</td>
-		                                            <td style="width:100px">${marketboard.category_big }</td>
-		                                            <td style="width:120px">${marketboard.product_name }</td>	                                            
-		                                            <td style="width:110px">${marketboard.product_price }</td>
-		                                            <td style="width:480px">${marketboard.product_content }</td>
-		                                            <td style="width:140px"><fmt:formatDate value="${marketboard.date}" pattern="yyyy-MM-dd"/> </td>
-		                                            <td style="width:180px">${marketboard.nickname }</td>	
-		                                            <td style="width:180px">${marketboard.buyer }</td>	
-		                                            <td style="width:140px"><fmt:formatDate value="${marketboard.sell_date}" pattern="yyyy-MM-dd"/> </td>			
+		                                            <td style="width:55px; vertical-align: middle">${marketboard.market_seq }</td>
+		                                            <td style="width:100px; vertical-align: middle">${marketboard.category_big }</td>
+		                                            <td style="width:120px; vertical-align: middle">${marketboard.product_name }</td>	                                            
+		                                            <td style="width:110px; vertical-align: middle">${marketboard.product_price }</td>
+		                                            <td style="width:480px; vertical-align: middle">${marketboard.product_content }</td>
+		                                            <td style="width:140px; vertical-align: middle"><fmt:formatDate value="${marketboard.date}" pattern="yyyy-MM-dd"/> </td>
+		                                            <td style="width:180px; vertical-align: middle">${marketboard.nickname }</td>	
+		                                            <td style="width:180px; vertical-align: middle">${marketboard.buyer }</td>	
+		                                            <td style="width:140px; vertical-align: middle"><fmt:formatDate value="${marketboard.sell_date}" pattern="yyyy-MM-dd"/> </td>			
 		                                            <td>		  
 		                                            	<form>                                                                           		                                           				                                                                           
-			                                        		<button type="button" class="btn_cancel" style="width: 90px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">삭제</button>
+			                                        		<button type="button" class="btn_cancel" style="width: 90px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; margin-bottom:4px; height:30px">삭제</button>
 		                                        			<input type="hidden" value="${marketboard.market_seq }" name="market_seq">	
 		                                       			</form>
 		                                       		</td>	                                            

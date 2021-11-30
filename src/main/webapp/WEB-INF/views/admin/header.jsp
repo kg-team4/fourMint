@@ -11,9 +11,9 @@
 	<!-- 검색창 -->
 	<form
 		class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-		<div class="input-group">
+<!-- 		<div class="input-group">
 			<input type="text" class="form-control bg-light border-0 small" value="백미라,이정빈,김주호,박동녘,장형준">		
-		</div>
+		</div> -->
 	</form>
 	<!-- 최상단 메뉴: 네비 버튼 -->
 	<ul class="navbar-nav ml-auto">
