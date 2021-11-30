@@ -106,10 +106,9 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">회원 관리 페이지</h1>
-					<div class="dropdown">
+					<div class="dropdown" style="margin-bottom: 5px;">
 						<button class="btn btn-secondary dropdown-toggle" type="button"
-							id="dropdownMenuButton" data-toggle="dropdown"
+							id="dropdownMenuButton" data-toggle="dropdown" style="background: #dee1e3; border: none; color:#514c57"
 							aria-haspopup="true" aria-expanded="false">카테고리</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							<a class="dropdown-item" href="memberpage.mdo">회원목록</a> <a
@@ -119,7 +118,7 @@
 					<!-- DataTales  -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">민트마켓 회원</h6>
+							<h5 class="m-0 font-weight-bold text-primary text-gray-800">회원 관리</h5>
 						</div>
 						<div class="card-body" id="contents">
 							<div class="table-responsive">
@@ -140,15 +139,15 @@
 									<tbody>
 										<c:forEach var="member" items="${list }">
 											<tr>
-												<td><img src="${member.profile }"></td>
-												<td>${member.email_id }</td>
-												<td>${member.name }</td>
-												<td>${member.nickname }</td>
-												<td>${member.gender }</td>
-												<td>${member.phone }</td>
-												<td><fmt:formatDate value="${member.date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-												<td>
-													<button class="modal_info" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:4px; height:34.5px">
+												<td style="vertical-align: middle; text-align:center"><img src="${member.profile }" style="margin-right: 20px"></td>
+												<td style="vertical-align: middle">${member.email_id }</td>
+												<td style="vertical-align: middle">${member.name }</td>
+												<td style="vertical-align: middle">${member.nickname }</td>
+												<td style="vertical-align: middle">${member.gender }</td>
+												<td style="vertical-align: middle">${member.phone }</td>
+												<td style="vertical-align: middle"><fmt:formatDate value="${member.date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+												<td style="vertical-align: middle; text-align:center">
+													<button class="modal_info" style="width: 90px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:5px; height:34.5px">
 	                                            		상세정보
 	                                            	</button> 
 													<input type="hidden" value="${member.address1 }"> 
@@ -159,7 +158,7 @@
 													<input type="hidden" value="${member.date }">
 													<form action="deleteMember.mdo" method="post">
 														<input type="hidden" name="nickname" value="${member.nickname }">
-														<button id="deleteMember" class="deleteMember" style="width: 90px; height:30px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-20px;  font-weight: 700">삭제</button>
+														<button id="deleteMember" class="deleteMember" style="width: 90px; height:30px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; ">삭제</button>
 													</form>
 												</td>
 											</tr>

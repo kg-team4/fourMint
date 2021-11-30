@@ -38,7 +38,7 @@
 			<input id="email2" type="text" placeholder="인증번호 입력" oninput="EmailNumberBtnState()" disabled required/>
 		</div>
 		<input type="button" id="emailCheck" class="emailDoubleCheck" value="인증발송" disabled>
-		<div>
+		<div style="margin-top:8px;">
 			<span class="point successEmailCheck">이메일 입력 후 인증번호 보내기를 해주십시오.</span>
 		</div>
 		<div>
@@ -108,7 +108,7 @@
 			<input id="phone2" type="text" maxlength="4" placeholder="인증번호 입력" disabled oninput="phoneBtnState()" required="required"/>
 		</div>
 		<input type="button" id="phoneCheck2" class="doubleCheck" value="인증확인" disabled>
-		<div>
+		<div style="margin-top:8px;">
 			<span class="point successPhoneCheck">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
 		</div>
 		

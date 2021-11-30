@@ -47,5 +47,7 @@ public class AdminQnaController {
 		return "redirect:customercenter.mdo";
 
 	}
+	
+	
 
 }

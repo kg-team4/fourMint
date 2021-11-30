@@ -42,9 +42,10 @@
                 <div class="container-fluid">
 
                  <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">FAQ</h1>
                      <div class="dropdown">
-                     	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     	<button class="btn btn-secondary dropdown-toggle" type="button"
+                     	 style="margin-bottom: 5px; background: #dee1e3; border: none; color:#514c57"
+                     	 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                      	분류
                      	</button>
                      	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -61,25 +62,25 @@
                     <!-- DataTales  -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">FAQ </h6>
+                            <h5 class="m-0 font-weight-bold text-primary text-gray-800">FAQ </h5>
                         </div>
                       <div class="card-body">
                         
                         <!-- 글쓰기 모딜창 -->
-                        <button type='button' id="modal_btn">글쓰기</button>
+                        <button type='button' id="modal_btn" style="width: 90px; font-size: 15px; margin-left: 92%; color: black; background: #79d4c8; border-radius: 3px; border: none; font-weight: 700; height: 34.5px">글쓰기</button>
+                        
 						<div class="black_bg"></div>
                         <div class="modal_wrap">
 						    <div class="modal_close"><a href="#">close</a></div>
+						    <div id="info"
+								style="text-align: center; margin-top: 5px; font-size: 23px">
+								<strong>FAQ 글쓰기</strong>
+							</div><hr>		    
 						    <div>
 						      <form action="faq.mdo"  method="post">
-						      <table>					      
+						      <table style="margin-left: 20px; vertical-align: middle">								      	
 						      	<tr>
-							      	<td>제목</td>
-							      	<td> <input type="text" name="title" required="required"></td>
-						      	</tr>
-						      	
-						      	<tr>
-						      	<td>카테고리</td>
+						      	<td height="42px" style="text-align: left; color: black"><strong>카테고리&emsp;</strong></td>
 						      	<td>
 						      		<select name="category">
 						      			<option value="">선택</option>						      									      			
@@ -91,15 +92,19 @@
 						      			<option value="민트마켓">민트마켓</option>
 						      		</select>
 						      		</td>
-						      	</tr>
+						      	</tr>			      
 						      	<tr>
-						      		<td>내용</td>
-						      		<td><textarea name="content" required="required"></textarea></td>
+							      	<td height="42px" style="text-align: left; color: black"><strong>제목&emsp;</strong></td>
+							      	<td> <input type="text" name="title" style="width: 350px;" required="required"></td>
 						      	</tr>
+						      	
 						      	<tr>
-						      			<td><input type="submit" value="등록" /></td>						      		
-						      	</tr>						 
-						      	</table>	
+						      		<td height="42px" style="text-align: left; color: black"><strong>내용&emsp;</strong></td>
+						      		<td><textarea name="content" required="required" style="resize: none; width: 350px; height: 270px;"></textarea></td>
+						      	</tr>
+								</table>
+								
+						      	<input type="submit" value="등록" style="width: 90px; height: 30px; font-size: 15px; background: #79d4c8; border-radius: 3px; border: none; margin-left: 220px; margin-top: 15px; font-weight: 700"/>			
 						      </form>  
 						    </div>
 						</div>
@@ -110,35 +115,27 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>분류</th>
-                                            <th>제목</th>                                              
-                                            <th>내용</th>
-                                            <th scope="col">Actions</th>                                                                                                                             
+                                            <th width="120px">분류</th>
+                                            <th width="360px">제목</th>                                              
+                                            <th width="550px">내용</th>
+                                            <th scope="col">비고</th>                                                                                                                             
                                         </tr>
                                     </thead>                                  
                                     <tbody>
                                     <c:forEach var="faq" items="${list}">                                  	  
                              			     <tr>	                                        		                                        		                                        		
-	                                            <td>${faq.faq_seq }</td>
-	                                            <td>${faq.faq_category }</td>
-	                                            <td>${faq.faq_title}</td>	
-	                                            <td>                                          
-		                                            <div class="dropdown">
-		                 							<btn type="button" class="btn btn-secondary dropdown-toggle" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                     										                                            	 
-	                                            	</btn>
-	                                            	<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"><%-- <pre style=" white-space:pre-wrap;line-height: 150%;text-align:left;">${faq.faq_content}</pre> --%>	
-	                                            	<li>${faq.faq_content}</li>		
-	                                            	</ul>
-	                                            	</div>
-	                                            </td> 
-	                                           <td>
+	                                            <td style="vertical-align: middle">${faq.faq_seq }</td>
+	                                            <td style="vertical-align: middle">${faq.faq_category }</td>
+	                                            <td style="vertical-align: middle">${faq.faq_title}</td>	
+	                                            <td style="vertical-align: middle">${faq.faq_content}</td> 
+	                                            <td style="vertical-align: middle; text-align:center">
 	                                            <form id="form${faq.faq_seq }">
 		                                            <input type="hidden" value="${faq.faq_seq}" name="faq_seq">
 	                                           		<input type="hidden" value="${faq.faq_category}" >
 	                                           		<input type="hidden" value="${faq.faq_title }" >
 	                                           		<input type="hidden" value="${faq.faq_content}">
-		                                            <button type="button"  class="btn btn-success" ><i class="fas fa-edit"></i></button>		                                   
-		                                        	<button type="button" onclick="deleteFaq(${faq.faq_seq});" class="btn btn-danger" ><i class="far fa-trash-alt"></i></button>	
+		                                            <button type="button"  class="btn btn-success" style="width: 90px; height: 34.5px; font-size: 15px; background: #79d4c8; border-radius: 3px; border: none; margin-bottom: 4px; color: black;">수정</button>	                                   
+		                                        	<button type="button" onclick="deleteFaq(${faq.faq_seq});" class="btn btn-danger" style="width: 90px; height: 34.5px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border: none; color: black;">삭제</button>
 		                                        </form>
 		                                        </td>                                        
                                         	</tr>
@@ -150,14 +147,16 @@
 		                        <div class="modal_cover">
 								    <div class="modal_shut"><a href="#">close</a></div>
 								    <div>
+								    <div id="my_info_edit_title"
+											style="font-weight: 700; font-size:23px; text-align:center;">FAQ
+											수정</div>
+										<hr>
+								    
+								    
 								      <form action="update_faq.mdo"  method="post">
-								      <table>
-								      <tr>
-								      	<td>글 번호</td>
-								      	<td><input id="hi_seq" type="text" value="" name="seq" readonly></td>
-								      </tr>
-								      <tr>
-									      <td>카테고리</td>
+								      <table style="margin-top: -10px; margin-left: 20px;">
+								       <tr>
+									      <td height="42px" style="text-align: left; color: black"><strong>카테고리&emsp;</strong></td>
 									      <td> 
 									      	<select name="category"  id="hi_category" type="text" name="title" required="required">
 								      			<option value="">선택</option>						      									      			
@@ -170,22 +169,23 @@
 								      		</select>
 								      	</td>
 								      </tr>
+								      <tr>
+								      	<td height="42px" style="text-align: left; color: black"><strong>글 번호&emsp;</strong></td>
+								      	<td><input id="hi_seq" type="text" value="" name="seq" readonly></td>
+								      </tr>
+								     
 								     <tr>
-									      	<td>제목</td>
-									      	<td> <input id="hi_title" type="text" name="title" required="required"></td>
+									      	<td height="42px"  style="text-align: left; color: black"><strong>제목&emsp;</strong></td>
+									      	<td> <input id="hi_title" type="text" name="title" required="required" style="width: 350px"></td>
 								     </tr>
 								     <tr>
-								      		<td>내용</td>
+								      		<td height="42px" style="text-align: left; color: black"><strong>내용&emsp;</strong></td>
 								      		<td>
-								      		<textarea name="content" required="required" id="hi_content" ></textarea>
+								      		<textarea name="content" required="required" id="hi_content" style="resize: none; width: 350px; height: 250px;"></textarea>
 								      		</td>
 								      </tr>
-								      <tr>
-								      		<td>
-								      			<input type="submit" value="등록" />
-								      		</td>						      		
-								      </tr>							 
 								      	</table>	
+								      	<button type="submit" style="width: 90px; height:34.5px; font-size: 15px; background: #79d4c8; margin-left: 220px; margin-top: 10px;margin-bottom: 10px; border-radius: 3px; border: none; color: black;">수정</button>
 								      </form>  
 								    </div>
 								</div>

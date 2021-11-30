@@ -31,18 +31,20 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">블랙리스트 목록</h1>
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">블랙리스트 목록</button>
+					<button class="btn btn-secondary dropdown-toggle" type="button"  style="margin-bottom: 5px; background: #dee1e3; border: none; color:#514c57"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">블랙리스트 목록</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="blacklist_report.mdo">신고목록</a> <a class="dropdown-item" href="tables-blacklist.mdo">블랙리스트 목록</a>
+						<a class="dropdown-item" href="blacklist_report.mdo">신고 목록</a> <a
+							class="dropdown-item" href="tables-blacklist.mdo">블랙리스트 목록</a>
 					</div>
 				</div>
 				<!-- DataTales  -->
 				<div class="card shadow mb-4">
-					<div class="card-header py-3" style="display: inline-flex; align-items: center; justify-content: space-between;">
-						<h6 class="m-0 font-weight-bold text-primary">신고목록</h6>
+					<div class="card-header py-3" style="display: inline-flex;align-items: center;justify-content: space-between;">
+						<h5 class="m-0 font-weight-bold text-primary text-gray-800">블랙리스트 목록</h5>
 						<form action="excel_blacklist.mdo" method="get">
-							<button>엑셀파일</button>
+							<button style="width: 90px; font-size: 15px; color: black; background: #c5c9c9; border-radius: 3px; border: none; font-weight: 600; height: 34.5px">엑셀파일</button>
 						</form>
 					</div>
 					<div class="card-body">
@@ -56,19 +58,18 @@
 										<th>닉네임</th>
 										<th>블랙리스트 등록 날짜</th>
 										<th>신고번호</th>
-										<th scope="col">Actions</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="blacklist" items="${list}">
 										<tr>
-											<td>${blacklist.blacklist_seq }</td>
-											<td>${blacklist.name }</td>
-											<td>${blacklist.email_id }</td>
-											<td>${blacklist.nickname }</td>
-											<td><fmt:formatDate value="${blacklist.date}" pattern="yyyy-MM-dd" /></td>
-											<td>${blacklist.report_seq}</td>
-											<td></td>
+											<td style="vertical-align: middle">${blacklist.blacklist_seq }</td>
+											<td style="vertical-align: middle">${blacklist.name }</td>
+											<td style="vertical-align: middle">${blacklist.email_id }</td>
+											<td style="vertical-align: middle">${blacklist.nickname }</td>
+											<td style="vertical-align: middle"><fmt:formatDate value="${blacklist.date}"
+													pattern="yyyy-MM-dd" /></td>
+											<td style="vertical-align: middle">${blacklist.report_seq}</td>
 										</tr>
 									</c:forEach>
 								</tbody>

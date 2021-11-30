@@ -51,11 +51,8 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">신고목록</h1>
-					<p class="mb-4">
-						<a target="_blank" href="home.mdo">민트마켓 회원 신고목록</a>.
-					</p>
 					<button class="btn btn-secondary dropdown-toggle" type="button"
+						style="margin-bottom: 5px; background: #dee1e3; border: none; color:#514c57"
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">신고 목록</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -66,7 +63,7 @@
 				<!-- DataTales  -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">신고가 들어오면 블랙리스트 처리</h6>
+						<h5 class="m-0 font-weight-bold text-primary text-gray-800">신고 목록</h5>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -86,14 +83,14 @@
 								<tbody>
 									<c:forEach var="report" items="${list}">
 										<tr>
-											<td>${report.report_seq }</td>
-											<td>${report.reason }</td>
-											<td>${report.content }</td>
-											<td>${report.market_seq }</td>
-											<td>${report.reporter}</td>
-											<td>${report.reported}</td>
-											<td><fmt:formatDate value="${report.date}" pattern="yyyy-MM-dd" /></td>
-											<td></td>
+											<td style="vertical-align: middle">${report.report_seq }</td>
+											<td style="vertical-align: middle">${report.reason }</td>
+											<td style="vertical-align: middle">${report.content }</td>
+											<td style="vertical-align: middle">${report.market_seq }</td>
+											<td style="vertical-align: middle">${report.reporter}</td>
+											<td style="vertical-align: middle">${report.reported}</td>
+											<td style="vertical-align: middle"><fmt:formatDate value="${report.date}" pattern="yyyy-MM-dd" /></td>
+											<td style="vertical-align: middle"></td>
 										</tr>
 									</c:forEach>
 								</tbody>

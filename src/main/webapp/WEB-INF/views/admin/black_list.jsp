@@ -31,8 +31,7 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">블랙리스트 목록</h1>
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">블랙리스트 목록</button>
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" style="margin-bottom: 5px; background: #dee1e3; border: none; color:#514c57" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">블랙리스트 목록</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="report_list.mdo">신고목록</a> <a class="dropdown-item" href="black_list.mdo">블랙리스트 목록</a>
 					</div>
@@ -40,7 +39,7 @@
 				<!-- DataTales  -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">신고목록</h6>
+						<h5 class="m-0 font-weight-bold text-primary text-gray-800"> 블랙리스트 관리</h5>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -53,23 +52,23 @@
 										<th>닉네임</th>
 										<th>블랙리스트 등록 날짜</th>
 										<th>신고번호</th>
-										<th scope="col">Actions</th>
+										<th scope="col">비고</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="blacklist" items="${list}">
 										<tr>
-											<td>${blacklist.blacklist_seq }</td>
-											<td>${blacklist.name }</td>
-											<td>${blacklist.email_id }</td>
-											<td>${blacklist.nickname }</td>
-											<td><fmt:formatDate value="${blacklist.date}" pattern="yyyy-MM-dd" /></td>
-											<td>${blacklist.report_seq}</td>
-											<td>
+											<td style="vertical-align: middle">${blacklist.blacklist_seq }</td>
+											<td style="vertical-align: middle">${blacklist.name }</td>
+											<td style="vertical-align: middle">${blacklist.email_id }</td>
+											<td style="vertical-align: middle">${blacklist.nickname }</td>
+											<td style="vertical-align: middle"><fmt:formatDate value="${blacklist.date}" pattern="yyyy-MM-dd" /></td>
+											<td style="vertical-align: middle">${blacklist.report_seq}</td>
+											<td style="vertical-align: middle; text-align: center">
 												<form>
 													<input type="hidden" value="${blacklist.blacklist_seq }" name="blacklist_seq">
-													<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id="delete_btn">
-														<i class="far fa-trash-alt"></i>
+													<button type="button" onclick="alert('삭제되었습니다.')" class="btn btn-danger" id="delete_btn" style="width: 90px; font-size: 13px; color:black; background: #c5c9c9; border-radius: 3px; border:none; height:34.5px">
+														삭제
 													</button>
 												</form>
 											</td>

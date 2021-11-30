@@ -17,9 +17,9 @@
 <article style="padding-top: 200px;">
 	<div style="display: flex;">
 		<!-- 카테고리 -->
-		<div class="best categoroy" style="align-self: flex-start; widdth: 100px; margin-left:200px; margin-top: 50px;">
+		<div class="best categoroy" style="align-self: flex-start; margin-left:200px; margin-top: 40px;">
 			<section class="category_list" style="width: 135px;">
-				<div class="best" style="width:160px; margin-top: 60px;">
+				<div class="best" style="width:160px; margin-top: 68px;">
 					<h3 style="padding: 0 49%; margin-top: -20px;"></h3>
 					<c:forEach var="big" items="${ marketCategoryBig }"> <!-- 카테고리 대분류 리스트 -->
 						<div class="bestBox" style="display: block;">
@@ -78,7 +78,7 @@
 		<c:if test="${ listCount > 0 }">
 			<div class="best" style="width: 1000px;">
 				<br> <br> <br>
-				<h2 style="margin-left: 47%;">${kind }</h2>
+				<h2 style="margin-left: 47%; font-size:22px;">${kind }</h2>
 				<br>
 				<ul class="bestBox" style="margin-left: 20px;">
 					<!-- 마켓 글 목록 -->
