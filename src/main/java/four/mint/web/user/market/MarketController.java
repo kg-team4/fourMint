@@ -2,6 +2,7 @@ package four.mint.web.user.market;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -185,8 +186,7 @@ public class MarketController {
 		svo.setKind(kind);
 		svo.setPage(page);
 		
-		int listCount = marketService.getKindCount(svo);
-		svo.setRnum(listCount);
+		int listCount = marketService.getKindTwoCount(svo);
 		int maxPage = (listCount+limit-1)/limit;
 		int startPage = ((page-1)/5) * 5 + 1;
 		int endPage = startPage + 5 - 1;
@@ -197,7 +197,7 @@ public class MarketController {
 		/*페이징 처리 끝*/
 		
 		List<MarketVO> mVo;
-		mVo = marketService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
+		mVo = marketService.getKindTwoList(svo); // 카테고리에 해당하는 부분만 불러오기
 
 		request.setAttribute("kind", kind);
 		request.setAttribute("maxPage", maxPage);
@@ -221,12 +221,17 @@ public class MarketController {
 		} else {
 			request.setAttribute("keyword", "");
 			svo.setKeyword("%%");
-		}
+		} 
+		
 		request.setAttribute("option", svo.getOption());
 		
 		String kind = request.getParameter("kind");
 		String kindTwo = request.getParameter("kindTwo");
-		String arrow = request.getParameter("arrow");
+		if(kindTwo == "") {
+			kindTwo = null;
+		}
+		svo.setKind(kind);
+		svo.setKindTwo(kindTwo);
 		
 		/*페이징 처리 시작*/
 		String currentPage = request.getParameter("pageNum");
@@ -238,6 +243,12 @@ public class MarketController {
 			page = Integer.parseInt(currentPage);
 		}
 		
+		int limit = 9;   // 한 화면에 보이는 글 개수
+		svo.setPage(1);
+		int listCount = marketService.getKindTwoCount(svo);
+		int maxPage = (listCount+limit-1)/limit;
+		
+		String arrow = request.getParameter("arrow");
 		if(arrow != null) {
 			if(arrow.equals("prev")) {
 				page = (page - 1) / 5 + ((page - 1) / 5) * 4;
@@ -246,25 +257,16 @@ public class MarketController {
 				}
 			} else if(arrow.equals("next")) {
 				page = (page + 6) / 6 + (5 * ((page + 6) / 6)) - ((page - 1) / 5);
+				if(page > maxPage) {
+					page = maxPage;
+				}
 			}
 		}
 		
-		svo.setKind(kind);
-		svo.setKindTwo(kindTwo);
-
-		if(page > Math.round((double)marketService.getKindTwoCount(svo) / 9)) {
-			page = (int)Math.round((double)marketService.getKindTwoCount(svo) / 9) + 1;
-		}
-
-		request.setAttribute("pageNum", page);
-		
-		int limit = 9;   
-		
 		svo.setPage(page);
 		
-		int listCount = marketService.getKindTwoCount(svo);
-		svo.setRnum(listCount);
-		int maxPage = (listCount+limit-1)/limit;
+		List<MarketVO> mVo = marketService.getKindTwoList(svo);
+		
 		int startPage = ((page-1)/5) * 5 + 1;
 		int endPage = startPage + 5 - 1;
 		
@@ -273,13 +275,6 @@ public class MarketController {
 		if(endPage < page) 
 			page = endPage;
 		/*페이징 처리 끝*/
-		
-		List<MarketVO> mVo;
-		if(kindTwo == null) {
-			mVo = marketService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
-		} else {
-			mVo = marketService.getKindTwoList(svo);
-		}
 
 		request.setAttribute("kind", kind);
 		request.setAttribute("kindTwo", kindTwo);
@@ -288,6 +283,7 @@ public class MarketController {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("listCount", listCount);
 		request.setAttribute("marketList", mVo);
+		request.setAttribute("pageNum", page);
 		
 		return "/board/market_post_list";
 	}
@@ -340,15 +336,18 @@ public class MarketController {
 	}
 	
 	@PostMapping("deleteMarket.do")
-	public String deleteMarket(HttpServletRequest request, UserVO vo, int seq) {
+	public String deleteMarket(HttpServletRequest request, UserVO vo, int seq) throws UnsupportedEncodingException, NoSuchAlgorithmException, GeneralSecurityException {
 		request.setAttribute("seq", seq);
 		String password = userService.getPassword(vo.getEmail_id());
-		if(password.equals(vo.getPassword())) {
+			AES256Util.setKey(marketService.getKey().getKey());
+			AES256Util aes = new AES256Util();
+			String encoding = aes.encrypt(vo.getPassword());
+		if(password.equals(encoding)) {
 			marketService.deleteMarket(seq);
 
-			return "/board/market_all_post_list";
+			return "redirect:marketBoardList.do";
 		} else {
-			return "/board/market_delete";
+			return "redirect:deleteMarket.do";
 		}
 	}
 	

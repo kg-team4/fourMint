@@ -19,11 +19,9 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 		adminFaqDao.insertAdminFaq(vo);		
 	}
 
-
 	@Override
-	public List<AdminFaqVO> getAdminFaqList() {
-		
-		return adminFaqDao.getAdminFaqList();
+	public List<AdminFaqVO> getAdminFaqList(String category) {
+		return adminFaqDao.getAdminFaqList(category);
 	}
 
 	@Override
@@ -37,5 +35,6 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 		adminFaqDao.update_faq(faqVO);
 		
 	}
+
 
 }

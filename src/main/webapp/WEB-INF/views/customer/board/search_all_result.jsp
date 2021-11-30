@@ -16,11 +16,10 @@
 <body>
 <article>
 	<div class="contents_all">
-		
 		<c:choose>
 		<c:when test="${market[0] eq null }">
 			<div class="search_used_all">
-				<div class="search_cate">동네거래</div>
+				<div class="search_cate">중고거래</div>
 				<hr>
 				<div class="no_result">
 					<img alt="검색결과없음" src="${pageContext.request.contextPath}/resources/user/img/no_search.png" style="width:30px; height:20px" >
@@ -32,7 +31,7 @@
 			<div class="search_used_all">
 				<div class="search_cate">중고거래</div>
 				<hr>
-				<c:forEach var="mar" items="${market }" begin="1" end="3">
+				<c:forEach var="mar" items="${market }" begin="0" end="2">
 					<div class="search_contents">
 						<div style="margin-bottom:5px;"><a class="search_link" href="marketBoard.do?seq=${mar.market_seq }">${mar.product_name }&nbsp;</a><span style="color: #506EA5;">[${mar.address2 }]</span></div>
 						<div class="search_content">
@@ -74,7 +73,7 @@
 			<div class="search_community_all">
 				<div class="search_cate">커뮤니티</div>
 				<hr>
-				<c:forEach var="com" items="${community }" begin="1" end="3">
+				<c:forEach var="com" items="${community }" begin="0" end="2">
 				<div class="search_contents">
 					<div style="margin-bottom:5px;"><a class="search_link" href="communityBoard.do?seq=${com.community_seq }">${com.title }</a></div>
 					<div class="search_content">

@@ -41,7 +41,7 @@
 				<a class="collapse-item" href="utilities-board.mdo">- 중고거래 글</a>
 				<h6 class="collapse-header" style="color:black; font-size:14px">고객센터</h6>
 				<a class="collapse-item" href="utilities-annoucement.mdo">- 공지사항</a> 
-				<a class="collapse-item" href="utilities-usedfaq.mdo">- FAQ</a>
+				<a class="collapse-item" href="utilities-usedfaq.mdo?category=all">- FAQ</a>
 			</div>
 		</div></li>
 	<!-- 구분선 -->

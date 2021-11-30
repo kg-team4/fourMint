@@ -51,7 +51,7 @@
 	</update>
 	
 	<update id="updateStatus" parameterType="adminTransactionHistory">
-		UPDATE transactionHistory SET status = #{status} WHERE transaction_seq = #{transaction_seq}
+		UPDATE transactionHistory SET status = #{status} WHERE merchant_uid = #{merchant_uid}
 	</update>
 	
 	<update id="updateRefund" parameterType="int">

@@ -100,6 +100,7 @@
 													<input type="hidden" value="${list.request }">
 													<input type="hidden" value="${list.address2 }">
 													<input type="hidden" value="${list.transaction_seq }">
+													<input type="hidden" value="${list.merchant_uid }"/>
 												</td>
 											</tr>
 										</c:forEach>
@@ -169,9 +170,9 @@
 									<td height="60px" style="text-align:left; color:black">&emsp;&emsp;&emsp;&emsp;&emsp;<strong>배송상태</strong></td>
 									<td>
 										<select id="detail_status" name="status" class="used_cate_style">
-											<c:forEach var="strList" items="${strList }">
-												<option value="${strList }">${strList }</option>
-											</c:forEach>
+											<option value="상품 준비 중">상품 준비 중</option>
+											<option value="상품 배송 중">상품 배송 중</option>
+											<option value="상품 배송 완료">상품 배송 완료</option>
 										</select>
 									</td>
 								</tr>
@@ -179,6 +180,7 @@
 							<br>
 							<div style="text-align: center;">
 									<input type="hidden" id="form_seq" name="transaction_seq">
+									<input type="hidden" id="merchant" name="merchant_uid">
 									<button type="submit" id="edit_btn" class="edit_btn" style="width: 90px; height:30px; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-25px;  font-weight: 700">변경</button>
 								<button class="modal_cancel_btn" style="width: 90px; height:30px; font-size: 15px; background: #c5c9c9; border-radius: 3px; border:none; margin-bottom:25px; margin-top:-25px;  font-weight: 700" onclick="return false;">취소</button>
 							</div>
@@ -203,6 +205,7 @@
 					$("#detail_request").val($(this).next().next().next().val());
 					$("#detail_status").val($(this).parent().prev().text());
 					$("#form_seq").val($(this).next().next().next().next().next().val());
+					$("#merchant").val($(this).next().next().next().next().next().next().val());
 					
 					modal('detail_view');
 				});

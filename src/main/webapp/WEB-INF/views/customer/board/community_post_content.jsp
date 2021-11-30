@@ -119,29 +119,31 @@
 					<hr>
 					
 					<div>
-					<div class="police_category">
-						<span style="padding-right:10px">신고사유</span> 
-						<select id="police_reason" name="police_reason">
-							<option value="" >신고 사유 선택</option>
-							<option value="채팅앱유도">다른 채팅앱으로 유도하는 글</option>
-							<option value="광고">광고/홍보 글</option>
-							<option value="중고거래">중거거래 관련 글</option>
-							<option value="반려동물">반려동물 분양/교배 글</option>
-							<option value="부적절">부적절한 글(개인정보 포함·분쟁댓글·금전 요구·음란성 등)</option>
-							<option value="비방">이웃 배제 및 비방 글</option>
-							<option value="중복">중복/도배성 글</option>
-							<option value="신고항목개선">신고항목 개선 제안 글</option>
-							<option value="etc">기타(사유)</option>
-						</select>
-					</div>
-					<div class="write_police_reason">
-						<textarea style="border:1px solid lightgray" rows="10" cols="15"></textarea>
-					</div>
-					<br>
+<!-- 					<form action="report.do" method="post"> -->
+						<div class="police_category">
+							<span style="padding-right:10px">신고사유</span> 
+							<select id="police_reason" name="police_reason">
+								<option value="" >신고 사유 선택</option>
+								<option value="채팅앱유도">다른 채팅앱으로 유도하는 글</option>
+								<option value="광고">광고/홍보 글</option>
+								<option value="중고거래">중거거래 관련 글</option>
+								<option value="반려동물">반려동물 분양/교배 글</option>
+								<option value="부적절">부적절한 글(개인정보 포함·분쟁댓글·금전 요구·음란성 등)</option>
+								<option value="비방">이웃 배제 및 비방 글</option>
+								<option value="중복">중복/도배성 글</option>
+								<option value="신고항목개선">신고항목 개선 제안 글</option>
+								<option value="etc">기타(사유)</option>
+							</select>
+						</div>
+						<div class="write_police_reason">
+							<textarea style="border:1px solid lightgray" rows="10" cols="15"></textarea>
+						</div>
+						<br>
 						<div style="text-align: center">
 							<button disabled id="modal_police_btn" style="width: 90px; font-size: 15px">신고</button>
-							<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
+							<button type="button" class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 						</div>
+<!-- 					</form> -->
 					</div>
 				</div>
 				<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
@@ -168,7 +170,9 @@
 											<div style="margin-left: 10px">
 												<span id="re_reply_click_style"> 
 													<label style="cursor: pointer; margin-left:15px; margin-right:5px" for="re-reply1"> 
+														<c:if test="${nickname eq comment.nickname }">
 														<input type="button" class="btn_delete_comment" value="삭제"/>
+														</c:if>
 													</label>
 												</span>&nbsp;
 											</div>
@@ -178,7 +182,6 @@
 								</td>
 								<td>
 									<div class="reply_police2">
-
 										<div style="margin-left: 10px">
 											<button type="button" class="btn_police_comment">
 												<img class="img_police" src="${pageContext.request.contextPath}/resources/user/img/police.png" alt="신고버튼">

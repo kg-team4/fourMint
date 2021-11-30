@@ -41,9 +41,9 @@
 		INSERT INTO marketBoard VALUES(DEFAULT, #{img_name}, #{category_big} ,#{category_middle}, #{product_name}, #{product_price}, #{product_content}, #{url}, now() at time zone 'Asia/Seoul', #{address2}, #{nickname})
 	</insert>
 
-	<select id="getKindCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
-		SELECT count(product_name) FROM (SELECT * FROM marketBoard 
-		<if test='!keyword.equals("%%")'>
+	<select id="getKindTwoCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
+		SELECT count(*) FROM (SELECT * FROM marketBoard 
+		<if test='option != null'>
 			<if test='option.equals("title")'>
 				WHERE product_name LIKE #{keyword} 
 			</if>
@@ -52,37 +52,14 @@
 			</if>
 		</if>
 		) AS a WHERE category_big = #{kind} 
-	</select>
-
-	<select id="getKindTwoCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
-		SELECT count(product_name) FROM (SELECT * FROM marketBoard 
-		<if test='!keyword.equals("%%")'>
-			<if test='option.equals("title")'>
-				WHERE product_name LIKE #{keyword} 
-			</if>
-			<if test='option.equals("content")'>
-				WHERE product_content LIKE #{keyword}
-			</if>
+		<if test='kindTwo != null'>
+			AND category_middle = #{kindTwo} 
 		</if>
-		) AS a category_big = #{kind} AND category_middle = #{kindTwo} 
-	</select>
-
-	<select id="getKindList" resultType="market" parameterType="four.mint.web.user.board.common.SearchVO">
-		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM (SELECT * FROM marketBoard]]> 
-		<if test='!keyword.equals("%%")'>
-			<if test='option.equals("title")'>
-				WHERE product_name LIKE #{keyword} 
-			</if>
-			<if test='option.equals("content")'>
-				WHERE product_content LIKE #{keyword}
-			</if>
-		</if> 
-		<![CDATA[) AS a WHERE category_big = #{kind} ORDER BY status DESC, market_seq DESC) AS c) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9)]]>
 	</select>
 
 	<select id="getKindTwoList" resultType="market" parameterType="four.mint.web.user.board.common.SearchVO">
 		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM (SELECT * FROM marketBoard]]> 
-		<if test='!keyword.equals("%%")'>
+		<if test='option != null'>
 			<if test='option.equals("title")'>
 				WHERE product_name LIKE #{keyword} 
 			</if>
@@ -90,7 +67,11 @@
 				WHERE product_content LIKE #{keyword}
 			</if>
 		</if> 
-		<![CDATA[) AS a WHERE category_big = #{kind} AND category_middle = #{kindTwo} ORDER BY status DESC, market_seq DESC) AS c ) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9)]]>
+		<![CDATA[) AS a WHERE category_big = #{kind}]]> 
+		<if test='kindTwo != null'>
+			AND category_middle = #{kindTwo} 
+		</if>
+		<![CDATA[ORDER BY status DESC, market_seq DESC) AS c ) AS b WHERE rnum >= (#{page} * 9 - 8) AND rnum <= (#{page} * 9)]]> 
 	</select>
 
 	<select id="updateViews" parameterType="int">

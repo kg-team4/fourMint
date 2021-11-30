@@ -49,13 +49,13 @@
                      	분류
                      	</button>
                      	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                     		<a class="dropdown-item" href="utilities-usedfaq.mdo">전체</a>
-                     		<a class="dropdown-item" href="etc.mdo">기타</a>
-                     		<a class="dropdown-item" href="order.mdo">주문/결제</a>
-                     		<a class="dropdown-item" href="exchange.mdo">반품/교환</a>
-                     		<a class="dropdown-item" href="cancel.mdo">취소/환불</a>
-                     		<a class="dropdown-item" href="delivery.mdo">배송</a>                    		
-                     		<a class="dropdown-item" href="mintmarket.mdo">민트마켓</a>
+                     		<a class="dropdown-item" href="utilities-usedfaq.mdo?category=all">전체</a>
+                     		<a class="dropdown-item" href="utilities-usedfaq.mdo?category=기타">기타</a>
+                     		<a class="dropdown-item" href="utilities-usedfaq.mdo?category=주문/결제">주문/결제</a>
+                     		<a class="dropdown-item" href="utilities-usedfaq.mdo?category=반품/교환">반품/교환</a>
+                     		<a class="dropdown-item" href="utilities-usedfaq.mdo?category=취소/환불">취소/환불</a>
+                     		<a class="dropdown-item" href="utilities-usedfaq.mdo?category=배송">배송</a>                    		
+                     		<a class="dropdown-item" href="utilities-usedfaq.mdo?category=민트마켓">민트마켓</a>
                      	</div>
                      </div>
 

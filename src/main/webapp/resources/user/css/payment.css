@@ -8770,7 +8770,7 @@ footer {
     margin-bottom:-500px;
 }      
 
-footer div {
+	div {
     height:160px;
     width:33%;
 }
@@ -8824,8 +8824,6 @@ html, body {
 }
 #footer_wrapper{
 	position: relatvie;
-	min-height: 100%;
-
 }
 footer {
 	position:absolute !important;
@@ -8859,11 +8857,12 @@ footer div:not(:last-child) {
 footer h3 {
     font-weight: 800;
 }
+
 .link{
 	font-weight: 600;
 	text-decoration: none;
-	
 }
+
 a{
 	text-decoration: none;
 	color: black;
