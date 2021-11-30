@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/user/img/logo_icon.png" />
-<title>민트 스토어</title>
+<title>민트마켓</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mint_store.css">
 <%@include file="../template/header.jsp"%>
@@ -47,7 +47,7 @@
 </aside>
 
 <article id="map_article">
-	<div class="hot-title">우리 동네 둘러보기!</div>
+	<div class="hot-title" style="color:#26e4ca; font-size:35px">나의 동네 주변 살펴보기</div>
 	<div class="dongnae">
 		<div id="map-area">
 			<div class="map_wrap">
@@ -76,7 +76,7 @@
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
 								키워드 : <input type="text" id="keyword" size="15">
-								<button type="submit">검색하기</button>
+								<button type="submit" style="background:#26e4ca; color:black; border:2px solid #26e4ca; border-radius: 3px">검색하기</button>
 							</form>
 						</div>
 					</div>
