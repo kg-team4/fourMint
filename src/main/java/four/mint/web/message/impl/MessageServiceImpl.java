@@ -27,9 +27,9 @@ public class MessageServiceImpl implements MessageService {
 		for (MessageVO vo : list) {
 			vo.setNickname(nickname);
 			// 현재 사용자가 해당 room에서 안읽은 메세지의 갯수를 가져온다.
-			int unread = messageDAO.getCountUnread(messageVO);
+			int unread = messageDAO.getCountUnread(vo);
 			// 현재 사용자가 메세지를 주고받는 상대 profile을 가져온다.
-			String profile = messageDAO.getOtherProfile(messageVO);
+			String profile = messageDAO.getOtherProfile(vo);
 			// 안읽은 메세지 갯수를 vo에 set한다.
 			vo.setUnread(unread);
 			// 메세지 상대의 프로필사진을 vo에 set한다.

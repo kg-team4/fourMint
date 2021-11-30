@@ -13,7 +13,7 @@ public class AdminLogoutController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "/index";
+		return "redirect:login.mdo";
 	}
 }
 	

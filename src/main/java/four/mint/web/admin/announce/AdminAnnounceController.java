@@ -36,6 +36,7 @@ public class AdminAnnounceController {
 		AdminAnnounceVO announcementVO = new AdminAnnounceVO();
 			announcementVO.setNotice_title(request.getParameter("title"));
 			announcementVO.setNotice_content(request.getParameter("content"));
+			announcementVO.setStatus(Integer.valueOf(request.getParameter("static_status")));
 		
 		adminAnnounceService.insertAdminAnnounce(announcementVO);
 		
@@ -59,6 +60,7 @@ public class AdminAnnounceController {
 			announcementVO.setNotice_seq(Integer.valueOf(request.getParameter("seq")));
 			announcementVO.setNotice_title(request.getParameter("title"));
 			announcementVO.setNotice_content(request.getParameter("content"));
+			announcementVO.setStatus(Integer.valueOf(request.getParameter("static_status")));
 			
 			adminAnnounceService.update_announcement(announcementVO);
 		

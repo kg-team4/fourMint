@@ -1,20 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:forEach var="tmp" items="${list }">
 	<div class="chat_list_box${tmp.room } chat_list_box">
 		<div type="button" class="chat_list" room="${tmp.room }" other_nick="${tmp.other_nick }">
 			<!-- active-chat -->
 			<div class="chat_people">
-				<div class="chat_img" >
-					<a href="other_profile.do?other_nick=${tmp.other_nick }">
-						<img src="./upload/profile/${tmp.profile}" alt="sunil" >
+				<div class="chat_img">
+					<a href="#"> <img src="${tmp.profile}" alt="sunil" style="width: 45px; height: 45px;">
 					</a>
 				</div>
-				
 				<div class="chat_ib">
-					<h5>${tmp.other_nick }<span class="chat_date">${tmp.send_time }</span>
+					<h5>${tmp.other_nick }<span class="chat_date"><fmt:formatDate value="${tmp.send_time }" pattern="yyyy-MM-dd HH:mm" /></span>
 					</h5>
 					<div class="row">
 						<div class="col-10" style="text-align: left">
@@ -32,5 +29,3 @@
 		</div>
 	</div>
 </c:forEach>
-
-

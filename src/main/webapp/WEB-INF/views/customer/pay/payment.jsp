@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/payment.css" />
 
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -11,14 +12,14 @@
 }
 </style>
 <!-- #Container -->
-<div id="Container" style="padding-top: 143px;">
+<div id="Container" style="padding-top: 135px;">
 	<!-- #Contents -->
 	<form name="cartForm" id="cartForm" action="order.do" method="post">
 		<div id="Contents">
 			<!-- title_box -->
 			<div class="title_box" style="display: flex; align-items: center; justify-content: space-between;">
 				<h1>
-					장바구니 <span class="tx_num"></span>
+					장바구니<span class="tx_num">${fn:length(cart) }</span>
 				</h1>
 				<ul class="step_list">
 					<li class="on"><span class="hide">현재단계</span> <span class="step_num tx_num">1</span> 장바구니</li>

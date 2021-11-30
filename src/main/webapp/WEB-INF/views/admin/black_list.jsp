@@ -32,9 +32,6 @@
 				<div class="container-fluid">
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">블랙리스트 목록</h1>
-					<p class="mb-4">
-						<a target="_blank" href="home.mdo">민트마켓 신고 목록</a>.
-					</p>
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">블랙리스트 목록</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="report_list.mdo">신고목록</a> <a class="dropdown-item" href="black_list.mdo">블랙리스트 목록</a>

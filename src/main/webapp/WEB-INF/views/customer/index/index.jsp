@@ -14,7 +14,7 @@
 <link href="${pageContext.request.contextPath}/resources/user/css/map.css" rel="stylesheet">
 
 <!-- Java Script -->
-<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=39eac24bb00d05b4ee1a721a64dde25c&libraries=services"></script>
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e779d3db34b72df8c41309b36657dbf8&libraries=services"></script>
 <script src="${pageContext.request.contextPath}/resources/user/js/index.js"></script>
 <script src="${pageContext.request.contextPath}/resources/user/js/jquery-3.6.0.min.js"></script>
 
@@ -110,7 +110,7 @@
 	var zoomControl = new kakao.maps.ZoomControl();
 	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-	var imageSrc = './img/mint.png', // 마커이미지의 주소입니다    
+	var imageSrc = '/resources/user/img/mint.png', // 마커이미지의 주소입니다    
 	imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
 	imageOption = {
 		offset : new kakao.maps.Point(27, 69)
