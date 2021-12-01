@@ -25,8 +25,15 @@
 <aside>
 	<!-- 이미지 슬라이더 영역 -->
 	<div class="promotion">
+	
+		<div class="main_img_area">
+		
+			<img width="100%" src="${pageContext.request.contextPath}/resources/user/img/main_img_ex.png">
+		</div>
+		
+	
 
-		<div class="swiper-container" id="promotion">
+		<%-- <div class="swiper-container" id="promotion">
 			<!-- 필수 영역 -->
 			<div class="swiper-wrapper">
 				<!-- 배치되는 이미지 혹은 화면 (슬라이더) -->
@@ -42,7 +49,10 @@
 			</div>
 			<!-- pagination 이 필요하다면 (선택) -->
 			<div class="swiper-pagination"></div>
-		</div>
+		</div> --%>
+		
+		
+		
 	</div>
 </aside>
 
