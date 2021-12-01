@@ -152,7 +152,7 @@
 					</c:if>
 					</c:forEach>			
 				</div>
-				<div id="grid_below_search_write_area" style="display: inline-block;">
+				<div id="grid_below_search_write_area" style="display: inline-block; ">
 					<select id="option" name="search" style="height: 20px">
 						<c:choose>
 						<c:when test="${option eq 'title' }">
@@ -172,7 +172,7 @@
 			</div>
 			<div style="display:flex; margin-bottom:40px ">
 		
-				<div style="text-align: center; margin-left:780px; padding-top:12px">
+				<div style="text-align: center; margin-left:45%; padding-top:12px">
 					<c:set var="startPage" value="${ startPage }" />
 					<c:set var="endPage" value="${ endPage }" />
 					<c:set var="pageCount" value="${ maxPage }" />

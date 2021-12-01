@@ -65,7 +65,7 @@
 								<fmt:formatDate pattern="yyyy-MM-dd" value="${staticNotice.date }" />
 							</div>
 							
-							<pre><br>${staticNotice.notice_content }<br></pre>
+							<pre><br>${staticNotice.notice_content }<br><br></pre>
 						</td>
 						
 						<td></td>
@@ -96,7 +96,7 @@
 								<fmt:formatDate pattern="yyyy-MM-dd" value="${normalNotice.date}" />								
 							</div>
 							
-							<pre><br>${normalNotice.notice_content}<br></pre>
+							<pre><br>${normalNotice.notice_content}<br><br></pre>
 						</td>
 						
 						<td></td>

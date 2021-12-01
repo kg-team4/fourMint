@@ -154,22 +154,9 @@
 			</div>
 		</c:if>
 	</div>
-	
-	<div style="display:flex; margin-bottom:40px ">
 		
-		<div style="text-align: center; margin-left:780px; padding-top:12px">
-			<c:set var="startPage" value="${ startPage }" />
-			<c:set var="endPage" value="${ endPage }" />
-			<c:set var="pageCount" value="${ maxPage }" />
-				<label class="pagingNumPrev">◀</label>
-			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
-				<label class="pagingNum">${i}</label>
-			</c:forEach>
-				<label class="pagingNumNext">▶</label>
-		</div>
 		
-
-		<div id="search_write_area" style="margin-left:106px; margin-top:10px">
+		<div style="text-align: right; width:955px; padding-top:12px; margin:auto">
 			<select id="option" name="search" style="height: 20px">
 				<c:choose>
 				<c:when test="${option eq 'title' }">
@@ -185,7 +172,18 @@
 			<input type="text" id="search" name="searchVal" value="${keyword }" placeholder="검색어를 입력하세요.">
 			<input id="btn_search" type="button" value="검색"> 
 		</div>
-	</div>
+	
+		
+		<div style="text-align: center; width:1350px; padding-top:12px; padding-bottom:40px; margin:auto;" >
+			<c:set var="startPage" value="${ startPage }" />
+			<c:set var="endPage" value="${ endPage }" />
+			<c:set var="pageCount" value="${ maxPage }" />
+				<label class="pagingNumPrev">◀</label>
+			<c:forEach var="i" begin="${ startPage }" end="${ endPage }">
+				<label class="pagingNum">${i}</label>
+			</c:forEach>
+				<label class="pagingNumNext">▶</label>
+		</div>
 </article>
 
 <script>

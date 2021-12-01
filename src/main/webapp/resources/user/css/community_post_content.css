@@ -6,6 +6,7 @@ article {
 	padding-left: 14%;
 }
 pre{
+	font-family: 'Do Hyeon', sans-serif;
 	white-space:pre-wrap;
 	line-height: 150%;	
 	text-align:left;
@@ -20,6 +21,7 @@ textarea {
 }
 .commenter_infomation_all{
 	display: flex;
+	margin-bottom:15px;
 }
 
 .category_list {
@@ -66,9 +68,10 @@ textarea {
 .writer_content_all{
 	display:flex;
 	margin-bottom:15px;
+	margin-top:20px;
 }
 .img_box {
-	background: #BDBDBD;
+	background: white;
 	border-radius: 50%;
 	overflow: hidden;
 	width: 80px;

@@ -17,7 +17,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/resources/admin/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/admin/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -39,8 +39,7 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-2">비밀번호 찾기</h1>
-                                        <p class="mb-4">We get it, stuff happens. Just enter your email address below
-                                            and we'll send you a link to reset your password!</p>
+                                        <br>
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
@@ -49,15 +48,15 @@
                                                 placeholder="아이디를 입력하세요..">
                                         </div>
                                         <a href="login.mdo" class="btn btn-primary btn-user btn-block">
-                                            새로운 비밀번호
+                                            비밀번호 변경
                                         </a>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="register.mdo">계정을 등록하세요</a>
+                                        <a class="small" href="register.mdo">관리자 계정 등록</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="login.mdo">이미 계정이 있으십니까? 로그인!</a>
+                                        <a class="small" href="login.mdo">기존 계정으로 로그인</a>
                                     </div>
                                 </div>
                             </div>

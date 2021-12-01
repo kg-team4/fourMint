@@ -114,9 +114,9 @@
 			</li>
 		<div class="topbar-divider d-none d-sm-block"></div> --%>
 		<!-- 마이페이지 -->
-		<li class="nav-item dropdown no-arrow"><a class="nav-link dropdown-toggle" href="/img/user_icon.png" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 프로필</a> <!-- 마이페이지: 드롭다운 -->
+		<li class="nav-item dropdown no-arrow"><a style="color:gray; text-decoration: none;"href="login.mdo" > 로그아웃</a> <!-- 마이페이지: 드롭다운 -->
 			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="profile.mdo"> <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 프로필
+				<a class="dropdown-item" href="profile.mdo"> <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400" ></i> 로그아웃
 				</a>
 				<div class="dropdown-divider"></div>
 				<ul>

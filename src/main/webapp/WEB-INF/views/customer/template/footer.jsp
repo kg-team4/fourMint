@@ -6,7 +6,7 @@
 	
 	<div class="footer-right">
 
-		<a href="storeServiceCenter.do?cate=notice" style="font-size:20px"><strong>고객센터</strong></a>
+		<a href="storeServiceCenter.do?cate=notice" style="font-size:20px; color:black"><strong>고객센터</strong></a>
 		<p>
 			1588-8282<br> 09:00 ~ 18:00<br> SAT 10:00 ~ 13:00
 		</p>

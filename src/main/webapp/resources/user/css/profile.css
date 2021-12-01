@@ -12,6 +12,7 @@ a {
 pre {
 	white-space: pre-wrap;
 	line-height: 150%;
+	font-family: 'Do Hyeon', sans-serif;
 }
 
 .nav-item {
@@ -87,7 +88,7 @@ btn {
 	margin-top: 10px;
 }
 
-.btn-primary {
+.btn-primary{
 	background: #26e4ca;
 	color: black;
 	border: 1px solid #26e4ca;
@@ -305,11 +306,12 @@ table {
 	-moz-transition: all 0.4s ease;
 	transition: all 0.4s ease;
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 16px;
 	text-transform: capitalize;
-	font-weight: 700;
+	font-weight: 500;
 	/* color: #fff; */
 	font-family: inherit;
+	box-shadow: none;
 }
 
 .btn--radius {
@@ -483,7 +485,7 @@ table {
 /* 나의활동 (상점후기, 팔로잉, 팔로워) */
 .store_review_grid {
 	width: auto;
-	height: 300px;
+	height: 430px;
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	padding: 20px;
@@ -501,7 +503,7 @@ table {
 }
 
 #img_box {
-	background: #BDBDBD;
+	background: white;
 	border-radius: 70%;
 	overflow: hidden;
 	width: 100px;
@@ -515,7 +517,7 @@ table {
 }
 
 #following_img_box {
-	background: #BDBDBD;
+	background: white;
 	border-radius: 70%;
 	overflow: hidden;
 	width: 90px;
@@ -623,7 +625,7 @@ table {
 }
 
 #product_img_box {
-	background: #BDBDBD;
+	background: white;
 	border-radius: 10%;
 	overflow: hidden;
 	width: 140px;
@@ -739,7 +741,7 @@ table {
 /*나의 스토어거래*/
 .store_bought_list_grid {
 	width: auto;
-	height: 450px;
+	height: 550px;
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	padding: 20px;
@@ -751,7 +753,7 @@ table {
 
 .store_bought_list {
 	width: auto;
-	height: 60%;
+	height: 50%;
 	padding: 20px;
 	display: block;
 }
