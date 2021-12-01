@@ -154,8 +154,12 @@
 										<canvas id="myPieChart"></canvas>
 									</div>
 									<div class="mt-4 text-center small">
+									
+									
 										<span class="mr-2"><i class="fas fa-circle text-primary"></i>주방</span> <span class="mr-2"> <i class="fas fa-circle text-success"></i>욕실
 										</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>생활
+										
+										
 										</span>
 									</div>
 								</div>

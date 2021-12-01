@@ -57,7 +57,7 @@ hr{
 					<div style="display: flex; justify-content: flex-end">
 						<c:choose>
 						<c:when test="${content.status eq 0 }">
-							<div class="font27" style="padding-left: 340px; padding-top: 5px; color: red;">[ 판매 완료 ]</div>
+							<div style="height:32px; margin-left: 340px; margin-top: 5px; text-align:center; width:110px; color: gray; border-radius:3px;font-size:22px">판매 완료</div>
 						</c:when>
 						<c:otherwise>
 							<div class="font27" style="padding-left: 360px; padding-top: 5px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${content.product_price}" /></div>
@@ -197,7 +197,7 @@ hr{
 					</div>
 				</div>
 				<div class="text-center center row">
-					<div class="float-box float-left col-10">
+					<div class="float-box float-left col-10" style="margin-top:20px">
 						<c:choose>
 							<c:when test="${nickname eq content.nickname }">
 								<div class="left-item33">
@@ -257,15 +257,23 @@ hr{
 									</script>
 								</div>
 								<!-- 수정 삭제 버튼은 "내글" 또는 "관리자"인 경우만 표시 -->
-								<div class="left-item33 messagesend-btn">
+								<div class="left-item33 messagesend-btn">							
 									<!-- 민트채팅 버튼 -->
-									<button type="button" class="edit-button cursor msg_send_btn_profile" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="javascript:MessageContentList('${content.nickname}')">민트채팅</button>
+									<c:choose>
+										<c:when test="${content.status eq 0 }">
+											<button type="button" disabled style="height:40.8px; background:#c7c7c7;" class="edit-button cursor msg_send_btn_profile" data-bs-toggle="modal" data-bs-target="#exampleModal">채팅종료</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button" style="height:40.8px" class="edit-button cursor msg_send_btn_profile" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="javascript:MessageContentList('${content.nickname}')">민트채팅</button>
+										</c:otherwise>
+									</c:choose>
+							
 								</div>
 								<!-- 메세지 보내기 모달창 -->
 								<!-- Modal -->
 								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-scrollable">
-										<div class="modal-content" style="max-height: 650px">
+										<div class="modal-content" style="max-height: 700px">
 											<div class="modal-header">
 												<span id="m_writer_profile">
 													<div class="message-box">
@@ -377,7 +385,7 @@ hr{
 				<hr>
 				<br>
 				<div>
-					<p class="font18">판매자 위치</p>
+					<p class="font27" style="margin:0">판매자 위치</p>
 				</div>
 				<br>
 				<div id="map" style="width: 100%; height: 350px;"></div>
@@ -437,15 +445,15 @@ hr{
 					<div id="my_info_edit_title">
 						<div class="padding-top30">
 							<div class="float-box float-left">
-								<div class="left-item25  pic-align left-font">
-									<a href="#"> <img class="reply-pic-circle" src="${user.profile }">
+								<div class="left-item25  pic-align left-font" >
+									<a  href="#"> <img class="reply-pic-circle" src="${user.profile }" >
 									</a>
 								</div>
 								<div class="right-item75">
-									<div class="top-margin10 left-font seller">
+									<div class="top-margin10 left-font">
 										<!-- 작성자 -->
-										<div id="member-form">
-											<div style="font-size: 22px">${content.nickname}</div>
+										<div id="member-form" style="margin-top:20px">
+											<div style="font-size: 22px;">${content.nickname}</div>
 											<div class="seller_grade">
 												<c:set var="star" value="${user.rating }"/>
 												<c:forEach var="i" begin="1" end="${star }">
@@ -479,7 +487,8 @@ hr{
 														<td width="70%"></td>
 													</tr>
 													<tr>
-														<td rowspan="3"><a id="store_review_img_area" href="#">
+														<td rowspan="3">
+														<a id="store_review_img_area" href="#">
 																<div id="product_img_box">
 																	<img id="sell_product_img" src="${market.url}" alt="판매상품이미지">
 																</div>
@@ -518,10 +527,11 @@ hr{
 									<c:forEach var="community" items="${community }">
 										<div id="tab02">
 											<div class="community_post_record">
+												<br>
 												<table>
 													<tr>
-														<td style="text-align: center; padding: 8px;"><div class="community_category">${community.category }</div>&nbsp;</td>
-														<td style="text-align: center; padding: 8px;"><div class="community_title"><a href="communityBoard.do?seq=${community.community_seq}">${community.title }</a></div>&nbsp;</td>
+														<td style="text-align: center; padding: 8px;"><div class="community_category" >${community.category }</div>&nbsp;</td>
+														<td style="text-align: center; padding: 8px; "><div class="community_title" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 300px;"><a href="communityBoard.do?seq=${community.community_seq}">${community.title }</a></div>&nbsp;</td>
 														<td style="text-align: center; padding: 8px;"><div class="community_date"><fmt:formatDate pattern="yyyy-MM-dd" value="${community.date }" /></div>&nbsp;</td>
 													</tr>
 												</table>
@@ -602,7 +612,7 @@ hr{
 				<div class="padding-top30">
 					<div class="float-box float-left">
 						<div class="left-item25  pic-align left-font">
-							<a href="#"> <img class="reply-pic-circle" src="${user.profile }">
+							<a href="#"> <img class="reply-pic-circle" style="margin-top:20px"src="${user.profile }">
 							</a>
 						</div>
 						<div class="right-item75">
@@ -610,7 +620,7 @@ hr{
 								<!-- 작성자 -->
 								<div id="member-form">
 									<div>
-										<a class="seller_nick" style="cursor: pointer; color: #8d508d;">${content.nickname }</a>
+										<a class="seller_nick" style="cursor: pointer; color: #26e4ca;">${content.nickname }</a>
 									</div>
 									<div class="seller_grade">
 										<c:set var="star" value="${user.rating }"/>

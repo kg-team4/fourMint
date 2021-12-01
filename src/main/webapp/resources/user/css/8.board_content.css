@@ -19,6 +19,7 @@ a {
 pre {
 	white-space: pre-wrap;
 	line-height: 150%;
+	font-family: 'Do Hyeon', sans-serif;
 }
 
 /* aritcle 기본 폼 */
@@ -130,7 +131,7 @@ pre {
 }
 
 .font20 {
-	font-size: 18px;
+	font-size: 20px;
 }
 
 .font23 {
@@ -801,7 +802,7 @@ ul, li {
 }
 
 #product_img_box {
-	background: #BDBDBD;
+	background: white;
 	border-radius: 10%;
 	overflow: hidden;
 	width: 140px;
@@ -876,6 +877,7 @@ ul, li {
 	border-radius:3px;
 	background:lightgray;
 	color:black;
+	width:39px;
 }
 .community_title{
 	color:black;

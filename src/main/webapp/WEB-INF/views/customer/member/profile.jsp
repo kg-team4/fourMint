@@ -169,10 +169,10 @@
 													<button type="button" onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
 											</tr>
 											<tr>
-												<td  height="30px"><input type="text" id="base_addr" placeholder="${user.address2 }"></td>
+												<td  height="30px"><input type="text" style="width:280px" id="base_addr" placeholder="${user.address2 }"></td>
 											</tr>
 											<tr>
-												<td  height="30px"><input type="text" id="detail_addr" placeholder="${user.address3 }"></td>
+												<td  height="30px"><input type="text" style="width:280px" id="detail_addr" placeholder="${user.address3 }"></td>
 											</tr>
 											</c:otherwise>
 											
@@ -247,10 +247,10 @@
 													<button type="button" onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
 											</tr>
 											<tr>
-												<td  height="30px"><input type="text" id="base_addr" placeholder="기본주소"></td>
+												<td  height="30px"><input style="width:280px" type="text" id="base_addr" placeholder="기본주소" ></td>
 											</tr>
 											<tr>
-												<td  height="30px"><input type="text" id="detail_addr" placeholder="직접 입력해주세요"></td>
+												<td  height="30px"><input style="width:280px" type="text" id="detail_addr" placeholder="직접 입력해주세요"></td>
 											</tr>
 											
 											</c:when>
@@ -261,10 +261,10 @@
 													<button type="button" onclick="findAddr();" id="addr" class="address_find_btn">주소검색</button></td>
 											</tr>
 											<tr>
-												<td  height="30px"><input type="text" id="base_addr" placeholder="${user.address2 }"></td>
+												<td  height="30px"><input type="text" style="width:280px" id="base_addr" placeholder="${user.address2 }"></td>
 											</tr>
 											<tr>
-												<td  height="30px"><input type="text" id="detail_addr" placeholder="${user.address3 }"></td>
+												<td  height="30px"><input type="text" style="width:280px" id="detail_addr" placeholder="${user.address3 }"></td>
 											</tr>
 											</c:otherwise>
 											
@@ -274,14 +274,14 @@
 									</c:choose>
 								</table>
 								<br>
-								<div style="text-align: center; margin-top: 10px">
+								<div style="text-align: center; margin-bottom: 10px">
 									<c:choose>
 										<c:when test="${empty sns }">
-											<button onclick="updateAddr();">기본정보수정</button>
+											<button class="btn btn-primary" onclick="updateAddr();"> 주소수정</button>
 											<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 										</c:when>
 										<c:otherwise>
-											<button onclick="updateSns();">정보수정</button>
+											<button class="btn btn-primary" onclick="updateSns();">주소수정</button>
 											<button class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 										</c:otherwise>
 									</c:choose>
@@ -500,11 +500,11 @@
 									</table>
 									<br> <hr>
 								</div>
-								<br><br><br>
+								<br>
 								</c:forEach>
-								<br> <br> <br>
+								<br>
 								</div>
-							<br> <br> <br>
+							 <br> <br>
 								
 								
 								
@@ -1261,7 +1261,7 @@
 							<!-- 작성한 거래 후기 보기 -->
 								<div id="popup04">
 									<div>
-										<div style="font-size: 20px; margin-left:30px; margin-top:20px">📃&nbsp;작성한 후기 보기&nbsp;📃</div>
+										<div style="font-size: 24px; margin-left:30px; margin-top:20px">📃&nbsp;작성한 후기 보기&nbsp;📃</div>
 										<hr>
 										<div>
 											<div class="police_category">
@@ -1270,8 +1270,8 @@
 												</div>												
 											</div>
 
-											<div class="write_police_reason" style="border:1px solid lightgray; margin-left:30px; padding:2px">
-												<pre id="ratingContent">											
+											<div class="write_police_reason" style="border:none; margin-left:30px; padding:2px">
+												<pre id="ratingContent" style="font-size:16px;">											
 												</pre>
 											</div>
 											<br>
@@ -1451,15 +1451,14 @@
 									<c:choose>
 										<c:when test="${his.status eq '상품 준비 중' }">
 											<div class="store_bought_list">
-												<br>
 												<table width="100%" height="120">
 													<tr>
 														<c:choose>
 														<c:when test="${his.cancel_status eq null }">
-															<td align="left" colspan="3" style="font-size: 20px">${his.status }</td>
+															<td height=40px align="left" colspan="3" style="font-size: 20px">${his.status }</td>
 														</c:when>
 														<c:otherwise>
-															<td align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
+															<td height=40px  align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
 														</c:otherwise>
 														</c:choose>
 													</tr>
@@ -1490,7 +1489,7 @@
 																</c:if>
 															</div>
 															<div>
-																<button type="button" id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}'">판매자 문의</button>
+																<button type="button" id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}#ask_about_product'">판매자 문의</button>
 															</div>
 														</td>
 													</tr>
@@ -1500,15 +1499,14 @@
 										</c:when>
 										<c:when test="${his.status eq '상품 배송 중' }">
 											<div class="store_bought_list">
-												<br> 
 												<table width="100%" height="120">
 													<tr>
 														<c:choose>
 														<c:when test="${his.cancel_status eq null }">
-															<td align="left" colspan="3" style="font-size: 20px">${his.status }</td>
+															<td height=40px  align="left" colspan="3" style="font-size: 20px">${his.status }</td>
 														</c:when>
 														<c:otherwise>
-															<td align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
+															<td height=40px  align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
 														</c:otherwise>
 														</c:choose>
 													</tr>
@@ -1541,7 +1539,7 @@
 															</div>
 															</c:if>
 															<div>
-																<button id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}'">판매자 문의</button>
+																<button id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}#ask_about_product'">판매자 문의</button>
 															</div>
 														</td>
 													</tr>
@@ -1551,15 +1549,14 @@
 										</c:when>
 										<c:when test="${his.status eq '상품 배송 완료' }">
 											<div class="store_bought_list">
-												<br> 
 												<table style="width: 100%; height: 120px;">
 													<tr>
 														<c:choose>
 														<c:when test="${his.cancel_status eq null }">
-															<td align="left" colspan="3" style="font-size: 20px">${his.status }</td>
+															<td  height=40px  align="left" colspan="3" style="font-size: 20px">${his.status }</td>
 														</c:when>
 														<c:otherwise>
-															<td align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
+															<td height=40px  align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
 														</c:otherwise>
 														</c:choose>
 														<td></td>
@@ -1597,11 +1594,11 @@
 															</div>
 															
 															<div>
-																<button id="btn_store_bought_product">상품 리뷰 쓰기</button>
+																<button id="btn_store_bought_product" onclick="location.href='storeBoard.do?seq=${his.store_seq}#wirte_product_review'">상품 리뷰 쓰기</button>
 															</div>
 															</c:if>
 															<div>
-																<button id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}'">판매자 문의</button>
+																<button id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}#ask_about_product'">판매자 문의</button>
 															</div>
 														</td>
 													</tr>
@@ -1611,10 +1608,9 @@
 										</c:when>
 										<c:otherwise>
 											<div class="store_bought_list">
-												<br> 
 												<table style="width: 100%; height: 120px;">
 													<tr>
-														<td align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
+														<td height=40px align="left" colspan="3" style="font-size: 20px">${his.pay_cancel }</td>
 														<td></td>
 														<td></td>
 													</tr>
@@ -1638,7 +1634,7 @@
 														</td>
 														<td align="center">
 															<div>
-																<button id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}'">판매자 문의</button>
+																<button id="btn_seller_ask" onclick="location.href='storeBoard.do?seq=${his.store_seq}#ask_about_product'">판매자 문의</button>
 															</div>
 														</td>
 													</tr>
@@ -1902,15 +1898,16 @@
 								<div class="sell_list">
 									<table width="100%" height="120">
 										<tr height="30">
-											<td align="left" style="font-size: 15px">&nbsp; <fmt:formatDate pattern="yyyy-MM-dd" value="${mlike.date }" /></td>
-											<td width="70%"></td>
+											<td colspan="2" width=200px align="left" style="font-size: 15px">&nbsp; <fmt:formatDate pattern="yyyy-MM-dd" value="${mlike.date }" /></td>
 										</tr>
-										<tr>
-											<td rowspan="3"><a id="store_review_img_area" href="#">
-												<div id="product_img_box">
-													<img id="sell_product_img" src="${mlike.url }" alt="판매상품이미지">
-												</div>
-											</a></td>
+										<tr >
+											<td rowspan="3" width=200px>
+												<a id="store_review_img_area" href="#">
+														<div id="product_img_box">
+															<img id="sell_product_img" src="${mlike.url }" alt="판매상품이미지">
+														</div>
+												</a>
+											</td>
 											<td style="font-size: 18px"><a href="marketBoard.do?seq=${mlike.market_seq }" style="color: #26e4ca">${mlike.product_name }</a></td>
 										</tr>
 										<tr>
@@ -1947,20 +1944,20 @@
 								</script>
 								<br>
 							</div>
-							<br> <br> <br>
+							<br> <br> 
 						</div>
 						<hr>
-						<br> <br>
+						<br> 
 						<div class="heart_list_all">
 							<p>
 								<span><strong>민트스토어 관심상품 &nbsp;&nbsp;</strong></span> <span style="color: #26e4ca">${fn:length(storeLike) }</span>
 							</p>
 							<div class="sell_list_grid">
 								<c:forEach var="slike" items="${storeLike }">
-									<div class="sell_list">
-										<table width="100%" height="120">
+									<div class="sell_list" style="height:220px">
+										<table width="100%" height="100">
 											<tr>
-												<td rowspan="3">
+												<td rowspan="3"  width=200px>
 													<div id="product_img_box">
 														<a id="store_review_img_area" href="#">
 															<img id="sell_product_img" src="${slike.url }" alt="판매상품이미지">

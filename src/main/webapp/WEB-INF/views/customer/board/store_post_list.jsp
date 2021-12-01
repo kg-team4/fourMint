@@ -6,6 +6,9 @@
 <%@	taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@	taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/user/img/logo_icon.png" />
+<title>민트스토어 상품</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/user/css/mint_store_content.css">
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -81,9 +84,14 @@
 			</div>
 		</c:if>
 	</div>
-	<div style="display:flex; margin-bottom:40px ">
-		
-		<div style="text-align: center; margin-left:780px; padding-top:12px">
+	<div style="text-align: right; width:955px; padding-top:12px; margin:auto">
+		<div id="search_write_area"> 
+				<input type="text" id="search" style="width:160px" name="searchVal" value="${keyword }" placeholder="상품명을 입력하세요.">
+				<input id="btn_search" type="button" value="검색"> 
+		</div>
+	</div>	
+	
+		<div style="text-align: center; width:1350px; padding-top:12px; padding-bottom:40px; margin:auto;" >
 			<c:set var="startPage" value="${ startPage }" />
 			<c:set var="endPage" value="${ endPage }" />
 			<c:set var="pageCount" value="${ maxPage }" />
@@ -95,14 +103,8 @@
 		</div>
 		
 
-		<div id="search_write_area" style="margin-left:106px; margin-top:10px">
-		<select id="option" name="search" style="height: 20px">
-			<option value="title" selected>제목</option>
-		</select> 
-		<input type="text" id="search" name="searchVal" value="${keyword }" placeholder="검색어를 입력하세요.">
-		<input id="btn_search" type="button" value="검색"> 
-	</div>
-	</div>
+			
+	
 </article>
 
 <script>

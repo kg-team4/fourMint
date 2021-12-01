@@ -31,7 +31,7 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
+                                <h1 class="h4 text-gray-900 mb-4">관리자 계정 등록</h1>
                             </div>
                             <form class="user" action="register.mdo" method="POST">
                                 <div class="form-group row">
@@ -58,16 +58,15 @@
                                             id="exampleRepeatPassword" placeholder="비밀번호">
                                     </div> -->
                                 </div>
-                                <input type="submit" class="btn btn-primary btn-user btn-block" value="계정등록">
-                                <hr>
-                                                     
+                                <input type="submit" class="btn btn-primary btn-user btn-block" value="계정 등록">
+         
                             </form>
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="forgot-password.mdo">비밀번호 찾기</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.mdo">이미 계정이 있습니까? 로그인!</a>
+                                <a class="small" href="login.mdo">기존 계정으로 로그인</a>
                             </div>
                         </div>
                     </div>

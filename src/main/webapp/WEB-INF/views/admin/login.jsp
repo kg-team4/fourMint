@@ -160,7 +160,7 @@
 										</div>
 										<div class="form-group">
 											<div class="custom-control custom-checkbox small">
-												<input type="checkbox" class="custom-control-input" id="customCheck"> <label class="custom-control-label" for="customCheck">로그인 저장하시겠습니까? </label>
+												<input type="checkbox" class="custom-control-input" id="customCheck"> <label class="custom-control-label" for="customCheck">자동 로그인 </label>
 											</div>
 										</div>
 										<input type="submit" class="btn btn-primary btn-user btn-block" value="로그인">

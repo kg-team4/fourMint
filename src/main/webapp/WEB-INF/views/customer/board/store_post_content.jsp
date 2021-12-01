@@ -61,10 +61,20 @@
 				<div class="item padding25" >
 					<span class="font30">${content.product_name }</span> 
 					<div style="display:flex; justify-content: flex-end">
+					<c:choose>
+						<c:when test="${content.product_stock < 1 }">
+						<div style="vertical-align: middle">
+							<div style="height:32px; margin-left: 340px; margin-top: 5px; text-align:center; width:110px; color: gray; border-radius:3px;font-size:22px">판매 완료</div>
+						</div>
+						</c:when>
+
+						<c:otherwise>
 						<div class="font25" style="padding-left:360px;padding-top:5px">
 							<fmt:formatNumber type="number" maxFractionDigits="3" value="${content.product_price}" />						
 						</div>
 						<span class=font20 style="padding-left:5px; padding-top:10px">원</span>
+						</c:otherwise>
+					</c:choose>
 					</div>					
 				</div>
 				<div class="item padding25">
@@ -145,7 +155,7 @@
 							});
 							</script>
 						</div>
-						<!-- 수정 삭제 버튼은 "내글" -->
+						<!-- 수정 삭제 버튼은 "내글" --> 
 						
 						<!-- 장바구니 모달 -->
 						<div id="my_modal">
@@ -155,15 +165,26 @@
 							&emsp;<a class="modal_close_btn">나가기</a>
 						</div>
 						<!-- 장바구니 모달 끝 -->
-						<div class="left-item33">
-							<button class="edit-button cursor" id="popup_open_btn">장바구니</button>
-						</div>
-						<div class="left-item33">
-							<form id="form1" action="orderSoon.do">
-								<input type="hidden" name="seq" value="${content.store_seq }" />
-								<input type="submit" class="delete-button cursor" value="바로구매" />
-							</form>
-						</div>
+						
+						<c:choose>
+							<c:when test="${content.product_stock < 1 }">
+								<div class="left-item33">
+										<button disabled class="delete-button cursor" style="height:40.8px; background:#c7c7c7;">품절</button>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="left-item33">
+									<button class="edit-button cursor" id="popup_open_btn">장바구니</button>
+								</div>
+								<div class="left-item33">
+									<form id="form1" action="orderSoon.do">
+										<input type="hidden" name="seq" value="${content.store_seq }" />
+										<input type="submit" class="delete-button cursor" value="바로구매" />
+									</form>
+								</div>
+							</c:otherwise>						
+						</c:choose>					
+						
 					</div>
 				</div>
 			</div>
@@ -209,7 +230,7 @@
 				
 				
 				<div class="padding-top100">
-					<span class="font25">상품후기</span>&emsp;
+					<span class="font25" id="wirte_product_review">상품후기</span>&emsp;
 					<c:set var="star" value="${avg }"/>
 					<c:forEach var="i" begin="1" end="${star }">
 						<img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> 
@@ -468,9 +489,9 @@
 				
 				
 				<div class="padding-top70">
-					<p class="font27">상품문의</p>					
+					<p class="font27" id="ask_about_product">상품문의</p>					
 					<div class="reply-div-padding">
-						<div class="reply-border">
+						<div class="reply-border" >
 							<textarea id="qnacontent" class="text-padding font15" name="content" placeholder="문의 내용 입력" cols="116" rows="5"></textarea>
 						</div>
 					</div>
@@ -521,8 +542,8 @@
 						<div class="right-item90">
 							<!-- 프로필 닉네임 / 댓글 내용 영역 -->
 							<div class="reply-nick-font">
-								<span id="reply-member-form" for="11">
-								<input type="checkbox" id="11" value="1" onchange="">&emsp;&emsp;${ask.nickname }
+								<span id="reply-member-form" for="11" style="color:#26e4ca;>
+								<input type="checkbox" id="11" value="1" onchange="" ">&emsp;&emsp;&nbsp;${ask.nickname }
 								</span>
 								
 								<span class="right-float font15 gray-font"> <fmt:formatDate pattern="yyyy-MM-dd" value="${ask.date }" /> </span>
@@ -530,28 +551,30 @@
 							<div class="font15 reply-content-form">
 								<div class="reply-content">
 									<form action="edit_reply.do" method="post" id="edit-reply-form">
-										<pre class="review_grid font15 right-float" style="margin-left:35px; line-height:150%">
+										<pre class="review_grid font15 right-float" style="margin-left:45px; line-height:150%">
 										${ask.content }
 										</pre>										
 									</form>
 								</div>								
 							</div>
-							<div class="right-float reply-control">
+							<div class="right-float reply-control" style="margin-right:10px; margin-top:5px">
 								<div>								
 									<input type="hidden" value="${ask.ask_seq }"/>	
-									<input type="button" class="font15 delete_ask" value="삭제">
+									<input style="background:none; border:none; color:gray; cursor:pointer" type="button" class="font15 delete_ask" value="삭제하기">
 								</div>
 							</div>
 						</div>
 						
 						<!-- 운영자 답변 -->
-						<div class="left-item10" style="margin-top: 30px;">
+						
+						<div class="left-item10" style="margin-top: 30px; display:flex">
+							<img class="right_arrow" style="width:50px; height:35px; margin-top: 30px; margin-left:30px; margin-right:10px" src="${pageContext.request.contextPath}/resources/user/img/right-arrow-gray.png">
 							<img class="reply-pic-circle" src="https://mintmarket.s3.ap-northeast-2.amazonaws.com/profile/character_sample.png">
 						</div>
 						<div class="right-item90" style="margin-top: 30px;">
 							<div class="reply-nick-font">
-								<span id="reply-member-form" for="11">
-								<input type="checkbox" id="11" value="1" onchange="">&emsp;&emsp;민트마켓
+								<span id="reply-member-form" for="11" style="margin-left:73px; color:gray">
+									<input type="checkbox" id="11" value="1" onchange="">&emsp;&emsp;[판매자 답변] 민트마켓
 								</span>
 								
 								<span class="right-float font15 gray-font"> <fmt:formatDate pattern="yyyy-MM-dd" value="${ask.answer_date }" /> </span>
@@ -559,7 +582,7 @@
 							<div class="font15 reply-content-form">
 								<div class="reply-content">
 									<form action="edit_reply.do" method="post" id="edit-reply-form">
-										<pre class="review_grid font15 right-float" style="margin-left:35px; line-height:150%">
+										<pre class="review_grid font15 right-float" style="margin-left:110px; margin-right:5px; line-height:150%">
 										${ask.answer }
 										</pre>										
 									</form>

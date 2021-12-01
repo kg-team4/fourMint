@@ -38,10 +38,10 @@
 					<div class="writer_infomation">
 						<table class="writer_info">
 							<tr style="font-size: 18">
-								<td colspan="2">${content.nickname }</td>
+								<td colspan="2" style="color:#26e4ca">${content.nickname }</td>
 							</tr>
 							<tr>
-								<td>${content.address2 }</td>
+								<td width=525px>${content.address2 }</td>
 								<td>&emsp;&emsp;&emsp;&emsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${content.date }" /></td>
 							</tr>
 						</table>
@@ -170,16 +170,14 @@
 			<c:forEach var="comment" items="${comment }">
 				<div class="commenter_contents_all">
 					<div class="commenter_infomation_all">
-						<div class="img_box" >
+						<div class="img_box" style="margin-top:20px">
 							<img class="commenter_img" alt="작성자프로필사진" src="${comment.profile }">
 						</div>
-						<div class="commenter_infomation">
+						<div class="commenter_infomation" style="margin-top:30px; margin-left:20px">
 							<table class="commenter_info">
-								<tr style="font-size: 18">
-									<td colspan="4">${comment.nickname }</td>
-								</tr>
-								<tr>
-									<td><fmt:formatDate value="${comment.date }" pattern="yyyy-MM-dd"/></td>
+								<tr style="font-size: 18"> 
+									<td width=80px style="color:#26e4ca">${comment.nickname }</td>
+									
 									<td>
 										<div class="reply_police2">
 											<div style="margin-left: 10px">
@@ -189,7 +187,7 @@
 														<input type="button" class="btn_delete_comment" value="삭제"/>
 														<input type="hidden" value="${comment.comment_seq }"/>
 														</c:if>
-													</label>
+												</label>
 												</span>&nbsp;
 											</div>
 
@@ -206,14 +204,19 @@
 										</div>
 									</div>
 									</c:if>
+								</td>	
+									<td width=480px style="text-align: right; font-size: 16px"><fmt:formatDate value="${comment.date }" pattern="yyyy-MM-dd"/></td>	
+								</tr>								
+								<tr>
+									<td colspan="4" style="text-align: left">
+											<pre>${comment.content }</pre>
+											<br>
 									</td>
 								</tr>
 							</table>
 						</div>
 					</div>
-					<div class="comment_content">
-						<pre>${comment.content }</pre>
-					</div>
+					
 				</div>
 			</c:forEach>
 			<script>
