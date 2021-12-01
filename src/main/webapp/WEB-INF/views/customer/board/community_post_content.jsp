@@ -102,12 +102,13 @@
 						<div style="margin-left: 10px">
 							<img class="img_comment" src="${pageContext.request.contextPath}/resources/user/img/comment.png"><span>${fn:length(comment) }</span>
 						</div>
-
+						<c:if test="${nickname ne content.nickname }">
 						<div style="margin-left: 10px">
 							<button type="button" class="btn_police">
 								<img class="img_police" src="${pageContext.request.contextPath}/resources/user/img/police.png" alt="신고버튼">글 신고
 							</button>
 						</div>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -119,14 +120,14 @@
 					<hr>
 					
 					<div>
-<!-- 					<form action="report.do" method="post"> -->
+					<form action="report.do" method="post">
 						<div class="police_category">
 							<span style="padding-right:10px">신고사유</span> 
-							<select id="police_reason" name="police_reason">
+							<select id="police_reason" name="reason">
 								<option value="" >신고 사유 선택</option>
 								<option value="채팅앱유도">다른 채팅앱으로 유도하는 글</option>
 								<option value="광고">광고/홍보 글</option>
-								<option value="중고거래">중거거래 관련 글</option>
+								<option value="중고거래">중고거래 관련 글</option>
 								<option value="반려동물">반려동물 분양/교배 글</option>
 								<option value="부적절">부적절한 글(개인정보 포함·분쟁댓글·금전 요구·음란성 등)</option>
 								<option value="비방">이웃 배제 및 비방 글</option>
@@ -136,18 +137,32 @@
 							</select>
 						</div>
 						<div class="write_police_reason">
-							<textarea style="border:1px solid lightgray" rows="10" cols="15"></textarea>
+							<textarea name="content" style="border:1px solid lightgray" rows="10" cols="15"></textarea>
 						</div>
 						<br>
 						<div style="text-align: center">
+							<input type="hidden" name="market_seq" value="${content.community_seq }"/>
+							<input type="hidden" name="reporter" value="${nickname }"/>
+							<input type="hidden" name="reported" value="${content.nickname }"/>
+							<input type="hidden" name='url' value="communityBoard.do?seq=${content.community_seq }">
 							<button disabled id="modal_police_btn" style="width: 90px; font-size: 15px">신고</button>
 							<button type="button" class="modal_cancle_btn" style="width: 90px; font-size: 15px">취소</button>
 						</div>
-<!-- 					</form> -->
+					</form>
 					</div>
 				</div>
 				<a style="cursor: pointer; color: gray" class="modal_close_btn">X</a>
 			</div>
+			<script>
+				//신고하기 select box 선택 사유가 없을 경우 버튼 비활성화
+			 	$("#police_reason").change(function(){
+					if($("#police_reason").val() == ''){
+						$("#modal_police_btn").attr("disabled",true);
+									
+					}else{
+						$("#modal_police_btn").attr("disabled",false);
+				}
+			</script>
 			
 			<hr style="margin-right: 20px">
 			<br>
@@ -172,6 +187,7 @@
 													<label style="cursor: pointer; margin-left:15px; margin-right:5px" for="re-reply1"> 
 														<c:if test="${nickname eq comment.nickname }">
 														<input type="button" class="btn_delete_comment" value="삭제"/>
+														<input type="hidden" value="${comment.comment_seq }"/>
 														</c:if>
 													</label>
 												</span>&nbsp;
@@ -181,12 +197,15 @@
 									</div>
 								</td>
 								<td>
+									<c:if test="${nickname ne comment.nickname }">
 									<div class="reply_police2">
 										<div style="margin-left: 10px">
 											<button type="button" class="btn_police_comment">
 												<img class="img_police" src="${pageContext.request.contextPath}/resources/user/img/police.png" alt="신고버튼">
 											</button>
 										</div>
+									</div>
+									</c:if>
 									</td>
 								</tr>
 							</table>
@@ -197,6 +216,24 @@
 					</div>
 				</div>
 			</c:forEach>
+			<script>
+				$(".btn_delete_comment").click(function(){
+					var seq = $(this).next().val();
+					var check = confirm("삭제하시겠습니까?");
+					if(check) {
+						$.ajax({
+							url : "/deleteCommunityComment.do",
+							type : "post",
+							data : {
+								seq : seq
+							},
+							success : function(data) {
+								location.reload();
+							}
+						});
+					}
+				});							
+			</script>
 			<!-- 댓글달기(고정) -->
 			<div class="write_comment_area rereply-off" id="comment-form1">
 				<p style="font-size: 18px">댓글쓰기</p>

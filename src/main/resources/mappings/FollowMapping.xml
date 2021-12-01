@@ -7,62 +7,68 @@
 		<result property="following" column="FOLLOWING" />
 		<result property="follower" column="FOLLOWER" />
 	</resultMap>
-	
+
 	<select id="getFollowCount" resultType="followCount" parameterType="string">
-		SELECT (SELECT count(*) FROM follow WHERE standard = #{nickname}) as following, (SELECT count(*) FROM follow WHERE target = #{nickname}) as follower 
+		SELECT (SELECT count(*) FROM follow WHERE standard = #{nickname}) as following, (SELECT count(*) FROM follow WHERE target = #{nickname}) as follower
 	</select>
-	
+
 	<resultMap type="followers" id="followersResult">
-		<result property="nickname" column="NICKNAME"/>
-		<result property="rating" column="RATING"/>
-		<result property="follower" column="FOLLOWER"/>
-		<result property="profile" column="PROFILE"/>
-		<result property="content" column="CONTENT"/>
-		<result property="status" column="STATUS"/>
+		<result property="nickname" column="NICKNAME" />
+		<result property="rating" column="RATING" />
+		<result property="follower" column="FOLLOWER" />
+		<result property="profile" column="PROFILE" />
+		<result property="content" column="CONTENT" />
+		<result property="status" column="STATUS" />
 	</resultMap>
-	
+
 	<select id="getFollowers" resultType="followers" parameterType="string">
-		SELECT dod.*, be.target AS status FROM (SELECT n.nickname, n.rating, n.follower, n.profile, m.content FROM (SELECT q.nickname, q.rating, p.follower, q.profile FROM (
-		(SELECT DISTINCT nickname, rating, profile FROM member as m JOIN follow as f ON m.nickname = f.target) as q 
-		JOIN 
-		(SELECT follower, nickname FROM ((SELECT count(target) as follower, target as nickname FROM follow GROUP BY target) as a 
-		JOIN (SELECT standard FROM follow WHERE target = #{nickname}) as b ON a.nickname = b.standard) AS c) as p ON q.nickname = p.nickname)) as n JOIN (
-		SELECT nickname, count(*) as content FROM marketBoard GROUP BY nickname) as m ON n.nickname = m.nickname) as dod
+		SELECT two.* FROM (SELECT standard FROM follow WHERE target = #{nickname}) AS one JOIN
+		(SELECT dod.*, be.target AS status FROM
+		(SELECT n.nickname, n.rating, n.follower, n.profile, m.content FROM
+		(SELECT q.nickname, q.rating, p.follower, q.profile FROM
+		(
+		(SELECT DISTINCT nickname, rating, profile FROM member as m JOIN follow as f ON m.nickname = f.standard) as q
 		LEFT JOIN
-		(SELECT a.target FROM 
-		(SELECT * FROM follow where standard = #{nickname}) AS a 
+		(SELECT follower, nickname FROM (
+		(SELECT count(target) as follower, target as nickname FROM follow GROUP BY target) as a
 		JOIN
-		(SELECT * FROM follow) AS b
-		ON
-		a.standard = b.target AND a.target = b.standard) as be
-		on dod.nickname = be.target;
+		(SELECT standard FROM follow WHERE target = #{nickname}) as b ON a.nickname = b.standard)
+		AS c) AS p ON q.nickname = p.nickname)) as n
+		JOIN
+		(SELECT nickname, count(*) as content FROM marketBoard GROUP BY nickname) as m ON n.nickname = m.nickname) as dod
+		LEFT JOIN
+		(SELECT a.target FROM
+		(SELECT * FROM follow where standard = #{nickname}) AS a
+		JOIN
+		(SELECT * FROM follow) AS b ON a.standard = b.target AND a.target = b.standard) as be
+		on dod.nickname = be.target) AS two ON one.standard = two.nickname;
 	</select>
-	
+
 	<resultMap type="followings" id="followingsResult">
-		<result property="nickname" column="NICKNAME"/>
-		<result property="rating" column="RATING"/>
-		<result property="following" column="FOLLOWING"/>
-		<result property="profile" column="PROFILE"/>
-		<result property="content" column="CONTENT"/>
+		<result property="nickname" column="NICKNAME" />
+		<result property="rating" column="RATING" />
+		<result property="following" column="FOLLOWING" />
+		<result property="profile" column="PROFILE" />
+		<result property="content" column="CONTENT" />
 	</resultMap>
-	
+
 	<select id="getFollowings" resultType="followings" parameterType="string">
 		SELECT n.nickname, n.rating, n.following, n.profile, m.content FROM (SELECT q.nickname, q.rating, p.follower as following, q.profile FROM (
-		(SELECT DISTINCT nickname, rating, profile FROM member as m JOIN follow as f ON m.nickname = f.target) as q 
-		JOIN 
-		(SELECT follower, nickname FROM ((SELECT count(target) as follower, target as nickname FROM follow GROUP BY target) as a 
+		(SELECT DISTINCT nickname, rating, profile FROM member as m JOIN follow as f ON m.nickname = f.target) as q
+		JOIN
+		(SELECT follower, nickname FROM ((SELECT count(target) as follower, target as nickname FROM follow GROUP BY target) as a
 		JOIN (SELECT target FROM follow WHERE standard = #{nickname}) as b ON a.nickname = b.target) AS c) as p ON q.nickname = p.nickname)) as n JOIN (
 		SELECT nickname, count(*) as content FROM marketBoard GROUP BY nickname) as m ON n.nickname = m.nickname;
 	</select>
-	
+
 	<select id="getCheck" resultType="followings" parameterType="followings">
-		SELECT standard AS nickname, target AS following FROM follow WHERE standard = #{nickname} AND target = #{following} 
+		SELECT standard AS nickname, target AS following FROM follow WHERE standard = #{nickname} AND target = #{following}
 	</select>
-	
+
 	<insert id="insertFollow" parameterType="followings">
 		INSERT INTO follow(standard, target) VALUES(#{nickname}, #{following})
 	</insert>
-	
+
 	<delete id="deleteFollow" parameterType="followings">
 		DELETE FROM follow WHERE standard = #{nickname} AND target = #{following}
 	</delete>

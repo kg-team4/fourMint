@@ -1,6 +1,8 @@
 package four.mint.web.admin;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -605,14 +607,19 @@ public class AdminController {
 	}
 
 	@RequestMapping(value ="/updateStatus.mdo" , method = RequestMethod.POST)
-	public String updateStatus(HttpServletRequest request) {
+	public String updateStatus(HttpServletRequest request) throws UnsupportedEncodingException {
 		int seq = Integer.parseInt(request.getParameter("transaction_seq"));
 		AdminTransactionHistoryVO vo = adminTransactionHistoryService.getSelectOne(seq);
-		vo.setStatus(request.getParameter("status"));
-		vo.setMerchant_uid(request.getParameter("merchant_uid"));
+			vo.setStatus(request.getParameter("status"));
+			vo.setMerchant_uid(request.getParameter("merchant_uid"));
 		adminTransactionHistoryService.updateStatus(vo);
 		
-		return "redirect:/storestatus.mdo";
+		String[] temp = vo.getStatus().split(" ");
+		System.out.println(temp[0]);
+		System.out.println(temp[1]);
+		System.out.println(temp[2]);
+		
+		return "redirect:/storestatus.mdo?status="+ URLEncoder.encode(temp[0].toString(), "UTF-8") + "+" + URLEncoder.encode(temp[1].toString(), "UTF-8") + "+" + URLEncoder.encode(temp[2].toString(), "UTF-8");
 	}
 	
 	@RequestMapping(value ="/updateProcess.mdo" , method = RequestMethod.POST)

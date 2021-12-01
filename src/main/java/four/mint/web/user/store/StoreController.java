@@ -186,7 +186,6 @@ public class StoreController {
 		int limit = 9;
 		svo.setPage(1);
 		int listCount = storeService.getKindCount(svo);
-		svo.setRnum(listCount);
 		int maxPage = (listCount + limit - 1) / limit;
 		
 		if (currentPage == null) {
@@ -251,6 +250,18 @@ public class StoreController {
 		request.setAttribute("price", price);
 		request.setAttribute("delivery", delivery);
 		
+		UserVO uVO = userService.getUserFromNickname(String.valueOf(session.getAttribute("nickname")));
+
+		request.setAttribute("user", uVO);
+		
+		String phone1 = uVO.getPhone().substring(0, 3);
+		String phone2 = uVO.getPhone().substring(3, 7);
+		String phone3 = uVO.getPhone().substring(7);
+		
+		request.setAttribute("phone1", phone1);
+		request.setAttribute("phone2", phone2);
+		request.setAttribute("phone3", phone3);
+		
 		return "/pay/order";
 	}
 	
@@ -285,6 +296,18 @@ public class StoreController {
 		request.setAttribute("price", price);
 		request.setAttribute("delivery", delivery);
 		request.setAttribute("cart", cVO.getCart_id());
+		
+		UserVO uVO = userService.getUserFromNickname(String.valueOf(session.getAttribute("nickname")));
+
+		request.setAttribute("user", uVO);
+		
+		String phone1 = uVO.getPhone().substring(0, 3);
+		String phone2 = uVO.getPhone().substring(3, 7);
+		String phone3 = uVO.getPhone().substring(7);
+		
+		request.setAttribute("phone1", phone1);
+		request.setAttribute("phone2", phone2);
+		request.setAttribute("phone3", phone3);
 		
 		return "/pay/order";
 	}
@@ -415,8 +438,17 @@ public class StoreController {
 		vo.setStore_seq(id);
 		vo.setUrl(url);
 		vo.setProduct_name(name);
-
-		storeService.insertCart(vo);
+		
+		CartVO temp = storeService.getCart(vo);
+		if(temp != null) {
+			temp.setAmount(temp.getAmount() + vo.getAmount());
+			if(temp.getAmount() > 10) {
+				temp.setAmount(10);
+			}
+			storeService.updateCart(temp);
+		} else {
+			storeService.insertCart(vo);
+		}
 	}
 
 	@ResponseBody

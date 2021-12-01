@@ -508,211 +508,211 @@
 								
 								
 								
-								<!-- 이름을 눌렀을 때 프로필 모달창 띄우기 --> 
-									<div id="popup01">
-									    <div class="close">X</div>
-									    <!-- tab 이외의 내부 내용 -->
-									    <div style="padding-left:11px">
-									    	<div id="my_info_edit_title">
-												<div class="padding-top30">
-													<div class="float-box float-left">
-														<div class="left-item25  pic-align left-font" style="padding-left:30px" >
-															<img class="reply-pic-circle" src="${user.profile } ">
-														</div>
-														<div class="right-item75">
-															<div class="top-margin10 left-font seller">
-																<!-- 작성자 -->
-																<div id="member-form">
-																	<div style="font-size: 22px; color:#26e4ca">닉네임 </div>
-																	<div class="seller_grade">
-																		<img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지">
-																		<img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지">
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<br>
-											<!-- End tab 이외의 내부 내용 -->
-											<!-- tab -->
-											<div class="tab">
-												<ul class="tabnav">
-													<li><a href="#tab01">판매 상품</a></li>
-													<li><a href="#tab02">작성한 커뮤니티 글</a></li>
-													<li><a href="#tab03">받은 거래 후기</a></li>
-												</ul>
-												<div class="tabcontent">
-													<div id="tab01">
-														<div class="info_grid">
-															<c:forEach var="market" items="${market }">
-																<div class="sell_list">
-																	<table width="100%" height="120" style="padding-top: 20px">
+<!-- 								이름을 눌렀을 때 프로필 모달창 띄우기  -->
+<!-- 									<div id="popup01"> -->
+<!-- 									    <div class="close">X</div> -->
+<!-- 									    tab 이외의 내부 내용 -->
+<!-- 									    <div style="padding-left:11px"> -->
+<!-- 									    	<div id="my_info_edit_title"> -->
+<!-- 												<div class="padding-top30"> -->
+<!-- 													<div class="float-box float-left"> -->
+<!-- 														<div class="left-item25  pic-align left-font" style="padding-left:30px" > -->
+<%-- 															<img class="reply-pic-circle" src="${user.profile } "> --%>
+<!-- 														</div> -->
+<!-- 														<div class="right-item75"> -->
+<!-- 															<div class="top-margin10 left-font seller"> -->
+<!-- 																작성자 -->
+<!-- 																<div id="member-form"> -->
+<!-- 																	<div style="font-size: 22px; color:#26e4ca">닉네임 </div> -->
+<!-- 																	<div class="seller_grade"> -->
+<%-- 																		<img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> --%>
+<%-- 																		<img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> --%>
+<!-- 																	</div> -->
+<!-- 																</div> -->
+<!-- 															</div> -->
+<!-- 														</div> -->
+<!-- 													</div> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 											<br> -->
+<!-- 											End tab 이외의 내부 내용 -->
+<!-- 											tab -->
+<!-- 											<div class="tab"> -->
+<!-- 												<ul class="tabnav"> -->
+<!-- 													<li><a href="#tab01">판매 상품</a></li> -->
+<!-- 													<li><a href="#tab02">작성한 커뮤니티 글</a></li> -->
+<!-- 													<li><a href="#tab03">받은 거래 후기</a></li> -->
+<!-- 												</ul> -->
+<!-- 												<div class="tabcontent"> -->
+<!-- 													<div id="tab01"> -->
+<!-- 														<div class="info_grid"> -->
+<%-- 															<c:forEach var="market" items="${market }"> --%>
+<!-- 																<div class="sell_list"> -->
+<!-- 																	<table width="100%" height="120" style="padding-top: 20px"> -->
 																		
-																			<tr height="30">
+<!-- 																			<tr height="30"> -->
 																				
-																				<td align="left" style="font-size: 15px">&nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${market.date }" /></td>
-																				<td width="70%"></td>
-																			</tr>
-																			<tr>
-																				<td rowspan="3"><a id="store_review_img_area" href="#">
-																						<div id="product_img_box">
-																							<img id="sell_product_img" src="${market.url}" alt="판매상품이미지">
-																						</div>
-																				</a></td>
-																				<td style="font-size: 18px"><a href="#" style="color: #26e4ca">${market.product_name }</a></td>
-																			</tr>
-																			<tr>
-																				<td style="font-size: 15px">${market.product_price } &nbsp;원</td>
-																			</tr>
-																			<tr>
-																				<td>
-																					<c:choose>
-																						<c:when test="${market.status eq 1}">
-																							<button id="btn_sell_product_state">판매중</button>
-																						</c:when>
-																						<c:otherwise>
-																							<button id="btn_sell_product_state">판매 완료</button>
-																						</c:otherwise>
-																					</c:choose>
-																				</td>
-																			</tr>
-																	</table>
-																	<br>
-																	<hr>
-																	<br>
-																</div>
-															<br>
-															</c:forEach>
-														</div>
-													</div>
-													<c:choose>
-														<c:when test="${community ne null }">
-															<c:forEach var="community" items="${community }">
-																<div id="tab02">
-																	<div class="community_post_record">
-																		<table>
-																			<tr>
-																				<td style="text-align: center; padding: 8px;"><div class="community_category">${community.category }</div>&nbsp;</td>
-																				<td style="text-align: center; padding: 8px;"><div class="community_title">${community.title }</div>&nbsp;</td>
-																				<td style="text-align: center; padding: 8px;"><div class="community_date"><fmt:formatDate pattern="yyyy-MM-dd" value="${community.date }" /></div>&nbsp;</td>
-																			</tr>
-																		</table>
-																	</div>
-																	<hr>
-																</div>
-															</c:forEach>
-														</c:when>
-														<c:otherwise>
-															<div class="community_no_post">작성한 커뮤니티 글이 없습니다.</div>
-														</c:otherwise>
-													</c:choose>
+<%-- 																				<td align="left" style="font-size: 15px">&nbsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${market.date }" /></td> --%>
+<!-- 																				<td width="70%"></td> -->
+<!-- 																			</tr> -->
+<!-- 																			<tr> -->
+<!-- 																				<td rowspan="3"><a id="store_review_img_area" href="#"> -->
+<!-- 																						<div id="product_img_box"> -->
+<%-- 																							<img id="sell_product_img" src="${market.url}" alt="판매상품이미지"> --%>
+<!-- 																						</div> -->
+<!-- 																				</a></td> -->
+<%-- 																				<td style="font-size: 18px"><a href="#" style="color: #26e4ca">${market.product_name }</a></td> --%>
+<!-- 																			</tr> -->
+<!-- 																			<tr> -->
+<%-- 																				<td style="font-size: 15px">${market.product_price } &nbsp;원</td> --%>
+<!-- 																			</tr> -->
+<!-- 																			<tr> -->
+<!-- 																				<td> -->
+<%-- 																					<c:choose> --%>
+<%-- 																						<c:when test="${market.status eq 1}"> --%>
+<!-- 																							<button id="btn_sell_product_state">판매중</button> -->
+<%-- 																						</c:when> --%>
+<%-- 																						<c:otherwise> --%>
+<!-- 																							<button id="btn_sell_product_state">판매 완료</button> -->
+<%-- 																						</c:otherwise> --%>
+<%-- 																					</c:choose> --%>
+<!-- 																				</td> -->
+<!-- 																			</tr> -->
+<!-- 																	</table> -->
+<!-- 																	<br> -->
+<!-- 																	<hr> -->
+<!-- 																	<br> -->
+<!-- 																</div> -->
+<!-- 															<br> -->
+<%-- 															</c:forEach> --%>
+<!-- 														</div> -->
+<!-- 													</div> -->
+<%-- 													<c:choose> --%>
+<%-- 														<c:when test="${community ne null }"> --%>
+<%-- 															<c:forEach var="community" items="${community }"> --%>
+<!-- 																<div id="tab02"> -->
+<!-- 																	<div class="community_post_record"> -->
+<!-- 																		<table> -->
+<!-- 																			<tr> -->
+<%-- 																				<td style="text-align: center; padding: 8px;"><div class="community_category">${community.category }</div>&nbsp;</td> --%>
+<%-- 																				<td style="text-align: center; padding: 8px;"><div class="community_title">${community.title }</div>&nbsp;</td> --%>
+<%-- 																				<td style="text-align: center; padding: 8px;"><div class="community_date"><fmt:formatDate pattern="yyyy-MM-dd" value="${community.date }" /></div>&nbsp;</td> --%>
+<!-- 																			</tr> -->
+<!-- 																		</table> -->
+<!-- 																	</div> -->
+<!-- 																	<hr> -->
+<!-- 																</div> -->
+<%-- 															</c:forEach> --%>
+<%-- 														</c:when> --%>
+<%-- 														<c:otherwise> --%>
+<!-- 															<div class="community_no_post">작성한 커뮤니티 글이 없습니다.</div> -->
+<%-- 														</c:otherwise> --%>
+<%-- 													</c:choose> --%>
 													
-													<div id="tab03">
-														<div class="info_grid">
-															<div class="store_review">
-																<table width="100%" height="140">
-																	<tr>
-																		<td width="20%" rowspan="2" style="padding: 10px">
-																			<div id="img_box">
-																				<a id="market_review_img_area" href="#"> <img id="store_review_img" src="${pageContext.request.contextPath}/resources/user/img/character_sample2.jpg" width="100" height="100" alt="상점이미지">
-																				</a>
-																			</div>
-																		</td>
-																		<td style="font-size: 20px" width="10%" height="40px"><div  style="color: #26e4ca;">닉네임</div></td>
-																		<td width="30%">
-																			<div class="">
-																				<a class="" href="#"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png"
-																					width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지">
-																				</a>
-																			</div>
-																		</td>
-																		<td style="font-size: 15px" width="10%">
-																			<div id="date" style="text-align: right">1달 전</div>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td align="left" colspan="4" style="font-size: 15px">
-																			<button id="btn_sold_product_name">
-																				&nbsp;에스파 지젤 포토카드 <img src="${pageContext.request.contextPath}/resources/user/img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
-																			</button>
-																			<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
-																		</td>
-																	</tr>
-																</table>
-																<br>
-																<hr>
-															</div>
-															<br>
-															<div class="store_review">
-																<table width="100%" height="120">
-																	<tr height="30">
-																		<td width="20%" rowspan="2" style="padding: 10px"><a id="market_review_img_area" href="#">
-																				<div id="img_box">
-																					<img id="store_review_img" src="${pageContext.request.contextPath}/resources/user/img/character_sample1.jpg" alt="상점이미지">
-																				</div>
-																		</a></td>
-																		<td style="font-size: 20px" width="10%"><a href="#" style="color: #26e4ca">닉네임</a></td>
-																		<td width="30%"><a class="" href="#">
-																				<div class="">
-																					<img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14"
-																						alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지">
-																				</div>
-																		</a></td>
-																		<td style="font-size: 15px" width="10%">
-																			<div id="date" style="text-align: right">1달 전</div>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td align="left" colspan="4" style="font-size: 15px">
-																			<button id="btn_sold_product_name">
-																				&nbsp;에스파 지젤 포토카드 <img src="${pageContext.request.contextPath}/resources/user/img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
-																			</button>
-																			<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div>
-																		</td>
-																	</tr>
-																</table>
-																<br>
-																<hr>
-															</div>
-															<div class="transmit_no_post">받은 거래 후기가 없습니다.</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										<!--End tab-->										
-									    </div>		    
-									</div>
-								<script>
-								/*상품 후기 작성자 및 팔로우 팔로워 프로필 모달*/
-								  $(document).ready(function( $ ){     
-								    $(".reviewer_nick").on("click", function(event) {  //팝업오픈 버튼 누르면
-								    $("#popup01").show();   //팝업 오픈
-								    $("body").append('<div class="backon"></div>'); //뒷배경 생성
-								    });
+<!-- 													<div id="tab03"> -->
+<!-- 														<div class="info_grid"> -->
+<!-- 															<div class="store_review"> -->
+<!-- 																<table width="100%" height="140"> -->
+<!-- 																	<tr> -->
+<!-- 																		<td width="20%" rowspan="2" style="padding: 10px"> -->
+<!-- 																			<div id="img_box"> -->
+<%-- 																				<a id="market_review_img_area" href="#"> <img id="store_review_img" src="${pageContext.request.contextPath}/resources/user/img/character_sample2.jpg" width="100" height="100" alt="상점이미지"> --%>
+<!-- 																				</a> -->
+<!-- 																			</div> -->
+<!-- 																		</td> -->
+<!-- 																		<td style="font-size: 20px" width="10%" height="40px"><div  style="color: #26e4ca;">닉네임</div></td> -->
+<!-- 																		<td width="30%"> -->
+<!-- 																			<div class=""> -->
+<%-- 																				<a class="" href="#"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" --%>
+<%-- 																					width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> --%>
+<!-- 																				</a> -->
+<!-- 																			</div> -->
+<!-- 																		</td> -->
+<!-- 																		<td style="font-size: 15px" width="10%"> -->
+<!-- 																			<div id="date" style="text-align: right">1달 전</div> -->
+<!-- 																		</td> -->
+<!-- 																	</tr> -->
+<!-- 																	<tr> -->
+<!-- 																		<td align="left" colspan="4" style="font-size: 15px"> -->
+<!-- 																			<button id="btn_sold_product_name"> -->
+<%-- 																				&nbsp;에스파 지젤 포토카드 <img src="${pageContext.request.contextPath}/resources/user/img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp; --%>
+<!-- 																			</button> -->
+<!-- 																			<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div> -->
+<!-- 																		</td> -->
+<!-- 																	</tr> -->
+<!-- 																</table> -->
+<!-- 																<br> -->
+<!-- 																<hr> -->
+<!-- 															</div> -->
+<!-- 															<br> -->
+<!-- 															<div class="store_review"> -->
+<!-- 																<table width="100%" height="120"> -->
+<!-- 																	<tr height="30"> -->
+<!-- 																		<td width="20%" rowspan="2" style="padding: 10px"><a id="market_review_img_area" href="#"> -->
+<!-- 																				<div id="img_box"> -->
+<%-- 																					<img id="store_review_img" src="${pageContext.request.contextPath}/resources/user/img/character_sample1.jpg" alt="상점이미지"> --%>
+<!-- 																				</div> -->
+<!-- 																		</a></td> -->
+<!-- 																		<td style="font-size: 20px" width="10%"><a href="#" style="color: #26e4ca">닉네임</a></td> -->
+<!-- 																		<td width="30%"><a class="" href="#"> -->
+<!-- 																				<div class=""> -->
+<%-- 																					<img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" --%>
+<%-- 																						alt="별점이미지"> <img src="${pageContext.request.contextPath}/resources/user/img/star_rank.png" width="15" height="14" alt="별점이미지"> --%>
+<!-- 																				</div> -->
+<!-- 																		</a></td> -->
+<!-- 																		<td style="font-size: 15px" width="10%"> -->
+<!-- 																			<div id="date" style="text-align: right">1달 전</div> -->
+<!-- 																		</td> -->
+<!-- 																	</tr> -->
+<!-- 																	<tr> -->
+<!-- 																		<td align="left" colspan="4" style="font-size: 15px"> -->
+<!-- 																			<button id="btn_sold_product_name"> -->
+<%-- 																				&nbsp;에스파 지젤 포토카드 <img src="${pageContext.request.contextPath}/resources/user/img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp; --%>
+<!-- 																			</button> -->
+<!-- 																			<div id="sold_product_review">빠른 쿨거래 해주셔서 너무 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌 좋았어요!나불나불나불나불나불어찌고저찌고저찌고나불나불나불나불나불어찌고저찌고저찌</div> -->
+<!-- 																		</td> -->
+<!-- 																	</tr> -->
+<!-- 																</table> -->
+<!-- 																<br> -->
+<!-- 																<hr> -->
+<!-- 															</div> -->
+<!-- 															<div class="transmit_no_post">받은 거래 후기가 없습니다.</div> -->
+<!-- 														</div> -->
+<!-- 													</div> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 										End tab										 -->
+<!-- 									    </div>		     -->
+<!-- 									</div> -->
+<!-- 								<script> -->
+<!-- // 								/*상품 후기 작성자 및 팔로우 팔로워 프로필 모달*/ -->
+<!-- // 								  $(document).ready(function( $ ){      -->
+<!-- // 								    $(".reviewer_nick").on("click", function(event) {  //팝업오픈 버튼 누르면 -->
+<!-- // 								    $("#popup01").show();   //팝업 오픈 -->
+<!-- // 								    $("body").append('<div class="backon"></div>'); //뒷배경 생성 -->
+<!-- // 								    }); -->
 								    
-								    $("body").on("click", function(event) { 
-								        if(event.target.className == 'close' || event.target.className == 'backon'){
-								            $("#popup01").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제
-								              $(".backon").hide();
-								        }
-								      });
+<!-- // 								    $("body").on("click", function(event) {  -->
+<!-- // 								        if(event.target.className == 'close' || event.target.className == 'backon'){ -->
+<!-- // 								            $("#popup01").hide(); //close버튼 이거나 뒷배경 클릭시 팝업 삭제 -->
+<!-- // 								              $(".backon").hide(); -->
+<!-- // 								        } -->
+<!-- // 								      }); -->
 								 
-								  });
+<!-- // 								  }); -->
 								  
-								//tab 만들기 
-									$(function(){
-										  $('.tabcontent > div').hide();
-										  $('.tabnav a').click(function () {
-										    $('.tabcontent > div').hide().filter(this.hash).fadeIn();
-										    $('.tabnav a').removeClass('active');
-										    $(this).addClass('active');
-										    return false;
-										  }).filter(':eq(0)').click();
-										  });
+<!-- // 								//tab 만들기  -->
+<!-- // 									$(function(){ -->
+<!-- // 										  $('.tabcontent > div').hide(); -->
+<!-- // 										  $('.tabnav a').click(function () { -->
+<!-- // 										    $('.tabcontent > div').hide().filter(this.hash).fadeIn(); -->
+<!-- // 										    $('.tabnav a').removeClass('active'); -->
+<!-- // 										    $(this).addClass('active'); -->
+<!-- // 										    return false; -->
+<!-- // 										  }).filter(':eq(0)').click(); -->
+<!-- // 										  }); -->
 
-								</script>
+<!-- 								</script> -->
 
 
 
@@ -822,7 +822,17 @@
 													<a class="" style="color: #26e4ca">${followers.nickname }</a>
 												</div>
 												<div>
-													<span class="">상품</span> <span><a class="" href="#" style="color: #26e4ca">${followers.content }</a> &nbsp;|&nbsp; </span> <span class="">팔로워</span> <span><a class="" href="#" style="color: #26e4ca">${followers.follower }</a></span>
+													<span class="">상품</span> <span><a class="" href="#" style="color: #26e4ca">${followers.content }</a> &nbsp;|&nbsp; </span> 
+													<span class="">팔로워</span> <span><a class="" href="#" style="color: #26e4ca">
+													<c:choose>
+													<c:when test="${followers.follower eq null }">
+													0
+													</c:when>
+													<c:otherwise>
+													${followers.follower}
+													</c:otherwise>
+													</c:choose>
+													</a></span>
 												</div>
 											</div>
 											<div class="">
@@ -1897,9 +1907,9 @@
 										</tr>
 										<tr>
 											<td rowspan="3"><a id="store_review_img_area" href="#">
-													<div id="product_img_box">
-														<img id="sell_product_img" src="${mlike.url }" alt="판매상품이미지">
-													</div>
+												<div id="product_img_box">
+													<img id="sell_product_img" src="${mlike.url }" alt="판매상품이미지">
+												</div>
 											</a></td>
 											<td style="font-size: 18px"><a href="marketBoard.do?seq=${mlike.market_seq }" style="color: #26e4ca">${mlike.product_name }</a></td>
 										</tr>
@@ -1929,7 +1939,7 @@
 												seq : seq
 											},
 											success : function(data) {
-												
+												location.href="profile.do";
 											}
 										});
 									}
@@ -1985,7 +1995,7 @@
 												seq : seq
 											},
 											success : function(data) {
-												
+												location.href="profile.do";
 											}
 										});
 									}

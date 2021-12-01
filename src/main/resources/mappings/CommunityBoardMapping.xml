@@ -32,10 +32,13 @@
 	</insert>
 	
 	<select id="getKindCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
-		SELECT count(title) FROM (SELECT * FROM community 
-			<if test='!keyword.equals("%%")'>
+		SELECT count(*) FROM (SELECT * FROM community 
+			<if test='option != null'>
 				<if test='option.equals("title")'>
 					WHERE title LIKE #{keyword} 
+				</if>
+				<if test='option.equals("content")'>
+					WHERE content LIKE #{keyword} 
 				</if>
 			</if>
 		) AS a WHERE category = #{kind} AND address2 LIKE #{address}
@@ -43,7 +46,7 @@
 	
 	<select id="getKindList" resultType="communityBoard" parameterType="string">
 		<![CDATA[SELECT b.*, d.comments FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM (SELECT * FROM community]]> 
-		<if test='!keyword.equals("%%")'>
+		<if test='option != null'>
 			<if test='option.equals("title")'>
 				WHERE title LIKE #{keyword} 
 			</if>

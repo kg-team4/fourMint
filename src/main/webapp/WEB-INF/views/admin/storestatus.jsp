@@ -192,7 +192,7 @@
 			<%@ include file="footer.jsp"%>
 
 			<!-- Bootstrap core JavaScript-->
-			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/admin/js/storeTransactionStatusPage.js"></script>
+			<script src="${pageContext.request.contextPath}/resources/admin/js/storeTransactionStatusPage.js"></script>
 			<script>
 				$(".detail_list").click(function() {
 					$("#detail_product_name").val($(this).parent().prev().prev().prev().prev().prev().text());

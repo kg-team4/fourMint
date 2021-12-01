@@ -152,28 +152,10 @@ public class CommunityBoardController {
 		request.setAttribute("option", svo.getOption());
 		
 		String kind = request.getParameter("kind");
-		String arrow = request.getParameter("arrow");
 		
 		/* 페이징 처리 시작 */
 		String currentPage = request.getParameter("pageNum");
 		int page;
-
-		if (currentPage == null) {
-			page = 1;
-		} else {
-			page = Integer.parseInt(currentPage);
-		}
-
-		if (arrow != null) {
-			if (arrow.equals("prev")) {
-				page = (page - 1) / 5 + ((page - 1) / 5) * 4;
-				if (page < 1) {
-					page = 1;
-				}
-			} else if (arrow.equals("next")) {
-				page = (page + 6) / 6 + (5 * ((page + 6) / 6)) - ((page - 1) / 5);
-			}
-		}
 		
 		String address = (String) session.getAttribute("address2");
 		String[] temp = address.split(" ");
@@ -185,21 +167,35 @@ public class CommunityBoardController {
 		
 		address = "%" + address.substring(0, 2) + "%";
 		svo.setAddress(address);
+
+		int limit = 9;
+		svo.setPage(1);
+		int listCount = communityBoardService.getKindCount(svo);
+		int maxPage = (listCount + limit - 1) / limit;
+		
+		if (currentPage == null) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(currentPage);
+		}
+
+		String arrow = request.getParameter("arrow");
+		if(arrow != null) {
+			if(arrow.equals("prev")) {
+				page = (page - 1) / 5 + ((page - 1) / 5) * 4;
+				if (page < 1) {
+					page = 1;
+				}
+			} else if (arrow.equals("next")) {
+				page = (page + 6) / 6 + (5 * ((page + 6) / 6)) - ((page - 1) / 5);
+				if(page > maxPage) {
+					page = maxPage;
+				}
+			}
+		}
 		
 		svo.setKind(kind);
 
-		if (page > Math.round((double) communityBoardService.getKindCount(svo) / 9)) {
-			page = (int) Math.round((double) communityBoardService.getKindCount(svo) / 9) + 1;
-		}
-
-		request.setAttribute("pageNum", page);
-
-		int limit = 9;
-
-		svo.setPage(page);
-		int listCount = communityBoardService.getKindCount(svo);
-		svo.setRnum(listCount);
-		int maxPage = (listCount + limit - 1) / limit;
 		int startPage = ((page - 1) / 5) * 5 + 1;
 		int endPage = startPage + 5 - 1;
 		if (endPage > maxPage)
@@ -208,8 +204,8 @@ public class CommunityBoardController {
 			page = endPage;
 		/* 페이징 처리 끝 */
 
-		List<CommunityBoardVO> sVo;
-		sVo = communityBoardService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
+		svo.setPage(page);
+		List<CommunityBoardVO> sVo = communityBoardService.getKindList(svo); // 카테고리에 해당하는 부분만 불러오기
 
 		request.setAttribute("kind", kind);
 		request.setAttribute("maxPage", maxPage);
@@ -217,6 +213,7 @@ public class CommunityBoardController {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("listCount", listCount);
 		request.setAttribute("list", sVo);
+		request.setAttribute("pageNum", page);
 		
 		return "/board/community_post_list";
 	}
