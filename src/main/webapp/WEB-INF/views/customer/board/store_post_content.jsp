@@ -236,7 +236,7 @@
 										<div>
 											<div class="police_category">
 												<div style="font-size:18px">
-													<span style="color: #26e4ca">구매한 상품명</span>에 대한 평점 남기기
+													<span style="color: #26e4ca">${content.product_name }</span>에 대한 평점 남기기
 												</div>
 											</div>
 											<div class="rating">

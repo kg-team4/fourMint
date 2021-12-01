@@ -116,6 +116,7 @@ hr{
 									<input type="hidden" name="market_seq" value="${content.market_seq }"/>
 									<input type="hidden" name="reporter" value="${nickname }"/>
 									<input type="hidden" name="reported" value="${content.nickname }"/>
+									<input type="hidden" name="url" value="marketBoard.do?seq=${content.market_seq }"/>
 									<button disabled id="modal_police_btn" style="width: 90px; font-size: 15px">신고</button>
 									<button type="button" class="modal_close_btn" style="background: none; border: none;">X</button>
 								</div>
@@ -486,7 +487,7 @@ hr{
 														<td style="font-size: 18px"><a href="marketBoard.do?seq=${market.market_seq }" style="color: #26e4ca">${market.product_name }</a></td>
 													</tr>
 													<tr>
-														<td style="font-size: 15px">${market.product_price } &nbsp;원</td>
+														<td style="font-size: 15px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${market.product_price }" />&nbsp;원</td>
 													</tr>
 													<tr>
 														<td>
@@ -495,7 +496,7 @@ hr{
 																	<button id="btn_sell_product_state">판매중</button>
 																</c:when>
 																<c:otherwise>
-																	<button id="btn_sell_product_state">판매 완료</button>
+																	<button id="btn_sell_product_state" style="background-color: lightgray;">판매 완료</button>
 																</c:otherwise>
 															</c:choose>
 														</td>
@@ -507,10 +508,13 @@ hr{
 										</div>
 									<br>
 									</c:forEach>
+									<c:if test="${market[0] eq null }">
+										<div class="transmit_no_post">판매 물품이 없습니다.</div>
+									</c:if>
 								</div>
 							</div>
 							<c:choose>
-								<c:when test="${community ne null }">
+								<c:when test="${community[0] ne null }">
 									<c:forEach var="community" items="${community }">
 										<div id="tab02">
 											<div class="community_post_record">
@@ -577,7 +581,7 @@ hr{
 									</div>
 									<br>
 									</c:forEach>
-									<c:if test="${rating eq null }">
+									<c:if test="${rating[0] eq null }">
 										<div class="transmit_no_post">받은 거래 후기가 없습니다.</div>
 									</c:if>
 								</div>

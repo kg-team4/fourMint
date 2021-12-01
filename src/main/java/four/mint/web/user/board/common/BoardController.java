@@ -18,8 +18,9 @@ public class BoardController {
 	public String report(HttpServletRequest request, ReportVO rVO) {
 		userService.insertReport(rVO);
 		userService.updateReport(rVO.getReported());
+		String url = request.getParameter("url");
 		
-		return "/board/market_all_post_list";
+		return "redirect:"+url;
 	}
 }
 

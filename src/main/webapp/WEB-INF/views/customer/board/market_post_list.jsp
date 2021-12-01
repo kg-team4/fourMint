@@ -209,7 +209,6 @@
 				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
 				data : {"kind" : kind}, // kind를 kind로 명명하여 보내겠다
 				success : function(data){ 
-				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
 				},
 				error : function(data){
@@ -228,7 +227,6 @@
 				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
 				data : {"kind" : kind, "kindTwo" : kindTwo}, // kind를 kind로 명명하여 보내겠다
 				success : function(data){ 
-				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
 				},
 				error : function(data){
@@ -250,7 +248,6 @@
 				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
 				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum, "keyword" : search, "option" : option}, // kind를 kind로 명명하여 보내겠다
 				success : function(data){ 
-				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
 				},
 				error : function(data){
@@ -273,7 +270,6 @@
 				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
 				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum, "arrow" : arrow, "keyword" : search, "option" : option}, // kind를 kind로 명명하여 보내겠다
 				success : function(data){ 
-				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
 				},
 				error : function(data){
@@ -296,7 +292,6 @@
 				headers: {"cache-control":"no-cache", "pragma": "no-cache"},
 				data : {"kind" : kind, "kindTwo" : kindTwo, "pageNum" : pageNum, "arrow" : arrow, "keyword" : search, "option" : option}, // kind를 kind로 명명하여 보내겠다
 				success : function(data){ 
-				   console.log(data);
 				   $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
 				},
 				error : function(data){
@@ -322,7 +317,6 @@
 					"option" : option
 				},
 				success : function(data) {
-					console.log(data);
 					$('body').html(data);
 				}
 			})

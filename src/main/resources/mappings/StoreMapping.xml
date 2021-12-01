@@ -37,8 +37,8 @@
 	</insert>
 	
 	<select id="getKindCount" resultType="int" parameterType="four.mint.web.user.board.common.SearchVO">
-		SELECT count(product_name) FROM (SELECT * FROM storeBoard 
-		<if test='!keyword.equals("%%")'>
+		SELECT count(*) FROM (SELECT * FROM storeBoard 
+		<if test='option != null'>
 			<if test='option.equals("title")'>
 				WHERE product_name LIKE #{keyword} 
 			</if>
@@ -48,7 +48,7 @@
 	
 	<select id="getKindList" resultType="store" parameterType="four.mint.web.user.board.common.SearchVO">
 		<![CDATA[SELECT * FROM (SELECT (row_number() over()) AS rnum, * FROM (SELECT * FROM (SELECT * FROM storeBoard]]>
-		<if test='!keyword.equals("%%")'>
+		<if test='option != null'>
 			<if test='option.equals("title")'>
 				WHERE product_name LIKE #{keyword} 
 			</if>
@@ -121,6 +121,10 @@
 		SELECT (product_price * amount) as sum FROM store_cart WHERE cart_id = #{cart_id}
 	</select>
 	
+	<select id="getCartDouble" parameterType="cart" resultType="cart">
+		SELECT * FROM store_cart WHERE nickname = #{nickname} AND store_seq = #{store_seq}
+	</select>
+	
 	<!-- 결제 내역 -->
 	<resultMap type="history" id="historyResult">
 		<result property="transaction_seq" column="TRANSACTION_SEQ" />
@@ -163,7 +167,7 @@
 	</update>
 	
 	<select id="getTransaction" parameterType="history" resultType="history">
-		SELECT * FROM transactionHistory WHERE email_id = #{email_id} AND transaction_seq = #{transaction_seq}
+		SELECT a.*, b.store_seq FROM (SELECT * FROM transactionHistory WHERE email_id = #{email_id}) AS a JOIN (SELECT * FROM storeboard where store_seq = #{transaction_seq}) AS b ON a.product_name = b.product_name;
 	</select>
 	
 	<!-- 좋아요 등록 -->

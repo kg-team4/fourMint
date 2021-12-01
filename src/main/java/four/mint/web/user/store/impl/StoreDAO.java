@@ -172,4 +172,8 @@ public class StoreDAO {
 		}
 		return sqlSessionTemplate.selectOne("StoreDAO.getAvg", seq);
 	}
+
+	public CartVO getCart(CartVO vo) {
+		return sqlSessionTemplate.selectOne("StoreDAO.getCartDouble", vo);
+	}
 }

@@ -218,5 +218,10 @@ public class StoreServiceImpl implements StoreService {
 		return storeDao.getAvg(seq);
 	}
 
+	@Override
+	public CartVO getCart(CartVO vo) {
+		return storeDao.getCart(vo);
+	}
+
 	
 }

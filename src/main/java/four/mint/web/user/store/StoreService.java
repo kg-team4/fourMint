@@ -84,4 +84,6 @@ public interface StoreService {
 	StoreVO getTransactionHistoryOne(StoreVO vo);
 
 	float getAvg(int seq);
+
+	CartVO getCart(CartVO vo);
 }
