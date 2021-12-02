@@ -108,7 +108,6 @@ public class AdminController {
 		
 		vo.setId(String.valueOf(session.getAttribute("admin_id")));
 		vo.setPassword(String.valueOf(session.getAttribute("admin_password")));
-		AdminVO admin = adminService.getAdmin(vo);
 		
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar week = Calendar.getInstance();
@@ -235,8 +234,6 @@ public class AdminController {
 		
 		return "/cards";
 	}
-
-	
 
 	@RequestMapping(value = "/register.mdo", method = RequestMethod.GET)
 	public String register(Locale locale, Model model) {

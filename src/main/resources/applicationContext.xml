@@ -70,8 +70,8 @@
 		<constructor-arg value="AEACaBm1CV" />
 	</bean>
 	<bean id="naverRedirectUrl" class="java.lang.String">
-		<constructor-arg
-			value="https://ec2-13-124-24-33.ap-northeast-2.compute.amazonaws.com/navercallback.do" />
+<!-- 		<constructor-arg value="https://ec2-13-124-24-33.ap-northeast-2.compute.amazonaws.com/navercallback.do" /> -->
+		<constructor-arg value="http://localhost:8080/navercallback.do" />
 	</bean>
 	<bean id="naverSns" class="four.mint.web.user.SnsValue">
 		<constructor-arg value="naver" />
