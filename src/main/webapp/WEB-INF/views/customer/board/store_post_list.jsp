@@ -91,7 +91,7 @@
 		</div>
 	</div>	
 	
-		<div style="text-align: center; width:1350px; padding-top:12px; padding-bottom:40px; margin:auto;" >
+		<div style="text-align: center; width:1500px; padding-top:12px; padding-bottom:40px; margin:auto;" >
 			<c:set var="startPage" value="${ startPage }" />
 			<c:set var="endPage" value="${ endPage }" />
 			<c:set var="pageCount" value="${ maxPage }" />
@@ -195,7 +195,7 @@
 		$("#btn_search").on('click', function(){
 			var kind = "${kind}";
 			var search = $("#search").val();
-			var option = $("#option").val();
+/* 			var option = $("#option").val(); */
 			$.ajax({
 				url : 'storeDetailList.do',
 				type : "post",
@@ -204,7 +204,7 @@
 				data : {
 					"kind" : kind,
 					"keyword" : search,
-					"option" : option
+/* 					"option" : option */
 				},
 				success : function(data) {
 					console.log(data);

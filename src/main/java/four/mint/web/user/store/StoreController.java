@@ -175,6 +175,7 @@ public class StoreController {
 			request.setAttribute("keyword", "");
 			svo.setKeyword("%%");
 		}
+		svo.setOption("title");
 		request.setAttribute("option", svo.getOption());
 		
 		String kind = request.getParameter("kind");

@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/user/js/reply.js"></script>
 
 <article>
-	<!-- 카테RH리 -->
+	<!-- 카테고리 -->
 	<div class="contents_all">
 		<div class="category_list">
 			<div><label class="category_title">소식</label></div>
@@ -177,22 +177,23 @@
 							<table class="commenter_info">
 								<tr style="font-size: 18"> 
 									<td width=120px style="color:#26e4ca">${comment.nickname }</td>
-									
-									<td>
-										<div class="reply_police2">
-											<div style="margin-left: 10px">
-												<span id="re_reply_click_style"> 
-													<label style="cursor: pointer; margin-left:15px; margin-right:5px" for="re-reply1"> 
-														<c:if test="${nickname eq comment.nickname }">
-														<input type="button" class="btn_delete_comment" value="삭제"/>
-														<input type="hidden" value="${comment.comment_seq }"/>
-														</c:if>
-												</label>
-												</span>&nbsp;
-											</div>
-
+								
+								<td>
+								<div>
+									<div class="reply_police2">
+										<div style="margin-left: 10px">
+											<span id="re_reply_click_style"> 
+												<label style="cursor: pointer; margin-left:15px; margin-right:5px" for="re-reply1"> 
+													<c:if test="${nickname eq comment.nickname }">
+													<input type="button" class="btn_delete_comment" value="삭제"/>
+													<input type="hidden" value="${comment.comment_seq }"/>
+													</c:if>
+											</label>
+											</span>&nbsp;
 										</div>
+
 									</div>
+								</div>
 								</td>
 								<td>
 									<c:if test="${nickname ne comment.nickname }">
@@ -205,7 +206,7 @@
 									</div>
 									</c:if>
 								</td>	
-									<td width=480px style="text-align: right; font-size: 16px"><fmt:formatDate value="${comment.date }" pattern="yyyy-MM-dd"/></td>	
+									<td width=473px style="text-align: right; font-size: 16px"><fmt:formatDate value="${comment.date }" pattern="yyyy-MM-dd"/></td>	
 								</tr>								
 								<tr>
 									<td colspan="4" style="text-align: left">

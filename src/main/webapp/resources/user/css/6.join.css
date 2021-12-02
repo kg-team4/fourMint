@@ -15,7 +15,7 @@
 	border-radius: 5px;
 	width: 60px;
 	height: 30px;
-	background-color: #50b9abd0;
+	background-color: #c7c7c7;
 	cursor: pointer;
 	outline: none;
 	box-shadow: 2px 2px 0 rgb(0, 0, 0, 0.5);
@@ -348,6 +348,7 @@ input[name=phone] {
 	background-color: #26e4ca;
 	border: 3px solid #26e4ca;
 	border-radius: 15px;
+	border-bottom:none;
 }
 
 #join-submit:hover {
