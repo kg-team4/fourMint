@@ -2,6 +2,7 @@ package four.mint.web.user.market;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
@@ -336,7 +337,7 @@ public class MarketController {
 	}
 	
 	@PostMapping("deleteMarket.do")
-	public String deleteMarket(HttpServletRequest request, UserVO vo, int seq) throws UnsupportedEncodingException, NoSuchAlgorithmException, GeneralSecurityException {
+	public String deleteMarket(HttpServletRequest request, HttpServletResponse response, UserVO vo, int seq) throws NoSuchAlgorithmException, GeneralSecurityException, IOException {
 		request.setAttribute("seq", seq);
 		String password = userService.getPassword(vo.getEmail_id());
 			AES256Util.setKey(marketService.getKey().getKey());
@@ -344,10 +345,14 @@ public class MarketController {
 			String encoding = aes.encrypt(vo.getPassword());
 		if(password.equals(encoding)) {
 			marketService.deleteMarket(seq);
-
 			return "redirect:marketBoardList.do";
 		} else {
-			return "redirect:deleteMarket.do";
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('비밀번호가 틀렸습니다.'); </script>");
+			out.flush();
+			
+			return "/board/market_delete";
 		}
 	}
 	

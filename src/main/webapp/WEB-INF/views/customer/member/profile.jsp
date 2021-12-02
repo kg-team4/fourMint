@@ -1465,7 +1465,7 @@
 													<tr>
 														<td>
 															<div id="product_img_box">
-																<a id="store_review_img_area" href="#">
+																<a id="store_review_img_area" href="storeBoard.do?seq=${his.store_seq }">
 																	<img id="bought_product_img" src="${his.url }" alt="판매완료상품이미지">
 																</a>
 															</div>
@@ -1513,7 +1513,7 @@
 													<tr>
 														<td>
 															<div id="product_img_box">
-																<a id="store_review_img_area" href="#"> 
+																<a id="store_review_img_area" href="storeBoard.do?seq=${his.store_seq }"> 
 																	<img id="bought_product_img" src="${his.url }" alt="판매완료상품이미지">
 																</a>
 															</div>
@@ -1565,7 +1565,7 @@
 													<tr>
 														<td>
 															<div id="product_img_box">
-																<a id="store_review_img_area" href="#">
+																<a id="store_review_img_area" href="storeBoard.do?seq=${his.store_seq }">
 																	<img id="bought_product_img" src="${his.url }" alt="판매완료상품이미지">
 																</a>
 															</div>
@@ -1617,7 +1617,7 @@
 													<tr>
 														<td>
 															<div id="product_img_box">
-																<a id="store_review_img_area" href="#">
+																<a id="store_review_img_area" href="storeBoard.do?seq=${his.store_seq }">
 																	<img id="bought_product_img" src="${his.url }" alt="판매완료상품이미지">
 																</a>
 															</div>

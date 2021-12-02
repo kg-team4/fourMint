@@ -99,9 +99,9 @@
 						<span class="gray-font">&middot; 배송비</span><span class="green-font">&emsp;2,500원&nbsp;(30,000원 이상 무료배송)</span>
 					</div>
 					<div class="padding15">
-						<span class="gray-font">&middot; 수량 &emsp;</span>
+						<span class="gray-font">&middot; 수량 &emsp;</span><c:if test="${content.product_stock < 11 }"><span style="color: #ff8080;">남은 재고: ${content.product_stock }</span></c:if>
 						<span class="green-font">
-							<input form="form1" class="amount" name="amount" type="number" value="1" autocomplete="off" maxlength="2" style="width: 50px; text-align: right;" min="1" max="10"/>
+							<input form="form1" class="amount" name="amount" type="number" value="1" autocomplete="off" maxlength="2" style="width: 50px; text-align: right;" min="1" max="${content.product_stock }"/>
 						</span>
 					</div>
 				</div>

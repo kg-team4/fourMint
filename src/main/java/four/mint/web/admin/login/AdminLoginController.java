@@ -1,10 +1,13 @@
 package four.mint.web.admin.login;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +34,7 @@ public class AdminLoginController {
 	}
 	
 	@RequestMapping(value ="/login.mdo", method = RequestMethod.POST)
-	public String login(AdminVO vo, HttpSession session, HttpServletRequest request) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
+	public String login(AdminVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws NoSuchAlgorithmException, GeneralSecurityException, IOException {
 		vo.setId(request.getParameter("id"));
 		AES256Util.setKey(marketService.getKey().getKey());
 		AES256Util aes = new AES256Util();
@@ -45,8 +48,12 @@ public class AdminLoginController {
 			
 			return "redirect:home.mdo";
 		} 
-		System.out.println("로그인 실패");
-			
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('아이디 혹은 비밀번호를 확인해주세요'); </script>");
+		out.flush();
+
 		return "/login";
 	}
 }
