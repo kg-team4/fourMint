@@ -18,6 +18,13 @@
 		<result property="delete_date" column="DELETE_DATE" />
 	</resultMap>
 	
+	<resultMap type="chartIndex" id="chart">
+        <result property="transaction_price" column="TRANSACTION_PRICE"/>
+        <result property="product_name" column="PRODUCT_NAME"/>
+        <result property="date" column="DATE"/>
+        <result property="status" column="STATUS"/>
+    </resultMap>
+	
 	<insert id="insertMember" parameterType="adminTable">
 		INSERT INTO deleteMember (email_id, password, name, nickname, phone, address1, address2, address3, birth, gender, date, profile, delete_date ) 
 		VALUES (#{email_id}, #{password}, #{name}, #{nickname}, #{phone}, #{address1}, #{address2}, #{address3}, #{birth}, #{gender}, #{date}, #{profile}, now() )
@@ -61,5 +68,13 @@
 	
 	<select id="orderList" resultType="adminTable">
 		SELECT * FROM member
+	</select>
+	
+	<select id="getIndexResponsiveChart" parameterType="chartIndex" resultType="chartIndex">
+		SELECT sum(o.transaction_price) as sales_amount, COUNT(*) as sales_count, TO_CHAR(date,'yy-MM') as month_chart
+		FROM transactionHistory as o
+		WHERE 1=1 and status='상품 배송 완료' and TO_CHAR(date, 'yyyy-MM-dd') between #{start_date} and #{end_date}
+		GROUP BY TO_CHAR(date, 'yy-MM')
+		ORDER BY month_chart
 	</select>
 </mapper>

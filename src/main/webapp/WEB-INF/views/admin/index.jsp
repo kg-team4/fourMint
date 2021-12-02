@@ -11,19 +11,78 @@
 <meta name="author" content="">
 <link rel="icon" type="image/png" href="http://example.com/myicon.png">
 <title>관리자 페이지</title>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+	crossorigin="anonymous"></script>
+<!--  -->
+<script src="https://kit.fontawesome.com/d0b304acae.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- 폰트 설정 -->
-<link href="${pageContext.request.contextPath}/resources/admin/vendor/fontawesome-free/css/all.min.css"
+<link
+	href="${pageContext.request.contextPath}/resources/admin/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
 <!-- 템플릿 css -->
-<link href="${pageContext.request.contextPath}/resources/admin/css/sb-admin-2.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/resources/admin/css/sb-admin-2.css"
+	rel="stylesheet">
 <!-- 달력 -->
 <link rel="stylesheet"
 	href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="resources/js/join/datepicker.js"></script>
+<script type="text/javascript">
+// Load the Visualization API and the corechart package.
+google.charts.load('current', {'packages':['corechart']});
 
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(drawChart);
+
+// Callback that creates and populates a data table,
+// instantiates the pie chart, passes in the data and
+// draws it.
+function drawChart() {
+
+   // Create the data table.
+   var data = new google.visualization.DataTable();
+   data.addColumn('string', 'Topping');
+   data.addColumn('number', 'Slices');
+   data.addRows([
+      ['10대', ${ageList[0]}],
+      ['20대', ${ageList[1]}],
+      ['30대', ${ageList[2]}],
+      ['40대', ${ageList[3]}],
+      ['50대 이상', ${ageList[4]}]
+   ]);
+
+   // Set chart options
+   var options = {'title':'연령별 회원 차트', 'width':443, 'height':458};
+   
+   // Instantiate and draw our chart, passing in some options.
+   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+}
+</script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript"
@@ -32,7 +91,48 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+<style>
+body {
+	background-color: #f9f9fa
+}
 
+.flex {
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto
+}
+
+@media () {
+	.padding {
+		padding: 1.5rem
+	}
+}
+
+@media () {
+	.padding {
+		padding: 1rem
+	}
+}
+
+.padding {
+	padding: 5rem
+}
+
+.card {
+	height: 500px;
+	background: #fff;
+	border-width: 0;
+	border-radius: .25rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
+	margin-bottom: 1.5rem
+}
+
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+</style>
 </head>
 <body id="page-top">
 	<!-- 페이지 전체 -->
@@ -70,9 +170,7 @@
 											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">회원</div>
 											<div class="h5 mb-0 font-weight-bold text-gray-800">${userCount }&nbsp;&nbsp;&nbsp;명</div>
 										</div>
-										<div class="col-auto">
-											
-										</div>
+										<div class="col-auto"></div>
 									</div>
 								</div>
 							</div>
@@ -83,14 +181,10 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div
-												class="text-xs font-weight-bold text-success text-uppercase mb-1">상품</div>
+											<div class="text-xs font-weight-bold text-success text-uppercase mb-1">상품</div>
 											<div class="h5 mb-0 font-weight-bold text-gray-800">${storeCount }&nbsp;&nbsp;&nbsp;개</div>
 										</div>
-										<div class="col-auto">
-										
-										
-										</div>
+										<div class="col-auto"></div>
 									</div>
 								</div>
 							</div>
@@ -101,17 +195,14 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div
-												class="text-xs font-weight-bold text-info text-uppercase mb-1">문의</div>
+											<div class="text-xs font-weight-bold text-info text-uppercase mb-1">문의</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
 													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${qnaCount }&nbsp;&nbsp;&nbsp;건</div>
 												</div>
 											</div>
 										</div>
-										<div class="col-auto">
-										
-										</div>
+										<div class="col-auto"></div>
 									</div>
 								</div>
 							</div>
@@ -122,8 +213,7 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div
-												class="text-xs font-weight-bold text-warning text-uppercase mb-1">매출</div>
+											<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">매출</div>
 											<div class="h5 mb-0 font-weight-bold text-gray-800">${totalPrice }&nbsp;&nbsp;&nbsp;원</div>
 										</div>
 										<div class="col-auto">
@@ -135,113 +225,133 @@
 						</div>
 					</div>
 					<!-- 2열 -->
-					<div class="row" style="display: flex;">
+					<div style="display: flex; justify-content: space-between; align-items: center;">
 						<!-- Area Chart -->
 						<div class="col-xl-8 col-lg-7">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">월매출</h6>
-									<div class="dropdown no-arrow">
-										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-											<div class="dropdown-header">Dropdown Header:</div>
-											<a class="dropdown-item" href="#">Action</a>
-											<a class="dropdown-item" href="#">Another action</a>
-											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#">Something else here</a>
+							<div id="layoutSidenav_content">
+								<main>
+									<div class="container-fluid px-4">
+										<div class="card mb-4" style="width: 100%; height: 20%; float: left;">
+											<input type="hidden" id="chartType" value="line">
+											<div class="card-header" style="justify-content: space-between; display: flex; align-items: center; padding: 5px;">
+												<div>
+													<i class="fas fa-chart-area me-1"></i>
+													<span id="sales_term">&nbsp;<span id="start_date_span">${start_date }</span> ~ 
+													<span id="end_date_span">${end_date }</span></span>
+												</div>
+												<div>
+													&nbsp;&nbsp;&nbsp; 합계 : 
+													<span id="totalspan"></span>&#8361;
+												</div>
+											</div>
+											<div class="card-body" style="margin-top: 15px;">
+												<canvas id="myChart" width="120%" height="60"></canvas>
+											</div>
 										</div>
 									</div>
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div class="chart-area">
-										<canvas id="myAreaChart"></canvas>
-									</div>
-								</div>
+									<script type="text/javascript">
+										//Set new default font family and font color to mimic Bootstrap's default styling
+
+										Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+										Chart.defaults.global.defaultFontColor = '#292b2c';
+										var chartType = $('#chartType').val();
+										// Area Chart Example
+										var total = 0;
+										var max = 0;
+
+										var jsonChart = ${chartIndexList };
+
+										var labels = jsonChart.map(function(e) {
+											return e.month_chart;
+										})
+
+										var data = jsonChart.map(function(e) {
+											total += e.sales_amount;
+
+											if (e.sales_amount > max)
+												max = e.sales_amount;
+
+											return e.sales_amount;
+										})
+										
+										$('#totalspan').html(total);
+										var options = {
+											scales : {
+												xAxes : [ {
+													time : {
+														unit : 'date'
+													},
+													gridLines : {
+														display : false
+													},
+													ticks : {
+														maxTicksLimit : 12
+													}
+												} ],
+												yAxes : [ {
+													ticks : {
+														min : 0,
+														max : (max + 10000),
+														maxTicksLimit : 10
+													},
+													gridLines : {
+														color : "rgba(0, 0, 0, .125)",
+													}
+												} ],
+											},
+											legend : {
+												display : false
+											}
+										}
+
+										var dataSets = [ {
+											label : "sales amount",
+											lineTension : 0.3,
+											backgroundColor : "rgba(2,117,216,0.2)",
+											borderColor : "rgba(2,117,216,1)",
+											pointRadius : 5,
+											pointBackgroundColor : "rgba(2,117,216,1)",
+											pointBorderColor : "rgba(255,255,255,0.8)",
+											pointHoverRadius : 5,
+											pointHoverBackgroundColor : "rgba(2,117,216,1)",
+											pointHitRadius : 50,
+											pointBorderWidth : 2,
+											data : data
+										} ];
+
+										var chartData = {
+											labels : labels,
+											datasets : dataSets
+										}
+
+										var ctx = document.getElementById("myChart").getContext('2d');
+										var myLineChart = new Chart(ctx, {
+											type : $('#chartType').val(),
+											data : chartData,
+											options : options
+										});
+
+										function newLineChart() {
+											myLineChart.destroy();
+											
+											ctx = document.getElementById("myChart");
+											myLineChart = new Chart(ctx, {
+												type : $('#chartType').val(),
+												data : chartData,
+												options : options
+											});
+										}
+									</script>
+								</main>
 							</div>
 						</div>
+						
 						<!-- Pie Chart -->
-						<div class="col-xl-4 col-lg-5">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">상품랭킹</h6>
-									<div class="dropdown no-arrow">
-										<a class="dropdown-toggle" href="js/demo/chart-pie-demo.js" role="button" 
-											id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-											<div class="dropdown-header">Dropdown Header:</div>
-											<a class="dropdown-item" href="#">Action</a>
-											<a class="dropdown-item" href="#">Another action</a>
-											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#">Something else here</a>
-										</div>
-									</div>
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div class="chart-pie pt-4 pb-2">
-										<canvas id="myPieChart"></canvas>
-									</div>
-									<div class="mt-4 text-center small">
-										<span class="mr-2"><i class="fas fa-circle text-primary"></i>주방</span>
-										<span class="mr-2"> <i class="fas fa-circle text-success"></i>욕실</span>
-										<span class="mr-2"> <i class="fas fa-circle text-info"></i>생활</span>
-									</div>
-								</div>
-							</div>
+						<div class="card shadow mb-4" style="width: 500px; height: auto;">
+							<div id="chart_div" style="margin-top:-15px"></div>
 						</div>
 					</div>
 					<!-- 3열 -->
-					<div class="row">
-						<!-- Content Column -->
-						<!-- <div class="col-lg-6 mb-4">
-							Project Card Example
-							<div class="card shadow mb-4">
-								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">간략하게 보기</h6>
-								</div>
-								<div class="card-body">
-									<h4 class="small font-weight-bold">
-										김주호 <span class="float-right">30%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										박동녘 <span class="float-right">40%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										백미라 <span class="float-right">60%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										이정빈 <span class="float-right">80%</span>
-									</h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">
-										장형준 <span class="float-right">Complete!</span>
-									</h4>
-									<div class="progress">
-										<div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-										</div>
-									</div>													
-								</div>
-							</div> -->
-					</div>
 				</div>
 			</div>
 			<!-- /.container-fluid -->
@@ -266,4 +376,7 @@
 			<script src="${pageContext.request.contextPath}/resources/admin/js/demo/chart-area-demo.js"></script>
 			<script src="${pageContext.request.contextPath}/resources/admin/js/demo/chart-pie-demo.js"></script>
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
 </html>

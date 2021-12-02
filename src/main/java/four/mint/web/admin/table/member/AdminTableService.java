@@ -29,4 +29,5 @@ public interface AdminTableService {
 	List<AdminTableVO> orderList();
 	ArrayList<ChartVO> getinitialChart(ChartVO chart);
 	ArrayList<ChartVO> getResponsiveChart(ChartVO chart);
+	ArrayList<ChartVO> getIndexResponsiveChart(ChartVO chart);
 }

@@ -20,17 +20,17 @@ import four.mint.web.user.UserVO;
 public class AdminTableServiceImpl implements AdminTableService {
 	
 	@Autowired
-	private AdminTableDAO adminTableDao;
+	private AdminTableDAO adminTableDAO;
 
 
 	@Override
 	public void insertMember(AdminPageVO vo) {
-		adminTableDao.insertMember(vo);
+		adminTableDAO.insertMember(vo);
 	}
 
 	@Override
 	public AdminTableVO getAdmin(AdminTableVO vo) {
-		AdminTableVO newVo = adminTableDao.getAdminTable(vo);
+		AdminTableVO newVo = adminTableDAO.getAdminTable(vo);
 		return newVo;
 	}
 
@@ -42,75 +42,78 @@ public class AdminTableServiceImpl implements AdminTableService {
 	@Override
 	public List<AdminTableVO> getAdminTableList() {
 		
-		return adminTableDao.getAdminTableList();
+		return adminTableDAO.getAdminTableList();
 	}
 
 	@Override
 	public int getAdminTableMan() {
 		
-		return adminTableDao.getAdminTableMan();
+		return adminTableDAO.getAdminTableMan();
 	}
 
 	@Override
 	public int getAdminTableWoman() {
 		
-		return adminTableDao.getAdminTableWoman();
+		return adminTableDAO.getAdminTableWoman();
 	}
 
 	@Override
 	public ArrayList<UserVO> getAddress2() {
-		return adminTableDao.getAddress2();
+		return adminTableDAO.getAddress2();
 	}
 
 	@Override
 	public List<String> getBirth() {
 		
-		return adminTableDao.getBirth();
+		return adminTableDAO.getBirth();
 	}
 
 	@Override
 	public 
 	ArrayList<AdminTableVO> getAddressMan() {
 		
-		return adminTableDao.getAddressMan();
+		return adminTableDAO.getAddressMan();
 	}
 
 	@Override
 	public ArrayList<AdminTableVO> getAddressWoman() {
 		
-		return adminTableDao.getAddressWoman();
+		return adminTableDAO.getAddressWoman();
 	}
 
 	@Override
 	public AdminTableVO getMemberOne(String parameter) {
-		return adminTableDao.getMemberOne(parameter);
+		return adminTableDAO.getMemberOne(parameter);
 	}
 
 	@Override
 	public List<AdminTableVO> orderList() {
 		
-		return adminTableDao.orderList();
+		return adminTableDAO.orderList();
 	}
 
 	@Override
 	public ArrayList<ChartVO> getinitialChart(ChartVO chart) {
 		
-		return adminTableDao.getinitialChart(chart);
+		return adminTableDAO.getinitialChart(chart);
 	}
 
 	@Override
 	public ArrayList<ChartVO> getResponsiveChart(ChartVO chart) {
 		
-		return adminTableDao.getResponsivceChart(chart);
+		return adminTableDAO.getResponsivceChart(chart);
 	}
 
 	
 
 	@Override
 	public void deleteMember(String parameter) {
-		adminTableDao.deleteMember(parameter);
+		adminTableDAO.deleteMember(parameter);
 	}
 
-	
-		
+	@Override
+	public ArrayList<ChartVO> getIndexResponsiveChart(ChartVO chart) {
+		return adminTableDAO.getIndexResponsiveChart(chart);
+	}
+
 }
