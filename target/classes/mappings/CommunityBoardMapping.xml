@@ -81,12 +81,18 @@
 	</delete>
 	
 	<select id="getTopFive" resultType="communityBoard" parameterType="string">
-		(SELECT * FROM community WHERE category = '질문' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '소식' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '모임' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '맛집' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '사진전' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) UNION
-		(SELECT * FROM community WHERE category = '분실센터' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) ORDER BY category ASC, views DESC;
+		(SELECT a.*, b.comments FROM (SELECT * FROM community WHERE category = '질문' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) AS a
+		LEFT JOIN (SELECT count(*) AS comments, board_seq FROM communityComment GROUP BY board_seq) AS b ON a.community_seq = b.board_seq) UNION
+		(SELECT a.*, b.comments FROM (SELECT * FROM community WHERE category = '소식' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) AS a
+		LEFT JOIN (SELECT count(*) AS comments, board_seq FROM communityComment GROUP BY board_seq) AS b ON a.community_seq = b.board_seq) UNION
+		(SELECT a.*, b.comments FROM (SELECT * FROM community WHERE category = '모임' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) AS a
+		LEFT JOIN (SELECT count(*) AS comments, board_seq FROM communityComment GROUP BY board_seq) AS b ON a.community_seq = b.board_seq) UNION
+		(SELECT a.*, b.comments FROM (SELECT * FROM community WHERE category = '맛집' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) AS a
+		LEFT JOIN (SELECT count(*) AS comments, board_seq FROM communityComment GROUP BY board_seq) AS b ON a.community_seq = b.board_seq) UNION
+		(SELECT a.*, b.comments FROM (SELECT * FROM community WHERE category = '사진전' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) AS a
+		LEFT JOIN (SELECT count(*) AS comments, board_seq FROM communityComment GROUP BY board_seq) AS b ON a.community_seq = b.board_seq) UNION
+		(SELECT a.*, b.comments FROM (SELECT * FROM community WHERE category = '분실센터' AND date > (current_timestamp + '-2 week') AND address2 LIKE #{address} ORDER BY views DESC LIMIT 5) AS a
+		LEFT JOIN (SELECT count(*) AS comments, board_seq FROM communityComment GROUP BY board_seq) AS b ON a.community_seq = b.board_seq) ORDER BY category ASC, views DESC;
 	</select>
 	
 	<update id="insertLike" parameterType="int">

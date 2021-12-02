@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
@@ -7,30 +6,21 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>차트</title>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-	crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <!--  -->
-<script src="https://kit.fontawesome.com/d0b304acae.js"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://kit.fontawesome.com/d0b304acae.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="resources/js/join/datepicker.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script>
    $(document).ready(function() {
        var ctx = $("#chart-line");
@@ -99,9 +89,9 @@
        var myLineChartTop5 = new Chart(ctx1, {
           type : 'bar',
           data : {
-             labels : [ '${top5.get(0).getProduct_name()}', '${top5.get(1).getProduct_name()}', '${top5.get(2).getProduct_name()}' ],
+             labels : [ '${top5.get(0).getProduct_name()}', '${top5.get(1).getProduct_name()}', '${top5.get(2).getProduct_name()}', '${top5.get(3).getProduct_name()}', '${top5.get(4).getProduct_name()}' ],
              datasets : [ {
-                data : [ '${top5.get(0).getTransaction_count()}', '${top5.get(1).getTransaction_count()}', '${top5.get(2).getTransaction_count()}'
+                data : [ '${top5.get(0).getTransaction_count()}', '${top5.get(1).getTransaction_count()}', '${top5.get(2).getTransaction_count()}', '${top5.get(3).getTransaction_count()}', '${top5.get(4).getTransaction_count()}'
        			],
                 label : "전체",
                 borderColor : "#458af7",
@@ -273,7 +263,6 @@
 
 
 </script>
-
 <style>
 body {
 	background-color: #f9f9fa
@@ -366,19 +355,27 @@ body {
 }
 
 .chartSex>li dl dd.stat-cs-data1.female {
-	background: url(${pageContext.request.contextPath}/resources/admin/img/stat_female.png) center bottom no-repeat;
+	background:
+		url(${pageContext.request.contextPath}/resources/admin/img/stat_female.png)
+		center bottom no-repeat;
 }
 
 .chartSex>li dl dd.stat-cs-data1.female .data-bar {
-	background: url(${pageContext.request.contextPath}/resources/admin/img/stat_female_on.png) center bottom no-repeat;
+	background:
+		url(${pageContext.request.contextPath}/resources/admin/img/stat_female_on.png)
+		center bottom no-repeat;
 }
 
 .chartSex>li dl dd.stat-cs-data1.male {
-	background: url(${pageContext.request.contextPath}/resources/admin/img/stat_male.png) center bottom no-repeat;
+	background:
+		url(${pageContext.request.contextPath}/resources/admin/img/stat_male.png)
+		center bottom no-repeat;
 }
 
 .chartSex>li dl dd.stat-cs-data1.male .data-bar {
-	background: url(${pageContext.request.contextPath}/resources/admin/img/stat_male_on.png) center bottom no-repeat;
+	background:
+		url(${pageContext.request.contextPath}/resources/admin/img/stat_male_on.png)
+		center bottom no-repeat;
 }
 
 .chartSex>li dl dd.stat-cs-percent {
@@ -392,15 +389,11 @@ body {
 }
 </style>
 <!-- Custom fonts for this template-->
-<link href="${pageContext.request.contextPath}/resources/admin/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <!-- Custom styles for this template-->
 <link href="${pageContext.request.contextPath}/resources/admin/css/sb-admin-2.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/admin/vendor/datatables/dataTables.bootstrap4.min.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -415,50 +408,39 @@ body {
 				<%@ include file="header.jsp"%>
 				<!-- End of Topbar -->
 				<!-- Begin Page Content -->
-				<div class="container-fluid" style="margin-top:-40px; margin-left:-30px;">
+				<div class="container-fluid" style="margin-top: -40px; margin-left: -30px;">
 					<!-- Page Heading -->
 					<p class="mb-4">
 						<a target="_blank" href="https://www.chartjs.org/docs/latest/"></a>
 					</p>
-					<div class="tab_banner" >
-						<ul class="tabnav_banner" >
+					<div class="tab_banner">
+						<ul class="tabnav_banner">
 							<li><a href="#tab01">회원</a></li>
 							<li><a href="#tab02">상품</a></li>
 						</ul>
 						<div class="tabcontent_banner">
 							<div id="tab01">
-								
-								<div class="card shadow mb-4" style="height: 900px; overflow-y:hidden; overflow-x:hidden">
-									<div class="card-header py-3" style="display: inline-flex;align-items: center;justify-content: space-between;">
+								<div class="card shadow mb-4" style="height: 900px; overflow-y: hidden; overflow-x: hidden">
+									<div class="card-header py-3" style="display: inline-flex; align-items: center; justify-content: space-between;">
 										<h6 class="m-0 font-weight-bold text-primary">회원 현황</h6>
-										<button type="button" class="btn btn-primary" id="savePdf1" >PDF 저장</button>
+										<button type="button" class="btn btn-primary" id="savePdf1">PDF 저장</button>
 									</div>
 									<div class="page-content page-container" id="page-content">
 										<div class="row">
 											<div class="container-fluid  justify-content-center">
-												<div class="chartjs-size-monitor"
-													style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-													<div class="chartjs-size-monitor-expand"
-														style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-														<div
-															style="position: absolute; width: 1000000px; height: 1000000px; left: 0; top: 0"></div>
+												<div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+													<div class="chartjs-size-monitor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+														<div style="position: absolute; width: 1000000px; height: 1000000px; left: 0; top: 0"></div>
 													</div>
-													<div class="chartjs-size-monitor-shrink"
-														style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-														<div
-															style="position: absolute; width: 50%; height: 50%; left: 0; top: 0"></div>
+													<div class="chartjs-size-monitor-shrink" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+														<div style="position: absolute; width: 50%; height: 50%; left: 0; top: 0"></div>
 													</div>
 												</div>
-												<canvas id="chart-line"
-													style="padding: 20px; padding-left: 20px; width: 400px; height: 200px"
-													class="chartjs-render-monitor">
+												<canvas id="chart-line" style="padding: 20px; padding-left: 20px; width: 400px; height: 200px" class="chartjs-render-monitor">
                                     </canvas>
-
-
 												<div style="width: 500px">
 													<div style="float: left">
 														<ul class="chartSex" style="width: 500px">
-
 															<li>
 																<dl>
 																	<dd style="width: 60px; color: black; font-size: 12px;">
@@ -474,8 +456,7 @@ body {
 															</li>
 															<li>
 																<dl style="margin-left: 50px">
-																	<dd
-																		style="color: black; font-size: 12px; margin-left: -480px">
+																	<dd style="color: black; font-size: 12px; margin-left: -480px">
 																		<strong>차트</strong>
 																	</dd>
 																	<dt>여성</dt>
@@ -488,12 +469,8 @@ body {
 															</li>
 														</ul>
 													</div>
-
-
 												</div>
-												<div style="float: left" id="chart_div"
-													style="margin-top:-15px"></div>
-
+												<div style="float: left" id="chart_div" style="margin-top:-15px"></div>
 											</div>
 										</div>
 									</div>
@@ -501,23 +478,19 @@ body {
 							</div>
 							<div id="tab02">
 								<div class="row">
-
 									<div class="col-xl-8 col-lg-7">
 										<!-- Area Chart -->
-										<div class="card shadow mb-4"
-											style="width: 1106px; height: auto;">
-											<div class="card-header py-3"style="display: inline-flex;align-items: center;justify-content: space-between;" >
+										<div class="card shadow mb-4" style="width: 1106px; height: auto;">
+											<div class="card-header py-3" style="display: inline-flex; align-items: center; justify-content: space-between;">
 												<h6 class="m-0 font-weight-bold text-primary">스토어 카테고리</h6>
-												<button type="button" class="btn btn-primary" id="savePdf2" >PDF 저장</button>
+												<button type="button" class="btn btn-primary" id="savePdf2">PDF 저장</button>
 											</div>
 											<div id="contents">
-											<div>
-												<canvas id="chart-line-top5"
-													style="padding: 20px; padding-left: 20px; width: 400px; height: 200px"
-													class="chartjs-render-monitor">
+												<div>
+													<canvas id="chart-line-top5" style="padding: 20px; padding-left: 20px; width: 400px; height: 200px" class="chartjs-render-monitor">
 	                                    		</canvas>
-											</div>
-											<div id="chart_category"></div>
+												</div>
+												<div id="chart_category"></div>
 											</div>
 										</div>
 									</div>
@@ -542,11 +515,9 @@ body {
 			<script src="${pageContext.request.contextPath}/resources/admin/js/demo/chart-area-demo.js"></script>
 			<script src="${pageContext.request.contextPath}/resources/admin/js/demo/chart-pie-demo.js"></script>
 			<script src="${pageContext.request.contextPath}/resources/admin/js/demo/chart-bar-demo.js"></script>
-
 			<!-- Page level plugins -->
 			<script src="${pageContext.request.contextPath}/resources/admin/vendor/datatables/jquery.dataTables.min.js"></script>
 			<script src="${pageContext.request.contextPath}/resources/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
 			<!-- Page level custom scripts -->
 			<script src="${pageContext.request.contextPath}/resources/admin/js/demo/datatables-demo.js"></script>
 			<script>

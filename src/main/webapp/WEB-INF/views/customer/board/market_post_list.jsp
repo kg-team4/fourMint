@@ -31,7 +31,7 @@
 							<c:choose>
 								<c:when test="${no eq name}">
 									<div class="category_list_title" style="color:#7b7b7b; font-size:20px; margin: 0 10px 6px 0;">
-											<label class="category_big_name" style="color:#7b7b7b; hover:color:#26e4ca;">${big.name}</label>									
+											<label class="category_big_name" style="color:#7b7b7b; hover:color:#26e4ca;" onclick="location.href='marketDetailList.do?count=1&kind=${big.name}'">${big.name}</label>									
 										<c:if test="${big.name ne etc && big.name ne buy}">
 											<input type="button" class="slider" value="▲" style="background: none; border: 0px; color:#26e4ca;">
 										</c:if>
@@ -46,7 +46,7 @@
 								</c:when>
 								<c:otherwise>
 									<div class="category_list_title" style="color:#7b7b7b; font-size:20px; margin: 0 10px 6px 0;">
-										<label class="category_big_name" style="color:#7b7b7b; hover:color:#26e4ca;">${big.name}</label>
+										<label class="category_big_name" style="color:#7b7b7b; hover:color:#26e4ca;" onclick="location.href='marketDetailList.do?count=1&kind=${big.name}'">${big.name}</label>
 										<c:if test="${big.name ne etc && big.name ne buy}">
 											<input type="button" class="slider" value="▼" style="background: none; border: 0px;color:#26e4ca;">
 										</c:if>
@@ -198,7 +198,7 @@
 	})
 	      
 	$(function(){
-		$(".category_big_name").on('click',function(){
+		/* $(".category_big_name").on('click',function(){
 			var kind = $(this).text();  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	
 			$.ajax({
 				url : 'marketDetailList.do', // 이 주소로 
@@ -213,7 +213,7 @@
 					alert('error');
 				}//error
 			})//ajax
-		});//click
+		});//click */
 		
 		$(".category_middle_name").on('click',function(){
 			var kind = $(this).parent().parent().prev(".category_list_title").find(".category_big_name").text();  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	

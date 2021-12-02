@@ -175,7 +175,7 @@
 	</update>
 	
 	<select id="getTransaction" parameterType="history" resultType="history">
-		SELECT a.*, b.store_seq FROM (SELECT * FROM transactionHistory WHERE email_id = #{email_id}) AS a JOIN (SELECT * FROM storeboard where store_seq = #{transaction_seq}) AS b ON a.product_name = b.product_name;
+		SELECT a.*, b.store_seq FROM (SELECT * FROM transactionHistory WHERE email_id = #{email_id}) AS a JOIN (SELECT * FROM storeboard where store_seq = #{transaction_seq}) AS b ON a.product_name = b.product_name LIMIT 1;
 	</select>
 	
 	<!-- 좋아요 등록 -->

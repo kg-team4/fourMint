@@ -798,8 +798,7 @@ table {
 /* 나의 커뮤니티 */
 .community_list_grid {
 	width: auto;
-	height: auto;
-	/* height: 450px; */
+	height: 450px;
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	padding: 20px;
