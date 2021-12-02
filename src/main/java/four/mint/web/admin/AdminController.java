@@ -106,7 +106,75 @@ public class AdminController {
 		int totalPrice = adminTransactionHistoryService.getTotalPrice();
 		request.setAttribute("totalPrice", totalPrice);
 		
-		return "/index";
+		vo.setId(String.valueOf(session.getAttribute("admin_id")));
+		vo.setPassword(String.valueOf(session.getAttribute("admin_password")));
+		AdminVO admin = adminService.getAdmin(vo);
+		
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar week = Calendar.getInstance();
+		week.add(Calendar.MONTH, -11);
+		ChartVO c = new ChartVO();
+		String startDate = (date.format(week.getTime()));
+
+		c.setEnd_date(date.format(new Date()));
+		c.setStart_date(startDate);
+
+		String[] aa = startDate.split(" ");
+		String StartDate = aa[0];
+		c.setStartDate(StartDate);
+		String bb = date.format(new Date());
+		String[] cc = bb.split(" ");
+		String EndDate = cc[0];
+		c.setEndDate(EndDate);
+
+		getChart(c, model);
+		
+		List<String> ageChart = adminTableService.getBirth();
+
+		int teenager = 0;
+		int twenties = 0;
+		int thirties = 0;
+		int forties = 0;
+		int overfifties = 0;
+
+		Calendar current = Calendar.getInstance();
+		int currentYear = current.get(Calendar.YEAR);
+
+		int birth;
+
+		for (int i = 0; i < ageChart.size(); i++) {
+			birth = Integer.valueOf((ageChart.get(i).substring(0, 2)));
+			if (birth >= 22) {
+				birth = 1900 + birth;
+			} else if (birth < 22) {
+				birth = 2000 + birth;
+			}
+
+			int age = currentYear - birth + 1;
+
+			if (age < 20) {
+				teenager++;
+			} else if (age < 30) {
+				twenties++;
+			} else if (age < 40) {
+				thirties++;
+			} else if (age < 50) {
+				forties++;
+			} else {
+				overfifties++;
+			}
+		}
+		
+		ArrayList<Integer> ageList = new ArrayList<>();
+
+		ageList.add(teenager);
+		ageList.add(twenties);
+		ageList.add(thirties);
+		ageList.add(forties);
+		ageList.add(overfifties);
+
+		request.setAttribute("ageList", ageList);
+		
 	}
 	
 	@RequestMapping(value = "/buttons.mdo", method = RequestMethod.GET)
@@ -186,23 +254,30 @@ public class AdminController {
 		
 		return "/forgot-password";
 	}
-	
-	/*
-	 * @RequestMapping(value = "/chartEx.mdo", method = RequestMethod.GET) public
-	 * String chartsEx(Model model) {
-	 * 
-	 * SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); Calendar week =
-	 * Calendar.getInstance(); week.add(Calendar.DATE, -7); ChartVO c = new
-	 * ChartVO(); String startDate = (date.format(week.getTime()));
-	 * 
-	 * c.setEnd_date(date.format(new Date())); c.setStart_date(startDate);
-	 * 
-	 * String[] aa = startDate.split(" "); String StartDate = aa[0];
-	 * c.setStartDate(StartDate); String bb = date.format(new Date()); String[] cc =
-	 * bb.split(" "); String EndDate = cc[0]; c.setEndDate(EndDate);
-	 * 
-	 * getChart(c, model); return "/chartex"; }
-	 */
+
+	@RequestMapping(value = "/chartEx.mdo", method = RequestMethod.GET)
+	public String chartsEx(Model model) {
+
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar week = Calendar.getInstance();
+		week.add(Calendar.MONTH, -11);
+		ChartVO c = new ChartVO();
+		String startDate = (date.format(week.getTime()));
+
+		c.setEnd_date(date.format(new Date()));
+		c.setStart_date(startDate);
+
+		String[] aa = startDate.split(" ");
+		String StartDate = aa[0];
+		c.setStartDate(StartDate);
+		String bb = date.format(new Date());
+		String[] cc = bb.split(" ");
+		String EndDate = cc[0];
+		c.setEndDate(EndDate);
+
+		getChart(c, model);
+		return "/chartex";
+	}
 
 	@ResponseBody
 	@PostMapping("getNewChart.mdo")
@@ -213,9 +288,9 @@ public class AdminController {
 
 	private void getChart(ChartVO chart, Model model) {
 		model.addAttribute("chartList", JSONArray.fromObject(adminTableService.getinitialChart(chart)));
+		model.addAttribute("chartIndexList", JSONArray.fromObject(adminTableService.getIndexResponsiveChart(chart)));
 		model.addAttribute("start_date", chart.getStart_date());
 		model.addAttribute("end_date", chart.getEnd_date());
-
 	}
 
 	@RequestMapping(value ="/charts.mdo" , method = RequestMethod.GET)

@@ -84,7 +84,6 @@
 		$("#end_history").datepicker();
 		$("#start_history").datepicker('setDate', '-7D');
 		$("#end_history").datepicker('setDate', 'today');
-		$('#aaaa').datepicker();
 	});
 </script>
 

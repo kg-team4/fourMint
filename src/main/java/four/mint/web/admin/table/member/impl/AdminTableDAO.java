@@ -84,4 +84,9 @@ public class AdminTableDAO {
 		return (ArrayList)sqlSessionTemplate.selectList("AdminDAO.getResponsivceChart", chart);
 	}
 	
+	
+	public ArrayList<ChartVO> getIndexResponsiveChart(ChartVO chart) {
+		
+		return (ArrayList)sqlSessionTemplate.selectList("AdminTableDAO.getIndexResponsiveChart", chart);
+	}
 }

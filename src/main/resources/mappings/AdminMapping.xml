@@ -8,12 +8,13 @@
 		<result property="password" column="PASSWORD" />
 		<result property="name" column="NAME" />		
 	</resultMap>
+	
 	<resultMap type="chart" id="chartEx">
-		<result property="transaction_price" column="TRANSACTION_PRICE"/>
-		<result property="product_name" column="PRODUCT_NAME"/>
-		<result property="date" column="DATE"/>
-		<result property="status" column="STATUS"/>
-	</resultMap>
+        <result property="transaction_price" column="TRANSACTION_PRICE"/>
+        <result property="product_name" column="PRODUCT_NAME"/>
+        <result property="date" column="DATE"/>
+        <result property="status" column="STATUS"/>
+    </resultMap>
 	
 	<insert id="insertAdmin" parameterType="string">
 		INSERT INTO admin (id, password, name ) 
@@ -37,7 +38,7 @@
 	</select>
 	
 	<select id="getResponsivceChart" parameterType="chart" resultType="chart">
-	<![CDATA[
+		<![CDATA[
 			SELECT 	sum(o.transaction_price) as sales_amount,  
   			COUNT(*) as sales_count,
   			TO_CHAR(date,]]>
@@ -62,5 +63,13 @@
 		<if test="date_term ==  'year'">year_chart</if>
   			<![CDATA[
 		]]>
+	</select>
+	
+	<select id="getIndexResponsivceChart" parameterType="chart" resultType="chart">
+		SELECT sum(o.transaction_price) as sales_amount, COUNT(*) as sales_count, TO_CHAR(date,'yy-MM') as month_chart
+		FROM transactionHistory as o
+		WHERE 1=1 and status='상품 배송 완료' and TO_CHAR(date, 'yyyy-MM-dd') between #{start_date} and #{end_date}
+		GROUP BY TO_CHAR(date, 'yy-MM')
+		ORDER BY month_chart
 	</select>
 </mapper>
