@@ -88,7 +88,7 @@
 	                                        	</td>
 	                                           <td style="vertical-align: middle; text-align:center">
 	                                           <form>
-	                                           		<input type="hidden" value="${storeask.ask_seq }">		                                           		
+	                                           		<input type="hidden" value="${storeask.ask_seq }" name="ask_seq">		                                           		
 	                                           		<input type="hidden" value="${storeask.content }">  
 	                                           		<input type="hidden" value="${storeask.status }">  	                                         	                                           		                     		
 		                                            <button type="button" class="btn btn-success" style="width: 90px; color:black; font-size: 15px; background: #79d4c8; border-radius: 3px; border:none; margin-bottom:5px; height:34.5px">답변 등록</button>		                                   
