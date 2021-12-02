@@ -27,7 +27,7 @@
 						<c:set var="name" value="${big.name }" />
 						<!-- 카테고리 목록 -->
 						<h2 class="category_list_title" style="color:#7b7b7b; font-size:20px; margin: 0 10px 6px 0; font-weight:400;">
-							<label class="category_big_name" style="color:#7b7b7b; font-size:20px; cursor:pointer">${ name }</label>
+							<a href="storeDetailList.do?count=4&kind=${name }"><label class="category_big_name" style="color:#7b7b7b; font-size:20px; cursor:pointer">${ name }</label></a>
 						</h2>
 					</div>
 					<br>

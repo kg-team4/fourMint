@@ -491,7 +491,7 @@
 										</tr>
 										<tr>
 											<td align="left" colspan="4" style="font-size: 15px">
-												<button id="btn_sold_product_name">
+												<button id="btn_sold_product_name" onclick="location.href='marketBoard.do?seq=${rate.market_seq}'">
 													&nbsp;${rate.product_name } <img src="${pageContext.request.contextPath}/resources/user/img/arrow_icon.png" width="6" height="10" alt="화살표 아이콘">&nbsp;
 												</button>
 												<div id="sold_product_review">${rate.content }</div>
@@ -1472,7 +1472,7 @@
 														</td>
 														<td align="left" style="font-size: 15px">
 															<div style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${his.date }" /> 결제</div>
-															<div style="font-size: 18px">${his.product_name }</div>
+															<div style="font-size: 18px"><a href="storeBoard.do?seq=${his.store_seq }">${his.product_name }</a></div>
 															<div>
 																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
 															</div>
@@ -1520,7 +1520,7 @@
 														</td>
 														<td align="left" style="font-size: 15px">
 															<div style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${his.date }" /> 결제</div>
-															<div style="font-size: 18px">${his.product_name }</div>
+															<div style="font-size: 18px"><a href="storeBoard.do?seq=${his.store_seq }">${his.product_name }</a></div>
 															<div>
 																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
 															</div>
@@ -1572,7 +1572,7 @@
 														</td>
 														<td align="left" style="font-size: 15px">
 															<div style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${his.date }" /> 결제</div>
-															<div style="font-size: 18px">${his.product_name }</div>
+															<div style="font-size: 18px"><a href="storeBoard.do?seq=${his.store_seq }">${his.product_name }</a></div>
 															<div>
 																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
 															</div>
@@ -1624,7 +1624,7 @@
 														</td>
 														<td align="left" style="font-size: 15px">
 															<div style="font-size: 15px"><fmt:formatDate pattern="yyyy-MM-dd" value="${his.date }" /> 결제</div>
-															<div style="font-size: 18px">${his.product_name }</div>
+															<div style="font-size: 18px"><a href="storeBoard.do?seq=${his.store_seq }">${his.product_name }</a></div>
 															<div>
 																<span style="font-size: 18px"><fmt:formatNumber type="number" maxFractionDigits="3" value="${his.product_price}" /></span>&nbsp;원
 															</div>

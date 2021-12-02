@@ -13,12 +13,12 @@
 	<!-- 카테RH리 -->
 	<div class="contents_all">
 		<div class="category_list">
-			<div><label class="category_title">소식</label></div>
-			<div><label class="category_title">질문</label></div>
-			<div><label class="category_title">모임</label></div>
-			<div><label class="category_title">맛집</label></div>
-			<div><label class="category_title">분실센터</label></div>
-			<div><label class="category_title">사진전</label></div>
+			<div><a href="communityDetailList.do?count=3&kind=소식"><label class="category_title">소식</label></a></div>
+			<div><a href="communityDetailList.do?count=3&kind=질문"><label class="category_title">질문</label></a></div>
+			<div><a href="communityDetailList.do?count=3&kind=모임"><label class="category_title">모임</label></a></div>
+			<div><a href="communityDetailList.do?count=3&kind=맛집"><label class="category_title">맛집</label></a></div>
+			<div><a href="communityDetailList.do?count=3&kind=분실센터"><label class="category_title">분실센터</label></a></div>
+			<div><a href="communityDetailList.do?count=3&kind=사진전"><label class="category_title">사진전</label></a></div>
 		</div>
 		<!-- 소식 -->
 		
@@ -87,7 +87,7 @@
 							</div>
 						</td>
 						<td id="writer">
-							<div>작성자명작성자명</div>
+							<div>${list.nickname }</div>
 						</td>
 					</tr>
 					</c:if>
