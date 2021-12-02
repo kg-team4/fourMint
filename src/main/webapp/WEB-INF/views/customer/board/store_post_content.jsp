@@ -22,7 +22,7 @@
 <style>
 	#my_modal {
 	    display: none;
-	    width: 300px;
+	    width: 400px;
 	    padding: 20px 60px;
 	    background-color: #fefefe;
 	    border: 1px solid #888;
@@ -158,11 +158,11 @@
 						<!-- 수정 삭제 버튼은 "내글" --> 
 						
 						<!-- 장바구니 모달 -->
-						<div id="my_modal">
-							<h3>장바구니에 담겼습니다.</h3>
+						<div id="my_modal" style="text-align: center">
+							<h3> 🛒&nbsp;장바구니에 담겼습니다.&nbsp;🛒</h3>
 							<br>
-							<a href="payment.do" style="color: blue;">장바구니로 이동</a>
-							&emsp;<a class="modal_close_btn">나가기</a>
+							<a href="payment.do" style="color: #26e4ca; font-size: 20px">장바구니로 이동</a>
+							&emsp;<a class="modal_close_btn" style="cursor:pointer;">X</a>
 						</div>
 						<!-- 장바구니 모달 끝 -->
 						

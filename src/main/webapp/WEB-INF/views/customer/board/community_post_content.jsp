@@ -37,12 +37,12 @@
 					</div>
 					<div class="writer_infomation">
 						<table class="writer_info">
-							<tr style="font-size: 18">
-								<td colspan="2" style="color:#26e4ca">${content.nickname }</td>
+							<tr>
+								<td width=340px style="color:#26e4ca; font-size: 18">${content.nickname }</td>
+								<td width=330px  style="font-size: 16; text-align:right;"><fmt:formatDate pattern="yyyy-MM-dd" value="${content.date }" /></td>
 							</tr>
 							<tr>
-								<td width=525px>${content.address2 }</td>
-								<td>&emsp;&emsp;&emsp;&emsp;<fmt:formatDate pattern="yyyy-MM-dd" value="${content.date }" /></td>
+								<td colspan="2" width=525px>${content.address2 }</td>								
 							</tr>
 						</table>
 					</div>
@@ -176,7 +176,7 @@
 						<div class="commenter_infomation" style="margin-top:30px; margin-left:20px">
 							<table class="commenter_info">
 								<tr style="font-size: 18"> 
-									<td width=80px style="color:#26e4ca">${comment.nickname }</td>
+									<td width=120px style="color:#26e4ca">${comment.nickname }</td>
 									
 									<td>
 										<div class="reply_police2">
