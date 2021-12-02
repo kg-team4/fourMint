@@ -333,6 +333,7 @@ public class UserController {
 		int result = 0;
 
 		result = userService.phoneCheck(phone);
+		System.out.println("폰?: " + result);
 		map.put("phoneCheck", result);
 
 		return map;

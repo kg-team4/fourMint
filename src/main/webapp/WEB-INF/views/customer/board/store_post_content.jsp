@@ -566,7 +566,7 @@
 						</div>
 						
 						<!-- 운영자 답변 -->
-						
+						<c:if test="${ask.answer ne null }">
 						<div class="left-item10" style="margin-top: 30px; display:flex">
 							<img class="right_arrow" style="width:50px; height:35px; margin-top: 30px; margin-left:30px; margin-right:10px" src="${pageContext.request.contextPath}/resources/user/img/right-arrow-gray.png">
 							<img class="reply-pic-circle" src="https://mintmarket.s3.ap-northeast-2.amazonaws.com/profile/character_sample.png">
@@ -589,6 +589,7 @@
 								</div>								
 							</div>
 						</div>
+						</c:if>
 						</c:forEach>
 						
 						<script>
