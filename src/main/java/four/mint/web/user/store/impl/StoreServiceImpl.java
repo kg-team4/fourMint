@@ -223,5 +223,10 @@ public class StoreServiceImpl implements StoreService {
 		return storeDao.getCart(vo);
 	}
 
+	@Override
+	public StoreVO getStoreCart(int id) {
+		return storeDao.getStoreCart(id);
+	}
+
 	
 }

@@ -457,14 +457,19 @@ public class StoreController {
 		int id = Integer.valueOf(request.getParameter("id"));
 		int amount = Integer.valueOf(request.getParameter("amount"));
 		
+		StoreVO tempVO = storeService.getStoreCart(id);
+		System.out.println("stcok: "+tempVO.getProduct_stock());
+		System.out.println("amount: "+amount);
 		if (amount < 10) {
-			amount += 1;
+			if(amount < tempVO.getProduct_stock()) {
+				amount += 1;
+			}
 			vo.setAmount(amount);
 			vo.setId(id);
 			storeService.updateCart(vo);
 		}
 		
-		return amount;
+		return tempVO.getProduct_stock();
 	}
 
 	@ResponseBody

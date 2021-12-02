@@ -225,18 +225,16 @@
 											</script>
 										</div>
 										<div class="tbl_cell w390" style="width: 300px;">
-											<div class="prd_info "
-												style="width: 300px; padding: 0 10px 0 10px; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
-												<a href="#"><img src="${cart.url }"
-													style="width: 150px; height: 140px; border-radius: 3px" /></a>
-												<p class="prd_flag"
-													style="tenxt-align: center; width: 115px; white-space: pre-wrap; word-spacing: normal;">${cart.product_name}</p>
+											<div class="prd_info " style="width: 300px; padding: 0 10px 0 10px; display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+												<a href="storeBoard.do?seq=${cart.store_seq }"><img src="${cart.url }"	style="width: 150px; height: 140px; border-radius: 3px" /></a>
+												<p class="prd_flag"	style="text-align: center; width: 115px; white-space: pre-wrap; word-spacing: normal;">${cart.product_name}</p>
 											</div>
 										</div>
 										<div class="tbl_cell w110" style="width: 100px;">
 											<span style="color: #26e4ca" class="price">${cart.product_price }</span>원
 										</div>
 										<div class="tbl_cell w200" style="width: 100px;">
+											<c:if test="${cart.stock < 11}"><p style="color: #ff8080; font-size: 12px;">남은 재고: ${cart.stock }</p></c:if>
 											<div class="prd_cnt" style="display: flex;">
 												<input disabled class="amount${status.index }" name="amount"
 													type="text" style="width: 30px; height: 28px"
@@ -439,86 +437,68 @@
 	}
 	$('#directTop').length && fnBtnAction.init();
 
-	$(".plus")
-			.on(
-					'click',
-					function() {
-						var name = "." + $(this).prev().attr("class");
-						var amount = $(this).prev().val();
-						var id = $(this).next().next().val();
-						var aPrice = "."
-								+ $(this).parent().parent().next().children()
-										.attr("class");
-						var bPrice = $(this).parent().parent().prev()
-								.children().text();
-						var delivery = "."
-								+ $(this).parent().parent().next().next()
-										.children().children().attr("class");
+	$(".plus").on('click',function() {
+		var name = "." + $(this).prev().attr("class");
+		var amount = $(this).prev().val();
+		var id = $(this).next().next().val();
+		var aPrice = "." + $(this).parent().parent().next().children().attr("class");
+		var bPrice = $(this).parent().parent().prev().children().text();
+		var delivery = "." + $(this).parent().parent().next().next().children().children().attr("class");
 
-						$.ajax({
-							url : 'countUp.do',
-							type : "post",
-							cache : false,
-							dataType : 'json',
-							headers : {
-								"cache-control" : "no-cache",
-								"pragma" : "no-cache"
-							},
-							data : {
-								"amount" : amount,
-								"id" : id
-							},
-							success : function(data) {
-								if ((Number($(name).val()) + 1) < 11) {
-									$(name).val(Number($(name).val()) + 1);
-									$(aPrice).text(
-											Number($(name).val())
-													* Number(bPrice));
-									if (Number($(aPrice).text()) >= 50000) {
-										$(delivery).text("무료배송");
-									} else {
-										$(delivery).text("2,500원");
-									}
-									var list = new Array();
-									$("input[class='chkSmall']:checked").each(
-											function() {
-												list.push($(this).attr(
-														"data-cartNum"));
-											});
-									console.log(list);
+		$.ajax({
+			url : 'countUp.do',
+			type : "post",
+			cache : false,
+			dataType : 'json',
+			headers : {
+				"cache-control" : "no-cache",
+				"pragma" : "no-cache"
+			},
+			data : {
+				"amount" : amount,
+				"id" : id
+			},
+			success : function(data) {
+				if ((Number($(name).val()) + 1) <= data) {
+					$(name).val(Number($(name).val()) + 1);
+					$(aPrice).text(Number($(name).val()) * Number(bPrice));
+					if (Number($(aPrice).text()) >= 50000) {
+						$(delivery).text("무료배송");
+					} else {
+						$(delivery).text("2,500원");
+					}
+					var list = new Array();
+					$("input[class='chkSmall']:checked").each(function() {
+						list.push($(this).attr("data-cartNum"));
+					});
+					console.log(list);
 
-									$
-											.ajax({
-												url : "/calculate.do",
-												type : "post",
-												data : {
-													chbox : list
-												},
-												success : function(data) {
-													$("#allPrice").text(data);
-													if (Number($("#allPrice")
-															.text()) >= 50000) {
-														$("#allDelivery").text(
-																'0원');
-														$("#reallyPrice").text(
-																data);
-													} else {
-														$("#allDelivery").text(
-																'2500원');
-														$("#reallyPrice").text(
-																data + 2500);
-													}
-												}
-											});
-								} else {
-									return;
-								}
-							},
-							error : function(data) {
-								alert('error');
-							}//error
-						})//ajax
-					});//click
+					$.ajax({
+						url : "/calculate.do",
+						type : "post",
+						data : {
+							chbox : list
+						},
+						success : function(data) {
+							$("#allPrice").text(data);
+							if (Number($("#allPrice").text()) >= 50000) {
+								$("#allDelivery").text('0원');
+								$("#reallyPrice").text(data);
+							} else {
+								$("#allDelivery").text('2500원');
+								$("#reallyPrice").text(data + 2500);
+							}
+						}
+					});
+				} else {
+					return;
+				}
+			},
+			error : function(data) {
+				alert('error');
+			}//error
+		})//ajax
+	});//click
 
 	$(".minus")
 			.on(
