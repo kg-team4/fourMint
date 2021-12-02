@@ -89,7 +89,7 @@ public class AdminController {
 	//Thistory == TransactionHistory
 	
 	@RequestMapping(value = "/home.mdo", method = RequestMethod.GET)
-	public String home(HttpServletRequest request, AdminVO vo, HttpSession session) {
+	public String home(Model model, HttpServletRequest request, AdminVO vo, HttpSession session) {
 		if(session.getAttribute("admin_id") == null) {
 			return "redirect:login.mdo";
 		}
@@ -174,6 +174,8 @@ public class AdminController {
 		ageList.add(overfifties);
 
 		request.setAttribute("ageList", ageList);
+		
+		return "/index";
 		
 	}
 	
