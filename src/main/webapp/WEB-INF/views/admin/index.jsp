@@ -285,15 +285,15 @@ body {
 										}
 
 										var dataSets = [ {
-											label : "sales amount",
+											label : "sales",
 											lineTension : 0.3,
-											backgroundColor : "rgba(2,117,216,0.2)",
-											borderColor : "rgba(2,117,216,1)",
+											backgroundColor : "rgba(38, 228, 203, 0.3)",
+											borderColor : "#26e4ca",
 											pointRadius : 5,
-											pointBackgroundColor : "rgba(2,117,216,1)",
-											pointBorderColor : "rgba(255,255,255,0.8)",
+											pointBackgroundColor : "#26e4ca",
+											pointBorderColor : "#26e4ca",
 											pointHoverRadius : 5,
-											pointHoverBackgroundColor : "rgba(2,117,216,1)",
+											pointHoverBackgroundColor : "#26e4ca",
 											pointHitRadius : 50,
 											pointBorderWidth : 2,
 											data : data
