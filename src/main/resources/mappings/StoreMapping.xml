@@ -91,6 +91,7 @@
 		<result property="amount" column="AMOUNT" />
 		<result property="url" column="URL" />
 		<result property="product_name" column="PRODUCT_NAME" />
+		<result property="stock" column="STOCK"/>
 	</resultMap>
 	
 	<insert id="insertCart" parameterType="four.mint.web.user.store.CartVO">
@@ -98,7 +99,9 @@
 	</insert>
 	
 	<select id="getCartList" resultType="cart" parameterType="string">
-		SELECT * FROM store_cart WHERE nickname = #{nickname} ORDER BY cart_id ASC
+		SELECT a.*, b.product_stock AS stock FROM (SELECT * FROM store_cart WHERE nickname = #{nickname}) AS a
+		JOIN 
+		(SELECT * FROM storeBoard) AS b ON a.product_name = b.product_name;
 	</select>
 	
 	<update id="updateCart" parameterType="int">
@@ -123,6 +126,11 @@
 	
 	<select id="getCartDouble" parameterType="cart" resultType="cart">
 		SELECT * FROM store_cart WHERE nickname = #{nickname} AND store_seq = #{store_seq}
+	</select>
+	
+	<select id="getStoreCart" parameterType="int" resultType="store">
+		SELECT a.*, b.product_stock FROM (SELECT * FROM store_cart WHERE cart_id = #{cart_id}) AS a
+		JOIN (SELECT * FROM storeBoard) AS b ON a.product_name = b.product_name;
 	</select>
 	
 	<!-- 결제 내역 -->

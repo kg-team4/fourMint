@@ -176,4 +176,8 @@ public class StoreDAO {
 	public CartVO getCart(CartVO vo) {
 		return sqlSessionTemplate.selectOne("StoreDAO.getCartDouble", vo);
 	}
+
+	public StoreVO getStoreCart(int id) {
+		return sqlSessionTemplate.selectOne("StoreDAO.getStoreCart", id);
+	}
 }

@@ -12,4 +12,5 @@ public class CartVO {
 	private int amount;
 	private String url;
 	private String product_name;
+	private int stock;
 }

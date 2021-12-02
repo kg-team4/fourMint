@@ -112,24 +112,6 @@ try {
 					<col style="width: *" />
 				</colgroup>       
 				<tbody>
-					<tr>
-						<th scope="row">배송지선택</th>
-						<td>
-							<span class="chk_area mgzero"> 
-								<input type="radio" id="btn_dlvp_exist" name="inpAddrSel" value="" targetid="exist" checked="checked" data-attr="배송지정보^1_배송지선택" /> 
-								<label for="btn_dlvp_exist">기존 배송지</label>
-							</span> <!-- 2020-08-04 o2oJJ 24H 화면 제어로 인한 주석 처리 --> 
-							<span class="chk_area">
-								<input type="radio" id="btn_dlvp_new" name="inpAddrSel" value="" onclick="this.form.reset();" autocomplete="off" targetid="new" data-attr="배송지정보^1_배송지선택" /> 
-								<label for="btn_dlvp_new">신규 배송지</label>
-							</span> 
-							<span class="chk_area"> 
-								<input style="margin-left: 36.5px;" type="checkbox" id="setBaseDlvpYn" name="baseDlvpYn" value="Y" checked="checked" /> 
-								<label for="setBaseDlvpYn">기본 배송지 설정</label>
-							</span>
-							<div class="show" id="divSelect_div"></div>
-						</td>
-					</tr>
 					<tr id="pickupHide1" type="exist">
 						<th scope="row">받는분</th>
 						<td class="imp_data">
@@ -409,21 +391,19 @@ try {
 					<input type="hidden" name="remainAmt" value="0"> <input type="hidden" name="ordPayAmt" value="0"> <input type="hidden" name="goodsNm" value="" />
 				</li>
 				<li>
-					<button class="btnPayment" id="btnPay" name="btnPay" type="button" data-attr="최종결제정보^6_결제하기">결제하기</button>
+					<button class="btnPayment" id="btnPay" name="btnPay" type="button" data-attr="최종결제정보^6_결제하기" disabled>결제하기</button>
 				</li>
 			</ul>
-			<p class="inchk clrfix">
-				<input type="checkbox" id="savePayMethodYn" name="savePayMethodYn" value="Y" checked="checked" paymeancd="" acqrcd="" instmmcnt="" pntuseyn="" bnkcd="" morcmannm="" data-attr="최종결제정보^6_빠른모드" />
-				<!-- <input type="checkbox" id="fastpaySave" name="" value=""> -->
-				<label for="savePayMethodYn">지금 설정을 다음 주문에도 사용하겠습니다.<br>(빠른모드)</label>
-			</p>
+			
+			
 			<div class="agree_payment_box open" id="agreeList">
 				<div class="all_agree_cont">
 					<p>주문 상품정보 및 결제대행 서비스 이용약관에 모두 동의하십니까?</p>
 					<!-- 2017-01-18 수정 : 문구수정 -->
-					<input type="checkbox" id="agree_all" name="TrrmsCheck1ed" value="Y" data-attr="최종결제정보^6_결제대행동의" onchange="agreeList()" class="selectBox" /> 
+					<input type="checkbox" id="agree_all" name="TrrmsCheck1ed" value="Y" data-attr="최종결제정보^6_결제대행동의" class="selectBox" /> 
 					<label for="agree_all">모두 동의</label>
 				</div>
+				
 				<ul class="other_agree_cont">
 					<p class="tx_tit">주문 상품정보에 대한 동의</p>
 					<p class="tx_cont2">
@@ -457,13 +437,6 @@ try {
 
 <!-- 결제창 -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-      $( document ).ready( function() {
-        $( '.check-all' ).click( function() {
-          $( '.ab' ).prop( 'checked', this.checked );
-        } );
-      } );
-    </script>
 <script>
 	// 페이지 만료 체크
     var checkExpire = function() {
@@ -728,7 +701,7 @@ try {
 
 <!-- 약관 모두동의 -->
 <script>
-	function agreeList() {
+	/* function agreeList() {
 		var all = document.querySelector("#agree_all").checked;
 		var checkBox = document.querySelectorAll(".selectBox");
 	
@@ -736,8 +709,41 @@ try {
 			checkBox[i].checked = all;
 		}
 	
-		console.log(checkBox.length);
-	}
+		if($("#agree_all").is(":checked") == false) {
+			$("#btnPay").attr("disabled", true);							
+		} else {
+			$("#btnPay").attr("disabled", false);
+		}	
+	} */
+	
+	$("#agree_all").click(function() {
+		var chk = $("#agree_all").prop("checked");
+		if (chk) {
+			$(".selectBox").prop("checked",true);
+		} else {
+			$(".selectBox").prop("checked",false);
+		}
+
+		var allList = new Array();
+		$("input[class='selectBox']:checked").each(function() {
+			allList.push($(this).attr("data-attr"));
+		});
+	});
+	
+	$(".selectBox").click(function() {
+		var list = new Array();
+		$("input[class='selectBox']:checked").each(function() {
+			list.push($(this).attr("data-attr"));
+		});
+		
+		if(list.length < 4) {
+			$("#agree_all").prop("checked",false);
+			$("#btnPay").attr("disabled", true);
+		} else {
+			$("#btnPay").attr("disabled", false);
+			$("#agree_all").prop("checked", true);
+		}
+	});
 </script>
 
 <!-- 약관 모두동의 -->
